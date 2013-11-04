@@ -20,6 +20,10 @@ namespace Granite3D
         internal const uint WM_CLOSE = 0x0010;
         internal const uint WM_PAINT = 0x000F;
         internal const uint WM_SIZE = 0x0005;
+        internal const uint WM_KEYDOWN = 0x0100;
+        internal const uint WM_KEYUP = 0x0101;
+        internal const uint WM_SETFOCUS = 0x0007;
+        internal const uint WM_KILLFOCUS = 0x0008;
 
         internal const byte PFD_TYPE_RGBA = 0;
         internal const byte PFD_TYPE_COLORINDEX = 1;

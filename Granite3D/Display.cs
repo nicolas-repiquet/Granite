@@ -115,6 +115,44 @@ namespace Granite3D
                     }
                     return IntPtr.Zero;
 
+                case WinApi.WM_KEYDOWN:
+                    {
+                        var key = (Keys)wParam.ToInt32();
+                        if (m_logic != null)
+                        {
+                            m_logic.OnKeyDown(key);
+                        }
+                    }
+                    return IntPtr.Zero;
+
+                case WinApi.WM_KEYUP:
+                    {
+                        var key = (Keys)wParam.ToInt32();
+                        if (m_logic != null)
+                        {
+                            m_logic.OnKeyUp(key);
+                        }
+                    }
+                    return IntPtr.Zero;
+
+                case WinApi.WM_SETFOCUS:
+                    {
+                        if (m_logic != null)
+                        {
+                            m_logic.OnGainFocus();
+                        }
+                    }
+                    return IntPtr.Zero;
+
+                case WinApi.WM_KILLFOCUS:
+                    {
+                        if (m_logic != null)
+                        {
+                            m_logic.OnLostFocus();
+                        }
+                    }
+                    return IntPtr.Zero;
+
                 default:
                     return WinApi.DefWindowProc(windowHandle, messageId, wParam, lParam);
             }

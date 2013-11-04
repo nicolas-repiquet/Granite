@@ -7,20 +7,13 @@ namespace Granite3D
 {
     public abstract class DisplayLogicBase : IDisplayLogic
     {
-        public void OnMouseMove(Display display, int x, int y)
-        {
-            
-        }
+        public virtual void OnMouseMove(Display display, int x, int y) { }
+        public virtual void OnCloseCommand(Display display) { }
+        public virtual void OnKeyDown(Keys key) { }
+        public virtual void OnKeyUp(Keys key) { }
+        public virtual void OnGainFocus() { }
+        public virtual void OnLostFocus() { }
 
-        public void OnCloseCommand(Display display)
-        {
-            
-        }
-
-
-        public void Render(Display display, Graphics graphics, TimeSpan elapsed)
-        {
-            
-        }
+        public virtual void Render(Display display, Graphics graphics, TimeSpan elapsed) { }
     }
 }
