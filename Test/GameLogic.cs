@@ -31,7 +31,7 @@ namespace Test
         public Color Color;
     }
 
-    public class GameLogic : IEngineLogic, IDisplayLogic
+    public class GameLogic : DisplayLogicBase, IEngineLogic
     {
         private Display m_display;
 
@@ -146,12 +146,12 @@ namespace Test
             CreateQuad(vertices, LeftBottomNear, LeftTopNear, LeftTopFar, LeftBottomFar, new Color(255, 0, 255));
             CreateQuad(vertices, RightBottomNear, RightTopNear, RightTopFar, RightBottomFar, new Color(0, 255, 255));
 
-            // Far : red
-            // Near : green
-            // top : blue
-            // bottom : yellow
-            // left : magenta
-            // right : cyan
+            // Far    : red       : z+
+            // Near   : green     : z-
+            // Top    : blue      : y+
+            // Bottom : yellow    : y-
+            // Right  : cyan      : x+
+            // Left   : magenta   : x-
 
             return vertices.ToArray();
         }
@@ -246,18 +246,58 @@ void main()
         // ********************************************************************
         // * Display
 
-        public void OnMouseMove(Display display, int x, int y)
-        {
+        private HashSet<Keys> m_keys = new HashSet<Keys>();
+        private float m_x, m_z;
 
+        public override void OnKeyDown(Keys key)
+        {
+            m_keys.Add(key);
         }
 
-        public void OnCloseCommand(Display display)
+        public override void OnKeyUp(Keys key)
+        {
+            m_keys.Remove(key);
+        }
+
+        public override void OnLostFocus()
+        {
+            m_keys.Clear();
+        }
+
+        public void UpdateKey(TimeSpan elapsed, Keys key)
+        {
+            switch (key)
+            {
+                case Keys.Up:
+                    m_z += 10f * (float)elapsed.TotalSeconds;
+                    break;
+
+                case Keys.Down:
+                    m_z -= 10f * (float)elapsed.TotalSeconds;
+                    break;
+
+                case Keys.Left:
+                    m_x -= 10f * (float)elapsed.TotalSeconds;
+                    break;
+
+                case Keys.Right:
+                    m_x += 10f * (float)elapsed.TotalSeconds;
+                    break;
+            }
+        }
+
+        public override void OnCloseCommand(Display display)
         {
             display.Engine.Stop();
         }
 
-        public void Render(Display display, Graphics graphics, TimeSpan elapsed)
+        public override void Render(Display display, Graphics graphics, TimeSpan elapsed)
         {
+            foreach (var key in m_keys)
+            {
+                UpdateKey(elapsed, key);
+            }
+
             m_rotation += (float)(elapsed.TotalSeconds * Math.PI);
 
             var ratio = display.Width / (float)display.Height;
@@ -277,7 +317,7 @@ void main()
             var modelMatrix = Mat44f.Identity;
             modelMatrix = modelMatrix.Scale(-1, 1, -1);
             modelMatrix = Mat44f.Multiply(modelMatrix, Mat44f.LookAt(
-                new Vec3f(20, -20, 20),
+                new Vec3f(m_x, -20, m_z),
                 new Vec3f(0, 0, 0),
                 new Vec3f(0, 0, 1)
             ));
