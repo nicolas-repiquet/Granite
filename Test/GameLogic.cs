@@ -26,8 +26,8 @@ namespace Test
     [StructLayout(LayoutKind.Sequential)]
     public struct Vertex
     {
-        public Vec3f Position;
-        public Vec2f TexCoord;
+        public Vector3 Position;
+        public Vector2 TexCoord;
         public Color Color;
     }
 
@@ -66,13 +66,13 @@ namespace Test
         private void CreateQuad(List<Vertex> vertices, Vertex p0, Vertex p1, Vertex p2, Vertex p3, Color c)
         {
             p0.Color = c;
-            p0.TexCoord = new Vec2f(0, 0);
+            p0.TexCoord = new Vector2(0, 0);
             p1.Color = c;
-            p1.TexCoord = new Vec2f(0, 1);
+            p1.TexCoord = new Vector2(0, 1);
             p2.Color = c;
-            p2.TexCoord = new Vec2f(1, 1);
+            p2.TexCoord = new Vector2(1, 1);
             p3.Color = c;
-            p3.TexCoord = new Vec2f(1, 0);
+            p3.TexCoord = new Vector2(1, 0);
             CreateFace(vertices, p0, p1, p2);
             CreateFace(vertices, p2, p3, p0);
         }
@@ -81,12 +81,12 @@ namespace Test
         {
             var vertices = new List<Vertex>();
 
-            var near =   new Vertex() { Position = new Vec3f(0, 0, -1), Color = new Color(255, 0, 0) };
-            var far = new Vertex() { Position = new Vec3f(0, 0, 1), Color = new Color(0, 255, 0) };
-            var left = new Vertex() { Position = new Vec3f(-1, 0, 0), Color = new Color(0, 0, 255) };
-            var right = new Vertex() { Position = new Vec3f(1, 0, 0), Color = new Color(255, 255, 0) };
-            var top = new Vertex() { Position = new Vec3f(0, 1, 0), Color = new Color(255, 0, 255) };
-            var bottom = new Vertex() { Position = new Vec3f(0, -1, 0), Color = new Color(0, 255, 255) };
+            var near =   new Vertex() { Position = new Vector3(0, 0, -1), Color = new Color(255, 0, 0) };
+            var far = new Vertex() { Position = new Vector3(0, 0, 1), Color = new Color(0, 255, 0) };
+            var left = new Vertex() { Position = new Vector3(-1, 0, 0), Color = new Color(0, 0, 255) };
+            var right = new Vertex() { Position = new Vector3(1, 0, 0), Color = new Color(255, 255, 0) };
+            var top = new Vertex() { Position = new Vector3(0, 1, 0), Color = new Color(255, 0, 255) };
+            var bottom = new Vertex() { Position = new Vector3(0, -1, 0), Color = new Color(0, 255, 255) };
 
             CreateFace(vertices, bottom, near, left);
             CreateFace(vertices, left, near, top);
@@ -107,36 +107,36 @@ namespace Test
 
             var LeftBottomNear = new Vertex()
             {
-                Position = new Vec3f(-1, -1, -1),
+                Position = new Vector3(-1, -1, -1),
             };
             var LeftBottomFar = new Vertex()
             {
-                Position = new Vec3f(-1, -1, 1),
+                Position = new Vector3(-1, -1, 1),
             };
             var LeftTopNear = new Vertex()
             {
-                Position = new Vec3f(-1, 1, -1),
+                Position = new Vector3(-1, 1, -1),
             };
             var LeftTopFar = new Vertex()
             {
-                Position = new Vec3f(-1, 1, 1),
+                Position = new Vector3(-1, 1, 1),
             };
             var RightBottomNear = new Vertex()
             {
-                Position = new Vec3f(1, -1, -1),
+                Position = new Vector3(1, -1, -1),
             };
 
             var RightBottomFar = new Vertex()
             {
-                Position = new Vec3f(1, -1, 1),
+                Position = new Vector3(1, -1, 1),
             };
             var RightTopNear = new Vertex()
             {
-                Position = new Vec3f(1, 1, -1),
+                Position = new Vector3(1, 1, -1),
             };
             var RightTopFar = new Vertex()
             {
-                Position = new Vec3f(1, 1, 1),
+                Position = new Vector3(1, 1, 1),
             };
 
             CreateQuad(vertices, LeftTopFar, RightTopFar, RightBottomFar, LeftBottomFar, new Color(255, 0, 0));
@@ -223,7 +223,7 @@ varying vec4 pos;
 
 void main()
 {
-    gl_FragColor = vec4(c, 1.0) * texture2D(texture, t); // * vec4(d, d, d, 1.0);
+    gl_FragColor = vec4(c, 1.0) * texture2D(texture, t);
 }
 ");
 
@@ -291,6 +291,12 @@ void main()
             display.Engine.Stop();
         }
 
+        public override void OnChar(char c)
+        {
+            
+        }
+
+ 
         public override void Render(Display display, Graphics graphics, TimeSpan elapsed)
         {
             foreach (var key in m_keys)
@@ -303,53 +309,52 @@ void main()
             var ratio = display.Width / (float)display.Height;
 
             // Identity
-            //var projMatrix = Mat44f.Identity;
-            //projMatrix = projMatrix.Scale(1f / (10f * ratio), 1f / 10f, 0.5f);
+            //var projMatrix = Granite.Math.Matrix4.Scale(1f / (10f * ratio), 1f / 10f, 0.01f);
 
             // Ortho
-            //var projMatrix = Mat44f.Ortho(-10 * ratio, 10 * ratio, -10, 10, -2f, 2f);
+            //var projMatrix = Granite.Math.Matrix4.Ortho(-10f * ratio, 10f * ratio, -10f, 10f, -100f, 100f);
 
             // Frustum
-            var projMatrix = Mat44f.Frustum(-1f * ratio, 1f * ratio, -1f, 1f, 2f, 1000f);
-            //projMatrix = projMatrix.Translate(0, 0, -28f);
+            var projMatrix = Matrix4.Frustum(-1f * ratio, 1f * ratio, -1f, 1f, 2f, 1000f);
 
 
-            var modelMatrix = Mat44f.Identity;
-            modelMatrix = modelMatrix.Scale(-1, 1, -1);
-            modelMatrix = Mat44f.Multiply(modelMatrix, Mat44f.LookAt(
-                new Vec3f(m_x, -20, m_z),
-                new Vec3f(0, 0, 0),
-                new Vec3f(0, 0, 1)
-            ));
+            var modelMatrix = Matrix4.Identity;
 
 
-            //var modelMatrix = Mat44f.Identity;
+            modelMatrix = modelMatrix * Matrix4.Scale(-1, 1, -1);
 
-            //modelMatrix = modelMatrix.RotateY(m_rotation / 10f);
+            var lookat = Matrix4.LookAt(
+                new Vector3(m_x, -20, m_z),
+                new Vector3(0, 0, 0),
+                new Vector3(0, 0, 1)
+            );
+
+            modelMatrix = modelMatrix * lookat;
 
 
-            var m = modelMatrix.Translate(0, 0, 0);
+            var m = modelMatrix * Matrix4.Translate(0, 0, 0);
+
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);
             m_programInstance.Draw();
 
             // X
-            m = modelMatrix.Translate(3, 0, 0);
+            m = modelMatrix * Matrix4.Translate(3, 0, 0);
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);
             m_programInstance.Draw();
 
             // Y
-            m = modelMatrix.Translate(0, 3, 0);
+            m = modelMatrix * Matrix4.Translate(0, 3, 0);
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);
             m_programInstance.Draw();
 
             // Z
-            m = modelMatrix.Translate(0, 0, 3);
+            m = modelMatrix * Matrix4.Translate(0, 0, 3);
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);

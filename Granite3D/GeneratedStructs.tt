@@ -1,0 +1,334 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+namespace Granite3D
+{
+
+<#
+
+var tokens = new string[][]
+{
+	new string[] { "int", "i", "0", "1" },
+	new string[] { "float", "", "0.0f", "1.0f" },
+	new string[] { "double", "d", "0.0", "1.0" }
+};
+
+foreach(var token in tokens)
+{
+	var type = token[0];
+	var extension = token[1];
+	var zero = token[2];
+	var one = token[3];
+#>
+
+<#
+
+var dimensions = new string[][]
+{
+	new string[] { "X", "x", "m_x" },
+	new string[] { "Y", "y", "m_y" },
+	new string[] { "Z", "z", "m_z" },
+	new string[] { "W", "w", "m_w" }
+};
+
+// ############################################################################
+// # VECTOR
+
+for(int dc = 2; dc <= 4; dc++)
+{
+	var typename = string.Format("Vector{0}{1}", dc, extension);
+	var ldimensions = dimensions.Take(dc).ToArray();
+	
+#>
+	[DebuggerDisplay("[<#= string.Join(", ", ldimensions.Select(d => "{" + d[2] + "}")) #>]")]
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct <#= typename #> : IEquatable<<#= typename #>>
+	{
+		public static <#= typename #> Zero { get { return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => zero)) #>); } }
+
+		<# for(int i = 0; i < dc; i++) { #>
+
+		public static <#= typename #> Unit<#= dimensions[i][0] #> { get { return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => Array.IndexOf(ldimensions, d) == i ? one : zero)) #>); } }
+		private readonly <#= type #> <#= dimensions[i][2] #>;
+		public <#= type #> <#= dimensions[i][0] #> { get { return <#= dimensions[i][2] #>; } }
+		<# } #>
+
+		public <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("{0} {1}", type, d[1]))) #>)
+		{
+		<# for(int i = 0; i < dc; i++) { #>
+
+			<#= dimensions[i][2] #> = <#= dimensions[i][1] #>;
+		<# } #>
+
+		}
+
+		public <#= type #> Length { get { return (<#= type #>)System.Math.Sqrt(<#= string.Join(" + ", ldimensions.Select(d => string.Format("{0} * {0}", d[2]))) #>); } }
+
+		public <#= type #> SquaredLength { get { return <#= string.Join(" + ", ldimensions.Select(d => string.Format("{0} * {0}", d[2]))) #>; } }
+
+		public <#= typename #> Normalize()
+		{
+			return this / Length;
+		}
+
+		public bool Equals(<#= typename #> other)
+		{
+			return <#= string.Join(" && ", ldimensions.Select(d => string.Format("{0} == other.{0}", d[2]))) #>;
+		}
+
+		public override bool Equals(object other)
+		{
+			return other is <#= typename #> ? Equals((<#= typename #>)other) : false;
+		}
+
+		public override int GetHashCode()
+		{
+			return <#= string.Join(" + ", ldimensions.Select(d => string.Format("{0}.GetHashCode()", d[2]))) #>;
+		}
+
+		public static bool operator == (<#= typename #> a, <#= typename #> b)
+		{
+			return <#= string.Join(" && ", ldimensions.Select(d => string.Format("a.{0} == b.{0}", d[2]))) #>;
+		}
+
+		public static bool operator != (<#= typename #> a, <#= typename #> b)
+		{
+			return <#= string.Join(" || ", ldimensions.Select(d => string.Format("a.{0} != b.{0}", d[2]))) #>;
+		}
+
+		public static <#= typename #> operator + (<#= typename #> a, <#= typename #> b)
+		{
+			return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("a.{0} + b.{0}", d[2]))) #>);
+		}
+
+		public static <#= typename #> operator - (<#= typename #> a, <#= typename #> b)
+		{
+			return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("a.{0} - b.{0}", d[2]))) #>);
+		}
+
+		public static <#= typename #> operator - (<#= typename #> a)
+		{
+			return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("-a.{0}", d[2]))) #>);
+		}
+
+		public static <#= typename #> operator / (<#= typename #> a, <#= type #> b)
+		{
+			return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("a.{0} / b", d[2]))) #>);
+		}
+
+		public static <#= typename #> operator * (<#= typename #> a, <#= type #> b)
+		{
+			return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("a.{0} * b", d[2]))) #>);
+		}
+
+		<# if(dc == 3) { #>
+
+		public static <#= typename #> Cross(<#= typename #> a, <#= typename #> b)
+		{
+			return new <#= typename #>(
+
+<# for(int i = 0; i < dc; i++) { #>
+				a.<#= ldimensions[(i + 1) % dc][2] #> * b.<#= ldimensions[(i + 2) % dc][2] #> - a.<#= ldimensions[(i + 2) % dc][2] #> * b.<#= ldimensions[(i + 1) % dc][2] #><#= i == dc - 1 ? "" : "," #>
+<# } #>
+			);
+		}
+		<# } #>
+
+		public static <#= type #> Dot(<#= typename #> a, <#= typename #> b)
+		{
+			return <#= string.Join(" + ", ldimensions.Select(d => string.Format("a.{0} * b.{0}", d[2]))) #>;
+		}
+	}
+
+
+<# } #>
+
+<# 
+
+// ############################################################################
+// # BOX
+
+for(int dc = 2; dc <= 3; dc++)
+{
+	var vecname = string.Format("Vector{0}{1}", dc, extension);
+	var typename = string.Format("Box{0}{1}", dc, extension);
+	var ldimensions = dimensions.Take(dc).ToArray();
+
+#>
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct <#= typename #> : IEquatable<<#= typename #>>
+	{
+		private readonly <#= vecname #> m_position;
+		private readonly <#= vecname #> m_size;
+
+		public <#= vecname #> Position { get { return m_position; } }
+		public <#= vecname #> Size { get { return m_size; } }
+
+		public <#= typename #>(<#= vecname #> position, <#= vecname #> size)
+		{
+			m_position = position;
+			m_size = size;
+		}
+
+		public <#= typename #>(
+			<#= string.Join(", ", ldimensions.Select(d => string.Format("{0} position{1}", type, d[0]))) #>,
+			<#= string.Join(", ", ldimensions.Select(d => string.Format("{0} size{1}", type, d[0]))) #>)
+		{
+			m_position = new <#= vecname #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("position{0}", d[0]))) #>);
+			m_size = new <#= vecname #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("size{0}", d[0]))) #>);
+		}
+
+<# for(int i = 0; i < dc; i++) { #>
+	
+		public <#= type #> Min<#= dimensions[i][0] #> { get { return System.Math.Min(m_position.<#= dimensions[i][0] #>, m_position.<#= dimensions[i][0] #> + m_size.<#= dimensions[i][0] #>); } }
+		public <#= type #> Max<#= dimensions[i][0] #> { get { return System.Math.Max(m_position.<#= dimensions[i][0] #>, m_position.<#= dimensions[i][0] #> + m_size.<#= dimensions[i][0] #>); } }
+
+<# } #>
+
+		public bool Equals(<#= typename #> other)
+		{
+			return m_position == other.m_position && m_size == other.m_size;
+		}
+
+		public override bool Equals(object other)
+		{
+			return other is <#= typename #> ? Equals((<#= typename #>)other) : false;
+		}
+
+		public override int GetHashCode()
+		{
+			return m_position.GetHashCode() + m_size.GetHashCode();
+		}
+
+		public bool Contains(<#= vecname #> p)
+		{
+			return <#= string.Join(" && ", ldimensions.Select(d => string.Format("p.{0} >= Min{0} && p.{0} <= Max{0}", d[0]))) #>;
+		}
+
+		public static bool operator == (<#= typename #> a, <#= typename #> b)
+		{
+			return a.m_position == b.m_position && a.m_size == b.m_size;
+		}
+
+		public static bool operator != (<#= typename #> a, <#= typename #> b)
+		{
+			return a.m_position != b.m_position || a.m_size != b.m_size;
+		}
+	}
+
+<# } #>
+
+<# 
+
+// ############################################################################
+// # MATRIX
+
+if(type != "int") {
+for(int dc = 2; dc <= 4; dc++)
+{
+	var vecname = string.Format("Vector{0}{1}", dc, extension);
+	var typename = string.Format("Matrix{0}{1}", dc, extension);
+	var ldimensions = dimensions.Take(dc).ToArray();
+	var points = new List<Point>();
+	for(int x = 0; x < dc; x++) { for(int y = 0; y < dc; y++) {
+		points.Add(new Point() { X = x, Y = y });
+	} }
+#>
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct <#= typename #> : IEquatable<<#= typename #>>
+	{
+
+		private static readonly <#= typename #> s_identity = new <#= typename #>(<#= string.Join(", ", points.Select(p => p.X == p.Y ? one : zero)) #>);
+		public static <#= typename #> Identity { get { return s_identity; } }
+
+
+<# for(int y = 0; y < dc; y++) { for(int x = 0; x < dc; x++) { #>
+		private readonly <#= type #> m_m<#= x #><#= y #>;
+		public <#= type #> M<#= x #><#= y #> { get { return m_m<#= x #><#= y #>; } }
+<# } } #>
+
+		public <#= typename #>(<#= string.Join(", ", points.Select(d => string.Format("{0} m{1}{2}", type, d.X, d.Y))) #>)
+		{
+<# foreach(var p in points) { #>
+			<#= string.Format("m_m{0}{1} = m{0}{1};", p.X, p.Y) #>
+<# } #>
+		}
+
+		public bool Equals(<#= typename #> other)
+		{
+			return <#= string.Join(" && ", points.Select(p => string.Format("m_m{0}{1} == other.m_m{0}{1}", p.X, p.Y))) #>;
+		}
+
+		public override bool Equals(object other)
+		{
+			return other is <#= typename #> ? Equals((<#= typename #>)other) : false;
+		}
+
+		public override int GetHashCode()
+		{
+			return <#= string.Join(" + ", points.Select(p => string.Format("m_m{0}{1}.GetHashCode()", p.X, p.Y))) #>;
+		}
+
+		public static <#= typename #> operator * (<#= typename #> a, <#= typename #> b)
+		{
+			return new <#= typename #>(
+<# 
+for(int x = 0; x < dc; x++) { for(int y = 0; y < dc; y++) {
+	Write("				");
+	for(int i = 0; i < dc; i++) {
+		if(i != 0) Write(" + ");
+		Write("a.m_m");
+		Write(x.ToString());
+		Write(i.ToString());
+		Write(" * b.m_m");
+		Write(i.ToString());
+		Write(y.ToString());
+	}
+	WriteLine(x == (dc - 1) && y == (dc - 1) ? "" : ",");
+} }
+#>
+			);
+		}
+
+		public static <#= vecname #> operator * (<#= typename #> a, <#= vecname #> b)
+		{
+			return new <#= vecname #>(
+<# 
+for(int i1 = 0; i1 < dc; i1++) {
+	Write("				");
+	for(int i2 = 0; i2 < dc; i2++) {
+		if(i2 != 0) Write(" + ");
+		Write("a.m_m");
+		Write(i1.ToString());
+		Write(i2.ToString());
+		Write(" * b.");
+		Write(dimensions[i2][0]);
+	}
+	WriteLine(i1 == (dc - 1) ? "" : ",");
+}
+#>
+			);
+		}
+	}
+
+<# } } #>
+
+<# } #>
+
+}
+
+<#+
+class Point {
+	public int X { get; set; }
+	public int Y { get; set; }
+}
+#>

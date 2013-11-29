@@ -300,7 +300,7 @@ namespace Granite3D
 
         internal override void SetValue(object value)
         {
-            var m = (Mat44f)value;
+            var m = (Matrix4)value;
             Program.Engine.Gl.glUniformMatrix4fv(Position, 1, 0, ref m);
         }
     }

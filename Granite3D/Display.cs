@@ -153,6 +153,15 @@ namespace Granite3D
                     }
                     return IntPtr.Zero;
 
+                case WinApi.WM_CHAR:
+                    {
+                        if (m_logic != null)
+                        {
+                            m_logic.OnChar((char)wParam.ToInt32());
+                        }
+                    }
+                    return IntPtr.Zero;
+
                 default:
                     return WinApi.DefWindowProc(windowHandle, messageId, wParam, lParam);
             }

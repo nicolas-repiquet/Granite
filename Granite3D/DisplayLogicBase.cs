@@ -13,6 +13,7 @@ namespace Granite3D
         public virtual void OnKeyUp(Keys key) { }
         public virtual void OnGainFocus() { }
         public virtual void OnLostFocus() { }
+        public virtual void OnChar(char c) { }
 
         public virtual void Render(Display display, Graphics graphics, TimeSpan elapsed) { }
     }

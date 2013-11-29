@@ -53,7 +53,11 @@ namespace Granite3D
         internal const uint GL_DEPTH_BUFFER_BIT = 0x00000100;
         internal const uint GL_DEPTH_TEST = 0x0B71;
         internal const uint GL_GREATER = 0x0204;
-
+        internal const uint GL_VENDOR = 0x1F00;
+        internal const uint GL_RENDERER = 0x1F01;
+        internal const uint GL_VERSION = 0x1F02;
+        internal const uint GL_EXTENSIONS = 0x1F03;
+        internal const uint GL_SHADING_LANGUAGE_VERSION = 0x8B8C;
         internal const uint GL_BYTE = 0x1400;
         internal const uint GL_UNSIGNED_BYTE = 0x1401;
         internal const uint GL_SHORT = 0x1402;
@@ -81,10 +85,13 @@ namespace Granite3D
         internal delegate void Gl_Void_UInt32_Int32_UInt32_Byte_Int32_IntPtr(uint p1, int p2, uint p3, byte p4, int p5, IntPtr p6);
         internal delegate void Gl_Void_Int32_Float(int p1, float p2);
         internal delegate void Gl_Void_UInt32_Int32_Int32(uint p1, int p2, int p3);
-        internal delegate void Gl_Void_Int32_Int32_Int32_RefMat44f(int p1, int p2, byte p3, ref Mat44f p4);
+        internal delegate void Gl_Void_Int32_Int32_Int32_RefMat44f(int p1, int p2, byte p3, ref Matrix4 p4);
         internal delegate void Gl_Void_Int32_Int32_Int32_Int32(int p1, int p2, int p3, int p4);
         internal delegate void Gl_Void_UInt32_Int32_Int32_Int32_Int32_Int32_UInt32_UInt32_IntPtr(uint p1, int p2, int p3, int p4, int p5, int p6, uint p7, uint p8, IntPtr p9);
         internal delegate void Gl_Void_Double(double p1);
+        internal delegate void Gl_IntPtr_IntPtr_IntPtr_IntArray(IntPtr p1, IntPtr p2, int[] p3);
+        internal delegate IntPtr Gl_IntPtr_UInt32(uint p1);
+        internal delegate IntPtr Gl_IntPtr_UInt32_UInt32(uint p1, uint p2);
 
         internal GlApi()
         {
@@ -100,6 +107,11 @@ namespace Granite3D
             }
         }
 
+        internal void ClearError()
+        {
+            glGetError();
+        }
+
         internal void CheckError()
         {
             var error = glGetError();
@@ -110,6 +122,7 @@ namespace Granite3D
         }
 
         internal Gl_Uint32 glGetError { get; private set; }
+        internal Gl_IntPtr_IntPtr_IntPtr_IntArray wglCreateContextAttribsARB { get; private set; }
         internal Gl_Void_Float_Float_Float_Float glClearColor { get; private set; }
         internal Gl_Void_UInt32 glClear { get; private set; }
         internal Gl_Void_Int32_OutUInt32 glGenBuffers { get; private set; }
@@ -156,5 +169,7 @@ namespace Granite3D
         internal Gl_Void_UInt32_UInt32_Int32 glTexParameteri { get; private set; }
         internal Gl_Void_UInt32 glDepthFunc { get; private set; }
         internal Gl_Void_Double glClearDepth { get; private set; }
+        internal Gl_IntPtr_UInt32 glGetString { get; private set; }
+        internal Gl_IntPtr_UInt32_UInt32 glGetStringi { get; private set; }
     }
 }

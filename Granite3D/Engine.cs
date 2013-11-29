@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
@@ -47,7 +48,7 @@ namespace Granite3D
 
         private class InternalDisplayLogic : DisplayLogicBase
         {
-
+             
         }
 
         private void Prepare()
@@ -57,6 +58,30 @@ namespace Granite3D
                 m_openglContext = WinApi.wglCreateContext(display.DeviceContextHandle);
                 WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
                 m_gl = new GlApi();
+
+                var gl = new GL();
+
+
+                var vendor = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_VENDOR));
+                var version = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_VERSION));
+                var renderer = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_RENDERER));
+                var shadingLanguageVersion = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_SHADING_LANGUAGE_VERSION));
+                var extensions = new List<string>();
+
+                while(true) {
+                    var p = m_gl.glGetStringi(GlApi.GL_EXTENSIONS, (uint)extensions.Count);
+                    if (p != IntPtr.Zero)
+                    {
+                        extensions.Add(Marshal.PtrToStringAnsi(p));
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                m_gl.ClearError();
+                extensions.Sort();
+
             }
         }
 
