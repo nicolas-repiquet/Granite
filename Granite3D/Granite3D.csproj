@@ -73,6 +73,12 @@
     <None Include="Color.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Color.gen.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Color.gen.cs</LastGenOutput>
+    </None>
+    <None Include="Structs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Structs.gen.cs</LastGenOutput>
     </None>
     <None Include="Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
