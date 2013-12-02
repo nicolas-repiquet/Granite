@@ -13,7 +13,7 @@ namespace Granite3D
         private readonly Thread m_thread;
         private readonly IEngineLogic m_logic;
         private readonly Queue<Action> m_actions;
-        private GlApi m_gl;
+        private GL m_gl;
 
         private bool m_running;
         private IntPtr m_openglContext;
@@ -57,19 +57,16 @@ namespace Granite3D
             {
                 m_openglContext = WinApi.wglCreateContext(display.DeviceContextHandle);
                 var result = WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
-                m_gl = new GlApi();
+                m_gl = new GL();
 
-                var gl = new GL();
-
-
-                var vendor = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_VENDOR));
-                var version = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_VERSION));
-                var renderer = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_RENDERER));
-                var shadingLanguageVersion = Marshal.PtrToStringAnsi(m_gl.glGetString(GlApi.GL_SHADING_LANGUAGE_VERSION));
+                var vendor = Marshal.PtrToStringAnsi(m_gl.GetString(GL.VENDOR));
+                var version = Marshal.PtrToStringAnsi(m_gl.GetString(GL.VERSION));
+                var renderer = Marshal.PtrToStringAnsi(m_gl.GetString(GL.RENDERER));
+                var shadingLanguageVersion = Marshal.PtrToStringAnsi(m_gl.GetString(GL.SHADING_LANGUAGE_VERSION));
                 var extensions = new List<string>();
 
                 while(true) {
-                    var p = m_gl.glGetStringi(GlApi.GL_EXTENSIONS, (uint)extensions.Count);
+                    var p = m_gl.GetStringi(GL.EXTENSIONS, (uint)extensions.Count);
                     if (p != IntPtr.Zero)
                     {
                         extensions.Add(Marshal.PtrToStringAnsi(p));
@@ -79,9 +76,7 @@ namespace Granite3D
                         break;
                     }
                 }
-                m_gl.ClearError();
                 extensions.Sort();
-
             }
         }
 
@@ -90,7 +85,7 @@ namespace Granite3D
 
         internal IntPtr OpenglContext { get { return m_openglContext; } }
 
-        internal GlApi Gl { get { return m_gl; } }
+        internal GL Gl { get { return m_gl; } }
 
         internal void CheckThread()
         {

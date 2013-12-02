@@ -14,7 +14,7 @@ namespace Granite3D
             : base(engine)
         {
             uint name;
-            Engine.Gl.glGenTextures(1, out name);
+            Engine.Gl.GenTextures(1, out name);
             m_name = name;
         }
 
@@ -27,30 +27,30 @@ namespace Granite3D
 
             if (descriptor.FlattenedCount == 3)
             {
-                format = GlApi.GL_RGB;
+                format = GL.RGB;
             }
             else if (descriptor.FlattenedCount == 4)
             {
-                format = GlApi.GL_RGBA;
+                format = GL.RGBA;
             }
             else
             {
                 throw new ArgumentException("data");
             }
 
-            Engine.Gl.glBindTexture(GlApi.GL_TEXTURE_2D, m_name);
+            Engine.Gl.BindTexture(GL.TEXTURE_2D, m_name);
 
-            Engine.Gl.glTexParameteri(GlApi.GL_TEXTURE_2D, GlApi.GL_TEXTURE_MIN_FILTER, (int)GlApi.GL_NEAREST);
-            Engine.Gl.glTexParameteri(GlApi.GL_TEXTURE_2D, GlApi.GL_TEXTURE_MAG_FILTER, (int)GlApi.GL_NEAREST);
-            Engine.Gl.glTexParameteri(GlApi.GL_TEXTURE_2D, GlApi.GL_TEXTURE_WRAP_S, (int)GlApi.GL_CLAMP_TO_EDGE);
-            Engine.Gl.glTexParameteri(GlApi.GL_TEXTURE_2D, GlApi.GL_TEXTURE_WRAP_T, (int)GlApi.GL_CLAMP_TO_EDGE);
+            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, (int)GL.NEAREST);
+            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, (int)GL.NEAREST);
+            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, (int)GL.CLAMP_TO_EDGE);
+            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, (int)GL.CLAMP_TO_EDGE);
 
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
 
             try
             {
-                Engine.Gl.glTexImage2D(
-                    GlApi.GL_TEXTURE_2D,
+                Engine.Gl.TexImage2D(
+                    GL.TEXTURE_2D,
                     0,
                     (int)format,
                     width,
@@ -60,14 +60,13 @@ namespace Granite3D
                     descriptor.FlattenedType,
                     handle.AddrOfPinnedObject()
                 );
-                Engine.Gl.CheckError();
             }
             finally
             {
                 handle.Free();
             }
 
-            Engine.Gl.glBindTexture(GlApi.GL_TEXTURE_2D, 0);
+            Engine.Gl.BindTexture(GL.TEXTURE_2D, 0);
         }
 
         protected override void InternalDispose()
@@ -76,7 +75,7 @@ namespace Granite3D
 
             Engine.ExecuteAction(() =>
             {
-                Engine.Gl.glDeleteTextures(1, out name);
+                Engine.Gl.DeleteTextures(1, ref name);
             });    
         }
     }

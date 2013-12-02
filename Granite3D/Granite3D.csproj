@@ -46,13 +46,17 @@
     <Compile Include="Engine.cs" />
     <Compile Include="EngineResource.cs" />
     <Compile Include="EngineSettings.cs" />
+    <Compile Include="GL.gen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Structs.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Structs.tt</DependentUpon>
     </Compile>
     <Compile Include="GL.cs" />
-    <Compile Include="GlApi.cs" />
     <Compile Include="Graphics.cs" />
     <Compile Include="IBufferView.cs" />
     <Compile Include="IDisplayLogic.cs" />
@@ -76,9 +80,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Color.gen.cs</LastGenOutput>
     </None>
-    <None Include="Structs.tt">
+    <None Include="GL.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Structs.gen.cs</LastGenOutput>
+      <LastGenOutput>GL.gen.cs</LastGenOutput>
     </None>
     <None Include="Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

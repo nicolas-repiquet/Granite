@@ -45,17 +45,17 @@ namespace Granite3D
         {
             s_descriptors = new Dictionary<Type, ValueTypeDescriptor>();
 
-            s_descriptors.Add(typeof(sbyte), new ValueTypeDescriptor(typeof(sbyte), GlApi.GL_BYTE));
-            s_descriptors.Add(typeof(byte), new ValueTypeDescriptor(typeof(byte), GlApi.GL_UNSIGNED_BYTE));
+            s_descriptors.Add(typeof(sbyte), new ValueTypeDescriptor(typeof(sbyte), GL.BYTE));
+            s_descriptors.Add(typeof(byte), new ValueTypeDescriptor(typeof(byte), GL.UNSIGNED_BYTE));
 
-            s_descriptors.Add(typeof(short), new ValueTypeDescriptor(typeof(short), GlApi.GL_SHORT));
-            s_descriptors.Add(typeof(ushort), new ValueTypeDescriptor(typeof(ushort), GlApi.GL_UNSIGNED_SHORT));
+            s_descriptors.Add(typeof(short), new ValueTypeDescriptor(typeof(short), GL.SHORT));
+            s_descriptors.Add(typeof(ushort), new ValueTypeDescriptor(typeof(ushort), GL.UNSIGNED_SHORT));
 
-            s_descriptors.Add(typeof(int), new ValueTypeDescriptor(typeof(int), GlApi.GL_INT));
-            s_descriptors.Add(typeof(uint), new ValueTypeDescriptor(typeof(uint), GlApi.GL_UNSIGNED_INT));
+            s_descriptors.Add(typeof(int), new ValueTypeDescriptor(typeof(int), GL.INT));
+            s_descriptors.Add(typeof(uint), new ValueTypeDescriptor(typeof(uint), GL.UNSIGNED_INT));
 
-            s_descriptors.Add(typeof(float), new ValueTypeDescriptor(typeof(float), GlApi.GL_FLOAT));
-            s_descriptors.Add(typeof(double), new ValueTypeDescriptor(typeof(double), GlApi.GL_DOUBLE));
+            s_descriptors.Add(typeof(float), new ValueTypeDescriptor(typeof(float), GL.FLOAT));
+            s_descriptors.Add(typeof(double), new ValueTypeDescriptor(typeof(double), GL.DOUBLE));
         }
 
         internal static ValueTypeDescriptor Create(Type type)

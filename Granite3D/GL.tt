@@ -1,0 +1,214 @@
+﻿﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".gen.cs" #>
+<#
+
+var enumRegex = new Regex(@"^(\S+)\s+(\S+)\s*=\s*(\S+)\s*;$");
+var functionRegex = new Regex(@"^(\S+)\s+(\S+)\s+(\S+)\s*\((.*)\)\s*;$");
+var functionParameterRegex = new Regex(@"^(\S+)\s+(\S+)$");
+
+var enums = new List<GlEnum>();
+var functions = new Dictionary<string,GlFunction>();
+
+var lines = File.ReadAllLines(Host.ResolvePath("GL33Core.txt"));
+var lineNumber = 0;
+
+foreach(var line in lines.Select(s => s.Trim()))
+{
+	lineNumber++;
+	if(!line.StartsWith("#"))
+	{
+		var match = enumRegex.Match(line);
+
+		if(match.Success)
+		{
+			var type = match.Groups[1].Captures[0].Value;
+			var name = match.Groups[2].Captures[0].Value;
+			var value = match.Groups[3].Captures[0].Value;
+
+			enums.Add(new GlEnum()
+			{
+				Type = type,
+				Name = name,
+				Value = value
+			});
+		}
+		else if((match = functionRegex.Match(line)).Success)
+		{
+			var visibility = match.Groups[1].Captures[0].Value;
+			var returnType = match.Groups[2].Captures[0].Value;
+			var name = match.Groups[3].Captures[0].Value;
+			var parametersString = match.Groups[4].Captures[0].Value.Trim();
+			string[] parameters;
+			if(!string.IsNullOrEmpty(parametersString))
+			{
+				parameters = parametersString.Split(',').Select(s => s.Trim()).ToArray();
+			}
+			else
+			{
+				parameters = new string[0];
+			}
+
+			GlFunction function;
+
+			if(!functions.TryGetValue(name, out function))
+			{
+				function = new GlFunction() { Name = name };
+				functions.Add(name, function);
+			}
+
+			var overload = new GlFunctionOverload()
+			{
+				Visibility = visibility,
+				ReturnType = returnType
+			};
+
+			overload.Index = function.Overloads.Count;
+
+			function.Overloads.Add(overload);
+
+			foreach(var parameter in parameters)
+			{
+				var pmatch = functionParameterRegex.Match(parameter);
+				if(pmatch.Success)
+				{
+					var ptype = pmatch.Groups[1].Captures[0].Value;
+					var pname = pmatch.Groups[2].Captures[0].Value;
+
+					overload.Parameters.Add(new GlFunctionParameter() {
+						Type = ptype,
+						Name = pname
+					});
+				}
+				else
+				{
+					Error("\"" + parameter + "\" is invalid, line " + lineNumber);
+				}
+			}
+		}
+	}
+}
+
+#>
+using System;
+using System.Runtime.InteropServices;
+
+namespace Granite3D
+{
+	public partial class GL
+	{
+
+<# foreach(var e in enums.OrderBy(e => e.Name)) { #>
+		public const <#= e.Type #> <#= e.Name #> = <#= e.Value #>;
+<# } #>
+
+<# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
+		private delegate <#= o.GetDotNetType() #> Delegate_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>);
+<# } } #>
+
+<# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
+		private readonly Delegate_<#= f.Name #>_<#= o.Index #> m_<#= f.Name #>_<#= o.Index #>;
+<# } } #>
+
+		public GL()
+		{
+<# foreach(var f in functions.Values) { #>
+			var <#= f.Name #>Address = GetFunctionAddress("gl<#= f.Name #>");
+<# } #>
+<# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
+			m_<#= f.Name #>_<#= o.Index #> = (Delegate_<#= f.Name #>_<#= o.Index #>)Marshal.GetDelegateForFunctionPointer(<#= f.Name #>Address, typeof(Delegate_<#= f.Name #>_<#= o.Index #>));
+<# } } #>
+		}
+
+<# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
+		<#= o.Visibility #> <#= o.GetDotNetType() #> <#= f.Name #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>)
+		{
+			<#= o.ReturnType == "void" ? string.Empty : "return " #>m_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => p.GetForwardName())) #>);
+		}
+
+<# } } #>
+
+	}
+}
+
+<#+
+
+class GlEnum
+{
+	public string Type { get; set; }
+	public string Name { get; set; }
+	public string Value { get; set; }
+}
+
+class GlFunction
+{
+	public string Name { get; set; }
+	public List<GlFunctionOverload> Overloads { get; private set; }
+	public GlFunction()
+	{
+		Overloads = new List<GlFunctionOverload>();
+	}
+}
+
+class GlFunctionOverload
+{
+	public int Index { get; set; }
+	public string Visibility { get; set; }
+	public string ReturnType { get; set; }
+	public List<GlFunctionParameter> Parameters { get; private set; }
+	public GlFunctionOverload()
+	{
+		Parameters = new List<GlFunctionParameter>();
+	}
+	public string GetDotNetType()
+	{
+		return GlFunctionParameter.GetDotNetType(ReturnType);
+	}
+}
+
+class GlFunctionParameter
+{
+	public string Type { get; set; }
+	public string Name { get; set; }
+	public string GetForwardName()
+	{
+		if(Type.StartsWith("inptr<")) {
+			return "ref " + Name;
+		} else if(Type.StartsWith("outptr<")) {
+			return "out " + Name;
+		} else {
+			return Name;
+		}
+	}
+	public string GetDotNetType()
+	{
+		return GetDotNetType(Type);
+	}
+	public static string GetDotNetType(string type)
+	{
+		if(type.StartsWith("inptr<") && type[type.Length-1] == '>')
+		{
+			var innerType = type.Substring(6, type.Length - 7);
+			return "ref " + GetDotNetType(innerType);
+		}
+		else if(type.StartsWith("outptr<") && type[type.Length-1] == '>')
+		{
+			var innerType = type.Substring(7, type.Length - 8);
+			return "out " + GetDotNetType(innerType);
+		}
+		else
+		{
+			switch(type) {
+				case "IntPtr": return "System.IntPtr";
+				case "inptr<uint>" : return "ref uint";
+				default: return type;
+			}
+		}
+	}
+}
+
+#>

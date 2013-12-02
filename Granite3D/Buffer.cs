@@ -15,7 +15,7 @@ namespace Granite3D
             : base(engine)
         {
             uint name;
-            Engine.Gl.glGenBuffers(1, out name);
+            Engine.Gl.GenBuffers(1, out name);
             m_name = name;
         }
 
@@ -126,7 +126,7 @@ namespace Granite3D
 
             Engine.ExecuteAction(() =>
             {
-                Engine.Gl.glDeleteBuffers(1, out name);
+                Engine.Gl.DeleteBuffers(1, ref name);
             });
         }
 
@@ -138,11 +138,11 @@ namespace Granite3D
             try
             {
                 var size = TypeSize * data.Length;
-                Engine.Gl.glBindBuffer(GlApi.GL_ARRAY_BUFFER, Name);
-                Engine.Gl.glBufferData(GlApi.GL_ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), GlApi.GL_STATIC_DRAW);
+                Engine.Gl.BindBuffer(GL.ARRAY_BUFFER, Name);
+                Engine.Gl.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), GL.STATIC_DRAW);
                 int realSize;
-                Engine.Gl.glGetBufferParameteriv(GlApi.GL_ARRAY_BUFFER, GlApi.GL_BUFFER_SIZE, out realSize);
-                Engine.Gl.glBindBuffer(GlApi.GL_ARRAY_BUFFER, 0);
+                Engine.Gl.GetBufferParameteriv(GL.ARRAY_BUFFER, GL.BUFFER_SIZE, out realSize);
+                Engine.Gl.BindBuffer(GL.ARRAY_BUFFER, 0);
                 m_count = data.Length;
                 if (size != realSize)
                 {

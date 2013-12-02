@@ -20,7 +20,7 @@ namespace Granite3D
             Dictionary<string, object> uniforms,
             Dictionary<string, IBufferView> attributes)
         {
-            m_engine.Gl.glUseProgram(program.Name);
+            m_engine.Gl.UseProgram(program.Name);
 
             // Uniforms
             foreach (var uniform in program.Uniforms)
@@ -39,30 +39,30 @@ namespace Granite3D
                 IBufferView view = null;
                 if (attributes.TryGetValue(attribute.Name, out view))
                 {
-                    m_engine.Gl.glBindBuffer(GlApi.GL_ARRAY_BUFFER, view.Buffer.Name);
-                    m_engine.Gl.glVertexAttribPointer(
+                    m_engine.Gl.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
+                    m_engine.Gl.VertexAttribPointer(
                         (uint)attribute.Position,
                         view.Size,
                         view.Type,
-                        0xFF,
+                        true,
                         view.Stride,
                         new IntPtr(view.Offset)
                     );
-                    m_engine.Gl.glBindBuffer(GlApi.GL_ARRAY_BUFFER, 0);
-                    m_engine.Gl.glEnableVertexAttribArray((uint)attribute.Position);
+                    m_engine.Gl.BindBuffer(GL.ARRAY_BUFFER, 0);
+                    m_engine.Gl.EnableVertexAttribArray((uint)attribute.Position);
                 }
             }
 
             // Elements
-            //m_engine.Gl.glBindBuffer(GlApi.GL_ELEMENT_ARRAY_BUFFER, elements.Name);
+            //m_engine.Gl.glBindBuffer(GL.ELEMENT_ARRAY_BUFFER, elements.Name);
             //m_engine.Gl.glDrawElements(
-            //    GlApi.GL_TRIANGLE_FAN,
+            //    GL.TRIANGLE_FAN,
             //    elements.Count,
-            //    GlApi.GL_UNSIGNED_INT,
+            //    GL.UNSIGNED_INT,
             //    IntPtr.Zero
             //);
 
-            m_engine.Gl.glDrawArrays(GlApi.GL_TRIANGLE_FAN, 0, 4);
+            m_engine.Gl.DrawArrays(GL.TRIANGLE_FAN, 0, 4);
 
             // Cleanup
 
@@ -72,10 +72,10 @@ namespace Granite3D
             // Attributes
             foreach (var attribute in program.Attributes)
             {
-                m_engine.Gl.glDisableVertexAttribArray((uint)attribute.Position);
+                m_engine.Gl.DisableVertexAttribArray((uint)attribute.Position);
             }
 
-            m_engine.Gl.glUseProgram(0);
+            m_engine.Gl.UseProgram(0);
         }
     }
 }

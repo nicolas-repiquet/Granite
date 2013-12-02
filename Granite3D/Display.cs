@@ -112,7 +112,7 @@ namespace Granite3D
                         m_width = v & 0xFFFF;
                         m_height = (v >> 16) & 0xFFFF;
 
-                        Engine.Gl.glViewport(0, 0, m_width, m_height);
+                        Engine.Gl.Viewport(0, 0, m_width, m_height);
                     }
                     return IntPtr.Zero;
 
@@ -187,14 +187,14 @@ namespace Granite3D
                 try
                 {
                     // Draw
-                    Engine.Gl.glClearColor(0.5f, 0.5f, 0.55f, 1.0f);
+                    Engine.Gl.ClearColor(0.5f, 0.5f, 0.55f, 1.0f);
                     //Engine.Gl.glClearDepth(0.0);
-                    Engine.Gl.glClear(GlApi.GL_COLOR_BUFFER_BIT | GlApi.GL_DEPTH_BUFFER_BIT);
+                    Engine.Gl.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
 
-                    Engine.Gl.glEnable(GlApi.GL_DEPTH_TEST);
-                    //Engine.Gl.glDepthFunc(GlApi.GL_GREATER);
-                    Engine.Gl.glEnable(GlApi.GL_BLEND);
-                    Engine.Gl.glBlendFunc(GlApi.GL_SRC_ALPHA, GlApi.GL_ONE_MINUS_SRC_ALPHA);
+                    Engine.Gl.Enable(GL.DEPTH_TEST);
+                    //Engine.Gl.glDepthFunc(GL.GREATER);
+                    Engine.Gl.Enable(GL.BLEND);
+                    Engine.Gl.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
                     m_logic.Render(this, new Graphics(Engine), elapsed);
 
