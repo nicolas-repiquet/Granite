@@ -35,6 +35,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buffer.cs" />
+    <Compile Include="Color.gen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Color.tt</DependentUpon>
+    </Compile>
     <Compile Include="Display.cs" />
     <Compile Include="DisplayLogicBase.cs" />
     <Compile Include="DisplaySettings.cs" />
@@ -65,6 +70,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Color.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Color.gen.cs</LastGenOutput>
+    </None>
     <None Include="Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Structs.gen.cs</LastGenOutput>

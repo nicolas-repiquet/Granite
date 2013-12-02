@@ -1,0 +1,93 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".gen.cs" #>
+
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+namespace Granite3D
+{
+
+<#
+
+var tokens = new string[][]
+{
+	new string[] { "byte", "ub" },
+	new string[] { "ushort", "us" },
+	new string[] { "float", "" }
+};
+
+foreach(var token in tokens)
+{
+	var type = token[0];
+	var extension = token[1];
+
+	var dimensions = new string[][]
+	{
+		new string[] { "R", "r", "m_r" },
+		new string[] { "G", "g", "m_g" },
+		new string[] { "B", "b", "m_b" },
+		new string[] { "A", "a", "m_a" }
+	};
+
+	for(int i = 3; i <= 4; i++) {
+
+		var typename = string.Format("Color{0}{1}", i, extension);
+		var ldimensions = dimensions.Take(i).ToArray();
+
+#>
+
+	[StructLayout(LayoutKind.Sequential)]
+	public struct <#= typename #> : IEquatable<<#= typename #>>
+	{
+<# foreach(var d in ldimensions) { #>
+
+		private readonly <#= type #> <#= d[2] #>;
+		public <#= type #> <#= d[0] #> { get { return <#= d[2] #>; } }
+<# } #>
+
+		public <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("{0} {1}", type, d[1]))) #>)
+		{
+<# foreach(var d in ldimensions) { #>
+			<#= d[2] #> = <#= d[1] #>;
+<# } #>
+		}
+
+		public bool Equals(<#= typename #> other)
+		{
+			return <#= string.Join(" && ", ldimensions.Select(d => string.Format("{0} == other.{0}", d[2]))) #>;
+		}
+
+		public override bool Equals(object other)
+		{
+			return other is <#= typename #> ? Equals((<#= typename #>)other) : false;
+		}
+
+		public override int GetHashCode()
+		{
+			return <#= string.Join(" ^ ", ldimensions.Select(d => string.Format("{0}.GetHashCode()", d[2]))) #>;
+		}
+
+		public static bool operator == (<#= typename #> a, <#= typename #> b)
+		{
+			return <#= string.Join(" && ", ldimensions.Select(d => string.Format("a.{0} == b.{0}", d[2]))) #>;
+		}
+
+		public static bool operator != (<#= typename #> a, <#= typename #> b)
+		{
+			return <#= string.Join(" || ", ldimensions.Select(d => string.Format("a.{0} != b.{0}", d[2]))) #>;
+		}
+
+		public static <#= typename #> Mix(<#= typename #> a, <#= typename #> b, float ratio)
+		{
+			var oneminusratio = 1f - ratio;
+			return new <#= typename #>(<#= string.Join(", ", ldimensions.Select(d => string.Format("({0})(a.{1} * oneminusratio + b.{1} * ratio)", type, d[2]))) #>);
+		}
+	}
+
+<# } } #>
+
+}

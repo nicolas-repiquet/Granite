@@ -8,27 +8,13 @@ using System.Runtime.InteropServices;
 
 namespace Test
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Color
-    {
-        public byte R;
-        public byte G;
-        public byte B;
-
-        public Color(byte r, byte g, byte b)
-        {
-            R = r;
-            G = g;
-            B = b;
-        }
-    }
 
     [StructLayout(LayoutKind.Sequential)]
     public struct Vertex
     {
         public Vector3 Position;
         public Vector2 TexCoord;
-        public Color Color;
+        public Color3ub Color;
     }
 
     public class GameLogic : DisplayLogicBase, IEngineLogic
@@ -63,7 +49,7 @@ namespace Test
             vertices.Add(p2);
         }
 
-        private void CreateQuad(List<Vertex> vertices, Vertex p0, Vertex p1, Vertex p2, Vertex p3, Color c)
+        private void CreateQuad(List<Vertex> vertices, Vertex p0, Vertex p1, Vertex p2, Vertex p3, Color3ub c)
         {
             p0.Color = c;
             p0.TexCoord = new Vector2(0, 0);
@@ -81,12 +67,12 @@ namespace Test
         {
             var vertices = new List<Vertex>();
 
-            var near =   new Vertex() { Position = new Vector3(0, 0, -1), Color = new Color(255, 0, 0) };
-            var far = new Vertex() { Position = new Vector3(0, 0, 1), Color = new Color(0, 255, 0) };
-            var left = new Vertex() { Position = new Vector3(-1, 0, 0), Color = new Color(0, 0, 255) };
-            var right = new Vertex() { Position = new Vector3(1, 0, 0), Color = new Color(255, 255, 0) };
-            var top = new Vertex() { Position = new Vector3(0, 1, 0), Color = new Color(255, 0, 255) };
-            var bottom = new Vertex() { Position = new Vector3(0, -1, 0), Color = new Color(0, 255, 255) };
+            var near =   new Vertex() { Position = new Vector3(0, 0, -1), Color = new Color3ub(255, 0, 0) };
+            var far = new Vertex() { Position = new Vector3(0, 0, 1), Color = new Color3ub(0, 255, 0) };
+            var left = new Vertex() { Position = new Vector3(-1, 0, 0), Color = new Color3ub(0, 0, 255) };
+            var right = new Vertex() { Position = new Vector3(1, 0, 0), Color = new Color3ub(255, 255, 0) };
+            var top = new Vertex() { Position = new Vector3(0, 1, 0), Color = new Color3ub(255, 0, 255) };
+            var bottom = new Vertex() { Position = new Vector3(0, -1, 0), Color = new Color3ub(0, 255, 255) };
 
             CreateFace(vertices, bottom, near, left);
             CreateFace(vertices, left, near, top);
@@ -139,12 +125,12 @@ namespace Test
                 Position = new Vector3(1, 1, 1),
             };
 
-            CreateQuad(vertices, LeftTopFar, RightTopFar, RightBottomFar, LeftBottomFar, new Color(255, 0, 0));
-            CreateQuad(vertices, LeftTopNear, RightTopNear, RightBottomNear, LeftBottomNear, new Color(0, 255, 0));
-            CreateQuad(vertices, LeftTopNear, RightTopNear, RightTopFar, LeftTopFar, new Color(0, 0, 255));
-            CreateQuad(vertices, LeftBottomNear, RightBottomNear, RightBottomFar, LeftBottomFar, new Color(255, 255, 0));
-            CreateQuad(vertices, LeftBottomNear, LeftTopNear, LeftTopFar, LeftBottomFar, new Color(255, 0, 255));
-            CreateQuad(vertices, RightBottomNear, RightTopNear, RightTopFar, RightBottomFar, new Color(0, 255, 255));
+            CreateQuad(vertices, LeftTopFar, RightTopFar, RightBottomFar, LeftBottomFar, new Color3ub(255, 0, 0));
+            CreateQuad(vertices, LeftTopNear, RightTopNear, RightBottomNear, LeftBottomNear, new Color3ub(0, 255, 0));
+            CreateQuad(vertices, LeftTopNear, RightTopNear, RightTopFar, LeftTopFar, new Color3ub(0, 0, 255));
+            CreateQuad(vertices, LeftBottomNear, RightBottomNear, RightBottomFar, LeftBottomFar, new Color3ub(255, 255, 0));
+            CreateQuad(vertices, LeftBottomNear, LeftTopNear, LeftTopFar, LeftBottomFar, new Color3ub(255, 0, 255));
+            CreateQuad(vertices, RightBottomNear, RightTopNear, RightTopFar, RightBottomFar, new Color3ub(0, 255, 255));
 
             // Far    : red       : z+
             // Near   : green     : z-
@@ -156,11 +142,11 @@ namespace Test
             return vertices.ToArray();
         }
 
-        private Color[] CreateCheckboardTexture(int width, int height)
+        private Color3ub[] CreateCheckboardTexture(int width, int height)
         {
-            var black = new Color(0, 0, 0);
-            var white = new Color(255, 255, 255);
-            var colors = new Color[width * height];
+            var black = new Color3ub(0, 0, 0);
+            var white = new Color3ub(255, 255, 255);
+            var colors = new Color3ub[width * height];
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
