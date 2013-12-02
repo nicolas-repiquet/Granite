@@ -273,6 +273,15 @@ namespace Granite3D
            IntPtr param
         );
 
+        [DllImport(KERNEL32)]
+        internal static extern IntPtr GetProcAddress(IntPtr module, string proc);
+
+        [DllImport(KERNEL32)]
+        internal static extern IntPtr LoadLibrary(string moduleName);
+
+        [DllImport(KERNEL32)]
+        internal static extern uint GetLastError();
+
         [DllImport(USER32)]
         internal static extern bool DestroyWindow(IntPtr windowHandle);
 
@@ -313,7 +322,7 @@ namespace Granite3D
         internal static extern IntPtr wglGetCurrentDC();
 
         [DllImport(OPENGL32)]
-        internal static extern IntPtr wglGetProcAddress(string proc);
+        internal static extern IntPtr wglGetProcAddress(byte[] proc);
 
         [DllImport(GDI32)]
         internal static extern bool SwapBuffers(IntPtr deviceContextHandle);

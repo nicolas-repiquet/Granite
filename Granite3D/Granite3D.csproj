@@ -41,10 +41,10 @@
     <Compile Include="Engine.cs" />
     <Compile Include="EngineResource.cs" />
     <Compile Include="EngineSettings.cs" />
-    <Compile Include="GeneratedStructs.cs">
-      <DependentUpon>GeneratedStructs.tt</DependentUpon>
+    <Compile Include="Structs.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Structs.tt</DependentUpon>
     </Compile>
     <Compile Include="GL.cs" />
     <Compile Include="GlApi.cs" />
@@ -65,9 +65,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GeneratedStructs.tt">
+    <None Include="Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GeneratedStructs.cs</LastGenOutput>
+      <LastGenOutput>Structs.gen.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

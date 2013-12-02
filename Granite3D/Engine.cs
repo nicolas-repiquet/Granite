@@ -56,7 +56,7 @@ namespace Granite3D
             using (Display display = new Display(this, new InternalDisplayLogic()))
             {
                 m_openglContext = WinApi.wglCreateContext(display.DeviceContextHandle);
-                WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
+                var result = WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
                 m_gl = new GlApi();
 
                 var gl = new GL();

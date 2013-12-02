@@ -68,8 +68,9 @@ namespace Granite3D
 
             int pixelFormatIndex = WinApi.ChoosePixelFormat(m_deviceContextHandle, ref pixelFormat);
 
-            WinApi.SetPixelFormat(m_deviceContextHandle, pixelFormatIndex, ref pixelFormat);
+            var result = WinApi.SetPixelFormat(m_deviceContextHandle, pixelFormatIndex, ref pixelFormat);
 
+            result.ToString();
         }
 
         public int Width { get { return m_width; } }

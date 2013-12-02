@@ -67,7 +67,7 @@ namespace Granite3D
         internal const uint GL_FLOAT = 0x1406;
         internal const uint GL_DOUBLE = 0x140A;
 
-        internal delegate uint Gl_Uint32();
+        internal delegate uint Gl_UInt32();
         internal delegate void Gl_Void_Float_Float_Float_Float(float p1, float p2, float p3, float p4);
         internal delegate void Gl_Void_UInt32(uint p1);
         internal delegate void Gl_Void_Int32_Int32(int p1, int p2);
@@ -95,12 +95,19 @@ namespace Granite3D
 
         internal GlApi()
         {
+            var openGl32Library = WinApi.LoadLibrary("opengl32.dll");
             foreach (var property in typeof(GlApi).GetProperties(BindingFlags.Instance | BindingFlags.NonPublic))
             {
-                var proc = WinApi.wglGetProcAddress(property.Name);
+                var proc = WinApi.wglGetProcAddress(Encoding.ASCII.GetBytes(property.Name + "\u0000"));
                 if (proc == IntPtr.Zero)
                 {
-                    throw new Exception(string.Format("Can't find function {0}", property.Name));
+                    proc = WinApi.GetProcAddress(openGl32Library, property.Name);
+
+                    if (proc == IntPtr.Zero)
+                    {
+                        var error = WinApi.GetLastError();
+                        throw new Exception(string.Format("Can't find function {0}", property.Name));
+                    }
                 }
 
                 property.SetValue(this, Marshal.GetDelegateForFunctionPointer(proc, property.PropertyType), null);
@@ -121,13 +128,10 @@ namespace Granite3D
             }
         }
 
-        internal Gl_Uint32 glGetError { get; private set; }
-        internal Gl_IntPtr_IntPtr_IntPtr_IntArray wglCreateContextAttribsARB { get; private set; }
-        internal Gl_Void_Float_Float_Float_Float glClearColor { get; private set; }
-        internal Gl_Void_UInt32 glClear { get; private set; }
         internal Gl_Void_Int32_OutUInt32 glGenBuffers { get; private set; }
         internal Gl_Void_Int32_OutUInt32 glDeleteBuffers { get; private set; }
         internal Gl_Void_UInt32_UInt32 glBindBuffer { get; private set; }
+        internal Gl_IntPtr_IntPtr_IntPtr_IntArray wglCreateContextAttribsARB { get; private set; }
         internal Gl_Void_UInt32_IntPtr_IntPtr_UInt32 glBufferData { get; private set; }
         internal Gl_Void_UInt32_UInt32_OutInt32 glGetBufferParameteriv { get; private set; }
         internal Gl_UInt32_UInt32 glCreateShader { get; private set; }
@@ -136,7 +140,7 @@ namespace Granite3D
         internal Gl_Void_UInt32_UInt32_OutInt32 glGetShaderiv { get; private set; }
         internal Gl_Void_UInt32 glCompileShader { get; private set; }
         internal Gl_Void_UInt32_Int32_OutInt32_ByteArray glGetShaderInfoLog { get; private set; }
-        internal Gl_Uint32 glCreateProgram { get; private set; }
+        internal Gl_UInt32 glCreateProgram { get; private set; }
         internal Gl_Void_UInt32 glDeleteProgram { get; private set; }
         internal Gl_Void_UInt32_UInt32 glAttachShader { get; private set; }
         internal Gl_Void_UInt32 glLinkProgram { get; private set; }
@@ -155,21 +159,24 @@ namespace Granite3D
         internal Gl_Void_Int32_Int32 glUniform1i { get; private set; }
         internal Gl_Void_UInt32_Int32_Int32 glDrawArrays { get; private set; }
         internal Gl_Void_Int32_Int32_Int32_RefMat44f glUniformMatrix4fv { get; private set; }
-        internal Gl_Void_Int32_Int32_Int32_Int32 glViewport { get; private set; }
         internal Gl_Void_Int32_OutUInt32 glGenTextures { get; private set; }
         internal Gl_Void_Int32_OutUInt32 glDeleteTextures { get; private set; }
         internal Gl_Void_Int32_OutUInt32 glGenVertexArrays { get; private set; }
         internal Gl_Void_Int32_OutUInt32 glDeleteVertexArrays { get; private set; }
         internal Gl_Void_UInt32 glBindVertexArray { get; private set; }
-        internal Gl_Void_UInt32 glEnable { get; private set; }
-        internal Gl_Void_UInt32_UInt32 glBlendFunc { get; private set; }
         internal Gl_Void_UInt32_UInt32 glBindTexture { get; private set; }
-        internal Gl_Void_UInt32_Int32_Int32_Int32_Int32_Int32_UInt32_UInt32_IntPtr glTexImage2D { get; private set; }
         internal Gl_Void_UInt32 glActiveTexture { get; private set; }
-        internal Gl_Void_UInt32_UInt32_Int32 glTexParameteri { get; private set; }
         internal Gl_Void_UInt32 glDepthFunc { get; private set; }
         internal Gl_Void_Double glClearDepth { get; private set; }
         internal Gl_IntPtr_UInt32 glGetString { get; private set; }
         internal Gl_IntPtr_UInt32_UInt32 glGetStringi { get; private set; }
+        internal Gl_UInt32 glGetError { get; private set; }
+        internal Gl_Void_Float_Float_Float_Float glClearColor { get; private set; }
+        internal Gl_Void_UInt32 glClear { get; private set; }
+        internal Gl_Void_Int32_Int32_Int32_Int32 glViewport { get; private set; }
+        internal Gl_Void_UInt32 glEnable { get; private set; }
+        internal Gl_Void_UInt32_UInt32 glBlendFunc { get; private set; }
+        internal Gl_Void_UInt32_Int32_Int32_Int32_Int32_Int32_UInt32_UInt32_IntPtr glTexImage2D { get; private set; }
+        internal Gl_Void_UInt32_UInt32_Int32 glTexParameteri { get; private set; }
     }
 }

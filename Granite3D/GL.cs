@@ -1106,6 +1106,11 @@ namespace Granite3D
             public delegate void VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, System.IntPtr pointer);
             public delegate void Viewport(int x, int y, int width, int height);
             public delegate void WaitSync(System.IntPtr sync, uint flags, ulong timeout);
+
+
+            #region Modified Delegates
+            public delegate void Viewport_Box(Box2i dimensions);
+            #endregion
         }
 
 
@@ -1425,6 +1430,8 @@ namespace Granite3D
         internal readonly Delegates.VertexAttribPointer VertexAttribPointer;
         internal readonly Delegates.Viewport Viewport;
         internal readonly Delegates.WaitSync WaitSync;
+
+        internal readonly Delegates.Viewport_Box Viewport_Box;
 
         [System.Runtime.InteropServices.DllImport("opengl32.dll")]
         private static extern System.IntPtr wglGetProcAddress(string name);
@@ -1762,6 +1769,8 @@ namespace Granite3D
             VertexAttribPointer = (Delegates.VertexAttribPointer)GetFunction("glVertexAttribPointer", typeof(Delegates.VertexAttribPointer));
             Viewport = (Delegates.Viewport)GetFunction("glViewport", typeof(Delegates.Viewport));
             WaitSync = (Delegates.WaitSync)GetFunction("glWaitSync", typeof(Delegates.WaitSync));
+
+            Viewport_Box = (Delegates.Viewport_Box)GetFunction("glViewport", typeof(Delegates.Viewport_Box));
         }
     }
 }
