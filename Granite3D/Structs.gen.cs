@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 namespace Granite3D
 {
 
-
 	[DebuggerDisplay("[{m_x}, {m_y}]")]
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct Vector2i : IEquatable<Vector2i>
@@ -52,7 +51,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode();
 		}
 
 		public static bool operator == (Vector2i a, Vector2i b)
@@ -149,7 +148,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode() + m_z.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode() ^ m_z.GetHashCode();
 		}
 
 		public static bool operator == (Vector3i a, Vector3i b)
@@ -262,7 +261,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode() + m_z.GetHashCode() + m_w.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode() ^ m_z.GetHashCode() ^ m_w.GetHashCode();
 		}
 
 		public static bool operator == (Vector4i a, Vector4i b)
@@ -354,7 +353,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_position.GetHashCode() + m_size.GetHashCode();
+			return m_position.GetHashCode() ^ m_size.GetHashCode();
 		}
 
 		public bool Contains(Vector2i p)
@@ -422,7 +421,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_position.GetHashCode() + m_size.GetHashCode();
+			return m_position.GetHashCode() ^ m_size.GetHashCode();
 		}
 
 		public bool Contains(Vector3i p)
@@ -440,7 +439,6 @@ namespace Granite3D
 			return a.m_position != b.m_position || a.m_size != b.m_size;
 		}
 	}
-
 
 
 
@@ -489,7 +487,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode();
 		}
 
 		public static bool operator == (Vector2 a, Vector2 b)
@@ -586,7 +584,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode() + m_z.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode() ^ m_z.GetHashCode();
 		}
 
 		public static bool operator == (Vector3 a, Vector3 b)
@@ -699,7 +697,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode() + m_z.GetHashCode() + m_w.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode() ^ m_z.GetHashCode() ^ m_w.GetHashCode();
 		}
 
 		public static bool operator == (Vector4 a, Vector4 b)
@@ -791,7 +789,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_position.GetHashCode() + m_size.GetHashCode();
+			return m_position.GetHashCode() ^ m_size.GetHashCode();
 		}
 
 		public bool Contains(Vector2 p)
@@ -859,7 +857,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_position.GetHashCode() + m_size.GetHashCode();
+			return m_position.GetHashCode() ^ m_size.GetHashCode();
 		}
 
 		public bool Contains(Vector3 p)
@@ -917,7 +915,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_m00.GetHashCode() + m_m01.GetHashCode() + m_m10.GetHashCode() + m_m11.GetHashCode();
+			return m_m00.GetHashCode() ^ m_m01.GetHashCode() ^ m_m10.GetHashCode() ^ m_m11.GetHashCode();
 		}
 
 		public static Matrix2 operator * (Matrix2 a, Matrix2 b)
@@ -992,7 +990,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_m00.GetHashCode() + m_m01.GetHashCode() + m_m02.GetHashCode() + m_m10.GetHashCode() + m_m11.GetHashCode() + m_m12.GetHashCode() + m_m20.GetHashCode() + m_m21.GetHashCode() + m_m22.GetHashCode();
+			return m_m00.GetHashCode() ^ m_m01.GetHashCode() ^ m_m02.GetHashCode() ^ m_m10.GetHashCode() ^ m_m11.GetHashCode() ^ m_m12.GetHashCode() ^ m_m20.GetHashCode() ^ m_m21.GetHashCode() ^ m_m22.GetHashCode();
 		}
 
 		public static Matrix3 operator * (Matrix3 a, Matrix3 b)
@@ -1094,7 +1092,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_m00.GetHashCode() + m_m01.GetHashCode() + m_m02.GetHashCode() + m_m03.GetHashCode() + m_m10.GetHashCode() + m_m11.GetHashCode() + m_m12.GetHashCode() + m_m13.GetHashCode() + m_m20.GetHashCode() + m_m21.GetHashCode() + m_m22.GetHashCode() + m_m23.GetHashCode() + m_m30.GetHashCode() + m_m31.GetHashCode() + m_m32.GetHashCode() + m_m33.GetHashCode();
+			return m_m00.GetHashCode() ^ m_m01.GetHashCode() ^ m_m02.GetHashCode() ^ m_m03.GetHashCode() ^ m_m10.GetHashCode() ^ m_m11.GetHashCode() ^ m_m12.GetHashCode() ^ m_m13.GetHashCode() ^ m_m20.GetHashCode() ^ m_m21.GetHashCode() ^ m_m22.GetHashCode() ^ m_m23.GetHashCode() ^ m_m30.GetHashCode() ^ m_m31.GetHashCode() ^ m_m32.GetHashCode() ^ m_m33.GetHashCode();
 		}
 
 		public static Matrix4 operator * (Matrix4 a, Matrix4 b)
@@ -1129,7 +1127,6 @@ namespace Granite3D
 			);
 		}
 	}
-
 
 
 	[DebuggerDisplay("[{m_x}, {m_y}]")]
@@ -1177,7 +1174,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode();
 		}
 
 		public static bool operator == (Vector2d a, Vector2d b)
@@ -1274,7 +1271,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode() + m_z.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode() ^ m_z.GetHashCode();
 		}
 
 		public static bool operator == (Vector3d a, Vector3d b)
@@ -1387,7 +1384,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_x.GetHashCode() + m_y.GetHashCode() + m_z.GetHashCode() + m_w.GetHashCode();
+			return m_x.GetHashCode() ^ m_y.GetHashCode() ^ m_z.GetHashCode() ^ m_w.GetHashCode();
 		}
 
 		public static bool operator == (Vector4d a, Vector4d b)
@@ -1479,7 +1476,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_position.GetHashCode() + m_size.GetHashCode();
+			return m_position.GetHashCode() ^ m_size.GetHashCode();
 		}
 
 		public bool Contains(Vector2d p)
@@ -1547,7 +1544,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_position.GetHashCode() + m_size.GetHashCode();
+			return m_position.GetHashCode() ^ m_size.GetHashCode();
 		}
 
 		public bool Contains(Vector3d p)
@@ -1605,7 +1602,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_m00.GetHashCode() + m_m01.GetHashCode() + m_m10.GetHashCode() + m_m11.GetHashCode();
+			return m_m00.GetHashCode() ^ m_m01.GetHashCode() ^ m_m10.GetHashCode() ^ m_m11.GetHashCode();
 		}
 
 		public static Matrix2d operator * (Matrix2d a, Matrix2d b)
@@ -1680,7 +1677,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_m00.GetHashCode() + m_m01.GetHashCode() + m_m02.GetHashCode() + m_m10.GetHashCode() + m_m11.GetHashCode() + m_m12.GetHashCode() + m_m20.GetHashCode() + m_m21.GetHashCode() + m_m22.GetHashCode();
+			return m_m00.GetHashCode() ^ m_m01.GetHashCode() ^ m_m02.GetHashCode() ^ m_m10.GetHashCode() ^ m_m11.GetHashCode() ^ m_m12.GetHashCode() ^ m_m20.GetHashCode() ^ m_m21.GetHashCode() ^ m_m22.GetHashCode();
 		}
 
 		public static Matrix3d operator * (Matrix3d a, Matrix3d b)
@@ -1782,7 +1779,7 @@ namespace Granite3D
 
 		public override int GetHashCode()
 		{
-			return m_m00.GetHashCode() + m_m01.GetHashCode() + m_m02.GetHashCode() + m_m03.GetHashCode() + m_m10.GetHashCode() + m_m11.GetHashCode() + m_m12.GetHashCode() + m_m13.GetHashCode() + m_m20.GetHashCode() + m_m21.GetHashCode() + m_m22.GetHashCode() + m_m23.GetHashCode() + m_m30.GetHashCode() + m_m31.GetHashCode() + m_m32.GetHashCode() + m_m33.GetHashCode();
+			return m_m00.GetHashCode() ^ m_m01.GetHashCode() ^ m_m02.GetHashCode() ^ m_m03.GetHashCode() ^ m_m10.GetHashCode() ^ m_m11.GetHashCode() ^ m_m12.GetHashCode() ^ m_m13.GetHashCode() ^ m_m20.GetHashCode() ^ m_m21.GetHashCode() ^ m_m22.GetHashCode() ^ m_m23.GetHashCode() ^ m_m30.GetHashCode() ^ m_m31.GetHashCode() ^ m_m32.GetHashCode() ^ m_m33.GetHashCode();
 		}
 
 		public static Matrix4d operator * (Matrix4d a, Matrix4d b)

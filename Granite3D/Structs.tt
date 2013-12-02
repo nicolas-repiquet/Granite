@@ -2,7 +2,7 @@
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ output extension=".cs" #>
+<#@ output extension=".gen.cs" #>
 
 using System;
 using System.Diagnostics;
@@ -26,17 +26,14 @@ foreach(var token in tokens)
 	var extension = token[1];
 	var zero = token[2];
 	var one = token[3];
-#>
 
-<#
-
-var dimensions = new string[][]
-{
-	new string[] { "X", "x", "m_x" },
-	new string[] { "Y", "y", "m_y" },
-	new string[] { "Z", "z", "m_z" },
-	new string[] { "W", "w", "m_w" }
-};
+	var dimensions = new string[][]
+	{
+		new string[] { "X", "x", "m_x" },
+		new string[] { "Y", "y", "m_y" },
+		new string[] { "Z", "z", "m_z" },
+		new string[] { "W", "w", "m_w" }
+	};
 
 // ############################################################################
 // # VECTOR
@@ -90,7 +87,7 @@ for(int dc = 2; dc <= 4; dc++)
 
 		public override int GetHashCode()
 		{
-			return <#= string.Join(" + ", ldimensions.Select(d => string.Format("{0}.GetHashCode()", d[2]))) #>;
+			return <#= string.Join(" ^ ", ldimensions.Select(d => string.Format("{0}.GetHashCode()", d[2]))) #>;
 		}
 
 		public static bool operator == (<#= typename #> a, <#= typename #> b)
@@ -205,7 +202,7 @@ for(int dc = 2; dc <= 3; dc++)
 
 		public override int GetHashCode()
 		{
-			return m_position.GetHashCode() + m_size.GetHashCode();
+			return m_position.GetHashCode() ^ m_size.GetHashCode();
 		}
 
 		public bool Contains(<#= vecname #> p)
@@ -275,7 +272,7 @@ for(int dc = 2; dc <= 4; dc++)
 
 		public override int GetHashCode()
 		{
-			return <#= string.Join(" + ", points.Select(p => string.Format("m_m{0}{1}.GetHashCode()", p.X, p.Y))) #>;
+			return <#= string.Join(" ^ ", points.Select(p => string.Format("m_m{0}{1}.GetHashCode()", p.X, p.Y))) #>;
 		}
 
 		public static <#= typename #> operator * (<#= typename #> a, <#= typename #> b)

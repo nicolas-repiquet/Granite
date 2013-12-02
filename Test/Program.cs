@@ -13,10 +13,13 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            var c1 = new Color4ub(0xFF, 0x10, 0xA0, 0x50);
+            var c2 = new Color4ub(0x10, 0xA0, 0xFF, 0x50);
+
+            var c = Color4ub.Mix(c1, c2, 0f);
+
             var m = Matrix3d.Identity;
             
-            
-
             var v = new Vector3d(1f, 4f, 2f);
             v = m * v;
 
