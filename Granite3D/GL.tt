@@ -120,7 +120,7 @@ namespace Granite3D
 			var <#= f.Name #>Address = GetFunctionAddress("gl<#= f.Name #>");
 <# } #>
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
-			m_<#= f.Name #>_<#= o.Index #> = (Delegate_<#= f.Name #>_<#= o.Index #>)Marshal.GetDelegateForFunctionPointer(<#= f.Name #>Address, typeof(Delegate_<#= f.Name #>_<#= o.Index #>));
+			m_<#= f.Name #>_<#= o.Index #> = (Delegate_<#= f.Name #>_<#= o.Index #>)GetDelegateForAddress(<#= f.Name #>Address, typeof(Delegate_<#= f.Name #>_<#= o.Index #>));
 <# } } #>
 		}
 
@@ -148,6 +148,7 @@ class GlFunction
 {
 	public string Name { get; set; }
 	public List<GlFunctionOverload> Overloads { get; private set; }
+
 	public GlFunction()
 	{
 		Overloads = new List<GlFunctionOverload>();
@@ -160,10 +161,12 @@ class GlFunctionOverload
 	public string Visibility { get; set; }
 	public string ReturnType { get; set; }
 	public List<GlFunctionParameter> Parameters { get; private set; }
+
 	public GlFunctionOverload()
 	{
 		Parameters = new List<GlFunctionParameter>();
 	}
+
 	public string GetDotNetType()
 	{
 		return GlFunctionParameter.GetDotNetType(ReturnType);
@@ -174,6 +177,7 @@ class GlFunctionParameter
 {
 	public string Type { get; set; }
 	public string Name { get; set; }
+
 	public string GetForwardName()
 	{
 		if(Type.StartsWith("inptr<")) {
@@ -184,10 +188,12 @@ class GlFunctionParameter
 			return Name;
 		}
 	}
+	
 	public string GetDotNetType()
 	{
 		return GetDotNetType(Type);
 	}
+
 	public static string GetDotNetType(string type)
 	{
 		if(type.StartsWith("inptr<") && type[type.Length-1] == '>')

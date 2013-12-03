@@ -606,14 +606,20 @@ public void ShaderSource(uint shader, int count, IntPtr[] _string, int[] length)
 # public void Uniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
 # public void Uniform4uiv(int location, int count, IntPtr value);
 # public void UniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
-# public void UniformMatrix2fv(int location, int count, bool transpose, IntPtr value);
+
+public void UniformMatrix2fv(int location, int count, bool transpose, float[] value);
+public void UniformMatrix2fv(int location, int count, bool transpose, inptr<Matrix2> value);
+
 # public void UniformMatrix2x3fv(int location, int count, bool transpose, IntPtr value);
 # public void UniformMatrix2x4fv(int location, int count, bool transpose, IntPtr value);
-# public void UniformMatrix3fv(int location, int count, bool transpose, IntPtr value);
+
+public void UniformMatrix3fv(int location, int count, bool transpose, float[] value);
+public void UniformMatrix3fv(int location, int count, bool transpose, inptr<Matrix3> value);
+
 # public void UniformMatrix3x2fv(int location, int count, bool transpose, IntPtr value);
 # public void UniformMatrix3x4fv(int location, int count, bool transpose, IntPtr value);
 
-# public void UniformMatrix4fv(int location, int count, bool transpose, IntPtr value);
+public void UniformMatrix4fv(int location, int count, bool transpose, float[] value);
 public void UniformMatrix4fv(int location, int count, bool transpose, inptr<Matrix4> value);
 
 # public void UniformMatrix4x2fv(int location, int count, bool transpose, IntPtr value);

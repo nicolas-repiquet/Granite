@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System;
+using System.Diagnostics;
 
 namespace Granite3D
 {
@@ -30,7 +31,24 @@ namespace Granite3D
                 address = GetProcAddress(s_opengl32Library, name);
             }
 
+            if (address == IntPtr.Zero)
+            {
+                Debug.WriteLine("function " + name + " not found");
+            }
+
             return address;
+        }
+
+        private static Delegate GetDelegateForAddress(IntPtr address, Type type)
+        {
+            if (address == IntPtr.Zero)
+            {
+                return null;
+            }
+            else
+            {
+                return Marshal.GetDelegateForFunctionPointer(address, type);
+            }
         }
     }
 }
