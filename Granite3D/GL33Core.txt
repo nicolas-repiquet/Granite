@@ -594,6 +594,9 @@ public void ShaderSource(uint shader, int count, IntPtr[] _string, int[] length)
 # public void Uniform2ui(int location, uint v0, uint v1);
 # public void Uniform2uiv(int location, int count, IntPtr value);
 # public void Uniform3f(int location, float v0, float v1, float v2);
+
+public void Uniform3f(int location, Vector3 value);
+
 # public void Uniform3fv(int location, int count, IntPtr value);
 # public void Uniform3i(int location, int v0, int v1, int v2);
 # public void Uniform3iv(int location, int count, IntPtr value);

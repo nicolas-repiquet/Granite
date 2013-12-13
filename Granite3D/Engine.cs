@@ -85,7 +85,7 @@ namespace Granite3D
 
         internal IntPtr OpenglContext { get { return m_openglContext; } }
 
-        internal GL Gl { get { return m_gl; } }
+        public GL Gl { get { return m_gl; } }
 
         internal void CheckThread()
         {

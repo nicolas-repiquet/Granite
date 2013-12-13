@@ -149,7 +149,8 @@ namespace Granite3D
             }
         }
 
-        public void Draw()
+ 
+        public void Draw(int count)
         {
             Engine.Gl.UseProgram(m_program.Name);
             foreach (var entry in m_uniformValues)
@@ -157,7 +158,7 @@ namespace Granite3D
                 entry.Key.SetValue(entry.Value);
             }
             Engine.Gl.BindVertexArray(m_name);
-            Engine.Gl.DrawArrays(GL.TRIANGLES, 0, 36);
+            Engine.Gl.DrawArrays(GL.TRIANGLES, 0, count);
             Engine.Gl.BindVertexArray(0);
             Engine.Gl.UseProgram(0);
         }
@@ -252,6 +253,8 @@ namespace Granite3D
                     return new ProgramUniform_Mat44f(program, name, position);
                 case GL.SAMPLER_2D:
                     return new ProgramUniform_Texture2d(program, name, position);
+                case GL.FLOAT_VEC3:
+                    return new ProgramUniform_Vector3(program, name, position);
                 default:
                     throw new Exception();
             }
@@ -302,6 +305,21 @@ namespace Granite3D
         {
             var m = (Matrix4)value;
             Program.Engine.Gl.UniformMatrix4fv(Position, 1, false, ref m);
+        }
+    }
+
+    public sealed class ProgramUniform_Vector3 : ProgramUniform
+    {
+        internal ProgramUniform_Vector3(Program program, string name, int position)
+            : base(program, name, position)
+        {
+
+        }
+
+        internal override void SetValue(object value)
+        {
+            var m = (Vector3)value;
+            Program.Engine.Gl.Uniform3f(Position, m);
         }
     }
 
