@@ -191,9 +191,9 @@ namespace Granite3D
                     //Engine.Gl.glClearDepth(0.0);
                     Engine.Gl.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
 
-                    Engine.Gl.Enable(GL.DEPTH_TEST);
+                    Engine.Gl.Enable_DEPTH_TEST();
                     //Engine.Gl.glDepthFunc(GL.GREATER);
-                    Engine.Gl.Enable(GL.BLEND);
+                    Engine.Gl.Enable_BLEND();
                     Engine.Gl.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
                     m_logic.Render(this, new Graphics(Engine), elapsed);

@@ -13,9 +13,7 @@ namespace Granite3D
         internal Texture2D(Engine engine)
             : base(engine)
         {
-            uint name;
-            Engine.Gl.GenTextures(1, out name);
-            m_name = name;
+            m_name = Engine.Gl.GenTexture();
         }
 
         internal uint Name { get { return m_name; } }
@@ -75,7 +73,7 @@ namespace Granite3D
 
             Engine.ExecuteAction(() =>
             {
-                Engine.Gl.DeleteTextures(1, ref name);
+                Engine.Gl.DeleteTexture(name);
             });    
         }
     }

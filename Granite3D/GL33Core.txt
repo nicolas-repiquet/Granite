@@ -60,7 +60,7 @@ public void DeleteQueries(int n, IntPtr ids);
 public void DeleteRenderbuffers(int n, IntPtr renderbuffers);
 public void DeleteShader(uint shader);
 public void DeleteSync(IntPtr sync);
-public void DeleteTextures(int n, IntPtr textures);
+private void DeleteTextures(int n, IntPtr textures);
 public void DeleteVertexArrays(int n, IntPtr arrays);
 public void DepthFunc(uint func);
 public void DepthMask(bool flag);
@@ -101,7 +101,7 @@ public void GenerateMipmap(uint target);
 public void GenFramebuffers(int n, IntPtr framebuffers);
 public void GenQueries(int n, IntPtr ids);
 public void GenRenderbuffers(int n, IntPtr renderbuffers);
-public void GenTextures(int n, IntPtr textures);
+private void GenTextures(int n, IntPtr textures);
 public void GenVertexArrays(int n, IntPtr arrays);
 public void GetActiveAttrib(uint program, uint index, int bufSize, IntPtr length, IntPtr size, IntPtr type, string name);
 public void GetActiveUniform(uint program, uint index, int bufSize, IntPtr length, IntPtr size, IntPtr type, string name);
@@ -390,8 +390,8 @@ public void DeleteRenderbuffers(int n, inptr<uint> renderbuffers);
 public void DeleteSamplers(int n, uint[] samplers);
 public void DeleteSamplers(int n, inptr<uint> samplers);
 
-public void DeleteTextures(int n, uint[] textures);
-public void DeleteTextures(int n, inptr<uint> textures);
+private void DeleteTextures(int n, uint[] textures);
+private void DeleteTextures(int n, inptr<uint> textures);
 
 public void DeleteVertexArrays(int n, uint[] arrays);
 public void DeleteVertexArrays(int n, inptr<uint> arrays);
@@ -439,8 +439,8 @@ public void GenRenderbuffers(int n, outptr<uint> renderbuffers);
 public void GenSamplers(int n, uint[] samplers);
 public void GenSamplers(int n, outptr<uint> samplers);
 
-public void GenTextures(int n, uint[] textures);
-public void GenTextures(int n, outptr<uint> textures);
+private void GenTextures(int n, uint[] textures);
+private void GenTextures(int n, outptr<uint> textures);
 
 public void GenVertexArrays(int n, uint[] arrays);
 public void GenVertexArrays(int n, outptr<uint> arrays);

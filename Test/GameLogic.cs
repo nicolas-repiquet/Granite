@@ -23,6 +23,11 @@ namespace Test
 
         private Texture2D m_texture;
 
+        private Buffer<Vertex> m_grid;
+        private IBufferView m_gridPositionsView;
+        private IBufferView m_gridColorsView;
+        private IBufferView m_gridTexCoordsView;
+
         private Buffer<Vertex> m_vertices;
         private IBufferView m_positionsView;
         private IBufferView m_colorsView;
@@ -36,11 +41,31 @@ namespace Test
         private Granite3D.Program m_program;
 
         private ProgramInstance m_programInstance;
+        private ProgramInstance m_programGridInstance;
 
         private float m_rotation;
 
         // ********************************************************************
         // * Engine
+
+        private Vertex[] CreateGrid(Box2 area, float step)
+        {
+            var points = new List<Vertex>();
+
+            for (float x = area.MinX; x <= area.MaxX; x += step)
+            {
+                points.Add(new Vertex() { Position = new Vector3(x, area.MinY, 0) });
+                points.Add(new Vertex() { Position = new Vector3(x, area.MaxY, 0) });
+            }
+
+            for (float y = area.MinY; y <= area.MaxY; y += step)
+            {
+                points.Add(new Vertex() { Position = new Vector3(area.MinX, y, 0) });
+                points.Add(new Vertex() { Position = new Vector3(area.MaxX, y, 0) });
+            }
+
+            return points.ToArray();
+        }
 
         private void CreateFace(List<Vertex> vertices, Vertex p0, Vertex p1, Vertex p2)
         {
@@ -162,6 +187,11 @@ namespace Test
             m_display = engine.CreateDisplay(new DisplaySettings(), this);
             m_display.Show();
 
+            m_grid = engine.CreateBuffer(CreateGrid(new Box2(-10, -10, 20, 20), 1));
+            m_gridPositionsView = m_grid.GetView("Position");
+            m_gridColorsView = m_grid.GetView("Color");
+            m_gridTexCoordsView = m_grid.GetView("TexCoord");
+
             m_texture = engine.CreateTexture2D();
             m_texture.SetData(8, 8, CreateCheckboardTexture(8, 8));
 
@@ -174,10 +204,10 @@ namespace Test
             m_elements = engine.CreateBuffer(new uint[] { 0, 1, 2, 3 });
 
             m_vertexShader = engine.CreateVertexShader(@"
-#version 110
+#version 430
 
-uniform mat4 model_matrix;
-uniform mat4 proj_matrix;
+layout(location = 1) uniform mat4 model_matrix;
+layout(location = 2) uniform mat4 proj_matrix;
 
 attribute vec3 position;
 attribute vec2 texcoord;
@@ -199,7 +229,7 @@ void main()
 }
 ");
             m_fragmentShader = engine.CreateFragmentShader(@"
-#version 110
+#version 430
 
 uniform sampler2D texture;
 
@@ -222,6 +252,12 @@ void main()
             });
             m_programInstance.SetUniform("texture", m_texture);
 
+            m_programGridInstance = m_program.CreateInstance(new Dictionary<string, IBufferView>
+            {
+                { "position", m_gridPositionsView },
+                { "color", m_gridColorsView },
+                { "texcoord", m_gridTexCoordsView }
+            });
         }
 
         public void OnStop(Engine engine)
@@ -285,6 +321,8 @@ void main()
  
         public override void Render(Display display, Graphics graphics, TimeSpan elapsed)
         {
+            var gl = display.Engine.Gl;
+
             foreach (var key in m_keys)
             {
                 UpdateKey(elapsed, key);
@@ -317,6 +355,9 @@ void main()
 
             modelMatrix = modelMatrix * lookat;
 
+            m_programGridInstance.SetUniform("model_matrix", modelMatrix);
+            m_programGridInstance.SetUniform("proj_matrix", projMatrix);
+            m_programGridInstance.DrawLines();
 
             var m = modelMatrix * Matrix4.Translate(0, 0, 0);
 

@@ -149,6 +149,19 @@ namespace Granite3D
             }
         }
 
+        public void DrawLines()
+        {
+            Engine.Gl.UseProgram(m_program.Name);
+            foreach (var entry in m_uniformValues)
+            {
+                entry.Key.SetValue(entry.Value);
+            }
+            Engine.Gl.BindVertexArray(m_name);
+            Engine.Gl.DrawArrays(GL.LINES, 0, 84);
+            Engine.Gl.BindVertexArray(0);
+            Engine.Gl.UseProgram(0);
+        }
+
         public void Draw()
         {
             Engine.Gl.UseProgram(m_program.Name);
