@@ -4,4 +4,5 @@
 *.cache
 *.suo
 
-*/bin
+bin/
+obj/
