@@ -188,7 +188,7 @@ namespace Test
             m_display = engine.CreateDisplay(new DisplaySettings(), this);
             m_display.Show();
 
-	    m_grid = engine.CreateBuffer(CreateGrid(new Box2(-10, -10, 20, 20), 1));
+            m_grid = engine.CreateBuffer(CreateGrid(new Box2(-10, -10, 20, 20), 1));
             m_gridPositionsView = m_grid.GetView("Position");
             m_gridColorsView = m_grid.GetView("Color");
             m_gridTexCoordsView = m_grid.GetView("TexCoord");
@@ -247,7 +247,7 @@ void main()
 
             m_program = engine.CreateProgram(m_vertexShader, m_fragmentShader);
 
-            m_programInstance = m_program.CreateInstance(new Dictionary<string,IBufferView> { 
+            m_programInstance = m_program.CreateInstance(new Dictionary<string, IBufferView> { 
                 { "position", m_positionsView },
                 { "color", m_colorsView },
                 { "texcoord", m_texCoordsView }
@@ -260,6 +260,7 @@ void main()
                 { "color", m_gridColorsView },
                 { "texcoord", m_gridTexCoordsView }
             });
+        }
 
         public void OnStop(Engine engine)
         {
