@@ -91,6 +91,7 @@ namespace Granite3D
                 {
                     m_fields = null;
                     m_flattenedType = glType;
+                    m_flattenedCount = 1;
                 }
                 else
                 {

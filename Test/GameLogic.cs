@@ -20,6 +20,7 @@ namespace Test
     public class GameLogic : DisplayLogicBase, IEngineLogic
     {
         private Display m_display;
+        private Font m_font;
 
         private Texture2D m_texture;
 
@@ -187,10 +188,11 @@ namespace Test
             m_display = engine.CreateDisplay(new DisplaySettings(), this);
             m_display.Show();
 
-            m_grid = engine.CreateBuffer(CreateGrid(new Box2(-10, -10, 20, 20), 1));
+	    m_grid = engine.CreateBuffer(CreateGrid(new Box2(-10, -10, 20, 20), 1));
             m_gridPositionsView = m_grid.GetView("Position");
             m_gridColorsView = m_grid.GetView("Color");
             m_gridTexCoordsView = m_grid.GetView("TexCoord");
+            m_font = new Font(engine);
 
             m_texture = engine.CreateTexture2D();
             m_texture.SetData(8, 8, CreateCheckboardTexture(8, 8));
@@ -258,7 +260,6 @@ void main()
                 { "color", m_gridColorsView },
                 { "texcoord", m_gridTexCoordsView }
             });
-        }
 
         public void OnStop(Engine engine)
         {
@@ -364,28 +365,42 @@ void main()
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);
-            m_programInstance.Draw();
+            m_programInstance.Draw(m_vertices.Count);
 
             // X
             m = modelMatrix * Matrix4.Translate(3, 0, 0);
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);
-            m_programInstance.Draw();
+            m_programInstance.Draw(m_vertices.Count);
 
             // Y
             m = modelMatrix * Matrix4.Translate(0, 3, 0);
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);
-            m_programInstance.Draw();
+            m_programInstance.Draw(m_vertices.Count);
 
             // Z
             m = modelMatrix * Matrix4.Translate(0, 0, 3);
 
             m_programInstance.SetUniform("model_matrix", m);
             m_programInstance.SetUniform("proj_matrix", projMatrix);
-            m_programInstance.Draw();
+            m_programInstance.Draw(m_vertices.Count);
+
+            var builder = new StringBuilder();
+            for (int i = 0; i < 256; i++)
+            {
+                var c = (char)i;
+                if (!char.IsControl(c))
+                {
+                    builder.Append(c);
+                }
+            }
+
+            m_font.DrawText(display, new Vector2i(0, 20 * 0), builder.ToString());
+            m_font.DrawText(display, new Vector2i(0, 20 * 1), string.Format("x position: {0,7:F2}", m_x));
+            m_font.DrawText(display, new Vector2i(0, 20 * 2), string.Format("z position: {0,7:F2}", m_z));
 
             display.Invalidate();
         }

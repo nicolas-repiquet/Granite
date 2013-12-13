@@ -1,0 +1,5 @@
+C:\Users\repiquetni\Desktop\GitHub\Granite\Granite3D\bin\Debug\Granite3D.dll
+C:\Users\repiquetni\Desktop\GitHub\Granite\Granite3D\bin\Debug\Granite3D.pdb
+C:\Users\repiquetni\Desktop\GitHub\Granite\Granite3D\obj\Debug\Granite3D.csprojResolveAssemblyReference.cache
+C:\Users\repiquetni\Desktop\GitHub\Granite\Granite3D\obj\Debug\Granite3D.dll
+C:\Users\repiquetni\Desktop\GitHub\Granite\Granite3D\obj\Debug\Granite3D.pdb

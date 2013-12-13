@@ -23,7 +23,11 @@ namespace Granite3D
             var descriptor = ValueTypeDescriptor.Create(typeof(T));
             uint format;
 
-            if (descriptor.FlattenedCount == 3)
+            if (descriptor.FlattenedCount == 1)
+            {
+                format = GL.RED;
+            }
+            else if (descriptor.FlattenedCount == 3)
             {
                 format = GL.RGB;
             }

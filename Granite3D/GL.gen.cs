@@ -1152,6 +1152,7 @@ namespace Granite3D
 		private delegate void Delegate_Uniform2ui_0(int location, uint v0, uint v1);
 		private delegate void Delegate_Uniform2uiv_0(int location, int count, System.IntPtr value);
 		private delegate void Delegate_Uniform3f_0(int location, float v0, float v1, float v2);
+		private delegate void Delegate_Uniform3f_1(int location, Vector3 value);
 		private delegate void Delegate_Uniform3fv_0(int location, int count, System.IntPtr value);
 		private delegate void Delegate_Uniform3i_0(int location, int v0, int v1, int v2);
 		private delegate void Delegate_Uniform3iv_0(int location, int count, System.IntPtr value);
@@ -1624,6 +1625,7 @@ namespace Granite3D
 		private readonly Delegate_Uniform2ui_0 m_Uniform2ui_0;
 		private readonly Delegate_Uniform2uiv_0 m_Uniform2uiv_0;
 		private readonly Delegate_Uniform3f_0 m_Uniform3f_0;
+		private readonly Delegate_Uniform3f_1 m_Uniform3f_1;
 		private readonly Delegate_Uniform3fv_0 m_Uniform3fv_0;
 		private readonly Delegate_Uniform3i_0 m_Uniform3i_0;
 		private readonly Delegate_Uniform3iv_0 m_Uniform3iv_0;
@@ -2442,6 +2444,7 @@ namespace Granite3D
 			m_Uniform2ui_0 = (Delegate_Uniform2ui_0)GetDelegateForAddress(Uniform2uiAddress, typeof(Delegate_Uniform2ui_0));
 			m_Uniform2uiv_0 = (Delegate_Uniform2uiv_0)GetDelegateForAddress(Uniform2uivAddress, typeof(Delegate_Uniform2uiv_0));
 			m_Uniform3f_0 = (Delegate_Uniform3f_0)GetDelegateForAddress(Uniform3fAddress, typeof(Delegate_Uniform3f_0));
+			m_Uniform3f_1 = (Delegate_Uniform3f_1)GetDelegateForAddress(Uniform3fAddress, typeof(Delegate_Uniform3f_1));
 			m_Uniform3fv_0 = (Delegate_Uniform3fv_0)GetDelegateForAddress(Uniform3fvAddress, typeof(Delegate_Uniform3fv_0));
 			m_Uniform3i_0 = (Delegate_Uniform3i_0)GetDelegateForAddress(Uniform3iAddress, typeof(Delegate_Uniform3i_0));
 			m_Uniform3iv_0 = (Delegate_Uniform3iv_0)GetDelegateForAddress(Uniform3ivAddress, typeof(Delegate_Uniform3iv_0));
@@ -4305,6 +4308,12 @@ namespace Granite3D
 		public void Uniform3f(int location, float v0, float v1, float v2)
 		{
 			m_Uniform3f_0(location, v0, v1, v2);
+		}
+
+
+		public void Uniform3f(int location, Vector3 value)
+		{
+			m_Uniform3f_1(location, value);
 		}
 
 		public void Uniform3fv(int location, int count, System.IntPtr value)
