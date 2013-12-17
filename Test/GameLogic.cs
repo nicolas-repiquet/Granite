@@ -206,10 +206,10 @@ namespace Test
             m_elements = engine.CreateBuffer(new uint[] { 0, 1, 2, 3 });
 
             m_vertexShader = engine.CreateVertexShader(@"
-#version 430
+#version 110
 
-layout(location = 1) uniform mat4 model_matrix;
-layout(location = 2) uniform mat4 proj_matrix;
+uniform mat4 model_matrix;
+uniform mat4 proj_matrix;
 
 attribute vec3 position;
 attribute vec2 texcoord;
@@ -231,7 +231,7 @@ void main()
 }
 ");
             m_fragmentShader = engine.CreateFragmentShader(@"
-#version 430
+#version 110
 
 uniform sampler2D texture;
 
