@@ -56,8 +56,20 @@ namespace Granite.Core
             using (Display display = new Display(new InternalDisplayLogic()))
             {
                 m_openglContext = WinApi.wglCreateContext(display.DeviceContextHandle);
+
                 var result = WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
-                m_gl = new GL();
+                var fakeContext = new FakeOpenGLContext(m_openglContext);
+
+                m_openglContext = fakeContext.CreateContextAttribsARB(display.DeviceContextHandle, IntPtr.Zero, new uint[] {
+                    FakeOpenGLContext.CONTEXT_MAJOR_VERSION_ARB, 3,
+                    FakeOpenGLContext.CONTEXT_MINOR_VERSION_ARB, 3,
+                    FakeOpenGLContext.CONTEXT_PROFILE_MASK_ARB, FakeOpenGLContext.CONTEXT_CORE_PROFILE_BIT_ARB,
+                    0, 0
+                });
+
+                result = WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
+
+                m_gl = new GL(m_openglContext);
             }
         }
 

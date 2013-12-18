@@ -8,8 +8,8 @@
     <ProjectGuid>{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Granite3D</RootNamespace>
-    <AssemblyName>Granite3D</AssemblyName>
+    <RootNamespace>Granite.Core</RootNamespace>
+    <AssemblyName>Granite.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,12 +46,14 @@
     <Compile Include="Engine.cs" />
     <Compile Include="EngineResource.cs" />
     <Compile Include="EngineSettings.cs" />
+    <Compile Include="FakeOpenGLContext.cs" />
     <Compile Include="GL.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GL.tt</DependentUpon>
     </Compile>
     <Compile Include="IRunnableLogic.cs" />
+    <Compile Include="OpenGLContext.cs" />
     <Compile Include="Structs.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

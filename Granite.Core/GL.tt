@@ -99,7 +99,7 @@ using System.Runtime.InteropServices;
 
 namespace Granite.Core
 {
-	public partial class GL
+	public partial class GL : OpenGLContext
 	{
 
 <# foreach(var e in enums.OrderBy(e => e.Name)) { #>
@@ -114,7 +114,8 @@ namespace Granite.Core
 		private readonly Delegate_<#= f.Name #>_<#= o.Index #> m_<#= f.Name #>_<#= o.Index #>;
 <# } } #>
 
-		public GL()
+		internal GL(IntPtr handle)
+			: base(handle)
 		{
 <# foreach(var f in functions.Values) { #>
 			var <#= f.Name #>Address = GetFunctionAddress("gl<#= f.Name #>");
