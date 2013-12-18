@@ -1,0 +1,323 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Drawing" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.IO.Compression" #>
+<#@ import namespace="System.Drawing" #>
+<#@ import namespace="System.Drawing.Imaging" #>
+<#@ import namespace="System.Runtime.InteropServices" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".gen.cs" #>
+
+namespace Granite.UI
+{
+    internal static partial class InternalFonts
+    {
+
+<#
+
+var characters = new List<Character>();
+
+var bitmap = new Bitmap(512, 512, PixelFormat.Format24bppRgb);
+var graphics = Graphics.FromImage(bitmap);
+var hdc = graphics.GetHdc();
+SetTextColor(hdc, 0x00FFFFFF);
+SetBkColor(hdc, 0);
+
+var sets = new List<CharacterSet>();
+
+sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Regular), "var_small", characters));
+sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Bold), "var_small_bold", characters));
+sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Italic), "var_small_italic", characters));
+sets.Add(LoadFont(hdc, new Font("Verdana", 14, FontStyle.Regular), "var_big", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Regular), "fix_small", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Bold), "fix_small_bold", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Italic), "fix_small_italic", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 14, FontStyle.Regular), "fix_big", characters));
+
+characters = characters.OrderBy(c => c.Size.Height).ThenBy(c => c.Size.Width).ToList();
+
+var area = characters.Sum(c => c.Size.Width * c.Size.Height) * 1.2;
+var width = (int)Math.Pow(2, Math.Round(Math.Log(Math.Sqrt(area), 2)));
+var height = DrawCharacters(characters, hdc, width);
+
+bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+graphics = Graphics.FromImage(bitmap);
+hdc = graphics.GetHdc();
+SetTextColor(hdc, 0x00FFFFFF);
+SetBkColor(hdc, 0);
+
+DrawCharacters(characters, hdc, width);
+
+graphics.Dispose();
+
+var data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+    ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+
+var bitmapBytes = new byte[bitmap.Width * bitmap.Height * 3];
+Marshal.Copy(data.Scan0, bitmapBytes, 0, bitmapBytes.Length);
+var bytes = new byte[bitmap.Width * bitmap.Height];
+
+for (int i = 0; i < bytes.Length; i++)
+{
+    bytes[i] = bitmapBytes[i * 3];
+}
+
+bitmap.UnlockBits(data);
+
+using(var mstream = new MemoryStream()) {
+	using(var cstream = new GZipStream(mstream, CompressionMode.Compress)) {
+		cstream.Write(bytes, 0, bytes.Length);
+	}
+	bytes = mstream.ToArray();
+}
+
+
+PushIndent("        ");
+WriteLine("");
+WriteLine("private const int c_width = {0};", bitmap.Width);
+WriteLine("private const int c_height = {0};", bitmap.Height);
+WriteLine("");
+WriteLine("private static readonly byte[] s_bytes = {");
+PushIndent("    ");
+for (int i = 0; i < bytes.Length; i++)
+{
+    Write(" 0x{0:X2},", bytes[i]);
+    if ((i+1) % 19 == 0)
+    {
+        WriteLine("");
+    }
+}
+WriteLine("");
+PopIndent();
+WriteLine("};");
+WriteLine("");
+WriteLine("");
+
+foreach (var set in sets)
+{
+	WriteLine("private static Glyph[] GetGlyphs_{0}(Granite3D.Texture2D texture) {{", set.Name);
+	PushIndent("    ");
+	WriteLine("return new Glyph[] {");
+	PushIndent("    ");
+    foreach (var c in set.Characters)
+    {
+        if (c == null)
+        {
+            WriteLine("null,");
+        }
+        else
+        {
+            WriteLine(string.Format(
+				System.Globalization.CultureInfo.InvariantCulture,
+				"new Glyph(new Granite3D.Vector2i({0}, {1}), texture, new Granite3D.Box2({2}f, {3}f, {4}f, {5}f)), // {6}",
+				c.Position.X, c.Position.Y,
+				c.Position.X / (float)bitmap.Width,
+				c.Position.Y / (float)bitmap.Height,
+				(c.Position.X + c.Size.Width) / (float)bitmap.Width,
+				(c.Position.Y + c.Size.Height) / (float)bitmap.Height,
+				c.C
+			));
+        }
+
+    }
+	PopIndent();
+	WriteLine("};");
+	PopIndent();
+	WriteLine("}");
+}
+
+PopIndent();
+
+#>
+
+	}
+}
+
+<#+
+
+const uint DT_CALCRECT = 1024;
+
+[DllImport("Gdi32.dll")]
+public static extern uint SetTextColor(IntPtr hdc, uint color);
+
+[DllImport("Gdi32.dll")]
+public static extern uint SetBkColor(IntPtr hdc, uint color);
+
+[DllImport("Gdi32.dll")]
+public static extern IntPtr SelectObject(IntPtr hdc, IntPtr obj);
+
+[DllImport("Gdi32.dll")]
+public static extern IntPtr CreateFontIndirect(ref LOGFONT lfont);
+
+[DllImport("Gdi32.dll")]
+public static extern int GetObject(IntPtr hfont, int size, out LOGFONT lfont);
+
+[DllImport("User32.dll")]
+public static extern int DrawTextW(IntPtr hDC, string s, int length, ref RECT lpRect, uint uFormat);
+
+public struct RECT
+{
+    public int left;
+    public int top;
+    public int right;
+    public int bottom;
+}
+
+public struct LOGFONT {
+    public int lfHeight;
+    public int lfWidth;
+    public int lfEscapement;
+    public int lfOrientation;
+    public int lfWeight;
+    public byte lfItalic;
+    public byte lfUnderline;
+    public byte lfStrikeOut;
+    public byte lfCharSet;
+    public byte lfOutPrecision;
+    public byte lfClipPrecision;
+    public byte lfQuality;
+    public byte lfFaceName_0;
+    public byte lfFaceName_1;
+    public byte lfFaceName_2;
+    public byte lfFaceName_3;
+    public byte lfFaceName_4;
+    public byte lfFaceName_5;
+    public byte lfFaceName_6;
+    public byte lfFaceName_7;
+    public byte lfFaceName_8;
+    public byte lfFaceName_9;
+    public byte lfFaceName_10;
+    public byte lfFaceName_11;
+    public byte lfFaceName_12;
+    public byte lfFaceName_13;
+    public byte lfFaceName_14;
+    public byte lfFaceName_15;
+    public byte lfFaceName_16;
+    public byte lfFaceName_17;
+    public byte lfFaceName_18;
+    public byte lfFaceName_19;
+    public byte lfFaceName_20;
+    public byte lfFaceName_21;
+    public byte lfFaceName_22;
+    public byte lfFaceName_23;
+    public byte lfFaceName_24;
+    public byte lfFaceName_25;
+    public byte lfFaceName_26;
+    public byte lfFaceName_27;
+    public byte lfFaceName_28;
+    public byte lfFaceName_29;
+    public byte lfFaceName_30;
+    public byte lfFaceName_31;
+}
+
+class Character
+{
+    public char C { get; set; }
+    public SizeF SizeF { get; set; }
+    public Size Size { get; set; }
+    public Point Position { get; set; }
+    public IntPtr Font { get; set; }
+}
+
+class CharacterSet
+{
+    public string Name { get; set; }
+    public List<Character> Characters { get; private set; }
+
+    public CharacterSet()
+    {
+        Characters = new List<Character>();
+    }
+}
+
+static CharacterSet LoadFont(IntPtr hdc, Font font, string name, List<Character> characters)
+{
+    var set = new CharacterSet();
+    set.Name = name;
+    var hfont = font.ToHfont();
+    LOGFONT lfont;
+    GetObject(hfont, Marshal.SizeOf(typeof(LOGFONT)), out lfont);
+    lfont.lfQuality = 4; // ANTIALIASED_QUALITY
+
+    hfont = CreateFontIndirect(ref lfont);
+
+    SelectObject(hdc, hfont);
+
+    for (int i = 0; i < 256; i++)
+    {
+        var c = (char)i;
+        if (!char.IsControl(c))
+        {
+            RECT r = new RECT()
+            {
+                left = 0,
+                top = 0,
+                right = 1000,
+                bottom = 1000
+            };
+            DrawTextW(hdc, c.ToString(), 1, ref r, DT_CALCRECT);
+            SizeF s = new SizeF(r.right, r.bottom);
+
+            var ch = new Character()
+            {
+                C = c,
+                SizeF = s,
+                Size = new Size((int)Math.Ceiling(s.Width), (int)Math.Ceiling(s.Height)),
+                Font = hfont
+            };
+            characters.Add(ch);
+            set.Characters.Add(ch);
+        }
+        else
+        {
+            set.Characters.Add(null);
+        }
+    }
+
+    return set;
+}
+
+static int DrawCharacters(List<Character> characters, IntPtr hdc, int width)
+{
+    int height = 0;
+    int x = 1;
+    int y = 1;
+
+    foreach (var c in characters)
+    {
+        if (c != null)
+        {
+            if (x + c.Size.Width >= width)
+            {
+                x = 1;
+                y += c.Size.Height + 1;
+                height = 0;
+            }
+
+            height = Math.Max(height, c.Size.Height);
+
+            c.Position = new Point(x, y);
+
+            RECT r = new RECT()
+            {
+                left = x,
+                top = y,
+                right = 1000,
+                bottom = 1000
+            };
+
+            SelectObject(hdc, c.Font);
+
+            DrawTextW(hdc, c.C.ToString(), 1, ref r, 0);
+
+            x += c.Size.Width + 1;
+        }
+    }
+
+    return y + height + 1;
+}
+
+#>
