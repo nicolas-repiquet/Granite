@@ -7,87 +7,87 @@ using System.Threading;
 
 namespace Granite3D
 {
-    public sealed class Engine
+    public static class Engine
     {
-        private readonly IntPtr m_eventHandle;
-        private readonly Thread m_thread;
-        private readonly IEngineLogic m_logic;
-        private readonly Queue<Action> m_actions;
-        private GL m_gl;
+        private static bool m_initialized;
 
-        private bool m_running;
-        private IntPtr m_openglContext;
+
+        #region Initialization
+
+        public static void Initialize(EngineSettings settings)
+        {
+            if (!m_initialized)
+            {
+                m_initialized = true;
+                InternalInitialize(settings);
+            }
+            else
+            {
+                throw new InvalidOperationException("Engine is already initialized");
+            }
+        }
+
+        public static bool IsInitialized { get { return m_initialized; } }
+
+        #endregion
+
+
+
+        private static IntPtr m_eventHandle;
+        private static Thread m_thread;
+        private static Queue<Action> m_actions;
+        private static GL m_gl;
+
+
+        private static  bool m_running;
+        private static  IntPtr m_openglContext;
 
         // ********************************************************************
         // * Constructor / Destructor
 
-        public Engine(EngineSettings settings, IEngineLogic logic)
+        private static void InternalInitialize(EngineSettings settings)
         {
             if (settings == null) throw new ArgumentNullException("settings");
-            if (logic == null) throw new ArgumentNullException("logic");
 
             m_actions = new Queue<Action>();
-            m_logic = logic;
             m_eventHandle = WinApi.CreateEvent(IntPtr.Zero, true, false, null);
             m_thread = Thread.CurrentThread;
+
+            using (Display display = new Display(new InternalDisplayLogic()))
+            {
+                m_openglContext = WinApi.wglCreateContext(display.DeviceContextHandle);
+                var result = WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
+                m_gl = new GL();
+            }
         }
 
-        ~Engine()
-        {
-            WinApi.CloseHandle(m_eventHandle);
-        }
+        //~Engine()
+        //{
+        //    WinApi.CloseHandle(m_eventHandle);
+        //}
 
         // ********************************************************************
         // * Private methods
 
 
-        private void WakeUp()
+        private static void WakeUp()
         {
             WinApi.SetEvent(m_eventHandle);
         }
 
         private class InternalDisplayLogic : DisplayLogicBase
         {
-             
-        }
-
-        private void Prepare()
-        {
-            using (Display display = new Display(this, new InternalDisplayLogic()))
-            {
-                m_openglContext = WinApi.wglCreateContext(display.DeviceContextHandle);
-                var result = WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
-                m_gl = new GL();
-
-                var vendor = Marshal.PtrToStringAnsi(m_gl.GetString(GL.VENDOR));
-                var version = Marshal.PtrToStringAnsi(m_gl.GetString(GL.VERSION));
-                var renderer = Marshal.PtrToStringAnsi(m_gl.GetString(GL.RENDERER));
-                var shadingLanguageVersion = Marshal.PtrToStringAnsi(m_gl.GetString(GL.SHADING_LANGUAGE_VERSION));
-                var extensions = new List<string>();
-
-                while(true) {
-                    var p = m_gl.GetStringi(GL.EXTENSIONS, (uint)extensions.Count);
-                    if (p != IntPtr.Zero)
-                    {
-                        extensions.Add(Marshal.PtrToStringAnsi(p));
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                extensions.Sort();
-            }
+        
         }
 
         // ********************************************************************
         // * internal
 
-        internal IntPtr OpenglContext { get { return m_openglContext; } }
+        internal static IntPtr OpenglContext { get { return m_openglContext; } }
 
-        public GL Gl { get { return m_gl; } }
+        public static GL Gl { get { return m_gl; } }
 
-        internal void CheckThread()
+        internal static void CheckThread()
         {
             if (Thread.CurrentThread != m_thread)
             {
@@ -95,7 +95,7 @@ namespace Granite3D
             }
         }
 
-        internal void CheckThreadAndRunning()
+        internal static void CheckThreadAndRunning()
         {
             if (Thread.CurrentThread != m_thread)
             {
@@ -107,7 +107,7 @@ namespace Granite3D
             }
         }
 
-        internal void ExecuteAction(Action action)
+        internal static void ExecuteAction(Action action)
         {
             if (action != null)
             {
@@ -130,9 +130,9 @@ namespace Granite3D
         // ********************************************************************
         // * Public methods
 
-        public bool IsRunning { get { return m_running; } }
+        public static bool IsRunning { get { return m_running; } }
 
-        public void Run()
+        public static void Run(IRunnableLogic logic)
         {
             CheckThread();
 
@@ -142,9 +142,7 @@ namespace Granite3D
                 {
                     m_running = true;
 
-                    Prepare();
-
-                    m_logic.OnStart(this);
+                    logic.OnStart();
 
                     bool stop = false;
                     IntPtr[] handles = new IntPtr[] { m_eventHandle };
@@ -190,8 +188,7 @@ namespace Granite3D
                         }
                     }
 
-                    m_logic.OnStop(this);
-
+                    logic.OnStop();
 
                 }
                 finally
@@ -201,7 +198,7 @@ namespace Granite3D
             }
         }
 
-        public void Stop()
+        public static void Stop()
         {
             CheckThread();
 
@@ -211,56 +208,48 @@ namespace Granite3D
             }
         }
 
-        public Display CreateDisplay(DisplaySettings settings, IDisplayLogic logic)
+        public static Display CreateDisplay(DisplaySettings settings, IDisplayLogic logic)
         {
             CheckThread();
-
-            if (m_running)
-            {
-                return new Display(this, logic);
-            }
-            else
-            {
-                throw new InvalidOperationException();
-            }
+            return new Display(logic);
         }
 
-        public Buffer<T> CreateBuffer<T>() where T : struct
+        public static Buffer<T> CreateBuffer<T>() where T : struct
         {
-            CheckThreadAndRunning();
-            return new Buffer<T>(this);
+            CheckThread();
+            return new Buffer<T>();
         }
 
-        public Buffer<T> CreateBuffer<T>(T[] data) where T : struct
+        public static Buffer<T> CreateBuffer<T>(T[] data) where T : struct
         {
-            CheckThreadAndRunning();
-            var buffer = new Buffer<T>(this);
+            CheckThread();
+            var buffer = new Buffer<T>();
             buffer.SetData(data);
             return buffer;
         }
 
-        public VertexShader CreateVertexShader(string source)
+        public static VertexShader CreateVertexShader(string source)
         {
-            CheckThreadAndRunning();
-            return new VertexShader(this, source);
+            CheckThread();
+            return new VertexShader(source);
         }
 
-        public FragmentShader CreateFragmentShader(string source)
+        public static FragmentShader CreateFragmentShader(string source)
         {
-            CheckThreadAndRunning();
-            return new FragmentShader(this, source);
+            CheckThread();
+            return new FragmentShader(source);
         }
 
-        public Program CreateProgram(VertexShader vertexShader, FragmentShader fragmentShader)
+        public static Program CreateProgram(VertexShader vertexShader, FragmentShader fragmentShader)
         {
-            CheckThreadAndRunning();
-            return new Program(this, vertexShader, fragmentShader);
+            CheckThread();
+            return new Program(vertexShader, fragmentShader);
         }
 
-        public Texture2D CreateTexture2D()
+        public static Texture2D CreateTexture2D()
         {
-            CheckThreadAndRunning();
-            return new Texture2D(this);
+            CheckThread();
+            return new Texture2D();
         }
     }
 }

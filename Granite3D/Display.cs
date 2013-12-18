@@ -18,8 +18,8 @@ namespace Granite3D
         private int m_height;
         private DateTime m_lastRender;
 
-        internal Display(Engine engine, IDisplayLogic logic)
-            : base(engine)
+        internal Display(IDisplayLogic logic)
+            : base()
         {
             m_logic = logic;
             m_lastRender = DateTime.Now;
@@ -196,7 +196,7 @@ namespace Granite3D
                     Engine.Gl.Enable_BLEND();
                     Engine.Gl.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-                    m_logic.Render(this, new Graphics(Engine), elapsed);
+                    m_logic.Render(this, new Graphics(), elapsed);
 
                     WinApi.SwapBuffers(m_deviceContextHandle);
                 }

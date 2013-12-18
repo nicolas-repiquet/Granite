@@ -13,8 +13,8 @@ namespace Granite3D
         private readonly ProgramAttribute[] m_attributes;
         private readonly ProgramUniform[] m_uniforms;
 
-        internal Program(Engine engine, VertexShader vertexShader, FragmentShader fragmentShader)
-            : base(engine)
+        internal Program(VertexShader vertexShader, FragmentShader fragmentShader)
+            : base()
         {
             m_vertexShader = vertexShader;
             m_fragmentShader = fragmentShader;
@@ -97,7 +97,7 @@ namespace Granite3D
         private readonly Dictionary<ProgramUniform, object> m_uniformValues;
 
         internal ProgramInstance(Program program, Dictionary<string, IBufferView> attributeValues)
-            : base(program.Engine)
+            : base()
         {
             m_program = program;
             m_attributeValues = new Dictionary<ProgramAttribute, IBufferView>();
@@ -301,7 +301,7 @@ namespace Granite3D
 
         internal override void SetValue(object value)
         {
-            Program.Engine.Gl.Uniform1f(Position, (float)value);
+            Engine.Gl.Uniform1f(Position, (float)value);
         }
     }
 
@@ -316,7 +316,7 @@ namespace Granite3D
         internal override void SetValue(object value)
         {
             var m = (Matrix4)value;
-            Program.Engine.Gl.UniformMatrix4fv(Position, 1, false, ref m);
+            Engine.Gl.UniformMatrix4fv(Position, 1, false, ref m);
         }
     }
 
@@ -331,7 +331,7 @@ namespace Granite3D
         internal override void SetValue(object value)
         {
             var m = (Vector3)value;
-            Program.Engine.Gl.Uniform3f(Position, m);
+            Engine.Gl.Uniform3f(Position, m);
         }
     }
 
@@ -347,9 +347,9 @@ namespace Granite3D
         {
             var t = (Texture2D)value;
 
-            Program.Engine.Gl.ActiveTexture(GL.TEXTURE0);
-            Program.Engine.Gl.BindTexture(GL.TEXTURE_2D, t.Name);
-            Program.Engine.Gl.Uniform1i(Position, 0);
+            Engine.Gl.ActiveTexture(GL.TEXTURE0);
+            Engine.Gl.BindTexture(GL.TEXTURE_2D, t.Name);
+            Engine.Gl.Uniform1i(Position, 0);
         }
     }
     #endregion

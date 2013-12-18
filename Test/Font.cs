@@ -58,21 +58,18 @@ namespace Test
             }
         }
 
-        private readonly Engine m_engine;
         public readonly Texture2D m_texture;
 
         private readonly VertexShader m_vertexShader;
         private readonly FragmentShader m_fragmentShader;
         private readonly Granite3D.Program m_program;
 
-        public Font(Engine engine)
+        public Font()
         {
-            m_engine = engine;
-
-            m_texture = engine.CreateTexture2D();
+            m_texture = Engine.CreateTexture2D();
             m_texture.SetData(s_width, s_height, s_bytes);
 
-            m_vertexShader = m_engine.CreateVertexShader(@"
+            m_vertexShader = Engine.CreateVertexShader(@"
 #version 110
 
 attribute vec2 position;
@@ -88,7 +85,7 @@ void main()
     t = texcoord;
 }
 ");
-            m_fragmentShader = m_engine.CreateFragmentShader(@"
+            m_fragmentShader = Engine.CreateFragmentShader(@"
 #version 110
 
 uniform sampler2D texture;
@@ -101,7 +98,7 @@ void main()
     gl_FragColor = vec4(color.x, color.y, color.z, texture2D(texture, t).x);
 }
 ");
-            m_program = m_engine.CreateProgram(m_vertexShader, m_fragmentShader);
+            m_program = Engine.CreateProgram(m_vertexShader, m_fragmentShader);
         }
 
         public void DrawText(Display display, Vector2i position, string s)
@@ -124,7 +121,7 @@ void main()
                 }
             }
 
-            using (var buffer = m_engine.CreateBuffer(vertices.ToArray()))
+            using (var buffer = Engine.CreateBuffer(vertices.ToArray()))
             {
                 var positions = buffer.GetView("position");
                 var texcoords = buffer.GetView("texCoords");
@@ -140,7 +137,7 @@ void main()
                 matrix = matrix * Matrix4.Translate(-1f, 1f, 0f);
                 matrix = matrix * Matrix4.Scale(2f / display.Width, -2f / display.Height, 1);
                 
-                m_engine.Gl.Disable(GL.DEPTH_TEST);
+                Engine.Gl.Disable(GL.DEPTH_TEST);
                 
                 instance.SetUniform("texture", m_texture);
 

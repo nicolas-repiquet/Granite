@@ -10,8 +10,8 @@ namespace Granite3D
     {
         private readonly uint m_name;
 
-        internal Shader(Engine engine, uint type, string source)
-            : base(engine)
+        internal Shader(uint type, string source)
+            : base()
         {
             m_name = Engine.Gl.CreateShader(type);
             string[] lines = source.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Select(l => l + '\n').ToArray();
@@ -52,8 +52,8 @@ namespace Granite3D
 
     public sealed class VertexShader : Shader
     {
-        internal VertexShader(Engine engine, string source)
-            : base(engine, GL.VERTEX_SHADER, source)
+        internal VertexShader(string source)
+            : base(GL.VERTEX_SHADER, source)
         {
 
         }
@@ -61,8 +61,8 @@ namespace Granite3D
 
     public sealed class FragmentShader : Shader
     {
-        internal FragmentShader(Engine engine, string source)
-            : base(engine, GL.FRAGMENT_SHADER, source)
+        internal FragmentShader(string source)
+            : base(GL.FRAGMENT_SHADER, source)
         {
 
         }

@@ -17,7 +17,7 @@ namespace Test
         public Color3ub Color;
     }
 
-    public class GameLogic : DisplayLogicBase, IEngineLogic
+    public class GameLogic : DisplayLogicBase, IRunnableLogic
     {
         private Display m_display;
         private Font m_font;
@@ -183,29 +183,29 @@ namespace Test
             return colors;
         }
 
-        public void OnStart(Engine engine)
+        public void OnStart()
         {
-            m_display = engine.CreateDisplay(new DisplaySettings(), this);
+            m_display = Engine.CreateDisplay(new DisplaySettings(), this);
             m_display.Show();
 
-            m_grid = engine.CreateBuffer(CreateGrid(new Box2(-10, -10, 20, 20), 1));
+            m_grid = Engine.CreateBuffer(CreateGrid(new Box2(-10, -10, 20, 20), 1));
             m_gridPositionsView = m_grid.GetView("Position");
             m_gridColorsView = m_grid.GetView("Color");
             m_gridTexCoordsView = m_grid.GetView("TexCoord");
-            m_font = new Font(engine);
+            m_font = new Font();
 
-            m_texture = engine.CreateTexture2D();
+            m_texture = Engine.CreateTexture2D();
             m_texture.SetData(8, 8, CreateCheckboardTexture(8, 8));
 
-            m_vertices = engine.CreateBuffer(CreateCube());
+            m_vertices = Engine.CreateBuffer(CreateCube());
 
             m_positionsView = m_vertices.GetView("Position");
             m_colorsView = m_vertices.GetView("Color");
             m_texCoordsView = m_vertices.GetView("TexCoord");
 
-            m_elements = engine.CreateBuffer(new uint[] { 0, 1, 2, 3 });
+            m_elements = Engine.CreateBuffer(new uint[] { 0, 1, 2, 3 });
 
-            m_vertexShader = engine.CreateVertexShader(@"
+            m_vertexShader = Engine.CreateVertexShader(@"
 #version 110
 
 uniform mat4 model_matrix;
@@ -230,7 +230,7 @@ void main()
     t = texcoord;
 }
 ");
-            m_fragmentShader = engine.CreateFragmentShader(@"
+            m_fragmentShader = Engine.CreateFragmentShader(@"
 #version 110
 
 uniform sampler2D texture;
@@ -245,7 +245,7 @@ void main()
 }
 ");
 
-            m_program = engine.CreateProgram(m_vertexShader, m_fragmentShader);
+            m_program = Engine.CreateProgram(m_vertexShader, m_fragmentShader);
 
             m_programInstance = m_program.CreateInstance(new Dictionary<string, IBufferView> { 
                 { "position", m_positionsView },
@@ -262,7 +262,7 @@ void main()
             });
         }
 
-        public void OnStop(Engine engine)
+        public void OnStop()
         {
 
         }
@@ -312,7 +312,7 @@ void main()
 
         public override void OnCloseCommand(Display display)
         {
-            display.Engine.Stop();
+            Engine.Stop();
         }
 
         public override void OnChar(char c)
@@ -323,7 +323,7 @@ void main()
  
         public override void Render(Display display, Graphics graphics, TimeSpan elapsed)
         {
-            var gl = display.Engine.Gl;
+            var gl = Engine.Gl;
 
             foreach (var key in m_keys)
             {

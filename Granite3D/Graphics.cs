@@ -7,11 +7,8 @@ namespace Granite3D
 {
     public sealed class Graphics
     {
-        private readonly Engine m_engine;
-
-        internal Graphics(Engine engine)
+        internal Graphics()
         {
-            m_engine = engine;
         }
 
         public void DrawPoints(
@@ -20,7 +17,7 @@ namespace Granite3D
             Dictionary<string, object> uniforms,
             Dictionary<string, IBufferView> attributes)
         {
-            m_engine.Gl.UseProgram(program.Name);
+            Engine.Gl.UseProgram(program.Name);
 
             // Uniforms
             foreach (var uniform in program.Uniforms)
@@ -39,8 +36,8 @@ namespace Granite3D
                 IBufferView view = null;
                 if (attributes.TryGetValue(attribute.Name, out view))
                 {
-                    m_engine.Gl.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
-                    m_engine.Gl.VertexAttribPointer(
+                    Engine.Gl.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
+                    Engine.Gl.VertexAttribPointer(
                         (uint)attribute.Position,
                         view.Size,
                         view.Type,
@@ -48,8 +45,8 @@ namespace Granite3D
                         view.Stride,
                         new IntPtr(view.Offset)
                     );
-                    m_engine.Gl.BindBuffer(GL.ARRAY_BUFFER, 0);
-                    m_engine.Gl.EnableVertexAttribArray((uint)attribute.Position);
+                    Engine.Gl.BindBuffer(GL.ARRAY_BUFFER, 0);
+                    Engine.Gl.EnableVertexAttribArray((uint)attribute.Position);
                 }
             }
 
@@ -62,7 +59,7 @@ namespace Granite3D
             //    IntPtr.Zero
             //);
 
-            m_engine.Gl.DrawArrays(GL.TRIANGLE_FAN, 0, 4);
+            Engine.Gl.DrawArrays(GL.TRIANGLE_FAN, 0, 4);
 
             // Cleanup
 
@@ -72,10 +69,10 @@ namespace Granite3D
             // Attributes
             foreach (var attribute in program.Attributes)
             {
-                m_engine.Gl.DisableVertexAttribArray((uint)attribute.Position);
+                Engine.Gl.DisableVertexAttribArray((uint)attribute.Position);
             }
 
-            m_engine.Gl.UseProgram(0);
+            Engine.Gl.UseProgram(0);
         }
     }
 }

@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GL.tt</DependentUpon>
     </Compile>
+    <Compile Include="IRunnableLogic.cs" />
     <Compile Include="Structs.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -60,7 +61,6 @@
     <Compile Include="Graphics.cs" />
     <Compile Include="IBufferView.cs" />
     <Compile Include="IDisplayLogic.cs" />
-    <Compile Include="IEngineLogic.cs" />
     <Compile Include="Keys.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,12 +7,10 @@ namespace Granite3D
 {
     public abstract class EngineResource : IDisposable
     {
-        private readonly Engine m_engine;
         private bool m_disposed;
 
-        internal EngineResource(Engine engine)
+        internal EngineResource()
         {
-            m_engine = engine;
         }
 
         ~EngineResource()
@@ -31,7 +29,6 @@ namespace Granite3D
             }
         }
 
-        public Engine Engine { get { return m_engine; } }
         public bool Disposed { get { return m_disposed; } }
 
         protected void CheckDisposed()

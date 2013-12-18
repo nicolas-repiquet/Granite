@@ -11,8 +11,8 @@ namespace Granite3D
     {
         private readonly uint m_name;
 
-        internal Buffer(Engine engine)
-            : base(engine)
+        internal Buffer()
+            : base()
         {
             uint name;
             Engine.Gl.GenBuffers(1, out name);
@@ -76,8 +76,8 @@ namespace Granite3D
 
         private int m_count;
 
-        internal Buffer(Engine engine)
-            : base(engine)
+        internal Buffer()
+            : base()
         {
 
         }

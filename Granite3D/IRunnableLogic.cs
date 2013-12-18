@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Granite3D
 {
-    public interface IEngineLogic
+    public interface IRunnableLogic
     {
-        void OnStart(Engine engine);
-        void OnStop(Engine engine);
+        void OnStart();
+        void OnStop();
     }
 }

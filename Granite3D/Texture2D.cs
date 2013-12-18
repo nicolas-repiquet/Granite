@@ -10,8 +10,8 @@ namespace Granite3D
     {
         private readonly uint m_name;
 
-        internal Texture2D(Engine engine)
-            : base(engine)
+        internal Texture2D()
+            : base()
         {
             m_name = Engine.Gl.GenTexture();
         }
