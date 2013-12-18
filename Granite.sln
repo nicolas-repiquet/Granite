@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{10D6C432-CC35-457B-9538-E9041EFD9410}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granite3D", "Granite3D\Granite3D.csproj", "{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granite.Core", "Granite.Core\Granite.Core.csproj", "{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granite.UI", "Granite.UI\Granite.UI.csproj", "{95CDCA6E-E490-4A43-8FE2-7C8AA59F3386}"
 EndProject

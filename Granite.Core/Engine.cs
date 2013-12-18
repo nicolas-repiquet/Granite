@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
-namespace Granite3D
+namespace Granite.Core
 {
     public static class Engine
     {

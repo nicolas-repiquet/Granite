@@ -53,9 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Granite3D\Granite3D.csproj">
-      <Project>{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}</Project>
-      <Name>Granite3D</Name>
+    <ProjectReference Include="..\Granite.Core\Granite.Core.csproj">
+      <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
+      <Name>Granite.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

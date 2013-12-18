@@ -1,4 +1,4 @@
-﻿using Granite3D;
+﻿using Granite.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +62,7 @@ namespace Test
 
         private readonly VertexShader m_vertexShader;
         private readonly FragmentShader m_fragmentShader;
-        private readonly Granite3D.Program m_program;
+        private readonly Granite.Core.Program m_program;
 
         public Font()
         {

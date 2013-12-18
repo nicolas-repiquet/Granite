@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Granite3D
+namespace Granite.Core
 {
     public partial class GL
     {

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Granite3D
+namespace Granite.Core
 {
-    public sealed class DisplaySettings
+    public interface IRunnableLogic
     {
+        void OnStart();
+        void OnStop();
     }
 }

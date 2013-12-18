@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace Granite3D
+namespace Granite.Core
 {
     public sealed class Display : EngineResource
     {

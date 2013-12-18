@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Granite3D
+namespace Granite.Core
 {
     public sealed class Graphics
     {
@@ -13,7 +13,7 @@ namespace Granite3D
 
         public void DrawPoints(
             Program program,
-            Granite3D.Buffer elements,
+            Granite.Core.Buffer elements,
             Dictionary<string, object> uniforms,
             Dictionary<string, IBufferView> attributes)
         {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Granite3D
+namespace Granite.Core
 {
     public abstract class Shader : EngineResource
     {

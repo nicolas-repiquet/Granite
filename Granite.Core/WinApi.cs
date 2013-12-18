@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace Granite3D
+namespace Granite.Core
 {
     internal static class WinApi
     {

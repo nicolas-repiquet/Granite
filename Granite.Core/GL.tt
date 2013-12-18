@@ -97,7 +97,7 @@ foreach(var line in lines.Select(s => s.Trim()))
 using System;
 using System.Runtime.InteropServices;
 
-namespace Granite3D
+namespace Granite.Core
 {
 	public partial class GL
 	{

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Granite3D
+namespace Granite.Core
 {
     public abstract class Buffer : EngineResource
     {

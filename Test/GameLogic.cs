@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Granite3D;
+using Granite.Core;
 using System.Threading;
 using System.Runtime.InteropServices;
 
@@ -38,8 +38,8 @@ namespace Test
 
         private VertexShader m_vertexShader;
         private FragmentShader m_fragmentShader;
-        
-        private Granite3D.Program m_program;
+
+        private Granite.Core.Program m_program;
 
         private ProgramInstance m_programInstance;
         private ProgramInstance m_programGridInstance;
