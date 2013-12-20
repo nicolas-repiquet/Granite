@@ -62,7 +62,7 @@ namespace Granite.Core
 
                 m_openglContext = fakeContext.CreateContextAttribsARB(display.DeviceContextHandle, IntPtr.Zero, new uint[] {
                     FakeOpenGLContext.CONTEXT_MAJOR_VERSION_ARB, 3,
-                    FakeOpenGLContext.CONTEXT_MINOR_VERSION_ARB, 3,
+                    FakeOpenGLContext.CONTEXT_MINOR_VERSION_ARB, 0,
                     FakeOpenGLContext.CONTEXT_PROFILE_MASK_ARB, FakeOpenGLContext.CONTEXT_CORE_PROFILE_BIT_ARB,
                     0, 0
                 });
