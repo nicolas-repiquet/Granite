@@ -137,7 +137,7 @@ void main()
                 matrix = matrix * Matrix4.Translate(-1f, 1f, 0f);
                 matrix = matrix * Matrix4.Scale(2f / display.Width, -2f / display.Height, 1);
                 
-                Engine.Gl.Disable(GL.DEPTH_TEST);
+                GL.Disable(GL.DEPTH_TEST);
                 
                 instance.SetUniform("texture", m_texture);
 

@@ -19,49 +19,49 @@ namespace Granite.Core
             m_vertexShader = vertexShader;
             m_fragmentShader = fragmentShader;
 
-            m_name = Engine.Gl.CreateProgram();
-            Engine.Gl.AttachShader(m_name, vertexShader.Name);
-            Engine.Gl.AttachShader(m_name, fragmentShader.Name);
-            Engine.Gl.LinkProgram(m_name);
+            m_name = GL.CreateProgram();
+            GL.AttachShader(m_name, vertexShader.Name);
+            GL.AttachShader(m_name, fragmentShader.Name);
+            GL.LinkProgram(m_name);
             int linkStatus;
-            Engine.Gl.GetProgramiv(m_name, GL.LINK_STATUS, out linkStatus);
+            GL.GetProgramiv(m_name, GL.LINK_STATUS, out linkStatus);
             if (linkStatus == 0)
             {
                 byte[] buffer = new byte[4096];
                 int length;
-                Engine.Gl.GetProgramInfoLog(m_name, buffer.Length, out length, buffer);
+                GL.GetProgramInfoLog(m_name, buffer.Length, out length, buffer);
                 string log = Encoding.ASCII.GetString(buffer, 0, length);
                 throw new Exception(log);
             }
 
             var uniforms = new List<ProgramUniform>();
             int uniformCount;
-            Engine.Gl.GetProgramiv(m_name, GL.ACTIVE_UNIFORMS, out uniformCount);
+            GL.GetProgramiv(m_name, GL.ACTIVE_UNIFORMS, out uniformCount);
             for (uint i = 0; i < uniformCount; i++)
             {
                 var buffer = new byte[4096];
                 int length;
                 int size;
                 uint type;
-                Engine.Gl.GetActiveUniform(m_name, i, buffer.Length, out length, out size, out type, buffer);
+                GL.GetActiveUniform(m_name, i, buffer.Length, out length, out size, out type, buffer);
                 var uniformName = Encoding.ASCII.GetString(buffer, 0, length);
-                var position = Engine.Gl.GetUniformLocation(m_name, buffer);
+                var position = GL.GetUniformLocation(m_name, buffer);
                 uniforms.Add(ProgramUniform.Create(this, type, uniformName, position));
             }
             m_uniforms = uniforms.ToArray();
 
             var attributes = new List<ProgramAttribute>();
             int attribCount;
-            Engine.Gl.GetProgramiv(m_name, GL.ACTIVE_ATTRIBUTES, out attribCount);
+            GL.GetProgramiv(m_name, GL.ACTIVE_ATTRIBUTES, out attribCount);
             for (uint i = 0; i < attribCount; i++)
             {
                 var buffer = new byte[4096];
                 int length;
                 int size;
                 uint type;
-                Engine.Gl.GetActiveAttrib(m_name, i, buffer.Length, out length, out size, out type, buffer);
+                GL.GetActiveAttrib(m_name, i, buffer.Length, out length, out size, out type, buffer);
                 var attribName = Encoding.ASCII.GetString(buffer, 0, length);
-                var position = Engine.Gl.GetAttribLocation(m_name, buffer);
+                var position = GL.GetAttribLocation(m_name, buffer);
                 attributes.Add(ProgramAttribute.Create(this, type, attribName, position));
             }
             m_attributes = attributes.ToArray();
@@ -83,7 +83,7 @@ namespace Granite.Core
 
             Engine.ExecuteAction(() =>
             {
-                Engine.Gl.DeleteProgram(m_name);
+                GL.DeleteProgram(m_name);
             });
         }
     }
@@ -113,18 +113,18 @@ namespace Granite.Core
             }
 
             uint name;
-            Engine.Gl.GenVertexArrays(1, out name);
+            GL.GenVertexArrays(1, out name);
             m_name = name;
 
-            Engine.Gl.BindVertexArray(m_name);
+            GL.BindVertexArray(m_name);
 
             foreach (var entry in m_attributeValues)
             {
                 var attribute = entry.Key;
                 var view = entry.Value;
 
-                Engine.Gl.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
-                Engine.Gl.VertexAttribPointer(
+                GL.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
+                GL.VertexAttribPointer(
                     (uint)attribute.Position,
                     view.Size,
                     view.Type,
@@ -132,11 +132,11 @@ namespace Granite.Core
                     view.Stride,
                     new IntPtr(view.Offset)
                 );
-                Engine.Gl.BindBuffer(GL.ARRAY_BUFFER, 0);
-                Engine.Gl.EnableVertexAttribArray((uint)attribute.Position);
+                GL.BindBuffer(GL.ARRAY_BUFFER, 0);
+                GL.EnableVertexAttribArray((uint)attribute.Position);
             }
 
-            Engine.Gl.BindVertexArray(0);
+            GL.BindVertexArray(0);
         }
 
         public void SetUniform(string name, object value)
@@ -151,28 +151,28 @@ namespace Granite.Core
 
 	public void DrawLines()
         {
-            Engine.Gl.UseProgram(m_program.Name);
+            GL.UseProgram(m_program.Name);
             foreach (var entry in m_uniformValues)
             {
                 entry.Key.SetValue(entry.Value);
             }
-            Engine.Gl.BindVertexArray(m_name);
-            Engine.Gl.DrawArrays(GL.LINES, 0, 84);
-            Engine.Gl.BindVertexArray(0);
-            Engine.Gl.UseProgram(0);
+            GL.BindVertexArray(m_name);
+            GL.DrawArrays(GL.LINES, 0, 84);
+            GL.BindVertexArray(0);
+            GL.UseProgram(0);
         }
 
         public void Draw(int count)
       	{
-            Engine.Gl.UseProgram(m_program.Name);
+            GL.UseProgram(m_program.Name);
             foreach (var entry in m_uniformValues)
             {
                 entry.Key.SetValue(entry.Value);
             }
-            Engine.Gl.BindVertexArray(m_name);
-            Engine.Gl.DrawArrays(GL.TRIANGLES, 0, count);
-            Engine.Gl.BindVertexArray(0);
-            Engine.Gl.UseProgram(0);
+            GL.BindVertexArray(m_name);
+            GL.DrawArrays(GL.TRIANGLES, 0, count);
+            GL.BindVertexArray(0);
+            GL.UseProgram(0);
         }
 
         protected override void InternalDispose()
@@ -181,7 +181,7 @@ namespace Granite.Core
 
             Engine.ExecuteAction(() =>
             {
-                Engine.Gl.DeleteVertexArrays(1, ref name);
+                GL.DeleteVertexArrays(1, ref name);
             });
         }
     }
@@ -301,7 +301,7 @@ namespace Granite.Core
 
         internal override void SetValue(object value)
         {
-            Engine.Gl.Uniform1f(Position, (float)value);
+            GL.Uniform1f(Position, (float)value);
         }
     }
 
@@ -316,7 +316,7 @@ namespace Granite.Core
         internal override void SetValue(object value)
         {
             var m = (Matrix4)value;
-            Engine.Gl.UniformMatrix4fv(Position, 1, false, ref m);
+            GL.UniformMatrix4fv(Position, 1, false, ref m);
         }
     }
 
@@ -331,7 +331,7 @@ namespace Granite.Core
         internal override void SetValue(object value)
         {
             var m = (Vector3)value;
-            Engine.Gl.Uniform3f(Position, m);
+            GL.Uniform3f(Position, m);
         }
     }
 
@@ -347,9 +347,9 @@ namespace Granite.Core
         {
             var t = (Texture2D)value;
 
-            Engine.Gl.ActiveTexture(GL.TEXTURE0);
-            Engine.Gl.BindTexture(GL.TEXTURE_2D, t.Name);
-            Engine.Gl.Uniform1i(Position, 0);
+            GL.ActiveTexture(GL.TEXTURE0);
+            GL.BindTexture(GL.TEXTURE_2D, t.Name);
+            GL.Uniform1i(Position, 0);
         }
     }
     #endregion

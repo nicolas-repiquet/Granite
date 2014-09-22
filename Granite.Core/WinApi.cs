@@ -324,6 +324,9 @@ namespace Granite.Core
         [DllImport(OPENGL32)]
         internal static extern IntPtr wglGetProcAddress(byte[] proc);
 
+        [DllImport(OPENGL32)]
+        internal static extern IntPtr wglDeleteContext(IntPtr openglContextHandle);
+
         [DllImport(GDI32)]
         internal static extern bool SwapBuffers(IntPtr deviceContextHandle);
 

@@ -71,6 +71,7 @@
     <Compile Include="Texture2D.cs" />
     <Compile Include="ValueTypeDescriptor.cs" />
     <Compile Include="WinApi.cs" />
+    <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

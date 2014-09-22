@@ -99,7 +99,7 @@ using System.Runtime.InteropServices;
 
 namespace Granite.Core
 {
-	public partial class GL : OpenGLContext
+	public static partial class GL
 	{
 
 <# foreach(var e in enums.OrderBy(e => e.Name)) { #>
@@ -111,22 +111,18 @@ namespace Granite.Core
 <# } } #>
 
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
-		private readonly Delegate_<#= f.Name #>_<#= o.Index #> m_<#= f.Name #>_<#= o.Index #>;
+		private static Delegate_<#= f.Name #>_<#= o.Index #> m_<#= f.Name #>_<#= o.Index #>;
 <# } } #>
 
-		internal GL(IntPtr handle)
-			: base(handle)
+		private static void InitializeFunctions()
 		{
-<# foreach(var f in functions.Values) { #>
-			var <#= f.Name #>Address = GetFunctionAddress("gl<#= f.Name #>");
-<# } #>
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
-			m_<#= f.Name #>_<#= o.Index #> = (Delegate_<#= f.Name #>_<#= o.Index #>)GetDelegateForAddress(<#= f.Name #>Address, typeof(Delegate_<#= f.Name #>_<#= o.Index #>));
+			m_<#= f.Name #>_<#= o.Index #> = (Delegate_<#= f.Name #>_<#= o.Index #>)GetFunctionDelegate("gl<#= f.Name #>", typeof(Delegate_<#= f.Name #>_<#= o.Index #>));
 <# } } #>
 		}
 
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
-		<#= o.Visibility #> <#= o.GetDotNetType() #> <#= f.Name #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>)
+		<#= o.Visibility #> static <#= o.GetDotNetType() #> <#= f.Name #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>)
 		{
 			<#= o.ReturnType == "void" ? string.Empty : "return " #>m_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => p.GetForwardName())) #>);
 		}
@@ -171,6 +167,40 @@ class GlFunctionOverload
 	public string GetDotNetType()
 	{
 		return GlFunctionParameter.GetDotNetType(ReturnType);
+	}
+
+	public string GetDelegate()
+	{
+		var builder = new System.Text.StringBuilder();
+
+		if(ReturnType == "void")
+		{
+			builder.Append("Action<");
+		} else {
+			builder.Append("Func<");
+		}
+	
+		for(int i = 0; i < Parameters.Count; i++)
+		{
+			if(i > 0)
+			{
+				builder.Append(", ");
+			}
+			builder.Append(Parameters[i].GetDotNetType());
+		}
+
+		if(ReturnType != "void")
+		{
+			if(Parameters.Count > 0)
+			{
+				builder.Append(", ");
+			}
+			builder.Append(GetDotNetType());
+		}
+
+		builder.Append('>');
+
+		return builder.ToString();
 	}
 }
 

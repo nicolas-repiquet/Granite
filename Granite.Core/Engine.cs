@@ -36,7 +36,7 @@ namespace Granite.Core
         private static IntPtr m_eventHandle;
         private static Thread m_thread;
         private static Queue<Action> m_actions;
-        private static GL m_gl;
+        //private static GL m_gl;
 
 
         private static  bool m_running;
@@ -48,6 +48,8 @@ namespace Granite.Core
         private static void InternalInitialize(EngineSettings settings)
         {
             if (settings == null) throw new ArgumentNullException("settings");
+
+            GL.Initialize();
 
             m_actions = new Queue<Action>();
             m_eventHandle = WinApi.CreateEvent(IntPtr.Zero, true, false, null);
@@ -69,7 +71,7 @@ namespace Granite.Core
 
                 result = WinApi.wglMakeCurrent(display.DeviceContextHandle, m_openglContext);
 
-                m_gl = new GL(m_openglContext);
+                //m_gl = new GL(m_openglContext);
             }
         }
 
@@ -97,7 +99,6 @@ namespace Granite.Core
 
         internal static IntPtr OpenglContext { get { return m_openglContext; } }
 
-        public static GL Gl { get { return m_gl; } }
 
         internal static void CheckThread()
         {

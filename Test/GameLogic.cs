@@ -323,7 +323,7 @@ void main()
  
         public override void Render(Display display, Graphics graphics, TimeSpan elapsed)
         {
-            var gl = Engine.Gl;
+            //var gl = GL;
 
             foreach (var key in m_keys)
             {

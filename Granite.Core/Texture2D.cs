@@ -13,7 +13,7 @@ namespace Granite.Core
         internal Texture2D()
             : base()
         {
-            m_name = Engine.Gl.GenTexture();
+            m_name = GL.GenTexture();
         }
 
         internal uint Name { get { return m_name; } }
@@ -40,18 +40,18 @@ namespace Granite.Core
                 throw new ArgumentException("data");
             }
 
-            Engine.Gl.BindTexture(GL.TEXTURE_2D, m_name);
+            GL.BindTexture(GL.TEXTURE_2D, m_name);
 
-            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, (int)GL.NEAREST);
-            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, (int)GL.NEAREST);
-            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, (int)GL.CLAMP_TO_EDGE);
-            Engine.Gl.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, (int)GL.CLAMP_TO_EDGE);
+            GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, (int)GL.NEAREST);
+            GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, (int)GL.NEAREST);
+            GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, (int)GL.CLAMP_TO_EDGE);
+            GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, (int)GL.CLAMP_TO_EDGE);
 
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
 
             try
             {
-                Engine.Gl.TexImage2D(
+                GL.TexImage2D(
                     GL.TEXTURE_2D,
                     0,
                     (int)format,
@@ -68,7 +68,7 @@ namespace Granite.Core
                 handle.Free();
             }
 
-            Engine.Gl.BindTexture(GL.TEXTURE_2D, 0);
+            GL.BindTexture(GL.TEXTURE_2D, 0);
         }
 
         protected override void InternalDispose()
@@ -77,7 +77,7 @@ namespace Granite.Core
 
             Engine.ExecuteAction(() =>
             {
-                Engine.Gl.DeleteTexture(name);
+                GL.DeleteTexture(name);
             });    
         }
     }

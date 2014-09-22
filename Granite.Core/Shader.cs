@@ -13,26 +13,26 @@ namespace Granite.Core
         internal Shader(uint type, string source)
             : base()
         {
-            m_name = Engine.Gl.CreateShader(type);
+            m_name = GL.CreateShader(type);
             string[] lines = source.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Select(l => l + '\n').ToArray();
 
             var lineHandles = lines.Select(l => GCHandle.Alloc(Encoding.ASCII.GetBytes(l), GCHandleType.Pinned)).ToList();
 
-            Engine.Gl.ShaderSource(m_name, lines.Length,
+            GL.ShaderSource(m_name, lines.Length,
                 lineHandles.Select(h => h.AddrOfPinnedObject()).ToArray(),
                 lines.Select(l => l.Length).ToArray()
             );
 
             foreach (var handle in lineHandles) { handle.Free(); }
 
-            Engine.Gl.CompileShader(m_name);
+            GL.CompileShader(m_name);
             int compileStatus;
-            Engine.Gl.GetShaderiv(m_name, GL.COMPILE_STATUS, out compileStatus);
+            GL.GetShaderiv(m_name, GL.COMPILE_STATUS, out compileStatus);
             if (compileStatus == 0)
             {
                 byte[] buffer = new byte[4096];
                 int length;
-                Engine.Gl.GetShaderInfoLog(m_name, buffer.Length, out length, buffer);
+                GL.GetShaderInfoLog(m_name, buffer.Length, out length, buffer);
                 string log = Encoding.ASCII.GetString(buffer, 0, length);
                 throw new Exception(log);
             }
@@ -45,7 +45,7 @@ namespace Granite.Core
             uint name = m_name;
             Engine.ExecuteAction(() =>
             {
-                Engine.Gl.DeleteShader(name);
+                GL.DeleteShader(name);
             });
         }
     }
