@@ -6,12 +6,11 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public sealed class Texture2D : EngineResource
+    public sealed class Texture2D : ApplicationResource
     {
         private readonly uint m_name;
 
-        internal Texture2D()
-            : base()
+        public Texture2D()
         {
             m_name = GL.GenTexture();
         }

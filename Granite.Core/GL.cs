@@ -34,42 +34,61 @@ namespace Granite.Core
         private const uint ERROR_INVALID_VERSION_ARB = 0x00002095;
         private const uint ERROR_INVALID_PROFILE_ARB = 0x00002096;
 
-        private static IntPtr m_opengl32Library;
-
-        public static void Initialize()
+        private static readonly IntPtr m_opengl32Library;
+        private static IntPtr m_context;
+        
+        static GL()
         {
             m_opengl32Library = LoadLibrary(OPENGL32);
+        }
 
-            using (var window = new Window())
+        internal static void Initialize(Display display, int colorBits, int depthBits)
+        {
+            WinApi.PixelFormatDescriptor pixelFormat = new WinApi.PixelFormatDescriptor()
             {
-                window.SetPixelFormat();
+                size = (ushort)Marshal.SizeOf(typeof(WinApi.PixelFormatDescriptor)),
+                version = 1,
+                flags = WinApi.PFD_DRAW_TO_WINDOW | WinApi.PFD_SUPPORT_OPENGL | WinApi.PFD_DOUBLEBUFFER,
+                pixelType = WinApi.PFD_TYPE_RGBA,
+                colorBits = (byte)colorBits,
+                depthBits = (byte)depthBits
+            };
 
-                var temporaryContext = WinApi.wglCreateContext(window.DeviceContext);
-                WinApi.wglMakeCurrent(window.DeviceContext, temporaryContext);
+            int pixelFormatIndex = WinApi.ChoosePixelFormat(display.DeviceContext, ref pixelFormat);
 
-                var wglCreateContextAttribsARB =
-                    (Delegate_CreateContextAttribsARB)
-                    Marshal.GetDelegateForFunctionPointer(
-                    wglGetProcAddress("wglCreateContextAttribsARB"),
-                    typeof(Delegate_CreateContextAttribsARB)
-                );
+            var result = WinApi.SetPixelFormat(display.DeviceContext, pixelFormatIndex, ref pixelFormat);
 
-                var finalContext = wglCreateContextAttribsARB(
-                    window.DeviceContext, IntPtr.Zero, new uint[] {
-                        CONTEXT_MAJOR_VERSION_ARB, 3,
-                        CONTEXT_MINOR_VERSION_ARB, 0,
-                        CONTEXT_PROFILE_MASK_ARB, CONTEXT_CORE_PROFILE_BIT_ARB,
-                        0
-                    }
-                );
+            var temporaryContext = WinApi.wglCreateContext(display.DeviceContext);
+            WinApi.wglMakeCurrent(display.DeviceContext, temporaryContext);
 
-                WinApi.wglMakeCurrent(window.DeviceContext, finalContext);
-                WinApi.wglDeleteContext(temporaryContext);
+            var wglCreateContextAttribsARB =
+                (Delegate_CreateContextAttribsARB)
+                Marshal.GetDelegateForFunctionPointer(
+                wglGetProcAddress("wglCreateContextAttribsARB"),
+                typeof(Delegate_CreateContextAttribsARB)
+            );
 
-                InitializeFunctions();
+            m_context = wglCreateContextAttribsARB(
+                display.DeviceContext, IntPtr.Zero, new uint[] {
+                    CONTEXT_MAJOR_VERSION_ARB, 3,
+                    CONTEXT_MINOR_VERSION_ARB, 0,
+                    CONTEXT_PROFILE_MASK_ARB, CONTEXT_CORE_PROFILE_BIT_ARB,
+                    0
+                }
+            );
 
-                WinApi.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
-            }
+            WinApi.wglDeleteContext(temporaryContext);
+            WinApi.wglMakeCurrent(display.DeviceContext, m_context);
+
+            InitializeFunctions();
+        }
+
+        internal static void Uninitialize()
+        {
+            WinApi.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
+            WinApi.wglDeleteContext(m_context);
+            m_context = IntPtr.Zero;
+            UninitializeFunctions();
         }
 
         #region Loading
@@ -91,6 +110,17 @@ namespace Granite.Core
             {
                 return Marshal.GetDelegateForFunctionPointer(address, t);
             }
+        }
+        #endregion
+
+        #region Misc
+        public static void Viewport(int width, int height)
+        {
+            Viewport(0, 0, width, height);
+        }
+        public static void Viewport(Vector2i size)
+        {
+            Viewport(0, 0, size.X, size.Y);
         }
         #endregion
 
@@ -144,6 +174,40 @@ namespace Granite.Core
         {
             UseProgram(program == null ? 0 : program.Name);
         }
+        #endregion
+
+        #region Draw
+        
+        public static void DrawElements(uint mode, byte[] indices)
+        {
+            DrawElements(mode, indices.Length, GL.UNSIGNED_BYTE, indices);
+        }
+        
+        public static void DrawElements(uint mode, ushort[] indices)
+        {
+            DrawElements(mode, indices.Length, GL.UNSIGNED_SHORT, indices);
+        }
+        
+        public static void DrawElements(uint mode, uint[] indices)
+        {
+            DrawElements(mode, indices.Length, GL.UNSIGNED_INT, indices);
+        }
+
+        public static void DrawElementsBaseVertex(uint mode, byte[] indices, int basevertex)
+        {
+            DrawElementsBaseVertex(mode, indices.Length, GL.UNSIGNED_BYTE, indices, basevertex);
+        }
+
+        public static void DrawElementsBaseVertex(uint mode, ushort[] indices, int basevertex)
+        {
+            DrawElementsBaseVertex(mode, indices.Length, GL.UNSIGNED_SHORT, indices, basevertex);
+        }
+
+        public static void DrawElementsBaseVertex(uint mode, uint[] indices, int basevertex)
+        {
+            DrawElementsBaseVertex(mode, indices.Length, GL.UNSIGNED_INT, indices, basevertex);
+        }
+
         #endregion
     }
 }

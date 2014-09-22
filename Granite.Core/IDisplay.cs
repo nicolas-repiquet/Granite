@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public class EngineSettings
+    public interface IDisplay
     {
-
+        Vector2i GetSize();
     }
 }

@@ -4451,6 +4451,955 @@ namespace Granite.Core
 
 		}
 
+		private static void UninitializeFunctions()
+		{
+
+			m_ActiveTexture_0 = null;
+
+			m_AttachShader_0 = null;
+
+			m_BeginConditionalRender_0 = null;
+
+			m_BeginQuery_0 = null;
+
+			m_BeginTransformFeedback_0 = null;
+
+			m_BindAttribLocation_0 = null;
+
+			m_BindBuffer_0 = null;
+
+			m_BindBufferBase_0 = null;
+
+			m_BindBufferRange_0 = null;
+
+			m_BindFragDataLocation_0 = null;
+
+			m_BindFramebuffer_0 = null;
+
+			m_BindRenderbuffer_0 = null;
+
+			m_BindTexture_0 = null;
+
+			m_BindVertexArray_0 = null;
+
+			m_BlendColor_0 = null;
+
+			m_BlendColor_1 = null;
+
+			m_BlendEquation_0 = null;
+
+			m_BlendEquationSeparate_0 = null;
+
+			m_BlendFunc_0 = null;
+
+			m_BlendFuncSeparate_0 = null;
+
+			m_BlitFramebuffer_0 = null;
+
+			m_BlitFramebuffer_1 = null;
+
+			m_BufferData_0 = null;
+
+			m_BufferSubData_0 = null;
+
+			m_CheckFramebufferStatus_0 = null;
+
+			m_ClampColor_0 = null;
+
+			m_Clear_0 = null;
+
+			m_ClearBufferfi_0 = null;
+
+			m_ClearBufferfv_0 = null;
+
+			m_ClearBufferfv_1 = null;
+
+			m_ClearBufferfv_2 = null;
+
+			m_ClearBufferiv_0 = null;
+
+			m_ClearBufferiv_1 = null;
+
+			m_ClearBufferiv_2 = null;
+
+			m_ClearBufferuiv_0 = null;
+
+			m_ClearBufferuiv_1 = null;
+
+			m_ClearBufferuiv_2 = null;
+
+			m_ClearColor_0 = null;
+
+			m_ClearColor_1 = null;
+
+			m_ClearDepth_0 = null;
+
+			m_ClearStencil_0 = null;
+
+			m_ClientWaitSync_0 = null;
+
+			m_ColorMask_0 = null;
+
+			m_ColorMaski_0 = null;
+
+			m_CompileShader_0 = null;
+
+			m_CompressedTexImage1D_0 = null;
+
+			m_CompressedTexImage2D_0 = null;
+
+			m_CompressedTexImage3D_0 = null;
+
+			m_CompressedTexSubImage1D_0 = null;
+
+			m_CompressedTexSubImage2D_0 = null;
+
+			m_CompressedTexSubImage2D_1 = null;
+
+			m_CompressedTexSubImage3D_0 = null;
+
+			m_CompressedTexSubImage3D_1 = null;
+
+			m_CopyBufferSubData_0 = null;
+
+			m_CopyTexImage1D_0 = null;
+
+			m_CopyTexImage1D_1 = null;
+
+			m_CopyTexImage2D_0 = null;
+
+			m_CopyTexImage2D_1 = null;
+
+			m_CopyTexImage2D_2 = null;
+
+			m_CopyTexSubImage1D_0 = null;
+
+			m_CopyTexSubImage1D_1 = null;
+
+			m_CopyTexSubImage2D_0 = null;
+
+			m_CopyTexSubImage2D_1 = null;
+
+			m_CopyTexSubImage3D_0 = null;
+
+			m_CopyTexSubImage3D_1 = null;
+
+			m_CreateProgram_0 = null;
+
+			m_CreateShader_0 = null;
+
+			m_CullFace_0 = null;
+
+			m_DeleteBuffers_0 = null;
+
+			m_DeleteBuffers_1 = null;
+
+			m_DeleteBuffers_2 = null;
+
+			m_DeleteFramebuffers_0 = null;
+
+			m_DeleteFramebuffers_1 = null;
+
+			m_DeleteFramebuffers_2 = null;
+
+			m_DeleteProgram_0 = null;
+
+			m_DeleteQueries_0 = null;
+
+			m_DeleteQueries_1 = null;
+
+			m_DeleteQueries_2 = null;
+
+			m_DeleteRenderbuffers_0 = null;
+
+			m_DeleteRenderbuffers_1 = null;
+
+			m_DeleteRenderbuffers_2 = null;
+
+			m_DeleteShader_0 = null;
+
+			m_DeleteSync_0 = null;
+
+			m_DeleteTextures_0 = null;
+
+			m_DeleteTextures_1 = null;
+
+			m_DeleteTextures_2 = null;
+
+			m_DeleteVertexArrays_0 = null;
+
+			m_DeleteVertexArrays_1 = null;
+
+			m_DeleteVertexArrays_2 = null;
+
+			m_DepthFunc_0 = null;
+
+			m_DepthMask_0 = null;
+
+			m_DepthRange_0 = null;
+
+			m_DetachShader_0 = null;
+
+			m_Disable_0 = null;
+
+			m_Disablei_0 = null;
+
+			m_DisableVertexAttribArray_0 = null;
+
+			m_DrawArrays_0 = null;
+
+			m_DrawArraysInstanced_0 = null;
+
+			m_DrawBuffer_0 = null;
+
+			m_DrawBuffers_0 = null;
+
+			m_DrawBuffers_1 = null;
+
+			m_DrawBuffers_2 = null;
+
+			m_DrawElements_0 = null;
+
+			m_DrawElements_1 = null;
+
+			m_DrawElements_2 = null;
+
+			m_DrawElements_3 = null;
+
+			m_DrawElementsBaseVertex_0 = null;
+
+			m_DrawElementsBaseVertex_1 = null;
+
+			m_DrawElementsBaseVertex_2 = null;
+
+			m_DrawElementsBaseVertex_3 = null;
+
+			m_DrawElementsInstanced_0 = null;
+
+			m_DrawElementsInstanced_1 = null;
+
+			m_DrawElementsInstanced_2 = null;
+
+			m_DrawElementsInstanced_3 = null;
+
+			m_DrawElementsInstancedBaseVertex_0 = null;
+
+			m_DrawElementsInstancedBaseVertex_1 = null;
+
+			m_DrawElementsInstancedBaseVertex_2 = null;
+
+			m_DrawElementsInstancedBaseVertex_3 = null;
+
+			m_DrawRangeElements_0 = null;
+
+			m_DrawRangeElements_1 = null;
+
+			m_DrawRangeElements_2 = null;
+
+			m_DrawRangeElements_3 = null;
+
+			m_DrawRangeElementsBaseVertex_0 = null;
+
+			m_DrawRangeElementsBaseVertex_1 = null;
+
+			m_DrawRangeElementsBaseVertex_2 = null;
+
+			m_DrawRangeElementsBaseVertex_3 = null;
+
+			m_Enable_0 = null;
+
+			m_Enablei_0 = null;
+
+			m_EnableVertexAttribArray_0 = null;
+
+			m_EndConditionalRender_0 = null;
+
+			m_EndQuery_0 = null;
+
+			m_EndTransformFeedback_0 = null;
+
+			m_FenceSync_0 = null;
+
+			m_Finish_0 = null;
+
+			m_Flush_0 = null;
+
+			m_FlushMappedBufferRange_0 = null;
+
+			m_FramebufferRenderbuffer_0 = null;
+
+			m_FramebufferTexture_0 = null;
+
+			m_FramebufferTexture1D_0 = null;
+
+			m_FramebufferTexture2D_0 = null;
+
+			m_FramebufferTexture3D_0 = null;
+
+			m_FramebufferTextureLayer_0 = null;
+
+			m_FrontFace_0 = null;
+
+			m_GenBuffers_0 = null;
+
+			m_GenBuffers_1 = null;
+
+			m_GenBuffers_2 = null;
+
+			m_GenerateMipmap_0 = null;
+
+			m_GenFramebuffers_0 = null;
+
+			m_GenFramebuffers_1 = null;
+
+			m_GenFramebuffers_2 = null;
+
+			m_GenQueries_0 = null;
+
+			m_GenQueries_1 = null;
+
+			m_GenQueries_2 = null;
+
+			m_GenRenderbuffers_0 = null;
+
+			m_GenRenderbuffers_1 = null;
+
+			m_GenRenderbuffers_2 = null;
+
+			m_GenTextures_0 = null;
+
+			m_GenTextures_1 = null;
+
+			m_GenTextures_2 = null;
+
+			m_GenVertexArrays_0 = null;
+
+			m_GenVertexArrays_1 = null;
+
+			m_GenVertexArrays_2 = null;
+
+			m_GetActiveAttrib_0 = null;
+
+			m_GetActiveAttrib_1 = null;
+
+			m_GetActiveUniform_0 = null;
+
+			m_GetActiveUniform_1 = null;
+
+			m_GetActiveUniformBlockiv_0 = null;
+
+			m_GetActiveUniformBlockiv_1 = null;
+
+			m_GetActiveUniformBlockiv_2 = null;
+
+			m_GetActiveUniformBlockName_0 = null;
+
+			m_GetActiveUniformBlockName_1 = null;
+
+			m_GetActiveUniformName_0 = null;
+
+			m_GetActiveUniformName_1 = null;
+
+			m_GetActiveUniformsiv_0 = null;
+
+			m_GetActiveUniformsiv_1 = null;
+
+			m_GetActiveUniformsiv_2 = null;
+
+			m_GetActiveUniformsiv_3 = null;
+
+			m_GetActiveUniformsiv_4 = null;
+
+			m_GetAttachedShaders_0 = null;
+
+			m_GetAttachedShaders_1 = null;
+
+			m_GetAttribLocation_0 = null;
+
+			m_GetAttribLocation_1 = null;
+
+			m_GetAttribLocation_2 = null;
+
+			m_GetBooleani_v_0 = null;
+
+			m_GetBooleani_v_1 = null;
+
+			m_GetBooleanv_0 = null;
+
+			m_GetBooleanv_1 = null;
+
+			m_GetBufferParameteri64v_0 = null;
+
+			m_GetBufferParameteri64v_1 = null;
+
+			m_GetBufferParameteriv_0 = null;
+
+			m_GetBufferParameteriv_1 = null;
+
+			m_GetBufferPointerv_0 = null;
+
+			m_GetBufferPointerv_1 = null;
+
+			m_GetBufferSubData_0 = null;
+
+			m_GetCompressedTexImage_0 = null;
+
+			m_GetDoublev_0 = null;
+
+			m_GetDoublev_1 = null;
+
+			m_GetDoublev_2 = null;
+
+			m_GetDoublev_3 = null;
+
+			m_GetDoublev_4 = null;
+
+			m_GetDoublev_5 = null;
+
+			m_GetDoublev_6 = null;
+
+			m_GetDoublev_7 = null;
+
+			m_GetDoublev_8 = null;
+
+			m_GetDoublev_9 = null;
+
+			m_GetError_0 = null;
+
+			m_GetFloatv_0 = null;
+
+			m_GetFloatv_1 = null;
+
+			m_GetFloatv_2 = null;
+
+			m_GetFloatv_3 = null;
+
+			m_GetFloatv_4 = null;
+
+			m_GetFloatv_5 = null;
+
+			m_GetFloatv_6 = null;
+
+			m_GetFloatv_7 = null;
+
+			m_GetFloatv_8 = null;
+
+			m_GetFloatv_9 = null;
+
+			m_GetFragDataLocation_0 = null;
+
+			m_GetFramebufferAttachmentParameteriv_0 = null;
+
+			m_GetFramebufferAttachmentParameteriv_1 = null;
+
+			m_GetInteger64i_v_0 = null;
+
+			m_GetInteger64i_v_1 = null;
+
+			m_GetInteger64i_v_2 = null;
+
+			m_GetInteger64v_0 = null;
+
+			m_GetInteger64v_1 = null;
+
+			m_GetInteger64v_2 = null;
+
+			m_GetIntegeri_v_0 = null;
+
+			m_GetIntegeri_v_1 = null;
+
+			m_GetIntegeri_v_2 = null;
+
+			m_GetIntegerv_0 = null;
+
+			m_GetIntegerv_1 = null;
+
+			m_GetIntegerv_2 = null;
+
+			m_GetMultisamplefv_0 = null;
+
+			m_GetMultisamplefv_1 = null;
+
+			m_GetProgramInfoLog_0 = null;
+
+			m_GetProgramInfoLog_1 = null;
+
+			m_GetProgramiv_0 = null;
+
+			m_GetProgramiv_1 = null;
+
+			m_GetProgramiv_2 = null;
+
+			m_GetQueryiv_0 = null;
+
+			m_GetQueryObjectiv_0 = null;
+
+			m_GetQueryObjectuiv_0 = null;
+
+			m_GetRenderbufferParameteriv_0 = null;
+
+			m_GetShaderInfoLog_0 = null;
+
+			m_GetShaderInfoLog_1 = null;
+
+			m_GetShaderiv_0 = null;
+
+			m_GetShaderiv_1 = null;
+
+			m_GetShaderiv_2 = null;
+
+			m_GetShaderSource_0 = null;
+
+			m_GetString_0 = null;
+
+			m_GetStringi_0 = null;
+
+			m_GetSynciv_0 = null;
+
+			m_GetTexImage_0 = null;
+
+			m_GetTexLevelParameterfv_0 = null;
+
+			m_GetTexLevelParameteriv_0 = null;
+
+			m_GetTexParameterfv_0 = null;
+
+			m_GetTexParameterIiv_0 = null;
+
+			m_GetTexParameterIuiv_0 = null;
+
+			m_GetTexParameteriv_0 = null;
+
+			m_GetTransformFeedbackVarying_0 = null;
+
+			m_GetUniformBlockIndex_0 = null;
+
+			m_GetUniformfv_0 = null;
+
+			m_GetUniformIndices_0 = null;
+
+			m_GetUniformiv_0 = null;
+
+			m_GetUniformLocation_0 = null;
+
+			m_GetUniformLocation_1 = null;
+
+			m_GetUniformLocation_2 = null;
+
+			m_GetUniformuiv_0 = null;
+
+			m_GetVertexAttribdv_0 = null;
+
+			m_GetVertexAttribfv_0 = null;
+
+			m_GetVertexAttribIiv_0 = null;
+
+			m_GetVertexAttribIuiv_0 = null;
+
+			m_GetVertexAttribiv_0 = null;
+
+			m_GetVertexAttribPointerv_0 = null;
+
+			m_Hint_0 = null;
+
+			m_IsBuffer_0 = null;
+
+			m_IsEnabled_0 = null;
+
+			m_IsEnabledi_0 = null;
+
+			m_IsFramebuffer_0 = null;
+
+			m_IsProgram_0 = null;
+
+			m_IsQuery_0 = null;
+
+			m_IsRenderbuffer_0 = null;
+
+			m_IsShader_0 = null;
+
+			m_IsSync_0 = null;
+
+			m_IsTexture_0 = null;
+
+			m_IsVertexArray_0 = null;
+
+			m_LineWidth_0 = null;
+
+			m_LinkProgram_0 = null;
+
+			m_LogicOp_0 = null;
+
+			m_MapBuffer_0 = null;
+
+			m_MapBufferRange_0 = null;
+
+			m_MultiDrawArrays_0 = null;
+
+			m_MultiDrawElements_0 = null;
+
+			m_MultiDrawElementsBaseVertex_0 = null;
+
+			m_PixelStoref_0 = null;
+
+			m_PixelStorei_0 = null;
+
+			m_PointParameterf_0 = null;
+
+			m_PointParameterfv_0 = null;
+
+			m_PointParameteri_0 = null;
+
+			m_PointParameteriv_0 = null;
+
+			m_PointSize_0 = null;
+
+			m_PolygonMode_0 = null;
+
+			m_PolygonOffset_0 = null;
+
+			m_PrimitiveRestartIndex_0 = null;
+
+			m_ProvokingVertex_0 = null;
+
+			m_ReadBuffer_0 = null;
+
+			m_ReadPixels_0 = null;
+
+			m_RenderbufferStorage_0 = null;
+
+			m_RenderbufferStorageMultisample_0 = null;
+
+			m_SampleCoverage_0 = null;
+
+			m_SampleMaski_0 = null;
+
+			m_Scissor_0 = null;
+
+			m_ShaderSource_0 = null;
+
+			m_ShaderSource_1 = null;
+
+			m_StencilFunc_0 = null;
+
+			m_StencilFuncSeparate_0 = null;
+
+			m_StencilMask_0 = null;
+
+			m_StencilMaskSeparate_0 = null;
+
+			m_StencilOp_0 = null;
+
+			m_StencilOpSeparate_0 = null;
+
+			m_TexBuffer_0 = null;
+
+			m_TexImage1D_0 = null;
+
+			m_TexImage2D_0 = null;
+
+			m_TexImage2DMultisample_0 = null;
+
+			m_TexImage3D_0 = null;
+
+			m_TexImage3DMultisample_0 = null;
+
+			m_TexParameterf_0 = null;
+
+			m_TexParameterfv_0 = null;
+
+			m_TexParameteri_0 = null;
+
+			m_TexParameterIiv_0 = null;
+
+			m_TexParameterIuiv_0 = null;
+
+			m_TexParameteriv_0 = null;
+
+			m_TexSubImage1D_0 = null;
+
+			m_TexSubImage2D_0 = null;
+
+			m_TexSubImage3D_0 = null;
+
+			m_TransformFeedbackVaryings_0 = null;
+
+			m_Uniform1f_0 = null;
+
+			m_Uniform1fv_0 = null;
+
+			m_Uniform1i_0 = null;
+
+			m_Uniform1iv_0 = null;
+
+			m_Uniform1ui_0 = null;
+
+			m_Uniform1uiv_0 = null;
+
+			m_Uniform2f_0 = null;
+
+			m_Uniform2fv_0 = null;
+
+			m_Uniform2i_0 = null;
+
+			m_Uniform2iv_0 = null;
+
+			m_Uniform2ui_0 = null;
+
+			m_Uniform2uiv_0 = null;
+
+			m_Uniform3f_0 = null;
+
+			m_Uniform3f_1 = null;
+
+			m_Uniform3fv_0 = null;
+
+			m_Uniform3i_0 = null;
+
+			m_Uniform3iv_0 = null;
+
+			m_Uniform3ui_0 = null;
+
+			m_Uniform3uiv_0 = null;
+
+			m_Uniform4f_0 = null;
+
+			m_Uniform4fv_0 = null;
+
+			m_Uniform4i_0 = null;
+
+			m_Uniform4iv_0 = null;
+
+			m_Uniform4ui_0 = null;
+
+			m_Uniform4uiv_0 = null;
+
+			m_UniformBlockBinding_0 = null;
+
+			m_UniformMatrix2fv_0 = null;
+
+			m_UniformMatrix2fv_1 = null;
+
+			m_UniformMatrix2fv_2 = null;
+
+			m_UniformMatrix2x3fv_0 = null;
+
+			m_UniformMatrix2x4fv_0 = null;
+
+			m_UniformMatrix3fv_0 = null;
+
+			m_UniformMatrix3fv_1 = null;
+
+			m_UniformMatrix3fv_2 = null;
+
+			m_UniformMatrix3x2fv_0 = null;
+
+			m_UniformMatrix3x4fv_0 = null;
+
+			m_UniformMatrix4fv_0 = null;
+
+			m_UniformMatrix4fv_1 = null;
+
+			m_UniformMatrix4fv_2 = null;
+
+			m_UniformMatrix4x2fv_0 = null;
+
+			m_UniformMatrix4x3fv_0 = null;
+
+			m_UnmapBuffer_0 = null;
+
+			m_UseProgram_0 = null;
+
+			m_ValidateProgram_0 = null;
+
+			m_VertexAttrib1d_0 = null;
+
+			m_VertexAttrib1dv_0 = null;
+
+			m_VertexAttrib1f_0 = null;
+
+			m_VertexAttrib1fv_0 = null;
+
+			m_VertexAttrib1s_0 = null;
+
+			m_VertexAttrib1sv_0 = null;
+
+			m_VertexAttrib2d_0 = null;
+
+			m_VertexAttrib2dv_0 = null;
+
+			m_VertexAttrib2f_0 = null;
+
+			m_VertexAttrib2fv_0 = null;
+
+			m_VertexAttrib2s_0 = null;
+
+			m_VertexAttrib2sv_0 = null;
+
+			m_VertexAttrib3d_0 = null;
+
+			m_VertexAttrib3dv_0 = null;
+
+			m_VertexAttrib3f_0 = null;
+
+			m_VertexAttrib3fv_0 = null;
+
+			m_VertexAttrib3s_0 = null;
+
+			m_VertexAttrib3sv_0 = null;
+
+			m_VertexAttrib4bv_0 = null;
+
+			m_VertexAttrib4d_0 = null;
+
+			m_VertexAttrib4dv_0 = null;
+
+			m_VertexAttrib4f_0 = null;
+
+			m_VertexAttrib4fv_0 = null;
+
+			m_VertexAttrib4iv_0 = null;
+
+			m_VertexAttrib4Nbv_0 = null;
+
+			m_VertexAttrib4Niv_0 = null;
+
+			m_VertexAttrib4Nsv_0 = null;
+
+			m_VertexAttrib4Nub_0 = null;
+
+			m_VertexAttrib4Nubv_0 = null;
+
+			m_VertexAttrib4Nuiv_0 = null;
+
+			m_VertexAttrib4Nusv_0 = null;
+
+			m_VertexAttrib4s_0 = null;
+
+			m_VertexAttrib4sv_0 = null;
+
+			m_VertexAttrib4ubv_0 = null;
+
+			m_VertexAttrib4uiv_0 = null;
+
+			m_VertexAttrib4usv_0 = null;
+
+			m_VertexAttribI1i_0 = null;
+
+			m_VertexAttribI1iv_0 = null;
+
+			m_VertexAttribI1ui_0 = null;
+
+			m_VertexAttribI1uiv_0 = null;
+
+			m_VertexAttribI2i_0 = null;
+
+			m_VertexAttribI2iv_0 = null;
+
+			m_VertexAttribI2ui_0 = null;
+
+			m_VertexAttribI2uiv_0 = null;
+
+			m_VertexAttribI3i_0 = null;
+
+			m_VertexAttribI3iv_0 = null;
+
+			m_VertexAttribI3ui_0 = null;
+
+			m_VertexAttribI3uiv_0 = null;
+
+			m_VertexAttribI4bv_0 = null;
+
+			m_VertexAttribI4i_0 = null;
+
+			m_VertexAttribI4iv_0 = null;
+
+			m_VertexAttribI4sv_0 = null;
+
+			m_VertexAttribI4ubv_0 = null;
+
+			m_VertexAttribI4ui_0 = null;
+
+			m_VertexAttribI4uiv_0 = null;
+
+			m_VertexAttribI4usv_0 = null;
+
+			m_VertexAttribIPointer_0 = null;
+
+			m_VertexAttribPointer_0 = null;
+
+			m_Viewport_0 = null;
+
+			m_Viewport_1 = null;
+
+			m_WaitSync_0 = null;
+
+			m_BindFragDataLocationIndexed_0 = null;
+
+			m_GetFragDataIndex_0 = null;
+
+			m_GenSamplers_0 = null;
+
+			m_GenSamplers_1 = null;
+
+			m_GenSamplers_2 = null;
+
+			m_DeleteSamplers_0 = null;
+
+			m_DeleteSamplers_1 = null;
+
+			m_DeleteSamplers_2 = null;
+
+			m_IsSampler_0 = null;
+
+			m_BindSampler_0 = null;
+
+			m_SamplerParameteri_0 = null;
+
+			m_SamplerParameteriv_0 = null;
+
+			m_SamplerParameterf_0 = null;
+
+			m_SamplerParameterfv_0 = null;
+
+			m_SamplerParameterIiv_0 = null;
+
+			m_SamplerParameterIuiv_0 = null;
+
+			m_GetSamplerParameteriv_0 = null;
+
+			m_GetSamplerParameterIiv_0 = null;
+
+			m_GetSamplerParameterfv_0 = null;
+
+			m_GetSamplerParameterIuiv_0 = null;
+
+			m_QueryCounter_0 = null;
+
+			m_GetQueryObjecti64v_0 = null;
+
+			m_GetQueryObjectui64v_0 = null;
+
+			m_VertexAttribDivisor_0 = null;
+
+			m_VertexAttribP1ui_0 = null;
+
+			m_VertexAttribP1uiv_0 = null;
+
+			m_VertexAttribP2ui_0 = null;
+
+			m_VertexAttribP2uiv_0 = null;
+
+			m_VertexAttribP3ui_0 = null;
+
+			m_VertexAttribP3uiv_0 = null;
+
+			m_VertexAttribP4ui_0 = null;
+
+			m_VertexAttribP4uiv_0 = null;
+
+		}
+
 
 		public static void ActiveTexture(uint texture)
 		{

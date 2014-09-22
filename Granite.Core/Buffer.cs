@@ -7,12 +7,11 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public abstract class Buffer : EngineResource
+    public abstract class Buffer : ApplicationResource
     {
         private readonly uint m_name;
 
         internal Buffer()
-            : base()
         {
             uint name;
             GL.GenBuffers(1, out name);
@@ -76,8 +75,7 @@ namespace Granite.Core
 
         private int m_count;
 
-        internal Buffer()
-            : base()
+        public Buffer()
         {
 
         }

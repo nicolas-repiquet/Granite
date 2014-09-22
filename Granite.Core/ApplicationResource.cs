@@ -5,15 +5,15 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public abstract class EngineResource : IDisposable
+    public abstract class ApplicationResource : IDisposable
     {
         private bool m_disposed;
 
-        internal EngineResource()
+        internal ApplicationResource()
         {
         }
 
-        ~EngineResource()
+        ~ApplicationResource()
         {
             Dispose();
         }

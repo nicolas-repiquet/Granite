@@ -4,242 +4,349 @@ using System.Threading;
 
 namespace Granite.Core
 {
-    public sealed class Display : EngineResource
+    internal class Display : ApplicationResource, IDisplay
     {
-        private readonly IDisplayLogic m_logic;
-
+        private readonly IntPtr m_instance;
+        private readonly WinApi.WndProc m_windowProc;
         private readonly string m_className;
-        private readonly ushort m_classAtom;
-        private readonly WinApi.WndProc m_wndProc;
-        private readonly IntPtr m_windowHandle;
-        private readonly IntPtr m_deviceContextHandle;
+        private readonly IntPtr m_handle;
+        private readonly IntPtr m_deviceContext;
 
-        private int m_width;
-        private int m_height;
-        private DateTime m_lastRender;
-
-        internal Display(IDisplayLogic logic)
-            : base()
+        public Display(WinApi.WndProc proc, DisplayStyle style)
         {
-            m_logic = logic;
-            m_lastRender = DateTime.Now;
+            m_instance = WinApi.GetModuleHandle(null);
 
-            m_wndProc = new WinApi.WndProc(OnMessage);
-            IntPtr wndProc = Marshal.GetFunctionPointerForDelegate(m_wndProc);
-            m_className = string.Format("class_{0:N}", Guid.NewGuid());
+            m_windowProc = new WinApi.WndProc(proc);
+            m_className = "GRANITE_" + Guid.NewGuid().ToString("N");
 
-            WinApi.WindowClass windowClass = new WinApi.WindowClass()
+            WinApi.WindowClass wc = new WinApi.WindowClass()
             {
-                style = WinApi.CS_OWNDC | WinApi.CS_HREDRAW | WinApi.CS_VREDRAW,
-                instance = WinApi.GetModuleHandle(null),
-                className = m_className,
-                windowProcedure = wndProc,
-                cursor = WinApi.LoadCursor(IntPtr.Zero, WinApi.IDC_ARROW)
+                style = WinApi.CS_OWNDC | WinApi.CS_VREDRAW | WinApi.CS_HREDRAW,
+                windowProcedure = Marshal.GetFunctionPointerForDelegate(m_windowProc),
+                instance = m_instance,
+                cursor = WinApi.LoadCursor(IntPtr.Zero, WinApi.IDC_ARROW),
+                className = m_className
             };
 
-            m_classAtom = WinApi.RegisterClass(ref windowClass);
+            WinApi.RegisterClass(ref wc);
 
-            m_windowHandle = WinApi.CreateWindowEx(
+		    uint s = WinApi.WS_POPUP;
+
+            switch (style)
+            {
+                case DisplayStyle.Fixed:
+                    s = WinApi.WS_BORDER;
+                    break;
+                case DisplayStyle.FixedWithTitle:
+                    s = WinApi.WS_CAPTION | WinApi.WS_SYSMENU;
+                    break;
+                case DisplayStyle.Resizeable:
+                    s = WinApi.WS_POPUP | WinApi.WS_THICKFRAME;
+                    break;
+                case DisplayStyle.ResizeableWithTitle:
+                    s |= WinApi.WS_CAPTION | WinApi.WS_SYSMENU | WinApi.WS_THICKFRAME | WinApi.WS_MINIMIZEBOX | WinApi.WS_MAXIMIZEBOX;
+                    break;
+            }
+
+            m_handle = WinApi.CreateWindowEx(
                 0,
                 m_className,
-                null,
-                WinApi.WS_OVERLAPPEDWINDOW,
-                100,
-                100,
-                640,
-                480,
-                IntPtr.Zero,
-                IntPtr.Zero,
-                WinApi.GetModuleHandle(null),
-                IntPtr.Zero
+                "",
+                s,
+                0, 0, 800, 600,
+                IntPtr.Zero, IntPtr.Zero,
+                m_instance, IntPtr.Zero
             );
 
-            m_deviceContextHandle = WinApi.GetDC(m_windowHandle);
-
-            WinApi.PixelFormatDescriptor pixelFormat = new WinApi.PixelFormatDescriptor()
-            {
-                size = (ushort)Marshal.SizeOf(typeof(WinApi.PixelFormatDescriptor)),
-                version = 1,
-                flags = WinApi.PFD_DRAW_TO_WINDOW | WinApi.PFD_SUPPORT_OPENGL | WinApi.PFD_DOUBLEBUFFER,
-                pixelType = WinApi.PFD_TYPE_RGBA,
-                colorBits = 24,
-                depthBits = 16
-            };
-
-            int pixelFormatIndex = WinApi.ChoosePixelFormat(m_deviceContextHandle, ref pixelFormat);
-
-            var result = WinApi.SetPixelFormat(m_deviceContextHandle, pixelFormatIndex, ref pixelFormat);
-
-            result.ToString();
-        }
-
-        public int Width { get { return m_width; } }
-        public int Height { get { return m_height; } }
-
-        private IntPtr OnMessage(IntPtr windowHandle, uint messageId, IntPtr wParam, IntPtr lParam)
-        {
-            switch (messageId)
-            {
-                case WinApi.WM_MOUSEMOVE:
-                    {
-                        int v = lParam.ToInt32();
-                        if (m_logic != null)
-                        {
-                            m_logic.OnMouseMove(this, v & 0xFFFF, (v >> 16) & 0xFFFF);
-                        }
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_CLOSE:
-                    {
-                        if (m_logic != null)
-                        {
-                            m_logic.OnCloseCommand(this);
-                        }
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_PAINT:
-                    {
-                        Render();
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_SIZE:
-                    {
-                        int v = lParam.ToInt32();
-
-                        m_width = v & 0xFFFF;
-                        m_height = (v >> 16) & 0xFFFF;
-
-                        GL.Viewport(0, 0, m_width, m_height);
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_KEYDOWN:
-                    {
-                        var key = (Keys)wParam.ToInt32();
-                        if (m_logic != null)
-                        {
-                            m_logic.OnKeyDown(key);
-                        }
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_KEYUP:
-                    {
-                        var key = (Keys)wParam.ToInt32();
-                        if (m_logic != null)
-                        {
-                            m_logic.OnKeyUp(key);
-                        }
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_SETFOCUS:
-                    {
-                        if (m_logic != null)
-                        {
-                            m_logic.OnGainFocus();
-                        }
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_KILLFOCUS:
-                    {
-                        if (m_logic != null)
-                        {
-                            m_logic.OnLostFocus();
-                        }
-                    }
-                    return IntPtr.Zero;
-
-                case WinApi.WM_CHAR:
-                    {
-                        if (m_logic != null)
-                        {
-                            m_logic.OnChar((char)wParam.ToInt32());
-                        }
-                    }
-                    return IntPtr.Zero;
-
-                default:
-                    return WinApi.DefWindowProc(windowHandle, messageId, wParam, lParam);
-            }
-        }
-
-
-        private void Render()
-        {
-            var now = DateTime.Now;
-            var elapsed = now - m_lastRender;
-
-            if (elapsed.TotalMilliseconds >= 10)
-            {
-                m_lastRender = now;
-
-                WinApi.ValidateRect(m_windowHandle, IntPtr.Zero);
-                IntPtr currentOpenglContext = WinApi.wglGetCurrentContext();
-                IntPtr currentDeviceContext = WinApi.wglGetCurrentDC();
-
-                WinApi.wglMakeCurrent(m_deviceContextHandle, Engine.OpenglContext);
-
-                try
-                {
-                    // Draw
-                    GL.ClearColor(0.5f, 0.5f, 0.55f, 1.0f);
-                    //GL.glClearDepth(0.0);
-                    GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
-
-                    GL.Enable_DEPTH_TEST();
-                    //GL.glDepthFunc(GL.GREATER);
-                    GL.Enable_BLEND();
-                    GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
-
-                    m_logic.Render(this, new Graphics(), elapsed);
-
-                    WinApi.SwapBuffers(m_deviceContextHandle);
-                }
-                finally
-                {
-                    WinApi.wglMakeCurrent(currentDeviceContext, currentOpenglContext);
-                }
-            }
-            else
-            {
-                Thread.Sleep((int)(10 - elapsed.TotalMilliseconds));
-            }
-        }
-
-        internal IntPtr DeviceContextHandle { get { return m_deviceContextHandle; } }
-
-        public void Show()
-        { 
-            WinApi.ShowWindow(m_windowHandle, WinApi.SW_SHOW);
-        }
-
-        public void Hide()
-        {
-            WinApi.ShowWindow(m_windowHandle, WinApi.SW_HIDE);
-        }
-
-        public void Invalidate()
-        {
-            WinApi.InvalidateRect(m_windowHandle, IntPtr.Zero, false);
+            m_deviceContext = WinApi.GetDC(m_handle);
         }
 
         protected override void InternalDispose()
         {
-            IntPtr deviceContextHandle = m_deviceContextHandle;
-            IntPtr windowHandle = m_windowHandle;
-            string className = m_className;
-                
-            Engine.ExecuteAction(() =>
-            {
-                WinApi.ReleaseDC(windowHandle, deviceContextHandle);
-                WinApi.DestroyWindow(windowHandle);
-                WinApi.UnregisterClass(className, WinApi.GetModuleHandle(null));
-            });
+            WinApi.ReleaseDC(m_handle, m_deviceContext);
+            WinApi.DestroyWindow(m_handle);
+            WinApi.UnregisterClass(m_className, m_instance);
+        }
+
+        public IntPtr Handle { get { return m_handle; } }
+        public IntPtr DeviceContext { get { return m_deviceContext; } }
+
+        public void Show()
+        {
+            WinApi.ShowWindow(m_handle, WinApi.SW_SHOW);
+        }
+
+        public void Hide()
+        {
+            WinApi.ShowWindow(m_handle, WinApi.SW_HIDE);
+        }
+
+        public void Invalidate()
+        {
+            WinApi.InvalidateRect(m_handle, IntPtr.Zero, false);
+        }
+
+        public Vector2i GetSize()
+        {
+            var r = new WinApi.Rect();
+            WinApi.GetClientRect(m_handle, ref r);
+            return new Vector2i(r.right, r.bottom);
         }
     }
+    //public sealed class Display
+    //{
+
+
+    //    //    private IntPtr OnMessage(IntPtr windowHandle, uint messageId, IntPtr wParam, IntPtr lParam)
+    //    //    {
+    //    //        switch (messageId)
+    //    //        {
+    //    //            case WinApi.WM_MOUSEMOVE:
+    //    //                {
+    //    //                    int v = lParam.ToInt32();
+    //    //                    if (m_logic != null)
+    //    //                    {
+    //    //                        m_logic.OnMouseMove(m_display, v & 0xFFFF, (v >> 16) & 0xFFFF);
+    //    //                    }
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_CLOSE:
+    //    //                {
+    //    //                    if (m_logic != null)
+    //    //                    {
+    //    //                        m_logic.OnCloseCommand(m_display);
+    //    //                    }
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_PAINT:
+    //    //                {
+
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_SIZE:
+    //    //                {
+
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_KEYDOWN:
+    //    //                {
+    //    //                    var key = (Keys)wParam.ToInt32();
+    //    //                    if (m_logic != null)
+    //    //                    {
+    //    //                        m_logic.OnKeyDown(key);
+    //    //                    }
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_KEYUP:
+    //    //                {
+    //    //                    var key = (Keys)wParam.ToInt32();
+    //    //                    if (m_logic != null)
+    //    //                    {
+    //    //                        m_logic.OnKeyUp(key);
+    //    //                    }
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_SETFOCUS:
+    //    //                {
+    //    //                    if (m_logic != null)
+    //    //                    {
+    //    //                        m_logic.OnGainFocus();
+    //    //                    }
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_KILLFOCUS:
+    //    //                {
+    //    //                    if (m_logic != null)
+    //    //                    {
+    //    //                        m_logic.OnLostFocus();
+    //    //                    }
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            case WinApi.WM_CHAR:
+    //    //                {
+    //    //                    if (m_logic != null)
+    //    //                    {
+    //    //                        m_logic.OnChar((char)wParam.ToInt32());
+    //    //                    }
+    //    //                }
+    //    //                return IntPtr.Zero;
+
+    //    //            default:
+    //    //                return WinApi.DefWindowProc(windowHandle, messageId, wParam, lParam);
+    //    //        }
+    //    //    }
+
+    //    //}
+
+    //    private readonly IDisplayLogic m_logic;
+
+    //    internal Display(IDisplayLogic logic)
+    //    {
+    //        m_logic = logic;
+    //        GL.PrepareWindow(this);
+    //    }
+
+    //    private IntPtr OnMessage(IntPtr windowHandle, uint messageId, IntPtr wParam, IntPtr lParam)
+    //    {
+    //        switch (messageId)
+    //        {
+    //            case WinApi.WM_MOUSEMOVE:
+    //                {
+    //                    int v = lParam.ToInt32();
+    //                    if (m_logic != null)
+    //                    {
+    //                        m_logic.OnMouseMove(this, v & 0xFFFF, (v >> 16) & 0xFFFF);
+    //                    }
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_CLOSE:
+    //                {
+    //                    if (m_logic != null)
+    //                    {
+    //                        m_logic.OnCloseCommand(this);
+    //                    }
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_PAINT:
+    //                {
+    //                    Render();
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_SIZE:
+    //                {
+    //                    int v = lParam.ToInt32();
+
+    //                    //m_width = v & 0xFFFF;
+    //                    //m_height = (v >> 16) & 0xFFFF;
+
+    //                    //GL.Viewport(0, 0, m_width, m_height);
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_KEYDOWN:
+    //                {
+    //                    var key = (Keys)wParam.ToInt32();
+    //                    if (m_logic != null)
+    //                    {
+    //                        m_logic.OnKeyDown(key);
+    //                    }
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_KEYUP:
+    //                {
+    //                    var key = (Keys)wParam.ToInt32();
+    //                    if (m_logic != null)
+    //                    {
+    //                        m_logic.OnKeyUp(key);
+    //                    }
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_SETFOCUS:
+    //                {
+    //                    if (m_logic != null)
+    //                    {
+    //                        m_logic.OnGainFocus();
+    //                    }
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_KILLFOCUS:
+    //                {
+    //                    if (m_logic != null)
+    //                    {
+    //                        m_logic.OnLostFocus();
+    //                    }
+    //                }
+    //                return IntPtr.Zero;
+
+    //            case WinApi.WM_CHAR:
+    //                {
+    //                    if (m_logic != null)
+    //                    {
+    //                        m_logic.OnChar((char)wParam.ToInt32());
+    //                    }
+    //                }
+    //                return IntPtr.Zero;
+
+    //            default:
+    //                return WinApi.DefWindowProc(windowHandle, messageId, wParam, lParam);
+    //        }
+    //    }
+
+    //    private void Render()
+    //    {
+    //        //var now = DateTime.Now;
+    //        //var elapsed = now - m_lastRender;
+
+    //        //if (elapsed.TotalMilliseconds >= 10)
+    //        //{
+    //        //    m_lastRender = now;
+
+    //        //    WinApi.ValidateRect(m_windowHandle, IntPtr.Zero);
+    //        //    IntPtr currentOpenglContext = WinApi.wglGetCurrentContext();
+    //        //    IntPtr currentDeviceContext = WinApi.wglGetCurrentDC();
+
+    //        //    WinApi.wglMakeCurrent(m_deviceContextHandle, Engine.OpenglContext);
+
+    //        //    try
+    //        //    {
+    //        //        // Draw
+    //        //        GL.ClearColor(0.5f, 0.5f, 0.55f, 1.0f);
+    //        //        //GL.glClearDepth(0.0);
+    //        //        GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+
+    //        //        GL.Enable_DEPTH_TEST();
+    //        //        //GL.glDepthFunc(GL.GREATER);
+    //        //        GL.Enable_BLEND();
+    //        //        GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
+
+    //        //        m_logic.Render(this, new Graphics(), elapsed);
+
+    //        //        WinApi.SwapBuffers(m_deviceContextHandle);
+    //        //    }
+    //        //    finally
+    //        //    {
+    //        //        WinApi.wglMakeCurrent(currentDeviceContext, currentOpenglContext);
+    //        //    }
+    //        //}
+    //        //else
+    //        //{
+    //        //    Thread.Sleep((int)(10 - elapsed.TotalMilliseconds));
+    //        //}
+    //    }
+
+    //    public Vector2i GetSize()
+    //    {
+    //        return m_window.GetSize();
+    //    }
+
+    //    public void Show()
+    //    {
+    //        m_window.Show();
+    //    }
+
+    //    public void Hide()
+    //    {
+    //        m_window.Hide();
+    //    }
+
+    //    public void Invalidate()
+    //    {
+    //        m_window.Invalidate();
+    //    }
+
+    //}
 }

@@ -13,9 +13,10 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Engine.Initialize(new EngineSettings());
-
-            Engine.Run(new GameLogic());
+            Engine.Run(new Game(), new ApplicationSettings()
+            {
+                DisplayStyle = DisplayStyle.FixedWithTitle
+            });
         }
     }
 }

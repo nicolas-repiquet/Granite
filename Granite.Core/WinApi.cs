@@ -240,6 +240,9 @@ namespace Granite.Core
            uint messageFilterMax, uint removeMessage);
 
         [DllImport(USER32)]
+        internal static extern bool GetMessage(ref Message message, IntPtr window, uint messageFilterMin, uint messageFilterMax);
+
+        [DllImport(USER32)]
         internal static extern bool TranslateMessage(ref Message message);
 
         [DllImport(USER32)]
@@ -259,18 +262,18 @@ namespace Granite.Core
 
         [DllImport(USER32, SetLastError=true)]
         internal static extern IntPtr CreateWindowEx(
-           uint extendedStyle,
-           string className,
-           string windowName,
-           uint style,
-           int x,
-           int y,
-           int width,
-           int height,
-           IntPtr parent,
-           IntPtr menu,
-           IntPtr instance,
-           IntPtr param
+            uint exstyle,
+            string className,
+            string windowName,
+            uint style,
+            int x,
+            int y,
+            int width,
+            int height,
+            IntPtr parent,
+            IntPtr menu,
+            IntPtr instance,
+            IntPtr param
         );
 
         [DllImport(KERNEL32)]

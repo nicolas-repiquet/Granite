@@ -34,6 +34,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application.cs" />
+    <Compile Include="ApplicationSettings.cs" />
     <Compile Include="Buffer.cs" />
     <Compile Include="Color.gen.cs">
       <AutoGen>True</AutoGen>
@@ -41,19 +43,15 @@
       <DependentUpon>Color.tt</DependentUpon>
     </Compile>
     <Compile Include="Display.cs" />
-    <Compile Include="DisplayLogicBase.cs" />
-    <Compile Include="DisplaySettings.cs" />
     <Compile Include="Engine.cs" />
-    <Compile Include="EngineResource.cs" />
-    <Compile Include="EngineSettings.cs" />
-    <Compile Include="FakeOpenGLContext.cs" />
+    <Compile Include="ApplicationResource.cs" />
     <Compile Include="GL.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GL.tt</DependentUpon>
     </Compile>
-    <Compile Include="IRunnableLogic.cs" />
-    <Compile Include="OpenGLContext.cs" />
+    <Compile Include="IApplicationLogic.cs" />
+    <Compile Include="IDisplay.cs" />
     <Compile Include="Structs.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,7 +60,6 @@
     <Compile Include="GL.cs" />
     <Compile Include="Graphics.cs" />
     <Compile Include="IBufferView.cs" />
-    <Compile Include="IDisplayLogic.cs" />
     <Compile Include="Keys.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,7 +68,6 @@
     <Compile Include="Texture2D.cs" />
     <Compile Include="ValueTypeDescriptor.cs" />
     <Compile Include="WinApi.cs" />
-    <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

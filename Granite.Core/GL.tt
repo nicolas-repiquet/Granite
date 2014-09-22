@@ -121,6 +121,13 @@ namespace Granite.Core
 <# } } #>
 		}
 
+		private static void UninitializeFunctions()
+		{
+<# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
+			m_<#= f.Name #>_<#= o.Index #> = null;
+<# } } #>
+		}
+
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
 		<#= o.Visibility #> static <#= o.GetDotNetType() #> <#= f.Name #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>)
 		{

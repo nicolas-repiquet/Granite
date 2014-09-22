@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Font.cs" />
     <Compile Include="FontGen.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

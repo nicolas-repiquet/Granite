@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public sealed class Program : EngineResource
+    public sealed class Program : ApplicationResource
     {
         private readonly VertexShader m_vertexShader;
         private readonly FragmentShader m_fragmentShader;
@@ -89,7 +89,7 @@ namespace Granite.Core
     }
 
     #region PROGRAM INSTANCE
-    public sealed class ProgramInstance : EngineResource
+    public sealed class ProgramInstance : ApplicationResource
     {
         private readonly Program m_program;
         private readonly uint m_name;

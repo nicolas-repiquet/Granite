@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public abstract class Shader : EngineResource
+    public abstract class Shader : ApplicationResource
     {
         private readonly uint m_name;
 
