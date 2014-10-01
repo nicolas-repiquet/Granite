@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Granite.Core
+namespace Test.Game_01.Levels
 {
-    public interface IDisplay
+    public sealed class Level_02 : Level
     {
-        Vector2i GetSize();
-        void Invalidate();
+
     }
 }

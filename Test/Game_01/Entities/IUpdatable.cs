@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Granite.Core
+namespace Test.Game_01.Entities
 {
-    public interface IDisplay
+    public interface IUpdatable
     {
-        Vector2i GetSize();
-        void Invalidate();
+        void Update(TimeSpan elapsed);
     }
 }

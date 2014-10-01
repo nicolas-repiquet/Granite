@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public sealed class Program : ApplicationResource
+    public class Program : ApplicationResource
     {
         private readonly VertexShader m_vertexShader;
         private readonly FragmentShader m_fragmentShader;
@@ -13,8 +13,7 @@ namespace Granite.Core
         private readonly ProgramAttribute[] m_attributes;
         private readonly ProgramUniform[] m_uniforms;
 
-        internal Program(VertexShader vertexShader, FragmentShader fragmentShader)
-            : base()
+        public Program(VertexShader vertexShader, FragmentShader fragmentShader)
         {
             m_vertexShader = vertexShader;
             m_fragmentShader = fragmentShader;
@@ -68,9 +67,38 @@ namespace Granite.Core
         }
 
         public IEnumerable<ProgramUniform> Uniforms { get { return m_uniforms; } }
+
+        public ProgramUniform<T> GetUniform<T>(string name)
+        {
+            foreach (var uniform in m_uniforms)
+            {
+                if (uniform.Name == name && uniform is ProgramUniform<T>)
+                {
+                    return (ProgramUniform<T>)uniform;
+                }
+            }
+
+            return null;
+        }
+
         public IEnumerable<ProgramAttribute> Attributes { get { return m_attributes; } }
 
+        public ProgramAttribute<T> GetAttribute<T>(string name)
+        {
+            foreach (var attribute in m_attributes)
+            {
+                if (attribute.Name == name && attribute is ProgramAttribute<T>)
+                {
+                    return (ProgramAttribute<T>)attribute;
+                }
+            }
+
+            return null;
+        }
+
         internal uint Name { get { return m_name; } }
+
+
 
         public ProgramInstance CreateInstance(Dictionary<string,IBufferView> attributeValues)
         {
@@ -154,7 +182,7 @@ namespace Granite.Core
             GL.UseProgram(m_program.Name);
             foreach (var entry in m_uniformValues)
             {
-                entry.Key.SetValue(entry.Value);
+                //entry.Key.SetValue(entry.Value);
             }
             GL.BindVertexArray(m_name);
             GL.DrawArrays(GL.LINES, 0, 84);
@@ -167,7 +195,7 @@ namespace Granite.Core
             GL.UseProgram(m_program.Name);
             foreach (var entry in m_uniformValues)
             {
-                entry.Key.SetValue(entry.Value);
+                //entry.Key.SetValue(entry.Value);
             }
             GL.BindVertexArray(m_name);
             GL.DrawArrays(GL.TRIANGLES, 0, count);
@@ -219,10 +247,33 @@ namespace Granite.Core
         }
 
         public string Name { get { return m_name; } }
-        internal int Position { get { return m_position; } }
+        public int Position { get { return m_position; } }
     }
 
-    public sealed class ProgramAttribute_FloatVec2 : ProgramAttribute
+    public abstract class ProgramAttribute<T> : ProgramAttribute
+    {
+        internal ProgramAttribute(Program program, string name, int position)
+            : base(program, name, position)
+        {
+
+        }
+
+        public void SetValue(IBufferView view)
+        {
+            GL.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
+            GL.VertexAttribPointer(
+                (uint)Position,
+                view.Size,
+                view.Type,
+                true,
+                view.Stride,
+                new IntPtr(view.Offset)
+            );
+            GL.EnableVertexAttribArray((uint)Position);
+        }
+    }
+
+    public sealed class ProgramAttribute_FloatVec2 : ProgramAttribute<Vector2>
     {
         internal ProgramAttribute_FloatVec2(Program program, string name, int position)
             : base(program, name, position)
@@ -231,7 +282,7 @@ namespace Granite.Core
         }
     }
 
-    public sealed class ProgramAttribute_FloatVec3 : ProgramAttribute
+    public sealed class ProgramAttribute_FloatVec3 : ProgramAttribute<Vector3>
     {
         internal ProgramAttribute_FloatVec3(Program program, string name, int position)
             : base(program, name, position)
@@ -240,7 +291,7 @@ namespace Granite.Core
         }
     }
 
-    public sealed class ProgramAttribute_FloatVec4 : ProgramAttribute
+    public sealed class ProgramAttribute_FloatVec4 : ProgramAttribute<Vector4>
     {
         internal ProgramAttribute_FloatVec4(Program program, string name, int position)
             : base(program, name, position)
@@ -265,8 +316,12 @@ namespace Granite.Core
                     return new ProgramUniform_Mat44f(program, name, position);
                 case GL.SAMPLER_2D:
                     return new ProgramUniform_Texture2d(program, name, position);
+                case GL.FLOAT_VEC2:
+                    return new ProgramUniform_Vector2(program, name, position);
                 case GL.FLOAT_VEC3:
                     return new ProgramUniform_Vector3(program, name, position);
+                case GL.FLOAT_VEC4:
+                    return new ProgramUniform_Vector4(program, name, position);
                 default:
                     throw new Exception();
             }
@@ -286,12 +341,21 @@ namespace Granite.Core
 
         public Program Program { get { return m_program; } }
         public string Name { get { return m_name; } }
-        internal int Position { get { return m_position; } }
-
-        internal abstract void SetValue(object value);
+        public int Position { get { return m_position; } }
     }
 
-    public sealed class ProgramUniform_Float : ProgramUniform
+    public abstract class ProgramUniform<T> : ProgramUniform
+    {
+        internal ProgramUniform(Program program, string name, int position)
+            : base(program, name, position)
+        {
+
+        }
+
+        public abstract void SetValue(T value);
+    }
+
+    public sealed class ProgramUniform_Float : ProgramUniform<float>
     {
         internal ProgramUniform_Float(Program program, string name, int position)
             : base(program, name, position)
@@ -299,13 +363,13 @@ namespace Granite.Core
 
         }
 
-        internal override void SetValue(object value)
+        public override void SetValue(float value)
         {
-            GL.Uniform1f(Position, (float)value);
+            GL.Uniform1f(Position, value);
         }
     }
 
-    public sealed class ProgramUniform_Mat44f : ProgramUniform
+    public sealed class ProgramUniform_Mat44f : ProgramUniform<Matrix4>
     {
         internal ProgramUniform_Mat44f(Program program, string name, int position)
             : base(program, name, position)
@@ -313,14 +377,27 @@ namespace Granite.Core
 
         }
 
-        internal override void SetValue(object value)
+        public override void SetValue(Matrix4 value)
         {
-            var m = (Matrix4)value;
-            GL.UniformMatrix4fv(Position, 1, false, ref m);
+            GL.UniformMatrix4fv(Position, 1, false, ref value);
         }
     }
 
-    public sealed class ProgramUniform_Vector3 : ProgramUniform
+    public sealed class ProgramUniform_Vector2 : ProgramUniform<Vector2>
+    {
+        internal ProgramUniform_Vector2(Program program, string name, int position)
+            : base(program, name, position)
+        {
+
+        }
+
+        public override void SetValue(Vector2 value)
+        {
+            GL.Uniform2f(Position, value);
+        }
+    }
+
+    public sealed class ProgramUniform_Vector3 : ProgramUniform<Vector3>
     {
         internal ProgramUniform_Vector3(Program program, string name, int position)
             : base(program, name, position)
@@ -328,14 +405,27 @@ namespace Granite.Core
 
         }
 
-        internal override void SetValue(object value)
+        public override void SetValue(Vector3 value)
         {
-            var m = (Vector3)value;
-            GL.Uniform3f(Position, m);
+            GL.Uniform3f(Position, value);
         }
     }
 
-    public sealed class ProgramUniform_Texture2d : ProgramUniform
+    public sealed class ProgramUniform_Vector4 : ProgramUniform<Vector4>
+    {
+        internal ProgramUniform_Vector4(Program program, string name, int position)
+            : base(program, name, position)
+        {
+
+        }
+
+        public override void SetValue(Vector4 value)
+        {
+            GL.Uniform4f(Position, value);
+        }
+    }
+
+    public sealed class ProgramUniform_Texture2d : ProgramUniform<Texture2D>
     {
         internal ProgramUniform_Texture2d(Program program, string name, int position)
             : base(program, name, position)
@@ -343,13 +433,14 @@ namespace Granite.Core
 
         }
 
-        internal override void SetValue(object value)
+        public override void SetValue(Texture2D value)
         {
-            var t = (Texture2D)value;
-
-            GL.ActiveTexture(GL.TEXTURE0);
-            GL.BindTexture(GL.TEXTURE_2D, t.Name);
-            GL.Uniform1i(Position, 0);
+            if (value != null)
+            {
+                GL.ActiveTexture(GL.TEXTURE0);
+                GL.BindTexture(GL.TEXTURE_2D, value.Name);
+                GL.Uniform1i(Position, 0);
+            }
         }
     }
     #endregion

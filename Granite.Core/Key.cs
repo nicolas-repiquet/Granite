@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public enum Keys : uint
+    public enum Key : uint
     {
         Backspace = 0x08,
         Tab = 0x09,

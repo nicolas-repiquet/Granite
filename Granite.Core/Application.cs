@@ -81,6 +81,18 @@ namespace Granite.Core
                     Render();
                     return IntPtr.Zero;
 
+                case WinApi.WM_KEYDOWN:
+                    m_logic.KeyDown((Key)wParam.ToInt32());
+                    return IntPtr.Zero;
+
+                case WinApi.WM_KEYUP:
+                    m_logic.KeyUp((Key)wParam.ToInt32());
+                    return IntPtr.Zero;
+
+                case WinApi.WM_LBUTTONDOWN:
+                    m_logic.MouseLButtonDown(lParam.ToInt32() & 0xFFFF, (lParam.ToInt32() >> 16) & 0xFFFF);
+                    return IntPtr.Zero;
+
                 default:
                     return WinApi.DefWindowProc(handle, messageId, wParam, lParam);
             }

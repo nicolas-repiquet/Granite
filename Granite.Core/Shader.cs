@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Granite.Core
 {
@@ -11,14 +13,32 @@ namespace Granite.Core
         private readonly uint m_name;
 
         internal Shader(uint type, string source)
-            : base()
+            : this(type, new StringReader(source))
+        {
+
+        }
+
+        internal Shader(uint type, Stream source)
+            : this(type, new StreamReader(source))
+        {
+
+        }
+
+        internal Shader(uint type, TextReader source)
         {
             m_name = GL.CreateShader(type);
-            string[] lines = source.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Select(l => l + '\n').ToArray();
 
-            var lineHandles = lines.Select(l => GCHandle.Alloc(Encoding.ASCII.GetBytes(l), GCHandleType.Pinned)).ToList();
+            var lines = new List<string>();
+            string line;
 
-            GL.ShaderSource(m_name, lines.Length,
+            while((line = source.ReadLine()) != null)
+            {
+                lines.Add(line + "\n");
+            }
+
+            var lineHandles = lines.Select(l => GCHandle.Alloc(Encoding.ASCII.GetBytes(l), GCHandleType.Pinned));
+
+            GL.ShaderSource(m_name, lines.Count,
                 lineHandles.Select(h => h.AddrOfPinnedObject()).ToArray(),
                 lines.Select(l => l.Length).ToArray()
             );
@@ -52,7 +72,19 @@ namespace Granite.Core
 
     public sealed class VertexShader : Shader
     {
-        internal VertexShader(string source)
+        public VertexShader(string source)
+            : base(GL.VERTEX_SHADER, source)
+        {
+
+        }
+
+        public VertexShader(TextReader source)
+            : base(GL.VERTEX_SHADER, source)
+        {
+
+        }
+
+        public VertexShader(Stream source)
             : base(GL.VERTEX_SHADER, source)
         {
 
@@ -61,7 +93,19 @@ namespace Granite.Core
 
     public sealed class FragmentShader : Shader
     {
-        internal FragmentShader(string source)
+        public FragmentShader(string source)
+            : base(GL.FRAGMENT_SHADER, source)
+        {
+
+        }
+
+        public FragmentShader(TextReader source)
+            : base(GL.FRAGMENT_SHADER, source)
+        {
+
+        }
+
+        public FragmentShader(Stream source)
             : base(GL.FRAGMENT_SHADER, source)
         {
 

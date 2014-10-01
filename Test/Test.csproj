@@ -11,7 +11,8 @@
     <RootNamespace>Test</RootNamespace>
     <AssemblyName>Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -32,9 +34,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>Test.Game_01.Game</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,11 +49,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Font.cs" />
-    <Compile Include="FontGen.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameLogic.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Game_01\Entities\Background.cs" />
+    <Compile Include="Game_01\Entities\Camera.cs" />
+    <Compile Include="Game_01\Entities\Component.cs" />
+    <Compile Include="Game_01\Entities\Entity.cs" />
+    <Compile Include="Game_01\Entities\FollowTargetComponent.cs" />
+    <Compile Include="Game_01\Entities\ILocated.cs" />
+    <Compile Include="Game_01\Entities\IRenderable.cs" />
+    <Compile Include="Game_01\Entities\IUpdatable.cs" />
+    <Compile Include="Game_01\Entities\LocationComponent.cs" />
+    <Compile Include="Game_01\Entities\Player.cs" />
+    <Compile Include="Game_01\Entities\RestrictLocationComponent.cs" />
+    <Compile Include="Game_01\Entities\RigidBodyComponent.cs" />
+    <Compile Include="Game_01\Entities\World.cs" />
+    <Compile Include="Game_01\Game.cs" />
+    <Compile Include="Game_01\Levels\Level_02.cs" />
+    <Compile Include="Game_01\Levels\Level.cs" />
+    <Compile Include="Game_01\Levels\Level_01.cs" />
+    <Compile Include="Game_01\Maps\Castle.cs" />
+    <Compile Include="Game_01\Maps\Grass.cs" />
+    <Compile Include="Game_01\Maps\Dirt.cs" />
+    <Compile Include="Game_01\Maps\Lava.cs" />
+    <Compile Include="Game_01\Maps\Liquid.cs" />
+    <Compile Include="Game_01\Maps\Map.cs" />
+    <Compile Include="Game_01\Maps\Material.cs" />
+    <Compile Include="Game_01\Maps\Terrain.cs" />
+    <Compile Include="Game_01\Maps\Water.cs" />
+    <Compile Include="Game_01\Shaders\SpriteProgram.cs" />
+    <Compile Include="Game_01\Sprites\EnemiesSprites.cs" />
+    <Compile Include="Game_01\Sprites\PlayerSprites.cs" />
+    <Compile Include="Game_01\Sprites\Sprite.cs" />
+    <Compile Include="Game_01\Sprites\ISpriteInstance.cs" />
+    <Compile Include="Game_01\Sprites\SpriteRenderer.cs" />
+    <Compile Include="Game_01\Sprites\SpriteSheet.cs" />
+    <Compile Include="Game_01\Sprites\TilesSprites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +90,36 @@
       <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
       <Name>Granite.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Shaders\SpriteProgram.Fragment.glsl" />
+    <EmbeddedResource Include="Game_01\Shaders\SpriteProgram.Vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Levels\Level_02.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Levels\Level_01.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Textures\Background_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

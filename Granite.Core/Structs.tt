@@ -190,6 +190,17 @@ for(int dc = 2; dc <= 3; dc++)
 
 <# } #>
 
+		public <#= vecname #> Center { get {
+			return new <#= vecname #>(
+				<#= string.Join(", ", ldimensions.Select(d => string.Format("m_position.{0} + m_size.{0} / 2", d[0]))) #>
+			);
+		} }
+
+		public <#= typename #> Translate(<#= vecname #> v)
+		{
+			return new <#= typename #>(m_position + v, m_size);
+		}
+
 		public bool Equals(<#= typename #> other)
 		{
 			return m_position == other.m_position && m_size == other.m_size;
