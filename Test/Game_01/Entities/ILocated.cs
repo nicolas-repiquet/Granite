@@ -8,6 +8,6 @@ namespace Test.Game_01.Entities
 {
     public interface ILocated
     {
-        Box2d Location { get; }
+        Box2 Location { get; }
     }
 }

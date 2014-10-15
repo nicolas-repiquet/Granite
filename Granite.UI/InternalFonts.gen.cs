@@ -1,7 +1,7 @@
 ﻿
 namespace Granite.UI
 {
-    internal static partial class InternalFonts
+    public static partial class InternalFonts
     {
 
 
@@ -1120,2086 +1120,1550 @@ namespace Granite.UI
         };
 
 
-        private static Glyph[] GetGlyphs_var_small(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(117, 1), texture, new Granite.Core.Box2(0.2285156f, 0.001672241f, 0.2382813f, 0.02842809f)), //  
-                new Glyph(new Granite.Core.Vector2i(123, 1), texture, new Granite.Core.Box2(0.2402344f, 0.001672241f, 0.25f, 0.02842809f)), // !
-                new Glyph(new Granite.Core.Vector2i(129, 1), texture, new Granite.Core.Box2(0.2519531f, 0.001672241f, 0.2617188f, 0.02842809f)), // "
-                new Glyph(new Granite.Core.Vector2i(351, 239), texture, new Granite.Core.Box2(0.6855469f, 0.3996656f, 0.7050781f, 0.4264214f)), // #
-                new Glyph(new Granite.Core.Vector2i(382, 18), texture, new Granite.Core.Box2(0.7460938f, 0.03010033f, 0.7617188f, 0.05685619f)), // $
-                new Glyph(new Granite.Core.Vector2i(273, 273), texture, new Granite.Core.Box2(0.5332031f, 0.4565217f, 0.5585938f, 0.4832776f)), // %
-                new Glyph(new Granite.Core.Vector2i(1, 1), texture, new Granite.Core.Box2(0.001953125f, 0.001672241f, 0.001953125f, 0.02842809f)), // &
-                new Glyph(new Granite.Core.Vector2i(6, 1), texture, new Granite.Core.Box2(0.01171875f, 0.001672241f, 0.01757813f, 0.02842809f)), // '
-                new Glyph(new Granite.Core.Vector2i(327, 1), texture, new Granite.Core.Box2(0.6386719f, 0.001672241f, 0.6503906f, 0.02842809f)), // (
-                new Glyph(new Granite.Core.Vector2i(334, 1), texture, new Granite.Core.Box2(0.6523438f, 0.001672241f, 0.6640625f, 0.02842809f)), // )
-                new Glyph(new Granite.Core.Vector2i(415, 188), texture, new Granite.Core.Box2(0.8105469f, 0.3143813f, 0.828125f, 0.3411371f)), // *
-                new Glyph(new Granite.Core.Vector2i(425, 188), texture, new Granite.Core.Box2(0.8300781f, 0.3143813f, 0.8476563f, 0.3411371f)), // +
-                new Glyph(new Granite.Core.Vector2i(135, 1), texture, new Granite.Core.Box2(0.2636719f, 0.001672241f, 0.2734375f, 0.02842809f)), // ,
-                new Glyph(new Granite.Core.Vector2i(78, 18), texture, new Granite.Core.Box2(0.1523438f, 0.03010033f, 0.1660156f, 0.05685619f)), // -
-                new Glyph(new Granite.Core.Vector2i(141, 1), texture, new Granite.Core.Box2(0.2753906f, 0.001672241f, 0.2851563f, 0.02842809f)), // .
-                new Glyph(new Granite.Core.Vector2i(341, 1), texture, new Granite.Core.Box2(0.6660156f, 0.001672241f, 0.6777344f, 0.02842809f)), // /
-                new Glyph(new Granite.Core.Vector2i(391, 18), texture, new Granite.Core.Box2(0.7636719f, 0.03010033f, 0.7792969f, 0.05685619f)), // 0
-                new Glyph(new Granite.Core.Vector2i(400, 18), texture, new Granite.Core.Box2(0.78125f, 0.03010033f, 0.796875f, 0.05685619f)), // 1
-                new Glyph(new Granite.Core.Vector2i(409, 18), texture, new Granite.Core.Box2(0.7988281f, 0.03010033f, 0.8144531f, 0.05685619f)), // 2
-                new Glyph(new Granite.Core.Vector2i(418, 18), texture, new Granite.Core.Box2(0.8164063f, 0.03010033f, 0.8320313f, 0.05685619f)), // 3
-                new Glyph(new Granite.Core.Vector2i(427, 18), texture, new Granite.Core.Box2(0.8339844f, 0.03010033f, 0.8496094f, 0.05685619f)), // 4
-                new Glyph(new Granite.Core.Vector2i(436, 18), texture, new Granite.Core.Box2(0.8515625f, 0.03010033f, 0.8671875f, 0.05685619f)), // 5
-                new Glyph(new Granite.Core.Vector2i(445, 18), texture, new Granite.Core.Box2(0.8691406f, 0.03010033f, 0.8847656f, 0.05685619f)), // 6
-                new Glyph(new Granite.Core.Vector2i(454, 18), texture, new Granite.Core.Box2(0.8867188f, 0.03010033f, 0.9023438f, 0.05685619f)), // 7
-                new Glyph(new Granite.Core.Vector2i(463, 18), texture, new Granite.Core.Box2(0.9042969f, 0.03010033f, 0.9199219f, 0.05685619f)), // 8
-                new Glyph(new Granite.Core.Vector2i(472, 18), texture, new Granite.Core.Box2(0.921875f, 0.03010033f, 0.9375f, 0.05685619f)), // 9
-                new Glyph(new Granite.Core.Vector2i(348, 1), texture, new Granite.Core.Box2(0.6796875f, 0.001672241f, 0.6914063f, 0.02842809f)), // :
-                new Glyph(new Granite.Core.Vector2i(355, 1), texture, new Granite.Core.Box2(0.6933594f, 0.001672241f, 0.7050781f, 0.02842809f)), // ;
-                new Glyph(new Granite.Core.Vector2i(435, 188), texture, new Granite.Core.Box2(0.8496094f, 0.3143813f, 0.8671875f, 0.3411371f)), // <
-                new Glyph(new Granite.Core.Vector2i(445, 188), texture, new Granite.Core.Box2(0.8691406f, 0.3143813f, 0.8867188f, 0.3411371f)), // =
-                new Glyph(new Granite.Core.Vector2i(455, 188), texture, new Granite.Core.Box2(0.8886719f, 0.3143813f, 0.90625f, 0.3411371f)), // >
-                new Glyph(new Granite.Core.Vector2i(86, 18), texture, new Granite.Core.Box2(0.1679688f, 0.03010033f, 0.1816406f, 0.05685619f)), // ?
-                new Glyph(new Granite.Core.Vector2i(287, 273), texture, new Granite.Core.Box2(0.5605469f, 0.4565217f, 0.5859375f, 0.4832776f)), // @
-                new Glyph(new Granite.Core.Vector2i(465, 188), texture, new Granite.Core.Box2(0.9082031f, 0.3143813f, 0.9257813f, 0.3411371f)), // A
-                new Glyph(new Granite.Core.Vector2i(481, 18), texture, new Granite.Core.Box2(0.9394531f, 0.03010033f, 0.9550781f, 0.05685619f)), // B
-                new Glyph(new Granite.Core.Vector2i(475, 188), texture, new Granite.Core.Box2(0.9277344f, 0.3143813f, 0.9453125f, 0.3411371f)), // C
-                new Glyph(new Granite.Core.Vector2i(485, 188), texture, new Granite.Core.Box2(0.9472656f, 0.3143813f, 0.9648438f, 0.3411371f)), // D
-                new Glyph(new Granite.Core.Vector2i(490, 18), texture, new Granite.Core.Box2(0.9570313f, 0.03010033f, 0.9726563f, 0.05685619f)), // E
-                new Glyph(new Granite.Core.Vector2i(499, 18), texture, new Granite.Core.Box2(0.9746094f, 0.03010033f, 0.9902344f, 0.05685619f)), // F
-                new Glyph(new Granite.Core.Vector2i(495, 188), texture, new Granite.Core.Box2(0.9667969f, 0.3143813f, 0.984375f, 0.3411371f)), // G
-                new Glyph(new Granite.Core.Vector2i(1, 205), texture, new Granite.Core.Box2(0.001953125f, 0.3428094f, 0.01953125f, 0.3695652f)), // H
-                new Glyph(new Granite.Core.Vector2i(147, 1), texture, new Granite.Core.Box2(0.2871094f, 0.001672241f, 0.296875f, 0.02842809f)), // I
-                new Glyph(new Granite.Core.Vector2i(362, 1), texture, new Granite.Core.Box2(0.7070313f, 0.001672241f, 0.71875f, 0.02842809f)), // J
-                new Glyph(new Granite.Core.Vector2i(1, 35), texture, new Granite.Core.Box2(0.001953125f, 0.05852843f, 0.01757813f, 0.08528428f)), // K
-                new Glyph(new Granite.Core.Vector2i(94, 18), texture, new Granite.Core.Box2(0.1835938f, 0.03010033f, 0.1972656f, 0.05685619f)), // L
-                new Glyph(new Granite.Core.Vector2i(309, 256), texture, new Granite.Core.Box2(0.6035156f, 0.4280936f, 0.625f, 0.4548495f)), // M
-                new Glyph(new Granite.Core.Vector2i(11, 205), texture, new Granite.Core.Box2(0.02148438f, 0.3428094f, 0.0390625f, 0.3695652f)), // N
-                new Glyph(new Granite.Core.Vector2i(362, 239), texture, new Granite.Core.Box2(0.7070313f, 0.3996656f, 0.7265625f, 0.4264214f)), // O
-                new Glyph(new Granite.Core.Vector2i(10, 35), texture, new Granite.Core.Box2(0.01953125f, 0.05852843f, 0.03515625f, 0.08528428f)), // P
-                new Glyph(new Granite.Core.Vector2i(373, 239), texture, new Granite.Core.Box2(0.7285156f, 0.3996656f, 0.7480469f, 0.4264214f)), // Q
-                new Glyph(new Granite.Core.Vector2i(19, 35), texture, new Granite.Core.Box2(0.03710938f, 0.05852843f, 0.05273438f, 0.08528428f)), // R
-                new Glyph(new Granite.Core.Vector2i(21, 205), texture, new Granite.Core.Box2(0.04101563f, 0.3428094f, 0.05859375f, 0.3695652f)), // S
-                new Glyph(new Granite.Core.Vector2i(31, 205), texture, new Granite.Core.Box2(0.06054688f, 0.3428094f, 0.078125f, 0.3695652f)), // T
-                new Glyph(new Granite.Core.Vector2i(41, 205), texture, new Granite.Core.Box2(0.08007813f, 0.3428094f, 0.09765625f, 0.3695652f)), // U
-                new Glyph(new Granite.Core.Vector2i(51, 205), texture, new Granite.Core.Box2(0.09960938f, 0.3428094f, 0.1171875f, 0.3695652f)), // V
-                new Glyph(new Granite.Core.Vector2i(301, 273), texture, new Granite.Core.Box2(0.5878906f, 0.4565217f, 0.6132813f, 0.4832776f)), // W
-                new Glyph(new Granite.Core.Vector2i(61, 205), texture, new Granite.Core.Box2(0.1191406f, 0.3428094f, 0.1367188f, 0.3695652f)), // X
-                new Glyph(new Granite.Core.Vector2i(71, 205), texture, new Granite.Core.Box2(0.1386719f, 0.3428094f, 0.15625f, 0.3695652f)), // Y
-                new Glyph(new Granite.Core.Vector2i(81, 205), texture, new Granite.Core.Box2(0.1582031f, 0.3428094f, 0.1757813f, 0.3695652f)), // Z
-                new Glyph(new Granite.Core.Vector2i(369, 1), texture, new Granite.Core.Box2(0.7207031f, 0.001672241f, 0.7324219f, 0.02842809f)), // [
-                new Glyph(new Granite.Core.Vector2i(376, 1), texture, new Granite.Core.Box2(0.734375f, 0.001672241f, 0.7460938f, 0.02842809f)), // \
-                new Glyph(new Granite.Core.Vector2i(383, 1), texture, new Granite.Core.Box2(0.7480469f, 0.001672241f, 0.7597656f, 0.02842809f)), // ]
-                new Glyph(new Granite.Core.Vector2i(321, 256), texture, new Granite.Core.Box2(0.6269531f, 0.4280936f, 0.6484375f, 0.4548495f)), // ^
-                new Glyph(new Granite.Core.Vector2i(28, 35), texture, new Granite.Core.Box2(0.0546875f, 0.05852843f, 0.0703125f, 0.08528428f)), // _
-                new Glyph(new Granite.Core.Vector2i(37, 35), texture, new Granite.Core.Box2(0.07226563f, 0.05852843f, 0.08789063f, 0.08528428f)), // `
-                new Glyph(new Granite.Core.Vector2i(46, 35), texture, new Granite.Core.Box2(0.08984375f, 0.05852843f, 0.1054688f, 0.08528428f)), // a
-                new Glyph(new Granite.Core.Vector2i(55, 35), texture, new Granite.Core.Box2(0.1074219f, 0.05852843f, 0.1230469f, 0.08528428f)), // b
-                new Glyph(new Granite.Core.Vector2i(64, 35), texture, new Granite.Core.Box2(0.125f, 0.05852843f, 0.140625f, 0.08528428f)), // c
-                new Glyph(new Granite.Core.Vector2i(73, 35), texture, new Granite.Core.Box2(0.1425781f, 0.05852843f, 0.1582031f, 0.08528428f)), // d
-                new Glyph(new Granite.Core.Vector2i(82, 35), texture, new Granite.Core.Box2(0.1601563f, 0.05852843f, 0.1757813f, 0.08528428f)), // e
-                new Glyph(new Granite.Core.Vector2i(153, 1), texture, new Granite.Core.Box2(0.2988281f, 0.001672241f, 0.3085938f, 0.02842809f)), // f
-                new Glyph(new Granite.Core.Vector2i(91, 35), texture, new Granite.Core.Box2(0.1777344f, 0.05852843f, 0.1933594f, 0.08528428f)), // g
-                new Glyph(new Granite.Core.Vector2i(100, 35), texture, new Granite.Core.Box2(0.1953125f, 0.05852843f, 0.2109375f, 0.08528428f)), // h
-                new Glyph(new Granite.Core.Vector2i(10, 1), texture, new Granite.Core.Box2(0.01953125f, 0.001672241f, 0.02539063f, 0.02842809f)), // i
-                new Glyph(new Granite.Core.Vector2i(62, 1), texture, new Granite.Core.Box2(0.1210938f, 0.001672241f, 0.1289063f, 0.02842809f)), // j
-                new Glyph(new Granite.Core.Vector2i(102, 18), texture, new Granite.Core.Box2(0.1992188f, 0.03010033f, 0.2128906f, 0.05685619f)), // k
-                new Glyph(new Granite.Core.Vector2i(14, 1), texture, new Granite.Core.Box2(0.02734375f, 0.001672241f, 0.03320313f, 0.02842809f)), // l
-                new Glyph(new Granite.Core.Vector2i(333, 256), texture, new Granite.Core.Box2(0.6503906f, 0.4280936f, 0.671875f, 0.4548495f)), // m
-                new Glyph(new Granite.Core.Vector2i(109, 35), texture, new Granite.Core.Box2(0.2128906f, 0.05852843f, 0.2285156f, 0.08528428f)), // n
-                new Glyph(new Granite.Core.Vector2i(118, 35), texture, new Granite.Core.Box2(0.2304688f, 0.05852843f, 0.2460938f, 0.08528428f)), // o
-                new Glyph(new Granite.Core.Vector2i(127, 35), texture, new Granite.Core.Box2(0.2480469f, 0.05852843f, 0.2636719f, 0.08528428f)), // p
-                new Glyph(new Granite.Core.Vector2i(136, 35), texture, new Granite.Core.Box2(0.265625f, 0.05852843f, 0.28125f, 0.08528428f)), // q
-                new Glyph(new Granite.Core.Vector2i(159, 1), texture, new Granite.Core.Box2(0.3105469f, 0.001672241f, 0.3203125f, 0.02842809f)), // r
-                new Glyph(new Granite.Core.Vector2i(110, 18), texture, new Granite.Core.Box2(0.2148438f, 0.03010033f, 0.2285156f, 0.05685619f)), // s
-                new Glyph(new Granite.Core.Vector2i(390, 1), texture, new Granite.Core.Box2(0.7617188f, 0.001672241f, 0.7734375f, 0.02842809f)), // t
-                new Glyph(new Granite.Core.Vector2i(145, 35), texture, new Granite.Core.Box2(0.2832031f, 0.05852843f, 0.2988281f, 0.08528428f)), // u
-                new Glyph(new Granite.Core.Vector2i(154, 35), texture, new Granite.Core.Box2(0.3007813f, 0.05852843f, 0.3164063f, 0.08528428f)), // v
-                new Glyph(new Granite.Core.Vector2i(345, 256), texture, new Granite.Core.Box2(0.6738281f, 0.4280936f, 0.6953125f, 0.4548495f)), // w
-                new Glyph(new Granite.Core.Vector2i(118, 18), texture, new Granite.Core.Box2(0.2304688f, 0.03010033f, 0.2441406f, 0.05685619f)), // x
-                new Glyph(new Granite.Core.Vector2i(163, 35), texture, new Granite.Core.Box2(0.3183594f, 0.05852843f, 0.3339844f, 0.08528428f)), // y
-                new Glyph(new Granite.Core.Vector2i(126, 18), texture, new Granite.Core.Box2(0.2460938f, 0.03010033f, 0.2597656f, 0.05685619f)), // z
-                new Glyph(new Granite.Core.Vector2i(172, 35), texture, new Granite.Core.Box2(0.3359375f, 0.05852843f, 0.3515625f, 0.08528428f)), // {
-                new Glyph(new Granite.Core.Vector2i(134, 18), texture, new Granite.Core.Box2(0.2617188f, 0.03010033f, 0.2753906f, 0.05685619f)), // |
-                new Glyph(new Granite.Core.Vector2i(181, 35), texture, new Granite.Core.Box2(0.3535156f, 0.05852843f, 0.3691406f, 0.08528428f)), // }
-                new Glyph(new Granite.Core.Vector2i(357, 256), texture, new Granite.Core.Box2(0.6972656f, 0.4280936f, 0.71875f, 0.4548495f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(165, 1), texture, new Granite.Core.Box2(0.3222656f, 0.001672241f, 0.3320313f, 0.02842809f)), //  
-                new Glyph(new Granite.Core.Vector2i(171, 1), texture, new Granite.Core.Box2(0.3339844f, 0.001672241f, 0.34375f, 0.02842809f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(190, 35), texture, new Granite.Core.Box2(0.3710938f, 0.05852843f, 0.3867188f, 0.08528428f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(199, 35), texture, new Granite.Core.Box2(0.3886719f, 0.05852843f, 0.4042969f, 0.08528428f)), // £
-                new Glyph(new Granite.Core.Vector2i(208, 35), texture, new Granite.Core.Box2(0.40625f, 0.05852843f, 0.421875f, 0.08528428f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(217, 35), texture, new Granite.Core.Box2(0.4238281f, 0.05852843f, 0.4394531f, 0.08528428f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(142, 18), texture, new Granite.Core.Box2(0.2773438f, 0.03010033f, 0.2910156f, 0.05685619f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(226, 35), texture, new Granite.Core.Box2(0.4414063f, 0.05852843f, 0.4570313f, 0.08528428f)), // §
-                new Glyph(new Granite.Core.Vector2i(235, 35), texture, new Granite.Core.Box2(0.4589844f, 0.05852843f, 0.4746094f, 0.08528428f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(315, 273), texture, new Granite.Core.Box2(0.6152344f, 0.4565217f, 0.640625f, 0.4832776f)), // ©
-                new Glyph(new Granite.Core.Vector2i(150, 18), texture, new Granite.Core.Box2(0.2929688f, 0.03010033f, 0.3066406f, 0.05685619f)), // ª
-                new Glyph(new Granite.Core.Vector2i(244, 35), texture, new Granite.Core.Box2(0.4765625f, 0.05852843f, 0.4921875f, 0.08528428f)), // «
-                new Glyph(new Granite.Core.Vector2i(91, 205), texture, new Granite.Core.Box2(0.1777344f, 0.3428094f, 0.1953125f, 0.3695652f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(158, 18), texture, new Granite.Core.Box2(0.3085938f, 0.03010033f, 0.3222656f, 0.05685619f)), // ­
-                new Glyph(new Granite.Core.Vector2i(329, 273), texture, new Granite.Core.Box2(0.6425781f, 0.4565217f, 0.6679688f, 0.4832776f)), // ®
-                new Glyph(new Granite.Core.Vector2i(253, 35), texture, new Granite.Core.Box2(0.4941406f, 0.05852843f, 0.5097656f, 0.08528428f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(166, 18), texture, new Granite.Core.Box2(0.3242188f, 0.03010033f, 0.3378906f, 0.05685619f)), // °
-                new Glyph(new Granite.Core.Vector2i(101, 205), texture, new Granite.Core.Box2(0.1972656f, 0.3428094f, 0.2148438f, 0.3695652f)), // ±
-                new Glyph(new Granite.Core.Vector2i(174, 18), texture, new Granite.Core.Box2(0.3398438f, 0.03010033f, 0.3535156f, 0.05685619f)), // ²
-                new Glyph(new Granite.Core.Vector2i(182, 18), texture, new Granite.Core.Box2(0.3554688f, 0.03010033f, 0.3691406f, 0.05685619f)), // ³
-                new Glyph(new Granite.Core.Vector2i(262, 35), texture, new Granite.Core.Box2(0.5117188f, 0.05852843f, 0.5273438f, 0.08528428f)), // ´
-                new Glyph(new Granite.Core.Vector2i(271, 35), texture, new Granite.Core.Box2(0.5292969f, 0.05852843f, 0.5449219f, 0.08528428f)), // µ
-                new Glyph(new Granite.Core.Vector2i(280, 35), texture, new Granite.Core.Box2(0.546875f, 0.05852843f, 0.5625f, 0.08528428f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(177, 1), texture, new Granite.Core.Box2(0.3457031f, 0.001672241f, 0.3554688f, 0.02842809f)), // ·
-                new Glyph(new Granite.Core.Vector2i(289, 35), texture, new Granite.Core.Box2(0.5644531f, 0.05852843f, 0.5800781f, 0.08528428f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(190, 18), texture, new Granite.Core.Box2(0.3710938f, 0.03010033f, 0.3847656f, 0.05685619f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(198, 18), texture, new Granite.Core.Box2(0.3867188f, 0.03010033f, 0.4003906f, 0.05685619f)), // º
-                new Glyph(new Granite.Core.Vector2i(298, 35), texture, new Granite.Core.Box2(0.5820313f, 0.05852843f, 0.5976563f, 0.08528428f)), // »
-                new Glyph(new Granite.Core.Vector2i(343, 273), texture, new Granite.Core.Box2(0.6699219f, 0.4565217f, 0.6953125f, 0.4832776f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(357, 273), texture, new Granite.Core.Box2(0.6972656f, 0.4565217f, 0.7226563f, 0.4832776f)), // ½
-                new Glyph(new Granite.Core.Vector2i(371, 273), texture, new Granite.Core.Box2(0.7246094f, 0.4565217f, 0.75f, 0.4832776f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(206, 18), texture, new Granite.Core.Box2(0.4023438f, 0.03010033f, 0.4160156f, 0.05685619f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(111, 205), texture, new Granite.Core.Box2(0.2167969f, 0.3428094f, 0.234375f, 0.3695652f)), // À
-                new Glyph(new Granite.Core.Vector2i(121, 205), texture, new Granite.Core.Box2(0.2363281f, 0.3428094f, 0.2539063f, 0.3695652f)), // Á
-                new Glyph(new Granite.Core.Vector2i(131, 205), texture, new Granite.Core.Box2(0.2558594f, 0.3428094f, 0.2734375f, 0.3695652f)), // Â
-                new Glyph(new Granite.Core.Vector2i(141, 205), texture, new Granite.Core.Box2(0.2753906f, 0.3428094f, 0.2929688f, 0.3695652f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(151, 205), texture, new Granite.Core.Box2(0.2949219f, 0.3428094f, 0.3125f, 0.3695652f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(161, 205), texture, new Granite.Core.Box2(0.3144531f, 0.3428094f, 0.3320313f, 0.3695652f)), // Å
-                new Glyph(new Granite.Core.Vector2i(169, 273), texture, new Granite.Core.Box2(0.3300781f, 0.4565217f, 0.3535156f, 0.4832776f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(171, 205), texture, new Granite.Core.Box2(0.3339844f, 0.3428094f, 0.3515625f, 0.3695652f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(307, 35), texture, new Granite.Core.Box2(0.5996094f, 0.05852843f, 0.6152344f, 0.08528428f)), // È
-                new Glyph(new Granite.Core.Vector2i(316, 35), texture, new Granite.Core.Box2(0.6171875f, 0.05852843f, 0.6328125f, 0.08528428f)), // É
-                new Glyph(new Granite.Core.Vector2i(325, 35), texture, new Granite.Core.Box2(0.6347656f, 0.05852843f, 0.6503906f, 0.08528428f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(334, 35), texture, new Granite.Core.Box2(0.6523438f, 0.05852843f, 0.6679688f, 0.08528428f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(183, 1), texture, new Granite.Core.Box2(0.3574219f, 0.001672241f, 0.3671875f, 0.02842809f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(189, 1), texture, new Granite.Core.Box2(0.3691406f, 0.001672241f, 0.3789063f, 0.02842809f)), // Í
-                new Glyph(new Granite.Core.Vector2i(195, 1), texture, new Granite.Core.Box2(0.3808594f, 0.001672241f, 0.390625f, 0.02842809f)), // Î
-                new Glyph(new Granite.Core.Vector2i(201, 1), texture, new Granite.Core.Box2(0.3925781f, 0.001672241f, 0.4023438f, 0.02842809f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(181, 205), texture, new Granite.Core.Box2(0.3535156f, 0.3428094f, 0.3710938f, 0.3695652f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(191, 205), texture, new Granite.Core.Box2(0.3730469f, 0.3428094f, 0.390625f, 0.3695652f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(384, 239), texture, new Granite.Core.Box2(0.75f, 0.3996656f, 0.7695313f, 0.4264214f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(395, 239), texture, new Granite.Core.Box2(0.7714844f, 0.3996656f, 0.7910156f, 0.4264214f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(406, 239), texture, new Granite.Core.Box2(0.7929688f, 0.3996656f, 0.8125f, 0.4264214f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(417, 239), texture, new Granite.Core.Box2(0.8144531f, 0.3996656f, 0.8339844f, 0.4264214f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(428, 239), texture, new Granite.Core.Box2(0.8359375f, 0.3996656f, 0.8554688f, 0.4264214f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(369, 256), texture, new Granite.Core.Box2(0.7207031f, 0.4280936f, 0.7421875f, 0.4548495f)), // ×
-                new Glyph(new Granite.Core.Vector2i(439, 239), texture, new Granite.Core.Box2(0.8574219f, 0.3996656f, 0.8769531f, 0.4264214f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(201, 205), texture, new Granite.Core.Box2(0.3925781f, 0.3428094f, 0.4101563f, 0.3695652f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(211, 205), texture, new Granite.Core.Box2(0.4121094f, 0.3428094f, 0.4296875f, 0.3695652f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(221, 205), texture, new Granite.Core.Box2(0.4316406f, 0.3428094f, 0.4492188f, 0.3695652f)), // Û
-                new Glyph(new Granite.Core.Vector2i(231, 205), texture, new Granite.Core.Box2(0.4511719f, 0.3428094f, 0.46875f, 0.3695652f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(241, 205), texture, new Granite.Core.Box2(0.4707031f, 0.3428094f, 0.4882813f, 0.3695652f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(343, 35), texture, new Granite.Core.Box2(0.6699219f, 0.05852843f, 0.6855469f, 0.08528428f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(352, 35), texture, new Granite.Core.Box2(0.6875f, 0.05852843f, 0.703125f, 0.08528428f)), // ß
-                new Glyph(new Granite.Core.Vector2i(361, 35), texture, new Granite.Core.Box2(0.7050781f, 0.05852843f, 0.7207031f, 0.08528428f)), // à
-                new Glyph(new Granite.Core.Vector2i(370, 35), texture, new Granite.Core.Box2(0.7226563f, 0.05852843f, 0.7382813f, 0.08528428f)), // á
-                new Glyph(new Granite.Core.Vector2i(379, 35), texture, new Granite.Core.Box2(0.7402344f, 0.05852843f, 0.7558594f, 0.08528428f)), // â
-                new Glyph(new Granite.Core.Vector2i(388, 35), texture, new Granite.Core.Box2(0.7578125f, 0.05852843f, 0.7734375f, 0.08528428f)), // ã
-                new Glyph(new Granite.Core.Vector2i(397, 35), texture, new Granite.Core.Box2(0.7753906f, 0.05852843f, 0.7910156f, 0.08528428f)), // ä
-                new Glyph(new Granite.Core.Vector2i(406, 35), texture, new Granite.Core.Box2(0.7929688f, 0.05852843f, 0.8085938f, 0.08528428f)), // å
-                new Glyph(new Granite.Core.Vector2i(381, 256), texture, new Granite.Core.Box2(0.7441406f, 0.4280936f, 0.765625f, 0.4548495f)), // æ
-                new Glyph(new Granite.Core.Vector2i(415, 35), texture, new Granite.Core.Box2(0.8105469f, 0.05852843f, 0.8261719f, 0.08528428f)), // ç
-                new Glyph(new Granite.Core.Vector2i(424, 35), texture, new Granite.Core.Box2(0.828125f, 0.05852843f, 0.84375f, 0.08528428f)), // è
-                new Glyph(new Granite.Core.Vector2i(433, 35), texture, new Granite.Core.Box2(0.8457031f, 0.05852843f, 0.8613281f, 0.08528428f)), // é
-                new Glyph(new Granite.Core.Vector2i(442, 35), texture, new Granite.Core.Box2(0.8632813f, 0.05852843f, 0.8789063f, 0.08528428f)), // ê
-                new Glyph(new Granite.Core.Vector2i(451, 35), texture, new Granite.Core.Box2(0.8808594f, 0.05852843f, 0.8964844f, 0.08528428f)), // ë
-                new Glyph(new Granite.Core.Vector2i(18, 1), texture, new Granite.Core.Box2(0.03515625f, 0.001672241f, 0.04101563f, 0.02842809f)), // ì
-                new Glyph(new Granite.Core.Vector2i(22, 1), texture, new Granite.Core.Box2(0.04296875f, 0.001672241f, 0.04882813f, 0.02842809f)), // í
-                new Glyph(new Granite.Core.Vector2i(26, 1), texture, new Granite.Core.Box2(0.05078125f, 0.001672241f, 0.05664063f, 0.02842809f)), // î
-                new Glyph(new Granite.Core.Vector2i(30, 1), texture, new Granite.Core.Box2(0.05859375f, 0.001672241f, 0.06445313f, 0.02842809f)), // ï
-                new Glyph(new Granite.Core.Vector2i(460, 35), texture, new Granite.Core.Box2(0.8984375f, 0.05852843f, 0.9140625f, 0.08528428f)), // ð
-                new Glyph(new Granite.Core.Vector2i(469, 35), texture, new Granite.Core.Box2(0.9160156f, 0.05852843f, 0.9316406f, 0.08528428f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(478, 35), texture, new Granite.Core.Box2(0.9335938f, 0.05852843f, 0.9492188f, 0.08528428f)), // ò
-                new Glyph(new Granite.Core.Vector2i(487, 35), texture, new Granite.Core.Box2(0.9511719f, 0.05852843f, 0.9667969f, 0.08528428f)), // ó
-                new Glyph(new Granite.Core.Vector2i(496, 35), texture, new Granite.Core.Box2(0.96875f, 0.05852843f, 0.984375f, 0.08528428f)), // ô
-                new Glyph(new Granite.Core.Vector2i(1, 52), texture, new Granite.Core.Box2(0.001953125f, 0.08695652f, 0.01757813f, 0.1137124f)), // õ
-                new Glyph(new Granite.Core.Vector2i(10, 52), texture, new Granite.Core.Box2(0.01953125f, 0.08695652f, 0.03515625f, 0.1137124f)), // ö
-                new Glyph(new Granite.Core.Vector2i(251, 205), texture, new Granite.Core.Box2(0.4902344f, 0.3428094f, 0.5078125f, 0.3695652f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(19, 52), texture, new Granite.Core.Box2(0.03710938f, 0.08695652f, 0.05273438f, 0.1137124f)), // ø
-                new Glyph(new Granite.Core.Vector2i(28, 52), texture, new Granite.Core.Box2(0.0546875f, 0.08695652f, 0.0703125f, 0.1137124f)), // ù
-                new Glyph(new Granite.Core.Vector2i(37, 52), texture, new Granite.Core.Box2(0.07226563f, 0.08695652f, 0.08789063f, 0.1137124f)), // ú
-                new Glyph(new Granite.Core.Vector2i(46, 52), texture, new Granite.Core.Box2(0.08984375f, 0.08695652f, 0.1054688f, 0.1137124f)), // û
-                new Glyph(new Granite.Core.Vector2i(55, 52), texture, new Granite.Core.Box2(0.1074219f, 0.08695652f, 0.1230469f, 0.1137124f)), // ü
-                new Glyph(new Granite.Core.Vector2i(64, 52), texture, new Granite.Core.Box2(0.125f, 0.08695652f, 0.140625f, 0.1137124f)), // ý
-                new Glyph(new Granite.Core.Vector2i(73, 52), texture, new Granite.Core.Box2(0.1425781f, 0.08695652f, 0.1582031f, 0.1137124f)), // þ
-                new Glyph(new Granite.Core.Vector2i(82, 52), texture, new Granite.Core.Box2(0.1601563f, 0.08695652f, 0.1757813f, 0.1137124f)), // ÿ
-            };
-        }
-        private static Glyph[] GetGlyphs_var_small_bold(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(67, 1), texture, new Granite.Core.Box2(0.1308594f, 0.001672241f, 0.1386719f, 0.02842809f)), //  
-                new Glyph(new Granite.Core.Vector2i(397, 1), texture, new Granite.Core.Box2(0.7753906f, 0.001672241f, 0.7871094f, 0.02842809f)), // !
-                new Glyph(new Granite.Core.Vector2i(214, 18), texture, new Granite.Core.Box2(0.4179688f, 0.03010033f, 0.4316406f, 0.05685619f)), // "
-                new Glyph(new Granite.Core.Vector2i(393, 256), texture, new Granite.Core.Box2(0.7675781f, 0.4280936f, 0.7890625f, 0.4548495f)), // #
-                new Glyph(new Granite.Core.Vector2i(261, 205), texture, new Granite.Core.Box2(0.5097656f, 0.3428094f, 0.5273438f, 0.3695652f)), // $
-                new Glyph(new Granite.Core.Vector2i(109, 290), texture, new Granite.Core.Box2(0.2128906f, 0.4849498f, 0.2460938f, 0.5117057f)), // %
-                new Glyph(new Granite.Core.Vector2i(2, 1), texture, new Granite.Core.Box2(0.00390625f, 0.001672241f, 0.00390625f, 0.02842809f)), // &
-                new Glyph(new Granite.Core.Vector2i(72, 1), texture, new Granite.Core.Box2(0.140625f, 0.001672241f, 0.1484375f, 0.02842809f)), // '
-                new Glyph(new Granite.Core.Vector2i(222, 18), texture, new Granite.Core.Box2(0.4335938f, 0.03010033f, 0.4472656f, 0.05685619f)), // (
-                new Glyph(new Granite.Core.Vector2i(230, 18), texture, new Granite.Core.Box2(0.4492188f, 0.03010033f, 0.4628906f, 0.05685619f)), // )
-                new Glyph(new Granite.Core.Vector2i(271, 205), texture, new Granite.Core.Box2(0.5292969f, 0.3428094f, 0.546875f, 0.3695652f)), // *
-                new Glyph(new Granite.Core.Vector2i(405, 256), texture, new Granite.Core.Box2(0.7910156f, 0.4280936f, 0.8125f, 0.4548495f)), // +
-                new Glyph(new Granite.Core.Vector2i(207, 1), texture, new Granite.Core.Box2(0.4042969f, 0.001672241f, 0.4140625f, 0.02842809f)), // ,
-                new Glyph(new Granite.Core.Vector2i(238, 18), texture, new Granite.Core.Box2(0.4648438f, 0.03010033f, 0.4785156f, 0.05685619f)), // -
-                new Glyph(new Granite.Core.Vector2i(213, 1), texture, new Granite.Core.Box2(0.4160156f, 0.001672241f, 0.4257813f, 0.02842809f)), // .
-                new Glyph(new Granite.Core.Vector2i(281, 205), texture, new Granite.Core.Box2(0.5488281f, 0.3428094f, 0.5664063f, 0.3695652f)), // /
-                new Glyph(new Granite.Core.Vector2i(291, 205), texture, new Granite.Core.Box2(0.5683594f, 0.3428094f, 0.5859375f, 0.3695652f)), // 0
-                new Glyph(new Granite.Core.Vector2i(301, 205), texture, new Granite.Core.Box2(0.5878906f, 0.3428094f, 0.6054688f, 0.3695652f)), // 1
-                new Glyph(new Granite.Core.Vector2i(311, 205), texture, new Granite.Core.Box2(0.6074219f, 0.3428094f, 0.625f, 0.3695652f)), // 2
-                new Glyph(new Granite.Core.Vector2i(321, 205), texture, new Granite.Core.Box2(0.6269531f, 0.3428094f, 0.6445313f, 0.3695652f)), // 3
-                new Glyph(new Granite.Core.Vector2i(331, 205), texture, new Granite.Core.Box2(0.6464844f, 0.3428094f, 0.6640625f, 0.3695652f)), // 4
-                new Glyph(new Granite.Core.Vector2i(341, 205), texture, new Granite.Core.Box2(0.6660156f, 0.3428094f, 0.6835938f, 0.3695652f)), // 5
-                new Glyph(new Granite.Core.Vector2i(351, 205), texture, new Granite.Core.Box2(0.6855469f, 0.3428094f, 0.703125f, 0.3695652f)), // 6
-                new Glyph(new Granite.Core.Vector2i(361, 205), texture, new Granite.Core.Box2(0.7050781f, 0.3428094f, 0.7226563f, 0.3695652f)), // 7
-                new Glyph(new Granite.Core.Vector2i(371, 205), texture, new Granite.Core.Box2(0.7246094f, 0.3428094f, 0.7421875f, 0.3695652f)), // 8
-                new Glyph(new Granite.Core.Vector2i(381, 205), texture, new Granite.Core.Box2(0.7441406f, 0.3428094f, 0.7617188f, 0.3695652f)), // 9
-                new Glyph(new Granite.Core.Vector2i(219, 1), texture, new Granite.Core.Box2(0.4277344f, 0.001672241f, 0.4375f, 0.02842809f)), // :
-                new Glyph(new Granite.Core.Vector2i(225, 1), texture, new Granite.Core.Box2(0.4394531f, 0.001672241f, 0.4492188f, 0.02842809f)), // ;
-                new Glyph(new Granite.Core.Vector2i(417, 256), texture, new Granite.Core.Box2(0.8144531f, 0.4280936f, 0.8359375f, 0.4548495f)), // <
-                new Glyph(new Granite.Core.Vector2i(429, 256), texture, new Granite.Core.Box2(0.8378906f, 0.4280936f, 0.859375f, 0.4548495f)), // =
-                new Glyph(new Granite.Core.Vector2i(441, 256), texture, new Granite.Core.Box2(0.8613281f, 0.4280936f, 0.8828125f, 0.4548495f)), // >
-                new Glyph(new Granite.Core.Vector2i(91, 52), texture, new Granite.Core.Box2(0.1777344f, 0.08695652f, 0.1933594f, 0.1137124f)), // ?
-                new Glyph(new Granite.Core.Vector2i(385, 273), texture, new Granite.Core.Box2(0.7519531f, 0.4565217f, 0.7773438f, 0.4832776f)), // @
-                new Glyph(new Granite.Core.Vector2i(450, 239), texture, new Granite.Core.Box2(0.8789063f, 0.3996656f, 0.8984375f, 0.4264214f)), // A
-                new Glyph(new Granite.Core.Vector2i(461, 239), texture, new Granite.Core.Box2(0.9003906f, 0.3996656f, 0.9199219f, 0.4264214f)), // B
-                new Glyph(new Granite.Core.Vector2i(472, 239), texture, new Granite.Core.Box2(0.921875f, 0.3996656f, 0.9414063f, 0.4264214f)), // C
-                new Glyph(new Granite.Core.Vector2i(483, 239), texture, new Granite.Core.Box2(0.9433594f, 0.3996656f, 0.9628906f, 0.4264214f)), // D
-                new Glyph(new Granite.Core.Vector2i(391, 205), texture, new Granite.Core.Box2(0.7636719f, 0.3428094f, 0.78125f, 0.3695652f)), // E
-                new Glyph(new Granite.Core.Vector2i(401, 205), texture, new Granite.Core.Box2(0.7832031f, 0.3428094f, 0.8007813f, 0.3695652f)), // F
-                new Glyph(new Granite.Core.Vector2i(494, 239), texture, new Granite.Core.Box2(0.9648438f, 0.3996656f, 0.984375f, 0.4264214f)), // G
-                new Glyph(new Granite.Core.Vector2i(453, 256), texture, new Granite.Core.Box2(0.8847656f, 0.4280936f, 0.90625f, 0.4548495f)), // H
-                new Glyph(new Granite.Core.Vector2i(404, 1), texture, new Granite.Core.Box2(0.7890625f, 0.001672241f, 0.8007813f, 0.02842809f)), // I
-                new Glyph(new Granite.Core.Vector2i(246, 18), texture, new Granite.Core.Box2(0.4804688f, 0.03010033f, 0.4941406f, 0.05685619f)), // J
-                new Glyph(new Granite.Core.Vector2i(411, 205), texture, new Granite.Core.Box2(0.8027344f, 0.3428094f, 0.8203125f, 0.3695652f)), // K
-                new Glyph(new Granite.Core.Vector2i(100, 52), texture, new Granite.Core.Box2(0.1953125f, 0.08695652f, 0.2109375f, 0.1137124f)), // L
-                new Glyph(new Granite.Core.Vector2i(182, 273), texture, new Granite.Core.Box2(0.3554688f, 0.4565217f, 0.3789063f, 0.4832776f)), // M
-                new Glyph(new Granite.Core.Vector2i(1, 256), texture, new Granite.Core.Box2(0.001953125f, 0.4280936f, 0.02148438f, 0.4548495f)), // N
-                new Glyph(new Granite.Core.Vector2i(465, 256), texture, new Granite.Core.Box2(0.9082031f, 0.4280936f, 0.9296875f, 0.4548495f)), // O
-                new Glyph(new Granite.Core.Vector2i(421, 205), texture, new Granite.Core.Box2(0.8222656f, 0.3428094f, 0.8398438f, 0.3695652f)), // P
-                new Glyph(new Granite.Core.Vector2i(477, 256), texture, new Granite.Core.Box2(0.9316406f, 0.4280936f, 0.953125f, 0.4548495f)), // Q
-                new Glyph(new Granite.Core.Vector2i(431, 205), texture, new Granite.Core.Box2(0.8417969f, 0.3428094f, 0.859375f, 0.3695652f)), // R
-                new Glyph(new Granite.Core.Vector2i(441, 205), texture, new Granite.Core.Box2(0.8613281f, 0.3428094f, 0.8789063f, 0.3695652f)), // S
-                new Glyph(new Granite.Core.Vector2i(109, 52), texture, new Granite.Core.Box2(0.2128906f, 0.08695652f, 0.2285156f, 0.1137124f)), // T
-                new Glyph(new Granite.Core.Vector2i(12, 256), texture, new Granite.Core.Box2(0.0234375f, 0.4280936f, 0.04296875f, 0.4548495f)), // U
-                new Glyph(new Granite.Core.Vector2i(23, 256), texture, new Granite.Core.Box2(0.04492188f, 0.4280936f, 0.06445313f, 0.4548495f)), // V
-                new Glyph(new Granite.Core.Vector2i(1, 290), texture, new Granite.Core.Box2(0.001953125f, 0.4849498f, 0.02929688f, 0.5117057f)), // W
-                new Glyph(new Granite.Core.Vector2i(34, 256), texture, new Granite.Core.Box2(0.06640625f, 0.4280936f, 0.0859375f, 0.4548495f)), // X
-                new Glyph(new Granite.Core.Vector2i(45, 256), texture, new Granite.Core.Box2(0.08789063f, 0.4280936f, 0.1074219f, 0.4548495f)), // Y
-                new Glyph(new Granite.Core.Vector2i(451, 205), texture, new Granite.Core.Box2(0.8808594f, 0.3428094f, 0.8984375f, 0.3695652f)), // Z
-                new Glyph(new Granite.Core.Vector2i(411, 1), texture, new Granite.Core.Box2(0.8027344f, 0.001672241f, 0.8144531f, 0.02842809f)), // [
-                new Glyph(new Granite.Core.Vector2i(461, 205), texture, new Granite.Core.Box2(0.9003906f, 0.3428094f, 0.9179688f, 0.3695652f)), // \
-                new Glyph(new Granite.Core.Vector2i(418, 1), texture, new Granite.Core.Box2(0.8164063f, 0.001672241f, 0.828125f, 0.02842809f)), // ]
-                new Glyph(new Granite.Core.Vector2i(56, 256), texture, new Granite.Core.Box2(0.109375f, 0.4280936f, 0.1289063f, 0.4548495f)), // ^
-                new Glyph(new Granite.Core.Vector2i(471, 205), texture, new Granite.Core.Box2(0.9199219f, 0.3428094f, 0.9375f, 0.3695652f)), // _
-                new Glyph(new Granite.Core.Vector2i(481, 205), texture, new Granite.Core.Box2(0.9394531f, 0.3428094f, 0.9570313f, 0.3695652f)), // `
-                new Glyph(new Granite.Core.Vector2i(491, 205), texture, new Granite.Core.Box2(0.9589844f, 0.3428094f, 0.9765625f, 0.3695652f)), // a
-                new Glyph(new Granite.Core.Vector2i(501, 205), texture, new Granite.Core.Box2(0.9785156f, 0.3428094f, 0.9960938f, 0.3695652f)), // b
-                new Glyph(new Granite.Core.Vector2i(118, 52), texture, new Granite.Core.Box2(0.2304688f, 0.08695652f, 0.2460938f, 0.1137124f)), // c
-                new Glyph(new Granite.Core.Vector2i(1, 222), texture, new Granite.Core.Box2(0.001953125f, 0.3712375f, 0.01953125f, 0.3979933f)), // d
-                new Glyph(new Granite.Core.Vector2i(11, 222), texture, new Granite.Core.Box2(0.02148438f, 0.3712375f, 0.0390625f, 0.3979933f)), // e
-                new Glyph(new Granite.Core.Vector2i(231, 1), texture, new Granite.Core.Box2(0.4511719f, 0.001672241f, 0.4609375f, 0.02842809f)), // f
-                new Glyph(new Granite.Core.Vector2i(21, 222), texture, new Granite.Core.Box2(0.04101563f, 0.3712375f, 0.05859375f, 0.3979933f)), // g
-                new Glyph(new Granite.Core.Vector2i(31, 222), texture, new Granite.Core.Box2(0.06054688f, 0.3712375f, 0.078125f, 0.3979933f)), // h
-                new Glyph(new Granite.Core.Vector2i(77, 1), texture, new Granite.Core.Box2(0.1503906f, 0.001672241f, 0.1582031f, 0.02842809f)), // i
-                new Glyph(new Granite.Core.Vector2i(237, 1), texture, new Granite.Core.Box2(0.4628906f, 0.001672241f, 0.4726563f, 0.02842809f)), // j
-                new Glyph(new Granite.Core.Vector2i(127, 52), texture, new Granite.Core.Box2(0.2480469f, 0.08695652f, 0.2636719f, 0.1137124f)), // k
-                new Glyph(new Granite.Core.Vector2i(82, 1), texture, new Granite.Core.Box2(0.1601563f, 0.001672241f, 0.1679688f, 0.02842809f)), // l
-                new Glyph(new Granite.Core.Vector2i(16, 290), texture, new Granite.Core.Box2(0.03125f, 0.4849498f, 0.05859375f, 0.5117057f)), // m
-                new Glyph(new Granite.Core.Vector2i(41, 222), texture, new Granite.Core.Box2(0.08007813f, 0.3712375f, 0.09765625f, 0.3979933f)), // n
-                new Glyph(new Granite.Core.Vector2i(51, 222), texture, new Granite.Core.Box2(0.09960938f, 0.3712375f, 0.1171875f, 0.3979933f)), // o
-                new Glyph(new Granite.Core.Vector2i(61, 222), texture, new Granite.Core.Box2(0.1191406f, 0.3712375f, 0.1367188f, 0.3979933f)), // p
-                new Glyph(new Granite.Core.Vector2i(71, 222), texture, new Granite.Core.Box2(0.1386719f, 0.3712375f, 0.15625f, 0.3979933f)), // q
-                new Glyph(new Granite.Core.Vector2i(425, 1), texture, new Granite.Core.Box2(0.8300781f, 0.001672241f, 0.8417969f, 0.02842809f)), // r
-                new Glyph(new Granite.Core.Vector2i(136, 52), texture, new Granite.Core.Box2(0.265625f, 0.08695652f, 0.28125f, 0.1137124f)), // s
-                new Glyph(new Granite.Core.Vector2i(432, 1), texture, new Granite.Core.Box2(0.84375f, 0.001672241f, 0.8554688f, 0.02842809f)), // t
-                new Glyph(new Granite.Core.Vector2i(81, 222), texture, new Granite.Core.Box2(0.1582031f, 0.3712375f, 0.1757813f, 0.3979933f)), // u
-                new Glyph(new Granite.Core.Vector2i(91, 222), texture, new Granite.Core.Box2(0.1777344f, 0.3712375f, 0.1953125f, 0.3979933f)), // v
-                new Glyph(new Granite.Core.Vector2i(195, 273), texture, new Granite.Core.Box2(0.3808594f, 0.4565217f, 0.4042969f, 0.4832776f)), // w
-                new Glyph(new Granite.Core.Vector2i(101, 222), texture, new Granite.Core.Box2(0.1972656f, 0.3712375f, 0.2148438f, 0.3979933f)), // x
-                new Glyph(new Granite.Core.Vector2i(111, 222), texture, new Granite.Core.Box2(0.2167969f, 0.3712375f, 0.234375f, 0.3979933f)), // y
-                new Glyph(new Granite.Core.Vector2i(145, 52), texture, new Granite.Core.Box2(0.2832031f, 0.08695652f, 0.2988281f, 0.1137124f)), // z
-                new Glyph(new Granite.Core.Vector2i(121, 222), texture, new Granite.Core.Box2(0.2363281f, 0.3712375f, 0.2539063f, 0.3979933f)), // {
-                new Glyph(new Granite.Core.Vector2i(154, 52), texture, new Granite.Core.Box2(0.3007813f, 0.08695652f, 0.3164063f, 0.1137124f)), // |
-                new Glyph(new Granite.Core.Vector2i(131, 222), texture, new Granite.Core.Box2(0.2558594f, 0.3712375f, 0.2734375f, 0.3979933f)), // }
-                new Glyph(new Granite.Core.Vector2i(489, 256), texture, new Granite.Core.Box2(0.9550781f, 0.4280936f, 0.9765625f, 0.4548495f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(87, 1), texture, new Granite.Core.Box2(0.1699219f, 0.001672241f, 0.1777344f, 0.02842809f)), //  
-                new Glyph(new Granite.Core.Vector2i(439, 1), texture, new Granite.Core.Box2(0.8574219f, 0.001672241f, 0.8691406f, 0.02842809f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(141, 222), texture, new Granite.Core.Box2(0.2753906f, 0.3712375f, 0.2929688f, 0.3979933f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(151, 222), texture, new Granite.Core.Box2(0.2949219f, 0.3712375f, 0.3125f, 0.3979933f)), // £
-                new Glyph(new Granite.Core.Vector2i(161, 222), texture, new Granite.Core.Box2(0.3144531f, 0.3712375f, 0.3320313f, 0.3979933f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(171, 222), texture, new Granite.Core.Box2(0.3339844f, 0.3712375f, 0.3515625f, 0.3979933f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(163, 52), texture, new Granite.Core.Box2(0.3183594f, 0.08695652f, 0.3339844f, 0.1137124f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(181, 222), texture, new Granite.Core.Box2(0.3535156f, 0.3712375f, 0.3710938f, 0.3979933f)), // §
-                new Glyph(new Granite.Core.Vector2i(191, 222), texture, new Granite.Core.Box2(0.3730469f, 0.3712375f, 0.390625f, 0.3979933f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(208, 273), texture, new Granite.Core.Box2(0.40625f, 0.4565217f, 0.4296875f, 0.4832776f)), // ©
-                new Glyph(new Granite.Core.Vector2i(172, 52), texture, new Granite.Core.Box2(0.3359375f, 0.08695652f, 0.3515625f, 0.1137124f)), // ª
-                new Glyph(new Granite.Core.Vector2i(1, 273), texture, new Granite.Core.Box2(0.001953125f, 0.4565217f, 0.0234375f, 0.4832776f)), // «
-                new Glyph(new Granite.Core.Vector2i(13, 273), texture, new Granite.Core.Box2(0.02539063f, 0.4565217f, 0.046875f, 0.4832776f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(254, 18), texture, new Granite.Core.Box2(0.4960938f, 0.03010033f, 0.5097656f, 0.05685619f)), // ­
-                new Glyph(new Granite.Core.Vector2i(221, 273), texture, new Granite.Core.Box2(0.4316406f, 0.4565217f, 0.4550781f, 0.4832776f)), // ®
-                new Glyph(new Granite.Core.Vector2i(201, 222), texture, new Granite.Core.Box2(0.3925781f, 0.3712375f, 0.4101563f, 0.3979933f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(262, 18), texture, new Granite.Core.Box2(0.5117188f, 0.03010033f, 0.5253906f, 0.05685619f)), // °
-                new Glyph(new Granite.Core.Vector2i(25, 273), texture, new Granite.Core.Box2(0.04882813f, 0.4565217f, 0.0703125f, 0.4832776f)), // ±
-                new Glyph(new Granite.Core.Vector2i(181, 52), texture, new Granite.Core.Box2(0.3535156f, 0.08695652f, 0.3691406f, 0.1137124f)), // ²
-                new Glyph(new Granite.Core.Vector2i(190, 52), texture, new Granite.Core.Box2(0.3710938f, 0.08695652f, 0.3867188f, 0.1137124f)), // ³
-                new Glyph(new Granite.Core.Vector2i(211, 222), texture, new Granite.Core.Box2(0.4121094f, 0.3712375f, 0.4296875f, 0.3979933f)), // ´
-                new Glyph(new Granite.Core.Vector2i(221, 222), texture, new Granite.Core.Box2(0.4316406f, 0.3712375f, 0.4492188f, 0.3979933f)), // µ
-                new Glyph(new Granite.Core.Vector2i(231, 222), texture, new Granite.Core.Box2(0.4511719f, 0.3712375f, 0.46875f, 0.3979933f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(243, 1), texture, new Granite.Core.Box2(0.4746094f, 0.001672241f, 0.484375f, 0.02842809f)), // ·
-                new Glyph(new Granite.Core.Vector2i(241, 222), texture, new Granite.Core.Box2(0.4707031f, 0.3712375f, 0.4882813f, 0.3979933f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(199, 52), texture, new Granite.Core.Box2(0.3886719f, 0.08695652f, 0.4042969f, 0.1137124f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(208, 52), texture, new Granite.Core.Box2(0.40625f, 0.08695652f, 0.421875f, 0.1137124f)), // º
-                new Glyph(new Granite.Core.Vector2i(37, 273), texture, new Granite.Core.Box2(0.07226563f, 0.4565217f, 0.09375f, 0.4832776f)), // »
-                new Glyph(new Granite.Core.Vector2i(61, 290), texture, new Granite.Core.Box2(0.1191406f, 0.4849498f, 0.1484375f, 0.5117057f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(77, 290), texture, new Granite.Core.Box2(0.1503906f, 0.4849498f, 0.1796875f, 0.5117057f)), // ½
-                new Glyph(new Granite.Core.Vector2i(93, 290), texture, new Granite.Core.Box2(0.1816406f, 0.4849498f, 0.2109375f, 0.5117057f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(217, 52), texture, new Granite.Core.Box2(0.4238281f, 0.08695652f, 0.4394531f, 0.1137124f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(67, 256), texture, new Granite.Core.Box2(0.1308594f, 0.4280936f, 0.1503906f, 0.4548495f)), // À
-                new Glyph(new Granite.Core.Vector2i(78, 256), texture, new Granite.Core.Box2(0.1523438f, 0.4280936f, 0.171875f, 0.4548495f)), // Á
-                new Glyph(new Granite.Core.Vector2i(89, 256), texture, new Granite.Core.Box2(0.1738281f, 0.4280936f, 0.1933594f, 0.4548495f)), // Â
-                new Glyph(new Granite.Core.Vector2i(100, 256), texture, new Granite.Core.Box2(0.1953125f, 0.4280936f, 0.2148438f, 0.4548495f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(111, 256), texture, new Granite.Core.Box2(0.2167969f, 0.4280936f, 0.2363281f, 0.4548495f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(122, 256), texture, new Granite.Core.Box2(0.2382813f, 0.4280936f, 0.2578125f, 0.4548495f)), // Å
-                new Glyph(new Granite.Core.Vector2i(31, 290), texture, new Granite.Core.Box2(0.06054688f, 0.4849498f, 0.08789063f, 0.5117057f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(133, 256), texture, new Granite.Core.Box2(0.2597656f, 0.4280936f, 0.2792969f, 0.4548495f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(251, 222), texture, new Granite.Core.Box2(0.4902344f, 0.3712375f, 0.5078125f, 0.3979933f)), // È
-                new Glyph(new Granite.Core.Vector2i(261, 222), texture, new Granite.Core.Box2(0.5097656f, 0.3712375f, 0.5273438f, 0.3979933f)), // É
-                new Glyph(new Granite.Core.Vector2i(271, 222), texture, new Granite.Core.Box2(0.5292969f, 0.3712375f, 0.546875f, 0.3979933f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(281, 222), texture, new Granite.Core.Box2(0.5488281f, 0.3712375f, 0.5664063f, 0.3979933f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(446, 1), texture, new Granite.Core.Box2(0.8710938f, 0.001672241f, 0.8828125f, 0.02842809f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(453, 1), texture, new Granite.Core.Box2(0.8847656f, 0.001672241f, 0.8964844f, 0.02842809f)), // Í
-                new Glyph(new Granite.Core.Vector2i(460, 1), texture, new Granite.Core.Box2(0.8984375f, 0.001672241f, 0.9101563f, 0.02842809f)), // Î
-                new Glyph(new Granite.Core.Vector2i(467, 1), texture, new Granite.Core.Box2(0.9121094f, 0.001672241f, 0.9238281f, 0.02842809f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(144, 256), texture, new Granite.Core.Box2(0.28125f, 0.4280936f, 0.3007813f, 0.4548495f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(155, 256), texture, new Granite.Core.Box2(0.3027344f, 0.4280936f, 0.3222656f, 0.4548495f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(49, 273), texture, new Granite.Core.Box2(0.09570313f, 0.4565217f, 0.1171875f, 0.4832776f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(61, 273), texture, new Granite.Core.Box2(0.1191406f, 0.4565217f, 0.140625f, 0.4832776f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(73, 273), texture, new Granite.Core.Box2(0.1425781f, 0.4565217f, 0.1640625f, 0.4832776f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(85, 273), texture, new Granite.Core.Box2(0.1660156f, 0.4565217f, 0.1875f, 0.4832776f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(97, 273), texture, new Granite.Core.Box2(0.1894531f, 0.4565217f, 0.2109375f, 0.4832776f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(109, 273), texture, new Granite.Core.Box2(0.2128906f, 0.4565217f, 0.234375f, 0.4832776f)), // ×
-                new Glyph(new Granite.Core.Vector2i(121, 273), texture, new Granite.Core.Box2(0.2363281f, 0.4565217f, 0.2578125f, 0.4832776f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(166, 256), texture, new Granite.Core.Box2(0.3242188f, 0.4280936f, 0.34375f, 0.4548495f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(177, 256), texture, new Granite.Core.Box2(0.3457031f, 0.4280936f, 0.3652344f, 0.4548495f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(188, 256), texture, new Granite.Core.Box2(0.3671875f, 0.4280936f, 0.3867188f, 0.4548495f)), // Û
-                new Glyph(new Granite.Core.Vector2i(199, 256), texture, new Granite.Core.Box2(0.3886719f, 0.4280936f, 0.4082031f, 0.4548495f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(210, 256), texture, new Granite.Core.Box2(0.4101563f, 0.4280936f, 0.4296875f, 0.4548495f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(291, 222), texture, new Granite.Core.Box2(0.5683594f, 0.3712375f, 0.5859375f, 0.3979933f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(301, 222), texture, new Granite.Core.Box2(0.5878906f, 0.3712375f, 0.6054688f, 0.3979933f)), // ß
-                new Glyph(new Granite.Core.Vector2i(311, 222), texture, new Granite.Core.Box2(0.6074219f, 0.3712375f, 0.625f, 0.3979933f)), // à
-                new Glyph(new Granite.Core.Vector2i(321, 222), texture, new Granite.Core.Box2(0.6269531f, 0.3712375f, 0.6445313f, 0.3979933f)), // á
-                new Glyph(new Granite.Core.Vector2i(331, 222), texture, new Granite.Core.Box2(0.6464844f, 0.3712375f, 0.6640625f, 0.3979933f)), // â
-                new Glyph(new Granite.Core.Vector2i(341, 222), texture, new Granite.Core.Box2(0.6660156f, 0.3712375f, 0.6835938f, 0.3979933f)), // ã
-                new Glyph(new Granite.Core.Vector2i(351, 222), texture, new Granite.Core.Box2(0.6855469f, 0.3712375f, 0.703125f, 0.3979933f)), // ä
-                new Glyph(new Granite.Core.Vector2i(361, 222), texture, new Granite.Core.Box2(0.7050781f, 0.3712375f, 0.7226563f, 0.3979933f)), // å
-                new Glyph(new Granite.Core.Vector2i(46, 290), texture, new Granite.Core.Box2(0.08984375f, 0.4849498f, 0.1171875f, 0.5117057f)), // æ
-                new Glyph(new Granite.Core.Vector2i(226, 52), texture, new Granite.Core.Box2(0.4414063f, 0.08695652f, 0.4570313f, 0.1137124f)), // ç
-                new Glyph(new Granite.Core.Vector2i(371, 222), texture, new Granite.Core.Box2(0.7246094f, 0.3712375f, 0.7421875f, 0.3979933f)), // è
-                new Glyph(new Granite.Core.Vector2i(381, 222), texture, new Granite.Core.Box2(0.7441406f, 0.3712375f, 0.7617188f, 0.3979933f)), // é
-                new Glyph(new Granite.Core.Vector2i(391, 222), texture, new Granite.Core.Box2(0.7636719f, 0.3712375f, 0.78125f, 0.3979933f)), // ê
-                new Glyph(new Granite.Core.Vector2i(401, 222), texture, new Granite.Core.Box2(0.7832031f, 0.3712375f, 0.8007813f, 0.3979933f)), // ë
-                new Glyph(new Granite.Core.Vector2i(92, 1), texture, new Granite.Core.Box2(0.1796875f, 0.001672241f, 0.1875f, 0.02842809f)), // ì
-                new Glyph(new Granite.Core.Vector2i(97, 1), texture, new Granite.Core.Box2(0.1894531f, 0.001672241f, 0.1972656f, 0.02842809f)), // í
-                new Glyph(new Granite.Core.Vector2i(102, 1), texture, new Granite.Core.Box2(0.1992188f, 0.001672241f, 0.2070313f, 0.02842809f)), // î
-                new Glyph(new Granite.Core.Vector2i(107, 1), texture, new Granite.Core.Box2(0.2089844f, 0.001672241f, 0.2167969f, 0.02842809f)), // ï
-                new Glyph(new Granite.Core.Vector2i(411, 222), texture, new Granite.Core.Box2(0.8027344f, 0.3712375f, 0.8203125f, 0.3979933f)), // ð
-                new Glyph(new Granite.Core.Vector2i(421, 222), texture, new Granite.Core.Box2(0.8222656f, 0.3712375f, 0.8398438f, 0.3979933f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(431, 222), texture, new Granite.Core.Box2(0.8417969f, 0.3712375f, 0.859375f, 0.3979933f)), // ò
-                new Glyph(new Granite.Core.Vector2i(441, 222), texture, new Granite.Core.Box2(0.8613281f, 0.3712375f, 0.8789063f, 0.3979933f)), // ó
-                new Glyph(new Granite.Core.Vector2i(451, 222), texture, new Granite.Core.Box2(0.8808594f, 0.3712375f, 0.8984375f, 0.3979933f)), // ô
-                new Glyph(new Granite.Core.Vector2i(461, 222), texture, new Granite.Core.Box2(0.9003906f, 0.3712375f, 0.9179688f, 0.3979933f)), // õ
-                new Glyph(new Granite.Core.Vector2i(471, 222), texture, new Granite.Core.Box2(0.9199219f, 0.3712375f, 0.9375f, 0.3979933f)), // ö
-                new Glyph(new Granite.Core.Vector2i(133, 273), texture, new Granite.Core.Box2(0.2597656f, 0.4565217f, 0.28125f, 0.4832776f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(481, 222), texture, new Granite.Core.Box2(0.9394531f, 0.3712375f, 0.9570313f, 0.3979933f)), // ø
-                new Glyph(new Granite.Core.Vector2i(491, 222), texture, new Granite.Core.Box2(0.9589844f, 0.3712375f, 0.9765625f, 0.3979933f)), // ù
-                new Glyph(new Granite.Core.Vector2i(501, 222), texture, new Granite.Core.Box2(0.9785156f, 0.3712375f, 0.9960938f, 0.3979933f)), // ú
-                new Glyph(new Granite.Core.Vector2i(1, 239), texture, new Granite.Core.Box2(0.001953125f, 0.3996656f, 0.01953125f, 0.4264214f)), // û
-                new Glyph(new Granite.Core.Vector2i(11, 239), texture, new Granite.Core.Box2(0.02148438f, 0.3996656f, 0.0390625f, 0.4264214f)), // ü
-                new Glyph(new Granite.Core.Vector2i(21, 239), texture, new Granite.Core.Box2(0.04101563f, 0.3996656f, 0.05859375f, 0.4264214f)), // ý
-                new Glyph(new Granite.Core.Vector2i(31, 239), texture, new Granite.Core.Box2(0.06054688f, 0.3996656f, 0.078125f, 0.4264214f)), // þ
-                new Glyph(new Granite.Core.Vector2i(41, 239), texture, new Granite.Core.Box2(0.08007813f, 0.3996656f, 0.09765625f, 0.4264214f)), // ÿ
-            };
-        }
-        private static Glyph[] GetGlyphs_var_small_italic(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(249, 1), texture, new Granite.Core.Box2(0.4863281f, 0.001672241f, 0.4960938f, 0.02842809f)), //  
-                new Glyph(new Granite.Core.Vector2i(255, 1), texture, new Granite.Core.Box2(0.4980469f, 0.001672241f, 0.5078125f, 0.02842809f)), // !
-                new Glyph(new Granite.Core.Vector2i(474, 1), texture, new Granite.Core.Box2(0.9257813f, 0.001672241f, 0.9375f, 0.02842809f)), // "
-                new Glyph(new Granite.Core.Vector2i(51, 239), texture, new Granite.Core.Box2(0.09960938f, 0.3996656f, 0.1171875f, 0.4264214f)), // #
-                new Glyph(new Granite.Core.Vector2i(235, 52), texture, new Granite.Core.Box2(0.4589844f, 0.08695652f, 0.4746094f, 0.1137124f)), // $
-                new Glyph(new Granite.Core.Vector2i(399, 273), texture, new Granite.Core.Box2(0.7792969f, 0.4565217f, 0.8046875f, 0.4832776f)), // %
-                new Glyph(new Granite.Core.Vector2i(3, 1), texture, new Granite.Core.Box2(0.005859375f, 0.001672241f, 0.005859375f, 0.02842809f)), // &
-                new Glyph(new Granite.Core.Vector2i(34, 1), texture, new Granite.Core.Box2(0.06640625f, 0.001672241f, 0.07226563f, 0.02842809f)), // '
-                new Glyph(new Granite.Core.Vector2i(481, 1), texture, new Granite.Core.Box2(0.9394531f, 0.001672241f, 0.9511719f, 0.02842809f)), // (
-                new Glyph(new Granite.Core.Vector2i(488, 1), texture, new Granite.Core.Box2(0.953125f, 0.001672241f, 0.9648438f, 0.02842809f)), // )
-                new Glyph(new Granite.Core.Vector2i(244, 52), texture, new Granite.Core.Box2(0.4765625f, 0.08695652f, 0.4921875f, 0.1137124f)), // *
-                new Glyph(new Granite.Core.Vector2i(61, 239), texture, new Granite.Core.Box2(0.1191406f, 0.3996656f, 0.1367188f, 0.4264214f)), // +
-                new Glyph(new Granite.Core.Vector2i(261, 1), texture, new Granite.Core.Box2(0.5097656f, 0.001672241f, 0.5195313f, 0.02842809f)), // ,
-                new Glyph(new Granite.Core.Vector2i(495, 1), texture, new Granite.Core.Box2(0.9667969f, 0.001672241f, 0.9785156f, 0.02842809f)), // -
-                new Glyph(new Granite.Core.Vector2i(267, 1), texture, new Granite.Core.Box2(0.5214844f, 0.001672241f, 0.53125f, 0.02842809f)), // .
-                new Glyph(new Granite.Core.Vector2i(502, 1), texture, new Granite.Core.Box2(0.9804688f, 0.001672241f, 0.9921875f, 0.02842809f)), // /
-                new Glyph(new Granite.Core.Vector2i(253, 52), texture, new Granite.Core.Box2(0.4941406f, 0.08695652f, 0.5097656f, 0.1137124f)), // 0
-                new Glyph(new Granite.Core.Vector2i(262, 52), texture, new Granite.Core.Box2(0.5117188f, 0.08695652f, 0.5273438f, 0.1137124f)), // 1
-                new Glyph(new Granite.Core.Vector2i(271, 52), texture, new Granite.Core.Box2(0.5292969f, 0.08695652f, 0.5449219f, 0.1137124f)), // 2
-                new Glyph(new Granite.Core.Vector2i(280, 52), texture, new Granite.Core.Box2(0.546875f, 0.08695652f, 0.5625f, 0.1137124f)), // 3
-                new Glyph(new Granite.Core.Vector2i(289, 52), texture, new Granite.Core.Box2(0.5644531f, 0.08695652f, 0.5800781f, 0.1137124f)), // 4
-                new Glyph(new Granite.Core.Vector2i(298, 52), texture, new Granite.Core.Box2(0.5820313f, 0.08695652f, 0.5976563f, 0.1137124f)), // 5
-                new Glyph(new Granite.Core.Vector2i(307, 52), texture, new Granite.Core.Box2(0.5996094f, 0.08695652f, 0.6152344f, 0.1137124f)), // 6
-                new Glyph(new Granite.Core.Vector2i(316, 52), texture, new Granite.Core.Box2(0.6171875f, 0.08695652f, 0.6328125f, 0.1137124f)), // 7
-                new Glyph(new Granite.Core.Vector2i(325, 52), texture, new Granite.Core.Box2(0.6347656f, 0.08695652f, 0.6503906f, 0.1137124f)), // 8
-                new Glyph(new Granite.Core.Vector2i(334, 52), texture, new Granite.Core.Box2(0.6523438f, 0.08695652f, 0.6679688f, 0.1137124f)), // 9
-                new Glyph(new Granite.Core.Vector2i(1, 18), texture, new Granite.Core.Box2(0.001953125f, 0.03010033f, 0.01367188f, 0.05685619f)), // :
-                new Glyph(new Granite.Core.Vector2i(8, 18), texture, new Granite.Core.Box2(0.015625f, 0.03010033f, 0.02734375f, 0.05685619f)), // ;
-                new Glyph(new Granite.Core.Vector2i(71, 239), texture, new Granite.Core.Box2(0.1386719f, 0.3996656f, 0.15625f, 0.4264214f)), // <
-                new Glyph(new Granite.Core.Vector2i(81, 239), texture, new Granite.Core.Box2(0.1582031f, 0.3996656f, 0.1757813f, 0.4264214f)), // =
-                new Glyph(new Granite.Core.Vector2i(91, 239), texture, new Granite.Core.Box2(0.1777344f, 0.3996656f, 0.1953125f, 0.4264214f)), // >
-                new Glyph(new Granite.Core.Vector2i(270, 18), texture, new Granite.Core.Box2(0.5273438f, 0.03010033f, 0.5410156f, 0.05685619f)), // ?
-                new Glyph(new Granite.Core.Vector2i(234, 273), texture, new Granite.Core.Box2(0.4570313f, 0.4565217f, 0.4804688f, 0.4832776f)), // @
-                new Glyph(new Granite.Core.Vector2i(343, 52), texture, new Granite.Core.Box2(0.6699219f, 0.08695652f, 0.6855469f, 0.1137124f)), // A
-                new Glyph(new Granite.Core.Vector2i(352, 52), texture, new Granite.Core.Box2(0.6875f, 0.08695652f, 0.703125f, 0.1137124f)), // B
-                new Glyph(new Granite.Core.Vector2i(101, 239), texture, new Granite.Core.Box2(0.1972656f, 0.3996656f, 0.2148438f, 0.4264214f)), // C
-                new Glyph(new Granite.Core.Vector2i(111, 239), texture, new Granite.Core.Box2(0.2167969f, 0.3996656f, 0.234375f, 0.4264214f)), // D
-                new Glyph(new Granite.Core.Vector2i(361, 52), texture, new Granite.Core.Box2(0.7050781f, 0.08695652f, 0.7207031f, 0.1137124f)), // E
-                new Glyph(new Granite.Core.Vector2i(370, 52), texture, new Granite.Core.Box2(0.7226563f, 0.08695652f, 0.7382813f, 0.1137124f)), // F
-                new Glyph(new Granite.Core.Vector2i(121, 239), texture, new Granite.Core.Box2(0.2363281f, 0.3996656f, 0.2539063f, 0.4264214f)), // G
-                new Glyph(new Granite.Core.Vector2i(131, 239), texture, new Granite.Core.Box2(0.2558594f, 0.3996656f, 0.2734375f, 0.4264214f)), // H
-                new Glyph(new Granite.Core.Vector2i(273, 1), texture, new Granite.Core.Box2(0.5332031f, 0.001672241f, 0.5429688f, 0.02842809f)), // I
-                new Glyph(new Granite.Core.Vector2i(15, 18), texture, new Granite.Core.Box2(0.02929688f, 0.03010033f, 0.04101563f, 0.05685619f)), // J
-                new Glyph(new Granite.Core.Vector2i(379, 52), texture, new Granite.Core.Box2(0.7402344f, 0.08695652f, 0.7558594f, 0.1137124f)), // K
-                new Glyph(new Granite.Core.Vector2i(278, 18), texture, new Granite.Core.Box2(0.5429688f, 0.03010033f, 0.5566406f, 0.05685619f)), // L
-                new Glyph(new Granite.Core.Vector2i(145, 273), texture, new Granite.Core.Box2(0.2832031f, 0.4565217f, 0.3046875f, 0.4832776f)), // M
-                new Glyph(new Granite.Core.Vector2i(141, 239), texture, new Granite.Core.Box2(0.2753906f, 0.3996656f, 0.2929688f, 0.4264214f)), // N
-                new Glyph(new Granite.Core.Vector2i(221, 256), texture, new Granite.Core.Box2(0.4316406f, 0.4280936f, 0.4511719f, 0.4548495f)), // O
-                new Glyph(new Granite.Core.Vector2i(286, 18), texture, new Granite.Core.Box2(0.5585938f, 0.03010033f, 0.5722656f, 0.05685619f)), // P
-                new Glyph(new Granite.Core.Vector2i(232, 256), texture, new Granite.Core.Box2(0.453125f, 0.4280936f, 0.4726563f, 0.4548495f)), // Q
-                new Glyph(new Granite.Core.Vector2i(388, 52), texture, new Granite.Core.Box2(0.7578125f, 0.08695652f, 0.7734375f, 0.1137124f)), // R
-                new Glyph(new Granite.Core.Vector2i(397, 52), texture, new Granite.Core.Box2(0.7753906f, 0.08695652f, 0.7910156f, 0.1137124f)), // S
-                new Glyph(new Granite.Core.Vector2i(151, 239), texture, new Granite.Core.Box2(0.2949219f, 0.3996656f, 0.3125f, 0.4264214f)), // T
-                new Glyph(new Granite.Core.Vector2i(161, 239), texture, new Granite.Core.Box2(0.3144531f, 0.3996656f, 0.3320313f, 0.4264214f)), // U
-                new Glyph(new Granite.Core.Vector2i(171, 239), texture, new Granite.Core.Box2(0.3339844f, 0.3996656f, 0.3515625f, 0.4264214f)), // V
-                new Glyph(new Granite.Core.Vector2i(247, 273), texture, new Granite.Core.Box2(0.4824219f, 0.4565217f, 0.5058594f, 0.4832776f)), // W
-                new Glyph(new Granite.Core.Vector2i(181, 239), texture, new Granite.Core.Box2(0.3535156f, 0.3996656f, 0.3710938f, 0.4264214f)), // X
-                new Glyph(new Granite.Core.Vector2i(191, 239), texture, new Granite.Core.Box2(0.3730469f, 0.3996656f, 0.390625f, 0.4264214f)), // Y
-                new Glyph(new Granite.Core.Vector2i(201, 239), texture, new Granite.Core.Box2(0.3925781f, 0.3996656f, 0.4101563f, 0.4264214f)), // Z
-                new Glyph(new Granite.Core.Vector2i(22, 18), texture, new Granite.Core.Box2(0.04296875f, 0.03010033f, 0.0546875f, 0.05685619f)), // [
-                new Glyph(new Granite.Core.Vector2i(29, 18), texture, new Granite.Core.Box2(0.05664063f, 0.03010033f, 0.06835938f, 0.05685619f)), // \
-                new Glyph(new Granite.Core.Vector2i(36, 18), texture, new Granite.Core.Box2(0.0703125f, 0.03010033f, 0.08203125f, 0.05685619f)), // ]
-                new Glyph(new Granite.Core.Vector2i(211, 239), texture, new Granite.Core.Box2(0.4121094f, 0.3996656f, 0.4296875f, 0.4264214f)), // ^
-                new Glyph(new Granite.Core.Vector2i(406, 52), texture, new Granite.Core.Box2(0.7929688f, 0.08695652f, 0.8085938f, 0.1137124f)), // _
-                new Glyph(new Granite.Core.Vector2i(415, 52), texture, new Granite.Core.Box2(0.8105469f, 0.08695652f, 0.8261719f, 0.1137124f)), // `
-                new Glyph(new Granite.Core.Vector2i(424, 52), texture, new Granite.Core.Box2(0.828125f, 0.08695652f, 0.84375f, 0.1137124f)), // a
-                new Glyph(new Granite.Core.Vector2i(433, 52), texture, new Granite.Core.Box2(0.8457031f, 0.08695652f, 0.8613281f, 0.1137124f)), // b
-                new Glyph(new Granite.Core.Vector2i(442, 52), texture, new Granite.Core.Box2(0.8632813f, 0.08695652f, 0.8789063f, 0.1137124f)), // c
-                new Glyph(new Granite.Core.Vector2i(451, 52), texture, new Granite.Core.Box2(0.8808594f, 0.08695652f, 0.8964844f, 0.1137124f)), // d
-                new Glyph(new Granite.Core.Vector2i(460, 52), texture, new Granite.Core.Box2(0.8984375f, 0.08695652f, 0.9140625f, 0.1137124f)), // e
-                new Glyph(new Granite.Core.Vector2i(279, 1), texture, new Granite.Core.Box2(0.5449219f, 0.001672241f, 0.5546875f, 0.02842809f)), // f
-                new Glyph(new Granite.Core.Vector2i(469, 52), texture, new Granite.Core.Box2(0.9160156f, 0.08695652f, 0.9316406f, 0.1137124f)), // g
-                new Glyph(new Granite.Core.Vector2i(478, 52), texture, new Granite.Core.Box2(0.9335938f, 0.08695652f, 0.9492188f, 0.1137124f)), // h
-                new Glyph(new Granite.Core.Vector2i(38, 1), texture, new Granite.Core.Box2(0.07421875f, 0.001672241f, 0.08007813f, 0.02842809f)), // i
-                new Glyph(new Granite.Core.Vector2i(112, 1), texture, new Granite.Core.Box2(0.21875f, 0.001672241f, 0.2265625f, 0.02842809f)), // j
-                new Glyph(new Granite.Core.Vector2i(294, 18), texture, new Granite.Core.Box2(0.5742188f, 0.03010033f, 0.5878906f, 0.05685619f)), // k
-                new Glyph(new Granite.Core.Vector2i(42, 1), texture, new Granite.Core.Box2(0.08203125f, 0.001672241f, 0.08789063f, 0.02842809f)), // l
-                new Glyph(new Granite.Core.Vector2i(413, 273), texture, new Granite.Core.Box2(0.8066406f, 0.4565217f, 0.8320313f, 0.4832776f)), // m
-                new Glyph(new Granite.Core.Vector2i(487, 52), texture, new Granite.Core.Box2(0.9511719f, 0.08695652f, 0.9667969f, 0.1137124f)), // n
-                new Glyph(new Granite.Core.Vector2i(496, 52), texture, new Granite.Core.Box2(0.96875f, 0.08695652f, 0.984375f, 0.1137124f)), // o
-                new Glyph(new Granite.Core.Vector2i(1, 69), texture, new Granite.Core.Box2(0.001953125f, 0.1153846f, 0.01757813f, 0.1421405f)), // p
-                new Glyph(new Granite.Core.Vector2i(10, 69), texture, new Granite.Core.Box2(0.01953125f, 0.1153846f, 0.03515625f, 0.1421405f)), // q
-                new Glyph(new Granite.Core.Vector2i(43, 18), texture, new Granite.Core.Box2(0.08398438f, 0.03010033f, 0.09570313f, 0.05685619f)), // r
-                new Glyph(new Granite.Core.Vector2i(302, 18), texture, new Granite.Core.Box2(0.5898438f, 0.03010033f, 0.6035156f, 0.05685619f)), // s
-                new Glyph(new Granite.Core.Vector2i(50, 18), texture, new Granite.Core.Box2(0.09765625f, 0.03010033f, 0.109375f, 0.05685619f)), // t
-                new Glyph(new Granite.Core.Vector2i(19, 69), texture, new Granite.Core.Box2(0.03710938f, 0.1153846f, 0.05273438f, 0.1421405f)), // u
-                new Glyph(new Granite.Core.Vector2i(28, 69), texture, new Granite.Core.Box2(0.0546875f, 0.1153846f, 0.0703125f, 0.1421405f)), // v
-                new Glyph(new Granite.Core.Vector2i(157, 273), texture, new Granite.Core.Box2(0.3066406f, 0.4565217f, 0.328125f, 0.4832776f)), // w
-                new Glyph(new Granite.Core.Vector2i(310, 18), texture, new Granite.Core.Box2(0.6054688f, 0.03010033f, 0.6191406f, 0.05685619f)), // x
-                new Glyph(new Granite.Core.Vector2i(37, 69), texture, new Granite.Core.Box2(0.07226563f, 0.1153846f, 0.08789063f, 0.1421405f)), // y
-                new Glyph(new Granite.Core.Vector2i(318, 18), texture, new Granite.Core.Box2(0.6210938f, 0.03010033f, 0.6347656f, 0.05685619f)), // z
-                new Glyph(new Granite.Core.Vector2i(46, 69), texture, new Granite.Core.Box2(0.08984375f, 0.1153846f, 0.1054688f, 0.1421405f)), // {
-                new Glyph(new Granite.Core.Vector2i(57, 18), texture, new Granite.Core.Box2(0.1113281f, 0.03010033f, 0.1230469f, 0.05685619f)), // |
-                new Glyph(new Granite.Core.Vector2i(55, 69), texture, new Granite.Core.Box2(0.1074219f, 0.1153846f, 0.1230469f, 0.1421405f)), // }
-                new Glyph(new Granite.Core.Vector2i(221, 239), texture, new Granite.Core.Box2(0.4316406f, 0.3996656f, 0.4492188f, 0.4264214f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(285, 1), texture, new Granite.Core.Box2(0.5566406f, 0.001672241f, 0.5664063f, 0.02842809f)), //  
-                new Glyph(new Granite.Core.Vector2i(291, 1), texture, new Granite.Core.Box2(0.5683594f, 0.001672241f, 0.578125f, 0.02842809f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(64, 69), texture, new Granite.Core.Box2(0.125f, 0.1153846f, 0.140625f, 0.1421405f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(73, 69), texture, new Granite.Core.Box2(0.1425781f, 0.1153846f, 0.1582031f, 0.1421405f)), // £
-                new Glyph(new Granite.Core.Vector2i(82, 69), texture, new Granite.Core.Box2(0.1601563f, 0.1153846f, 0.1757813f, 0.1421405f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(91, 69), texture, new Granite.Core.Box2(0.1777344f, 0.1153846f, 0.1933594f, 0.1421405f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(64, 18), texture, new Granite.Core.Box2(0.125f, 0.03010033f, 0.1367188f, 0.05685619f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(100, 69), texture, new Granite.Core.Box2(0.1953125f, 0.1153846f, 0.2109375f, 0.1421405f)), // §
-                new Glyph(new Granite.Core.Vector2i(109, 69), texture, new Granite.Core.Box2(0.2128906f, 0.1153846f, 0.2285156f, 0.1421405f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(427, 273), texture, new Granite.Core.Box2(0.8339844f, 0.4565217f, 0.859375f, 0.4832776f)), // ©
-                new Glyph(new Granite.Core.Vector2i(326, 18), texture, new Granite.Core.Box2(0.6367188f, 0.03010033f, 0.6503906f, 0.05685619f)), // ª
-                new Glyph(new Granite.Core.Vector2i(118, 69), texture, new Granite.Core.Box2(0.2304688f, 0.1153846f, 0.2460938f, 0.1421405f)), // «
-                new Glyph(new Granite.Core.Vector2i(231, 239), texture, new Granite.Core.Box2(0.4511719f, 0.3996656f, 0.46875f, 0.4264214f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(71, 18), texture, new Granite.Core.Box2(0.1386719f, 0.03010033f, 0.1503906f, 0.05685619f)), // ­
-                new Glyph(new Granite.Core.Vector2i(441, 273), texture, new Granite.Core.Box2(0.8613281f, 0.4565217f, 0.8867188f, 0.4832776f)), // ®
-                new Glyph(new Granite.Core.Vector2i(127, 69), texture, new Granite.Core.Box2(0.2480469f, 0.1153846f, 0.2636719f, 0.1421405f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(334, 18), texture, new Granite.Core.Box2(0.6523438f, 0.03010033f, 0.6660156f, 0.05685619f)), // °
-                new Glyph(new Granite.Core.Vector2i(241, 239), texture, new Granite.Core.Box2(0.4707031f, 0.3996656f, 0.4882813f, 0.4264214f)), // ±
-                new Glyph(new Granite.Core.Vector2i(342, 18), texture, new Granite.Core.Box2(0.6679688f, 0.03010033f, 0.6816406f, 0.05685619f)), // ²
-                new Glyph(new Granite.Core.Vector2i(350, 18), texture, new Granite.Core.Box2(0.6835938f, 0.03010033f, 0.6972656f, 0.05685619f)), // ³
-                new Glyph(new Granite.Core.Vector2i(136, 69), texture, new Granite.Core.Box2(0.265625f, 0.1153846f, 0.28125f, 0.1421405f)), // ´
-                new Glyph(new Granite.Core.Vector2i(145, 69), texture, new Granite.Core.Box2(0.2832031f, 0.1153846f, 0.2988281f, 0.1421405f)), // µ
-                new Glyph(new Granite.Core.Vector2i(154, 69), texture, new Granite.Core.Box2(0.3007813f, 0.1153846f, 0.3164063f, 0.1421405f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(297, 1), texture, new Granite.Core.Box2(0.5800781f, 0.001672241f, 0.5898438f, 0.02842809f)), // ·
-                new Glyph(new Granite.Core.Vector2i(163, 69), texture, new Granite.Core.Box2(0.3183594f, 0.1153846f, 0.3339844f, 0.1421405f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(358, 18), texture, new Granite.Core.Box2(0.6992188f, 0.03010033f, 0.7128906f, 0.05685619f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(366, 18), texture, new Granite.Core.Box2(0.7148438f, 0.03010033f, 0.7285156f, 0.05685619f)), // º
-                new Glyph(new Granite.Core.Vector2i(172, 69), texture, new Granite.Core.Box2(0.3359375f, 0.1153846f, 0.3515625f, 0.1421405f)), // »
-                new Glyph(new Granite.Core.Vector2i(455, 273), texture, new Granite.Core.Box2(0.8886719f, 0.4565217f, 0.9140625f, 0.4832776f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(469, 273), texture, new Granite.Core.Box2(0.9160156f, 0.4565217f, 0.9414063f, 0.4832776f)), // ½
-                new Glyph(new Granite.Core.Vector2i(483, 273), texture, new Granite.Core.Box2(0.9433594f, 0.4565217f, 0.96875f, 0.4832776f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(374, 18), texture, new Granite.Core.Box2(0.7304688f, 0.03010033f, 0.7441406f, 0.05685619f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(181, 69), texture, new Granite.Core.Box2(0.3535156f, 0.1153846f, 0.3691406f, 0.1421405f)), // À
-                new Glyph(new Granite.Core.Vector2i(190, 69), texture, new Granite.Core.Box2(0.3710938f, 0.1153846f, 0.3867188f, 0.1421405f)), // Á
-                new Glyph(new Granite.Core.Vector2i(199, 69), texture, new Granite.Core.Box2(0.3886719f, 0.1153846f, 0.4042969f, 0.1421405f)), // Â
-                new Glyph(new Granite.Core.Vector2i(208, 69), texture, new Granite.Core.Box2(0.40625f, 0.1153846f, 0.421875f, 0.1421405f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(217, 69), texture, new Granite.Core.Box2(0.4238281f, 0.1153846f, 0.4394531f, 0.1421405f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(226, 69), texture, new Granite.Core.Box2(0.4414063f, 0.1153846f, 0.4570313f, 0.1421405f)), // Å
-                new Glyph(new Granite.Core.Vector2i(497, 273), texture, new Granite.Core.Box2(0.9707031f, 0.4565217f, 0.9960938f, 0.4832776f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(251, 239), texture, new Granite.Core.Box2(0.4902344f, 0.3996656f, 0.5078125f, 0.4264214f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(235, 69), texture, new Granite.Core.Box2(0.4589844f, 0.1153846f, 0.4746094f, 0.1421405f)), // È
-                new Glyph(new Granite.Core.Vector2i(244, 69), texture, new Granite.Core.Box2(0.4765625f, 0.1153846f, 0.4921875f, 0.1421405f)), // É
-                new Glyph(new Granite.Core.Vector2i(253, 69), texture, new Granite.Core.Box2(0.4941406f, 0.1153846f, 0.5097656f, 0.1421405f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(262, 69), texture, new Granite.Core.Box2(0.5117188f, 0.1153846f, 0.5273438f, 0.1421405f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(303, 1), texture, new Granite.Core.Box2(0.5917969f, 0.001672241f, 0.6015625f, 0.02842809f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(309, 1), texture, new Granite.Core.Box2(0.6035156f, 0.001672241f, 0.6132813f, 0.02842809f)), // Í
-                new Glyph(new Granite.Core.Vector2i(315, 1), texture, new Granite.Core.Box2(0.6152344f, 0.001672241f, 0.625f, 0.02842809f)), // Î
-                new Glyph(new Granite.Core.Vector2i(321, 1), texture, new Granite.Core.Box2(0.6269531f, 0.001672241f, 0.6367188f, 0.02842809f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(261, 239), texture, new Granite.Core.Box2(0.5097656f, 0.3996656f, 0.5273438f, 0.4264214f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(271, 239), texture, new Granite.Core.Box2(0.5292969f, 0.3996656f, 0.546875f, 0.4264214f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(243, 256), texture, new Granite.Core.Box2(0.4746094f, 0.4280936f, 0.4941406f, 0.4548495f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(254, 256), texture, new Granite.Core.Box2(0.4960938f, 0.4280936f, 0.515625f, 0.4548495f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(265, 256), texture, new Granite.Core.Box2(0.5175781f, 0.4280936f, 0.5371094f, 0.4548495f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(276, 256), texture, new Granite.Core.Box2(0.5390625f, 0.4280936f, 0.5585938f, 0.4548495f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(287, 256), texture, new Granite.Core.Box2(0.5605469f, 0.4280936f, 0.5800781f, 0.4548495f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(281, 239), texture, new Granite.Core.Box2(0.5488281f, 0.3996656f, 0.5664063f, 0.4264214f)), // ×
-                new Glyph(new Granite.Core.Vector2i(298, 256), texture, new Granite.Core.Box2(0.5820313f, 0.4280936f, 0.6015625f, 0.4548495f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(291, 239), texture, new Granite.Core.Box2(0.5683594f, 0.3996656f, 0.5859375f, 0.4264214f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(301, 239), texture, new Granite.Core.Box2(0.5878906f, 0.3996656f, 0.6054688f, 0.4264214f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(311, 239), texture, new Granite.Core.Box2(0.6074219f, 0.3996656f, 0.625f, 0.4264214f)), // Û
-                new Glyph(new Granite.Core.Vector2i(321, 239), texture, new Granite.Core.Box2(0.6269531f, 0.3996656f, 0.6445313f, 0.4264214f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(331, 239), texture, new Granite.Core.Box2(0.6464844f, 0.3996656f, 0.6640625f, 0.4264214f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(271, 69), texture, new Granite.Core.Box2(0.5292969f, 0.1153846f, 0.5449219f, 0.1421405f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(280, 69), texture, new Granite.Core.Box2(0.546875f, 0.1153846f, 0.5625f, 0.1421405f)), // ß
-                new Glyph(new Granite.Core.Vector2i(289, 69), texture, new Granite.Core.Box2(0.5644531f, 0.1153846f, 0.5800781f, 0.1421405f)), // à
-                new Glyph(new Granite.Core.Vector2i(298, 69), texture, new Granite.Core.Box2(0.5820313f, 0.1153846f, 0.5976563f, 0.1421405f)), // á
-                new Glyph(new Granite.Core.Vector2i(307, 69), texture, new Granite.Core.Box2(0.5996094f, 0.1153846f, 0.6152344f, 0.1421405f)), // â
-                new Glyph(new Granite.Core.Vector2i(316, 69), texture, new Granite.Core.Box2(0.6171875f, 0.1153846f, 0.6328125f, 0.1421405f)), // ã
-                new Glyph(new Granite.Core.Vector2i(325, 69), texture, new Granite.Core.Box2(0.6347656f, 0.1153846f, 0.6503906f, 0.1421405f)), // ä
-                new Glyph(new Granite.Core.Vector2i(334, 69), texture, new Granite.Core.Box2(0.6523438f, 0.1153846f, 0.6679688f, 0.1421405f)), // å
-                new Glyph(new Granite.Core.Vector2i(260, 273), texture, new Granite.Core.Box2(0.5078125f, 0.4565217f, 0.53125f, 0.4832776f)), // æ
-                new Glyph(new Granite.Core.Vector2i(343, 69), texture, new Granite.Core.Box2(0.6699219f, 0.1153846f, 0.6855469f, 0.1421405f)), // ç
-                new Glyph(new Granite.Core.Vector2i(352, 69), texture, new Granite.Core.Box2(0.6875f, 0.1153846f, 0.703125f, 0.1421405f)), // è
-                new Glyph(new Granite.Core.Vector2i(361, 69), texture, new Granite.Core.Box2(0.7050781f, 0.1153846f, 0.7207031f, 0.1421405f)), // é
-                new Glyph(new Granite.Core.Vector2i(370, 69), texture, new Granite.Core.Box2(0.7226563f, 0.1153846f, 0.7382813f, 0.1421405f)), // ê
-                new Glyph(new Granite.Core.Vector2i(379, 69), texture, new Granite.Core.Box2(0.7402344f, 0.1153846f, 0.7558594f, 0.1421405f)), // ë
-                new Glyph(new Granite.Core.Vector2i(46, 1), texture, new Granite.Core.Box2(0.08984375f, 0.001672241f, 0.09570313f, 0.02842809f)), // ì
-                new Glyph(new Granite.Core.Vector2i(50, 1), texture, new Granite.Core.Box2(0.09765625f, 0.001672241f, 0.1035156f, 0.02842809f)), // í
-                new Glyph(new Granite.Core.Vector2i(54, 1), texture, new Granite.Core.Box2(0.1054688f, 0.001672241f, 0.1113281f, 0.02842809f)), // î
-                new Glyph(new Granite.Core.Vector2i(58, 1), texture, new Granite.Core.Box2(0.1132813f, 0.001672241f, 0.1191406f, 0.02842809f)), // ï
-                new Glyph(new Granite.Core.Vector2i(388, 69), texture, new Granite.Core.Box2(0.7578125f, 0.1153846f, 0.7734375f, 0.1421405f)), // ð
-                new Glyph(new Granite.Core.Vector2i(397, 69), texture, new Granite.Core.Box2(0.7753906f, 0.1153846f, 0.7910156f, 0.1421405f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(406, 69), texture, new Granite.Core.Box2(0.7929688f, 0.1153846f, 0.8085938f, 0.1421405f)), // ò
-                new Glyph(new Granite.Core.Vector2i(415, 69), texture, new Granite.Core.Box2(0.8105469f, 0.1153846f, 0.8261719f, 0.1421405f)), // ó
-                new Glyph(new Granite.Core.Vector2i(424, 69), texture, new Granite.Core.Box2(0.828125f, 0.1153846f, 0.84375f, 0.1421405f)), // ô
-                new Glyph(new Granite.Core.Vector2i(433, 69), texture, new Granite.Core.Box2(0.8457031f, 0.1153846f, 0.8613281f, 0.1421405f)), // õ
-                new Glyph(new Granite.Core.Vector2i(442, 69), texture, new Granite.Core.Box2(0.8632813f, 0.1153846f, 0.8789063f, 0.1421405f)), // ö
-                new Glyph(new Granite.Core.Vector2i(341, 239), texture, new Granite.Core.Box2(0.6660156f, 0.3996656f, 0.6835938f, 0.4264214f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(451, 69), texture, new Granite.Core.Box2(0.8808594f, 0.1153846f, 0.8964844f, 0.1421405f)), // ø
-                new Glyph(new Granite.Core.Vector2i(460, 69), texture, new Granite.Core.Box2(0.8984375f, 0.1153846f, 0.9140625f, 0.1421405f)), // ù
-                new Glyph(new Granite.Core.Vector2i(469, 69), texture, new Granite.Core.Box2(0.9160156f, 0.1153846f, 0.9316406f, 0.1421405f)), // ú
-                new Glyph(new Granite.Core.Vector2i(478, 69), texture, new Granite.Core.Box2(0.9335938f, 0.1153846f, 0.9492188f, 0.1421405f)), // û
-                new Glyph(new Granite.Core.Vector2i(487, 69), texture, new Granite.Core.Box2(0.9511719f, 0.1153846f, 0.9667969f, 0.1421405f)), // ü
-                new Glyph(new Granite.Core.Vector2i(496, 69), texture, new Granite.Core.Box2(0.96875f, 0.1153846f, 0.984375f, 0.1421405f)), // ý
-                new Glyph(new Granite.Core.Vector2i(1, 86), texture, new Granite.Core.Box2(0.001953125f, 0.1438127f, 0.01757813f, 0.1705686f)), // þ
-                new Glyph(new Granite.Core.Vector2i(10, 86), texture, new Granite.Core.Box2(0.01953125f, 0.1438127f, 0.03515625f, 0.1705686f)), // ÿ
-            };
-        }
-        private static Glyph[] GetGlyphs_var_big(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(134, 454), texture, new Granite.Core.Box2(0.2617188f, 0.7591973f, 0.2753906f, 0.7976589f)), //  
-                new Glyph(new Granite.Core.Vector2i(142, 454), texture, new Granite.Core.Box2(0.2773438f, 0.7591973f, 0.2910156f, 0.7976589f)), // !
-                new Glyph(new Granite.Core.Vector2i(268, 454), texture, new Granite.Core.Box2(0.5234375f, 0.7591973f, 0.5410156f, 0.7976589f)), // "
-                new Glyph(new Granite.Core.Vector2i(81, 550), texture, new Granite.Core.Box2(0.1582031f, 0.9197325f, 0.1894531f, 0.958194f)), // #
-                new Glyph(new Granite.Core.Vector2i(286, 478), texture, new Granite.Core.Box2(0.5585938f, 0.7993311f, 0.5820313f, 0.8377926f)), // $
-                new Glyph(new Granite.Core.Vector2i(1, 574), texture, new Granite.Core.Box2(0.001953125f, 0.9598662f, 0.04101563f, 0.9983277f)), // %
-                new Glyph(new Granite.Core.Vector2i(85, 454), texture, new Granite.Core.Box2(0.1660156f, 0.7591973f, 0.1660156f, 0.7976589f)), // &
-                new Glyph(new Granite.Core.Vector2i(86, 454), texture, new Granite.Core.Box2(0.1679688f, 0.7591973f, 0.1777344f, 0.7976589f)), // '
-                new Glyph(new Granite.Core.Vector2i(278, 454), texture, new Granite.Core.Box2(0.5429688f, 0.7591973f, 0.5605469f, 0.7976589f)), // (
-                new Glyph(new Granite.Core.Vector2i(288, 454), texture, new Granite.Core.Box2(0.5625f, 0.7591973f, 0.5800781f, 0.7976589f)), // )
-                new Glyph(new Granite.Core.Vector2i(299, 478), texture, new Granite.Core.Box2(0.5839844f, 0.7993311f, 0.6074219f, 0.8377926f)), // *
-                new Glyph(new Granite.Core.Vector2i(98, 550), texture, new Granite.Core.Box2(0.1914063f, 0.9197325f, 0.2226563f, 0.958194f)), // +
-                new Glyph(new Granite.Core.Vector2i(150, 454), texture, new Granite.Core.Box2(0.2929688f, 0.7591973f, 0.3066406f, 0.7976589f)), // ,
-                new Glyph(new Granite.Core.Vector2i(298, 454), texture, new Granite.Core.Box2(0.5820313f, 0.7591973f, 0.5996094f, 0.7976589f)), // -
-                new Glyph(new Granite.Core.Vector2i(158, 454), texture, new Granite.Core.Box2(0.3085938f, 0.7591973f, 0.3222656f, 0.7976589f)), // .
-                new Glyph(new Granite.Core.Vector2i(308, 454), texture, new Granite.Core.Box2(0.6015625f, 0.7591973f, 0.6191406f, 0.7976589f)), // /
-                new Glyph(new Granite.Core.Vector2i(312, 478), texture, new Granite.Core.Box2(0.609375f, 0.7993311f, 0.6328125f, 0.8377926f)), // 0
-                new Glyph(new Granite.Core.Vector2i(325, 478), texture, new Granite.Core.Box2(0.6347656f, 0.7993311f, 0.6582031f, 0.8377926f)), // 1
-                new Glyph(new Granite.Core.Vector2i(338, 478), texture, new Granite.Core.Box2(0.6601563f, 0.7993311f, 0.6835938f, 0.8377926f)), // 2
-                new Glyph(new Granite.Core.Vector2i(351, 478), texture, new Granite.Core.Box2(0.6855469f, 0.7993311f, 0.7089844f, 0.8377926f)), // 3
-                new Glyph(new Granite.Core.Vector2i(364, 478), texture, new Granite.Core.Box2(0.7109375f, 0.7993311f, 0.734375f, 0.8377926f)), // 4
-                new Glyph(new Granite.Core.Vector2i(377, 478), texture, new Granite.Core.Box2(0.7363281f, 0.7993311f, 0.7597656f, 0.8377926f)), // 5
-                new Glyph(new Granite.Core.Vector2i(390, 478), texture, new Granite.Core.Box2(0.7617188f, 0.7993311f, 0.7851563f, 0.8377926f)), // 6
-                new Glyph(new Granite.Core.Vector2i(403, 478), texture, new Granite.Core.Box2(0.7871094f, 0.7993311f, 0.8105469f, 0.8377926f)), // 7
-                new Glyph(new Granite.Core.Vector2i(416, 478), texture, new Granite.Core.Box2(0.8125f, 0.7993311f, 0.8359375f, 0.8377926f)), // 8
-                new Glyph(new Granite.Core.Vector2i(429, 478), texture, new Granite.Core.Box2(0.8378906f, 0.7993311f, 0.8613281f, 0.8377926f)), // 9
-                new Glyph(new Granite.Core.Vector2i(318, 454), texture, new Granite.Core.Box2(0.6210938f, 0.7591973f, 0.6386719f, 0.7976589f)), // :
-                new Glyph(new Granite.Core.Vector2i(328, 454), texture, new Granite.Core.Box2(0.640625f, 0.7591973f, 0.6582031f, 0.7976589f)), // ;
-                new Glyph(new Granite.Core.Vector2i(115, 550), texture, new Granite.Core.Box2(0.2246094f, 0.9197325f, 0.2558594f, 0.958194f)), // <
-                new Glyph(new Granite.Core.Vector2i(132, 550), texture, new Granite.Core.Box2(0.2578125f, 0.9197325f, 0.2890625f, 0.958194f)), // =
-                new Glyph(new Granite.Core.Vector2i(149, 550), texture, new Granite.Core.Box2(0.2910156f, 0.9197325f, 0.3222656f, 0.958194f)), // >
-                new Glyph(new Granite.Core.Vector2i(408, 454), texture, new Granite.Core.Box2(0.796875f, 0.7591973f, 0.8164063f, 0.7976589f)), // ?
-                new Glyph(new Granite.Core.Vector2i(340, 550), texture, new Granite.Core.Box2(0.6640625f, 0.9197325f, 0.7011719f, 0.958194f)), // @
-                new Glyph(new Granite.Core.Vector2i(66, 526), texture, new Granite.Core.Box2(0.1289063f, 0.8795987f, 0.1542969f, 0.9180602f)), // A
-                new Glyph(new Granite.Core.Vector2i(80, 526), texture, new Granite.Core.Box2(0.15625f, 0.8795987f, 0.1816406f, 0.9180602f)), // B
-                new Glyph(new Granite.Core.Vector2i(94, 526), texture, new Granite.Core.Box2(0.1835938f, 0.8795987f, 0.2089844f, 0.9180602f)), // C
-                new Glyph(new Granite.Core.Vector2i(410, 526), texture, new Granite.Core.Box2(0.8007813f, 0.8795987f, 0.8300781f, 0.9180602f)), // D
-                new Glyph(new Granite.Core.Vector2i(442, 478), texture, new Granite.Core.Box2(0.8632813f, 0.7993311f, 0.8867188f, 0.8377926f)), // E
-                new Glyph(new Granite.Core.Vector2i(34, 478), texture, new Granite.Core.Box2(0.06640625f, 0.7993311f, 0.08789063f, 0.8377926f)), // F
-                new Glyph(new Granite.Core.Vector2i(426, 526), texture, new Granite.Core.Box2(0.8320313f, 0.8795987f, 0.8613281f, 0.9180602f)), // G
-                new Glyph(new Granite.Core.Vector2i(290, 526), texture, new Granite.Core.Box2(0.5664063f, 0.8795987f, 0.59375f, 0.9180602f)), // H
-                new Glyph(new Granite.Core.Vector2i(214, 454), texture, new Granite.Core.Box2(0.4179688f, 0.7591973f, 0.4335938f, 0.7976589f)), // I
-                new Glyph(new Granite.Core.Vector2i(338, 454), texture, new Granite.Core.Box2(0.6601563f, 0.7591973f, 0.6777344f, 0.7976589f)), // J
-                new Glyph(new Granite.Core.Vector2i(108, 526), texture, new Granite.Core.Box2(0.2109375f, 0.8795987f, 0.2363281f, 0.9180602f)), // K
-                new Glyph(new Granite.Core.Vector2i(46, 478), texture, new Granite.Core.Box2(0.08984375f, 0.7993311f, 0.1113281f, 0.8377926f)), // L
-                new Glyph(new Granite.Core.Vector2i(166, 550), texture, new Granite.Core.Box2(0.3242188f, 0.9197325f, 0.3554688f, 0.958194f)), // M
-                new Glyph(new Granite.Core.Vector2i(305, 526), texture, new Granite.Core.Box2(0.5957031f, 0.8795987f, 0.6230469f, 0.9180602f)), // N
-                new Glyph(new Granite.Core.Vector2i(442, 526), texture, new Granite.Core.Box2(0.8632813f, 0.8795987f, 0.8925781f, 0.9180602f)), // O
-                new Glyph(new Granite.Core.Vector2i(58, 478), texture, new Granite.Core.Box2(0.1132813f, 0.7993311f, 0.1347656f, 0.8377926f)), // P
-                new Glyph(new Granite.Core.Vector2i(458, 526), texture, new Granite.Core.Box2(0.8945313f, 0.8795987f, 0.9238281f, 0.9180602f)), // Q
-                new Glyph(new Granite.Core.Vector2i(122, 526), texture, new Granite.Core.Box2(0.2382813f, 0.8795987f, 0.2636719f, 0.9180602f)), // R
-                new Glyph(new Granite.Core.Vector2i(136, 526), texture, new Granite.Core.Box2(0.265625f, 0.8795987f, 0.2910156f, 0.9180602f)), // S
-                new Glyph(new Granite.Core.Vector2i(455, 478), texture, new Granite.Core.Box2(0.8886719f, 0.7993311f, 0.9121094f, 0.8377926f)), // T
-                new Glyph(new Granite.Core.Vector2i(320, 526), texture, new Granite.Core.Box2(0.625f, 0.8795987f, 0.6523438f, 0.9180602f)), // U
-                new Glyph(new Granite.Core.Vector2i(150, 526), texture, new Granite.Core.Box2(0.2929688f, 0.8795987f, 0.3183594f, 0.9180602f)), // V
-                new Glyph(new Granite.Core.Vector2i(360, 550), texture, new Granite.Core.Box2(0.703125f, 0.9197325f, 0.7402344f, 0.958194f)), // W
-                new Glyph(new Granite.Core.Vector2i(164, 526), texture, new Granite.Core.Box2(0.3203125f, 0.8795987f, 0.3457031f, 0.9180602f)), // X
-                new Glyph(new Granite.Core.Vector2i(468, 478), texture, new Granite.Core.Box2(0.9140625f, 0.7993311f, 0.9375f, 0.8377926f)), // Y
-                new Glyph(new Granite.Core.Vector2i(178, 526), texture, new Granite.Core.Box2(0.3476563f, 0.8795987f, 0.3730469f, 0.9180602f)), // Z
-                new Glyph(new Granite.Core.Vector2i(348, 454), texture, new Granite.Core.Box2(0.6796875f, 0.7591973f, 0.6972656f, 0.7976589f)), // [
-                new Glyph(new Granite.Core.Vector2i(358, 454), texture, new Granite.Core.Box2(0.6992188f, 0.7591973f, 0.7167969f, 0.7976589f)), // \
-                new Glyph(new Granite.Core.Vector2i(368, 454), texture, new Granite.Core.Box2(0.71875f, 0.7591973f, 0.7363281f, 0.7976589f)), // ]
-                new Glyph(new Granite.Core.Vector2i(183, 550), texture, new Granite.Core.Box2(0.3574219f, 0.9197325f, 0.3886719f, 0.958194f)), // ^
-                new Glyph(new Granite.Core.Vector2i(481, 478), texture, new Granite.Core.Box2(0.9394531f, 0.7993311f, 0.9628906f, 0.8377926f)), // _
-                new Glyph(new Granite.Core.Vector2i(494, 478), texture, new Granite.Core.Box2(0.9648438f, 0.7993311f, 0.9882813f, 0.8377926f)), // `
-                new Glyph(new Granite.Core.Vector2i(70, 478), texture, new Granite.Core.Box2(0.1367188f, 0.7993311f, 0.1582031f, 0.8377926f)), // a
-                new Glyph(new Granite.Core.Vector2i(1, 502), texture, new Granite.Core.Box2(0.001953125f, 0.8394649f, 0.02539063f, 0.8779264f)), // b
-                new Glyph(new Granite.Core.Vector2i(419, 454), texture, new Granite.Core.Box2(0.8183594f, 0.7591973f, 0.8378906f, 0.7976589f)), // c
-                new Glyph(new Granite.Core.Vector2i(14, 502), texture, new Granite.Core.Box2(0.02734375f, 0.8394649f, 0.05078125f, 0.8779264f)), // d
-                new Glyph(new Granite.Core.Vector2i(82, 478), texture, new Granite.Core.Box2(0.1601563f, 0.7993311f, 0.1816406f, 0.8377926f)), // e
-                new Glyph(new Granite.Core.Vector2i(166, 454), texture, new Granite.Core.Box2(0.3242188f, 0.7591973f, 0.3378906f, 0.7976589f)), // f
-                new Glyph(new Granite.Core.Vector2i(27, 502), texture, new Granite.Core.Box2(0.05273438f, 0.8394649f, 0.07617188f, 0.8779264f)), // g
-                new Glyph(new Granite.Core.Vector2i(40, 502), texture, new Granite.Core.Box2(0.078125f, 0.8394649f, 0.1015625f, 0.8779264f)), // h
-                new Glyph(new Granite.Core.Vector2i(92, 454), texture, new Granite.Core.Box2(0.1796875f, 0.7591973f, 0.1914063f, 0.7976589f)), // i
-                new Glyph(new Granite.Core.Vector2i(174, 454), texture, new Granite.Core.Box2(0.3398438f, 0.7591973f, 0.3535156f, 0.7976589f)), // j
-                new Glyph(new Granite.Core.Vector2i(94, 478), texture, new Granite.Core.Box2(0.1835938f, 0.7993311f, 0.2050781f, 0.8377926f)), // k
-                new Glyph(new Granite.Core.Vector2i(99, 454), texture, new Granite.Core.Box2(0.1933594f, 0.7591973f, 0.2050781f, 0.7976589f)), // l
-                new Glyph(new Granite.Core.Vector2i(302, 550), texture, new Granite.Core.Box2(0.5898438f, 0.9197325f, 0.625f, 0.958194f)), // m
-                new Glyph(new Granite.Core.Vector2i(53, 502), texture, new Granite.Core.Box2(0.1035156f, 0.8394649f, 0.1269531f, 0.8779264f)), // n
-                new Glyph(new Granite.Core.Vector2i(66, 502), texture, new Granite.Core.Box2(0.1289063f, 0.8394649f, 0.1523438f, 0.8779264f)), // o
-                new Glyph(new Granite.Core.Vector2i(79, 502), texture, new Granite.Core.Box2(0.1542969f, 0.8394649f, 0.1777344f, 0.8779264f)), // p
-                new Glyph(new Granite.Core.Vector2i(92, 502), texture, new Granite.Core.Box2(0.1796875f, 0.8394649f, 0.203125f, 0.8779264f)), // q
-                new Glyph(new Granite.Core.Vector2i(223, 454), texture, new Granite.Core.Box2(0.4355469f, 0.7591973f, 0.4511719f, 0.7976589f)), // r
-                new Glyph(new Granite.Core.Vector2i(430, 454), texture, new Granite.Core.Box2(0.8398438f, 0.7591973f, 0.859375f, 0.7976589f)), // s
-                new Glyph(new Granite.Core.Vector2i(182, 454), texture, new Granite.Core.Box2(0.3554688f, 0.7591973f, 0.3691406f, 0.7976589f)), // t
-                new Glyph(new Granite.Core.Vector2i(105, 502), texture, new Granite.Core.Box2(0.2050781f, 0.8394649f, 0.2285156f, 0.8779264f)), // u
-                new Glyph(new Granite.Core.Vector2i(106, 478), texture, new Granite.Core.Box2(0.2070313f, 0.7993311f, 0.2285156f, 0.8377926f)), // v
-                new Glyph(new Granite.Core.Vector2i(200, 550), texture, new Granite.Core.Box2(0.390625f, 0.9197325f, 0.421875f, 0.958194f)), // w
-                new Glyph(new Granite.Core.Vector2i(118, 478), texture, new Granite.Core.Box2(0.2304688f, 0.7993311f, 0.2519531f, 0.8377926f)), // x
-                new Glyph(new Granite.Core.Vector2i(130, 478), texture, new Granite.Core.Box2(0.2539063f, 0.7993311f, 0.2753906f, 0.8377926f)), // y
-                new Glyph(new Granite.Core.Vector2i(441, 454), texture, new Granite.Core.Box2(0.8613281f, 0.7591973f, 0.8808594f, 0.7976589f)), // z
-                new Glyph(new Granite.Core.Vector2i(118, 502), texture, new Granite.Core.Box2(0.2304688f, 0.8394649f, 0.2539063f, 0.8779264f)), // {
-                new Glyph(new Granite.Core.Vector2i(378, 454), texture, new Granite.Core.Box2(0.7382813f, 0.7591973f, 0.7558594f, 0.7976589f)), // |
-                new Glyph(new Granite.Core.Vector2i(131, 502), texture, new Granite.Core.Box2(0.2558594f, 0.8394649f, 0.2792969f, 0.8779264f)), // }
-                new Glyph(new Granite.Core.Vector2i(217, 550), texture, new Granite.Core.Box2(0.4238281f, 0.9197325f, 0.4550781f, 0.958194f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(190, 454), texture, new Granite.Core.Box2(0.3710938f, 0.7591973f, 0.3847656f, 0.7976589f)), //  
-                new Glyph(new Granite.Core.Vector2i(198, 454), texture, new Granite.Core.Box2(0.3867188f, 0.7591973f, 0.4003906f, 0.7976589f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(144, 502), texture, new Granite.Core.Box2(0.28125f, 0.8394649f, 0.3046875f, 0.8779264f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(157, 502), texture, new Granite.Core.Box2(0.3066406f, 0.8394649f, 0.3300781f, 0.8779264f)), // £
-                new Glyph(new Granite.Core.Vector2i(170, 502), texture, new Granite.Core.Box2(0.3320313f, 0.8394649f, 0.3554688f, 0.8779264f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(183, 502), texture, new Granite.Core.Box2(0.3574219f, 0.8394649f, 0.3808594f, 0.8779264f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(388, 454), texture, new Granite.Core.Box2(0.7578125f, 0.7591973f, 0.7753906f, 0.7976589f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(196, 502), texture, new Granite.Core.Box2(0.3828125f, 0.8394649f, 0.40625f, 0.8779264f)), // §
-                new Glyph(new Granite.Core.Vector2i(209, 502), texture, new Granite.Core.Box2(0.4082031f, 0.8394649f, 0.4316406f, 0.8779264f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(380, 550), texture, new Granite.Core.Box2(0.7421875f, 0.9197325f, 0.7792969f, 0.958194f)), // ©
-                new Glyph(new Granite.Core.Vector2i(452, 454), texture, new Granite.Core.Box2(0.8828125f, 0.7591973f, 0.9023438f, 0.7976589f)), // ª
-                new Glyph(new Granite.Core.Vector2i(222, 502), texture, new Granite.Core.Box2(0.4335938f, 0.8394649f, 0.4570313f, 0.8779264f)), // «
-                new Glyph(new Granite.Core.Vector2i(234, 550), texture, new Granite.Core.Box2(0.4570313f, 0.9197325f, 0.4882813f, 0.958194f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(398, 454), texture, new Granite.Core.Box2(0.7773438f, 0.7591973f, 0.7949219f, 0.7976589f)), // ­
-                new Glyph(new Granite.Core.Vector2i(400, 550), texture, new Granite.Core.Box2(0.78125f, 0.9197325f, 0.8183594f, 0.958194f)), // ®
-                new Glyph(new Granite.Core.Vector2i(235, 502), texture, new Granite.Core.Box2(0.4589844f, 0.8394649f, 0.4824219f, 0.8779264f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(463, 454), texture, new Granite.Core.Box2(0.9042969f, 0.7591973f, 0.9238281f, 0.7976589f)), // °
-                new Glyph(new Granite.Core.Vector2i(251, 550), texture, new Granite.Core.Box2(0.4902344f, 0.9197325f, 0.5214844f, 0.958194f)), // ±
-                new Glyph(new Granite.Core.Vector2i(474, 454), texture, new Granite.Core.Box2(0.9257813f, 0.7591973f, 0.9453125f, 0.7976589f)), // ²
-                new Glyph(new Granite.Core.Vector2i(485, 454), texture, new Granite.Core.Box2(0.9472656f, 0.7591973f, 0.9667969f, 0.7976589f)), // ³
-                new Glyph(new Granite.Core.Vector2i(248, 502), texture, new Granite.Core.Box2(0.484375f, 0.8394649f, 0.5078125f, 0.8779264f)), // ´
-                new Glyph(new Granite.Core.Vector2i(261, 502), texture, new Granite.Core.Box2(0.5097656f, 0.8394649f, 0.5332031f, 0.8779264f)), // µ
-                new Glyph(new Granite.Core.Vector2i(274, 502), texture, new Granite.Core.Box2(0.5351563f, 0.8394649f, 0.5585938f, 0.8779264f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(206, 454), texture, new Granite.Core.Box2(0.4023438f, 0.7591973f, 0.4160156f, 0.7976589f)), // ·
-                new Glyph(new Granite.Core.Vector2i(287, 502), texture, new Granite.Core.Box2(0.5605469f, 0.8394649f, 0.5839844f, 0.8779264f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(496, 454), texture, new Granite.Core.Box2(0.96875f, 0.7591973f, 0.9882813f, 0.7976589f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(1, 478), texture, new Granite.Core.Box2(0.001953125f, 0.7993311f, 0.02148438f, 0.8377926f)), // º
-                new Glyph(new Granite.Core.Vector2i(300, 502), texture, new Granite.Core.Box2(0.5859375f, 0.8394649f, 0.609375f, 0.8779264f)), // »
-                new Glyph(new Granite.Core.Vector2i(420, 550), texture, new Granite.Core.Box2(0.8203125f, 0.9197325f, 0.8574219f, 0.958194f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(440, 550), texture, new Granite.Core.Box2(0.859375f, 0.9197325f, 0.8964844f, 0.958194f)), // ½
-                new Glyph(new Granite.Core.Vector2i(460, 550), texture, new Granite.Core.Box2(0.8984375f, 0.9197325f, 0.9355469f, 0.958194f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(12, 478), texture, new Granite.Core.Box2(0.0234375f, 0.7993311f, 0.04296875f, 0.8377926f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(192, 526), texture, new Granite.Core.Box2(0.375f, 0.8795987f, 0.4003906f, 0.9180602f)), // À
-                new Glyph(new Granite.Core.Vector2i(206, 526), texture, new Granite.Core.Box2(0.4023438f, 0.8795987f, 0.4277344f, 0.9180602f)), // Á
-                new Glyph(new Granite.Core.Vector2i(220, 526), texture, new Granite.Core.Box2(0.4296875f, 0.8795987f, 0.4550781f, 0.9180602f)), // Â
-                new Glyph(new Granite.Core.Vector2i(234, 526), texture, new Granite.Core.Box2(0.4570313f, 0.8795987f, 0.4824219f, 0.9180602f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(248, 526), texture, new Granite.Core.Box2(0.484375f, 0.8795987f, 0.5097656f, 0.9180602f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(262, 526), texture, new Granite.Core.Box2(0.5117188f, 0.8795987f, 0.5371094f, 0.9180602f)), // Å
-                new Glyph(new Granite.Core.Vector2i(480, 550), texture, new Granite.Core.Box2(0.9375f, 0.9197325f, 0.9746094f, 0.958194f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(276, 526), texture, new Granite.Core.Box2(0.5390625f, 0.8795987f, 0.5644531f, 0.9180602f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(313, 502), texture, new Granite.Core.Box2(0.6113281f, 0.8394649f, 0.6347656f, 0.8779264f)), // È
-                new Glyph(new Granite.Core.Vector2i(326, 502), texture, new Granite.Core.Box2(0.6367188f, 0.8394649f, 0.6601563f, 0.8779264f)), // É
-                new Glyph(new Granite.Core.Vector2i(339, 502), texture, new Granite.Core.Box2(0.6621094f, 0.8394649f, 0.6855469f, 0.8779264f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(352, 502), texture, new Granite.Core.Box2(0.6875f, 0.8394649f, 0.7109375f, 0.8779264f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(232, 454), texture, new Granite.Core.Box2(0.453125f, 0.7591973f, 0.46875f, 0.7976589f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(241, 454), texture, new Granite.Core.Box2(0.4707031f, 0.7591973f, 0.4863281f, 0.7976589f)), // Í
-                new Glyph(new Granite.Core.Vector2i(250, 454), texture, new Granite.Core.Box2(0.4882813f, 0.7591973f, 0.5039063f, 0.7976589f)), // Î
-                new Glyph(new Granite.Core.Vector2i(259, 454), texture, new Granite.Core.Box2(0.5058594f, 0.7591973f, 0.5214844f, 0.7976589f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(474, 526), texture, new Granite.Core.Box2(0.9257813f, 0.8795987f, 0.9550781f, 0.9180602f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(335, 526), texture, new Granite.Core.Box2(0.6542969f, 0.8795987f, 0.6816406f, 0.9180602f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(490, 526), texture, new Granite.Core.Box2(0.9570313f, 0.8795987f, 0.9863281f, 0.9180602f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(1, 550), texture, new Granite.Core.Box2(0.001953125f, 0.9197325f, 0.03125f, 0.958194f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(17, 550), texture, new Granite.Core.Box2(0.03320313f, 0.9197325f, 0.0625f, 0.958194f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(33, 550), texture, new Granite.Core.Box2(0.06445313f, 0.9197325f, 0.09375f, 0.958194f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(49, 550), texture, new Granite.Core.Box2(0.09570313f, 0.9197325f, 0.125f, 0.958194f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(268, 550), texture, new Granite.Core.Box2(0.5234375f, 0.9197325f, 0.5546875f, 0.958194f)), // ×
-                new Glyph(new Granite.Core.Vector2i(65, 550), texture, new Granite.Core.Box2(0.1269531f, 0.9197325f, 0.15625f, 0.958194f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(350, 526), texture, new Granite.Core.Box2(0.6835938f, 0.8795987f, 0.7109375f, 0.9180602f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(365, 526), texture, new Granite.Core.Box2(0.7128906f, 0.8795987f, 0.7402344f, 0.9180602f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(380, 526), texture, new Granite.Core.Box2(0.7421875f, 0.8795987f, 0.7695313f, 0.9180602f)), // Û
-                new Glyph(new Granite.Core.Vector2i(395, 526), texture, new Granite.Core.Box2(0.7714844f, 0.8795987f, 0.7988281f, 0.9180602f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(365, 502), texture, new Granite.Core.Box2(0.7128906f, 0.8394649f, 0.7363281f, 0.8779264f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(378, 502), texture, new Granite.Core.Box2(0.7382813f, 0.8394649f, 0.7617188f, 0.8779264f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(391, 502), texture, new Granite.Core.Box2(0.7636719f, 0.8394649f, 0.7871094f, 0.8779264f)), // ß
-                new Glyph(new Granite.Core.Vector2i(142, 478), texture, new Granite.Core.Box2(0.2773438f, 0.7993311f, 0.2988281f, 0.8377926f)), // à
-                new Glyph(new Granite.Core.Vector2i(154, 478), texture, new Granite.Core.Box2(0.3007813f, 0.7993311f, 0.3222656f, 0.8377926f)), // á
-                new Glyph(new Granite.Core.Vector2i(166, 478), texture, new Granite.Core.Box2(0.3242188f, 0.7993311f, 0.3457031f, 0.8377926f)), // â
-                new Glyph(new Granite.Core.Vector2i(178, 478), texture, new Granite.Core.Box2(0.3476563f, 0.7993311f, 0.3691406f, 0.8377926f)), // ã
-                new Glyph(new Granite.Core.Vector2i(190, 478), texture, new Granite.Core.Box2(0.3710938f, 0.7993311f, 0.3925781f, 0.8377926f)), // ä
-                new Glyph(new Granite.Core.Vector2i(202, 478), texture, new Granite.Core.Box2(0.3945313f, 0.7993311f, 0.4160156f, 0.8377926f)), // å
-                new Glyph(new Granite.Core.Vector2i(321, 550), texture, new Granite.Core.Box2(0.6269531f, 0.9197325f, 0.6621094f, 0.958194f)), // æ
-                new Glyph(new Granite.Core.Vector2i(23, 478), texture, new Granite.Core.Box2(0.04492188f, 0.7993311f, 0.06445313f, 0.8377926f)), // ç
-                new Glyph(new Granite.Core.Vector2i(214, 478), texture, new Granite.Core.Box2(0.4179688f, 0.7993311f, 0.4394531f, 0.8377926f)), // è
-                new Glyph(new Granite.Core.Vector2i(226, 478), texture, new Granite.Core.Box2(0.4414063f, 0.7993311f, 0.4628906f, 0.8377926f)), // é
-                new Glyph(new Granite.Core.Vector2i(238, 478), texture, new Granite.Core.Box2(0.4648438f, 0.7993311f, 0.4863281f, 0.8377926f)), // ê
-                new Glyph(new Granite.Core.Vector2i(250, 478), texture, new Granite.Core.Box2(0.4882813f, 0.7993311f, 0.5097656f, 0.8377926f)), // ë
-                new Glyph(new Granite.Core.Vector2i(106, 454), texture, new Granite.Core.Box2(0.2070313f, 0.7591973f, 0.21875f, 0.7976589f)), // ì
-                new Glyph(new Granite.Core.Vector2i(113, 454), texture, new Granite.Core.Box2(0.2207031f, 0.7591973f, 0.2324219f, 0.7976589f)), // í
-                new Glyph(new Granite.Core.Vector2i(120, 454), texture, new Granite.Core.Box2(0.234375f, 0.7591973f, 0.2460938f, 0.7976589f)), // î
-                new Glyph(new Granite.Core.Vector2i(127, 454), texture, new Granite.Core.Box2(0.2480469f, 0.7591973f, 0.2597656f, 0.7976589f)), // ï
-                new Glyph(new Granite.Core.Vector2i(404, 502), texture, new Granite.Core.Box2(0.7890625f, 0.8394649f, 0.8125f, 0.8779264f)), // ð
-                new Glyph(new Granite.Core.Vector2i(417, 502), texture, new Granite.Core.Box2(0.8144531f, 0.8394649f, 0.8378906f, 0.8779264f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(430, 502), texture, new Granite.Core.Box2(0.8398438f, 0.8394649f, 0.8632813f, 0.8779264f)), // ò
-                new Glyph(new Granite.Core.Vector2i(443, 502), texture, new Granite.Core.Box2(0.8652344f, 0.8394649f, 0.8886719f, 0.8779264f)), // ó
-                new Glyph(new Granite.Core.Vector2i(456, 502), texture, new Granite.Core.Box2(0.890625f, 0.8394649f, 0.9140625f, 0.8779264f)), // ô
-                new Glyph(new Granite.Core.Vector2i(469, 502), texture, new Granite.Core.Box2(0.9160156f, 0.8394649f, 0.9394531f, 0.8779264f)), // õ
-                new Glyph(new Granite.Core.Vector2i(482, 502), texture, new Granite.Core.Box2(0.9414063f, 0.8394649f, 0.9648438f, 0.8779264f)), // ö
-                new Glyph(new Granite.Core.Vector2i(285, 550), texture, new Granite.Core.Box2(0.5566406f, 0.9197325f, 0.5878906f, 0.958194f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(495, 502), texture, new Granite.Core.Box2(0.9667969f, 0.8394649f, 0.9902344f, 0.8779264f)), // ø
-                new Glyph(new Granite.Core.Vector2i(1, 526), texture, new Granite.Core.Box2(0.001953125f, 0.8795987f, 0.02539063f, 0.9180602f)), // ù
-                new Glyph(new Granite.Core.Vector2i(14, 526), texture, new Granite.Core.Box2(0.02734375f, 0.8795987f, 0.05078125f, 0.9180602f)), // ú
-                new Glyph(new Granite.Core.Vector2i(27, 526), texture, new Granite.Core.Box2(0.05273438f, 0.8795987f, 0.07617188f, 0.9180602f)), // û
-                new Glyph(new Granite.Core.Vector2i(40, 526), texture, new Granite.Core.Box2(0.078125f, 0.8795987f, 0.1015625f, 0.9180602f)), // ü
-                new Glyph(new Granite.Core.Vector2i(262, 478), texture, new Granite.Core.Box2(0.5117188f, 0.7993311f, 0.5332031f, 0.8377926f)), // ý
-                new Glyph(new Granite.Core.Vector2i(53, 526), texture, new Granite.Core.Box2(0.1035156f, 0.8795987f, 0.1269531f, 0.9180602f)), // þ
-                new Glyph(new Granite.Core.Vector2i(274, 478), texture, new Granite.Core.Box2(0.5351563f, 0.7993311f, 0.5566406f, 0.8377926f)), // ÿ
-            };
-        }
-        private static Glyph[] GetGlyphs_fix_small(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(19, 86), texture, new Granite.Core.Box2(0.03710938f, 0.1438127f, 0.05273438f, 0.1705686f)), //  
-                new Glyph(new Granite.Core.Vector2i(28, 86), texture, new Granite.Core.Box2(0.0546875f, 0.1438127f, 0.0703125f, 0.1705686f)), // !
-                new Glyph(new Granite.Core.Vector2i(37, 86), texture, new Granite.Core.Box2(0.07226563f, 0.1438127f, 0.08789063f, 0.1705686f)), // "
-                new Glyph(new Granite.Core.Vector2i(46, 86), texture, new Granite.Core.Box2(0.08984375f, 0.1438127f, 0.1054688f, 0.1705686f)), // #
-                new Glyph(new Granite.Core.Vector2i(55, 86), texture, new Granite.Core.Box2(0.1074219f, 0.1438127f, 0.1230469f, 0.1705686f)), // $
-                new Glyph(new Granite.Core.Vector2i(64, 86), texture, new Granite.Core.Box2(0.125f, 0.1438127f, 0.140625f, 0.1705686f)), // %
-                new Glyph(new Granite.Core.Vector2i(4, 1), texture, new Granite.Core.Box2(0.0078125f, 0.001672241f, 0.0078125f, 0.02842809f)), // &
-                new Glyph(new Granite.Core.Vector2i(73, 86), texture, new Granite.Core.Box2(0.1425781f, 0.1438127f, 0.1582031f, 0.1705686f)), // '
-                new Glyph(new Granite.Core.Vector2i(82, 86), texture, new Granite.Core.Box2(0.1601563f, 0.1438127f, 0.1757813f, 0.1705686f)), // (
-                new Glyph(new Granite.Core.Vector2i(91, 86), texture, new Granite.Core.Box2(0.1777344f, 0.1438127f, 0.1933594f, 0.1705686f)), // )
-                new Glyph(new Granite.Core.Vector2i(100, 86), texture, new Granite.Core.Box2(0.1953125f, 0.1438127f, 0.2109375f, 0.1705686f)), // *
-                new Glyph(new Granite.Core.Vector2i(109, 86), texture, new Granite.Core.Box2(0.2128906f, 0.1438127f, 0.2285156f, 0.1705686f)), // +
-                new Glyph(new Granite.Core.Vector2i(118, 86), texture, new Granite.Core.Box2(0.2304688f, 0.1438127f, 0.2460938f, 0.1705686f)), // ,
-                new Glyph(new Granite.Core.Vector2i(127, 86), texture, new Granite.Core.Box2(0.2480469f, 0.1438127f, 0.2636719f, 0.1705686f)), // -
-                new Glyph(new Granite.Core.Vector2i(136, 86), texture, new Granite.Core.Box2(0.265625f, 0.1438127f, 0.28125f, 0.1705686f)), // .
-                new Glyph(new Granite.Core.Vector2i(145, 86), texture, new Granite.Core.Box2(0.2832031f, 0.1438127f, 0.2988281f, 0.1705686f)), // /
-                new Glyph(new Granite.Core.Vector2i(154, 86), texture, new Granite.Core.Box2(0.3007813f, 0.1438127f, 0.3164063f, 0.1705686f)), // 0
-                new Glyph(new Granite.Core.Vector2i(163, 86), texture, new Granite.Core.Box2(0.3183594f, 0.1438127f, 0.3339844f, 0.1705686f)), // 1
-                new Glyph(new Granite.Core.Vector2i(172, 86), texture, new Granite.Core.Box2(0.3359375f, 0.1438127f, 0.3515625f, 0.1705686f)), // 2
-                new Glyph(new Granite.Core.Vector2i(181, 86), texture, new Granite.Core.Box2(0.3535156f, 0.1438127f, 0.3691406f, 0.1705686f)), // 3
-                new Glyph(new Granite.Core.Vector2i(190, 86), texture, new Granite.Core.Box2(0.3710938f, 0.1438127f, 0.3867188f, 0.1705686f)), // 4
-                new Glyph(new Granite.Core.Vector2i(199, 86), texture, new Granite.Core.Box2(0.3886719f, 0.1438127f, 0.4042969f, 0.1705686f)), // 5
-                new Glyph(new Granite.Core.Vector2i(208, 86), texture, new Granite.Core.Box2(0.40625f, 0.1438127f, 0.421875f, 0.1705686f)), // 6
-                new Glyph(new Granite.Core.Vector2i(217, 86), texture, new Granite.Core.Box2(0.4238281f, 0.1438127f, 0.4394531f, 0.1705686f)), // 7
-                new Glyph(new Granite.Core.Vector2i(226, 86), texture, new Granite.Core.Box2(0.4414063f, 0.1438127f, 0.4570313f, 0.1705686f)), // 8
-                new Glyph(new Granite.Core.Vector2i(235, 86), texture, new Granite.Core.Box2(0.4589844f, 0.1438127f, 0.4746094f, 0.1705686f)), // 9
-                new Glyph(new Granite.Core.Vector2i(244, 86), texture, new Granite.Core.Box2(0.4765625f, 0.1438127f, 0.4921875f, 0.1705686f)), // :
-                new Glyph(new Granite.Core.Vector2i(253, 86), texture, new Granite.Core.Box2(0.4941406f, 0.1438127f, 0.5097656f, 0.1705686f)), // ;
-                new Glyph(new Granite.Core.Vector2i(262, 86), texture, new Granite.Core.Box2(0.5117188f, 0.1438127f, 0.5273438f, 0.1705686f)), // <
-                new Glyph(new Granite.Core.Vector2i(271, 86), texture, new Granite.Core.Box2(0.5292969f, 0.1438127f, 0.5449219f, 0.1705686f)), // =
-                new Glyph(new Granite.Core.Vector2i(280, 86), texture, new Granite.Core.Box2(0.546875f, 0.1438127f, 0.5625f, 0.1705686f)), // >
-                new Glyph(new Granite.Core.Vector2i(289, 86), texture, new Granite.Core.Box2(0.5644531f, 0.1438127f, 0.5800781f, 0.1705686f)), // ?
-                new Glyph(new Granite.Core.Vector2i(298, 86), texture, new Granite.Core.Box2(0.5820313f, 0.1438127f, 0.5976563f, 0.1705686f)), // @
-                new Glyph(new Granite.Core.Vector2i(307, 86), texture, new Granite.Core.Box2(0.5996094f, 0.1438127f, 0.6152344f, 0.1705686f)), // A
-                new Glyph(new Granite.Core.Vector2i(316, 86), texture, new Granite.Core.Box2(0.6171875f, 0.1438127f, 0.6328125f, 0.1705686f)), // B
-                new Glyph(new Granite.Core.Vector2i(325, 86), texture, new Granite.Core.Box2(0.6347656f, 0.1438127f, 0.6503906f, 0.1705686f)), // C
-                new Glyph(new Granite.Core.Vector2i(334, 86), texture, new Granite.Core.Box2(0.6523438f, 0.1438127f, 0.6679688f, 0.1705686f)), // D
-                new Glyph(new Granite.Core.Vector2i(343, 86), texture, new Granite.Core.Box2(0.6699219f, 0.1438127f, 0.6855469f, 0.1705686f)), // E
-                new Glyph(new Granite.Core.Vector2i(352, 86), texture, new Granite.Core.Box2(0.6875f, 0.1438127f, 0.703125f, 0.1705686f)), // F
-                new Glyph(new Granite.Core.Vector2i(361, 86), texture, new Granite.Core.Box2(0.7050781f, 0.1438127f, 0.7207031f, 0.1705686f)), // G
-                new Glyph(new Granite.Core.Vector2i(370, 86), texture, new Granite.Core.Box2(0.7226563f, 0.1438127f, 0.7382813f, 0.1705686f)), // H
-                new Glyph(new Granite.Core.Vector2i(379, 86), texture, new Granite.Core.Box2(0.7402344f, 0.1438127f, 0.7558594f, 0.1705686f)), // I
-                new Glyph(new Granite.Core.Vector2i(388, 86), texture, new Granite.Core.Box2(0.7578125f, 0.1438127f, 0.7734375f, 0.1705686f)), // J
-                new Glyph(new Granite.Core.Vector2i(397, 86), texture, new Granite.Core.Box2(0.7753906f, 0.1438127f, 0.7910156f, 0.1705686f)), // K
-                new Glyph(new Granite.Core.Vector2i(406, 86), texture, new Granite.Core.Box2(0.7929688f, 0.1438127f, 0.8085938f, 0.1705686f)), // L
-                new Glyph(new Granite.Core.Vector2i(415, 86), texture, new Granite.Core.Box2(0.8105469f, 0.1438127f, 0.8261719f, 0.1705686f)), // M
-                new Glyph(new Granite.Core.Vector2i(424, 86), texture, new Granite.Core.Box2(0.828125f, 0.1438127f, 0.84375f, 0.1705686f)), // N
-                new Glyph(new Granite.Core.Vector2i(433, 86), texture, new Granite.Core.Box2(0.8457031f, 0.1438127f, 0.8613281f, 0.1705686f)), // O
-                new Glyph(new Granite.Core.Vector2i(442, 86), texture, new Granite.Core.Box2(0.8632813f, 0.1438127f, 0.8789063f, 0.1705686f)), // P
-                new Glyph(new Granite.Core.Vector2i(451, 86), texture, new Granite.Core.Box2(0.8808594f, 0.1438127f, 0.8964844f, 0.1705686f)), // Q
-                new Glyph(new Granite.Core.Vector2i(460, 86), texture, new Granite.Core.Box2(0.8984375f, 0.1438127f, 0.9140625f, 0.1705686f)), // R
-                new Glyph(new Granite.Core.Vector2i(469, 86), texture, new Granite.Core.Box2(0.9160156f, 0.1438127f, 0.9316406f, 0.1705686f)), // S
-                new Glyph(new Granite.Core.Vector2i(478, 86), texture, new Granite.Core.Box2(0.9335938f, 0.1438127f, 0.9492188f, 0.1705686f)), // T
-                new Glyph(new Granite.Core.Vector2i(487, 86), texture, new Granite.Core.Box2(0.9511719f, 0.1438127f, 0.9667969f, 0.1705686f)), // U
-                new Glyph(new Granite.Core.Vector2i(496, 86), texture, new Granite.Core.Box2(0.96875f, 0.1438127f, 0.984375f, 0.1705686f)), // V
-                new Glyph(new Granite.Core.Vector2i(1, 103), texture, new Granite.Core.Box2(0.001953125f, 0.1722408f, 0.01757813f, 0.1989966f)), // W
-                new Glyph(new Granite.Core.Vector2i(10, 103), texture, new Granite.Core.Box2(0.01953125f, 0.1722408f, 0.03515625f, 0.1989966f)), // X
-                new Glyph(new Granite.Core.Vector2i(19, 103), texture, new Granite.Core.Box2(0.03710938f, 0.1722408f, 0.05273438f, 0.1989966f)), // Y
-                new Glyph(new Granite.Core.Vector2i(28, 103), texture, new Granite.Core.Box2(0.0546875f, 0.1722408f, 0.0703125f, 0.1989966f)), // Z
-                new Glyph(new Granite.Core.Vector2i(37, 103), texture, new Granite.Core.Box2(0.07226563f, 0.1722408f, 0.08789063f, 0.1989966f)), // [
-                new Glyph(new Granite.Core.Vector2i(46, 103), texture, new Granite.Core.Box2(0.08984375f, 0.1722408f, 0.1054688f, 0.1989966f)), // \
-                new Glyph(new Granite.Core.Vector2i(55, 103), texture, new Granite.Core.Box2(0.1074219f, 0.1722408f, 0.1230469f, 0.1989966f)), // ]
-                new Glyph(new Granite.Core.Vector2i(64, 103), texture, new Granite.Core.Box2(0.125f, 0.1722408f, 0.140625f, 0.1989966f)), // ^
-                new Glyph(new Granite.Core.Vector2i(73, 103), texture, new Granite.Core.Box2(0.1425781f, 0.1722408f, 0.1582031f, 0.1989966f)), // _
-                new Glyph(new Granite.Core.Vector2i(82, 103), texture, new Granite.Core.Box2(0.1601563f, 0.1722408f, 0.1757813f, 0.1989966f)), // `
-                new Glyph(new Granite.Core.Vector2i(91, 103), texture, new Granite.Core.Box2(0.1777344f, 0.1722408f, 0.1933594f, 0.1989966f)), // a
-                new Glyph(new Granite.Core.Vector2i(100, 103), texture, new Granite.Core.Box2(0.1953125f, 0.1722408f, 0.2109375f, 0.1989966f)), // b
-                new Glyph(new Granite.Core.Vector2i(109, 103), texture, new Granite.Core.Box2(0.2128906f, 0.1722408f, 0.2285156f, 0.1989966f)), // c
-                new Glyph(new Granite.Core.Vector2i(118, 103), texture, new Granite.Core.Box2(0.2304688f, 0.1722408f, 0.2460938f, 0.1989966f)), // d
-                new Glyph(new Granite.Core.Vector2i(127, 103), texture, new Granite.Core.Box2(0.2480469f, 0.1722408f, 0.2636719f, 0.1989966f)), // e
-                new Glyph(new Granite.Core.Vector2i(136, 103), texture, new Granite.Core.Box2(0.265625f, 0.1722408f, 0.28125f, 0.1989966f)), // f
-                new Glyph(new Granite.Core.Vector2i(145, 103), texture, new Granite.Core.Box2(0.2832031f, 0.1722408f, 0.2988281f, 0.1989966f)), // g
-                new Glyph(new Granite.Core.Vector2i(154, 103), texture, new Granite.Core.Box2(0.3007813f, 0.1722408f, 0.3164063f, 0.1989966f)), // h
-                new Glyph(new Granite.Core.Vector2i(163, 103), texture, new Granite.Core.Box2(0.3183594f, 0.1722408f, 0.3339844f, 0.1989966f)), // i
-                new Glyph(new Granite.Core.Vector2i(172, 103), texture, new Granite.Core.Box2(0.3359375f, 0.1722408f, 0.3515625f, 0.1989966f)), // j
-                new Glyph(new Granite.Core.Vector2i(181, 103), texture, new Granite.Core.Box2(0.3535156f, 0.1722408f, 0.3691406f, 0.1989966f)), // k
-                new Glyph(new Granite.Core.Vector2i(190, 103), texture, new Granite.Core.Box2(0.3710938f, 0.1722408f, 0.3867188f, 0.1989966f)), // l
-                new Glyph(new Granite.Core.Vector2i(199, 103), texture, new Granite.Core.Box2(0.3886719f, 0.1722408f, 0.4042969f, 0.1989966f)), // m
-                new Glyph(new Granite.Core.Vector2i(208, 103), texture, new Granite.Core.Box2(0.40625f, 0.1722408f, 0.421875f, 0.1989966f)), // n
-                new Glyph(new Granite.Core.Vector2i(217, 103), texture, new Granite.Core.Box2(0.4238281f, 0.1722408f, 0.4394531f, 0.1989966f)), // o
-                new Glyph(new Granite.Core.Vector2i(226, 103), texture, new Granite.Core.Box2(0.4414063f, 0.1722408f, 0.4570313f, 0.1989966f)), // p
-                new Glyph(new Granite.Core.Vector2i(235, 103), texture, new Granite.Core.Box2(0.4589844f, 0.1722408f, 0.4746094f, 0.1989966f)), // q
-                new Glyph(new Granite.Core.Vector2i(244, 103), texture, new Granite.Core.Box2(0.4765625f, 0.1722408f, 0.4921875f, 0.1989966f)), // r
-                new Glyph(new Granite.Core.Vector2i(253, 103), texture, new Granite.Core.Box2(0.4941406f, 0.1722408f, 0.5097656f, 0.1989966f)), // s
-                new Glyph(new Granite.Core.Vector2i(262, 103), texture, new Granite.Core.Box2(0.5117188f, 0.1722408f, 0.5273438f, 0.1989966f)), // t
-                new Glyph(new Granite.Core.Vector2i(271, 103), texture, new Granite.Core.Box2(0.5292969f, 0.1722408f, 0.5449219f, 0.1989966f)), // u
-                new Glyph(new Granite.Core.Vector2i(280, 103), texture, new Granite.Core.Box2(0.546875f, 0.1722408f, 0.5625f, 0.1989966f)), // v
-                new Glyph(new Granite.Core.Vector2i(289, 103), texture, new Granite.Core.Box2(0.5644531f, 0.1722408f, 0.5800781f, 0.1989966f)), // w
-                new Glyph(new Granite.Core.Vector2i(298, 103), texture, new Granite.Core.Box2(0.5820313f, 0.1722408f, 0.5976563f, 0.1989966f)), // x
-                new Glyph(new Granite.Core.Vector2i(307, 103), texture, new Granite.Core.Box2(0.5996094f, 0.1722408f, 0.6152344f, 0.1989966f)), // y
-                new Glyph(new Granite.Core.Vector2i(316, 103), texture, new Granite.Core.Box2(0.6171875f, 0.1722408f, 0.6328125f, 0.1989966f)), // z
-                new Glyph(new Granite.Core.Vector2i(325, 103), texture, new Granite.Core.Box2(0.6347656f, 0.1722408f, 0.6503906f, 0.1989966f)), // {
-                new Glyph(new Granite.Core.Vector2i(334, 103), texture, new Granite.Core.Box2(0.6523438f, 0.1722408f, 0.6679688f, 0.1989966f)), // |
-                new Glyph(new Granite.Core.Vector2i(343, 103), texture, new Granite.Core.Box2(0.6699219f, 0.1722408f, 0.6855469f, 0.1989966f)), // }
-                new Glyph(new Granite.Core.Vector2i(352, 103), texture, new Granite.Core.Box2(0.6875f, 0.1722408f, 0.703125f, 0.1989966f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(361, 103), texture, new Granite.Core.Box2(0.7050781f, 0.1722408f, 0.7207031f, 0.1989966f)), //  
-                new Glyph(new Granite.Core.Vector2i(370, 103), texture, new Granite.Core.Box2(0.7226563f, 0.1722408f, 0.7382813f, 0.1989966f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(379, 103), texture, new Granite.Core.Box2(0.7402344f, 0.1722408f, 0.7558594f, 0.1989966f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(388, 103), texture, new Granite.Core.Box2(0.7578125f, 0.1722408f, 0.7734375f, 0.1989966f)), // £
-                new Glyph(new Granite.Core.Vector2i(397, 103), texture, new Granite.Core.Box2(0.7753906f, 0.1722408f, 0.7910156f, 0.1989966f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(406, 103), texture, new Granite.Core.Box2(0.7929688f, 0.1722408f, 0.8085938f, 0.1989966f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(415, 103), texture, new Granite.Core.Box2(0.8105469f, 0.1722408f, 0.8261719f, 0.1989966f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(424, 103), texture, new Granite.Core.Box2(0.828125f, 0.1722408f, 0.84375f, 0.1989966f)), // §
-                new Glyph(new Granite.Core.Vector2i(433, 103), texture, new Granite.Core.Box2(0.8457031f, 0.1722408f, 0.8613281f, 0.1989966f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(442, 103), texture, new Granite.Core.Box2(0.8632813f, 0.1722408f, 0.8789063f, 0.1989966f)), // ©
-                new Glyph(new Granite.Core.Vector2i(451, 103), texture, new Granite.Core.Box2(0.8808594f, 0.1722408f, 0.8964844f, 0.1989966f)), // ª
-                new Glyph(new Granite.Core.Vector2i(460, 103), texture, new Granite.Core.Box2(0.8984375f, 0.1722408f, 0.9140625f, 0.1989966f)), // «
-                new Glyph(new Granite.Core.Vector2i(469, 103), texture, new Granite.Core.Box2(0.9160156f, 0.1722408f, 0.9316406f, 0.1989966f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(478, 103), texture, new Granite.Core.Box2(0.9335938f, 0.1722408f, 0.9492188f, 0.1989966f)), // ­
-                new Glyph(new Granite.Core.Vector2i(487, 103), texture, new Granite.Core.Box2(0.9511719f, 0.1722408f, 0.9667969f, 0.1989966f)), // ®
-                new Glyph(new Granite.Core.Vector2i(496, 103), texture, new Granite.Core.Box2(0.96875f, 0.1722408f, 0.984375f, 0.1989966f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(1, 120), texture, new Granite.Core.Box2(0.001953125f, 0.2006689f, 0.01757813f, 0.2274248f)), // °
-                new Glyph(new Granite.Core.Vector2i(10, 120), texture, new Granite.Core.Box2(0.01953125f, 0.2006689f, 0.03515625f, 0.2274248f)), // ±
-                new Glyph(new Granite.Core.Vector2i(19, 120), texture, new Granite.Core.Box2(0.03710938f, 0.2006689f, 0.05273438f, 0.2274248f)), // ²
-                new Glyph(new Granite.Core.Vector2i(28, 120), texture, new Granite.Core.Box2(0.0546875f, 0.2006689f, 0.0703125f, 0.2274248f)), // ³
-                new Glyph(new Granite.Core.Vector2i(37, 120), texture, new Granite.Core.Box2(0.07226563f, 0.2006689f, 0.08789063f, 0.2274248f)), // ´
-                new Glyph(new Granite.Core.Vector2i(46, 120), texture, new Granite.Core.Box2(0.08984375f, 0.2006689f, 0.1054688f, 0.2274248f)), // µ
-                new Glyph(new Granite.Core.Vector2i(55, 120), texture, new Granite.Core.Box2(0.1074219f, 0.2006689f, 0.1230469f, 0.2274248f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(64, 120), texture, new Granite.Core.Box2(0.125f, 0.2006689f, 0.140625f, 0.2274248f)), // ·
-                new Glyph(new Granite.Core.Vector2i(73, 120), texture, new Granite.Core.Box2(0.1425781f, 0.2006689f, 0.1582031f, 0.2274248f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(82, 120), texture, new Granite.Core.Box2(0.1601563f, 0.2006689f, 0.1757813f, 0.2274248f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(91, 120), texture, new Granite.Core.Box2(0.1777344f, 0.2006689f, 0.1933594f, 0.2274248f)), // º
-                new Glyph(new Granite.Core.Vector2i(100, 120), texture, new Granite.Core.Box2(0.1953125f, 0.2006689f, 0.2109375f, 0.2274248f)), // »
-                new Glyph(new Granite.Core.Vector2i(109, 120), texture, new Granite.Core.Box2(0.2128906f, 0.2006689f, 0.2285156f, 0.2274248f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(118, 120), texture, new Granite.Core.Box2(0.2304688f, 0.2006689f, 0.2460938f, 0.2274248f)), // ½
-                new Glyph(new Granite.Core.Vector2i(127, 120), texture, new Granite.Core.Box2(0.2480469f, 0.2006689f, 0.2636719f, 0.2274248f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(136, 120), texture, new Granite.Core.Box2(0.265625f, 0.2006689f, 0.28125f, 0.2274248f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(145, 120), texture, new Granite.Core.Box2(0.2832031f, 0.2006689f, 0.2988281f, 0.2274248f)), // À
-                new Glyph(new Granite.Core.Vector2i(154, 120), texture, new Granite.Core.Box2(0.3007813f, 0.2006689f, 0.3164063f, 0.2274248f)), // Á
-                new Glyph(new Granite.Core.Vector2i(163, 120), texture, new Granite.Core.Box2(0.3183594f, 0.2006689f, 0.3339844f, 0.2274248f)), // Â
-                new Glyph(new Granite.Core.Vector2i(172, 120), texture, new Granite.Core.Box2(0.3359375f, 0.2006689f, 0.3515625f, 0.2274248f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(181, 120), texture, new Granite.Core.Box2(0.3535156f, 0.2006689f, 0.3691406f, 0.2274248f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(190, 120), texture, new Granite.Core.Box2(0.3710938f, 0.2006689f, 0.3867188f, 0.2274248f)), // Å
-                new Glyph(new Granite.Core.Vector2i(199, 120), texture, new Granite.Core.Box2(0.3886719f, 0.2006689f, 0.4042969f, 0.2274248f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(208, 120), texture, new Granite.Core.Box2(0.40625f, 0.2006689f, 0.421875f, 0.2274248f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(217, 120), texture, new Granite.Core.Box2(0.4238281f, 0.2006689f, 0.4394531f, 0.2274248f)), // È
-                new Glyph(new Granite.Core.Vector2i(226, 120), texture, new Granite.Core.Box2(0.4414063f, 0.2006689f, 0.4570313f, 0.2274248f)), // É
-                new Glyph(new Granite.Core.Vector2i(235, 120), texture, new Granite.Core.Box2(0.4589844f, 0.2006689f, 0.4746094f, 0.2274248f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(244, 120), texture, new Granite.Core.Box2(0.4765625f, 0.2006689f, 0.4921875f, 0.2274248f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(253, 120), texture, new Granite.Core.Box2(0.4941406f, 0.2006689f, 0.5097656f, 0.2274248f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(262, 120), texture, new Granite.Core.Box2(0.5117188f, 0.2006689f, 0.5273438f, 0.2274248f)), // Í
-                new Glyph(new Granite.Core.Vector2i(271, 120), texture, new Granite.Core.Box2(0.5292969f, 0.2006689f, 0.5449219f, 0.2274248f)), // Î
-                new Glyph(new Granite.Core.Vector2i(280, 120), texture, new Granite.Core.Box2(0.546875f, 0.2006689f, 0.5625f, 0.2274248f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(289, 120), texture, new Granite.Core.Box2(0.5644531f, 0.2006689f, 0.5800781f, 0.2274248f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(298, 120), texture, new Granite.Core.Box2(0.5820313f, 0.2006689f, 0.5976563f, 0.2274248f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(307, 120), texture, new Granite.Core.Box2(0.5996094f, 0.2006689f, 0.6152344f, 0.2274248f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(316, 120), texture, new Granite.Core.Box2(0.6171875f, 0.2006689f, 0.6328125f, 0.2274248f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(325, 120), texture, new Granite.Core.Box2(0.6347656f, 0.2006689f, 0.6503906f, 0.2274248f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(334, 120), texture, new Granite.Core.Box2(0.6523438f, 0.2006689f, 0.6679688f, 0.2274248f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(343, 120), texture, new Granite.Core.Box2(0.6699219f, 0.2006689f, 0.6855469f, 0.2274248f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(352, 120), texture, new Granite.Core.Box2(0.6875f, 0.2006689f, 0.703125f, 0.2274248f)), // ×
-                new Glyph(new Granite.Core.Vector2i(361, 120), texture, new Granite.Core.Box2(0.7050781f, 0.2006689f, 0.7207031f, 0.2274248f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(370, 120), texture, new Granite.Core.Box2(0.7226563f, 0.2006689f, 0.7382813f, 0.2274248f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(379, 120), texture, new Granite.Core.Box2(0.7402344f, 0.2006689f, 0.7558594f, 0.2274248f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(388, 120), texture, new Granite.Core.Box2(0.7578125f, 0.2006689f, 0.7734375f, 0.2274248f)), // Û
-                new Glyph(new Granite.Core.Vector2i(397, 120), texture, new Granite.Core.Box2(0.7753906f, 0.2006689f, 0.7910156f, 0.2274248f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(406, 120), texture, new Granite.Core.Box2(0.7929688f, 0.2006689f, 0.8085938f, 0.2274248f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(415, 120), texture, new Granite.Core.Box2(0.8105469f, 0.2006689f, 0.8261719f, 0.2274248f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(424, 120), texture, new Granite.Core.Box2(0.828125f, 0.2006689f, 0.84375f, 0.2274248f)), // ß
-                new Glyph(new Granite.Core.Vector2i(433, 120), texture, new Granite.Core.Box2(0.8457031f, 0.2006689f, 0.8613281f, 0.2274248f)), // à
-                new Glyph(new Granite.Core.Vector2i(442, 120), texture, new Granite.Core.Box2(0.8632813f, 0.2006689f, 0.8789063f, 0.2274248f)), // á
-                new Glyph(new Granite.Core.Vector2i(451, 120), texture, new Granite.Core.Box2(0.8808594f, 0.2006689f, 0.8964844f, 0.2274248f)), // â
-                new Glyph(new Granite.Core.Vector2i(460, 120), texture, new Granite.Core.Box2(0.8984375f, 0.2006689f, 0.9140625f, 0.2274248f)), // ã
-                new Glyph(new Granite.Core.Vector2i(469, 120), texture, new Granite.Core.Box2(0.9160156f, 0.2006689f, 0.9316406f, 0.2274248f)), // ä
-                new Glyph(new Granite.Core.Vector2i(478, 120), texture, new Granite.Core.Box2(0.9335938f, 0.2006689f, 0.9492188f, 0.2274248f)), // å
-                new Glyph(new Granite.Core.Vector2i(487, 120), texture, new Granite.Core.Box2(0.9511719f, 0.2006689f, 0.9667969f, 0.2274248f)), // æ
-                new Glyph(new Granite.Core.Vector2i(496, 120), texture, new Granite.Core.Box2(0.96875f, 0.2006689f, 0.984375f, 0.2274248f)), // ç
-                new Glyph(new Granite.Core.Vector2i(1, 137), texture, new Granite.Core.Box2(0.001953125f, 0.229097f, 0.01757813f, 0.2558528f)), // è
-                new Glyph(new Granite.Core.Vector2i(10, 137), texture, new Granite.Core.Box2(0.01953125f, 0.229097f, 0.03515625f, 0.2558528f)), // é
-                new Glyph(new Granite.Core.Vector2i(19, 137), texture, new Granite.Core.Box2(0.03710938f, 0.229097f, 0.05273438f, 0.2558528f)), // ê
-                new Glyph(new Granite.Core.Vector2i(28, 137), texture, new Granite.Core.Box2(0.0546875f, 0.229097f, 0.0703125f, 0.2558528f)), // ë
-                new Glyph(new Granite.Core.Vector2i(37, 137), texture, new Granite.Core.Box2(0.07226563f, 0.229097f, 0.08789063f, 0.2558528f)), // ì
-                new Glyph(new Granite.Core.Vector2i(46, 137), texture, new Granite.Core.Box2(0.08984375f, 0.229097f, 0.1054688f, 0.2558528f)), // í
-                new Glyph(new Granite.Core.Vector2i(55, 137), texture, new Granite.Core.Box2(0.1074219f, 0.229097f, 0.1230469f, 0.2558528f)), // î
-                new Glyph(new Granite.Core.Vector2i(64, 137), texture, new Granite.Core.Box2(0.125f, 0.229097f, 0.140625f, 0.2558528f)), // ï
-                new Glyph(new Granite.Core.Vector2i(73, 137), texture, new Granite.Core.Box2(0.1425781f, 0.229097f, 0.1582031f, 0.2558528f)), // ð
-                new Glyph(new Granite.Core.Vector2i(82, 137), texture, new Granite.Core.Box2(0.1601563f, 0.229097f, 0.1757813f, 0.2558528f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(91, 137), texture, new Granite.Core.Box2(0.1777344f, 0.229097f, 0.1933594f, 0.2558528f)), // ò
-                new Glyph(new Granite.Core.Vector2i(100, 137), texture, new Granite.Core.Box2(0.1953125f, 0.229097f, 0.2109375f, 0.2558528f)), // ó
-                new Glyph(new Granite.Core.Vector2i(109, 137), texture, new Granite.Core.Box2(0.2128906f, 0.229097f, 0.2285156f, 0.2558528f)), // ô
-                new Glyph(new Granite.Core.Vector2i(118, 137), texture, new Granite.Core.Box2(0.2304688f, 0.229097f, 0.2460938f, 0.2558528f)), // õ
-                new Glyph(new Granite.Core.Vector2i(127, 137), texture, new Granite.Core.Box2(0.2480469f, 0.229097f, 0.2636719f, 0.2558528f)), // ö
-                new Glyph(new Granite.Core.Vector2i(136, 137), texture, new Granite.Core.Box2(0.265625f, 0.229097f, 0.28125f, 0.2558528f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(145, 137), texture, new Granite.Core.Box2(0.2832031f, 0.229097f, 0.2988281f, 0.2558528f)), // ø
-                new Glyph(new Granite.Core.Vector2i(154, 137), texture, new Granite.Core.Box2(0.3007813f, 0.229097f, 0.3164063f, 0.2558528f)), // ù
-                new Glyph(new Granite.Core.Vector2i(163, 137), texture, new Granite.Core.Box2(0.3183594f, 0.229097f, 0.3339844f, 0.2558528f)), // ú
-                new Glyph(new Granite.Core.Vector2i(172, 137), texture, new Granite.Core.Box2(0.3359375f, 0.229097f, 0.3515625f, 0.2558528f)), // û
-                new Glyph(new Granite.Core.Vector2i(181, 137), texture, new Granite.Core.Box2(0.3535156f, 0.229097f, 0.3691406f, 0.2558528f)), // ü
-                new Glyph(new Granite.Core.Vector2i(190, 137), texture, new Granite.Core.Box2(0.3710938f, 0.229097f, 0.3867188f, 0.2558528f)), // ý
-                new Glyph(new Granite.Core.Vector2i(199, 137), texture, new Granite.Core.Box2(0.3886719f, 0.229097f, 0.4042969f, 0.2558528f)), // þ
-                new Glyph(new Granite.Core.Vector2i(208, 137), texture, new Granite.Core.Box2(0.40625f, 0.229097f, 0.421875f, 0.2558528f)), // ÿ
-            };
-        }
-        private static Glyph[] GetGlyphs_fix_small_bold(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(217, 137), texture, new Granite.Core.Box2(0.4238281f, 0.229097f, 0.4394531f, 0.2558528f)), //  
-                new Glyph(new Granite.Core.Vector2i(226, 137), texture, new Granite.Core.Box2(0.4414063f, 0.229097f, 0.4570313f, 0.2558528f)), // !
-                new Glyph(new Granite.Core.Vector2i(235, 137), texture, new Granite.Core.Box2(0.4589844f, 0.229097f, 0.4746094f, 0.2558528f)), // "
-                new Glyph(new Granite.Core.Vector2i(244, 137), texture, new Granite.Core.Box2(0.4765625f, 0.229097f, 0.4921875f, 0.2558528f)), // #
-                new Glyph(new Granite.Core.Vector2i(253, 137), texture, new Granite.Core.Box2(0.4941406f, 0.229097f, 0.5097656f, 0.2558528f)), // $
-                new Glyph(new Granite.Core.Vector2i(262, 137), texture, new Granite.Core.Box2(0.5117188f, 0.229097f, 0.5273438f, 0.2558528f)), // %
-                new Glyph(new Granite.Core.Vector2i(5, 1), texture, new Granite.Core.Box2(0.009765625f, 0.001672241f, 0.009765625f, 0.02842809f)), // &
-                new Glyph(new Granite.Core.Vector2i(271, 137), texture, new Granite.Core.Box2(0.5292969f, 0.229097f, 0.5449219f, 0.2558528f)), // '
-                new Glyph(new Granite.Core.Vector2i(280, 137), texture, new Granite.Core.Box2(0.546875f, 0.229097f, 0.5625f, 0.2558528f)), // (
-                new Glyph(new Granite.Core.Vector2i(289, 137), texture, new Granite.Core.Box2(0.5644531f, 0.229097f, 0.5800781f, 0.2558528f)), // )
-                new Glyph(new Granite.Core.Vector2i(298, 137), texture, new Granite.Core.Box2(0.5820313f, 0.229097f, 0.5976563f, 0.2558528f)), // *
-                new Glyph(new Granite.Core.Vector2i(307, 137), texture, new Granite.Core.Box2(0.5996094f, 0.229097f, 0.6152344f, 0.2558528f)), // +
-                new Glyph(new Granite.Core.Vector2i(316, 137), texture, new Granite.Core.Box2(0.6171875f, 0.229097f, 0.6328125f, 0.2558528f)), // ,
-                new Glyph(new Granite.Core.Vector2i(325, 137), texture, new Granite.Core.Box2(0.6347656f, 0.229097f, 0.6503906f, 0.2558528f)), // -
-                new Glyph(new Granite.Core.Vector2i(334, 137), texture, new Granite.Core.Box2(0.6523438f, 0.229097f, 0.6679688f, 0.2558528f)), // .
-                new Glyph(new Granite.Core.Vector2i(343, 137), texture, new Granite.Core.Box2(0.6699219f, 0.229097f, 0.6855469f, 0.2558528f)), // /
-                new Glyph(new Granite.Core.Vector2i(352, 137), texture, new Granite.Core.Box2(0.6875f, 0.229097f, 0.703125f, 0.2558528f)), // 0
-                new Glyph(new Granite.Core.Vector2i(361, 137), texture, new Granite.Core.Box2(0.7050781f, 0.229097f, 0.7207031f, 0.2558528f)), // 1
-                new Glyph(new Granite.Core.Vector2i(370, 137), texture, new Granite.Core.Box2(0.7226563f, 0.229097f, 0.7382813f, 0.2558528f)), // 2
-                new Glyph(new Granite.Core.Vector2i(379, 137), texture, new Granite.Core.Box2(0.7402344f, 0.229097f, 0.7558594f, 0.2558528f)), // 3
-                new Glyph(new Granite.Core.Vector2i(388, 137), texture, new Granite.Core.Box2(0.7578125f, 0.229097f, 0.7734375f, 0.2558528f)), // 4
-                new Glyph(new Granite.Core.Vector2i(397, 137), texture, new Granite.Core.Box2(0.7753906f, 0.229097f, 0.7910156f, 0.2558528f)), // 5
-                new Glyph(new Granite.Core.Vector2i(406, 137), texture, new Granite.Core.Box2(0.7929688f, 0.229097f, 0.8085938f, 0.2558528f)), // 6
-                new Glyph(new Granite.Core.Vector2i(415, 137), texture, new Granite.Core.Box2(0.8105469f, 0.229097f, 0.8261719f, 0.2558528f)), // 7
-                new Glyph(new Granite.Core.Vector2i(424, 137), texture, new Granite.Core.Box2(0.828125f, 0.229097f, 0.84375f, 0.2558528f)), // 8
-                new Glyph(new Granite.Core.Vector2i(433, 137), texture, new Granite.Core.Box2(0.8457031f, 0.229097f, 0.8613281f, 0.2558528f)), // 9
-                new Glyph(new Granite.Core.Vector2i(442, 137), texture, new Granite.Core.Box2(0.8632813f, 0.229097f, 0.8789063f, 0.2558528f)), // :
-                new Glyph(new Granite.Core.Vector2i(451, 137), texture, new Granite.Core.Box2(0.8808594f, 0.229097f, 0.8964844f, 0.2558528f)), // ;
-                new Glyph(new Granite.Core.Vector2i(460, 137), texture, new Granite.Core.Box2(0.8984375f, 0.229097f, 0.9140625f, 0.2558528f)), // <
-                new Glyph(new Granite.Core.Vector2i(469, 137), texture, new Granite.Core.Box2(0.9160156f, 0.229097f, 0.9316406f, 0.2558528f)), // =
-                new Glyph(new Granite.Core.Vector2i(478, 137), texture, new Granite.Core.Box2(0.9335938f, 0.229097f, 0.9492188f, 0.2558528f)), // >
-                new Glyph(new Granite.Core.Vector2i(487, 137), texture, new Granite.Core.Box2(0.9511719f, 0.229097f, 0.9667969f, 0.2558528f)), // ?
-                new Glyph(new Granite.Core.Vector2i(496, 137), texture, new Granite.Core.Box2(0.96875f, 0.229097f, 0.984375f, 0.2558528f)), // @
-                new Glyph(new Granite.Core.Vector2i(1, 154), texture, new Granite.Core.Box2(0.001953125f, 0.2575251f, 0.01757813f, 0.2842809f)), // A
-                new Glyph(new Granite.Core.Vector2i(10, 154), texture, new Granite.Core.Box2(0.01953125f, 0.2575251f, 0.03515625f, 0.2842809f)), // B
-                new Glyph(new Granite.Core.Vector2i(19, 154), texture, new Granite.Core.Box2(0.03710938f, 0.2575251f, 0.05273438f, 0.2842809f)), // C
-                new Glyph(new Granite.Core.Vector2i(28, 154), texture, new Granite.Core.Box2(0.0546875f, 0.2575251f, 0.0703125f, 0.2842809f)), // D
-                new Glyph(new Granite.Core.Vector2i(37, 154), texture, new Granite.Core.Box2(0.07226563f, 0.2575251f, 0.08789063f, 0.2842809f)), // E
-                new Glyph(new Granite.Core.Vector2i(46, 154), texture, new Granite.Core.Box2(0.08984375f, 0.2575251f, 0.1054688f, 0.2842809f)), // F
-                new Glyph(new Granite.Core.Vector2i(55, 154), texture, new Granite.Core.Box2(0.1074219f, 0.2575251f, 0.1230469f, 0.2842809f)), // G
-                new Glyph(new Granite.Core.Vector2i(64, 154), texture, new Granite.Core.Box2(0.125f, 0.2575251f, 0.140625f, 0.2842809f)), // H
-                new Glyph(new Granite.Core.Vector2i(73, 154), texture, new Granite.Core.Box2(0.1425781f, 0.2575251f, 0.1582031f, 0.2842809f)), // I
-                new Glyph(new Granite.Core.Vector2i(82, 154), texture, new Granite.Core.Box2(0.1601563f, 0.2575251f, 0.1757813f, 0.2842809f)), // J
-                new Glyph(new Granite.Core.Vector2i(91, 154), texture, new Granite.Core.Box2(0.1777344f, 0.2575251f, 0.1933594f, 0.2842809f)), // K
-                new Glyph(new Granite.Core.Vector2i(100, 154), texture, new Granite.Core.Box2(0.1953125f, 0.2575251f, 0.2109375f, 0.2842809f)), // L
-                new Glyph(new Granite.Core.Vector2i(109, 154), texture, new Granite.Core.Box2(0.2128906f, 0.2575251f, 0.2285156f, 0.2842809f)), // M
-                new Glyph(new Granite.Core.Vector2i(118, 154), texture, new Granite.Core.Box2(0.2304688f, 0.2575251f, 0.2460938f, 0.2842809f)), // N
-                new Glyph(new Granite.Core.Vector2i(127, 154), texture, new Granite.Core.Box2(0.2480469f, 0.2575251f, 0.2636719f, 0.2842809f)), // O
-                new Glyph(new Granite.Core.Vector2i(136, 154), texture, new Granite.Core.Box2(0.265625f, 0.2575251f, 0.28125f, 0.2842809f)), // P
-                new Glyph(new Granite.Core.Vector2i(145, 154), texture, new Granite.Core.Box2(0.2832031f, 0.2575251f, 0.2988281f, 0.2842809f)), // Q
-                new Glyph(new Granite.Core.Vector2i(154, 154), texture, new Granite.Core.Box2(0.3007813f, 0.2575251f, 0.3164063f, 0.2842809f)), // R
-                new Glyph(new Granite.Core.Vector2i(163, 154), texture, new Granite.Core.Box2(0.3183594f, 0.2575251f, 0.3339844f, 0.2842809f)), // S
-                new Glyph(new Granite.Core.Vector2i(172, 154), texture, new Granite.Core.Box2(0.3359375f, 0.2575251f, 0.3515625f, 0.2842809f)), // T
-                new Glyph(new Granite.Core.Vector2i(181, 154), texture, new Granite.Core.Box2(0.3535156f, 0.2575251f, 0.3691406f, 0.2842809f)), // U
-                new Glyph(new Granite.Core.Vector2i(190, 154), texture, new Granite.Core.Box2(0.3710938f, 0.2575251f, 0.3867188f, 0.2842809f)), // V
-                new Glyph(new Granite.Core.Vector2i(199, 154), texture, new Granite.Core.Box2(0.3886719f, 0.2575251f, 0.4042969f, 0.2842809f)), // W
-                new Glyph(new Granite.Core.Vector2i(208, 154), texture, new Granite.Core.Box2(0.40625f, 0.2575251f, 0.421875f, 0.2842809f)), // X
-                new Glyph(new Granite.Core.Vector2i(217, 154), texture, new Granite.Core.Box2(0.4238281f, 0.2575251f, 0.4394531f, 0.2842809f)), // Y
-                new Glyph(new Granite.Core.Vector2i(226, 154), texture, new Granite.Core.Box2(0.4414063f, 0.2575251f, 0.4570313f, 0.2842809f)), // Z
-                new Glyph(new Granite.Core.Vector2i(235, 154), texture, new Granite.Core.Box2(0.4589844f, 0.2575251f, 0.4746094f, 0.2842809f)), // [
-                new Glyph(new Granite.Core.Vector2i(244, 154), texture, new Granite.Core.Box2(0.4765625f, 0.2575251f, 0.4921875f, 0.2842809f)), // \
-                new Glyph(new Granite.Core.Vector2i(253, 154), texture, new Granite.Core.Box2(0.4941406f, 0.2575251f, 0.5097656f, 0.2842809f)), // ]
-                new Glyph(new Granite.Core.Vector2i(262, 154), texture, new Granite.Core.Box2(0.5117188f, 0.2575251f, 0.5273438f, 0.2842809f)), // ^
-                new Glyph(new Granite.Core.Vector2i(271, 154), texture, new Granite.Core.Box2(0.5292969f, 0.2575251f, 0.5449219f, 0.2842809f)), // _
-                new Glyph(new Granite.Core.Vector2i(280, 154), texture, new Granite.Core.Box2(0.546875f, 0.2575251f, 0.5625f, 0.2842809f)), // `
-                new Glyph(new Granite.Core.Vector2i(289, 154), texture, new Granite.Core.Box2(0.5644531f, 0.2575251f, 0.5800781f, 0.2842809f)), // a
-                new Glyph(new Granite.Core.Vector2i(298, 154), texture, new Granite.Core.Box2(0.5820313f, 0.2575251f, 0.5976563f, 0.2842809f)), // b
-                new Glyph(new Granite.Core.Vector2i(307, 154), texture, new Granite.Core.Box2(0.5996094f, 0.2575251f, 0.6152344f, 0.2842809f)), // c
-                new Glyph(new Granite.Core.Vector2i(316, 154), texture, new Granite.Core.Box2(0.6171875f, 0.2575251f, 0.6328125f, 0.2842809f)), // d
-                new Glyph(new Granite.Core.Vector2i(325, 154), texture, new Granite.Core.Box2(0.6347656f, 0.2575251f, 0.6503906f, 0.2842809f)), // e
-                new Glyph(new Granite.Core.Vector2i(334, 154), texture, new Granite.Core.Box2(0.6523438f, 0.2575251f, 0.6679688f, 0.2842809f)), // f
-                new Glyph(new Granite.Core.Vector2i(343, 154), texture, new Granite.Core.Box2(0.6699219f, 0.2575251f, 0.6855469f, 0.2842809f)), // g
-                new Glyph(new Granite.Core.Vector2i(352, 154), texture, new Granite.Core.Box2(0.6875f, 0.2575251f, 0.703125f, 0.2842809f)), // h
-                new Glyph(new Granite.Core.Vector2i(361, 154), texture, new Granite.Core.Box2(0.7050781f, 0.2575251f, 0.7207031f, 0.2842809f)), // i
-                new Glyph(new Granite.Core.Vector2i(370, 154), texture, new Granite.Core.Box2(0.7226563f, 0.2575251f, 0.7382813f, 0.2842809f)), // j
-                new Glyph(new Granite.Core.Vector2i(379, 154), texture, new Granite.Core.Box2(0.7402344f, 0.2575251f, 0.7558594f, 0.2842809f)), // k
-                new Glyph(new Granite.Core.Vector2i(388, 154), texture, new Granite.Core.Box2(0.7578125f, 0.2575251f, 0.7734375f, 0.2842809f)), // l
-                new Glyph(new Granite.Core.Vector2i(397, 154), texture, new Granite.Core.Box2(0.7753906f, 0.2575251f, 0.7910156f, 0.2842809f)), // m
-                new Glyph(new Granite.Core.Vector2i(406, 154), texture, new Granite.Core.Box2(0.7929688f, 0.2575251f, 0.8085938f, 0.2842809f)), // n
-                new Glyph(new Granite.Core.Vector2i(415, 154), texture, new Granite.Core.Box2(0.8105469f, 0.2575251f, 0.8261719f, 0.2842809f)), // o
-                new Glyph(new Granite.Core.Vector2i(424, 154), texture, new Granite.Core.Box2(0.828125f, 0.2575251f, 0.84375f, 0.2842809f)), // p
-                new Glyph(new Granite.Core.Vector2i(433, 154), texture, new Granite.Core.Box2(0.8457031f, 0.2575251f, 0.8613281f, 0.2842809f)), // q
-                new Glyph(new Granite.Core.Vector2i(442, 154), texture, new Granite.Core.Box2(0.8632813f, 0.2575251f, 0.8789063f, 0.2842809f)), // r
-                new Glyph(new Granite.Core.Vector2i(451, 154), texture, new Granite.Core.Box2(0.8808594f, 0.2575251f, 0.8964844f, 0.2842809f)), // s
-                new Glyph(new Granite.Core.Vector2i(460, 154), texture, new Granite.Core.Box2(0.8984375f, 0.2575251f, 0.9140625f, 0.2842809f)), // t
-                new Glyph(new Granite.Core.Vector2i(469, 154), texture, new Granite.Core.Box2(0.9160156f, 0.2575251f, 0.9316406f, 0.2842809f)), // u
-                new Glyph(new Granite.Core.Vector2i(478, 154), texture, new Granite.Core.Box2(0.9335938f, 0.2575251f, 0.9492188f, 0.2842809f)), // v
-                new Glyph(new Granite.Core.Vector2i(487, 154), texture, new Granite.Core.Box2(0.9511719f, 0.2575251f, 0.9667969f, 0.2842809f)), // w
-                new Glyph(new Granite.Core.Vector2i(496, 154), texture, new Granite.Core.Box2(0.96875f, 0.2575251f, 0.984375f, 0.2842809f)), // x
-                new Glyph(new Granite.Core.Vector2i(1, 171), texture, new Granite.Core.Box2(0.001953125f, 0.2859532f, 0.01757813f, 0.312709f)), // y
-                new Glyph(new Granite.Core.Vector2i(10, 171), texture, new Granite.Core.Box2(0.01953125f, 0.2859532f, 0.03515625f, 0.312709f)), // z
-                new Glyph(new Granite.Core.Vector2i(19, 171), texture, new Granite.Core.Box2(0.03710938f, 0.2859532f, 0.05273438f, 0.312709f)), // {
-                new Glyph(new Granite.Core.Vector2i(28, 171), texture, new Granite.Core.Box2(0.0546875f, 0.2859532f, 0.0703125f, 0.312709f)), // |
-                new Glyph(new Granite.Core.Vector2i(37, 171), texture, new Granite.Core.Box2(0.07226563f, 0.2859532f, 0.08789063f, 0.312709f)), // }
-                new Glyph(new Granite.Core.Vector2i(46, 171), texture, new Granite.Core.Box2(0.08984375f, 0.2859532f, 0.1054688f, 0.312709f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(55, 171), texture, new Granite.Core.Box2(0.1074219f, 0.2859532f, 0.1230469f, 0.312709f)), //  
-                new Glyph(new Granite.Core.Vector2i(64, 171), texture, new Granite.Core.Box2(0.125f, 0.2859532f, 0.140625f, 0.312709f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(73, 171), texture, new Granite.Core.Box2(0.1425781f, 0.2859532f, 0.1582031f, 0.312709f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(82, 171), texture, new Granite.Core.Box2(0.1601563f, 0.2859532f, 0.1757813f, 0.312709f)), // £
-                new Glyph(new Granite.Core.Vector2i(91, 171), texture, new Granite.Core.Box2(0.1777344f, 0.2859532f, 0.1933594f, 0.312709f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(100, 171), texture, new Granite.Core.Box2(0.1953125f, 0.2859532f, 0.2109375f, 0.312709f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(109, 171), texture, new Granite.Core.Box2(0.2128906f, 0.2859532f, 0.2285156f, 0.312709f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(118, 171), texture, new Granite.Core.Box2(0.2304688f, 0.2859532f, 0.2460938f, 0.312709f)), // §
-                new Glyph(new Granite.Core.Vector2i(127, 171), texture, new Granite.Core.Box2(0.2480469f, 0.2859532f, 0.2636719f, 0.312709f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(136, 171), texture, new Granite.Core.Box2(0.265625f, 0.2859532f, 0.28125f, 0.312709f)), // ©
-                new Glyph(new Granite.Core.Vector2i(145, 171), texture, new Granite.Core.Box2(0.2832031f, 0.2859532f, 0.2988281f, 0.312709f)), // ª
-                new Glyph(new Granite.Core.Vector2i(154, 171), texture, new Granite.Core.Box2(0.3007813f, 0.2859532f, 0.3164063f, 0.312709f)), // «
-                new Glyph(new Granite.Core.Vector2i(163, 171), texture, new Granite.Core.Box2(0.3183594f, 0.2859532f, 0.3339844f, 0.312709f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(172, 171), texture, new Granite.Core.Box2(0.3359375f, 0.2859532f, 0.3515625f, 0.312709f)), // ­
-                new Glyph(new Granite.Core.Vector2i(181, 171), texture, new Granite.Core.Box2(0.3535156f, 0.2859532f, 0.3691406f, 0.312709f)), // ®
-                new Glyph(new Granite.Core.Vector2i(190, 171), texture, new Granite.Core.Box2(0.3710938f, 0.2859532f, 0.3867188f, 0.312709f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(199, 171), texture, new Granite.Core.Box2(0.3886719f, 0.2859532f, 0.4042969f, 0.312709f)), // °
-                new Glyph(new Granite.Core.Vector2i(208, 171), texture, new Granite.Core.Box2(0.40625f, 0.2859532f, 0.421875f, 0.312709f)), // ±
-                new Glyph(new Granite.Core.Vector2i(217, 171), texture, new Granite.Core.Box2(0.4238281f, 0.2859532f, 0.4394531f, 0.312709f)), // ²
-                new Glyph(new Granite.Core.Vector2i(226, 171), texture, new Granite.Core.Box2(0.4414063f, 0.2859532f, 0.4570313f, 0.312709f)), // ³
-                new Glyph(new Granite.Core.Vector2i(235, 171), texture, new Granite.Core.Box2(0.4589844f, 0.2859532f, 0.4746094f, 0.312709f)), // ´
-                new Glyph(new Granite.Core.Vector2i(244, 171), texture, new Granite.Core.Box2(0.4765625f, 0.2859532f, 0.4921875f, 0.312709f)), // µ
-                new Glyph(new Granite.Core.Vector2i(253, 171), texture, new Granite.Core.Box2(0.4941406f, 0.2859532f, 0.5097656f, 0.312709f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(262, 171), texture, new Granite.Core.Box2(0.5117188f, 0.2859532f, 0.5273438f, 0.312709f)), // ·
-                new Glyph(new Granite.Core.Vector2i(271, 171), texture, new Granite.Core.Box2(0.5292969f, 0.2859532f, 0.5449219f, 0.312709f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(280, 171), texture, new Granite.Core.Box2(0.546875f, 0.2859532f, 0.5625f, 0.312709f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(289, 171), texture, new Granite.Core.Box2(0.5644531f, 0.2859532f, 0.5800781f, 0.312709f)), // º
-                new Glyph(new Granite.Core.Vector2i(298, 171), texture, new Granite.Core.Box2(0.5820313f, 0.2859532f, 0.5976563f, 0.312709f)), // »
-                new Glyph(new Granite.Core.Vector2i(307, 171), texture, new Granite.Core.Box2(0.5996094f, 0.2859532f, 0.6152344f, 0.312709f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(316, 171), texture, new Granite.Core.Box2(0.6171875f, 0.2859532f, 0.6328125f, 0.312709f)), // ½
-                new Glyph(new Granite.Core.Vector2i(325, 171), texture, new Granite.Core.Box2(0.6347656f, 0.2859532f, 0.6503906f, 0.312709f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(334, 171), texture, new Granite.Core.Box2(0.6523438f, 0.2859532f, 0.6679688f, 0.312709f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(343, 171), texture, new Granite.Core.Box2(0.6699219f, 0.2859532f, 0.6855469f, 0.312709f)), // À
-                new Glyph(new Granite.Core.Vector2i(352, 171), texture, new Granite.Core.Box2(0.6875f, 0.2859532f, 0.703125f, 0.312709f)), // Á
-                new Glyph(new Granite.Core.Vector2i(361, 171), texture, new Granite.Core.Box2(0.7050781f, 0.2859532f, 0.7207031f, 0.312709f)), // Â
-                new Glyph(new Granite.Core.Vector2i(370, 171), texture, new Granite.Core.Box2(0.7226563f, 0.2859532f, 0.7382813f, 0.312709f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(379, 171), texture, new Granite.Core.Box2(0.7402344f, 0.2859532f, 0.7558594f, 0.312709f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(388, 171), texture, new Granite.Core.Box2(0.7578125f, 0.2859532f, 0.7734375f, 0.312709f)), // Å
-                new Glyph(new Granite.Core.Vector2i(397, 171), texture, new Granite.Core.Box2(0.7753906f, 0.2859532f, 0.7910156f, 0.312709f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(406, 171), texture, new Granite.Core.Box2(0.7929688f, 0.2859532f, 0.8085938f, 0.312709f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(415, 171), texture, new Granite.Core.Box2(0.8105469f, 0.2859532f, 0.8261719f, 0.312709f)), // È
-                new Glyph(new Granite.Core.Vector2i(424, 171), texture, new Granite.Core.Box2(0.828125f, 0.2859532f, 0.84375f, 0.312709f)), // É
-                new Glyph(new Granite.Core.Vector2i(433, 171), texture, new Granite.Core.Box2(0.8457031f, 0.2859532f, 0.8613281f, 0.312709f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(442, 171), texture, new Granite.Core.Box2(0.8632813f, 0.2859532f, 0.8789063f, 0.312709f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(451, 171), texture, new Granite.Core.Box2(0.8808594f, 0.2859532f, 0.8964844f, 0.312709f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(460, 171), texture, new Granite.Core.Box2(0.8984375f, 0.2859532f, 0.9140625f, 0.312709f)), // Í
-                new Glyph(new Granite.Core.Vector2i(469, 171), texture, new Granite.Core.Box2(0.9160156f, 0.2859532f, 0.9316406f, 0.312709f)), // Î
-                new Glyph(new Granite.Core.Vector2i(478, 171), texture, new Granite.Core.Box2(0.9335938f, 0.2859532f, 0.9492188f, 0.312709f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(487, 171), texture, new Granite.Core.Box2(0.9511719f, 0.2859532f, 0.9667969f, 0.312709f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(496, 171), texture, new Granite.Core.Box2(0.96875f, 0.2859532f, 0.984375f, 0.312709f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(1, 188), texture, new Granite.Core.Box2(0.001953125f, 0.3143813f, 0.01757813f, 0.3411371f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(10, 188), texture, new Granite.Core.Box2(0.01953125f, 0.3143813f, 0.03515625f, 0.3411371f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(19, 188), texture, new Granite.Core.Box2(0.03710938f, 0.3143813f, 0.05273438f, 0.3411371f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(28, 188), texture, new Granite.Core.Box2(0.0546875f, 0.3143813f, 0.0703125f, 0.3411371f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(37, 188), texture, new Granite.Core.Box2(0.07226563f, 0.3143813f, 0.08789063f, 0.3411371f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(46, 188), texture, new Granite.Core.Box2(0.08984375f, 0.3143813f, 0.1054688f, 0.3411371f)), // ×
-                new Glyph(new Granite.Core.Vector2i(55, 188), texture, new Granite.Core.Box2(0.1074219f, 0.3143813f, 0.1230469f, 0.3411371f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(64, 188), texture, new Granite.Core.Box2(0.125f, 0.3143813f, 0.140625f, 0.3411371f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(73, 188), texture, new Granite.Core.Box2(0.1425781f, 0.3143813f, 0.1582031f, 0.3411371f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(82, 188), texture, new Granite.Core.Box2(0.1601563f, 0.3143813f, 0.1757813f, 0.3411371f)), // Û
-                new Glyph(new Granite.Core.Vector2i(91, 188), texture, new Granite.Core.Box2(0.1777344f, 0.3143813f, 0.1933594f, 0.3411371f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(100, 188), texture, new Granite.Core.Box2(0.1953125f, 0.3143813f, 0.2109375f, 0.3411371f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(109, 188), texture, new Granite.Core.Box2(0.2128906f, 0.3143813f, 0.2285156f, 0.3411371f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(118, 188), texture, new Granite.Core.Box2(0.2304688f, 0.3143813f, 0.2460938f, 0.3411371f)), // ß
-                new Glyph(new Granite.Core.Vector2i(127, 188), texture, new Granite.Core.Box2(0.2480469f, 0.3143813f, 0.2636719f, 0.3411371f)), // à
-                new Glyph(new Granite.Core.Vector2i(136, 188), texture, new Granite.Core.Box2(0.265625f, 0.3143813f, 0.28125f, 0.3411371f)), // á
-                new Glyph(new Granite.Core.Vector2i(145, 188), texture, new Granite.Core.Box2(0.2832031f, 0.3143813f, 0.2988281f, 0.3411371f)), // â
-                new Glyph(new Granite.Core.Vector2i(154, 188), texture, new Granite.Core.Box2(0.3007813f, 0.3143813f, 0.3164063f, 0.3411371f)), // ã
-                new Glyph(new Granite.Core.Vector2i(163, 188), texture, new Granite.Core.Box2(0.3183594f, 0.3143813f, 0.3339844f, 0.3411371f)), // ä
-                new Glyph(new Granite.Core.Vector2i(172, 188), texture, new Granite.Core.Box2(0.3359375f, 0.3143813f, 0.3515625f, 0.3411371f)), // å
-                new Glyph(new Granite.Core.Vector2i(181, 188), texture, new Granite.Core.Box2(0.3535156f, 0.3143813f, 0.3691406f, 0.3411371f)), // æ
-                new Glyph(new Granite.Core.Vector2i(190, 188), texture, new Granite.Core.Box2(0.3710938f, 0.3143813f, 0.3867188f, 0.3411371f)), // ç
-                new Glyph(new Granite.Core.Vector2i(199, 188), texture, new Granite.Core.Box2(0.3886719f, 0.3143813f, 0.4042969f, 0.3411371f)), // è
-                new Glyph(new Granite.Core.Vector2i(208, 188), texture, new Granite.Core.Box2(0.40625f, 0.3143813f, 0.421875f, 0.3411371f)), // é
-                new Glyph(new Granite.Core.Vector2i(217, 188), texture, new Granite.Core.Box2(0.4238281f, 0.3143813f, 0.4394531f, 0.3411371f)), // ê
-                new Glyph(new Granite.Core.Vector2i(226, 188), texture, new Granite.Core.Box2(0.4414063f, 0.3143813f, 0.4570313f, 0.3411371f)), // ë
-                new Glyph(new Granite.Core.Vector2i(235, 188), texture, new Granite.Core.Box2(0.4589844f, 0.3143813f, 0.4746094f, 0.3411371f)), // ì
-                new Glyph(new Granite.Core.Vector2i(244, 188), texture, new Granite.Core.Box2(0.4765625f, 0.3143813f, 0.4921875f, 0.3411371f)), // í
-                new Glyph(new Granite.Core.Vector2i(253, 188), texture, new Granite.Core.Box2(0.4941406f, 0.3143813f, 0.5097656f, 0.3411371f)), // î
-                new Glyph(new Granite.Core.Vector2i(262, 188), texture, new Granite.Core.Box2(0.5117188f, 0.3143813f, 0.5273438f, 0.3411371f)), // ï
-                new Glyph(new Granite.Core.Vector2i(271, 188), texture, new Granite.Core.Box2(0.5292969f, 0.3143813f, 0.5449219f, 0.3411371f)), // ð
-                new Glyph(new Granite.Core.Vector2i(280, 188), texture, new Granite.Core.Box2(0.546875f, 0.3143813f, 0.5625f, 0.3411371f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(289, 188), texture, new Granite.Core.Box2(0.5644531f, 0.3143813f, 0.5800781f, 0.3411371f)), // ò
-                new Glyph(new Granite.Core.Vector2i(298, 188), texture, new Granite.Core.Box2(0.5820313f, 0.3143813f, 0.5976563f, 0.3411371f)), // ó
-                new Glyph(new Granite.Core.Vector2i(307, 188), texture, new Granite.Core.Box2(0.5996094f, 0.3143813f, 0.6152344f, 0.3411371f)), // ô
-                new Glyph(new Granite.Core.Vector2i(316, 188), texture, new Granite.Core.Box2(0.6171875f, 0.3143813f, 0.6328125f, 0.3411371f)), // õ
-                new Glyph(new Granite.Core.Vector2i(325, 188), texture, new Granite.Core.Box2(0.6347656f, 0.3143813f, 0.6503906f, 0.3411371f)), // ö
-                new Glyph(new Granite.Core.Vector2i(334, 188), texture, new Granite.Core.Box2(0.6523438f, 0.3143813f, 0.6679688f, 0.3411371f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(343, 188), texture, new Granite.Core.Box2(0.6699219f, 0.3143813f, 0.6855469f, 0.3411371f)), // ø
-                new Glyph(new Granite.Core.Vector2i(352, 188), texture, new Granite.Core.Box2(0.6875f, 0.3143813f, 0.703125f, 0.3411371f)), // ù
-                new Glyph(new Granite.Core.Vector2i(361, 188), texture, new Granite.Core.Box2(0.7050781f, 0.3143813f, 0.7207031f, 0.3411371f)), // ú
-                new Glyph(new Granite.Core.Vector2i(370, 188), texture, new Granite.Core.Box2(0.7226563f, 0.3143813f, 0.7382813f, 0.3411371f)), // û
-                new Glyph(new Granite.Core.Vector2i(379, 188), texture, new Granite.Core.Box2(0.7402344f, 0.3143813f, 0.7558594f, 0.3411371f)), // ü
-                new Glyph(new Granite.Core.Vector2i(388, 188), texture, new Granite.Core.Box2(0.7578125f, 0.3143813f, 0.7734375f, 0.3411371f)), // ý
-                new Glyph(new Granite.Core.Vector2i(397, 188), texture, new Granite.Core.Box2(0.7753906f, 0.3143813f, 0.7910156f, 0.3411371f)), // þ
-                new Glyph(new Granite.Core.Vector2i(406, 188), texture, new Granite.Core.Box2(0.7929688f, 0.3143813f, 0.8085938f, 0.3411371f)), // ÿ
-            };
-        }
-        private static Glyph[] GetGlyphs_fix_small_italic(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(128, 290), texture, new Granite.Core.Box2(0.25f, 0.4849498f, 0.265625f, 0.5133779f)), //  
-                new Glyph(new Granite.Core.Vector2i(137, 290), texture, new Granite.Core.Box2(0.2675781f, 0.4849498f, 0.2832031f, 0.5133779f)), // !
-                new Glyph(new Granite.Core.Vector2i(146, 290), texture, new Granite.Core.Box2(0.2851563f, 0.4849498f, 0.3007813f, 0.5133779f)), // "
-                new Glyph(new Granite.Core.Vector2i(155, 290), texture, new Granite.Core.Box2(0.3027344f, 0.4849498f, 0.3183594f, 0.5133779f)), // #
-                new Glyph(new Granite.Core.Vector2i(164, 290), texture, new Granite.Core.Box2(0.3203125f, 0.4849498f, 0.3359375f, 0.5133779f)), // $
-                new Glyph(new Granite.Core.Vector2i(173, 290), texture, new Granite.Core.Box2(0.3378906f, 0.4849498f, 0.3535156f, 0.5133779f)), // %
-                new Glyph(new Granite.Core.Vector2i(127, 290), texture, new Granite.Core.Box2(0.2480469f, 0.4849498f, 0.2480469f, 0.5133779f)), // &
-                new Glyph(new Granite.Core.Vector2i(182, 290), texture, new Granite.Core.Box2(0.3554688f, 0.4849498f, 0.3710938f, 0.5133779f)), // '
-                new Glyph(new Granite.Core.Vector2i(191, 290), texture, new Granite.Core.Box2(0.3730469f, 0.4849498f, 0.3886719f, 0.5133779f)), // (
-                new Glyph(new Granite.Core.Vector2i(200, 290), texture, new Granite.Core.Box2(0.390625f, 0.4849498f, 0.40625f, 0.5133779f)), // )
-                new Glyph(new Granite.Core.Vector2i(209, 290), texture, new Granite.Core.Box2(0.4082031f, 0.4849498f, 0.4238281f, 0.5133779f)), // *
-                new Glyph(new Granite.Core.Vector2i(218, 290), texture, new Granite.Core.Box2(0.4257813f, 0.4849498f, 0.4414063f, 0.5133779f)), // +
-                new Glyph(new Granite.Core.Vector2i(227, 290), texture, new Granite.Core.Box2(0.4433594f, 0.4849498f, 0.4589844f, 0.5133779f)), // ,
-                new Glyph(new Granite.Core.Vector2i(236, 290), texture, new Granite.Core.Box2(0.4609375f, 0.4849498f, 0.4765625f, 0.5133779f)), // -
-                new Glyph(new Granite.Core.Vector2i(245, 290), texture, new Granite.Core.Box2(0.4785156f, 0.4849498f, 0.4941406f, 0.5133779f)), // .
-                new Glyph(new Granite.Core.Vector2i(254, 290), texture, new Granite.Core.Box2(0.4960938f, 0.4849498f, 0.5117188f, 0.5133779f)), // /
-                new Glyph(new Granite.Core.Vector2i(263, 290), texture, new Granite.Core.Box2(0.5136719f, 0.4849498f, 0.5292969f, 0.5133779f)), // 0
-                new Glyph(new Granite.Core.Vector2i(272, 290), texture, new Granite.Core.Box2(0.53125f, 0.4849498f, 0.546875f, 0.5133779f)), // 1
-                new Glyph(new Granite.Core.Vector2i(281, 290), texture, new Granite.Core.Box2(0.5488281f, 0.4849498f, 0.5644531f, 0.5133779f)), // 2
-                new Glyph(new Granite.Core.Vector2i(290, 290), texture, new Granite.Core.Box2(0.5664063f, 0.4849498f, 0.5820313f, 0.5133779f)), // 3
-                new Glyph(new Granite.Core.Vector2i(299, 290), texture, new Granite.Core.Box2(0.5839844f, 0.4849498f, 0.5996094f, 0.5133779f)), // 4
-                new Glyph(new Granite.Core.Vector2i(308, 290), texture, new Granite.Core.Box2(0.6015625f, 0.4849498f, 0.6171875f, 0.5133779f)), // 5
-                new Glyph(new Granite.Core.Vector2i(317, 290), texture, new Granite.Core.Box2(0.6191406f, 0.4849498f, 0.6347656f, 0.5133779f)), // 6
-                new Glyph(new Granite.Core.Vector2i(326, 290), texture, new Granite.Core.Box2(0.6367188f, 0.4849498f, 0.6523438f, 0.5133779f)), // 7
-                new Glyph(new Granite.Core.Vector2i(335, 290), texture, new Granite.Core.Box2(0.6542969f, 0.4849498f, 0.6699219f, 0.5133779f)), // 8
-                new Glyph(new Granite.Core.Vector2i(344, 290), texture, new Granite.Core.Box2(0.671875f, 0.4849498f, 0.6875f, 0.5133779f)), // 9
-                new Glyph(new Granite.Core.Vector2i(353, 290), texture, new Granite.Core.Box2(0.6894531f, 0.4849498f, 0.7050781f, 0.5133779f)), // :
-                new Glyph(new Granite.Core.Vector2i(362, 290), texture, new Granite.Core.Box2(0.7070313f, 0.4849498f, 0.7226563f, 0.5133779f)), // ;
-                new Glyph(new Granite.Core.Vector2i(371, 290), texture, new Granite.Core.Box2(0.7246094f, 0.4849498f, 0.7402344f, 0.5133779f)), // <
-                new Glyph(new Granite.Core.Vector2i(380, 290), texture, new Granite.Core.Box2(0.7421875f, 0.4849498f, 0.7578125f, 0.5133779f)), // =
-                new Glyph(new Granite.Core.Vector2i(389, 290), texture, new Granite.Core.Box2(0.7597656f, 0.4849498f, 0.7753906f, 0.5133779f)), // >
-                new Glyph(new Granite.Core.Vector2i(398, 290), texture, new Granite.Core.Box2(0.7773438f, 0.4849498f, 0.7929688f, 0.5133779f)), // ?
-                new Glyph(new Granite.Core.Vector2i(407, 290), texture, new Granite.Core.Box2(0.7949219f, 0.4849498f, 0.8105469f, 0.5133779f)), // @
-                new Glyph(new Granite.Core.Vector2i(416, 290), texture, new Granite.Core.Box2(0.8125f, 0.4849498f, 0.828125f, 0.5133779f)), // A
-                new Glyph(new Granite.Core.Vector2i(425, 290), texture, new Granite.Core.Box2(0.8300781f, 0.4849498f, 0.8457031f, 0.5133779f)), // B
-                new Glyph(new Granite.Core.Vector2i(434, 290), texture, new Granite.Core.Box2(0.8476563f, 0.4849498f, 0.8632813f, 0.5133779f)), // C
-                new Glyph(new Granite.Core.Vector2i(443, 290), texture, new Granite.Core.Box2(0.8652344f, 0.4849498f, 0.8808594f, 0.5133779f)), // D
-                new Glyph(new Granite.Core.Vector2i(452, 290), texture, new Granite.Core.Box2(0.8828125f, 0.4849498f, 0.8984375f, 0.5133779f)), // E
-                new Glyph(new Granite.Core.Vector2i(461, 290), texture, new Granite.Core.Box2(0.9003906f, 0.4849498f, 0.9160156f, 0.5133779f)), // F
-                new Glyph(new Granite.Core.Vector2i(470, 290), texture, new Granite.Core.Box2(0.9179688f, 0.4849498f, 0.9335938f, 0.5133779f)), // G
-                new Glyph(new Granite.Core.Vector2i(479, 290), texture, new Granite.Core.Box2(0.9355469f, 0.4849498f, 0.9511719f, 0.5133779f)), // H
-                new Glyph(new Granite.Core.Vector2i(488, 290), texture, new Granite.Core.Box2(0.953125f, 0.4849498f, 0.96875f, 0.5133779f)), // I
-                new Glyph(new Granite.Core.Vector2i(497, 290), texture, new Granite.Core.Box2(0.9707031f, 0.4849498f, 0.9863281f, 0.5133779f)), // J
-                new Glyph(new Granite.Core.Vector2i(1, 308), texture, new Granite.Core.Box2(0.001953125f, 0.5150502f, 0.01757813f, 0.5434783f)), // K
-                new Glyph(new Granite.Core.Vector2i(10, 308), texture, new Granite.Core.Box2(0.01953125f, 0.5150502f, 0.03515625f, 0.5434783f)), // L
-                new Glyph(new Granite.Core.Vector2i(19, 308), texture, new Granite.Core.Box2(0.03710938f, 0.5150502f, 0.05273438f, 0.5434783f)), // M
-                new Glyph(new Granite.Core.Vector2i(28, 308), texture, new Granite.Core.Box2(0.0546875f, 0.5150502f, 0.0703125f, 0.5434783f)), // N
-                new Glyph(new Granite.Core.Vector2i(37, 308), texture, new Granite.Core.Box2(0.07226563f, 0.5150502f, 0.08789063f, 0.5434783f)), // O
-                new Glyph(new Granite.Core.Vector2i(46, 308), texture, new Granite.Core.Box2(0.08984375f, 0.5150502f, 0.1054688f, 0.5434783f)), // P
-                new Glyph(new Granite.Core.Vector2i(55, 308), texture, new Granite.Core.Box2(0.1074219f, 0.5150502f, 0.1230469f, 0.5434783f)), // Q
-                new Glyph(new Granite.Core.Vector2i(64, 308), texture, new Granite.Core.Box2(0.125f, 0.5150502f, 0.140625f, 0.5434783f)), // R
-                new Glyph(new Granite.Core.Vector2i(73, 308), texture, new Granite.Core.Box2(0.1425781f, 0.5150502f, 0.1582031f, 0.5434783f)), // S
-                new Glyph(new Granite.Core.Vector2i(82, 308), texture, new Granite.Core.Box2(0.1601563f, 0.5150502f, 0.1757813f, 0.5434783f)), // T
-                new Glyph(new Granite.Core.Vector2i(91, 308), texture, new Granite.Core.Box2(0.1777344f, 0.5150502f, 0.1933594f, 0.5434783f)), // U
-                new Glyph(new Granite.Core.Vector2i(100, 308), texture, new Granite.Core.Box2(0.1953125f, 0.5150502f, 0.2109375f, 0.5434783f)), // V
-                new Glyph(new Granite.Core.Vector2i(109, 308), texture, new Granite.Core.Box2(0.2128906f, 0.5150502f, 0.2285156f, 0.5434783f)), // W
-                new Glyph(new Granite.Core.Vector2i(118, 308), texture, new Granite.Core.Box2(0.2304688f, 0.5150502f, 0.2460938f, 0.5434783f)), // X
-                new Glyph(new Granite.Core.Vector2i(127, 308), texture, new Granite.Core.Box2(0.2480469f, 0.5150502f, 0.2636719f, 0.5434783f)), // Y
-                new Glyph(new Granite.Core.Vector2i(136, 308), texture, new Granite.Core.Box2(0.265625f, 0.5150502f, 0.28125f, 0.5434783f)), // Z
-                new Glyph(new Granite.Core.Vector2i(145, 308), texture, new Granite.Core.Box2(0.2832031f, 0.5150502f, 0.2988281f, 0.5434783f)), // [
-                new Glyph(new Granite.Core.Vector2i(154, 308), texture, new Granite.Core.Box2(0.3007813f, 0.5150502f, 0.3164063f, 0.5434783f)), // \
-                new Glyph(new Granite.Core.Vector2i(163, 308), texture, new Granite.Core.Box2(0.3183594f, 0.5150502f, 0.3339844f, 0.5434783f)), // ]
-                new Glyph(new Granite.Core.Vector2i(172, 308), texture, new Granite.Core.Box2(0.3359375f, 0.5150502f, 0.3515625f, 0.5434783f)), // ^
-                new Glyph(new Granite.Core.Vector2i(181, 308), texture, new Granite.Core.Box2(0.3535156f, 0.5150502f, 0.3691406f, 0.5434783f)), // _
-                new Glyph(new Granite.Core.Vector2i(190, 308), texture, new Granite.Core.Box2(0.3710938f, 0.5150502f, 0.3867188f, 0.5434783f)), // `
-                new Glyph(new Granite.Core.Vector2i(199, 308), texture, new Granite.Core.Box2(0.3886719f, 0.5150502f, 0.4042969f, 0.5434783f)), // a
-                new Glyph(new Granite.Core.Vector2i(208, 308), texture, new Granite.Core.Box2(0.40625f, 0.5150502f, 0.421875f, 0.5434783f)), // b
-                new Glyph(new Granite.Core.Vector2i(217, 308), texture, new Granite.Core.Box2(0.4238281f, 0.5150502f, 0.4394531f, 0.5434783f)), // c
-                new Glyph(new Granite.Core.Vector2i(226, 308), texture, new Granite.Core.Box2(0.4414063f, 0.5150502f, 0.4570313f, 0.5434783f)), // d
-                new Glyph(new Granite.Core.Vector2i(235, 308), texture, new Granite.Core.Box2(0.4589844f, 0.5150502f, 0.4746094f, 0.5434783f)), // e
-                new Glyph(new Granite.Core.Vector2i(244, 308), texture, new Granite.Core.Box2(0.4765625f, 0.5150502f, 0.4921875f, 0.5434783f)), // f
-                new Glyph(new Granite.Core.Vector2i(253, 308), texture, new Granite.Core.Box2(0.4941406f, 0.5150502f, 0.5097656f, 0.5434783f)), // g
-                new Glyph(new Granite.Core.Vector2i(262, 308), texture, new Granite.Core.Box2(0.5117188f, 0.5150502f, 0.5273438f, 0.5434783f)), // h
-                new Glyph(new Granite.Core.Vector2i(271, 308), texture, new Granite.Core.Box2(0.5292969f, 0.5150502f, 0.5449219f, 0.5434783f)), // i
-                new Glyph(new Granite.Core.Vector2i(280, 308), texture, new Granite.Core.Box2(0.546875f, 0.5150502f, 0.5625f, 0.5434783f)), // j
-                new Glyph(new Granite.Core.Vector2i(289, 308), texture, new Granite.Core.Box2(0.5644531f, 0.5150502f, 0.5800781f, 0.5434783f)), // k
-                new Glyph(new Granite.Core.Vector2i(298, 308), texture, new Granite.Core.Box2(0.5820313f, 0.5150502f, 0.5976563f, 0.5434783f)), // l
-                new Glyph(new Granite.Core.Vector2i(307, 308), texture, new Granite.Core.Box2(0.5996094f, 0.5150502f, 0.6152344f, 0.5434783f)), // m
-                new Glyph(new Granite.Core.Vector2i(316, 308), texture, new Granite.Core.Box2(0.6171875f, 0.5150502f, 0.6328125f, 0.5434783f)), // n
-                new Glyph(new Granite.Core.Vector2i(325, 308), texture, new Granite.Core.Box2(0.6347656f, 0.5150502f, 0.6503906f, 0.5434783f)), // o
-                new Glyph(new Granite.Core.Vector2i(334, 308), texture, new Granite.Core.Box2(0.6523438f, 0.5150502f, 0.6679688f, 0.5434783f)), // p
-                new Glyph(new Granite.Core.Vector2i(343, 308), texture, new Granite.Core.Box2(0.6699219f, 0.5150502f, 0.6855469f, 0.5434783f)), // q
-                new Glyph(new Granite.Core.Vector2i(352, 308), texture, new Granite.Core.Box2(0.6875f, 0.5150502f, 0.703125f, 0.5434783f)), // r
-                new Glyph(new Granite.Core.Vector2i(361, 308), texture, new Granite.Core.Box2(0.7050781f, 0.5150502f, 0.7207031f, 0.5434783f)), // s
-                new Glyph(new Granite.Core.Vector2i(370, 308), texture, new Granite.Core.Box2(0.7226563f, 0.5150502f, 0.7382813f, 0.5434783f)), // t
-                new Glyph(new Granite.Core.Vector2i(379, 308), texture, new Granite.Core.Box2(0.7402344f, 0.5150502f, 0.7558594f, 0.5434783f)), // u
-                new Glyph(new Granite.Core.Vector2i(388, 308), texture, new Granite.Core.Box2(0.7578125f, 0.5150502f, 0.7734375f, 0.5434783f)), // v
-                new Glyph(new Granite.Core.Vector2i(397, 308), texture, new Granite.Core.Box2(0.7753906f, 0.5150502f, 0.7910156f, 0.5434783f)), // w
-                new Glyph(new Granite.Core.Vector2i(406, 308), texture, new Granite.Core.Box2(0.7929688f, 0.5150502f, 0.8085938f, 0.5434783f)), // x
-                new Glyph(new Granite.Core.Vector2i(415, 308), texture, new Granite.Core.Box2(0.8105469f, 0.5150502f, 0.8261719f, 0.5434783f)), // y
-                new Glyph(new Granite.Core.Vector2i(424, 308), texture, new Granite.Core.Box2(0.828125f, 0.5150502f, 0.84375f, 0.5434783f)), // z
-                new Glyph(new Granite.Core.Vector2i(433, 308), texture, new Granite.Core.Box2(0.8457031f, 0.5150502f, 0.8613281f, 0.5434783f)), // {
-                new Glyph(new Granite.Core.Vector2i(442, 308), texture, new Granite.Core.Box2(0.8632813f, 0.5150502f, 0.8789063f, 0.5434783f)), // |
-                new Glyph(new Granite.Core.Vector2i(451, 308), texture, new Granite.Core.Box2(0.8808594f, 0.5150502f, 0.8964844f, 0.5434783f)), // }
-                new Glyph(new Granite.Core.Vector2i(460, 308), texture, new Granite.Core.Box2(0.8984375f, 0.5150502f, 0.9140625f, 0.5434783f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(469, 308), texture, new Granite.Core.Box2(0.9160156f, 0.5150502f, 0.9316406f, 0.5434783f)), //  
-                new Glyph(new Granite.Core.Vector2i(478, 308), texture, new Granite.Core.Box2(0.9335938f, 0.5150502f, 0.9492188f, 0.5434783f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(487, 308), texture, new Granite.Core.Box2(0.9511719f, 0.5150502f, 0.9667969f, 0.5434783f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(496, 308), texture, new Granite.Core.Box2(0.96875f, 0.5150502f, 0.984375f, 0.5434783f)), // £
-                new Glyph(new Granite.Core.Vector2i(1, 326), texture, new Granite.Core.Box2(0.001953125f, 0.5451505f, 0.01757813f, 0.5735786f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(10, 326), texture, new Granite.Core.Box2(0.01953125f, 0.5451505f, 0.03515625f, 0.5735786f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(19, 326), texture, new Granite.Core.Box2(0.03710938f, 0.5451505f, 0.05273438f, 0.5735786f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(28, 326), texture, new Granite.Core.Box2(0.0546875f, 0.5451505f, 0.0703125f, 0.5735786f)), // §
-                new Glyph(new Granite.Core.Vector2i(37, 326), texture, new Granite.Core.Box2(0.07226563f, 0.5451505f, 0.08789063f, 0.5735786f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(46, 326), texture, new Granite.Core.Box2(0.08984375f, 0.5451505f, 0.1054688f, 0.5735786f)), // ©
-                new Glyph(new Granite.Core.Vector2i(55, 326), texture, new Granite.Core.Box2(0.1074219f, 0.5451505f, 0.1230469f, 0.5735786f)), // ª
-                new Glyph(new Granite.Core.Vector2i(64, 326), texture, new Granite.Core.Box2(0.125f, 0.5451505f, 0.140625f, 0.5735786f)), // «
-                new Glyph(new Granite.Core.Vector2i(73, 326), texture, new Granite.Core.Box2(0.1425781f, 0.5451505f, 0.1582031f, 0.5735786f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(82, 326), texture, new Granite.Core.Box2(0.1601563f, 0.5451505f, 0.1757813f, 0.5735786f)), // ­
-                new Glyph(new Granite.Core.Vector2i(91, 326), texture, new Granite.Core.Box2(0.1777344f, 0.5451505f, 0.1933594f, 0.5735786f)), // ®
-                new Glyph(new Granite.Core.Vector2i(100, 326), texture, new Granite.Core.Box2(0.1953125f, 0.5451505f, 0.2109375f, 0.5735786f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(109, 326), texture, new Granite.Core.Box2(0.2128906f, 0.5451505f, 0.2285156f, 0.5735786f)), // °
-                new Glyph(new Granite.Core.Vector2i(118, 326), texture, new Granite.Core.Box2(0.2304688f, 0.5451505f, 0.2460938f, 0.5735786f)), // ±
-                new Glyph(new Granite.Core.Vector2i(127, 326), texture, new Granite.Core.Box2(0.2480469f, 0.5451505f, 0.2636719f, 0.5735786f)), // ²
-                new Glyph(new Granite.Core.Vector2i(136, 326), texture, new Granite.Core.Box2(0.265625f, 0.5451505f, 0.28125f, 0.5735786f)), // ³
-                new Glyph(new Granite.Core.Vector2i(145, 326), texture, new Granite.Core.Box2(0.2832031f, 0.5451505f, 0.2988281f, 0.5735786f)), // ´
-                new Glyph(new Granite.Core.Vector2i(154, 326), texture, new Granite.Core.Box2(0.3007813f, 0.5451505f, 0.3164063f, 0.5735786f)), // µ
-                new Glyph(new Granite.Core.Vector2i(163, 326), texture, new Granite.Core.Box2(0.3183594f, 0.5451505f, 0.3339844f, 0.5735786f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(172, 326), texture, new Granite.Core.Box2(0.3359375f, 0.5451505f, 0.3515625f, 0.5735786f)), // ·
-                new Glyph(new Granite.Core.Vector2i(181, 326), texture, new Granite.Core.Box2(0.3535156f, 0.5451505f, 0.3691406f, 0.5735786f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(190, 326), texture, new Granite.Core.Box2(0.3710938f, 0.5451505f, 0.3867188f, 0.5735786f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(199, 326), texture, new Granite.Core.Box2(0.3886719f, 0.5451505f, 0.4042969f, 0.5735786f)), // º
-                new Glyph(new Granite.Core.Vector2i(208, 326), texture, new Granite.Core.Box2(0.40625f, 0.5451505f, 0.421875f, 0.5735786f)), // »
-                new Glyph(new Granite.Core.Vector2i(217, 326), texture, new Granite.Core.Box2(0.4238281f, 0.5451505f, 0.4394531f, 0.5735786f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(226, 326), texture, new Granite.Core.Box2(0.4414063f, 0.5451505f, 0.4570313f, 0.5735786f)), // ½
-                new Glyph(new Granite.Core.Vector2i(235, 326), texture, new Granite.Core.Box2(0.4589844f, 0.5451505f, 0.4746094f, 0.5735786f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(244, 326), texture, new Granite.Core.Box2(0.4765625f, 0.5451505f, 0.4921875f, 0.5735786f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(253, 326), texture, new Granite.Core.Box2(0.4941406f, 0.5451505f, 0.5097656f, 0.5735786f)), // À
-                new Glyph(new Granite.Core.Vector2i(262, 326), texture, new Granite.Core.Box2(0.5117188f, 0.5451505f, 0.5273438f, 0.5735786f)), // Á
-                new Glyph(new Granite.Core.Vector2i(271, 326), texture, new Granite.Core.Box2(0.5292969f, 0.5451505f, 0.5449219f, 0.5735786f)), // Â
-                new Glyph(new Granite.Core.Vector2i(280, 326), texture, new Granite.Core.Box2(0.546875f, 0.5451505f, 0.5625f, 0.5735786f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(289, 326), texture, new Granite.Core.Box2(0.5644531f, 0.5451505f, 0.5800781f, 0.5735786f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(298, 326), texture, new Granite.Core.Box2(0.5820313f, 0.5451505f, 0.5976563f, 0.5735786f)), // Å
-                new Glyph(new Granite.Core.Vector2i(307, 326), texture, new Granite.Core.Box2(0.5996094f, 0.5451505f, 0.6152344f, 0.5735786f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(316, 326), texture, new Granite.Core.Box2(0.6171875f, 0.5451505f, 0.6328125f, 0.5735786f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(325, 326), texture, new Granite.Core.Box2(0.6347656f, 0.5451505f, 0.6503906f, 0.5735786f)), // È
-                new Glyph(new Granite.Core.Vector2i(334, 326), texture, new Granite.Core.Box2(0.6523438f, 0.5451505f, 0.6679688f, 0.5735786f)), // É
-                new Glyph(new Granite.Core.Vector2i(343, 326), texture, new Granite.Core.Box2(0.6699219f, 0.5451505f, 0.6855469f, 0.5735786f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(352, 326), texture, new Granite.Core.Box2(0.6875f, 0.5451505f, 0.703125f, 0.5735786f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(361, 326), texture, new Granite.Core.Box2(0.7050781f, 0.5451505f, 0.7207031f, 0.5735786f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(370, 326), texture, new Granite.Core.Box2(0.7226563f, 0.5451505f, 0.7382813f, 0.5735786f)), // Í
-                new Glyph(new Granite.Core.Vector2i(379, 326), texture, new Granite.Core.Box2(0.7402344f, 0.5451505f, 0.7558594f, 0.5735786f)), // Î
-                new Glyph(new Granite.Core.Vector2i(388, 326), texture, new Granite.Core.Box2(0.7578125f, 0.5451505f, 0.7734375f, 0.5735786f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(397, 326), texture, new Granite.Core.Box2(0.7753906f, 0.5451505f, 0.7910156f, 0.5735786f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(406, 326), texture, new Granite.Core.Box2(0.7929688f, 0.5451505f, 0.8085938f, 0.5735786f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(415, 326), texture, new Granite.Core.Box2(0.8105469f, 0.5451505f, 0.8261719f, 0.5735786f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(424, 326), texture, new Granite.Core.Box2(0.828125f, 0.5451505f, 0.84375f, 0.5735786f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(433, 326), texture, new Granite.Core.Box2(0.8457031f, 0.5451505f, 0.8613281f, 0.5735786f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(442, 326), texture, new Granite.Core.Box2(0.8632813f, 0.5451505f, 0.8789063f, 0.5735786f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(451, 326), texture, new Granite.Core.Box2(0.8808594f, 0.5451505f, 0.8964844f, 0.5735786f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(460, 326), texture, new Granite.Core.Box2(0.8984375f, 0.5451505f, 0.9140625f, 0.5735786f)), // ×
-                new Glyph(new Granite.Core.Vector2i(469, 326), texture, new Granite.Core.Box2(0.9160156f, 0.5451505f, 0.9316406f, 0.5735786f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(478, 326), texture, new Granite.Core.Box2(0.9335938f, 0.5451505f, 0.9492188f, 0.5735786f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(487, 326), texture, new Granite.Core.Box2(0.9511719f, 0.5451505f, 0.9667969f, 0.5735786f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(496, 326), texture, new Granite.Core.Box2(0.96875f, 0.5451505f, 0.984375f, 0.5735786f)), // Û
-                new Glyph(new Granite.Core.Vector2i(1, 344), texture, new Granite.Core.Box2(0.001953125f, 0.5752509f, 0.01757813f, 0.6036789f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(10, 344), texture, new Granite.Core.Box2(0.01953125f, 0.5752509f, 0.03515625f, 0.6036789f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(19, 344), texture, new Granite.Core.Box2(0.03710938f, 0.5752509f, 0.05273438f, 0.6036789f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(28, 344), texture, new Granite.Core.Box2(0.0546875f, 0.5752509f, 0.0703125f, 0.6036789f)), // ß
-                new Glyph(new Granite.Core.Vector2i(37, 344), texture, new Granite.Core.Box2(0.07226563f, 0.5752509f, 0.08789063f, 0.6036789f)), // à
-                new Glyph(new Granite.Core.Vector2i(46, 344), texture, new Granite.Core.Box2(0.08984375f, 0.5752509f, 0.1054688f, 0.6036789f)), // á
-                new Glyph(new Granite.Core.Vector2i(55, 344), texture, new Granite.Core.Box2(0.1074219f, 0.5752509f, 0.1230469f, 0.6036789f)), // â
-                new Glyph(new Granite.Core.Vector2i(64, 344), texture, new Granite.Core.Box2(0.125f, 0.5752509f, 0.140625f, 0.6036789f)), // ã
-                new Glyph(new Granite.Core.Vector2i(73, 344), texture, new Granite.Core.Box2(0.1425781f, 0.5752509f, 0.1582031f, 0.6036789f)), // ä
-                new Glyph(new Granite.Core.Vector2i(82, 344), texture, new Granite.Core.Box2(0.1601563f, 0.5752509f, 0.1757813f, 0.6036789f)), // å
-                new Glyph(new Granite.Core.Vector2i(91, 344), texture, new Granite.Core.Box2(0.1777344f, 0.5752509f, 0.1933594f, 0.6036789f)), // æ
-                new Glyph(new Granite.Core.Vector2i(100, 344), texture, new Granite.Core.Box2(0.1953125f, 0.5752509f, 0.2109375f, 0.6036789f)), // ç
-                new Glyph(new Granite.Core.Vector2i(109, 344), texture, new Granite.Core.Box2(0.2128906f, 0.5752509f, 0.2285156f, 0.6036789f)), // è
-                new Glyph(new Granite.Core.Vector2i(118, 344), texture, new Granite.Core.Box2(0.2304688f, 0.5752509f, 0.2460938f, 0.6036789f)), // é
-                new Glyph(new Granite.Core.Vector2i(127, 344), texture, new Granite.Core.Box2(0.2480469f, 0.5752509f, 0.2636719f, 0.6036789f)), // ê
-                new Glyph(new Granite.Core.Vector2i(136, 344), texture, new Granite.Core.Box2(0.265625f, 0.5752509f, 0.28125f, 0.6036789f)), // ë
-                new Glyph(new Granite.Core.Vector2i(145, 344), texture, new Granite.Core.Box2(0.2832031f, 0.5752509f, 0.2988281f, 0.6036789f)), // ì
-                new Glyph(new Granite.Core.Vector2i(154, 344), texture, new Granite.Core.Box2(0.3007813f, 0.5752509f, 0.3164063f, 0.6036789f)), // í
-                new Glyph(new Granite.Core.Vector2i(163, 344), texture, new Granite.Core.Box2(0.3183594f, 0.5752509f, 0.3339844f, 0.6036789f)), // î
-                new Glyph(new Granite.Core.Vector2i(172, 344), texture, new Granite.Core.Box2(0.3359375f, 0.5752509f, 0.3515625f, 0.6036789f)), // ï
-                new Glyph(new Granite.Core.Vector2i(181, 344), texture, new Granite.Core.Box2(0.3535156f, 0.5752509f, 0.3691406f, 0.6036789f)), // ð
-                new Glyph(new Granite.Core.Vector2i(190, 344), texture, new Granite.Core.Box2(0.3710938f, 0.5752509f, 0.3867188f, 0.6036789f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(199, 344), texture, new Granite.Core.Box2(0.3886719f, 0.5752509f, 0.4042969f, 0.6036789f)), // ò
-                new Glyph(new Granite.Core.Vector2i(208, 344), texture, new Granite.Core.Box2(0.40625f, 0.5752509f, 0.421875f, 0.6036789f)), // ó
-                new Glyph(new Granite.Core.Vector2i(217, 344), texture, new Granite.Core.Box2(0.4238281f, 0.5752509f, 0.4394531f, 0.6036789f)), // ô
-                new Glyph(new Granite.Core.Vector2i(226, 344), texture, new Granite.Core.Box2(0.4414063f, 0.5752509f, 0.4570313f, 0.6036789f)), // õ
-                new Glyph(new Granite.Core.Vector2i(235, 344), texture, new Granite.Core.Box2(0.4589844f, 0.5752509f, 0.4746094f, 0.6036789f)), // ö
-                new Glyph(new Granite.Core.Vector2i(244, 344), texture, new Granite.Core.Box2(0.4765625f, 0.5752509f, 0.4921875f, 0.6036789f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(253, 344), texture, new Granite.Core.Box2(0.4941406f, 0.5752509f, 0.5097656f, 0.6036789f)), // ø
-                new Glyph(new Granite.Core.Vector2i(262, 344), texture, new Granite.Core.Box2(0.5117188f, 0.5752509f, 0.5273438f, 0.6036789f)), // ù
-                new Glyph(new Granite.Core.Vector2i(271, 344), texture, new Granite.Core.Box2(0.5292969f, 0.5752509f, 0.5449219f, 0.6036789f)), // ú
-                new Glyph(new Granite.Core.Vector2i(280, 344), texture, new Granite.Core.Box2(0.546875f, 0.5752509f, 0.5625f, 0.6036789f)), // û
-                new Glyph(new Granite.Core.Vector2i(289, 344), texture, new Granite.Core.Box2(0.5644531f, 0.5752509f, 0.5800781f, 0.6036789f)), // ü
-                new Glyph(new Granite.Core.Vector2i(298, 344), texture, new Granite.Core.Box2(0.5820313f, 0.5752509f, 0.5976563f, 0.6036789f)), // ý
-                new Glyph(new Granite.Core.Vector2i(307, 344), texture, new Granite.Core.Box2(0.5996094f, 0.5752509f, 0.6152344f, 0.6036789f)), // þ
-                new Glyph(new Granite.Core.Vector2i(316, 344), texture, new Granite.Core.Box2(0.6171875f, 0.5752509f, 0.6328125f, 0.6036789f)), // ÿ
-            };
-        }
-        private static Glyph[] GetGlyphs_fix_big(Granite.Core.Texture2D texture) {
-            return new Glyph[] {
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(326, 344), texture, new Granite.Core.Box2(0.6367188f, 0.5752509f, 0.6582031f, 0.6103679f)), //  
-                new Glyph(new Granite.Core.Vector2i(338, 344), texture, new Granite.Core.Box2(0.6601563f, 0.5752509f, 0.6816406f, 0.6103679f)), // !
-                new Glyph(new Granite.Core.Vector2i(350, 344), texture, new Granite.Core.Box2(0.6835938f, 0.5752509f, 0.7050781f, 0.6103679f)), // "
-                new Glyph(new Granite.Core.Vector2i(362, 344), texture, new Granite.Core.Box2(0.7070313f, 0.5752509f, 0.7285156f, 0.6103679f)), // #
-                new Glyph(new Granite.Core.Vector2i(374, 344), texture, new Granite.Core.Box2(0.7304688f, 0.5752509f, 0.7519531f, 0.6103679f)), // $
-                new Glyph(new Granite.Core.Vector2i(386, 344), texture, new Granite.Core.Box2(0.7539063f, 0.5752509f, 0.7753906f, 0.6103679f)), // %
-                new Glyph(new Granite.Core.Vector2i(325, 344), texture, new Granite.Core.Box2(0.6347656f, 0.5752509f, 0.6347656f, 0.6103679f)), // &
-                new Glyph(new Granite.Core.Vector2i(398, 344), texture, new Granite.Core.Box2(0.7773438f, 0.5752509f, 0.7988281f, 0.6103679f)), // '
-                new Glyph(new Granite.Core.Vector2i(410, 344), texture, new Granite.Core.Box2(0.8007813f, 0.5752509f, 0.8222656f, 0.6103679f)), // (
-                new Glyph(new Granite.Core.Vector2i(422, 344), texture, new Granite.Core.Box2(0.8242188f, 0.5752509f, 0.8457031f, 0.6103679f)), // )
-                new Glyph(new Granite.Core.Vector2i(434, 344), texture, new Granite.Core.Box2(0.8476563f, 0.5752509f, 0.8691406f, 0.6103679f)), // *
-                new Glyph(new Granite.Core.Vector2i(446, 344), texture, new Granite.Core.Box2(0.8710938f, 0.5752509f, 0.8925781f, 0.6103679f)), // +
-                new Glyph(new Granite.Core.Vector2i(458, 344), texture, new Granite.Core.Box2(0.8945313f, 0.5752509f, 0.9160156f, 0.6103679f)), // ,
-                new Glyph(new Granite.Core.Vector2i(470, 344), texture, new Granite.Core.Box2(0.9179688f, 0.5752509f, 0.9394531f, 0.6103679f)), // -
-                new Glyph(new Granite.Core.Vector2i(482, 344), texture, new Granite.Core.Box2(0.9414063f, 0.5752509f, 0.9628906f, 0.6103679f)), // .
-                new Glyph(new Granite.Core.Vector2i(494, 344), texture, new Granite.Core.Box2(0.9648438f, 0.5752509f, 0.9863281f, 0.6103679f)), // /
-                new Glyph(new Granite.Core.Vector2i(1, 366), texture, new Granite.Core.Box2(0.001953125f, 0.6120402f, 0.0234375f, 0.6471572f)), // 0
-                new Glyph(new Granite.Core.Vector2i(13, 366), texture, new Granite.Core.Box2(0.02539063f, 0.6120402f, 0.046875f, 0.6471572f)), // 1
-                new Glyph(new Granite.Core.Vector2i(25, 366), texture, new Granite.Core.Box2(0.04882813f, 0.6120402f, 0.0703125f, 0.6471572f)), // 2
-                new Glyph(new Granite.Core.Vector2i(37, 366), texture, new Granite.Core.Box2(0.07226563f, 0.6120402f, 0.09375f, 0.6471572f)), // 3
-                new Glyph(new Granite.Core.Vector2i(49, 366), texture, new Granite.Core.Box2(0.09570313f, 0.6120402f, 0.1171875f, 0.6471572f)), // 4
-                new Glyph(new Granite.Core.Vector2i(61, 366), texture, new Granite.Core.Box2(0.1191406f, 0.6120402f, 0.140625f, 0.6471572f)), // 5
-                new Glyph(new Granite.Core.Vector2i(73, 366), texture, new Granite.Core.Box2(0.1425781f, 0.6120402f, 0.1640625f, 0.6471572f)), // 6
-                new Glyph(new Granite.Core.Vector2i(85, 366), texture, new Granite.Core.Box2(0.1660156f, 0.6120402f, 0.1875f, 0.6471572f)), // 7
-                new Glyph(new Granite.Core.Vector2i(97, 366), texture, new Granite.Core.Box2(0.1894531f, 0.6120402f, 0.2109375f, 0.6471572f)), // 8
-                new Glyph(new Granite.Core.Vector2i(109, 366), texture, new Granite.Core.Box2(0.2128906f, 0.6120402f, 0.234375f, 0.6471572f)), // 9
-                new Glyph(new Granite.Core.Vector2i(121, 366), texture, new Granite.Core.Box2(0.2363281f, 0.6120402f, 0.2578125f, 0.6471572f)), // :
-                new Glyph(new Granite.Core.Vector2i(133, 366), texture, new Granite.Core.Box2(0.2597656f, 0.6120402f, 0.28125f, 0.6471572f)), // ;
-                new Glyph(new Granite.Core.Vector2i(145, 366), texture, new Granite.Core.Box2(0.2832031f, 0.6120402f, 0.3046875f, 0.6471572f)), // <
-                new Glyph(new Granite.Core.Vector2i(157, 366), texture, new Granite.Core.Box2(0.3066406f, 0.6120402f, 0.328125f, 0.6471572f)), // =
-                new Glyph(new Granite.Core.Vector2i(169, 366), texture, new Granite.Core.Box2(0.3300781f, 0.6120402f, 0.3515625f, 0.6471572f)), // >
-                new Glyph(new Granite.Core.Vector2i(181, 366), texture, new Granite.Core.Box2(0.3535156f, 0.6120402f, 0.375f, 0.6471572f)), // ?
-                new Glyph(new Granite.Core.Vector2i(193, 366), texture, new Granite.Core.Box2(0.3769531f, 0.6120402f, 0.3984375f, 0.6471572f)), // @
-                new Glyph(new Granite.Core.Vector2i(205, 366), texture, new Granite.Core.Box2(0.4003906f, 0.6120402f, 0.421875f, 0.6471572f)), // A
-                new Glyph(new Granite.Core.Vector2i(217, 366), texture, new Granite.Core.Box2(0.4238281f, 0.6120402f, 0.4453125f, 0.6471572f)), // B
-                new Glyph(new Granite.Core.Vector2i(229, 366), texture, new Granite.Core.Box2(0.4472656f, 0.6120402f, 0.46875f, 0.6471572f)), // C
-                new Glyph(new Granite.Core.Vector2i(241, 366), texture, new Granite.Core.Box2(0.4707031f, 0.6120402f, 0.4921875f, 0.6471572f)), // D
-                new Glyph(new Granite.Core.Vector2i(253, 366), texture, new Granite.Core.Box2(0.4941406f, 0.6120402f, 0.515625f, 0.6471572f)), // E
-                new Glyph(new Granite.Core.Vector2i(265, 366), texture, new Granite.Core.Box2(0.5175781f, 0.6120402f, 0.5390625f, 0.6471572f)), // F
-                new Glyph(new Granite.Core.Vector2i(277, 366), texture, new Granite.Core.Box2(0.5410156f, 0.6120402f, 0.5625f, 0.6471572f)), // G
-                new Glyph(new Granite.Core.Vector2i(289, 366), texture, new Granite.Core.Box2(0.5644531f, 0.6120402f, 0.5859375f, 0.6471572f)), // H
-                new Glyph(new Granite.Core.Vector2i(301, 366), texture, new Granite.Core.Box2(0.5878906f, 0.6120402f, 0.609375f, 0.6471572f)), // I
-                new Glyph(new Granite.Core.Vector2i(313, 366), texture, new Granite.Core.Box2(0.6113281f, 0.6120402f, 0.6328125f, 0.6471572f)), // J
-                new Glyph(new Granite.Core.Vector2i(325, 366), texture, new Granite.Core.Box2(0.6347656f, 0.6120402f, 0.65625f, 0.6471572f)), // K
-                new Glyph(new Granite.Core.Vector2i(337, 366), texture, new Granite.Core.Box2(0.6582031f, 0.6120402f, 0.6796875f, 0.6471572f)), // L
-                new Glyph(new Granite.Core.Vector2i(349, 366), texture, new Granite.Core.Box2(0.6816406f, 0.6120402f, 0.703125f, 0.6471572f)), // M
-                new Glyph(new Granite.Core.Vector2i(361, 366), texture, new Granite.Core.Box2(0.7050781f, 0.6120402f, 0.7265625f, 0.6471572f)), // N
-                new Glyph(new Granite.Core.Vector2i(373, 366), texture, new Granite.Core.Box2(0.7285156f, 0.6120402f, 0.75f, 0.6471572f)), // O
-                new Glyph(new Granite.Core.Vector2i(385, 366), texture, new Granite.Core.Box2(0.7519531f, 0.6120402f, 0.7734375f, 0.6471572f)), // P
-                new Glyph(new Granite.Core.Vector2i(397, 366), texture, new Granite.Core.Box2(0.7753906f, 0.6120402f, 0.796875f, 0.6471572f)), // Q
-                new Glyph(new Granite.Core.Vector2i(409, 366), texture, new Granite.Core.Box2(0.7988281f, 0.6120402f, 0.8203125f, 0.6471572f)), // R
-                new Glyph(new Granite.Core.Vector2i(421, 366), texture, new Granite.Core.Box2(0.8222656f, 0.6120402f, 0.84375f, 0.6471572f)), // S
-                new Glyph(new Granite.Core.Vector2i(433, 366), texture, new Granite.Core.Box2(0.8457031f, 0.6120402f, 0.8671875f, 0.6471572f)), // T
-                new Glyph(new Granite.Core.Vector2i(445, 366), texture, new Granite.Core.Box2(0.8691406f, 0.6120402f, 0.890625f, 0.6471572f)), // U
-                new Glyph(new Granite.Core.Vector2i(457, 366), texture, new Granite.Core.Box2(0.8925781f, 0.6120402f, 0.9140625f, 0.6471572f)), // V
-                new Glyph(new Granite.Core.Vector2i(469, 366), texture, new Granite.Core.Box2(0.9160156f, 0.6120402f, 0.9375f, 0.6471572f)), // W
-                new Glyph(new Granite.Core.Vector2i(481, 366), texture, new Granite.Core.Box2(0.9394531f, 0.6120402f, 0.9609375f, 0.6471572f)), // X
-                new Glyph(new Granite.Core.Vector2i(493, 366), texture, new Granite.Core.Box2(0.9628906f, 0.6120402f, 0.984375f, 0.6471572f)), // Y
-                new Glyph(new Granite.Core.Vector2i(1, 388), texture, new Granite.Core.Box2(0.001953125f, 0.6488295f, 0.0234375f, 0.6839465f)), // Z
-                new Glyph(new Granite.Core.Vector2i(13, 388), texture, new Granite.Core.Box2(0.02539063f, 0.6488295f, 0.046875f, 0.6839465f)), // [
-                new Glyph(new Granite.Core.Vector2i(25, 388), texture, new Granite.Core.Box2(0.04882813f, 0.6488295f, 0.0703125f, 0.6839465f)), // \
-                new Glyph(new Granite.Core.Vector2i(37, 388), texture, new Granite.Core.Box2(0.07226563f, 0.6488295f, 0.09375f, 0.6839465f)), // ]
-                new Glyph(new Granite.Core.Vector2i(49, 388), texture, new Granite.Core.Box2(0.09570313f, 0.6488295f, 0.1171875f, 0.6839465f)), // ^
-                new Glyph(new Granite.Core.Vector2i(61, 388), texture, new Granite.Core.Box2(0.1191406f, 0.6488295f, 0.140625f, 0.6839465f)), // _
-                new Glyph(new Granite.Core.Vector2i(73, 388), texture, new Granite.Core.Box2(0.1425781f, 0.6488295f, 0.1640625f, 0.6839465f)), // `
-                new Glyph(new Granite.Core.Vector2i(85, 388), texture, new Granite.Core.Box2(0.1660156f, 0.6488295f, 0.1875f, 0.6839465f)), // a
-                new Glyph(new Granite.Core.Vector2i(97, 388), texture, new Granite.Core.Box2(0.1894531f, 0.6488295f, 0.2109375f, 0.6839465f)), // b
-                new Glyph(new Granite.Core.Vector2i(109, 388), texture, new Granite.Core.Box2(0.2128906f, 0.6488295f, 0.234375f, 0.6839465f)), // c
-                new Glyph(new Granite.Core.Vector2i(121, 388), texture, new Granite.Core.Box2(0.2363281f, 0.6488295f, 0.2578125f, 0.6839465f)), // d
-                new Glyph(new Granite.Core.Vector2i(133, 388), texture, new Granite.Core.Box2(0.2597656f, 0.6488295f, 0.28125f, 0.6839465f)), // e
-                new Glyph(new Granite.Core.Vector2i(145, 388), texture, new Granite.Core.Box2(0.2832031f, 0.6488295f, 0.3046875f, 0.6839465f)), // f
-                new Glyph(new Granite.Core.Vector2i(157, 388), texture, new Granite.Core.Box2(0.3066406f, 0.6488295f, 0.328125f, 0.6839465f)), // g
-                new Glyph(new Granite.Core.Vector2i(169, 388), texture, new Granite.Core.Box2(0.3300781f, 0.6488295f, 0.3515625f, 0.6839465f)), // h
-                new Glyph(new Granite.Core.Vector2i(181, 388), texture, new Granite.Core.Box2(0.3535156f, 0.6488295f, 0.375f, 0.6839465f)), // i
-                new Glyph(new Granite.Core.Vector2i(193, 388), texture, new Granite.Core.Box2(0.3769531f, 0.6488295f, 0.3984375f, 0.6839465f)), // j
-                new Glyph(new Granite.Core.Vector2i(205, 388), texture, new Granite.Core.Box2(0.4003906f, 0.6488295f, 0.421875f, 0.6839465f)), // k
-                new Glyph(new Granite.Core.Vector2i(217, 388), texture, new Granite.Core.Box2(0.4238281f, 0.6488295f, 0.4453125f, 0.6839465f)), // l
-                new Glyph(new Granite.Core.Vector2i(229, 388), texture, new Granite.Core.Box2(0.4472656f, 0.6488295f, 0.46875f, 0.6839465f)), // m
-                new Glyph(new Granite.Core.Vector2i(241, 388), texture, new Granite.Core.Box2(0.4707031f, 0.6488295f, 0.4921875f, 0.6839465f)), // n
-                new Glyph(new Granite.Core.Vector2i(253, 388), texture, new Granite.Core.Box2(0.4941406f, 0.6488295f, 0.515625f, 0.6839465f)), // o
-                new Glyph(new Granite.Core.Vector2i(265, 388), texture, new Granite.Core.Box2(0.5175781f, 0.6488295f, 0.5390625f, 0.6839465f)), // p
-                new Glyph(new Granite.Core.Vector2i(277, 388), texture, new Granite.Core.Box2(0.5410156f, 0.6488295f, 0.5625f, 0.6839465f)), // q
-                new Glyph(new Granite.Core.Vector2i(289, 388), texture, new Granite.Core.Box2(0.5644531f, 0.6488295f, 0.5859375f, 0.6839465f)), // r
-                new Glyph(new Granite.Core.Vector2i(301, 388), texture, new Granite.Core.Box2(0.5878906f, 0.6488295f, 0.609375f, 0.6839465f)), // s
-                new Glyph(new Granite.Core.Vector2i(313, 388), texture, new Granite.Core.Box2(0.6113281f, 0.6488295f, 0.6328125f, 0.6839465f)), // t
-                new Glyph(new Granite.Core.Vector2i(325, 388), texture, new Granite.Core.Box2(0.6347656f, 0.6488295f, 0.65625f, 0.6839465f)), // u
-                new Glyph(new Granite.Core.Vector2i(337, 388), texture, new Granite.Core.Box2(0.6582031f, 0.6488295f, 0.6796875f, 0.6839465f)), // v
-                new Glyph(new Granite.Core.Vector2i(349, 388), texture, new Granite.Core.Box2(0.6816406f, 0.6488295f, 0.703125f, 0.6839465f)), // w
-                new Glyph(new Granite.Core.Vector2i(361, 388), texture, new Granite.Core.Box2(0.7050781f, 0.6488295f, 0.7265625f, 0.6839465f)), // x
-                new Glyph(new Granite.Core.Vector2i(373, 388), texture, new Granite.Core.Box2(0.7285156f, 0.6488295f, 0.75f, 0.6839465f)), // y
-                new Glyph(new Granite.Core.Vector2i(385, 388), texture, new Granite.Core.Box2(0.7519531f, 0.6488295f, 0.7734375f, 0.6839465f)), // z
-                new Glyph(new Granite.Core.Vector2i(397, 388), texture, new Granite.Core.Box2(0.7753906f, 0.6488295f, 0.796875f, 0.6839465f)), // {
-                new Glyph(new Granite.Core.Vector2i(409, 388), texture, new Granite.Core.Box2(0.7988281f, 0.6488295f, 0.8203125f, 0.6839465f)), // |
-                new Glyph(new Granite.Core.Vector2i(421, 388), texture, new Granite.Core.Box2(0.8222656f, 0.6488295f, 0.84375f, 0.6839465f)), // }
-                new Glyph(new Granite.Core.Vector2i(433, 388), texture, new Granite.Core.Box2(0.8457031f, 0.6488295f, 0.8671875f, 0.6839465f)), // ~
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                new Glyph(new Granite.Core.Vector2i(445, 388), texture, new Granite.Core.Box2(0.8691406f, 0.6488295f, 0.890625f, 0.6839465f)), //  
-                new Glyph(new Granite.Core.Vector2i(457, 388), texture, new Granite.Core.Box2(0.8925781f, 0.6488295f, 0.9140625f, 0.6839465f)), // ¡
-                new Glyph(new Granite.Core.Vector2i(469, 388), texture, new Granite.Core.Box2(0.9160156f, 0.6488295f, 0.9375f, 0.6839465f)), // ¢
-                new Glyph(new Granite.Core.Vector2i(481, 388), texture, new Granite.Core.Box2(0.9394531f, 0.6488295f, 0.9609375f, 0.6839465f)), // £
-                new Glyph(new Granite.Core.Vector2i(493, 388), texture, new Granite.Core.Box2(0.9628906f, 0.6488295f, 0.984375f, 0.6839465f)), // ¤
-                new Glyph(new Granite.Core.Vector2i(1, 410), texture, new Granite.Core.Box2(0.001953125f, 0.6856188f, 0.0234375f, 0.7207358f)), // ¥
-                new Glyph(new Granite.Core.Vector2i(13, 410), texture, new Granite.Core.Box2(0.02539063f, 0.6856188f, 0.046875f, 0.7207358f)), // ¦
-                new Glyph(new Granite.Core.Vector2i(25, 410), texture, new Granite.Core.Box2(0.04882813f, 0.6856188f, 0.0703125f, 0.7207358f)), // §
-                new Glyph(new Granite.Core.Vector2i(37, 410), texture, new Granite.Core.Box2(0.07226563f, 0.6856188f, 0.09375f, 0.7207358f)), // ¨
-                new Glyph(new Granite.Core.Vector2i(49, 410), texture, new Granite.Core.Box2(0.09570313f, 0.6856188f, 0.1171875f, 0.7207358f)), // ©
-                new Glyph(new Granite.Core.Vector2i(61, 410), texture, new Granite.Core.Box2(0.1191406f, 0.6856188f, 0.140625f, 0.7207358f)), // ª
-                new Glyph(new Granite.Core.Vector2i(73, 410), texture, new Granite.Core.Box2(0.1425781f, 0.6856188f, 0.1640625f, 0.7207358f)), // «
-                new Glyph(new Granite.Core.Vector2i(85, 410), texture, new Granite.Core.Box2(0.1660156f, 0.6856188f, 0.1875f, 0.7207358f)), // ¬
-                new Glyph(new Granite.Core.Vector2i(97, 410), texture, new Granite.Core.Box2(0.1894531f, 0.6856188f, 0.2109375f, 0.7207358f)), // ­
-                new Glyph(new Granite.Core.Vector2i(109, 410), texture, new Granite.Core.Box2(0.2128906f, 0.6856188f, 0.234375f, 0.7207358f)), // ®
-                new Glyph(new Granite.Core.Vector2i(121, 410), texture, new Granite.Core.Box2(0.2363281f, 0.6856188f, 0.2578125f, 0.7207358f)), // ¯
-                new Glyph(new Granite.Core.Vector2i(133, 410), texture, new Granite.Core.Box2(0.2597656f, 0.6856188f, 0.28125f, 0.7207358f)), // °
-                new Glyph(new Granite.Core.Vector2i(145, 410), texture, new Granite.Core.Box2(0.2832031f, 0.6856188f, 0.3046875f, 0.7207358f)), // ±
-                new Glyph(new Granite.Core.Vector2i(157, 410), texture, new Granite.Core.Box2(0.3066406f, 0.6856188f, 0.328125f, 0.7207358f)), // ²
-                new Glyph(new Granite.Core.Vector2i(169, 410), texture, new Granite.Core.Box2(0.3300781f, 0.6856188f, 0.3515625f, 0.7207358f)), // ³
-                new Glyph(new Granite.Core.Vector2i(181, 410), texture, new Granite.Core.Box2(0.3535156f, 0.6856188f, 0.375f, 0.7207358f)), // ´
-                new Glyph(new Granite.Core.Vector2i(193, 410), texture, new Granite.Core.Box2(0.3769531f, 0.6856188f, 0.3984375f, 0.7207358f)), // µ
-                new Glyph(new Granite.Core.Vector2i(205, 410), texture, new Granite.Core.Box2(0.4003906f, 0.6856188f, 0.421875f, 0.7207358f)), // ¶
-                new Glyph(new Granite.Core.Vector2i(217, 410), texture, new Granite.Core.Box2(0.4238281f, 0.6856188f, 0.4453125f, 0.7207358f)), // ·
-                new Glyph(new Granite.Core.Vector2i(229, 410), texture, new Granite.Core.Box2(0.4472656f, 0.6856188f, 0.46875f, 0.7207358f)), // ¸
-                new Glyph(new Granite.Core.Vector2i(241, 410), texture, new Granite.Core.Box2(0.4707031f, 0.6856188f, 0.4921875f, 0.7207358f)), // ¹
-                new Glyph(new Granite.Core.Vector2i(253, 410), texture, new Granite.Core.Box2(0.4941406f, 0.6856188f, 0.515625f, 0.7207358f)), // º
-                new Glyph(new Granite.Core.Vector2i(265, 410), texture, new Granite.Core.Box2(0.5175781f, 0.6856188f, 0.5390625f, 0.7207358f)), // »
-                new Glyph(new Granite.Core.Vector2i(277, 410), texture, new Granite.Core.Box2(0.5410156f, 0.6856188f, 0.5625f, 0.7207358f)), // ¼
-                new Glyph(new Granite.Core.Vector2i(289, 410), texture, new Granite.Core.Box2(0.5644531f, 0.6856188f, 0.5859375f, 0.7207358f)), // ½
-                new Glyph(new Granite.Core.Vector2i(301, 410), texture, new Granite.Core.Box2(0.5878906f, 0.6856188f, 0.609375f, 0.7207358f)), // ¾
-                new Glyph(new Granite.Core.Vector2i(313, 410), texture, new Granite.Core.Box2(0.6113281f, 0.6856188f, 0.6328125f, 0.7207358f)), // ¿
-                new Glyph(new Granite.Core.Vector2i(325, 410), texture, new Granite.Core.Box2(0.6347656f, 0.6856188f, 0.65625f, 0.7207358f)), // À
-                new Glyph(new Granite.Core.Vector2i(337, 410), texture, new Granite.Core.Box2(0.6582031f, 0.6856188f, 0.6796875f, 0.7207358f)), // Á
-                new Glyph(new Granite.Core.Vector2i(349, 410), texture, new Granite.Core.Box2(0.6816406f, 0.6856188f, 0.703125f, 0.7207358f)), // Â
-                new Glyph(new Granite.Core.Vector2i(361, 410), texture, new Granite.Core.Box2(0.7050781f, 0.6856188f, 0.7265625f, 0.7207358f)), // Ã
-                new Glyph(new Granite.Core.Vector2i(373, 410), texture, new Granite.Core.Box2(0.7285156f, 0.6856188f, 0.75f, 0.7207358f)), // Ä
-                new Glyph(new Granite.Core.Vector2i(385, 410), texture, new Granite.Core.Box2(0.7519531f, 0.6856188f, 0.7734375f, 0.7207358f)), // Å
-                new Glyph(new Granite.Core.Vector2i(397, 410), texture, new Granite.Core.Box2(0.7753906f, 0.6856188f, 0.796875f, 0.7207358f)), // Æ
-                new Glyph(new Granite.Core.Vector2i(409, 410), texture, new Granite.Core.Box2(0.7988281f, 0.6856188f, 0.8203125f, 0.7207358f)), // Ç
-                new Glyph(new Granite.Core.Vector2i(421, 410), texture, new Granite.Core.Box2(0.8222656f, 0.6856188f, 0.84375f, 0.7207358f)), // È
-                new Glyph(new Granite.Core.Vector2i(433, 410), texture, new Granite.Core.Box2(0.8457031f, 0.6856188f, 0.8671875f, 0.7207358f)), // É
-                new Glyph(new Granite.Core.Vector2i(445, 410), texture, new Granite.Core.Box2(0.8691406f, 0.6856188f, 0.890625f, 0.7207358f)), // Ê
-                new Glyph(new Granite.Core.Vector2i(457, 410), texture, new Granite.Core.Box2(0.8925781f, 0.6856188f, 0.9140625f, 0.7207358f)), // Ë
-                new Glyph(new Granite.Core.Vector2i(469, 410), texture, new Granite.Core.Box2(0.9160156f, 0.6856188f, 0.9375f, 0.7207358f)), // Ì
-                new Glyph(new Granite.Core.Vector2i(481, 410), texture, new Granite.Core.Box2(0.9394531f, 0.6856188f, 0.9609375f, 0.7207358f)), // Í
-                new Glyph(new Granite.Core.Vector2i(493, 410), texture, new Granite.Core.Box2(0.9628906f, 0.6856188f, 0.984375f, 0.7207358f)), // Î
-                new Glyph(new Granite.Core.Vector2i(1, 432), texture, new Granite.Core.Box2(0.001953125f, 0.7224081f, 0.0234375f, 0.7575251f)), // Ï
-                new Glyph(new Granite.Core.Vector2i(13, 432), texture, new Granite.Core.Box2(0.02539063f, 0.7224081f, 0.046875f, 0.7575251f)), // Ð
-                new Glyph(new Granite.Core.Vector2i(25, 432), texture, new Granite.Core.Box2(0.04882813f, 0.7224081f, 0.0703125f, 0.7575251f)), // Ñ
-                new Glyph(new Granite.Core.Vector2i(37, 432), texture, new Granite.Core.Box2(0.07226563f, 0.7224081f, 0.09375f, 0.7575251f)), // Ò
-                new Glyph(new Granite.Core.Vector2i(49, 432), texture, new Granite.Core.Box2(0.09570313f, 0.7224081f, 0.1171875f, 0.7575251f)), // Ó
-                new Glyph(new Granite.Core.Vector2i(61, 432), texture, new Granite.Core.Box2(0.1191406f, 0.7224081f, 0.140625f, 0.7575251f)), // Ô
-                new Glyph(new Granite.Core.Vector2i(73, 432), texture, new Granite.Core.Box2(0.1425781f, 0.7224081f, 0.1640625f, 0.7575251f)), // Õ
-                new Glyph(new Granite.Core.Vector2i(85, 432), texture, new Granite.Core.Box2(0.1660156f, 0.7224081f, 0.1875f, 0.7575251f)), // Ö
-                new Glyph(new Granite.Core.Vector2i(97, 432), texture, new Granite.Core.Box2(0.1894531f, 0.7224081f, 0.2109375f, 0.7575251f)), // ×
-                new Glyph(new Granite.Core.Vector2i(109, 432), texture, new Granite.Core.Box2(0.2128906f, 0.7224081f, 0.234375f, 0.7575251f)), // Ø
-                new Glyph(new Granite.Core.Vector2i(121, 432), texture, new Granite.Core.Box2(0.2363281f, 0.7224081f, 0.2578125f, 0.7575251f)), // Ù
-                new Glyph(new Granite.Core.Vector2i(133, 432), texture, new Granite.Core.Box2(0.2597656f, 0.7224081f, 0.28125f, 0.7575251f)), // Ú
-                new Glyph(new Granite.Core.Vector2i(145, 432), texture, new Granite.Core.Box2(0.2832031f, 0.7224081f, 0.3046875f, 0.7575251f)), // Û
-                new Glyph(new Granite.Core.Vector2i(157, 432), texture, new Granite.Core.Box2(0.3066406f, 0.7224081f, 0.328125f, 0.7575251f)), // Ü
-                new Glyph(new Granite.Core.Vector2i(169, 432), texture, new Granite.Core.Box2(0.3300781f, 0.7224081f, 0.3515625f, 0.7575251f)), // Ý
-                new Glyph(new Granite.Core.Vector2i(181, 432), texture, new Granite.Core.Box2(0.3535156f, 0.7224081f, 0.375f, 0.7575251f)), // Þ
-                new Glyph(new Granite.Core.Vector2i(193, 432), texture, new Granite.Core.Box2(0.3769531f, 0.7224081f, 0.3984375f, 0.7575251f)), // ß
-                new Glyph(new Granite.Core.Vector2i(205, 432), texture, new Granite.Core.Box2(0.4003906f, 0.7224081f, 0.421875f, 0.7575251f)), // à
-                new Glyph(new Granite.Core.Vector2i(217, 432), texture, new Granite.Core.Box2(0.4238281f, 0.7224081f, 0.4453125f, 0.7575251f)), // á
-                new Glyph(new Granite.Core.Vector2i(229, 432), texture, new Granite.Core.Box2(0.4472656f, 0.7224081f, 0.46875f, 0.7575251f)), // â
-                new Glyph(new Granite.Core.Vector2i(241, 432), texture, new Granite.Core.Box2(0.4707031f, 0.7224081f, 0.4921875f, 0.7575251f)), // ã
-                new Glyph(new Granite.Core.Vector2i(253, 432), texture, new Granite.Core.Box2(0.4941406f, 0.7224081f, 0.515625f, 0.7575251f)), // ä
-                new Glyph(new Granite.Core.Vector2i(265, 432), texture, new Granite.Core.Box2(0.5175781f, 0.7224081f, 0.5390625f, 0.7575251f)), // å
-                new Glyph(new Granite.Core.Vector2i(277, 432), texture, new Granite.Core.Box2(0.5410156f, 0.7224081f, 0.5625f, 0.7575251f)), // æ
-                new Glyph(new Granite.Core.Vector2i(289, 432), texture, new Granite.Core.Box2(0.5644531f, 0.7224081f, 0.5859375f, 0.7575251f)), // ç
-                new Glyph(new Granite.Core.Vector2i(301, 432), texture, new Granite.Core.Box2(0.5878906f, 0.7224081f, 0.609375f, 0.7575251f)), // è
-                new Glyph(new Granite.Core.Vector2i(313, 432), texture, new Granite.Core.Box2(0.6113281f, 0.7224081f, 0.6328125f, 0.7575251f)), // é
-                new Glyph(new Granite.Core.Vector2i(325, 432), texture, new Granite.Core.Box2(0.6347656f, 0.7224081f, 0.65625f, 0.7575251f)), // ê
-                new Glyph(new Granite.Core.Vector2i(337, 432), texture, new Granite.Core.Box2(0.6582031f, 0.7224081f, 0.6796875f, 0.7575251f)), // ë
-                new Glyph(new Granite.Core.Vector2i(349, 432), texture, new Granite.Core.Box2(0.6816406f, 0.7224081f, 0.703125f, 0.7575251f)), // ì
-                new Glyph(new Granite.Core.Vector2i(361, 432), texture, new Granite.Core.Box2(0.7050781f, 0.7224081f, 0.7265625f, 0.7575251f)), // í
-                new Glyph(new Granite.Core.Vector2i(373, 432), texture, new Granite.Core.Box2(0.7285156f, 0.7224081f, 0.75f, 0.7575251f)), // î
-                new Glyph(new Granite.Core.Vector2i(385, 432), texture, new Granite.Core.Box2(0.7519531f, 0.7224081f, 0.7734375f, 0.7575251f)), // ï
-                new Glyph(new Granite.Core.Vector2i(397, 432), texture, new Granite.Core.Box2(0.7753906f, 0.7224081f, 0.796875f, 0.7575251f)), // ð
-                new Glyph(new Granite.Core.Vector2i(409, 432), texture, new Granite.Core.Box2(0.7988281f, 0.7224081f, 0.8203125f, 0.7575251f)), // ñ
-                new Glyph(new Granite.Core.Vector2i(421, 432), texture, new Granite.Core.Box2(0.8222656f, 0.7224081f, 0.84375f, 0.7575251f)), // ò
-                new Glyph(new Granite.Core.Vector2i(433, 432), texture, new Granite.Core.Box2(0.8457031f, 0.7224081f, 0.8671875f, 0.7575251f)), // ó
-                new Glyph(new Granite.Core.Vector2i(445, 432), texture, new Granite.Core.Box2(0.8691406f, 0.7224081f, 0.890625f, 0.7575251f)), // ô
-                new Glyph(new Granite.Core.Vector2i(457, 432), texture, new Granite.Core.Box2(0.8925781f, 0.7224081f, 0.9140625f, 0.7575251f)), // õ
-                new Glyph(new Granite.Core.Vector2i(469, 432), texture, new Granite.Core.Box2(0.9160156f, 0.7224081f, 0.9375f, 0.7575251f)), // ö
-                new Glyph(new Granite.Core.Vector2i(481, 432), texture, new Granite.Core.Box2(0.9394531f, 0.7224081f, 0.9609375f, 0.7575251f)), // ÷
-                new Glyph(new Granite.Core.Vector2i(493, 432), texture, new Granite.Core.Box2(0.9628906f, 0.7224081f, 0.984375f, 0.7575251f)), // ø
-                new Glyph(new Granite.Core.Vector2i(1, 454), texture, new Granite.Core.Box2(0.001953125f, 0.7591973f, 0.0234375f, 0.7943144f)), // ù
-                new Glyph(new Granite.Core.Vector2i(13, 454), texture, new Granite.Core.Box2(0.02539063f, 0.7591973f, 0.046875f, 0.7943144f)), // ú
-                new Glyph(new Granite.Core.Vector2i(25, 454), texture, new Granite.Core.Box2(0.04882813f, 0.7591973f, 0.0703125f, 0.7943144f)), // û
-                new Glyph(new Granite.Core.Vector2i(37, 454), texture, new Granite.Core.Box2(0.07226563f, 0.7591973f, 0.09375f, 0.7943144f)), // ü
-                new Glyph(new Granite.Core.Vector2i(49, 454), texture, new Granite.Core.Box2(0.09570313f, 0.7591973f, 0.1171875f, 0.7943144f)), // ý
-                new Glyph(new Granite.Core.Vector2i(61, 454), texture, new Granite.Core.Box2(0.1191406f, 0.7591973f, 0.140625f, 0.7943144f)), // þ
-                new Glyph(new Granite.Core.Vector2i(73, 454), texture, new Granite.Core.Box2(0.1425781f, 0.7591973f, 0.1640625f, 0.7943144f)), // ÿ
-            };
-        }
+        private static GlyphPosition[] s_regularSmallVariableWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(117, 1, 5, 16)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(123, 1, 5, 16)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(129, 1, 5, 16)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(351, 239, 10, 16)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(382, 18, 8, 16)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(273, 273, 13, 16)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(1, 1, 0, 16)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(6, 1, 3, 16)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(327, 1, 6, 16)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(334, 1, 6, 16)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(415, 188, 9, 16)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(425, 188, 9, 16)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(135, 1, 5, 16)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(78, 18, 7, 16)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(141, 1, 5, 16)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(341, 1, 6, 16)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(391, 18, 8, 16)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(400, 18, 8, 16)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(409, 18, 8, 16)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(418, 18, 8, 16)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(427, 18, 8, 16)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(436, 18, 8, 16)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(445, 18, 8, 16)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(454, 18, 8, 16)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(463, 18, 8, 16)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(472, 18, 8, 16)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(348, 1, 6, 16)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(355, 1, 6, 16)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(435, 188, 9, 16)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(445, 188, 9, 16)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(455, 188, 9, 16)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(86, 18, 7, 16)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(287, 273, 13, 16)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(465, 188, 9, 16)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(481, 18, 8, 16)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(475, 188, 9, 16)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(485, 188, 9, 16)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(490, 18, 8, 16)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(499, 18, 8, 16)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(495, 188, 9, 16)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(1, 205, 9, 16)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(147, 1, 5, 16)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(362, 1, 6, 16)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(1, 35, 8, 16)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(94, 18, 7, 16)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(309, 256, 11, 16)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(11, 205, 9, 16)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(362, 239, 10, 16)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(10, 35, 8, 16)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(373, 239, 10, 16)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(19, 35, 8, 16)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(21, 205, 9, 16)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(31, 205, 9, 16)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(41, 205, 9, 16)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(51, 205, 9, 16)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(301, 273, 13, 16)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(61, 205, 9, 16)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(71, 205, 9, 16)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(81, 205, 9, 16)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(369, 1, 6, 16)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(376, 1, 6, 16)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(383, 1, 6, 16)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(321, 256, 11, 16)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(28, 35, 8, 16)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(37, 35, 8, 16)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(46, 35, 8, 16)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(55, 35, 8, 16)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(64, 35, 8, 16)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(73, 35, 8, 16)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(82, 35, 8, 16)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(153, 1, 5, 16)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(91, 35, 8, 16)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(100, 35, 8, 16)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(10, 1, 3, 16)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(62, 1, 4, 16)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(102, 18, 7, 16)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(14, 1, 3, 16)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(333, 256, 11, 16)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(109, 35, 8, 16)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(118, 35, 8, 16)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(127, 35, 8, 16)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(136, 35, 8, 16)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(159, 1, 5, 16)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(110, 18, 7, 16)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(390, 1, 6, 16)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(145, 35, 8, 16)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(154, 35, 8, 16)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(345, 256, 11, 16)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(118, 18, 7, 16)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(163, 35, 8, 16)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(126, 18, 7, 16)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(172, 35, 8, 16)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(134, 18, 7, 16)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(181, 35, 8, 16)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(357, 256, 11, 16)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(165, 1, 5, 16)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(171, 1, 5, 16)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(190, 35, 8, 16)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(199, 35, 8, 16)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(208, 35, 8, 16)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(217, 35, 8, 16)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(142, 18, 7, 16)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(226, 35, 8, 16)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(235, 35, 8, 16)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(315, 273, 13, 16)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(150, 18, 7, 16)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(244, 35, 8, 16)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(91, 205, 9, 16)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(158, 18, 7, 16)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(329, 273, 13, 16)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(253, 35, 8, 16)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(166, 18, 7, 16)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(101, 205, 9, 16)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(174, 18, 7, 16)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(182, 18, 7, 16)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(262, 35, 8, 16)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(271, 35, 8, 16)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(280, 35, 8, 16)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(177, 1, 5, 16)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(289, 35, 8, 16)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(190, 18, 7, 16)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(198, 18, 7, 16)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(298, 35, 8, 16)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(343, 273, 13, 16)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(357, 273, 13, 16)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(371, 273, 13, 16)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(206, 18, 7, 16)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(111, 205, 9, 16)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(121, 205, 9, 16)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(131, 205, 9, 16)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(141, 205, 9, 16)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(151, 205, 9, 16)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(161, 205, 9, 16)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(169, 273, 12, 16)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(171, 205, 9, 16)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(307, 35, 8, 16)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(316, 35, 8, 16)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(325, 35, 8, 16)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(334, 35, 8, 16)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(183, 1, 5, 16)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(189, 1, 5, 16)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(195, 1, 5, 16)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(201, 1, 5, 16)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(181, 205, 9, 16)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(191, 205, 9, 16)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(384, 239, 10, 16)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(395, 239, 10, 16)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(406, 239, 10, 16)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(417, 239, 10, 16)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(428, 239, 10, 16)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(369, 256, 11, 16)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(439, 239, 10, 16)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(201, 205, 9, 16)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(211, 205, 9, 16)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(221, 205, 9, 16)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(231, 205, 9, 16)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(241, 205, 9, 16)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(343, 35, 8, 16)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(352, 35, 8, 16)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(361, 35, 8, 16)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(370, 35, 8, 16)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(379, 35, 8, 16)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(388, 35, 8, 16)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(397, 35, 8, 16)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(406, 35, 8, 16)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(381, 256, 11, 16)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(415, 35, 8, 16)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(424, 35, 8, 16)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(433, 35, 8, 16)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(442, 35, 8, 16)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(451, 35, 8, 16)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(18, 1, 3, 16)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(22, 1, 3, 16)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(26, 1, 3, 16)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(30, 1, 3, 16)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(460, 35, 8, 16)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(469, 35, 8, 16)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(478, 35, 8, 16)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(487, 35, 8, 16)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(496, 35, 8, 16)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(1, 52, 8, 16)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(10, 52, 8, 16)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(251, 205, 9, 16)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(19, 52, 8, 16)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(28, 52, 8, 16)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(37, 52, 8, 16)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(46, 52, 8, 16)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(55, 52, 8, 16)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(64, 52, 8, 16)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(73, 52, 8, 16)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(82, 52, 8, 16)), // ÿ
+        };
+        private static GlyphPosition[] s_boldSmallVariableWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(67, 1, 4, 16)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(397, 1, 6, 16)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(214, 18, 7, 16)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(393, 256, 11, 16)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(261, 205, 9, 16)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(109, 290, 17, 16)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(2, 1, 0, 16)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(72, 1, 4, 16)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(222, 18, 7, 16)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(230, 18, 7, 16)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(271, 205, 9, 16)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(405, 256, 11, 16)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(207, 1, 5, 16)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(238, 18, 7, 16)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(213, 1, 5, 16)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(281, 205, 9, 16)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(291, 205, 9, 16)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(301, 205, 9, 16)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(311, 205, 9, 16)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(321, 205, 9, 16)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(331, 205, 9, 16)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(341, 205, 9, 16)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(351, 205, 9, 16)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(361, 205, 9, 16)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(371, 205, 9, 16)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(381, 205, 9, 16)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(219, 1, 5, 16)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(225, 1, 5, 16)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(417, 256, 11, 16)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(429, 256, 11, 16)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(441, 256, 11, 16)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(91, 52, 8, 16)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(385, 273, 13, 16)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(450, 239, 10, 16)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(461, 239, 10, 16)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(472, 239, 10, 16)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(483, 239, 10, 16)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(391, 205, 9, 16)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(401, 205, 9, 16)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(494, 239, 10, 16)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(453, 256, 11, 16)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(404, 1, 6, 16)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(246, 18, 7, 16)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(411, 205, 9, 16)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(100, 52, 8, 16)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(182, 273, 12, 16)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(1, 256, 10, 16)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(465, 256, 11, 16)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(421, 205, 9, 16)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(477, 256, 11, 16)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(431, 205, 9, 16)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(441, 205, 9, 16)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(109, 52, 8, 16)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(12, 256, 10, 16)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(23, 256, 10, 16)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(1, 290, 14, 16)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(34, 256, 10, 16)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(45, 256, 10, 16)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(451, 205, 9, 16)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(411, 1, 6, 16)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(461, 205, 9, 16)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(418, 1, 6, 16)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(56, 256, 10, 16)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(471, 205, 9, 16)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(481, 205, 9, 16)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(491, 205, 9, 16)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(501, 205, 9, 16)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(118, 52, 8, 16)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(1, 222, 9, 16)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(11, 222, 9, 16)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(231, 1, 5, 16)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(21, 222, 9, 16)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(31, 222, 9, 16)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(77, 1, 4, 16)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(237, 1, 5, 16)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(127, 52, 8, 16)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(82, 1, 4, 16)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(16, 290, 14, 16)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(41, 222, 9, 16)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(51, 222, 9, 16)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(61, 222, 9, 16)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(71, 222, 9, 16)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(425, 1, 6, 16)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(136, 52, 8, 16)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(432, 1, 6, 16)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(81, 222, 9, 16)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(91, 222, 9, 16)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(195, 273, 12, 16)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(101, 222, 9, 16)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(111, 222, 9, 16)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(145, 52, 8, 16)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(121, 222, 9, 16)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(154, 52, 8, 16)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(131, 222, 9, 16)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(489, 256, 11, 16)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(87, 1, 4, 16)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(439, 1, 6, 16)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(141, 222, 9, 16)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(151, 222, 9, 16)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(161, 222, 9, 16)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(171, 222, 9, 16)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(163, 52, 8, 16)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(181, 222, 9, 16)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(191, 222, 9, 16)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(208, 273, 12, 16)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(172, 52, 8, 16)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(1, 273, 11, 16)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(13, 273, 11, 16)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(254, 18, 7, 16)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(221, 273, 12, 16)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(201, 222, 9, 16)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(262, 18, 7, 16)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(25, 273, 11, 16)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(181, 52, 8, 16)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(190, 52, 8, 16)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(211, 222, 9, 16)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(221, 222, 9, 16)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(231, 222, 9, 16)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(243, 1, 5, 16)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(241, 222, 9, 16)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(199, 52, 8, 16)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(208, 52, 8, 16)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(37, 273, 11, 16)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(61, 290, 15, 16)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(77, 290, 15, 16)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(93, 290, 15, 16)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(217, 52, 8, 16)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(67, 256, 10, 16)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(78, 256, 10, 16)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(89, 256, 10, 16)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(100, 256, 10, 16)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(111, 256, 10, 16)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(122, 256, 10, 16)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(31, 290, 14, 16)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(133, 256, 10, 16)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(251, 222, 9, 16)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(261, 222, 9, 16)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(271, 222, 9, 16)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(281, 222, 9, 16)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(446, 1, 6, 16)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(453, 1, 6, 16)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(460, 1, 6, 16)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(467, 1, 6, 16)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(144, 256, 10, 16)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(155, 256, 10, 16)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(49, 273, 11, 16)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(61, 273, 11, 16)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(73, 273, 11, 16)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(85, 273, 11, 16)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(97, 273, 11, 16)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(109, 273, 11, 16)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(121, 273, 11, 16)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(166, 256, 10, 16)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(177, 256, 10, 16)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(188, 256, 10, 16)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(199, 256, 10, 16)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(210, 256, 10, 16)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(291, 222, 9, 16)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(301, 222, 9, 16)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(311, 222, 9, 16)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(321, 222, 9, 16)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(331, 222, 9, 16)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(341, 222, 9, 16)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(351, 222, 9, 16)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(361, 222, 9, 16)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(46, 290, 14, 16)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(226, 52, 8, 16)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(371, 222, 9, 16)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(381, 222, 9, 16)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(391, 222, 9, 16)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(401, 222, 9, 16)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(92, 1, 4, 16)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(97, 1, 4, 16)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(102, 1, 4, 16)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(107, 1, 4, 16)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(411, 222, 9, 16)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(421, 222, 9, 16)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(431, 222, 9, 16)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(441, 222, 9, 16)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(451, 222, 9, 16)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(461, 222, 9, 16)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(471, 222, 9, 16)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(133, 273, 11, 16)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(481, 222, 9, 16)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(491, 222, 9, 16)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(501, 222, 9, 16)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(1, 239, 9, 16)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(11, 239, 9, 16)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(21, 239, 9, 16)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(31, 239, 9, 16)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(41, 239, 9, 16)), // ÿ
+        };
+        private static GlyphPosition[] s_italicSmallVariableWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(249, 1, 5, 16)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(255, 1, 5, 16)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(474, 1, 6, 16)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(51, 239, 9, 16)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(235, 52, 8, 16)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(399, 273, 13, 16)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(3, 1, 0, 16)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(34, 1, 3, 16)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(481, 1, 6, 16)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(488, 1, 6, 16)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(244, 52, 8, 16)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(61, 239, 9, 16)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(261, 1, 5, 16)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(495, 1, 6, 16)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(267, 1, 5, 16)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(502, 1, 6, 16)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(253, 52, 8, 16)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(262, 52, 8, 16)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(271, 52, 8, 16)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(280, 52, 8, 16)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(289, 52, 8, 16)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(298, 52, 8, 16)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(307, 52, 8, 16)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(316, 52, 8, 16)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(325, 52, 8, 16)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(334, 52, 8, 16)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(1, 18, 6, 16)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(8, 18, 6, 16)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(71, 239, 9, 16)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(81, 239, 9, 16)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(91, 239, 9, 16)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(270, 18, 7, 16)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(234, 273, 12, 16)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(343, 52, 8, 16)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(352, 52, 8, 16)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(101, 239, 9, 16)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(111, 239, 9, 16)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(361, 52, 8, 16)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(370, 52, 8, 16)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(121, 239, 9, 16)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(131, 239, 9, 16)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(273, 1, 5, 16)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(15, 18, 6, 16)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(379, 52, 8, 16)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(278, 18, 7, 16)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(145, 273, 11, 16)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(141, 239, 9, 16)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(221, 256, 10, 16)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(286, 18, 7, 16)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(232, 256, 10, 16)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(388, 52, 8, 16)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(397, 52, 8, 16)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(151, 239, 9, 16)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(161, 239, 9, 16)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(171, 239, 9, 16)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(247, 273, 12, 16)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(181, 239, 9, 16)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(191, 239, 9, 16)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(201, 239, 9, 16)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(22, 18, 6, 16)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(29, 18, 6, 16)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(36, 18, 6, 16)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(211, 239, 9, 16)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(406, 52, 8, 16)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(415, 52, 8, 16)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(424, 52, 8, 16)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(433, 52, 8, 16)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(442, 52, 8, 16)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(451, 52, 8, 16)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(460, 52, 8, 16)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(279, 1, 5, 16)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(469, 52, 8, 16)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(478, 52, 8, 16)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(38, 1, 3, 16)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(112, 1, 4, 16)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(294, 18, 7, 16)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(42, 1, 3, 16)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(413, 273, 13, 16)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(487, 52, 8, 16)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(496, 52, 8, 16)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(1, 69, 8, 16)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(10, 69, 8, 16)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(43, 18, 6, 16)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(302, 18, 7, 16)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(50, 18, 6, 16)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(19, 69, 8, 16)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(28, 69, 8, 16)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(157, 273, 11, 16)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(310, 18, 7, 16)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(37, 69, 8, 16)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(318, 18, 7, 16)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(46, 69, 8, 16)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(57, 18, 6, 16)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(55, 69, 8, 16)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(221, 239, 9, 16)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(285, 1, 5, 16)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(291, 1, 5, 16)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(64, 69, 8, 16)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(73, 69, 8, 16)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(82, 69, 8, 16)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(91, 69, 8, 16)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(64, 18, 6, 16)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(100, 69, 8, 16)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(109, 69, 8, 16)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(427, 273, 13, 16)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(326, 18, 7, 16)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(118, 69, 8, 16)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(231, 239, 9, 16)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(71, 18, 6, 16)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(441, 273, 13, 16)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(127, 69, 8, 16)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(334, 18, 7, 16)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(241, 239, 9, 16)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(342, 18, 7, 16)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(350, 18, 7, 16)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(136, 69, 8, 16)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(145, 69, 8, 16)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(154, 69, 8, 16)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(297, 1, 5, 16)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(163, 69, 8, 16)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(358, 18, 7, 16)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(366, 18, 7, 16)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(172, 69, 8, 16)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(455, 273, 13, 16)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(469, 273, 13, 16)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(483, 273, 13, 16)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(374, 18, 7, 16)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(181, 69, 8, 16)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(190, 69, 8, 16)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(199, 69, 8, 16)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(208, 69, 8, 16)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(217, 69, 8, 16)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(226, 69, 8, 16)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(497, 273, 13, 16)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(251, 239, 9, 16)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(235, 69, 8, 16)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(244, 69, 8, 16)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(253, 69, 8, 16)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(262, 69, 8, 16)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(303, 1, 5, 16)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(309, 1, 5, 16)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(315, 1, 5, 16)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(321, 1, 5, 16)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(261, 239, 9, 16)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(271, 239, 9, 16)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(243, 256, 10, 16)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(254, 256, 10, 16)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(265, 256, 10, 16)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(276, 256, 10, 16)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(287, 256, 10, 16)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(281, 239, 9, 16)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(298, 256, 10, 16)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(291, 239, 9, 16)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(301, 239, 9, 16)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(311, 239, 9, 16)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(321, 239, 9, 16)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(331, 239, 9, 16)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(271, 69, 8, 16)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(280, 69, 8, 16)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(289, 69, 8, 16)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(298, 69, 8, 16)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(307, 69, 8, 16)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(316, 69, 8, 16)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(325, 69, 8, 16)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(334, 69, 8, 16)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(260, 273, 12, 16)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(343, 69, 8, 16)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(352, 69, 8, 16)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(361, 69, 8, 16)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(370, 69, 8, 16)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(379, 69, 8, 16)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(46, 1, 3, 16)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(50, 1, 3, 16)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(54, 1, 3, 16)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(58, 1, 3, 16)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(388, 69, 8, 16)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(397, 69, 8, 16)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(406, 69, 8, 16)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(415, 69, 8, 16)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(424, 69, 8, 16)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(433, 69, 8, 16)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(442, 69, 8, 16)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(341, 239, 9, 16)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(451, 69, 8, 16)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(460, 69, 8, 16)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(469, 69, 8, 16)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(478, 69, 8, 16)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(487, 69, 8, 16)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(496, 69, 8, 16)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(1, 86, 8, 16)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(10, 86, 8, 16)), // ÿ
+        };
+        private static GlyphPosition[] s_regularBigVariableWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(134, 454, 7, 23)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(142, 454, 7, 23)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(268, 454, 9, 23)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(81, 550, 16, 23)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(286, 478, 12, 23)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(1, 574, 20, 23)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(85, 454, 0, 23)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(86, 454, 5, 23)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(278, 454, 9, 23)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(288, 454, 9, 23)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(299, 478, 12, 23)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(98, 550, 16, 23)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(150, 454, 7, 23)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(298, 454, 9, 23)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(158, 454, 7, 23)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(308, 454, 9, 23)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(312, 478, 12, 23)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(325, 478, 12, 23)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(338, 478, 12, 23)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(351, 478, 12, 23)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(364, 478, 12, 23)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(377, 478, 12, 23)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(390, 478, 12, 23)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(403, 478, 12, 23)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(416, 478, 12, 23)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(429, 478, 12, 23)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(318, 454, 9, 23)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(328, 454, 9, 23)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(115, 550, 16, 23)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(132, 550, 16, 23)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(149, 550, 16, 23)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(408, 454, 10, 23)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(340, 550, 19, 23)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(66, 526, 13, 23)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(80, 526, 13, 23)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(94, 526, 13, 23)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(410, 526, 15, 23)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(442, 478, 12, 23)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(34, 478, 11, 23)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(426, 526, 15, 23)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(290, 526, 14, 23)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(214, 454, 8, 23)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(338, 454, 9, 23)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(108, 526, 13, 23)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(46, 478, 11, 23)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(166, 550, 16, 23)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(305, 526, 14, 23)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(442, 526, 15, 23)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(58, 478, 11, 23)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(458, 526, 15, 23)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(122, 526, 13, 23)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(136, 526, 13, 23)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(455, 478, 12, 23)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(320, 526, 14, 23)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(150, 526, 13, 23)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(360, 550, 19, 23)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(164, 526, 13, 23)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(468, 478, 12, 23)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(178, 526, 13, 23)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(348, 454, 9, 23)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(358, 454, 9, 23)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(368, 454, 9, 23)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(183, 550, 16, 23)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(481, 478, 12, 23)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(494, 478, 12, 23)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(70, 478, 11, 23)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(1, 502, 12, 23)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(419, 454, 10, 23)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(14, 502, 12, 23)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(82, 478, 11, 23)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(166, 454, 7, 23)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(27, 502, 12, 23)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(40, 502, 12, 23)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(92, 454, 6, 23)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(174, 454, 7, 23)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(94, 478, 11, 23)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(99, 454, 6, 23)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(302, 550, 18, 23)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(53, 502, 12, 23)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(66, 502, 12, 23)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(79, 502, 12, 23)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(92, 502, 12, 23)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(223, 454, 8, 23)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(430, 454, 10, 23)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(182, 454, 7, 23)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(105, 502, 12, 23)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(106, 478, 11, 23)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(200, 550, 16, 23)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(118, 478, 11, 23)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(130, 478, 11, 23)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(441, 454, 10, 23)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(118, 502, 12, 23)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(378, 454, 9, 23)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(131, 502, 12, 23)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(217, 550, 16, 23)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(190, 454, 7, 23)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(198, 454, 7, 23)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(144, 502, 12, 23)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(157, 502, 12, 23)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(170, 502, 12, 23)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(183, 502, 12, 23)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(388, 454, 9, 23)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(196, 502, 12, 23)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(209, 502, 12, 23)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(380, 550, 19, 23)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(452, 454, 10, 23)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(222, 502, 12, 23)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(234, 550, 16, 23)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(398, 454, 9, 23)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(400, 550, 19, 23)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(235, 502, 12, 23)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(463, 454, 10, 23)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(251, 550, 16, 23)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(474, 454, 10, 23)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(485, 454, 10, 23)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(248, 502, 12, 23)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(261, 502, 12, 23)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(274, 502, 12, 23)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(206, 454, 7, 23)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(287, 502, 12, 23)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(496, 454, 10, 23)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(1, 478, 10, 23)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(300, 502, 12, 23)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(420, 550, 19, 23)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(440, 550, 19, 23)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(460, 550, 19, 23)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(12, 478, 10, 23)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(192, 526, 13, 23)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(206, 526, 13, 23)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(220, 526, 13, 23)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(234, 526, 13, 23)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(248, 526, 13, 23)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(262, 526, 13, 23)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(480, 550, 19, 23)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(276, 526, 13, 23)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(313, 502, 12, 23)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(326, 502, 12, 23)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(339, 502, 12, 23)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(352, 502, 12, 23)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(232, 454, 8, 23)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(241, 454, 8, 23)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(250, 454, 8, 23)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(259, 454, 8, 23)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(474, 526, 15, 23)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(335, 526, 14, 23)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(490, 526, 15, 23)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(1, 550, 15, 23)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(17, 550, 15, 23)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(33, 550, 15, 23)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(49, 550, 15, 23)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(268, 550, 16, 23)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(65, 550, 15, 23)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(350, 526, 14, 23)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(365, 526, 14, 23)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(380, 526, 14, 23)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(395, 526, 14, 23)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(365, 502, 12, 23)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(378, 502, 12, 23)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(391, 502, 12, 23)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(142, 478, 11, 23)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(154, 478, 11, 23)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(166, 478, 11, 23)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(178, 478, 11, 23)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(190, 478, 11, 23)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(202, 478, 11, 23)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(321, 550, 18, 23)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(23, 478, 10, 23)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(214, 478, 11, 23)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(226, 478, 11, 23)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(238, 478, 11, 23)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(250, 478, 11, 23)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(106, 454, 6, 23)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(113, 454, 6, 23)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(120, 454, 6, 23)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(127, 454, 6, 23)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(404, 502, 12, 23)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(417, 502, 12, 23)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(430, 502, 12, 23)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(443, 502, 12, 23)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(456, 502, 12, 23)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(469, 502, 12, 23)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(482, 502, 12, 23)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(285, 550, 16, 23)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(495, 502, 12, 23)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(1, 526, 12, 23)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(14, 526, 12, 23)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(27, 526, 12, 23)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(40, 526, 12, 23)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(262, 478, 11, 23)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(53, 526, 12, 23)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(274, 478, 11, 23)), // ÿ
+        };
+        private static GlyphPosition[] s_regularSmallFixedWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(19, 86, 8, 16)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(28, 86, 8, 16)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(37, 86, 8, 16)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(46, 86, 8, 16)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(55, 86, 8, 16)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(64, 86, 8, 16)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(4, 1, 0, 16)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(73, 86, 8, 16)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(82, 86, 8, 16)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(91, 86, 8, 16)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(100, 86, 8, 16)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(109, 86, 8, 16)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(118, 86, 8, 16)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(127, 86, 8, 16)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(136, 86, 8, 16)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(145, 86, 8, 16)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(154, 86, 8, 16)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(163, 86, 8, 16)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(172, 86, 8, 16)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(181, 86, 8, 16)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(190, 86, 8, 16)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(199, 86, 8, 16)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(208, 86, 8, 16)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(217, 86, 8, 16)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(226, 86, 8, 16)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(235, 86, 8, 16)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(244, 86, 8, 16)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(253, 86, 8, 16)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(262, 86, 8, 16)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(271, 86, 8, 16)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(280, 86, 8, 16)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(289, 86, 8, 16)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(298, 86, 8, 16)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(307, 86, 8, 16)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(316, 86, 8, 16)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(325, 86, 8, 16)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(334, 86, 8, 16)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(343, 86, 8, 16)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(352, 86, 8, 16)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(361, 86, 8, 16)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(370, 86, 8, 16)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(379, 86, 8, 16)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(388, 86, 8, 16)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(397, 86, 8, 16)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(406, 86, 8, 16)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(415, 86, 8, 16)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(424, 86, 8, 16)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(433, 86, 8, 16)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(442, 86, 8, 16)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(451, 86, 8, 16)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(460, 86, 8, 16)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(469, 86, 8, 16)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(478, 86, 8, 16)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(487, 86, 8, 16)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(496, 86, 8, 16)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(1, 103, 8, 16)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(10, 103, 8, 16)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(19, 103, 8, 16)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(28, 103, 8, 16)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(37, 103, 8, 16)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(46, 103, 8, 16)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(55, 103, 8, 16)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(64, 103, 8, 16)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(73, 103, 8, 16)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(82, 103, 8, 16)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(91, 103, 8, 16)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(100, 103, 8, 16)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(109, 103, 8, 16)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(118, 103, 8, 16)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(127, 103, 8, 16)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(136, 103, 8, 16)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(145, 103, 8, 16)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(154, 103, 8, 16)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(163, 103, 8, 16)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(172, 103, 8, 16)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(181, 103, 8, 16)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(190, 103, 8, 16)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(199, 103, 8, 16)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(208, 103, 8, 16)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(217, 103, 8, 16)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(226, 103, 8, 16)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(235, 103, 8, 16)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(244, 103, 8, 16)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(253, 103, 8, 16)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(262, 103, 8, 16)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(271, 103, 8, 16)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(280, 103, 8, 16)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(289, 103, 8, 16)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(298, 103, 8, 16)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(307, 103, 8, 16)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(316, 103, 8, 16)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(325, 103, 8, 16)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(334, 103, 8, 16)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(343, 103, 8, 16)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(352, 103, 8, 16)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(361, 103, 8, 16)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(370, 103, 8, 16)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(379, 103, 8, 16)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(388, 103, 8, 16)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(397, 103, 8, 16)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(406, 103, 8, 16)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(415, 103, 8, 16)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(424, 103, 8, 16)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(433, 103, 8, 16)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(442, 103, 8, 16)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(451, 103, 8, 16)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(460, 103, 8, 16)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(469, 103, 8, 16)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(478, 103, 8, 16)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(487, 103, 8, 16)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(496, 103, 8, 16)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(1, 120, 8, 16)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(10, 120, 8, 16)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(19, 120, 8, 16)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(28, 120, 8, 16)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(37, 120, 8, 16)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(46, 120, 8, 16)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(55, 120, 8, 16)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(64, 120, 8, 16)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(73, 120, 8, 16)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(82, 120, 8, 16)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(91, 120, 8, 16)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(100, 120, 8, 16)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(109, 120, 8, 16)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(118, 120, 8, 16)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(127, 120, 8, 16)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(136, 120, 8, 16)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(145, 120, 8, 16)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(154, 120, 8, 16)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(163, 120, 8, 16)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(172, 120, 8, 16)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(181, 120, 8, 16)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(190, 120, 8, 16)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(199, 120, 8, 16)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(208, 120, 8, 16)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(217, 120, 8, 16)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(226, 120, 8, 16)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(235, 120, 8, 16)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(244, 120, 8, 16)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(253, 120, 8, 16)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(262, 120, 8, 16)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(271, 120, 8, 16)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(280, 120, 8, 16)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(289, 120, 8, 16)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(298, 120, 8, 16)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(307, 120, 8, 16)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(316, 120, 8, 16)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(325, 120, 8, 16)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(334, 120, 8, 16)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(343, 120, 8, 16)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(352, 120, 8, 16)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(361, 120, 8, 16)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(370, 120, 8, 16)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(379, 120, 8, 16)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(388, 120, 8, 16)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(397, 120, 8, 16)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(406, 120, 8, 16)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(415, 120, 8, 16)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(424, 120, 8, 16)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(433, 120, 8, 16)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(442, 120, 8, 16)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(451, 120, 8, 16)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(460, 120, 8, 16)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(469, 120, 8, 16)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(478, 120, 8, 16)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(487, 120, 8, 16)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(496, 120, 8, 16)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(1, 137, 8, 16)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(10, 137, 8, 16)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(19, 137, 8, 16)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(28, 137, 8, 16)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(37, 137, 8, 16)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(46, 137, 8, 16)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(55, 137, 8, 16)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(64, 137, 8, 16)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(73, 137, 8, 16)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(82, 137, 8, 16)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(91, 137, 8, 16)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(100, 137, 8, 16)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(109, 137, 8, 16)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(118, 137, 8, 16)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(127, 137, 8, 16)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(136, 137, 8, 16)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(145, 137, 8, 16)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(154, 137, 8, 16)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(163, 137, 8, 16)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(172, 137, 8, 16)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(181, 137, 8, 16)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(190, 137, 8, 16)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(199, 137, 8, 16)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(208, 137, 8, 16)), // ÿ
+        };
+        private static GlyphPosition[] s_boldSmallFixedWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(217, 137, 8, 16)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(226, 137, 8, 16)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(235, 137, 8, 16)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(244, 137, 8, 16)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(253, 137, 8, 16)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(262, 137, 8, 16)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(5, 1, 0, 16)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(271, 137, 8, 16)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(280, 137, 8, 16)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(289, 137, 8, 16)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(298, 137, 8, 16)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(307, 137, 8, 16)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(316, 137, 8, 16)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(325, 137, 8, 16)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(334, 137, 8, 16)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(343, 137, 8, 16)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(352, 137, 8, 16)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(361, 137, 8, 16)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(370, 137, 8, 16)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(379, 137, 8, 16)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(388, 137, 8, 16)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(397, 137, 8, 16)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(406, 137, 8, 16)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(415, 137, 8, 16)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(424, 137, 8, 16)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(433, 137, 8, 16)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(442, 137, 8, 16)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(451, 137, 8, 16)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(460, 137, 8, 16)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(469, 137, 8, 16)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(478, 137, 8, 16)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(487, 137, 8, 16)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(496, 137, 8, 16)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(1, 154, 8, 16)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(10, 154, 8, 16)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(19, 154, 8, 16)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(28, 154, 8, 16)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(37, 154, 8, 16)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(46, 154, 8, 16)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(55, 154, 8, 16)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(64, 154, 8, 16)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(73, 154, 8, 16)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(82, 154, 8, 16)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(91, 154, 8, 16)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(100, 154, 8, 16)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(109, 154, 8, 16)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(118, 154, 8, 16)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(127, 154, 8, 16)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(136, 154, 8, 16)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(145, 154, 8, 16)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(154, 154, 8, 16)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(163, 154, 8, 16)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(172, 154, 8, 16)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(181, 154, 8, 16)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(190, 154, 8, 16)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(199, 154, 8, 16)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(208, 154, 8, 16)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(217, 154, 8, 16)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(226, 154, 8, 16)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(235, 154, 8, 16)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(244, 154, 8, 16)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(253, 154, 8, 16)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(262, 154, 8, 16)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(271, 154, 8, 16)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(280, 154, 8, 16)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(289, 154, 8, 16)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(298, 154, 8, 16)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(307, 154, 8, 16)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(316, 154, 8, 16)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(325, 154, 8, 16)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(334, 154, 8, 16)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(343, 154, 8, 16)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(352, 154, 8, 16)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(361, 154, 8, 16)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(370, 154, 8, 16)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(379, 154, 8, 16)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(388, 154, 8, 16)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(397, 154, 8, 16)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(406, 154, 8, 16)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(415, 154, 8, 16)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(424, 154, 8, 16)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(433, 154, 8, 16)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(442, 154, 8, 16)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(451, 154, 8, 16)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(460, 154, 8, 16)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(469, 154, 8, 16)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(478, 154, 8, 16)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(487, 154, 8, 16)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(496, 154, 8, 16)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(1, 171, 8, 16)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(10, 171, 8, 16)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(19, 171, 8, 16)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(28, 171, 8, 16)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(37, 171, 8, 16)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(46, 171, 8, 16)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(55, 171, 8, 16)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(64, 171, 8, 16)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(73, 171, 8, 16)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(82, 171, 8, 16)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(91, 171, 8, 16)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(100, 171, 8, 16)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(109, 171, 8, 16)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(118, 171, 8, 16)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(127, 171, 8, 16)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(136, 171, 8, 16)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(145, 171, 8, 16)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(154, 171, 8, 16)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(163, 171, 8, 16)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(172, 171, 8, 16)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(181, 171, 8, 16)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(190, 171, 8, 16)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(199, 171, 8, 16)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(208, 171, 8, 16)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(217, 171, 8, 16)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(226, 171, 8, 16)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(235, 171, 8, 16)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(244, 171, 8, 16)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(253, 171, 8, 16)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(262, 171, 8, 16)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(271, 171, 8, 16)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(280, 171, 8, 16)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(289, 171, 8, 16)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(298, 171, 8, 16)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(307, 171, 8, 16)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(316, 171, 8, 16)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(325, 171, 8, 16)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(334, 171, 8, 16)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(343, 171, 8, 16)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(352, 171, 8, 16)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(361, 171, 8, 16)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(370, 171, 8, 16)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(379, 171, 8, 16)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(388, 171, 8, 16)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(397, 171, 8, 16)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(406, 171, 8, 16)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(415, 171, 8, 16)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(424, 171, 8, 16)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(433, 171, 8, 16)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(442, 171, 8, 16)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(451, 171, 8, 16)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(460, 171, 8, 16)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(469, 171, 8, 16)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(478, 171, 8, 16)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(487, 171, 8, 16)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(496, 171, 8, 16)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(1, 188, 8, 16)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(10, 188, 8, 16)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(19, 188, 8, 16)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(28, 188, 8, 16)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(37, 188, 8, 16)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(46, 188, 8, 16)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(55, 188, 8, 16)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(64, 188, 8, 16)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(73, 188, 8, 16)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(82, 188, 8, 16)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(91, 188, 8, 16)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(100, 188, 8, 16)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(109, 188, 8, 16)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(118, 188, 8, 16)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(127, 188, 8, 16)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(136, 188, 8, 16)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(145, 188, 8, 16)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(154, 188, 8, 16)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(163, 188, 8, 16)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(172, 188, 8, 16)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(181, 188, 8, 16)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(190, 188, 8, 16)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(199, 188, 8, 16)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(208, 188, 8, 16)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(217, 188, 8, 16)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(226, 188, 8, 16)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(235, 188, 8, 16)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(244, 188, 8, 16)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(253, 188, 8, 16)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(262, 188, 8, 16)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(271, 188, 8, 16)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(280, 188, 8, 16)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(289, 188, 8, 16)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(298, 188, 8, 16)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(307, 188, 8, 16)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(316, 188, 8, 16)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(325, 188, 8, 16)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(334, 188, 8, 16)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(343, 188, 8, 16)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(352, 188, 8, 16)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(361, 188, 8, 16)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(370, 188, 8, 16)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(379, 188, 8, 16)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(388, 188, 8, 16)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(397, 188, 8, 16)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(406, 188, 8, 16)), // ÿ
+        };
+        private static GlyphPosition[] s_italicSmallFixedWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(128, 290, 8, 17)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(137, 290, 8, 17)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(146, 290, 8, 17)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(155, 290, 8, 17)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(164, 290, 8, 17)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(173, 290, 8, 17)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(127, 290, 0, 17)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(182, 290, 8, 17)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(191, 290, 8, 17)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(200, 290, 8, 17)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(209, 290, 8, 17)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(218, 290, 8, 17)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(227, 290, 8, 17)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(236, 290, 8, 17)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(245, 290, 8, 17)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(254, 290, 8, 17)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(263, 290, 8, 17)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(272, 290, 8, 17)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(281, 290, 8, 17)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(290, 290, 8, 17)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(299, 290, 8, 17)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(308, 290, 8, 17)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(317, 290, 8, 17)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(326, 290, 8, 17)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(335, 290, 8, 17)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(344, 290, 8, 17)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(353, 290, 8, 17)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(362, 290, 8, 17)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(371, 290, 8, 17)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(380, 290, 8, 17)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(389, 290, 8, 17)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(398, 290, 8, 17)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(407, 290, 8, 17)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(416, 290, 8, 17)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(425, 290, 8, 17)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(434, 290, 8, 17)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(443, 290, 8, 17)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(452, 290, 8, 17)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(461, 290, 8, 17)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(470, 290, 8, 17)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(479, 290, 8, 17)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(488, 290, 8, 17)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(497, 290, 8, 17)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(1, 308, 8, 17)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(10, 308, 8, 17)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(19, 308, 8, 17)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(28, 308, 8, 17)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(37, 308, 8, 17)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(46, 308, 8, 17)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(55, 308, 8, 17)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(64, 308, 8, 17)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(73, 308, 8, 17)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(82, 308, 8, 17)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(91, 308, 8, 17)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(100, 308, 8, 17)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(109, 308, 8, 17)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(118, 308, 8, 17)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(127, 308, 8, 17)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(136, 308, 8, 17)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(145, 308, 8, 17)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(154, 308, 8, 17)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(163, 308, 8, 17)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(172, 308, 8, 17)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(181, 308, 8, 17)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(190, 308, 8, 17)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(199, 308, 8, 17)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(208, 308, 8, 17)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(217, 308, 8, 17)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(226, 308, 8, 17)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(235, 308, 8, 17)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(244, 308, 8, 17)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(253, 308, 8, 17)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(262, 308, 8, 17)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(271, 308, 8, 17)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(280, 308, 8, 17)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(289, 308, 8, 17)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(298, 308, 8, 17)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(307, 308, 8, 17)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(316, 308, 8, 17)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(325, 308, 8, 17)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(334, 308, 8, 17)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(343, 308, 8, 17)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(352, 308, 8, 17)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(361, 308, 8, 17)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(370, 308, 8, 17)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(379, 308, 8, 17)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(388, 308, 8, 17)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(397, 308, 8, 17)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(406, 308, 8, 17)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(415, 308, 8, 17)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(424, 308, 8, 17)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(433, 308, 8, 17)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(442, 308, 8, 17)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(451, 308, 8, 17)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(460, 308, 8, 17)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(469, 308, 8, 17)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(478, 308, 8, 17)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(487, 308, 8, 17)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(496, 308, 8, 17)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(1, 326, 8, 17)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(10, 326, 8, 17)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(19, 326, 8, 17)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(28, 326, 8, 17)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(37, 326, 8, 17)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(46, 326, 8, 17)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(55, 326, 8, 17)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(64, 326, 8, 17)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(73, 326, 8, 17)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(82, 326, 8, 17)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(91, 326, 8, 17)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(100, 326, 8, 17)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(109, 326, 8, 17)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(118, 326, 8, 17)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(127, 326, 8, 17)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(136, 326, 8, 17)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(145, 326, 8, 17)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(154, 326, 8, 17)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(163, 326, 8, 17)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(172, 326, 8, 17)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(181, 326, 8, 17)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(190, 326, 8, 17)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(199, 326, 8, 17)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(208, 326, 8, 17)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(217, 326, 8, 17)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(226, 326, 8, 17)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(235, 326, 8, 17)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(244, 326, 8, 17)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(253, 326, 8, 17)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(262, 326, 8, 17)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(271, 326, 8, 17)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(280, 326, 8, 17)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(289, 326, 8, 17)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(298, 326, 8, 17)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(307, 326, 8, 17)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(316, 326, 8, 17)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(325, 326, 8, 17)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(334, 326, 8, 17)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(343, 326, 8, 17)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(352, 326, 8, 17)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(361, 326, 8, 17)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(370, 326, 8, 17)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(379, 326, 8, 17)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(388, 326, 8, 17)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(397, 326, 8, 17)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(406, 326, 8, 17)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(415, 326, 8, 17)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(424, 326, 8, 17)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(433, 326, 8, 17)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(442, 326, 8, 17)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(451, 326, 8, 17)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(460, 326, 8, 17)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(469, 326, 8, 17)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(478, 326, 8, 17)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(487, 326, 8, 17)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(496, 326, 8, 17)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(1, 344, 8, 17)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(10, 344, 8, 17)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(19, 344, 8, 17)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(28, 344, 8, 17)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(37, 344, 8, 17)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(46, 344, 8, 17)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(55, 344, 8, 17)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(64, 344, 8, 17)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(73, 344, 8, 17)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(82, 344, 8, 17)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(91, 344, 8, 17)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(100, 344, 8, 17)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(109, 344, 8, 17)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(118, 344, 8, 17)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(127, 344, 8, 17)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(136, 344, 8, 17)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(145, 344, 8, 17)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(154, 344, 8, 17)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(163, 344, 8, 17)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(172, 344, 8, 17)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(181, 344, 8, 17)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(190, 344, 8, 17)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(199, 344, 8, 17)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(208, 344, 8, 17)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(217, 344, 8, 17)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(226, 344, 8, 17)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(235, 344, 8, 17)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(244, 344, 8, 17)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(253, 344, 8, 17)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(262, 344, 8, 17)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(271, 344, 8, 17)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(280, 344, 8, 17)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(289, 344, 8, 17)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(298, 344, 8, 17)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(307, 344, 8, 17)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(316, 344, 8, 17)), // ÿ
+        };
+        private static GlyphPosition[] s_regularBigFixedWidthFontGlyphs = new GlyphPosition[] {
+            new GlyphPosition('\u0020', new Granite.Core.Box2i(326, 344, 11, 21)), //  
+            new GlyphPosition('\u0021', new Granite.Core.Box2i(338, 344, 11, 21)), // !
+            new GlyphPosition('\u0022', new Granite.Core.Box2i(350, 344, 11, 21)), // "
+            new GlyphPosition('\u0023', new Granite.Core.Box2i(362, 344, 11, 21)), // #
+            new GlyphPosition('\u0024', new Granite.Core.Box2i(374, 344, 11, 21)), // $
+            new GlyphPosition('\u0025', new Granite.Core.Box2i(386, 344, 11, 21)), // %
+            new GlyphPosition('\u0026', new Granite.Core.Box2i(325, 344, 0, 21)), // &
+            new GlyphPosition('\u0027', new Granite.Core.Box2i(398, 344, 11, 21)), // '
+            new GlyphPosition('\u0028', new Granite.Core.Box2i(410, 344, 11, 21)), // (
+            new GlyphPosition('\u0029', new Granite.Core.Box2i(422, 344, 11, 21)), // )
+            new GlyphPosition('\u002A', new Granite.Core.Box2i(434, 344, 11, 21)), // *
+            new GlyphPosition('\u002B', new Granite.Core.Box2i(446, 344, 11, 21)), // +
+            new GlyphPosition('\u002C', new Granite.Core.Box2i(458, 344, 11, 21)), // ,
+            new GlyphPosition('\u002D', new Granite.Core.Box2i(470, 344, 11, 21)), // -
+            new GlyphPosition('\u002E', new Granite.Core.Box2i(482, 344, 11, 21)), // .
+            new GlyphPosition('\u002F', new Granite.Core.Box2i(494, 344, 11, 21)), // /
+            new GlyphPosition('\u0030', new Granite.Core.Box2i(1, 366, 11, 21)), // 0
+            new GlyphPosition('\u0031', new Granite.Core.Box2i(13, 366, 11, 21)), // 1
+            new GlyphPosition('\u0032', new Granite.Core.Box2i(25, 366, 11, 21)), // 2
+            new GlyphPosition('\u0033', new Granite.Core.Box2i(37, 366, 11, 21)), // 3
+            new GlyphPosition('\u0034', new Granite.Core.Box2i(49, 366, 11, 21)), // 4
+            new GlyphPosition('\u0035', new Granite.Core.Box2i(61, 366, 11, 21)), // 5
+            new GlyphPosition('\u0036', new Granite.Core.Box2i(73, 366, 11, 21)), // 6
+            new GlyphPosition('\u0037', new Granite.Core.Box2i(85, 366, 11, 21)), // 7
+            new GlyphPosition('\u0038', new Granite.Core.Box2i(97, 366, 11, 21)), // 8
+            new GlyphPosition('\u0039', new Granite.Core.Box2i(109, 366, 11, 21)), // 9
+            new GlyphPosition('\u003A', new Granite.Core.Box2i(121, 366, 11, 21)), // :
+            new GlyphPosition('\u003B', new Granite.Core.Box2i(133, 366, 11, 21)), // ;
+            new GlyphPosition('\u003C', new Granite.Core.Box2i(145, 366, 11, 21)), // <
+            new GlyphPosition('\u003D', new Granite.Core.Box2i(157, 366, 11, 21)), // =
+            new GlyphPosition('\u003E', new Granite.Core.Box2i(169, 366, 11, 21)), // >
+            new GlyphPosition('\u003F', new Granite.Core.Box2i(181, 366, 11, 21)), // ?
+            new GlyphPosition('\u0040', new Granite.Core.Box2i(193, 366, 11, 21)), // @
+            new GlyphPosition('\u0041', new Granite.Core.Box2i(205, 366, 11, 21)), // A
+            new GlyphPosition('\u0042', new Granite.Core.Box2i(217, 366, 11, 21)), // B
+            new GlyphPosition('\u0043', new Granite.Core.Box2i(229, 366, 11, 21)), // C
+            new GlyphPosition('\u0044', new Granite.Core.Box2i(241, 366, 11, 21)), // D
+            new GlyphPosition('\u0045', new Granite.Core.Box2i(253, 366, 11, 21)), // E
+            new GlyphPosition('\u0046', new Granite.Core.Box2i(265, 366, 11, 21)), // F
+            new GlyphPosition('\u0047', new Granite.Core.Box2i(277, 366, 11, 21)), // G
+            new GlyphPosition('\u0048', new Granite.Core.Box2i(289, 366, 11, 21)), // H
+            new GlyphPosition('\u0049', new Granite.Core.Box2i(301, 366, 11, 21)), // I
+            new GlyphPosition('\u004A', new Granite.Core.Box2i(313, 366, 11, 21)), // J
+            new GlyphPosition('\u004B', new Granite.Core.Box2i(325, 366, 11, 21)), // K
+            new GlyphPosition('\u004C', new Granite.Core.Box2i(337, 366, 11, 21)), // L
+            new GlyphPosition('\u004D', new Granite.Core.Box2i(349, 366, 11, 21)), // M
+            new GlyphPosition('\u004E', new Granite.Core.Box2i(361, 366, 11, 21)), // N
+            new GlyphPosition('\u004F', new Granite.Core.Box2i(373, 366, 11, 21)), // O
+            new GlyphPosition('\u0050', new Granite.Core.Box2i(385, 366, 11, 21)), // P
+            new GlyphPosition('\u0051', new Granite.Core.Box2i(397, 366, 11, 21)), // Q
+            new GlyphPosition('\u0052', new Granite.Core.Box2i(409, 366, 11, 21)), // R
+            new GlyphPosition('\u0053', new Granite.Core.Box2i(421, 366, 11, 21)), // S
+            new GlyphPosition('\u0054', new Granite.Core.Box2i(433, 366, 11, 21)), // T
+            new GlyphPosition('\u0055', new Granite.Core.Box2i(445, 366, 11, 21)), // U
+            new GlyphPosition('\u0056', new Granite.Core.Box2i(457, 366, 11, 21)), // V
+            new GlyphPosition('\u0057', new Granite.Core.Box2i(469, 366, 11, 21)), // W
+            new GlyphPosition('\u0058', new Granite.Core.Box2i(481, 366, 11, 21)), // X
+            new GlyphPosition('\u0059', new Granite.Core.Box2i(493, 366, 11, 21)), // Y
+            new GlyphPosition('\u005A', new Granite.Core.Box2i(1, 388, 11, 21)), // Z
+            new GlyphPosition('\u005B', new Granite.Core.Box2i(13, 388, 11, 21)), // [
+            new GlyphPosition('\u005C', new Granite.Core.Box2i(25, 388, 11, 21)), // \
+            new GlyphPosition('\u005D', new Granite.Core.Box2i(37, 388, 11, 21)), // ]
+            new GlyphPosition('\u005E', new Granite.Core.Box2i(49, 388, 11, 21)), // ^
+            new GlyphPosition('\u005F', new Granite.Core.Box2i(61, 388, 11, 21)), // _
+            new GlyphPosition('\u0060', new Granite.Core.Box2i(73, 388, 11, 21)), // `
+            new GlyphPosition('\u0061', new Granite.Core.Box2i(85, 388, 11, 21)), // a
+            new GlyphPosition('\u0062', new Granite.Core.Box2i(97, 388, 11, 21)), // b
+            new GlyphPosition('\u0063', new Granite.Core.Box2i(109, 388, 11, 21)), // c
+            new GlyphPosition('\u0064', new Granite.Core.Box2i(121, 388, 11, 21)), // d
+            new GlyphPosition('\u0065', new Granite.Core.Box2i(133, 388, 11, 21)), // e
+            new GlyphPosition('\u0066', new Granite.Core.Box2i(145, 388, 11, 21)), // f
+            new GlyphPosition('\u0067', new Granite.Core.Box2i(157, 388, 11, 21)), // g
+            new GlyphPosition('\u0068', new Granite.Core.Box2i(169, 388, 11, 21)), // h
+            new GlyphPosition('\u0069', new Granite.Core.Box2i(181, 388, 11, 21)), // i
+            new GlyphPosition('\u006A', new Granite.Core.Box2i(193, 388, 11, 21)), // j
+            new GlyphPosition('\u006B', new Granite.Core.Box2i(205, 388, 11, 21)), // k
+            new GlyphPosition('\u006C', new Granite.Core.Box2i(217, 388, 11, 21)), // l
+            new GlyphPosition('\u006D', new Granite.Core.Box2i(229, 388, 11, 21)), // m
+            new GlyphPosition('\u006E', new Granite.Core.Box2i(241, 388, 11, 21)), // n
+            new GlyphPosition('\u006F', new Granite.Core.Box2i(253, 388, 11, 21)), // o
+            new GlyphPosition('\u0070', new Granite.Core.Box2i(265, 388, 11, 21)), // p
+            new GlyphPosition('\u0071', new Granite.Core.Box2i(277, 388, 11, 21)), // q
+            new GlyphPosition('\u0072', new Granite.Core.Box2i(289, 388, 11, 21)), // r
+            new GlyphPosition('\u0073', new Granite.Core.Box2i(301, 388, 11, 21)), // s
+            new GlyphPosition('\u0074', new Granite.Core.Box2i(313, 388, 11, 21)), // t
+            new GlyphPosition('\u0075', new Granite.Core.Box2i(325, 388, 11, 21)), // u
+            new GlyphPosition('\u0076', new Granite.Core.Box2i(337, 388, 11, 21)), // v
+            new GlyphPosition('\u0077', new Granite.Core.Box2i(349, 388, 11, 21)), // w
+            new GlyphPosition('\u0078', new Granite.Core.Box2i(361, 388, 11, 21)), // x
+            new GlyphPosition('\u0079', new Granite.Core.Box2i(373, 388, 11, 21)), // y
+            new GlyphPosition('\u007A', new Granite.Core.Box2i(385, 388, 11, 21)), // z
+            new GlyphPosition('\u007B', new Granite.Core.Box2i(397, 388, 11, 21)), // {
+            new GlyphPosition('\u007C', new Granite.Core.Box2i(409, 388, 11, 21)), // |
+            new GlyphPosition('\u007D', new Granite.Core.Box2i(421, 388, 11, 21)), // }
+            new GlyphPosition('\u007E', new Granite.Core.Box2i(433, 388, 11, 21)), // ~
+            new GlyphPosition('\u00A0', new Granite.Core.Box2i(445, 388, 11, 21)), //  
+            new GlyphPosition('\u00A1', new Granite.Core.Box2i(457, 388, 11, 21)), // ¡
+            new GlyphPosition('\u00A2', new Granite.Core.Box2i(469, 388, 11, 21)), // ¢
+            new GlyphPosition('\u00A3', new Granite.Core.Box2i(481, 388, 11, 21)), // £
+            new GlyphPosition('\u00A4', new Granite.Core.Box2i(493, 388, 11, 21)), // ¤
+            new GlyphPosition('\u00A5', new Granite.Core.Box2i(1, 410, 11, 21)), // ¥
+            new GlyphPosition('\u00A6', new Granite.Core.Box2i(13, 410, 11, 21)), // ¦
+            new GlyphPosition('\u00A7', new Granite.Core.Box2i(25, 410, 11, 21)), // §
+            new GlyphPosition('\u00A8', new Granite.Core.Box2i(37, 410, 11, 21)), // ¨
+            new GlyphPosition('\u00A9', new Granite.Core.Box2i(49, 410, 11, 21)), // ©
+            new GlyphPosition('\u00AA', new Granite.Core.Box2i(61, 410, 11, 21)), // ª
+            new GlyphPosition('\u00AB', new Granite.Core.Box2i(73, 410, 11, 21)), // «
+            new GlyphPosition('\u00AC', new Granite.Core.Box2i(85, 410, 11, 21)), // ¬
+            new GlyphPosition('\u00AD', new Granite.Core.Box2i(97, 410, 11, 21)), // ­
+            new GlyphPosition('\u00AE', new Granite.Core.Box2i(109, 410, 11, 21)), // ®
+            new GlyphPosition('\u00AF', new Granite.Core.Box2i(121, 410, 11, 21)), // ¯
+            new GlyphPosition('\u00B0', new Granite.Core.Box2i(133, 410, 11, 21)), // °
+            new GlyphPosition('\u00B1', new Granite.Core.Box2i(145, 410, 11, 21)), // ±
+            new GlyphPosition('\u00B2', new Granite.Core.Box2i(157, 410, 11, 21)), // ²
+            new GlyphPosition('\u00B3', new Granite.Core.Box2i(169, 410, 11, 21)), // ³
+            new GlyphPosition('\u00B4', new Granite.Core.Box2i(181, 410, 11, 21)), // ´
+            new GlyphPosition('\u00B5', new Granite.Core.Box2i(193, 410, 11, 21)), // µ
+            new GlyphPosition('\u00B6', new Granite.Core.Box2i(205, 410, 11, 21)), // ¶
+            new GlyphPosition('\u00B7', new Granite.Core.Box2i(217, 410, 11, 21)), // ·
+            new GlyphPosition('\u00B8', new Granite.Core.Box2i(229, 410, 11, 21)), // ¸
+            new GlyphPosition('\u00B9', new Granite.Core.Box2i(241, 410, 11, 21)), // ¹
+            new GlyphPosition('\u00BA', new Granite.Core.Box2i(253, 410, 11, 21)), // º
+            new GlyphPosition('\u00BB', new Granite.Core.Box2i(265, 410, 11, 21)), // »
+            new GlyphPosition('\u00BC', new Granite.Core.Box2i(277, 410, 11, 21)), // ¼
+            new GlyphPosition('\u00BD', new Granite.Core.Box2i(289, 410, 11, 21)), // ½
+            new GlyphPosition('\u00BE', new Granite.Core.Box2i(301, 410, 11, 21)), // ¾
+            new GlyphPosition('\u00BF', new Granite.Core.Box2i(313, 410, 11, 21)), // ¿
+            new GlyphPosition('\u00C0', new Granite.Core.Box2i(325, 410, 11, 21)), // À
+            new GlyphPosition('\u00C1', new Granite.Core.Box2i(337, 410, 11, 21)), // Á
+            new GlyphPosition('\u00C2', new Granite.Core.Box2i(349, 410, 11, 21)), // Â
+            new GlyphPosition('\u00C3', new Granite.Core.Box2i(361, 410, 11, 21)), // Ã
+            new GlyphPosition('\u00C4', new Granite.Core.Box2i(373, 410, 11, 21)), // Ä
+            new GlyphPosition('\u00C5', new Granite.Core.Box2i(385, 410, 11, 21)), // Å
+            new GlyphPosition('\u00C6', new Granite.Core.Box2i(397, 410, 11, 21)), // Æ
+            new GlyphPosition('\u00C7', new Granite.Core.Box2i(409, 410, 11, 21)), // Ç
+            new GlyphPosition('\u00C8', new Granite.Core.Box2i(421, 410, 11, 21)), // È
+            new GlyphPosition('\u00C9', new Granite.Core.Box2i(433, 410, 11, 21)), // É
+            new GlyphPosition('\u00CA', new Granite.Core.Box2i(445, 410, 11, 21)), // Ê
+            new GlyphPosition('\u00CB', new Granite.Core.Box2i(457, 410, 11, 21)), // Ë
+            new GlyphPosition('\u00CC', new Granite.Core.Box2i(469, 410, 11, 21)), // Ì
+            new GlyphPosition('\u00CD', new Granite.Core.Box2i(481, 410, 11, 21)), // Í
+            new GlyphPosition('\u00CE', new Granite.Core.Box2i(493, 410, 11, 21)), // Î
+            new GlyphPosition('\u00CF', new Granite.Core.Box2i(1, 432, 11, 21)), // Ï
+            new GlyphPosition('\u00D0', new Granite.Core.Box2i(13, 432, 11, 21)), // Ð
+            new GlyphPosition('\u00D1', new Granite.Core.Box2i(25, 432, 11, 21)), // Ñ
+            new GlyphPosition('\u00D2', new Granite.Core.Box2i(37, 432, 11, 21)), // Ò
+            new GlyphPosition('\u00D3', new Granite.Core.Box2i(49, 432, 11, 21)), // Ó
+            new GlyphPosition('\u00D4', new Granite.Core.Box2i(61, 432, 11, 21)), // Ô
+            new GlyphPosition('\u00D5', new Granite.Core.Box2i(73, 432, 11, 21)), // Õ
+            new GlyphPosition('\u00D6', new Granite.Core.Box2i(85, 432, 11, 21)), // Ö
+            new GlyphPosition('\u00D7', new Granite.Core.Box2i(97, 432, 11, 21)), // ×
+            new GlyphPosition('\u00D8', new Granite.Core.Box2i(109, 432, 11, 21)), // Ø
+            new GlyphPosition('\u00D9', new Granite.Core.Box2i(121, 432, 11, 21)), // Ù
+            new GlyphPosition('\u00DA', new Granite.Core.Box2i(133, 432, 11, 21)), // Ú
+            new GlyphPosition('\u00DB', new Granite.Core.Box2i(145, 432, 11, 21)), // Û
+            new GlyphPosition('\u00DC', new Granite.Core.Box2i(157, 432, 11, 21)), // Ü
+            new GlyphPosition('\u00DD', new Granite.Core.Box2i(169, 432, 11, 21)), // Ý
+            new GlyphPosition('\u00DE', new Granite.Core.Box2i(181, 432, 11, 21)), // Þ
+            new GlyphPosition('\u00DF', new Granite.Core.Box2i(193, 432, 11, 21)), // ß
+            new GlyphPosition('\u00E0', new Granite.Core.Box2i(205, 432, 11, 21)), // à
+            new GlyphPosition('\u00E1', new Granite.Core.Box2i(217, 432, 11, 21)), // á
+            new GlyphPosition('\u00E2', new Granite.Core.Box2i(229, 432, 11, 21)), // â
+            new GlyphPosition('\u00E3', new Granite.Core.Box2i(241, 432, 11, 21)), // ã
+            new GlyphPosition('\u00E4', new Granite.Core.Box2i(253, 432, 11, 21)), // ä
+            new GlyphPosition('\u00E5', new Granite.Core.Box2i(265, 432, 11, 21)), // å
+            new GlyphPosition('\u00E6', new Granite.Core.Box2i(277, 432, 11, 21)), // æ
+            new GlyphPosition('\u00E7', new Granite.Core.Box2i(289, 432, 11, 21)), // ç
+            new GlyphPosition('\u00E8', new Granite.Core.Box2i(301, 432, 11, 21)), // è
+            new GlyphPosition('\u00E9', new Granite.Core.Box2i(313, 432, 11, 21)), // é
+            new GlyphPosition('\u00EA', new Granite.Core.Box2i(325, 432, 11, 21)), // ê
+            new GlyphPosition('\u00EB', new Granite.Core.Box2i(337, 432, 11, 21)), // ë
+            new GlyphPosition('\u00EC', new Granite.Core.Box2i(349, 432, 11, 21)), // ì
+            new GlyphPosition('\u00ED', new Granite.Core.Box2i(361, 432, 11, 21)), // í
+            new GlyphPosition('\u00EE', new Granite.Core.Box2i(373, 432, 11, 21)), // î
+            new GlyphPosition('\u00EF', new Granite.Core.Box2i(385, 432, 11, 21)), // ï
+            new GlyphPosition('\u00F0', new Granite.Core.Box2i(397, 432, 11, 21)), // ð
+            new GlyphPosition('\u00F1', new Granite.Core.Box2i(409, 432, 11, 21)), // ñ
+            new GlyphPosition('\u00F2', new Granite.Core.Box2i(421, 432, 11, 21)), // ò
+            new GlyphPosition('\u00F3', new Granite.Core.Box2i(433, 432, 11, 21)), // ó
+            new GlyphPosition('\u00F4', new Granite.Core.Box2i(445, 432, 11, 21)), // ô
+            new GlyphPosition('\u00F5', new Granite.Core.Box2i(457, 432, 11, 21)), // õ
+            new GlyphPosition('\u00F6', new Granite.Core.Box2i(469, 432, 11, 21)), // ö
+            new GlyphPosition('\u00F7', new Granite.Core.Box2i(481, 432, 11, 21)), // ÷
+            new GlyphPosition('\u00F8', new Granite.Core.Box2i(493, 432, 11, 21)), // ø
+            new GlyphPosition('\u00F9', new Granite.Core.Box2i(1, 454, 11, 21)), // ù
+            new GlyphPosition('\u00FA', new Granite.Core.Box2i(13, 454, 11, 21)), // ú
+            new GlyphPosition('\u00FB', new Granite.Core.Box2i(25, 454, 11, 21)), // û
+            new GlyphPosition('\u00FC', new Granite.Core.Box2i(37, 454, 11, 21)), // ü
+            new GlyphPosition('\u00FD', new Granite.Core.Box2i(49, 454, 11, 21)), // ý
+            new GlyphPosition('\u00FE', new Granite.Core.Box2i(61, 454, 11, 21)), // þ
+            new GlyphPosition('\u00FF', new Granite.Core.Box2i(73, 454, 11, 21)), // ÿ
+        };
 
 	}
 }

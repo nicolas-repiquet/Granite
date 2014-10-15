@@ -135,6 +135,7 @@ namespace Granite.Core
         }
 
         public int Size { get { return m_size; } }
+        public Type Type { get { return m_type; } }
         public uint FlattenedType { get { return m_flattenedType; } }
         public int FlattenedCount { get { return m_flattenedCount; } }
 

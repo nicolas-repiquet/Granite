@@ -307,6 +307,9 @@ namespace Granite.Core
         [DllImport(USER32)]
         internal static extern bool InvalidateRect(IntPtr windowHandle, IntPtr rect, bool erase);
 
+        [DllImport(USER32)]
+        internal static extern bool SetWindowText(IntPtr windowHandle, string text);
+
         [DllImport(GDI32)]
         internal static extern int ChoosePixelFormat(IntPtr deviceContextHandle, ref PixelFormatDescriptor pixelFormatDescriptor);
 

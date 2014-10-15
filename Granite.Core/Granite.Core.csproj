@@ -57,6 +57,8 @@
     </Compile>
     <Compile Include="IApplicationLogic.cs" />
     <Compile Include="IDisplay.cs" />
+    <Compile Include="ProgramAttribute.cs" />
+    <Compile Include="ProgramUniform.cs" />
     <Compile Include="Structs.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

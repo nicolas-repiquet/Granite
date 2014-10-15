@@ -16,7 +16,7 @@ namespace Test.Game_01
         {
             Engine.Run(new Game(), new ApplicationSettings()
             {
-                DisplayStyle = DisplayStyle.FixedWithTitle
+                DisplayStyle = DisplayStyle.ResizeableWithTitle
             });
         }
 
@@ -65,23 +65,11 @@ namespace Test.Game_01
             //m_world.Player.SetPosition(new Vector2d(x, y));
         }
 
-        private DateTime? m_previousFrame;
 
-        public override void Render()
+        public override void Render(TimeSpan elapsed)
         {
-
-            var now = DateTime.Now;
-            TimeSpan elapsed;
-            if (m_previousFrame.HasValue)
-            {
-                elapsed = now - m_previousFrame.Value;
-            }
-            else
-            {
-                elapsed = TimeSpan.Zero;
-            }
-            m_previousFrame = now;
-
+            Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
+ 
             Update(elapsed);
             m_world.Update(elapsed);
 

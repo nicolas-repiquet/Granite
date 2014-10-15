@@ -16,7 +16,7 @@ namespace Test.Game_01.Entities
         private readonly SpriteRenderer m_renderer;
         private readonly ISpriteInstance m_sprite;
 
-        public Box2d Location { get { return m_location.Location; } }
+        public Box2 Location { get { return m_location.Location; } }
 
         public Player()
         {
@@ -41,9 +41,9 @@ namespace Test.Game_01.Entities
             };
         }
 
-        public void SetPosition(Vector2d position)
+        public void SetPosition(Vector2 position)
         {
-            m_location.Location = new Box2d(position, new Vector2d(70, 70));
+            m_location.Location = new Box2(position, new Vector2(70, 70));
         }
 
         double m_time = 0;

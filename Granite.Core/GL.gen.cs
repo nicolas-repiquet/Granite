@@ -2317,6 +2317,8 @@ namespace Granite.Core
 
 		private delegate void Delegate_Uniform3i_0(int location, int v0, int v1, int v2);
 
+		private delegate void Delegate_Uniform3i_1(int location, Vector3i value);
+
 		private delegate void Delegate_Uniform3iv_0(int location, int count, System.IntPtr value);
 
 		private delegate void Delegate_Uniform3ui_0(int location, uint v0, uint v1, uint v2);
@@ -2330,6 +2332,8 @@ namespace Granite.Core
 		private delegate void Delegate_Uniform4fv_0(int location, int count, System.IntPtr value);
 
 		private delegate void Delegate_Uniform4i_0(int location, int v0, int v1, int v2, int v3);
+
+		private delegate void Delegate_Uniform4i_1(int location, Vector4i value);
 
 		private delegate void Delegate_Uniform4iv_0(int location, int count, System.IntPtr value);
 
@@ -3269,6 +3273,8 @@ namespace Granite.Core
 
 		private static Delegate_Uniform3i_0 m_Uniform3i_0;
 
+		private static Delegate_Uniform3i_1 m_Uniform3i_1;
+
 		private static Delegate_Uniform3iv_0 m_Uniform3iv_0;
 
 		private static Delegate_Uniform3ui_0 m_Uniform3ui_0;
@@ -3282,6 +3288,8 @@ namespace Granite.Core
 		private static Delegate_Uniform4fv_0 m_Uniform4fv_0;
 
 		private static Delegate_Uniform4i_0 m_Uniform4i_0;
+
+		private static Delegate_Uniform4i_1 m_Uniform4i_1;
 
 		private static Delegate_Uniform4iv_0 m_Uniform4iv_0;
 
@@ -4223,6 +4231,8 @@ namespace Granite.Core
 
 			m_Uniform3i_0 = (Delegate_Uniform3i_0)GetFunctionDelegate("glUniform3i", typeof(Delegate_Uniform3i_0));
 
+			m_Uniform3i_1 = (Delegate_Uniform3i_1)GetFunctionDelegate("glUniform3i", typeof(Delegate_Uniform3i_1));
+
 			m_Uniform3iv_0 = (Delegate_Uniform3iv_0)GetFunctionDelegate("glUniform3iv", typeof(Delegate_Uniform3iv_0));
 
 			m_Uniform3ui_0 = (Delegate_Uniform3ui_0)GetFunctionDelegate("glUniform3ui", typeof(Delegate_Uniform3ui_0));
@@ -4236,6 +4246,8 @@ namespace Granite.Core
 			m_Uniform4fv_0 = (Delegate_Uniform4fv_0)GetFunctionDelegate("glUniform4fv", typeof(Delegate_Uniform4fv_0));
 
 			m_Uniform4i_0 = (Delegate_Uniform4i_0)GetFunctionDelegate("glUniform4i", typeof(Delegate_Uniform4i_0));
+
+			m_Uniform4i_1 = (Delegate_Uniform4i_1)GetFunctionDelegate("glUniform4i", typeof(Delegate_Uniform4i_1));
 
 			m_Uniform4iv_0 = (Delegate_Uniform4iv_0)GetFunctionDelegate("glUniform4iv", typeof(Delegate_Uniform4iv_0));
 
@@ -5178,6 +5190,8 @@ namespace Granite.Core
 
 			m_Uniform3i_0 = null;
 
+			m_Uniform3i_1 = null;
+
 			m_Uniform3iv_0 = null;
 
 			m_Uniform3ui_0 = null;
@@ -5191,6 +5205,8 @@ namespace Granite.Core
 			m_Uniform4fv_0 = null;
 
 			m_Uniform4i_0 = null;
+
+			m_Uniform4i_1 = null;
 
 			m_Uniform4iv_0 = null;
 
@@ -7543,6 +7559,12 @@ namespace Granite.Core
 		}
 
 
+		public static void Uniform3i(int location, Vector3i value)
+		{
+			m_Uniform3i_1(location, value);
+		}
+
+
 		public static void Uniform3iv(int location, int count, System.IntPtr value)
 		{
 			m_Uniform3iv_0(location, count, value);
@@ -7582,6 +7604,12 @@ namespace Granite.Core
 		public static void Uniform4i(int location, int v0, int v1, int v2, int v3)
 		{
 			m_Uniform4i_0(location, v0, v1, v2, v3);
+		}
+
+
+		public static void Uniform4i(int location, Vector4i value)
+		{
+			m_Uniform4i_1(location, value);
 		}
 
 

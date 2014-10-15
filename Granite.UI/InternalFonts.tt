@@ -13,7 +13,7 @@
 
 namespace Granite.UI
 {
-    internal static partial class InternalFonts
+    public static partial class InternalFonts
     {
 
 <#
@@ -28,14 +28,14 @@ SetBkColor(hdc, 0);
 
 var sets = new List<CharacterSet>();
 
-sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Regular), "var_small", characters));
-sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Bold), "var_small_bold", characters));
-sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Italic), "var_small_italic", characters));
-sets.Add(LoadFont(hdc, new Font("Verdana", 14, FontStyle.Regular), "var_big", characters));
-sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Regular), "fix_small", characters));
-sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Bold), "fix_small_bold", characters));
-sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Italic), "fix_small_italic", characters));
-sets.Add(LoadFont(hdc, new Font("Courier New", 14, FontStyle.Regular), "fix_big", characters));
+sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Regular), "regularSmallVariableWidthFont", characters));
+sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Bold), "boldSmallVariableWidthFont", characters));
+sets.Add(LoadFont(hdc, new Font("Verdana", 10, FontStyle.Italic), "italicSmallVariableWidthFont", characters));
+sets.Add(LoadFont(hdc, new Font("Verdana", 14, FontStyle.Regular), "regularBigVariableWidthFont", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Regular), "regularSmallFixedWidthFont", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Bold), "boldSmallFixedWidthFont", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 10, FontStyle.Italic), "italicSmallFixedWidthFont", characters));
+sets.Add(LoadFont(hdc, new Font("Courier New", 14, FontStyle.Regular), "regularBigFixedWidthFont", characters));
 
 characters = characters.OrderBy(c => c.Size.Height).ThenBy(c => c.Size.Width).ToList();
 
@@ -98,26 +98,24 @@ WriteLine("");
 
 foreach (var set in sets)
 {
-	WriteLine("private static Glyph[] GetGlyphs_{0}(Granite.Core.Texture2D texture) {{", set.Name);
-	PushIndent("    ");
-	WriteLine("return new Glyph[] {");
+	WriteLine("private static GlyphPosition[] s_{0}Glyphs = new GlyphPosition[] {{", set.Name);
 	PushIndent("    ");
     foreach (var c in set.Characters)
     {
         if (c == null)
         {
-            WriteLine("null,");
+
         }
         else
         {
             WriteLine(string.Format(
 				System.Globalization.CultureInfo.InvariantCulture,
-				"new Glyph(new Granite.Core.Vector2i({0}, {1}), texture, new Granite.Core.Box2({2}f, {3}f, {4}f, {5}f)), // {6}",
-				c.Position.X, c.Position.Y,
-				c.Position.X / (float)bitmap.Width,
-				c.Position.Y / (float)bitmap.Height,
-				(c.Position.X + c.Size.Width) / (float)bitmap.Width,
-				(c.Position.Y + c.Size.Height) / (float)bitmap.Height,
+				"new GlyphPosition('\\u{0:X4}', new Granite.Core.Box2i({1}, {2}, {3}, {4})), // {5}",
+				(int)c.C,
+				c.Position.X,
+				c.Position.Y,
+				c.Size.Width,
+				c.Size.Height,
 				c.C
 			));
         }
@@ -125,8 +123,6 @@ foreach (var set in sets)
     }
 	PopIndent();
 	WriteLine("};");
-	PopIndent();
-	WriteLine("}");
 }
 
 PopIndent();

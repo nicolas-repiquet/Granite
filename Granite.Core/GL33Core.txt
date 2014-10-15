@@ -605,6 +605,9 @@ public void Uniform3f(int location, Vector3 value);
 
 # public void Uniform3fv(int location, int count, IntPtr value);
 # public void Uniform3i(int location, int v0, int v1, int v2);
+
+public void Uniform3i(int location, Vector3i value);
+
 # public void Uniform3iv(int location, int count, IntPtr value);
 # public void Uniform3ui(int location, uint v0, uint v1, uint v2);
 # public void Uniform3uiv(int location, int count, IntPtr value);
@@ -614,6 +617,9 @@ public void Uniform4f(int location, Vector4 value);
 
 # public void Uniform4fv(int location, int count, IntPtr value);
 # public void Uniform4i(int location, int v0, int v1, int v2, int v3);
+
+public void Uniform4i(int location, Vector4i value);
+
 # public void Uniform4iv(int location, int count, IntPtr value);
 # public void Uniform4ui(int location, uint v0, uint v1, uint v2, uint v3);
 # public void Uniform4uiv(int location, int count, IntPtr value);

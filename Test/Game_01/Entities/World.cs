@@ -23,16 +23,16 @@ namespace Test.Game_01.Entities
             m_player = new Player();
             m_background = new Background(m_camera);
 
-            m_camera.Bounds = new Box2d(0, 0, m_level.Map.Size.X, Math.Max(1000, m_level.Map.Size.Y));
+            m_camera.Bounds = new Box2(0, 0, m_level.Map.Size.X, Math.Max(1000, m_level.Map.Size.Y));
             m_camera.Target = m_player;
 
-            Player.SetPosition(new Vector2d(0, 500));
+            Player.SetPosition(new Vector2(0, 500));
         }
 
         public void Update(TimeSpan elapsed)
         {
             var size = Engine.Display.GetSize();
-            m_camera.SetSize(new Vector2d(size.X, size.Y));
+            m_camera.SetSize(new Vector2(size.X, size.Y));
 
             m_player.Update(elapsed);
             m_camera.Update(elapsed);

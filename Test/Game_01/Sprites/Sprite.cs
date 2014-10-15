@@ -11,9 +11,9 @@ namespace Test.Game_01.Sprites
         public SpriteSheet SpriteSheet { get; private set; }
         public string Name { get; private set; }
         public Vector2i Size { get; private set; }
-        public Box2d Coordinates { get; private set; }
+        public Box2 Coordinates { get; private set; }
 
-        public Sprite(SpriteSheet spriteSheet, string name, Vector2i size, Box2d coordinates)
+        public Sprite(SpriteSheet spriteSheet, string name, Vector2i size, Box2 coordinates)
         {
             SpriteSheet = spriteSheet;
             Name = name;

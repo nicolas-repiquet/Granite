@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Font.cs" />
     <Compile Include="Glyph.cs" />
+    <Compile Include="Graphics.cs" />
     <Compile Include="InternalFonts.cs" />
     <Compile Include="InternalFonts.gen.cs">
       <AutoGen>True</AutoGen>
@@ -50,12 +52,15 @@
       <DependentUpon>InternalFonts.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shaders\QuadProgram.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InternalFonts.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalFonts.gen.cs</LastGenOutput>
     </None>
+    <EmbeddedResource Include="Shaders\QuadProgram.Fragment.glsl" />
+    <EmbeddedResource Include="Shaders\QuadProgram.Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

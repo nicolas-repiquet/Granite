@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -26,7 +27,7 @@ namespace Granite.Core
     public sealed class Buffer<T> : Buffer where T : struct
     {
         #region VIEW
-        private sealed class View : IBufferView
+        private sealed class View<TItem> : IBufferView<TItem>
         {
             private readonly Buffer m_buffer;
             private readonly int m_size;
@@ -90,33 +91,28 @@ namespace Granite.Core
             get { return s_descriptor.Size; }
         }
 
-        public IBufferView GetView()
+        public IBufferView<T> GetView()
         {
-            if (s_descriptor.FlattenedCount < 1 || s_descriptor.FlattenedCount > 4)
-            {
-                throw new InvalidOperationException("Invalid type");
-            }
-            else
-            {
-                return new View(this, s_descriptor.FlattenedCount, s_descriptor.FlattenedType, 0, 0);
-            }
+            return new View<T>(this, s_descriptor.FlattenedCount, s_descriptor.FlattenedType, 0, 0);
         }
 
-        public IBufferView GetView(string name)
+        public IBufferView<TItem> GetView<TItem>(string name)
         {
             var field = s_descriptor.GetField(name);
 
-            if (field.Descriptor.FlattenedCount < 1 || field.Descriptor.FlattenedCount > 16)
+            if (field.Descriptor.Type != typeof(TItem))
             {
-                throw new InvalidOperationException("Invalid type");
+                throw new InvalidOperationException(string.Format(
+                    "Can't convert from {0} to {1}",
+                    field.Descriptor.Type.Name,
+                    typeof(TItem).Name
+                ));
             }
             else
             {
-                return new View(this, field.Descriptor.FlattenedCount, field.Descriptor.FlattenedType, field.Offset, s_descriptor.Size);
+                return new View<TItem>(this, field.Descriptor.FlattenedCount, field.Descriptor.FlattenedType, field.Offset, s_descriptor.Size);
             }
         }
-
-        // protected abstract uint Target { get; }
 
         protected override void InternalDispose()
         {

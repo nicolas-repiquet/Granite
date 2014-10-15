@@ -26,8 +26,8 @@ namespace Test.Game_01.Maps
             public void SetMaterial(int x, int y, Material material, Sprite sprite)
             {
                 var cell = new Cell(material, Renderer.AddSprite(sprite));
-                cell.Sprite.Position = new Vector2d(x * CELL_SIZE, y * CELL_SIZE);
-                cell.Sprite.Size = new Vector2d(CELL_SIZE, CELL_SIZE);
+                cell.Sprite.Position = new Vector2(x * CELL_SIZE, y * CELL_SIZE);
+                cell.Sprite.Size = new Vector2(CELL_SIZE, CELL_SIZE);
                 m_cells[x, y] = cell;
             }
         }

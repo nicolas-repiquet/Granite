@@ -12,9 +12,9 @@ namespace Test.Game_01.Entities
         private readonly FollowTargetComponent m_target;
         private readonly RestrictLocationComponent m_restrictPosition;
 
-        public Box2d Location { get { return m_location.Location; } }
+        public Box2 Location { get { return m_location.Location; } }
         public ILocated Target { get { return m_target.Target; } set { m_target.Target = value; } }
-        public Box2d Bounds { get { return m_restrictPosition.Bounds; } set { m_restrictPosition.Bounds = value; } }
+        public Box2 Bounds { get { return m_restrictPosition.Bounds; } set { m_restrictPosition.Bounds = value; } }
 
         public Camera()
         {
@@ -23,10 +23,10 @@ namespace Test.Game_01.Entities
             m_restrictPosition = new RestrictLocationComponent(this, m_location);
         }
 
-        public void SetSize(Vector2d size)
+        public void SetSize(Vector2 size)
         {
             var center = m_location.Location.Center;
-            m_location.Location = new Box2d(center - size / 2, size);
+            m_location.Location = new Box2(center - size / 2, size);
         }
 
         public void Update(TimeSpan elapsed)

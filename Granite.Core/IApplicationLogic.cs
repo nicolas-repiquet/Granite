@@ -10,7 +10,7 @@ namespace Granite.Core
         void Start();
         void Stop();
         void CloseRequest();
-        void Render();
+        void Render(TimeSpan elapsed);
         void KeyDown(Key key);
         void KeyUp(Key key);
         void MouseLButtonDown(int x, int y);
@@ -21,7 +21,7 @@ namespace Granite.Core
         public virtual void Start() { }
         public virtual void Stop() { }
         public virtual void CloseRequest() { Engine.Stop(); }
-        public virtual void Render() { }
+        public virtual void Render(TimeSpan elapsed) { }
         public virtual void KeyDown(Key key) { }
         public virtual void KeyUp(Key key) { }
         public virtual void MouseLButtonDown(int x, int y) { }

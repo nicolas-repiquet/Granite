@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Granite.Core
 {
-    public interface IBufferView
+    public interface IBufferView<T>
     {
         Buffer Buffer { get; }
         int Size { get; }

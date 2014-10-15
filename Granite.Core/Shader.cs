@@ -111,4 +111,25 @@ namespace Granite.Core
 
         }
     }
+
+    public sealed class GeometryShader : Shader
+    {
+        public GeometryShader(string source)
+            : base(GL.GEOMETRY_SHADER, source)
+        {
+
+        }
+
+        public GeometryShader(TextReader source)
+            : base(GL.GEOMETRY_SHADER, source)
+        {
+
+        }
+
+        public GeometryShader(Stream source)
+            : base(GL.GEOMETRY_SHADER, source)
+        {
+
+        }
+    }
 }

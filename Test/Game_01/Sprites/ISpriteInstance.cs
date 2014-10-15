@@ -9,7 +9,7 @@ namespace Test.Game_01.Sprites
     public interface ISpriteInstance
     {
         Sprite Sprite { get; set; }
-        Vector2d Position { get; set; }
-        Vector2d Size { get; set; }
+        Vector2 Position { get; set; }
+        Vector2 Size { get; set; }
     }
 }

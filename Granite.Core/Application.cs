@@ -12,13 +12,15 @@ namespace Granite.Core
         private readonly IApplicationLogic m_logic;
         private readonly Queue<Action> m_actions;
         private readonly Display m_display;
+        private DateTime m_previousFrame = DateTime.MinValue;
+        private double m_framesPerSecond = 0f;
 
         public Application(IApplicationLogic logic, ApplicationSettings settings)
         {
             m_thread = Thread.CurrentThread;
             m_actions = new Queue<Action>();
             m_logic = logic;
-            m_display = new Display(WindowProc, settings.DisplayStyle);
+            m_display = new Display(this, WindowProc, settings.DisplayStyle);
             GL.Initialize(
                 m_display,
                 settings.DisplayColorBits,
@@ -100,10 +102,33 @@ namespace Granite.Core
 
         private void Render()
         {
+            var now = DateTime.Now;
+            TimeSpan elapsed;
+
+            if (m_previousFrame == DateTime.MinValue)
+            {
+                elapsed = TimeSpan.Zero;
+            }
+            else
+            {
+                elapsed = now - m_previousFrame;
+            }
+
+            m_previousFrame = now;
+
+            if (elapsed != TimeSpan.Zero)
+            {
+                m_framesPerSecond = m_framesPerSecond * 0.95 + (1 / elapsed.TotalSeconds) * 0.05;
+            }
+
             WinApi.ValidateRect(m_display.Handle, IntPtr.Zero);
-            m_logic.Render();
+
+            m_logic.Render(elapsed);
+            
             WinApi.SwapBuffers(m_display.DeviceContext);
         }
+
+        public double FramesPerSecond { get { return m_framesPerSecond; } }
         #endregion
 
     }

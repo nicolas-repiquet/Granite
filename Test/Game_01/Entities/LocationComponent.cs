@@ -8,7 +8,7 @@ namespace Test.Game_01.Entities
 {
     public class LocationComponent : Component
     {
-        public Box2d Location { get; set; }
+        public Box2 Location { get; set; }
 
         public LocationComponent(Entity entity)
             : base(entity)
