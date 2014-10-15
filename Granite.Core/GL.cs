@@ -150,7 +150,17 @@ namespace Granite.Core
             DeleteTextures(1, ref name);
         }
 
+        internal static uint GenVertexArray()
+        {
+            uint name;
+            GenVertexArrays(1, out name);
+            return name;
+        }
 
+        internal static void DeleteVertexArray(uint name)
+        {
+            DeleteVertexArrays(1, ref name);
+        }
 
         #endregion
 
@@ -166,6 +176,13 @@ namespace Granite.Core
         public static void BindBuffer_ELEMENT_ARRAY_BUFFER(Buffer buffer)
         {
             BindBuffer(ELEMENT_ARRAY_BUFFER, buffer == null ? 0 : buffer.Name);
+        }
+        #endregion
+
+        #region VertexArray
+        public static void BindVertexArray(VertexArray vertexArray)
+        {
+            GL.BindVertexArray(vertexArray == null ? 0 : vertexArray.Name);
         }
         #endregion
 

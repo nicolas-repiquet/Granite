@@ -2301,6 +2301,8 @@ namespace Granite.Core
 
 		private delegate void Delegate_Uniform2i_0(int location, int v0, int v1);
 
+		private delegate void Delegate_Uniform2i_1(int location, Vector2i value);
+
 		private delegate void Delegate_Uniform2iv_0(int location, int count, System.IntPtr value);
 
 		private delegate void Delegate_Uniform2ui_0(int location, uint v0, uint v1);
@@ -3250,6 +3252,8 @@ namespace Granite.Core
 		private static Delegate_Uniform2fv_0 m_Uniform2fv_0;
 
 		private static Delegate_Uniform2i_0 m_Uniform2i_0;
+
+		private static Delegate_Uniform2i_1 m_Uniform2i_1;
 
 		private static Delegate_Uniform2iv_0 m_Uniform2iv_0;
 
@@ -4203,6 +4207,8 @@ namespace Granite.Core
 
 			m_Uniform2i_0 = (Delegate_Uniform2i_0)GetFunctionDelegate("glUniform2i", typeof(Delegate_Uniform2i_0));
 
+			m_Uniform2i_1 = (Delegate_Uniform2i_1)GetFunctionDelegate("glUniform2i", typeof(Delegate_Uniform2i_1));
+
 			m_Uniform2iv_0 = (Delegate_Uniform2iv_0)GetFunctionDelegate("glUniform2iv", typeof(Delegate_Uniform2iv_0));
 
 			m_Uniform2ui_0 = (Delegate_Uniform2ui_0)GetFunctionDelegate("glUniform2ui", typeof(Delegate_Uniform2ui_0));
@@ -5155,6 +5161,8 @@ namespace Granite.Core
 			m_Uniform2fv_0 = null;
 
 			m_Uniform2i_0 = null;
+
+			m_Uniform2i_1 = null;
 
 			m_Uniform2iv_0 = null;
 
@@ -7484,6 +7492,12 @@ namespace Granite.Core
 		public static void Uniform2i(int location, int v0, int v1)
 		{
 			m_Uniform2i_0(location, v0, v1);
+		}
+
+
+		public static void Uniform2i(int location, Vector2i value)
+		{
+			m_Uniform2i_1(location, value);
 		}
 
 

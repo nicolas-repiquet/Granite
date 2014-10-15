@@ -593,6 +593,9 @@ public void Uniform2f(int location, Vector2 value);
 
 # public void Uniform2fv(int location, int count, IntPtr value);
 # public void Uniform2i(int location, int v0, int v1);
+
+public void Uniform2i(int location, Vector2i value);
+
 # public void Uniform2iv(int location, int count, IntPtr value);
 # public void Uniform2ui(int location, uint v0, uint v1);
 # public void Uniform2uiv(int location, int count, IntPtr value);
