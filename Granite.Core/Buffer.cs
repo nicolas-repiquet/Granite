@@ -106,7 +106,7 @@ namespace Granite.Core
         {
             var field = s_descriptor.GetField(name);
 
-            if (field.Descriptor.FlattenedCount < 1 || field.Descriptor.FlattenedCount > 4)
+            if (field.Descriptor.FlattenedCount < 1 || field.Descriptor.FlattenedCount > 16)
             {
                 throw new InvalidOperationException("Invalid type");
             }
