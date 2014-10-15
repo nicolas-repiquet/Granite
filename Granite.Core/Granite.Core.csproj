@@ -71,6 +71,7 @@
     <Compile Include="Structs.cs" />
     <Compile Include="Texture2D.cs" />
     <Compile Include="ValueTypeDescriptor.cs" />
+    <Compile Include="VertexArray.cs" />
     <Compile Include="WinApi.cs" />
   </ItemGroup>
   <ItemGroup>
