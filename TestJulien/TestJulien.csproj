@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA217A95-D865-4A95-A050-FB88F6ED6A37}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Game_01\Entities\Background.cs" />
+    <Compile Include="Game_01\Entities\Camera.cs" />
+    <Compile Include="Game_01\Entities\Component.cs" />
+    <Compile Include="Game_01\Entities\Entity.cs" />
+    <Compile Include="Game_01\Entities\FollowTargetComponent.cs" />
+    <Compile Include="Game_01\Entities\ILocated.cs" />
+    <Compile Include="Game_01\Entities\IRenderable.cs" />
+    <Compile Include="Game_01\Entities\IUpdatable.cs" />
+    <Compile Include="Game_01\Entities\LocationComponent.cs" />
+    <Compile Include="Game_01\Entities\Player.cs" />
+    <Compile Include="Game_01\Entities\RestrictLocationComponent.cs" />
+    <Compile Include="Game_01\Entities\RigidBodyComponent.cs" />
+    <Compile Include="Game_01\Entities\World.cs" />
+    <Compile Include="Game_01\Game.cs" />
+    <Compile Include="Game_01\Levels\Level.cs" />
+    <Compile Include="Game_01\Levels\Level_01.cs" />
+    <Compile Include="Game_01\Levels\Level_02.cs" />
+    <Compile Include="Game_01\Maps\Castle.cs" />
+    <Compile Include="Game_01\Maps\Dirt.cs" />
+    <Compile Include="Game_01\Maps\Grass.cs" />
+    <Compile Include="Game_01\Maps\Lava.cs" />
+    <Compile Include="Game_01\Maps\Liquid.cs" />
+    <Compile Include="Game_01\Maps\Map.cs" />
+    <Compile Include="Game_01\Maps\Material.cs" />
+    <Compile Include="Game_01\Maps\Terrain.cs" />
+    <Compile Include="Game_01\Maps\Water.cs" />
+    <Compile Include="Game_01\Shaders\SpriteProgram.cs" />
+    <Compile Include="Game_01\Sprites\EnemiesSprites.cs" />
+    <Compile Include="Game_01\Sprites\ISpriteInstance.cs" />
+    <Compile Include="Game_01\Sprites\PlayerSprites.cs" />
+    <Compile Include="Game_01\Sprites\Sprite.cs" />
+    <Compile Include="Game_01\Sprites\SpriteRenderer.cs" />
+    <Compile Include="Game_01\Sprites\SpriteSheet.cs" />
+    <Compile Include="Game_01\Sprites\TilesSprites.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EmbeddedResource Include="Game_01\Shaders\SpriteProgram.Fragment.glsl" />
+    <EmbeddedResource Include="Game_01\Shaders\SpriteProgram.Vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Levels\Level_01.txt" />
+    <EmbeddedResource Include="Game_01\Levels\Level_02.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.txt" />
+    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.png" />
+    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.txt" />
+    <EmbeddedResource Include="Game_01\Textures\Background_01.png" />
+    <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Granite.Core\Granite.Core.csproj">
+      <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
+      <Name>Granite.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
