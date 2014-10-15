@@ -110,6 +110,29 @@ namespace Granite.Core
     }
 
     #region ATTRIBUTES
+
+//GL_FLOAT
+//GL_FLOAT_VEC2
+//GL_FLOAT_VEC3
+//GL_FLOAT_VEC4
+//GL_FLOAT_MAT2
+//GL_FLOAT_MAT3
+//GL_FLOAT_MAT4
+//GL_FLOAT_MAT2x3
+//GL_FLOAT_MAT2x4
+//GL_FLOAT_MAT3x2
+//GL_FLOAT_MAT3x4
+//GL_FLOAT_MAT4x2
+//GL_FLOAT_MAT4x3
+//GL_INT
+//GL_INT_VEC2
+//GL_INT_VEC3
+//GL_INT_VEC4
+//GL_UNSIGNED_INT
+//GL_UNSIGNED_INT_VEC2
+//GL_UNSIGNED_INT_VEC3
+//GL_UNSIGNED_INT_VEC4
+
     public abstract class ProgramAttribute
     {
         #region FACTORY
@@ -157,6 +180,7 @@ namespace Granite.Core
         public virtual void SetValue(IBufferView view)
         {
             GL.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
+
             GL.VertexAttribPointer(
                 (uint)Position,
                 view.Size,
@@ -165,6 +189,7 @@ namespace Granite.Core
                 view.Stride,
                 new IntPtr(view.Offset)
             );
+
             GL.EnableVertexAttribArray((uint)Position);
         }
 
@@ -216,15 +241,17 @@ namespace Granite.Core
             uint pos3 = (uint)Position + 2;
             uint pos4 = (uint)Position + 3;
 
-            GL.EnableVertexAttribArray(pos1);
-            GL.EnableVertexAttribArray(pos2);
-            GL.EnableVertexAttribArray(pos3);
-            GL.EnableVertexAttribArray(pos4);
-
+            GL.BindBuffer(GL.ARRAY_BUFFER, view.Buffer.Name);
+            
             GL.VertexAttribPointer(pos1, 4, GL.FLOAT, false, view.Stride, new IntPtr(view.Offset));
             GL.VertexAttribPointer(pos2, 4, GL.FLOAT, false, view.Stride, new IntPtr(view.Offset + 16));
             GL.VertexAttribPointer(pos3, 4, GL.FLOAT, false, view.Stride, new IntPtr(view.Offset + 32));
             GL.VertexAttribPointer(pos4, 4, GL.FLOAT, false, view.Stride, new IntPtr(view.Offset + 48));
+
+            GL.EnableVertexAttribArray(pos1);
+            GL.EnableVertexAttribArray(pos2);
+            GL.EnableVertexAttribArray(pos3);
+            GL.EnableVertexAttribArray(pos4);
         }
 
         public override void SetDivisor(int divisor)
@@ -239,6 +266,69 @@ namespace Granite.Core
     #endregion
 
     #region UNIFORMS
+
+//GL_FLOAT
+//GL_FLOAT_VEC2
+//GL_FLOAT_VEC3
+//GL_FLOAT_VEC4
+//GL_INT
+//GL_INT_VEC2
+//GL_INT_VEC3
+//GL_INT_VEC4
+//GL_UNSIGNED_INT
+//GL_UNSIGNED_INT_VEC2
+//GL_UNSIGNED_INT_VEC3
+//GL_UNSIGNED_INT_VEC4
+//GL_BOOL
+//GL_BOOL_VEC2
+//GL_BOOL_VEC3
+//GL_BOOL_VEC4
+//GL_FLOAT_MAT2
+//GL_FLOAT_MAT3
+//GL_FLOAT_MAT4
+//GL_FLOAT_MAT2x3
+//GL_FLOAT_MAT2x4
+//GL_FLOAT_MAT3x2
+//GL_FLOAT_MAT3x4
+//GL_FLOAT_MAT4x2
+//GL_FLOAT_MAT4x3
+//GL_SAMPLER_1D
+//GL_SAMPLER_2D
+//GL_SAMPLER_3D
+//GL_SAMPLER_CUBE
+//GL_SAMPLER_1D_SHADOW
+//GL_SAMPLER_2D_SHADOW
+//GL_SAMPLER_1D_ARRAY
+//GL_SAMPLER_2D_ARRAY
+//GL_SAMPLER_1D_ARRAY_SHADOW
+//GL_SAMPLER_2D_ARRAY_SHADOW
+//GL_SAMPLER_2D_MULTISAMPLE
+//GL_SAMPLER_2D_MULTISAMPLE_ARRAY
+//GL_SAMPLER_CUBE_SHADOW
+//GL_SAMPLER_BUFFER
+//GL_SAMPLER_2D_RECT
+//GL_SAMPLER_2D_RECT_SHADOW
+//GL_INT_SAMPLER_1D
+//GL_INT_SAMPLER_2D
+//GL_INT_SAMPLER_3D
+//GL_INT_SAMPLER_CUBE
+//GL_INT_SAMPLER_1D_ARRAY
+//GL_INT_SAMPLER_2D_ARRAY
+//GL_INT_SAMPLER_2D_MULTISAMPLE
+//GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY
+//GL_INT_SAMPLER_BUFFER
+//GL_INT_SAMPLER_2D_RECT
+//GL_UNSIGNED_INT_SAMPLER_1D
+//GL_UNSIGNED_INT_SAMPLER_2D
+//GL_UNSIGNED_INT_SAMPLER_3D
+//GL_UNSIGNED_INT_SAMPLER_CUBE
+//GL_UNSIGNED_INT_SAMPLER_1D_ARRAY
+//GL_UNSIGNED_INT_SAMPLER_2D_ARRAY
+//GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE
+//GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY
+//GL_UNSIGNED_INT_SAMPLER_BUFFER
+//GL_UNSIGNED_INT_SAMPLER_2D_RECT
+
     public abstract class ProgramUniform
     {
         #region FACTORY
