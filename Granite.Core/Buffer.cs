@@ -124,29 +124,52 @@ namespace Granite.Core
             });
         }
 
+        public void SetData(int count)
+        {
+            GL.BindBuffer(GL.ARRAY_BUFFER, Name);
+            GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(count * TypeSize), IntPtr.Zero, GL.STATIC_DRAW);
+            m_count = count;
+        }
+
         public void SetData(T[] data)
         {
-
-            var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
-            
-            try
+            if (data == null)
             {
-                var size = TypeSize * data.Length;
                 GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-                GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), GL.STATIC_DRAW);
-                int realSize;
-                GL.GetBufferParameteriv(GL.ARRAY_BUFFER, GL.BUFFER_SIZE, out realSize);
-                GL.BindBuffer(GL.ARRAY_BUFFER, 0);
-                m_count = data.Length;
-                if (size != realSize)
+                GL.BufferData(GL.ARRAY_BUFFER, IntPtr.Zero, IntPtr.Zero, GL.STATIC_DRAW);
+                m_count = 0;
+            }
+            else
+            {
+                var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+
+                try
                 {
-                    throw new Exception();
+                    var size = TypeSize * data.Length;
+                    GL.BindBuffer(GL.ARRAY_BUFFER, Name);
+                    GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), GL.STATIC_DRAW);
+                    int realSize;
+                    GL.GetBufferParameteriv(GL.ARRAY_BUFFER, GL.BUFFER_SIZE, out realSize);
+                    m_count = data.Length;
+                    if (size != realSize)
+                    {
+                        throw new Exception();
+                    }
+                }
+                finally
+                {
+                    handle.Free();
                 }
             }
-            finally
-            {
-                handle.Free();
-            }
+        }
+
+        public BufferMapping<T> Map()
+        {
+            GL.BindBuffer(GL.ARRAY_BUFFER, this);
+            GL.GetError();
+            var address = GL.MapBuffer(GL.ARRAY_BUFFER, GL.READ_WRITE);
+
+            return new BufferMapping<T>(this, address);
         }
     }
 }

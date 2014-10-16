@@ -150,30 +150,34 @@ namespace Test.Game_01.Sprites
 
         private void RebuildBuffer()
         {
-            var datas = new SpriteData[m_instances.Count];
+            m_bufferSprite.SetData(m_instances.Count);
 
-            int i = 0;
-            foreach (var instance in m_instances)
+            using (var mapping = m_bufferSprite.Map())
             {
-                var sprite = instance.Sprite;
-
-                var matrix = Matrix4.Identity * Matrix4.Translate(
-                    (float)instance.Position.X,
-                    (float)instance.Position.Y,
-                    0f);
-                matrix *= Matrix4.Scale((float)instance.Size.X, (float)instance.Size.Y, 0f);
-
-                var data = new SpriteData()
+                unsafe
                 {
-                    Color = new Vector4(1f, 1f, 1f, 1f),
-                    Transform = matrix,
-                    TextureOrigin = new Vector2((float)sprite.Coordinates.MinX, (float)sprite.Coordinates.MinY),
-                    TextureTarget = new Vector2((float)sprite.Coordinates.MaxX, (float)sprite.Coordinates.MaxY)
-                };
-                datas[i++] = data;
-            }
+                    SpriteData* data = (SpriteData*)mapping.Address.ToPointer();
 
-            m_bufferSprite.SetData(datas);
+                    for (int i = 0; i < m_instances.Count; i++)
+                    {
+                        var instance = m_instances[i];
+                        var sprite = instance.Sprite;
+
+                        var matrix = Matrix4.Identity;
+                        matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
+                        matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
+
+                        data[i] = new SpriteData()
+                        {
+                            Color = new Vector4(1f, 1f, 1f, 1f),
+                            Transform = matrix,
+                            TextureOrigin = new Vector2(sprite.Coordinates.MinX, sprite.Coordinates.MinY),
+                            TextureTarget = new Vector2(sprite.Coordinates.MaxX, sprite.Coordinates.MaxY)
+                        };
+                    }
+                }
+
+            }
 
             m_isDirty = false;
         }

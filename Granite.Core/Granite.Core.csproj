@@ -41,6 +41,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="Buffer.cs" />
+    <Compile Include="BufferMapping.cs" />
     <Compile Include="Color.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

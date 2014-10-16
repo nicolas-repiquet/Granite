@@ -66,6 +66,8 @@ namespace Test.Game_01
 
         public override void Render(TimeSpan elapsed)
         {
+            Engine.Display.Invalidate();
+
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
 
             Update(elapsed);
@@ -80,8 +82,6 @@ namespace Test.Game_01
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
             m_world.Render(Matrix4.Identity);
-
-            Engine.Display.Invalidate();
         }
     }
 }
