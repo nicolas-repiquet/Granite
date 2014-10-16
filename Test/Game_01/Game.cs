@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Test.Game_01.Entities;
 using Test.Game_01.Levels;
 using Test.Game_01.Maps;
@@ -35,6 +36,10 @@ namespace Test.Game_01
 
         public override void KeyDown(Key key)
         {
+            if (key == Key.Up)
+            {
+                m_world.Player.Jump();
+            }
             m_keys.Add(key);
         }
 
@@ -55,7 +60,7 @@ namespace Test.Game_01
             }
             if (m_keys.Contains(Key.Up))
             {
-                m_world.Player.Jump();
+                //m_world.Player.Jump();
             }
             if (m_keys.Contains(Key.Down))
             {

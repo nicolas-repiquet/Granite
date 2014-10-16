@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -35,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Test.Game_01.Game</StartupObject>
@@ -62,6 +64,7 @@
     <Compile Include="Game_01\Entities\RayCast.cs" />
     <Compile Include="Game_01\Entities\RestrictLocationComponent.cs" />
     <Compile Include="Game_01\Entities\RigidBodyComponent.cs" />
+    <Compile Include="Game_01\Entities\SpriteSequence.cs" />
     <Compile Include="Game_01\Entities\World.cs" />
     <Compile Include="Game_01\Game.cs" />
     <Compile Include="Game_01\Levels\Level_02.cs" />

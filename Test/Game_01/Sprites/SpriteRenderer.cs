@@ -171,8 +171,8 @@ namespace Test.Game_01.Sprites
                         {
                             Color = new Vector4(1f, 1f, 1f, 1f),
                             Transform = matrix,
-                            TextureOrigin = new Vector2(sprite.Coordinates.MinX, sprite.Coordinates.MinY),
-                            TextureTarget = new Vector2(sprite.Coordinates.MaxX, sprite.Coordinates.MaxY)
+                            TextureOrigin = sprite.Coordinates.Position,
+                            TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
                         };
                     }
                 }

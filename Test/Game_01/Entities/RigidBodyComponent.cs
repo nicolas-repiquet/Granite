@@ -43,7 +43,46 @@ namespace Test.Game_01.Entities
 
         private void TestCollision(TimeSpan elapsed)
         {
-            Velocity += new Vector2(0, -300) * (float)elapsed.TotalSeconds;
+            var momentum = new Vector2();
+
+            momentum += new Vector2(0, -1000); // gravity
+
+            if (Engine.Keyboard.IsKeyPressed(Key.Left))
+            {
+                //if (Grounded)
+                //{
+                    momentum += new Vector2(-1500, 0);
+                //}
+                //else
+                //{
+                //    momentum += new Vector2(-600, 0);
+                //}
+            }
+
+            if (Engine.Keyboard.IsKeyPressed(Key.Right))
+            {
+                //if (Grounded)
+                //{
+                    momentum += new Vector2(1500, 0);
+                //}
+                //else
+                //{
+                //    momentum += new Vector2(600, 0);
+                //}
+            }
+
+            Velocity += momentum * (float)elapsed.TotalSeconds;
+
+            if (Math.Abs(Velocity.X) > 500)
+            {
+                Velocity = new Vector2(Math.Sign(Velocity.X) * 500, Velocity.Y);
+            }
+
+            //if (Grounded)
+            //{
+                Velocity = new Vector2(Velocity.X * 0.99f, Velocity.Y);
+            //}
+
 
             //else
             //{
