@@ -14,10 +14,8 @@ namespace Test.Game_01.Sprites
         {
             public Vector4 Color;
             public Matrix4 Transform;
-            public Vector2 TextureCoordinates0;
-            public Vector2 TextureCoordinates1;
-            public Vector2 TextureCoordinates2;
-            public Vector2 TextureCoordinates3;
+            public Vector2 TextureOrigin;
+            public Vector2 TextureTarget;
         }
 
         private sealed class SpriteInstance : ISpriteInstance
@@ -108,14 +106,10 @@ namespace Test.Game_01.Sprites
 
             m_program.Transform.SetValue(m_bufferSprite.GetView<Matrix4>("Transform"));
             m_program.Transform.SetDivisor(1);
-            m_program.TextureCoordinates0.SetValue(m_bufferSprite.GetView<Vector2>("TextureCoordinates0"));
-            m_program.TextureCoordinates0.SetDivisor(1);
-            m_program.TextureCoordinates1.SetValue(m_bufferSprite.GetView<Vector2>("TextureCoordinates1"));
-            m_program.TextureCoordinates1.SetDivisor(1);
-            m_program.TextureCoordinates2.SetValue(m_bufferSprite.GetView<Vector2>("TextureCoordinates2"));
-            m_program.TextureCoordinates2.SetDivisor(1);
-            m_program.TextureCoordinates3.SetValue(m_bufferSprite.GetView<Vector2>("TextureCoordinates3"));
-            m_program.TextureCoordinates3.SetDivisor(1);
+            m_program.TextureOrigin.SetValue(m_bufferSprite.GetView<Vector2>("TextureOrigin"));
+            m_program.TextureOrigin.SetDivisor(1);
+            m_program.TextureTarget.SetValue(m_bufferSprite.GetView<Vector2>("TextureTarget"));
+            m_program.TextureTarget.SetDivisor(1);
 
             GL.UseProgram(null);
             GL.BindVertexArray(null);
@@ -173,12 +167,9 @@ namespace Test.Game_01.Sprites
                 {
                     Color = new Vector4(1f, 1f, 1f, 1f),
                     Transform = matrix,
-                    TextureCoordinates0 = new Vector2((float)sprite.Coordinates.MinX, (float)sprite.Coordinates.MaxY),
-                    TextureCoordinates1 = new Vector2((float)sprite.Coordinates.MinX, (float)sprite.Coordinates.MinY),
-                    TextureCoordinates2 = new Vector2((float)sprite.Coordinates.MaxX, (float)sprite.Coordinates.MinY),
-                    TextureCoordinates3 = new Vector2((float)sprite.Coordinates.MaxX, (float)sprite.Coordinates.MaxY)
+                    TextureOrigin = new Vector2((float)sprite.Coordinates.MinX, (float)sprite.Coordinates.MinY),
+                    TextureTarget = new Vector2((float)sprite.Coordinates.MaxX, (float)sprite.Coordinates.MaxY)
                 };
-
                 datas[i++] = data;
             }
 
