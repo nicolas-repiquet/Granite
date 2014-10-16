@@ -107,6 +107,7 @@ namespace Granite.Core
 <# } #>
 
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
+		<# if(o.GetDotNetType() == "string") { #>[return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.LPStr)]<# } #>
 		private delegate <#= o.GetDotNetType() #> Delegate_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>);
 <# } } #>
 

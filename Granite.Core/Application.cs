@@ -73,30 +73,40 @@ namespace Granite.Core
         #region Display
         private IntPtr WindowProc(IntPtr handle, uint messageId, IntPtr wParam, IntPtr lParam)
         {
-            switch (messageId)
+            try
             {
-                case WinApi.WM_CLOSE:
-                    m_logic.CloseRequest();
-                    return IntPtr.Zero;
+                switch (messageId)
+                {
+                    case WinApi.WM_CLOSE:
+                        m_logic.CloseRequest();
+                        return IntPtr.Zero;
 
-                case WinApi.WM_PAINT:
-                    Render();
-                    return IntPtr.Zero;
+                    case WinApi.WM_PAINT:
+                        Render();
+                        return IntPtr.Zero;
 
-                case WinApi.WM_KEYDOWN:
-                    m_logic.KeyDown((Key)wParam.ToInt32());
-                    return IntPtr.Zero;
+                    case WinApi.WM_KEYDOWN:
+                        m_logic.KeyDown((Key)wParam.ToInt32());
+                        return IntPtr.Zero;
 
-                case WinApi.WM_KEYUP:
-                    m_logic.KeyUp((Key)wParam.ToInt32());
-                    return IntPtr.Zero;
+                    case WinApi.WM_KEYUP:
+                        m_logic.KeyUp((Key)wParam.ToInt32());
+                        return IntPtr.Zero;
 
-                case WinApi.WM_LBUTTONDOWN:
-                    m_logic.MouseLButtonDown(lParam.ToInt32() & 0xFFFF, (lParam.ToInt32() >> 16) & 0xFFFF);
-                    return IntPtr.Zero;
+                    case WinApi.WM_LBUTTONDOWN:
+                        m_logic.MouseLButtonDown(lParam.ToInt32() & 0xFFFF, (lParam.ToInt32() >> 16) & 0xFFFF);
+                        return IntPtr.Zero;
 
-                default:
-                    return WinApi.DefWindowProc(handle, messageId, wParam, lParam);
+                    default:
+                        return WinApi.DefWindowProc(handle, messageId, wParam, lParam);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+                return WinApi.DefWindowProc(handle, messageId, wParam, lParam);
             }
         }
 

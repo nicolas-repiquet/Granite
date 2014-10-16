@@ -1611,958 +1611,1435 @@ namespace Granite.Core
 
 
 
+		
 		private delegate void Delegate_ActiveTexture_0(uint texture);
 
+		
 		private delegate void Delegate_AttachShader_0(uint program, uint shader);
 
+		
 		private delegate void Delegate_BeginConditionalRender_0(uint id, uint mode);
 
+		
 		private delegate void Delegate_BeginQuery_0(uint target, uint id);
 
+		
 		private delegate void Delegate_BeginTransformFeedback_0(uint primitiveMode);
 
+		
 		private delegate void Delegate_BindAttribLocation_0(uint program, uint index, string name);
 
+		
 		private delegate void Delegate_BindBuffer_0(uint target, uint buffer);
 
+		
 		private delegate void Delegate_BindBufferBase_0(uint target, uint index, uint buffer);
 
+		
 		private delegate void Delegate_BindBufferRange_0(uint target, uint index, uint buffer, System.IntPtr offset, System.IntPtr size);
 
+		
 		private delegate void Delegate_BindFragDataLocation_0(uint program, uint color, string name);
 
+		
 		private delegate void Delegate_BindFramebuffer_0(uint target, uint framebuffer);
 
+		
 		private delegate void Delegate_BindRenderbuffer_0(uint target, uint renderbuffer);
 
+		
 		private delegate void Delegate_BindTexture_0(uint target, uint texture);
 
+		
 		private delegate void Delegate_BindVertexArray_0(uint array);
 
+		
 		private delegate void Delegate_BlendColor_0(float red, float green, float blue, float alpha);
 
+		
 		private delegate void Delegate_BlendColor_1(Color4 color);
 
+		
 		private delegate void Delegate_BlendEquation_0(uint mode);
 
+		
 		private delegate void Delegate_BlendEquationSeparate_0(uint modeRGB, uint modeAlpha);
 
+		
 		private delegate void Delegate_BlendFunc_0(uint sfactor, uint dfactor);
 
+		
 		private delegate void Delegate_BlendFuncSeparate_0(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
 
+		
 		private delegate void Delegate_BlitFramebuffer_0(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint mask, uint filter);
 
+		
 		private delegate void Delegate_BlitFramebuffer_1(Vector2i src0, Vector2i src1, Vector2i dst0, Vector2i dst1, uint mask, uint filter);
 
+		
 		private delegate void Delegate_BufferData_0(uint target, System.IntPtr size, System.IntPtr data, uint usage);
 
+		
 		private delegate void Delegate_BufferSubData_0(uint target, System.IntPtr offset, System.IntPtr size, System.IntPtr data);
 
+		
 		private delegate uint Delegate_CheckFramebufferStatus_0(uint target);
 
+		
 		private delegate void Delegate_ClampColor_0(uint target, uint clamp);
 
+		
 		private delegate void Delegate_Clear_0(uint mask);
 
+		
 		private delegate void Delegate_ClearBufferfi_0(uint buffer, int drawbuffer, float depth, int stencil);
 
+		
 		private delegate void Delegate_ClearBufferfv_0(uint buffer, int drawbuffer, System.IntPtr value);
 
+		
 		private delegate void Delegate_ClearBufferfv_1(uint buffer, int drawbuffer, ref Color4 value);
 
+		
 		private delegate void Delegate_ClearBufferfv_2(uint buffer, int drawbuffer, ref float value);
 
+		
 		private delegate void Delegate_ClearBufferiv_0(uint buffer, int drawbuffer, System.IntPtr value);
 
+		
 		private delegate void Delegate_ClearBufferiv_1(uint buffer, int drawbuffer, ref Color4i value);
 
+		
 		private delegate void Delegate_ClearBufferiv_2(uint buffer, int drawbuffer, ref int value);
 
+		
 		private delegate void Delegate_ClearBufferuiv_0(uint buffer, int drawbuffer, System.IntPtr value);
 
+		
 		private delegate void Delegate_ClearBufferuiv_1(uint buffer, int drawbuffer, ref Color4ui value);
 
+		
 		private delegate void Delegate_ClearBufferuiv_2(uint buffer, int drawbuffer, ref uint value);
 
+		
 		private delegate void Delegate_ClearColor_0(float red, float green, float blue, float alpha);
 
+		
 		private delegate void Delegate_ClearColor_1(Color4 color);
 
+		
 		private delegate void Delegate_ClearDepth_0(double depth);
 
+		
 		private delegate void Delegate_ClearStencil_0(int s);
 
+		
 		private delegate uint Delegate_ClientWaitSync_0(System.IntPtr sync, uint flags, ulong timeout);
 
+		
 		private delegate void Delegate_ColorMask_0(bool red, bool green, bool blue, bool alpha);
 
+		
 		private delegate void Delegate_ColorMaski_0(uint index, bool r, bool g, bool b, bool a);
 
+		
 		private delegate void Delegate_CompileShader_0(uint shader);
 
+		
 		private delegate void Delegate_CompressedTexImage1D_0(uint target, int level, uint internalformat, int width, int border, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CompressedTexImage2D_0(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CompressedTexImage3D_0(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CompressedTexSubImage1D_0(uint target, int level, int xoffset, int width, uint format, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CompressedTexSubImage2D_0(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CompressedTexSubImage2D_1(uint target, int level, Box2i imagePosition, uint format, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CompressedTexSubImage3D_0(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CompressedTexSubImage3D_1(uint target, int level, Box3i imagePosition, uint format, int imageSize, System.IntPtr data);
 
+		
 		private delegate void Delegate_CopyBufferSubData_0(uint readTarget, uint writeTarget, System.IntPtr readOffset, System.IntPtr writeOffset, System.IntPtr size);
 
+		
 		private delegate void Delegate_CopyTexImage1D_0(uint target, int level, uint internalformat, int x, int y, int width, int border);
 
+		
 		private delegate void Delegate_CopyTexImage1D_1(uint target, int level, uint internalformat, Vector2i imagePosition, int width, int border);
 
+		
 		private delegate void Delegate_CopyTexImage2D_0(uint target, int level, uint internalformat, int x, int y, int width, int height, int border);
 
+		
 		private delegate void Delegate_CopyTexImage2D_1(uint target, int level, uint internalformat, Vector2i imagePosition, Vector2i imageSize, int border);
 
+		
 		private delegate void Delegate_CopyTexImage2D_2(uint target, int level, uint internalformat, Box2i image, int border);
 
+		
 		private delegate void Delegate_CopyTexSubImage1D_0(uint target, int level, int xoffset, int x, int y, int width);
 
+		
 		private delegate void Delegate_CopyTexSubImage1D_1(uint target, int level, int xoffset, Vector2i imagePosition, int width);
 
+		
 		private delegate void Delegate_CopyTexSubImage2D_0(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height);
 
+		
 		private delegate void Delegate_CopyTexSubImage2D_1(uint target, int level, Vector2i texturePosition, Vector2i imagePosition, Vector2i size);
 
+		
 		private delegate void Delegate_CopyTexSubImage3D_0(uint target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height);
 
+		
 		private delegate void Delegate_CopyTexSubImage3D_1(uint target, int level, Vector3i texturePosition, Vector2i imagePosition, Vector2i size);
 
+		
 		private delegate uint Delegate_CreateProgram_0();
 
+		
 		private delegate uint Delegate_CreateShader_0(uint type);
 
+		
 		private delegate void Delegate_CullFace_0(uint mode);
 
+		
 		private delegate void Delegate_DeleteBuffers_0(int n, System.IntPtr buffers);
 
+		
 		private delegate void Delegate_DeleteBuffers_1(int n, uint[] buffers);
 
+		
 		private delegate void Delegate_DeleteBuffers_2(int n, ref uint buffers);
 
+		
 		private delegate void Delegate_DeleteFramebuffers_0(int n, System.IntPtr framebuffers);
 
+		
 		private delegate void Delegate_DeleteFramebuffers_1(int n, uint[] framebuffers);
 
+		
 		private delegate void Delegate_DeleteFramebuffers_2(int n, ref uint framebuffers);
 
+		
 		private delegate void Delegate_DeleteProgram_0(uint program);
 
+		
 		private delegate void Delegate_DeleteQueries_0(int n, System.IntPtr ids);
 
+		
 		private delegate void Delegate_DeleteQueries_1(int n, uint[] ids);
 
+		
 		private delegate void Delegate_DeleteQueries_2(int n, ref uint ids);
 
+		
 		private delegate void Delegate_DeleteRenderbuffers_0(int n, System.IntPtr renderbuffers);
 
+		
 		private delegate void Delegate_DeleteRenderbuffers_1(int n, uint[] renderbuffers);
 
+		
 		private delegate void Delegate_DeleteRenderbuffers_2(int n, ref uint renderbuffers);
 
+		
 		private delegate void Delegate_DeleteShader_0(uint shader);
 
+		
 		private delegate void Delegate_DeleteSync_0(System.IntPtr sync);
 
+		
 		private delegate void Delegate_DeleteTextures_0(int n, System.IntPtr textures);
 
+		
 		private delegate void Delegate_DeleteTextures_1(int n, uint[] textures);
 
+		
 		private delegate void Delegate_DeleteTextures_2(int n, ref uint textures);
 
+		
 		private delegate void Delegate_DeleteVertexArrays_0(int n, System.IntPtr arrays);
 
+		
 		private delegate void Delegate_DeleteVertexArrays_1(int n, uint[] arrays);
 
+		
 		private delegate void Delegate_DeleteVertexArrays_2(int n, ref uint arrays);
 
+		
 		private delegate void Delegate_DepthFunc_0(uint func);
 
+		
 		private delegate void Delegate_DepthMask_0(bool flag);
 
+		
 		private delegate void Delegate_DepthRange_0(double near, double far);
 
+		
 		private delegate void Delegate_DetachShader_0(uint program, uint shader);
 
+		
 		private delegate void Delegate_Disable_0(uint cap);
 
+		
 		private delegate void Delegate_Disablei_0(uint target, uint index);
 
+		
 		private delegate void Delegate_DisableVertexAttribArray_0(uint index);
 
+		
 		private delegate void Delegate_DrawArrays_0(uint mode, int first, int count);
 
+		
 		private delegate void Delegate_DrawArraysInstanced_0(uint mode, int first, int count, int instancecount);
 
+		
 		private delegate void Delegate_DrawBuffer_0(uint mode);
 
+		
 		private delegate void Delegate_DrawBuffers_0(int n, System.IntPtr bufs);
 
+		
 		private delegate void Delegate_DrawBuffers_1(int n, uint[] bufs);
 
+		
 		private delegate void Delegate_DrawBuffers_2(int n, ref uint bufs);
 
+		
 		private delegate void Delegate_DrawElements_0(uint mode, int count, uint type, System.IntPtr indices);
 
+		
 		private delegate void Delegate_DrawElements_1(uint mode, int count, uint type, byte[] indices);
 
+		
 		private delegate void Delegate_DrawElements_2(uint mode, int count, uint type, ushort[] indices);
 
+		
 		private delegate void Delegate_DrawElements_3(uint mode, int count, uint type, uint[] indices);
 
+		
 		private delegate void Delegate_DrawElementsBaseVertex_0(uint mode, int count, uint type, System.IntPtr indices, int basevertex);
 
+		
 		private delegate void Delegate_DrawElementsBaseVertex_1(uint mode, int count, uint type, byte[] indices, int basevertex);
 
+		
 		private delegate void Delegate_DrawElementsBaseVertex_2(uint mode, int count, uint type, ushort[] indices, int basevertex);
 
+		
 		private delegate void Delegate_DrawElementsBaseVertex_3(uint mode, int count, uint type, uint[] indices, int basevertex);
 
+		
 		private delegate void Delegate_DrawElementsInstanced_0(uint mode, int count, uint type, System.IntPtr indices, int instancecount);
 
+		
 		private delegate void Delegate_DrawElementsInstanced_1(uint mode, int count, uint type, byte[] indices, int instancecount);
 
+		
 		private delegate void Delegate_DrawElementsInstanced_2(uint mode, int count, uint type, ushort[] indices, int instancecount);
 
+		
 		private delegate void Delegate_DrawElementsInstanced_3(uint mode, int count, uint type, uint[] indices, int instancecount);
 
+		
 		private delegate void Delegate_DrawElementsInstancedBaseVertex_0(uint mode, int count, uint type, System.IntPtr indices, int instancecount, int basevertex);
 
+		
 		private delegate void Delegate_DrawElementsInstancedBaseVertex_1(uint mode, int count, uint type, byte[] indices, int instancecount, int basevertex);
 
+		
 		private delegate void Delegate_DrawElementsInstancedBaseVertex_2(uint mode, int count, uint type, ushort[] indices, int instancecount, int basevertex);
 
+		
 		private delegate void Delegate_DrawElementsInstancedBaseVertex_3(uint mode, int count, uint type, uint[] indices, int instancecount, int basevertex);
 
+		
 		private delegate void Delegate_DrawRangeElements_0(uint mode, uint start, uint end, int count, uint type, System.IntPtr indices);
 
+		
 		private delegate void Delegate_DrawRangeElements_1(uint mode, uint start, uint end, int count, uint type, byte[] indices);
 
+		
 		private delegate void Delegate_DrawRangeElements_2(uint mode, uint start, uint end, int count, uint type, ushort[] indices);
 
+		
 		private delegate void Delegate_DrawRangeElements_3(uint mode, uint start, uint end, int count, uint type, uint[] indices);
 
+		
 		private delegate void Delegate_DrawRangeElementsBaseVertex_0(uint mode, uint start, uint end, int count, uint type, System.IntPtr indices, int basevertex);
 
+		
 		private delegate void Delegate_DrawRangeElementsBaseVertex_1(uint mode, uint start, uint end, int count, uint type, byte[] indices, int basevertex);
 
+		
 		private delegate void Delegate_DrawRangeElementsBaseVertex_2(uint mode, uint start, uint end, int count, uint type, ushort[] indices, int basevertex);
 
+		
 		private delegate void Delegate_DrawRangeElementsBaseVertex_3(uint mode, uint start, uint end, int count, uint type, uint[] indices, int basevertex);
 
+		
 		private delegate void Delegate_Enable_0(uint cap);
 
+		
 		private delegate void Delegate_Enablei_0(uint target, uint index);
 
+		
 		private delegate void Delegate_EnableVertexAttribArray_0(uint index);
 
+		
 		private delegate void Delegate_EndConditionalRender_0();
 
+		
 		private delegate void Delegate_EndQuery_0(uint target);
 
+		
 		private delegate void Delegate_EndTransformFeedback_0();
 
+		
 		private delegate System.IntPtr Delegate_FenceSync_0(uint condition, uint flags);
 
+		
 		private delegate void Delegate_Finish_0();
 
+		
 		private delegate void Delegate_Flush_0();
 
+		
 		private delegate void Delegate_FlushMappedBufferRange_0(uint target, System.IntPtr offset, System.IntPtr length);
 
+		
 		private delegate void Delegate_FramebufferRenderbuffer_0(uint target, uint attachment, uint renderbuffertarget, uint renderbuffer);
 
+		
 		private delegate void Delegate_FramebufferTexture_0(uint target, uint attachment, uint texture, int level);
 
+		
 		private delegate void Delegate_FramebufferTexture1D_0(uint target, uint attachment, uint textarget, uint texture, int level);
 
+		
 		private delegate void Delegate_FramebufferTexture2D_0(uint target, uint attachment, uint textarget, uint texture, int level);
 
+		
 		private delegate void Delegate_FramebufferTexture3D_0(uint target, uint attachment, uint textarget, uint texture, int level, int zoffset);
 
+		
 		private delegate void Delegate_FramebufferTextureLayer_0(uint target, uint attachment, uint texture, int level, int layer);
 
+		
 		private delegate void Delegate_FrontFace_0(uint mode);
 
+		
 		private delegate void Delegate_GenBuffers_0(int n, System.IntPtr buffers);
 
+		
 		private delegate void Delegate_GenBuffers_1(int n, uint[] buffers);
 
+		
 		private delegate void Delegate_GenBuffers_2(int n, out uint buffers);
 
+		
 		private delegate void Delegate_GenerateMipmap_0(uint target);
 
+		
 		private delegate void Delegate_GenFramebuffers_0(int n, System.IntPtr framebuffers);
 
+		
 		private delegate void Delegate_GenFramebuffers_1(int n, uint[] framebuffers);
 
+		
 		private delegate void Delegate_GenFramebuffers_2(int n, out uint framebuffers);
 
+		
 		private delegate void Delegate_GenQueries_0(int n, System.IntPtr ids);
 
+		
 		private delegate void Delegate_GenQueries_1(int n, uint[] ids);
 
+		
 		private delegate void Delegate_GenQueries_2(int n, out uint ids);
 
+		
 		private delegate void Delegate_GenRenderbuffers_0(int n, System.IntPtr renderbuffers);
 
+		
 		private delegate void Delegate_GenRenderbuffers_1(int n, uint[] renderbuffers);
 
+		
 		private delegate void Delegate_GenRenderbuffers_2(int n, out uint renderbuffers);
 
+		
 		private delegate void Delegate_GenTextures_0(int n, System.IntPtr textures);
 
+		
 		private delegate void Delegate_GenTextures_1(int n, uint[] textures);
 
+		
 		private delegate void Delegate_GenTextures_2(int n, out uint textures);
 
+		
 		private delegate void Delegate_GenVertexArrays_0(int n, System.IntPtr arrays);
 
+		
 		private delegate void Delegate_GenVertexArrays_1(int n, uint[] arrays);
 
+		
 		private delegate void Delegate_GenVertexArrays_2(int n, out uint arrays);
 
+		
 		private delegate void Delegate_GetActiveAttrib_0(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name);
 
+		
 		private delegate void Delegate_GetActiveAttrib_1(uint program, uint index, int bufSize, out int length, out int size, out uint type, byte[] name);
 
+		
 		private delegate void Delegate_GetActiveUniform_0(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name);
 
+		
 		private delegate void Delegate_GetActiveUniform_1(uint program, uint index, int bufSize, out int length, out int size, out uint type, byte[] name);
 
+		
 		private delegate void Delegate_GetActiveUniformBlockiv_0(uint program, uint uniformBlockIndex, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetActiveUniformBlockiv_1(uint program, uint uniformBlockIndex, uint pname, int[] _params);
 
+		
 		private delegate void Delegate_GetActiveUniformBlockiv_2(uint program, uint uniformBlockIndex, uint pname, out int _params);
 
+		
 		private delegate void Delegate_GetActiveUniformBlockName_0(uint program, uint uniformBlockIndex, int bufSize, System.IntPtr length, System.IntPtr uniformBlockName);
 
+		
 		private delegate void Delegate_GetActiveUniformBlockName_1(uint program, uint uniformBlockIndex, int bufSize, out int length, byte[] uniformBlockName);
 
+		
 		private delegate void Delegate_GetActiveUniformName_0(uint program, uint uniformIndex, int bufSize, System.IntPtr length, System.IntPtr uniformName);
 
+		
 		private delegate void Delegate_GetActiveUniformName_1(uint program, uint uniformIndex, int bufSize, out int length, byte[] uniformName);
 
+		
 		private delegate void Delegate_GetActiveUniformsiv_0(uint program, int uniformCount, System.IntPtr uniformIndices, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetActiveUniformsiv_1(uint program, int uniformCount, uint[] uniformIndices, uint pname, int[] _params);
 
+		
 		private delegate void Delegate_GetActiveUniformsiv_2(uint program, int uniformCount, out int uniformIndices, uint pname, int[] _params);
 
+		
 		private delegate void Delegate_GetActiveUniformsiv_3(uint program, int uniformCount, uint[] uniformIndices, uint pname, ref int _params);
 
+		
 		private delegate void Delegate_GetActiveUniformsiv_4(uint program, int uniformCount, out int uniformIndices, uint pname, ref int _params);
 
+		
 		private delegate void Delegate_GetAttachedShaders_0(uint program, int maxCount, System.IntPtr count, System.IntPtr shaders);
 
+		
 		private delegate void Delegate_GetAttachedShaders_1(uint program, int maxCount, uint count, uint[] shaders);
 
+		
 		private delegate int Delegate_GetAttribLocation_0(uint program, System.IntPtr name);
 
+		
 		private delegate int Delegate_GetAttribLocation_1(uint program, byte[] name);
 
+		
 		private delegate int Delegate_GetAttribLocation_2(uint program, string name);
 
+		
 		private delegate void Delegate_GetBooleani_v_0(uint target, uint index, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetBooleani_v_1(uint target, uint index, out bool data);
 
+		
 		private delegate void Delegate_GetBooleanv_0(uint pname, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetBooleanv_1(uint pname, out bool data);
 
+		
 		private delegate void Delegate_GetBufferParameteri64v_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetBufferParameteri64v_1(uint target, uint pname, out long _params);
 
+		
 		private delegate void Delegate_GetBufferParameteriv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetBufferParameteriv_1(uint target, uint pname, out int _params);
 
+		
 		private delegate void Delegate_GetBufferPointerv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetBufferPointerv_1(uint target, uint pname, out System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetBufferSubData_0(uint target, System.IntPtr offset, System.IntPtr size, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetCompressedTexImage_0(uint target, int level, System.IntPtr img);
 
+		
 		private delegate void Delegate_GetDoublev_0(uint pname, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetDoublev_1(uint pname, double[] data);
 
+		
 		private delegate void Delegate_GetDoublev_2(uint pname, out double data);
 
+		
 		private delegate void Delegate_GetDoublev_3(uint pname, out Vector2d data);
 
+		
 		private delegate void Delegate_GetDoublev_4(uint pname, out Vector3d data);
 
+		
 		private delegate void Delegate_GetDoublev_5(uint pname, out Vector4d data);
 
+		
 		private delegate void Delegate_GetDoublev_6(uint pname, out Color3d data);
 
+		
 		private delegate void Delegate_GetDoublev_7(uint pname, out Color4d data);
 
+		
 		private delegate void Delegate_GetDoublev_8(uint pname, out Box2d data);
 
+		
 		private delegate void Delegate_GetDoublev_9(uint pname, out Box3d data);
 
+		
 		private delegate uint Delegate_GetError_0();
 
+		
 		private delegate void Delegate_GetFloatv_0(uint pname, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetFloatv_1(uint pname, float[] data);
 
+		
 		private delegate void Delegate_GetFloatv_2(uint pname, out float data);
 
+		
 		private delegate void Delegate_GetFloatv_3(uint pname, out Vector2 data);
 
+		
 		private delegate void Delegate_GetFloatv_4(uint pname, out Vector3 data);
 
+		
 		private delegate void Delegate_GetFloatv_5(uint pname, out Vector4 data);
 
+		
 		private delegate void Delegate_GetFloatv_6(uint pname, out Color3 data);
 
+		
 		private delegate void Delegate_GetFloatv_7(uint pname, out Color4 data);
 
+		
 		private delegate void Delegate_GetFloatv_8(uint pname, out Box2 data);
 
+		
 		private delegate void Delegate_GetFloatv_9(uint pname, out Box3 data);
 
+		
 		private delegate int Delegate_GetFragDataLocation_0(uint program, string name);
 
+		
 		private delegate void Delegate_GetFramebufferAttachmentParameteriv_0(uint target, uint attachment, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetFramebufferAttachmentParameteriv_1(uint target, uint attachment, uint pname, out int _params);
 
+		
 		private delegate void Delegate_GetInteger64i_v_0(uint target, uint index, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetInteger64i_v_1(uint target, uint index, long[] data);
 
+		
 		private delegate void Delegate_GetInteger64i_v_2(uint target, uint index, out long data);
 
+		
 		private delegate void Delegate_GetInteger64v_0(uint pname, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetInteger64v_1(uint pname, long[] data);
 
+		
 		private delegate void Delegate_GetInteger64v_2(uint pname, out long data);
 
+		
 		private delegate void Delegate_GetIntegeri_v_0(uint target, uint index, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetIntegeri_v_1(uint target, uint index, int[] data);
 
+		
 		private delegate void Delegate_GetIntegeri_v_2(uint target, uint index, out int data);
 
+		
 		private delegate void Delegate_GetIntegerv_0(uint pname, System.IntPtr data);
 
+		
 		private delegate void Delegate_GetIntegerv_1(uint pname, int[] data);
 
+		
 		private delegate void Delegate_GetIntegerv_2(uint pname, out int data);
 
+		
 		private delegate void Delegate_GetMultisamplefv_0(uint pname, uint index, System.IntPtr val);
 
+		
 		private delegate void Delegate_GetMultisamplefv_1(uint pname, uint index, out float val);
 
+		
 		private delegate void Delegate_GetProgramInfoLog_0(uint program, int bufSize, System.IntPtr length, string infoLog);
 
+		
 		private delegate void Delegate_GetProgramInfoLog_1(uint program, int bufSize, out int length, byte[] infoLog);
 
+		
 		private delegate void Delegate_GetProgramiv_0(uint program, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetProgramiv_1(uint program, uint pname, int[] _params);
 
+		
 		private delegate void Delegate_GetProgramiv_2(uint program, uint pname, out int _params);
 
+		
 		private delegate void Delegate_GetQueryiv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetQueryObjectiv_0(uint id, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetQueryObjectuiv_0(uint id, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetRenderbufferParameteriv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetShaderInfoLog_0(uint shader, int bufSize, System.IntPtr length, string infoLog);
 
+		
 		private delegate void Delegate_GetShaderInfoLog_1(uint shader, int bufSize, out int length, byte[] infoLog);
 
+		
 		private delegate void Delegate_GetShaderiv_0(uint shader, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetShaderiv_1(uint shader, uint pname, int[] _params);
 
+		
 		private delegate void Delegate_GetShaderiv_2(uint shader, uint pname, out int _params);
 
+		
 		private delegate void Delegate_GetShaderSource_0(uint shader, int bufSize, System.IntPtr length, string source);
 
-		private delegate System.IntPtr Delegate_GetString_0(uint name);
+		[return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.LPStr)]
+		private delegate string Delegate_GetString_0(uint name);
 
-		private delegate System.IntPtr Delegate_GetStringi_0(uint name, uint index);
+		[return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.LPStr)]
+		private delegate string Delegate_GetStringi_0(uint name, uint index);
 
+		
 		private delegate void Delegate_GetSynciv_0(System.IntPtr sync, uint pname, int bufSize, System.IntPtr length, System.IntPtr values);
 
+		
 		private delegate void Delegate_GetTexImage_0(uint target, int level, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_GetTexLevelParameterfv_0(uint target, int level, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetTexLevelParameteriv_0(uint target, int level, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetTexParameterfv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetTexParameterIiv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetTexParameterIuiv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetTexParameteriv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetTransformFeedbackVarying_0(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name);
 
+		
 		private delegate uint Delegate_GetUniformBlockIndex_0(uint program, string uniformBlockName);
 
+		
 		private delegate void Delegate_GetUniformfv_0(uint program, int location, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetUniformIndices_0(uint program, int uniformCount, System.IntPtr uniformNames, System.IntPtr uniformIndices);
 
+		
 		private delegate void Delegate_GetUniformiv_0(uint program, int location, System.IntPtr _params);
 
+		
 		private delegate int Delegate_GetUniformLocation_0(uint program, System.IntPtr name);
 
+		
 		private delegate int Delegate_GetUniformLocation_1(uint program, byte[] name);
 
+		
 		private delegate int Delegate_GetUniformLocation_2(uint program, string name);
 
+		
 		private delegate void Delegate_GetUniformuiv_0(uint program, int location, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetVertexAttribdv_0(uint index, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetVertexAttribfv_0(uint index, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetVertexAttribIiv_0(uint index, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetVertexAttribIuiv_0(uint index, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetVertexAttribiv_0(uint index, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetVertexAttribPointerv_0(uint index, uint pname, System.IntPtr pointer);
 
+		
 		private delegate void Delegate_Hint_0(uint target, uint mode);
 
+		
 		private delegate bool Delegate_IsBuffer_0(uint buffer);
 
+		
 		private delegate bool Delegate_IsEnabled_0(uint cap);
 
+		
 		private delegate bool Delegate_IsEnabledi_0(uint target, uint index);
 
+		
 		private delegate bool Delegate_IsFramebuffer_0(uint framebuffer);
 
+		
 		private delegate bool Delegate_IsProgram_0(uint program);
 
+		
 		private delegate bool Delegate_IsQuery_0(uint id);
 
+		
 		private delegate bool Delegate_IsRenderbuffer_0(uint renderbuffer);
 
+		
 		private delegate bool Delegate_IsShader_0(uint shader);
 
+		
 		private delegate bool Delegate_IsSync_0(System.IntPtr sync);
 
+		
 		private delegate bool Delegate_IsTexture_0(uint texture);
 
+		
 		private delegate bool Delegate_IsVertexArray_0(uint array);
 
+		
 		private delegate void Delegate_LineWidth_0(float width);
 
+		
 		private delegate void Delegate_LinkProgram_0(uint program);
 
+		
 		private delegate void Delegate_LogicOp_0(uint opcode);
 
+		
 		private delegate System.IntPtr Delegate_MapBuffer_0(uint target, uint access);
 
+		
 		private delegate System.IntPtr Delegate_MapBufferRange_0(uint target, System.IntPtr offset, System.IntPtr length, uint access);
 
+		
 		private delegate void Delegate_MultiDrawArrays_0(uint mode, System.IntPtr first, System.IntPtr count, int drawcount);
 
+		
 		private delegate void Delegate_MultiDrawElements_0(uint mode, System.IntPtr count, uint type, System.IntPtr indices, int drawcount);
 
+		
 		private delegate void Delegate_MultiDrawElementsBaseVertex_0(uint mode, System.IntPtr count, uint type, System.IntPtr indices, int drawcount, System.IntPtr basevertex);
 
+		
 		private delegate void Delegate_PixelStoref_0(uint pname, float param);
 
+		
 		private delegate void Delegate_PixelStorei_0(uint pname, int param);
 
+		
 		private delegate void Delegate_PointParameterf_0(uint pname, float param);
 
+		
 		private delegate void Delegate_PointParameterfv_0(uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_PointParameteri_0(uint pname, int param);
 
+		
 		private delegate void Delegate_PointParameteriv_0(uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_PointSize_0(float size);
 
+		
 		private delegate void Delegate_PolygonMode_0(uint face, uint mode);
 
+		
 		private delegate void Delegate_PolygonOffset_0(float factor, float units);
 
+		
 		private delegate void Delegate_PrimitiveRestartIndex_0(uint index);
 
+		
 		private delegate void Delegate_ProvokingVertex_0(uint mode);
 
+		
 		private delegate void Delegate_ReadBuffer_0(uint mode);
 
+		
 		private delegate void Delegate_ReadPixels_0(int x, int y, int width, int height, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_RenderbufferStorage_0(uint target, uint internalformat, int width, int height);
 
+		
 		private delegate void Delegate_RenderbufferStorageMultisample_0(uint target, int samples, uint internalformat, int width, int height);
 
+		
 		private delegate void Delegate_SampleCoverage_0(float value, bool invert);
 
+		
 		private delegate void Delegate_SampleMaski_0(uint index, uint mask);
 
+		
 		private delegate void Delegate_Scissor_0(int x, int y, int width, int height);
 
+		
 		private delegate void Delegate_ShaderSource_0(uint shader, int count, System.IntPtr _string, System.IntPtr length);
 
+		
 		private delegate void Delegate_ShaderSource_1(uint shader, int count, IntPtr[] _string, int[] length);
 
+		
 		private delegate void Delegate_StencilFunc_0(uint func, int _ref, uint mask);
 
+		
 		private delegate void Delegate_StencilFuncSeparate_0(uint face, uint func, int _ref, uint mask);
 
+		
 		private delegate void Delegate_StencilMask_0(uint mask);
 
+		
 		private delegate void Delegate_StencilMaskSeparate_0(uint face, uint mask);
 
+		
 		private delegate void Delegate_StencilOp_0(uint fail, uint zfail, uint zpass);
 
+		
 		private delegate void Delegate_StencilOpSeparate_0(uint face, uint sfail, uint dpfail, uint dppass);
 
+		
 		private delegate void Delegate_TexBuffer_0(uint target, uint internalformat, uint buffer);
 
+		
 		private delegate void Delegate_TexImage1D_0(uint target, int level, int internalformat, int width, int border, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_TexImage2D_0(uint target, int level, int internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_TexImage2DMultisample_0(uint target, int samples, uint internalformat, int width, int height, bool fixedsamplelocations);
 
+		
 		private delegate void Delegate_TexImage3D_0(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_TexImage3DMultisample_0(uint target, int samples, uint internalformat, int width, int height, int depth, bool fixedsamplelocations);
 
+		
 		private delegate void Delegate_TexParameterf_0(uint target, uint pname, float param);
 
+		
 		private delegate void Delegate_TexParameterfv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_TexParameteri_0(uint target, uint pname, int param);
 
+		
 		private delegate void Delegate_TexParameterIiv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_TexParameterIuiv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_TexParameteriv_0(uint target, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_TexSubImage1D_0(uint target, int level, int xoffset, int width, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_TexSubImage2D_0(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_TexSubImage3D_0(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, uint type, System.IntPtr pixels);
 
+		
 		private delegate void Delegate_TransformFeedbackVaryings_0(uint program, int count, System.IntPtr varyings, uint bufferMode);
 
+		
 		private delegate void Delegate_Uniform1f_0(int location, float v0);
 
+		
 		private delegate void Delegate_Uniform1fv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform1i_0(int location, int v0);
 
+		
 		private delegate void Delegate_Uniform1iv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform1ui_0(int location, uint v0);
 
+		
 		private delegate void Delegate_Uniform1uiv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform2f_0(int location, float v0, float v1);
 
+		
 		private delegate void Delegate_Uniform2f_1(int location, Vector2 value);
 
+		
 		private delegate void Delegate_Uniform2fv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform2i_0(int location, int v0, int v1);
 
+		
 		private delegate void Delegate_Uniform2i_1(int location, Vector2i value);
 
+		
 		private delegate void Delegate_Uniform2iv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform2ui_0(int location, uint v0, uint v1);
 
+		
 		private delegate void Delegate_Uniform2uiv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform3f_0(int location, float v0, float v1, float v2);
 
+		
 		private delegate void Delegate_Uniform3f_1(int location, Vector3 value);
 
+		
 		private delegate void Delegate_Uniform3fv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform3i_0(int location, int v0, int v1, int v2);
 
+		
 		private delegate void Delegate_Uniform3i_1(int location, Vector3i value);
 
+		
 		private delegate void Delegate_Uniform3iv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform3ui_0(int location, uint v0, uint v1, uint v2);
 
+		
 		private delegate void Delegate_Uniform3uiv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform4f_0(int location, float v0, float v1, float v2, float v3);
 
+		
 		private delegate void Delegate_Uniform4f_1(int location, Vector4 value);
 
+		
 		private delegate void Delegate_Uniform4fv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform4i_0(int location, int v0, int v1, int v2, int v3);
 
+		
 		private delegate void Delegate_Uniform4i_1(int location, Vector4i value);
 
+		
 		private delegate void Delegate_Uniform4iv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_Uniform4ui_0(int location, uint v0, uint v1, uint v2, uint v3);
 
+		
 		private delegate void Delegate_Uniform4uiv_0(int location, int count, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformBlockBinding_0(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
 
+		
 		private delegate void Delegate_UniformMatrix2fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix2fv_1(int location, int count, bool transpose, float[] value);
 
+		
 		private delegate void Delegate_UniformMatrix2fv_2(int location, int count, bool transpose, ref Matrix2 value);
 
+		
 		private delegate void Delegate_UniformMatrix2x3fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix2x4fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix3fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix3fv_1(int location, int count, bool transpose, float[] value);
 
+		
 		private delegate void Delegate_UniformMatrix3fv_2(int location, int count, bool transpose, ref Matrix3 value);
 
+		
 		private delegate void Delegate_UniformMatrix3x2fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix3x4fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix4fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix4fv_1(int location, int count, bool transpose, float[] value);
 
+		
 		private delegate void Delegate_UniformMatrix4fv_2(int location, int count, bool transpose, ref Matrix4 value);
 
+		
 		private delegate void Delegate_UniformMatrix4x2fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate void Delegate_UniformMatrix4x3fv_0(int location, int count, bool transpose, System.IntPtr value);
 
+		
 		private delegate bool Delegate_UnmapBuffer_0(uint target);
 
+		
 		private delegate void Delegate_UseProgram_0(uint program);
 
+		
 		private delegate void Delegate_ValidateProgram_0(uint program);
 
+		
 		private delegate void Delegate_VertexAttrib1d_0(uint index, double x);
 
+		
 		private delegate void Delegate_VertexAttrib1dv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib1f_0(uint index, float x);
 
+		
 		private delegate void Delegate_VertexAttrib1fv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib1s_0(uint index, short x);
 
+		
 		private delegate void Delegate_VertexAttrib1sv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib2d_0(uint index, double x, double y);
 
+		
 		private delegate void Delegate_VertexAttrib2dv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib2f_0(uint index, float x, float y);
 
+		
 		private delegate void Delegate_VertexAttrib2fv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib2s_0(uint index, short x, short y);
 
+		
 		private delegate void Delegate_VertexAttrib2sv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib3d_0(uint index, double x, double y, double z);
 
+		
 		private delegate void Delegate_VertexAttrib3dv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib3f_0(uint index, float x, float y, float z);
 
+		
 		private delegate void Delegate_VertexAttrib3fv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib3s_0(uint index, short x, short y, short z);
 
+		
 		private delegate void Delegate_VertexAttrib3sv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4bv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4d_0(uint index, double x, double y, double z, double w);
 
+		
 		private delegate void Delegate_VertexAttrib4dv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4f_0(uint index, float x, float y, float z, float w);
 
+		
 		private delegate void Delegate_VertexAttrib4fv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4iv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4Nbv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4Niv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4Nsv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4Nub_0(uint index, byte x, byte y, byte z, byte w);
 
+		
 		private delegate void Delegate_VertexAttrib4Nubv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4Nuiv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4Nusv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4s_0(uint index, short x, short y, short z, short w);
 
+		
 		private delegate void Delegate_VertexAttrib4sv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4ubv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4uiv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttrib4usv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI1i_0(uint index, int x);
 
+		
 		private delegate void Delegate_VertexAttribI1iv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI1ui_0(uint index, uint x);
 
+		
 		private delegate void Delegate_VertexAttribI1uiv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI2i_0(uint index, int x, int y);
 
+		
 		private delegate void Delegate_VertexAttribI2iv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI2ui_0(uint index, uint x, uint y);
 
+		
 		private delegate void Delegate_VertexAttribI2uiv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI3i_0(uint index, int x, int y, int z);
 
+		
 		private delegate void Delegate_VertexAttribI3iv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI3ui_0(uint index, uint x, uint y, uint z);
 
+		
 		private delegate void Delegate_VertexAttribI3uiv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI4bv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI4i_0(uint index, int x, int y, int z, int w);
 
+		
 		private delegate void Delegate_VertexAttribI4iv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI4sv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI4ubv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI4ui_0(uint index, uint x, uint y, uint z, uint w);
 
+		
 		private delegate void Delegate_VertexAttribI4uiv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribI4usv_0(uint index, System.IntPtr v);
 
+		
 		private delegate void Delegate_VertexAttribIPointer_0(uint index, int size, uint type, int stride, System.IntPtr pointer);
 
+		
 		private delegate void Delegate_VertexAttribPointer_0(uint index, int size, uint type, bool normalized, int stride, System.IntPtr pointer);
 
+		
 		private delegate void Delegate_Viewport_0(int x, int y, int width, int height);
 
+		
 		private delegate void Delegate_Viewport_1(Box2i dimensions);
 
+		
 		private delegate void Delegate_WaitSync_0(System.IntPtr sync, uint flags, ulong timeout);
 
+		
 		private delegate void Delegate_BindFragDataLocationIndexed_0(uint program, uint colorNumber, uint index, System.IntPtr name);
 
+		
 		private delegate int Delegate_GetFragDataIndex_0(uint program, System.IntPtr name);
 
+		
 		private delegate void Delegate_GenSamplers_0(int count, System.IntPtr samplers);
 
+		
 		private delegate void Delegate_GenSamplers_1(int n, uint[] samplers);
 
+		
 		private delegate void Delegate_GenSamplers_2(int n, out uint samplers);
 
+		
 		private delegate void Delegate_DeleteSamplers_0(int count, System.IntPtr samplers);
 
+		
 		private delegate void Delegate_DeleteSamplers_1(int n, uint[] samplers);
 
+		
 		private delegate void Delegate_DeleteSamplers_2(int n, ref uint samplers);
 
+		
 		private delegate bool Delegate_IsSampler_0(uint shader);
 
+		
 		private delegate void Delegate_BindSampler_0(uint unit, uint sampler);
 
+		
 		private delegate void Delegate_SamplerParameteri_0(uint sampler, uint pname, int param);
 
+		
 		private delegate void Delegate_SamplerParameteriv_0(uint sampler, uint pname, System.IntPtr param);
 
+		
 		private delegate void Delegate_SamplerParameterf_0(uint sampler, uint pname, float param);
 
+		
 		private delegate void Delegate_SamplerParameterfv_0(uint sampler, uint pname, System.IntPtr param);
 
+		
 		private delegate void Delegate_SamplerParameterIiv_0(uint sampler, uint pname, System.IntPtr param);
 
+		
 		private delegate void Delegate_SamplerParameterIuiv_0(uint sampler, uint pname, System.IntPtr param);
 
+		
 		private delegate void Delegate_GetSamplerParameteriv_0(uint sampler, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetSamplerParameterIiv_0(uint sampler, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetSamplerParameterfv_0(uint sampler, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetSamplerParameterIuiv_0(uint sampler, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_QueryCounter_0(uint id, uint target);
 
+		
 		private delegate void Delegate_GetQueryObjecti64v_0(uint id, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_GetQueryObjectui64v_0(uint id, uint pname, System.IntPtr _params);
 
+		
 		private delegate void Delegate_VertexAttribDivisor_0(uint index, uint divisor);
 
+		
 		private delegate void Delegate_VertexAttribP1ui_0(uint index, uint type, bool normalized, uint value);
 
+		
 		private delegate void Delegate_VertexAttribP1uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
 
+		
 		private delegate void Delegate_VertexAttribP2ui_0(uint index, uint type, bool normalized, uint value);
 
+		
 		private delegate void Delegate_VertexAttribP2uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
 
+		
 		private delegate void Delegate_VertexAttribP3ui_0(uint index, uint type, bool normalized, uint value);
 
+		
 		private delegate void Delegate_VertexAttribP3uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
 
+		
 		private delegate void Delegate_VertexAttribP4ui_0(uint index, uint type, bool normalized, uint value);
 
+		
 		private delegate void Delegate_VertexAttribP4uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
 
 
@@ -6929,13 +7406,13 @@ namespace Granite.Core
 		}
 
 
-		public static System.IntPtr GetString(uint name)
+		public static string GetString(uint name)
 		{
 			return m_GetString_0(name);
 		}
 
 
-		public static System.IntPtr GetStringi(uint name, uint index)
+		public static string GetStringi(uint name, uint index)
 		{
 			return m_GetStringi_0(name, index);
 		}
