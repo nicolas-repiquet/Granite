@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{10D6C432-CC35-457B-9538-E9041EFD9410}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Test</RootNamespace>
     <AssemblyName>Test</AssemblyName>
@@ -83,7 +83,6 @@
     <Compile Include="Game_01\Sprites\SpriteRenderer.cs" />
     <Compile Include="Game_01\Sprites\SpriteSheet.cs" />
     <Compile Include="Game_01\Sprites\TilesSprites.cs" />
-    <Compile Include="Game_02\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game_02\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

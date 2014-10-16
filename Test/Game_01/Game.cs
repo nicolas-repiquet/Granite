@@ -69,7 +69,7 @@ namespace Test.Game_01
         public override void Render(TimeSpan elapsed)
         {
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
- 
+
             Update(elapsed);
             m_world.Update(elapsed);
 
