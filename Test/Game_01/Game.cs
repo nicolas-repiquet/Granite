@@ -71,7 +71,7 @@ namespace Test.Game_01
             Engine.Display.Invalidate();
 
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
- 
+
             Update(elapsed);
             m_world.Update(elapsed);
 

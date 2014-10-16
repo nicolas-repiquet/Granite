@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
@@ -36,6 +37,13 @@ namespace Granite.Core
 
         public void Run()
         {
+            Console.WriteLine("Version : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.VERSION)));
+            Console.WriteLine("GLSL {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.SHADING_LANGUAGE_VERSION)));
+            Console.WriteLine("Vendor : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.VENDOR)));
+            Console.WriteLine("Renderer : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.RENDERER)));
+
+            Console.WriteLine("=================================");
+
             m_logic.Start();
 
             var message = new WinApi.Message();
