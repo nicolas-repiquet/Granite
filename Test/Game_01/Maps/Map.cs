@@ -30,6 +30,17 @@ namespace Test.Game_01.Maps
                 cell.Sprite.Size = new Vector2(CELL_SIZE, CELL_SIZE);
                 m_cells[x, y] = cell;
             }
+
+            public Cell GetCell(int x, int y)
+            {
+                if (x >= 0 && x < CELL_PACK_SIZE
+                    && y >= 0 && y < CELL_PACK_SIZE)
+                {
+                    return m_cells[x, y];
+                }
+
+                return null;
+            }
         }
 
         private sealed class Cell
@@ -166,6 +177,41 @@ namespace Test.Game_01.Maps
                     );
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Récupère le pack de cellules où se trouve la position passé en paramètre.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public Material GetMaterial(Vector2 position)
+        {
+            Material mat = null;
+
+            var packX = (int)(position.X / (CELL_PACK_SIZE * CELL_SIZE));
+
+            var cellX = (int)((position.X - (packX * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
+
+            var packY = (int)(position.Y / (CELL_PACK_SIZE * CELL_SIZE));
+
+            var cellY = (int)((position.Y - (packY * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
+
+            if (packX >= 0 && packX < m_packWidth
+                && packY >= 0 && packY < m_packHeight
+                && cellX >= 0 && cellX < CELL_PACK_SIZE
+                && cellY >= 0 && cellY < CELL_PACK_SIZE
+                )
+            {
+                var cell = m_packs[packX, packY].GetCell(cellX, cellY);
+
+                if (cell != null)
+                {
+                    mat = cell.Material;
+                }
+            }
+
+            return mat;
         }
 
         public Vector2 Size { get { return new Vector2(m_width * CELL_SIZE, m_height * CELL_SIZE); } }

@@ -15,6 +15,15 @@ namespace Test.Game_01.Entities
         private readonly Player m_player;
 
         public Player Player { get { return m_player; } }
+        public Level Level { get { return m_level; } }
+
+        private static World s_instance;
+        public static World Instance {
+            get
+            {
+                return s_instance;
+            }
+        }
 
         public World(Level level)
         {
@@ -27,6 +36,8 @@ namespace Test.Game_01.Entities
             m_camera.Target = m_player;
 
             Player.SetPosition(new Vector2(0, 500));
+
+            s_instance = this;
         }
 
         public void Update(TimeSpan elapsed)

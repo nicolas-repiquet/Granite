@@ -59,6 +59,7 @@
     <Compile Include="Game_01\Entities\IUpdatable.cs" />
     <Compile Include="Game_01\Entities\LocationComponent.cs" />
     <Compile Include="Game_01\Entities\Player.cs" />
+    <Compile Include="Game_01\Entities\RayCast.cs" />
     <Compile Include="Game_01\Entities\RestrictLocationComponent.cs" />
     <Compile Include="Game_01\Entities\RigidBodyComponent.cs" />
     <Compile Include="Game_01\Entities\World.cs" />

@@ -46,6 +46,25 @@ namespace Test.Game_01.Entities
             m_location.Location = new Box2(position, new Vector2(70, 70));
         }
 
+        public void Jump()
+        {
+            if (m_rigidBody.Grounded)
+            {
+                m_rigidBody.Velocity += new Vector2(0, 350);
+                m_rigidBody.Grounded = false;
+            }
+        }
+
+        public void MoveLeft()
+        {
+            m_rigidBody.Velocity += new Vector2(-2, 0);
+        }
+
+        public void MoveRight()
+        {
+            m_rigidBody.Velocity += new Vector2(2, 0);
+        }
+
         double m_time = 0;
 
         public void Update(TimeSpan elapsed)

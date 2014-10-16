@@ -47,22 +47,20 @@ namespace Test.Game_01
         {
             if (m_keys.Contains(Key.Right))
             {
-                x += 5;
+                m_world.Player.MoveRight();
             }
             if (m_keys.Contains(Key.Left))
             {
-                x -= 5;
+                m_world.Player.MoveLeft();
             }
             if (m_keys.Contains(Key.Up))
             {
-                y += 5;
+                m_world.Player.Jump();
             }
             if (m_keys.Contains(Key.Down))
             {
-                y -= 5;
+                //y -= 5;
             }
-
-            //m_world.Player.SetPosition(new Vector2d(x, y));
         }
 
 
