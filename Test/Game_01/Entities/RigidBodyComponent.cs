@@ -38,7 +38,7 @@ namespace Test.Game_01.Entities
 
             //m_location.Location = new Box2(p, m_location.Location.Size);
 
-            TestCollision(elapsed);
+            TestCollision2(elapsed);
         }
 
         private void TestCollision(TimeSpan elapsed)
@@ -272,8 +272,6 @@ namespace Test.Game_01.Entities
             }
 
             Velocity = new Vector2(x, y);
-
-            var newPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
             m_location.Location = new Box2(newPosition, m_location.Location.Size);
         }
     }
