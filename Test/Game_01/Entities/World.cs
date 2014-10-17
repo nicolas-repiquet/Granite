@@ -42,6 +42,11 @@ namespace Test.Game_01.Entities
 
         public void Update(TimeSpan elapsed)
         {
+            if (m_player.Location.Position.Y < -10)
+            {
+                Player.SetPosition(new Vector2(0, 500));
+            }
+
             var size = Engine.Display.GetSize();
             m_camera.SetSize(new Vector2(size.X, size.Y));
 

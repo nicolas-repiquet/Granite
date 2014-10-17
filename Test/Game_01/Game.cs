@@ -87,6 +87,8 @@ namespace Test.Game_01
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
             m_world.Render(Matrix4.Identity);
+
+            Thread.Sleep(15);
         }
     }
 }
