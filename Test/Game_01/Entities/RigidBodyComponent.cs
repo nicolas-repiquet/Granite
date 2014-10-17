@@ -43,7 +43,47 @@ namespace Test.Game_01.Entities
 
         private void TestCollision(TimeSpan elapsed)
         {
-            Velocity += new Vector2(0, -300) * (float)elapsed.TotalSeconds;
+            var momentum = new Vector2();
+
+            momentum += new Vector2(0, -1000); // gravity
+
+            if (Engine.Keyboard.IsKeyPressed(Key.Left))
+            {
+                //if (Grounded)
+                //{
+                    momentum += new Vector2(-1500, 0);
+                //}
+                //else
+                //{
+                //    momentum += new Vector2(-600, 0);
+                //}
+            }
+
+            if (Engine.Keyboard.IsKeyPressed(Key.Right))
+            {
+                //if (Grounded)
+                //{
+                    momentum += new Vector2(1500, 0);
+                //}
+                //else
+                //{
+                //    momentum += new Vector2(600, 0);
+                //}
+            }
+
+            Velocity += momentum * (float)elapsed.TotalSeconds;
+
+            if (Math.Abs(Velocity.X) > 800)
+            {
+                Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
+            }
+
+            //if (Grounded)
+            {
+                var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
+                Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
+            }
+
 
             //En fonction de la vélocité, on utilise 3 raycast pour tester les collisions
             if (Velocity.Y != 0)

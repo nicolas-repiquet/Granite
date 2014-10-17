@@ -45,7 +45,7 @@ namespace Test.Game_01.Sprites
                             m_sprites.Add(name, new Sprite(
                                 this,
                                 name,
-                                new Vector2i(w, h),
+                                new Vector2i(Math.Abs(w), Math.Abs(h)),
                                 new Box2(
                                     x / tw,
                                     y / th,

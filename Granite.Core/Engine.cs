@@ -51,5 +51,6 @@ namespace Granite.Core
         }
 
         public static IDisplay Display { get { return m_currentApplication == null ? null : m_currentApplication.Display; } }
+        public static IKeyboard Keyboard { get { return m_currentApplication; } }
     }
 }

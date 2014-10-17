@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Granite.Core
 {
-    internal sealed class Application : IDisposable
+    internal sealed class Application : IKeyboard, IDisposable
     {
         private readonly Thread m_thread;
         private readonly IApplicationLogic m_logic;
@@ -15,9 +15,11 @@ namespace Granite.Core
         private readonly Display m_display;
         private DateTime m_previousFrame = DateTime.MinValue;
         private double m_framesPerSecond = 0f;
+        private bool[] m_keys;
 
         public Application(IApplicationLogic logic, ApplicationSettings settings)
         {
+            m_keys = new bool[0xFF];
             m_thread = Thread.CurrentThread;
             m_actions = new Queue<Action>();
             m_logic = logic;
@@ -94,11 +96,28 @@ namespace Granite.Core
                         return IntPtr.Zero;
 
                     case WinApi.WM_KEYDOWN:
-                        m_logic.KeyDown((Key)wParam.ToInt32());
+                        {
+                            var key = (Key)wParam.ToInt32();
+                            m_keys[(int)key] = true;
+                            m_logic.KeyDown(key);
+                        }
                         return IntPtr.Zero;
 
                     case WinApi.WM_KEYUP:
-                        m_logic.KeyUp((Key)wParam.ToInt32());
+                        {
+                            var key = (Key)wParam.ToInt32();
+                            m_keys[(int)key] = false ;
+                            m_logic.KeyUp(key);
+                        }
+                        return IntPtr.Zero;
+
+                    case WinApi.WM_KILLFOCUS:
+                        {
+                            for (int i = 0; i < m_keys.Length; i++)
+                            {
+                                m_keys[i] = false;
+                            }
+                        }
                         return IntPtr.Zero;
 
                     case WinApi.WM_LBUTTONDOWN:
@@ -147,6 +166,13 @@ namespace Granite.Core
         }
 
         public double FramesPerSecond { get { return m_framesPerSecond; } }
+        #endregion
+
+        #region Keyboard
+        public bool IsKeyPressed(Key key)
+        {
+            return m_keys[(int)key];
+        }
         #endregion
 
     }
