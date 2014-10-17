@@ -73,15 +73,16 @@ namespace Test.Game_01.Entities
 
             Velocity += momentum * (float)elapsed.TotalSeconds;
 
-            if (Math.Abs(Velocity.X) > 500)
+            if (Math.Abs(Velocity.X) > 800)
             {
-                Velocity = new Vector2(Math.Sign(Velocity.X) * 500, Velocity.Y);
+                Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
             }
 
             //if (Grounded)
-            //{
-                Velocity = new Vector2(Velocity.X * 0.99f, Velocity.Y);
-            //}
+            {
+                var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
+                Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
+            }
 
 
             //else
