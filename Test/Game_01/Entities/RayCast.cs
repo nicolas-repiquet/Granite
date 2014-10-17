@@ -10,12 +10,12 @@ namespace Test.Game_01.Entities
     public sealed class RayCast
     {
         public readonly Vector2 m_start;
-        public readonly Vector2 m_direction;
+        public readonly Vector2 m_end;
 
-        public RayCast(Vector2 start, Vector2 direction)
+        public RayCast(Vector2 start, Vector2 end)
         {
             m_start = start;
-            m_direction = direction;
+            m_end = end;
         }
 
         public bool Collision()
