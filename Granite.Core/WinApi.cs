@@ -26,6 +26,7 @@ namespace Granite.Core
         internal const uint WM_KILLFOCUS = 0x0008;
         internal const uint WM_CHAR = 0x0102;
         internal const uint WM_LBUTTONDOWN = 0x0201;
+        internal const uint WM_USER = 0x0400;
 
         internal const byte PFD_TYPE_RGBA = 0;
         internal const byte PFD_TYPE_COLORINDEX = 1;
@@ -336,6 +337,12 @@ namespace Granite.Core
 
         [DllImport(GDI32)]
         internal static extern bool SwapBuffers(IntPtr deviceContextHandle);
+
+        [DllImport(USER32)]
+        internal static extern IntPtr SendMessage(IntPtr windowHandle, uint msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport(USER32)]
+        internal static extern bool PostMessage(IntPtr windowHandle, uint msg, IntPtr wParam, IntPtr lParam);
 
     }
 }

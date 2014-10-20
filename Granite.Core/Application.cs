@@ -13,6 +13,7 @@ namespace Granite.Core
         private readonly IApplicationLogic m_logic;
         private readonly Queue<Action> m_actions;
         private readonly Display m_display;
+        private readonly ApplicationSynchronizationContext m_synchronizationContext;
         private DateTime m_previousFrame = DateTime.MinValue;
         private double m_framesPerSecond = 0f;
         private bool[] m_keys;
@@ -29,6 +30,7 @@ namespace Granite.Core
                 settings.DisplayColorBits,
                 settings.DisplayDepthBits
             );
+            m_synchronizationContext = new ApplicationSynchronizationContext(m_display.Handle);
         }
 
         public void Dispose()
@@ -46,21 +48,38 @@ namespace Granite.Core
 
             Console.WriteLine("=================================");
 
-            m_logic.Start();
+            var oldContext = SynchronizationContext.Current;
+            SynchronizationContext.SetSynchronizationContext(m_synchronizationContext);
 
-            var message = new WinApi.Message();
-
-            m_display.Show();
-
-            while (WinApi.GetMessage(ref message, IntPtr.Zero, 0, 0))
+            try
             {
-                WinApi.TranslateMessage(ref message);
-                WinApi.DispatchMessage(ref message);
+                m_logic.Start();
+
+                var message = new WinApi.Message();
+
+                m_display.Show();
+
+                while (WinApi.GetMessage(ref message, IntPtr.Zero, 0, 0))
+                {
+                    if (message.id == WinApi.WM_USER)
+                    {
+                        m_synchronizationContext.ExecuteAction();
+                    }
+                    else
+                    {
+                        WinApi.TranslateMessage(ref message);
+                        WinApi.DispatchMessage(ref message);
+                    }
+                }
+
+                m_display.Hide();
+
+                m_logic.Stop();
             }
-
-            m_display.Hide();
-
-            m_logic.Stop();
+            finally
+            {
+                SynchronizationContext.SetSynchronizationContext(oldContext);
+            }
         }
 
         public void Stop()
