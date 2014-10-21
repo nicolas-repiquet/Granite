@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Test.Game_01.Maps;
 
 namespace Test.Game_01.Entities
 {
@@ -26,18 +27,6 @@ namespace Test.Game_01.Entities
 
         public void Update(TimeSpan elapsed)
         {
-            //Velocity += new Vector2(0, -300) * (float)elapsed.TotalSeconds;
-
-            //var p = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
-
-            //if (p.Y <= 0)
-            //{
-            //    p = new Vector2(p.X, 0);
-            //    Velocity = new Vector2(Velocity.X, -Velocity.Y);
-            //}
-
-            //m_location.Location = new Box2(p, m_location.Location.Size);
-
             TestCollision(elapsed);
         }
 
@@ -49,26 +38,12 @@ namespace Test.Game_01.Entities
 
             if (Engine.Keyboard.IsKeyPressed(Key.Left))
             {
-                //if (Grounded)
-                //{
-                    momentum += new Vector2(-1500, 0);
-                //}
-                //else
-                //{
-                //    momentum += new Vector2(-600, 0);
-                //}
+                momentum += new Vector2(-1500, 0);
             }
 
             if (Engine.Keyboard.IsKeyPressed(Key.Right))
             {
-                //if (Grounded)
-                //{
-                    momentum += new Vector2(1500, 0);
-                //}
-                //else
-                //{
-                //    momentum += new Vector2(600, 0);
-                //}
+                momentum += new Vector2(1500, 0);
             }
 
             Velocity += momentum * (float)elapsed.TotalSeconds;
@@ -78,128 +53,282 @@ namespace Test.Game_01.Entities
                 Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
             }
 
-            //if (Grounded)
             {
                 var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
                 Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
             }
 
-            var newPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
+            Vector2 newTargetPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
 
-            //En fonction de la vélocité, on utilise 3 raycast pour tester les collisions
-            if (Velocity.Y != 0)
+            var cadran = Map.Cadran(m_location.Location.Position, newTargetPosition);
+
+            var skin = 5f;
+
+            var result = new List<Tuple<Vector2?, Vector2, double, Guid>>();
+
+            //On fait 2 raycast par coté
+            if (cadran.X < 0)
             {
-                if (Velocity.Y < 0)
+                Vector2 newPosition = new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + skin) + Velocity * (float)elapsed.TotalSeconds;
+                var r1 = new RayCast(new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + skin), newPosition, new Vector2(0, 0));
+                result.Add(r1.Collision2());
+
+                newPosition = new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + Velocity * (float)elapsed.TotalSeconds;
+                var r2 = new RayCast(new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y - skin), newPosition, new Vector2(0, 0));
+                result.Add(r2.Collision2());
+            }
+
+            if (cadran.X > 0)
+            {
+                Vector2 newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X-0.1f, m_location.Location.Position.Y + skin) + Velocity * (float)elapsed.TotalSeconds;
+                var r1 = new RayCast(new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + skin), newPosition, new Vector2(0, 0));
+                result.Add(r1.Collision2());
+
+                newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + Velocity * (float)elapsed.TotalSeconds;
+                var r2 = new RayCast(new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + m_location.Location.Size.Y - skin), newPosition, new Vector2(0, 0));
+                result.Add(r2.Collision2());
+            }
+
+            if (cadran.Y > 0)
+            {
+                Vector2 newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f) + Velocity * (float)elapsed.TotalSeconds;
+                var r1 = new RayCast(
+                    new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f), newPosition, new Vector2(0, 0));
+                result.Add(r1.Collision2());
+
+                newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f) + Velocity * (float)elapsed.TotalSeconds;
+                var r2 = new RayCast(
+                    new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f), newPosition, new Vector2(0, 0));
+                result.Add(r2.Collision2());
+            }
+
+            if (cadran.Y < 0)
+            {
+                Vector2 newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y) + Velocity * (float)elapsed.TotalSeconds;
+                var r1 = new RayCast(
+                    new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y), newPosition, new Vector2(0, 0));
+                result.Add(r1.Collision2());
+
+                newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y) + Velocity * (float)elapsed.TotalSeconds;
+                var r2 = new RayCast(
+                    new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y), newPosition, new Vector2(0, 0));
+                result.Add(r2.Collision2());
+            }
+
+            Tuple<Vector2?, Vector2, double, Guid> v = null;
+            var collision = Vector2.Zero;
+
+            //On parcours tous les ray pour trouve les collisions les plus proches
+            foreach (var item in result)
+            {
+                if (item.Item3 != -1.0 && (item.Item2.X != 0 || item.Item2.Y != 0))
                 {
-                    var rayLeft = new RayCast(
-                        new Vector2(m_location.Location.Position.X + 10, m_location.Location.Position.Y),
-                        new Vector2(newPosition.X + 10, newPosition.Y));
+                    v = item;
 
-                    var rayCenter = new RayCast(
-                        new Vector2(m_location.Location.Position.X + (m_location.Location.Size.X / 2f), m_location.Location.Position.Y),
-                        new Vector2(newPosition.X + (m_location.Location.Size.X / 2f), newPosition.Y));
-
-                    var rayRight = new RayCast(
-                        new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 10, m_location.Location.Position.Y),
-                        new Vector2(newPosition.X + m_location.Location.Size.X - 10, newPosition.Y));
-
-                    if (!rayLeft.Collision() && !rayCenter.Collision() && !rayRight.Collision())
+                    if (item.Item2.X == 1 && (collision.X == 0 || collision.X > item.Item1.Value.X))
                     {
-                        Grounded = false;
-                        Console.WriteLine("Not Grounded !");
+                        collision = new Vector2(item.Item1.Value.X, collision.Y);
                     }
-                    else
+                    else if (item.Item2.X == -1 && collision.X < item.Item1.Value.X)
                     {
-                        Grounded = true;
-                        Console.WriteLine("Grounded !");
+                        collision = new Vector2(item.Item1.Value.X, collision.Y);
+                    }
+                    if (item.Item2.Y == 1 && (collision.Y == 0 ||collision.Y > item.Item1.Value.Y))
+                    {
+                        collision = new Vector2(collision.X, item.Item1.Value.Y);
+                    }
+                    else if (item.Item2.Y == -1 && collision.Y < item.Item1.Value.Y)
+                    {
+                        collision = new Vector2(collision.X, item.Item1.Value.Y);
                     }
                 }
-                //else
-                //{
-                //    Grounded = false;
-                //}
             }
 
-            if (Velocity.X != 0)
+            //S'il y a une collision
+            if (collision != Vector2.Zero)
             {
-                if (Velocity.X < 0)
-                {
-                    var rayTop = new RayCast(
-                        new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y),
-                        new Vector2(newPosition.X, newPosition.Y + m_location.Location.Size.Y));
+                Velocity = new Vector2(
+                    collision.X != 0f ? 0f : Velocity.X,
+                    collision.Y != 0f ? 0f : Velocity.Y);
+                
+                Grounded = collision.Y <= m_location.Location.Position.Y;
 
-                    var rayCenter = new RayCast(
-                        new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + (m_location.Location.Size.Y / 2f)),
-                        new Vector2(newPosition.X, newPosition.Y + (m_location.Location.Size.Y / 2f)));
-
-                    var rayBottom = new RayCast(
-                        new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + 10f),
-                        new Vector2(newPosition.X, newPosition.Y + 10f));
-
-                    if (!rayTop.Collision() && !rayCenter.Collision() && !rayBottom.Collision())
-                    {
-                        BlockedLeft = false;
-                    }
-                    else
-                    {
-                        BlockedLeft = true;
-                    }
-                }
-                else
-                {
-                    var rayTop = new RayCast(
-                         new Vector2(m_location.Location.Position.X + m_location.Location.Size.X, m_location.Location.Position.Y + m_location.Location.Size.Y),
-                         new Vector2(newPosition.X, newPosition.Y + m_location.Location.Size.Y));
-
-                    var rayCenter = new RayCast(
-                        new Vector2(m_location.Location.Position.X + m_location.Location.Size.X, m_location.Location.Position.Y + (m_location.Location.Size.Y / 2f)),
-                        new Vector2(newPosition.X + m_location.Location.Size.X, newPosition.Y + (m_location.Location.Size.Y / 2f)));
-
-                    var rayBottom = new RayCast(
-                        new Vector2(m_location.Location.Position.X + m_location.Location.Size.X, m_location.Location.Position.Y + 10f),
-                        new Vector2(newPosition.X + m_location.Location.Size.X, newPosition.Y + 10f));
-
-                    if (!rayTop.Collision() && !rayCenter.Collision() && !rayBottom.Collision())
-                    {
-                        BlockedRight = false;
-                    }
-                    else
-                    {
-                        BlockedRight = true;
-                    }
-                }
+                m_location.Location = new Box2(
+                    new Vector2(
+                        collision.X != 0f ? collision.X : newTargetPosition.X,
+                        collision.Y != 0f ? collision.Y : newTargetPosition.Y
+                        ),
+                    m_location.Location.Size);
             }
-
-            var x = 0f;
-            var y = 0f;
-
-            if (!Grounded || (Grounded && Velocity.Y > 0))
+            else
             {
-                y = Velocity.Y;
+                m_location.Location = new Box2(newTargetPosition, m_location.Location.Size);
             }
-
-            if (BlockedLeft && BlockedRight)
-            {
-                x = 0f;
-            }
-            else if (BlockedLeft && !BlockedRight && Velocity.X > 0)
-            {
-                x = Velocity.X;
-            }
-            else if (!BlockedLeft && BlockedRight && Velocity.X < 0)
-            {
-                x = Velocity.X;
-            }
-            else if (!BlockedLeft && !BlockedRight && Velocity.X != 0)
-            {
-                x = Velocity.X;
-            }
-
-            Velocity = new Vector2(x, y);
-
-            newPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
-            m_location.Location = new Box2(newPosition, m_location.Location.Size);
         }
+
+        //private void TestCollision(TimeSpan elapsed)
+        //{
+        //    var momentum = new Vector2();
+
+        //    momentum += new Vector2(0, -1000); // gravity
+
+        //    if (Engine.Keyboard.IsKeyPressed(Key.Left))
+        //    {
+        //        //if (Grounded)
+        //        //{
+        //            momentum += new Vector2(-1500, 0);
+        //        //}
+        //        //else
+        //        //{
+        //        //    momentum += new Vector2(-600, 0);
+        //        //}
+        //    }
+
+        //    if (Engine.Keyboard.IsKeyPressed(Key.Right))
+        //    {
+        //        //if (Grounded)
+        //        //{
+        //            momentum += new Vector2(1500, 0);
+        //        //}
+        //        //else
+        //        //{
+        //        //    momentum += new Vector2(600, 0);
+        //        //}
+        //    }
+
+        //    Velocity += momentum * (float)elapsed.TotalSeconds;
+
+        //    if (Math.Abs(Velocity.X) > 800)
+        //    {
+        //        Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
+        //    }
+
+        //    //if (Grounded)
+        //    {
+        //        var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
+        //        Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
+        //    }
+
+        //    var newPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
+
+        //    //En fonction de la vélocité, on utilise 3 raycast pour tester les collisions
+        //    if (Velocity.Y != 0)
+        //    {
+        //        if (Velocity.Y < 0)
+        //        {
+        //            var rayLeft = new RayCast(
+        //                new Vector2(m_location.Location.Position.X + 10, m_location.Location.Position.Y),
+        //                new Vector2(newPosition.X + 10, newPosition.Y));
+
+        //            var rayCenter = new RayCast(
+        //                new Vector2(m_location.Location.Position.X + (m_location.Location.Size.X / 2f), m_location.Location.Position.Y),
+        //                new Vector2(newPosition.X + (m_location.Location.Size.X / 2f), newPosition.Y));
+
+        //            var rayRight = new RayCast(
+        //                new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 10, m_location.Location.Position.Y),
+        //                new Vector2(newPosition.X + m_location.Location.Size.X - 10, newPosition.Y));
+
+        //            if (!rayLeft.Collision() && !rayCenter.Collision() && !rayRight.Collision())
+        //            {
+        //                Grounded = false;
+        //                Console.WriteLine("Not Grounded !");
+        //            }
+        //            else
+        //            {
+        //                Grounded = true;
+        //                Console.WriteLine("Grounded !");
+        //            }
+        //        }
+        //        //else
+        //        //{
+        //        //    Grounded = false;
+        //        //}
+        //    }
+
+        //    if (Velocity.X != 0)
+        //    {
+        //        if (Velocity.X < 0)
+        //        {
+        //            var rayTop = new RayCast(
+        //                new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y),
+        //                new Vector2(newPosition.X, newPosition.Y + m_location.Location.Size.Y));
+
+        //            var rayCenter = new RayCast(
+        //                new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + (m_location.Location.Size.Y / 2f)),
+        //                new Vector2(newPosition.X, newPosition.Y + (m_location.Location.Size.Y / 2f)));
+
+        //            var rayBottom = new RayCast(
+        //                new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + 10f),
+        //                new Vector2(newPosition.X, newPosition.Y + 10f));
+
+        //            var rayTopColl = rayTop.Collision();
+        //            var rayCenterColl = rayCenter.Collision();
+        //            var rayBottomColl = rayBottom.Collision();
+
+        //            if (rayTopColl == null && rayCenterColl == null && rayBottomColl == null)
+        //            {
+        //                BlockedLeft = false;
+        //            }
+        //            else
+        //            {
+        //                BlockedLeft = true;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            var rayTop = new RayCast(
+        //                 new Vector2(m_location.Location.Position.X + m_location.Location.Size.X, m_location.Location.Position.Y + m_location.Location.Size.Y),
+        //                 new Vector2(newPosition.X, newPosition.Y + m_location.Location.Size.Y));
+
+        //            var rayCenter = new RayCast(
+        //                new Vector2(m_location.Location.Position.X + m_location.Location.Size.X, m_location.Location.Position.Y + (m_location.Location.Size.Y / 2f)),
+        //                new Vector2(newPosition.X + m_location.Location.Size.X, newPosition.Y + (m_location.Location.Size.Y / 2f)));
+
+        //            var rayBottom = new RayCast(
+        //                new Vector2(m_location.Location.Position.X + m_location.Location.Size.X, m_location.Location.Position.Y + 10f),
+        //                new Vector2(newPosition.X + m_location.Location.Size.X, newPosition.Y + 10f));
+
+        //            if (!rayTop.Collision() && !rayCenter.Collision() && !rayBottom.Collision())
+        //            {
+        //                BlockedRight = false;
+        //            }
+        //            else
+        //            {
+        //                BlockedRight = true;
+        //            }
+        //        }
+        //    }
+
+        //    var x = 0f;
+        //    var y = 0f;
+
+        //    if (!Grounded || (Grounded && Velocity.Y > 0))
+        //    {
+        //        y = Velocity.Y;
+        //    }
+
+        //    if (BlockedLeft && BlockedRight)
+        //    {
+        //        x = 0f;
+        //    }
+        //    else if (BlockedLeft && !BlockedRight && Velocity.X > 0)
+        //    {
+        //        x = Velocity.X;
+        //    }
+        //    else if (!BlockedLeft && BlockedRight && Velocity.X < 0)
+        //    {
+        //        x = Velocity.X;
+        //    }
+        //    else if (!BlockedLeft && !BlockedRight && Velocity.X != 0)
+        //    {
+        //        x = Velocity.X;
+        //    }
+
+        //    Velocity = new Vector2(x, y);
+
+        //    newPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
+        //    m_location.Location = new Box2(newPosition, m_location.Location.Size);
+        //}
 
     }
 }

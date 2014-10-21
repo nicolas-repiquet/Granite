@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Test.Game_01.Entities;
 using Test.Game_01.Sprites;
 
 namespace Test.Game_01.Maps
 {
     public sealed class Map
     {
-        private const int CELL_SIZE = 70;
+        public const int CELL_SIZE = 70;
         private const int CELL_PACK_SIZE = 16;
 
         private sealed class CellPack
@@ -43,7 +44,7 @@ namespace Test.Game_01.Maps
             }
         }
 
-        private sealed class Cell
+        public sealed class Cell
         {
             public Material Material { get; private set; }
             public ISpriteInstance Sprite { get; private set; }
@@ -53,6 +54,12 @@ namespace Test.Game_01.Maps
                 Material = material;
                 Sprite = sprite;
             }
+        }
+
+        public class Segment
+        {
+            public Vector2 P1 { get; set; }
+            public Vector2 P2 { get; set; }
         }
 
         private readonly int m_width;
@@ -189,6 +196,20 @@ namespace Test.Game_01.Maps
         {
             Material mat = null;
 
+            var cell = GetCell(position);
+
+            if (cell != null)
+            {
+                mat = cell.Material;
+            }
+
+            return mat;
+        }
+
+        public Cell GetCell(Vector2 position)
+        {
+            Cell cell = null;
+
             var packX = (int)(position.X / (CELL_PACK_SIZE * CELL_SIZE));
 
             var cellX = (int)((position.X - (packX * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
@@ -203,16 +224,281 @@ namespace Test.Game_01.Maps
                 && cellY >= 0 && cellY < CELL_PACK_SIZE
                 )
             {
-                var cell = m_packs[packX, packY].GetCell(cellX, cellY);
-
-                if (cell != null)
-                {
-                    mat = cell.Material;
-                }
+                cell = m_packs[packX, packY].GetCell(cellX, cellY);
             }
 
-            return mat;
+            return cell;
         }
+
+        public Tuple<Vector2?, Vector2> Move(Vector2 location, Vector2 destination)
+        {
+            Vector2? result = null;
+
+            //On récupère le cadran
+            var cadran = Cadran(location, destination);
+
+            //On récupère la case origin
+            var packOriginX = (int)(location.X / (CELL_PACK_SIZE * CELL_SIZE));
+            var cellOriginX = (int)((location.X - (packOriginX * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
+            var packOriginY = (int)(location.Y / (CELL_PACK_SIZE * CELL_SIZE));
+            var cellOriginY = (int)((location.Y - (packOriginY * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
+
+            //On récupère la case destination
+            var packDestX = (int)(destination.X / (CELL_PACK_SIZE * CELL_SIZE));
+            var cellDestX = (int)((destination.X - (packDestX * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
+            var packDestY = (int)(destination.Y / (CELL_PACK_SIZE * CELL_SIZE));
+            var cellDestY = (int)((destination.Y - (packDestY * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
+
+            var segmentDirection = new Segment()
+            {
+                P1 = new Vector2(cellOriginX, cellOriginY),
+                P2 = new Vector2(cellDestX, cellDestY)
+            };
+
+            Vector2 collision = Vector2.Zero;
+
+            Queue<Vector2> queue = null;
+
+            //Si les deux points sont dans le même pack
+            if (cadran != Vector2.Zero 
+                && packOriginX == packDestX
+                && packOriginY == packDestY
+                && !(cellOriginX == cellDestX
+                && cellOriginY == cellDestY))
+            {
+                queue = SearchPath(segmentDirection, cadran, packOriginX, packOriginY, out collision);
+            }
+
+            if (queue != null && queue.Any())
+            {
+                //On récupère la dernière cellule et on la convertit en coordonnées du monde
+                var lastCell = queue.LastOrDefault();
+
+                result = new Vector2(
+                    (lastCell.X * CELL_SIZE) + (packOriginX * CELL_PACK_SIZE * CELL_SIZE),
+                    (lastCell.Y * CELL_SIZE) + (packOriginX * CELL_PACK_SIZE * CELL_SIZE));
+            }
+            else if (queue != null && !queue.Any())
+            {
+                result = location;
+            }
+
+            return new Tuple<Vector2?, Vector2>(result, collision);
+        }
+
+        /// <summary>
+        /// Récupère les cases traversé par le rayCast
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <param name="cadran"></param>
+        /// <returns></returns>
+        public Queue<Vector2> SearchPath(Segment s, Vector2 cadran, int packX, int packY, out Vector2 collision)
+        {
+            var result = new Queue<Vector2>();
+            collision = Vector2.Zero;
+
+            //Si déplacement vertical
+            if (s.P1.X == s.P2.X)
+            {
+                int row = (int)s.P1.Y;
+                while(row != s.P2.Y)
+                {
+                    var cell = m_packs[packX, packY].GetCell((int)s.P1.X, row);
+                    if (cell != null && cell.Material == Grass.Instance)
+                    {
+                        collision = new Vector2(0, Math.Sign(cadran.Y));
+                        break;
+                    }
+                    else
+                    {
+                        result.Enqueue(new Vector2(s.P1.X, row));
+                        row += Math.Sign(cadran.Y);
+                    }
+                }
+
+                if (row == s.P2.Y)
+                {
+                    var cell = m_packs[packX, packY].GetCell((int)s.P1.X, row);
+                    if (!(cell != null && cell.Material == Grass.Instance))
+                    {
+                        result.Enqueue(new Vector2(s.P1.X, row));
+                    }
+                    else
+                    {
+                        collision = new Vector2(0, Math.Sign(cadran.Y));
+                    }
+                }
+            }
+            else if (s.P1.Y == s.P2.Y) //Si déplacement horizontal
+            {
+                int col = (int)s.P1.X;
+                while (col != s.P2.X)
+                {
+                    var cell = m_packs[packX, packY].GetCell(col, (int)s.P1.Y);
+                    if (cell != null && cell.Material == Grass.Instance)
+                    {
+                        collision = new Vector2(Math.Sign(cadran.X), 0);
+                        break;
+                    }
+                    else
+                    {
+                        result.Enqueue(new Vector2(col, s.P1.Y));
+                        col += Math.Sign(cadran.X);
+                    }
+                }
+
+                if (col == s.P2.X)
+                {
+                    var cell = m_packs[packX, packY].GetCell(col, (int)s.P1.Y);
+                    if (!(cell != null && cell.Material == Grass.Instance))
+                    {
+                        result.Enqueue(new Vector2(col, s.P1.Y));
+                    }
+                    else
+                    {
+                        collision = new Vector2(Math.Sign(cadran.X), 0);
+                    }
+                }
+            }
+            else //Dans ce cas les 2 points sont sur des lignes et des colonnes différentes
+            {
+                var actualCell = s.P1;
+                Vector2? inter = null;
+
+                int col = (int)s.P1.X;
+                while (col != s.P2.X)
+                {
+                    if (inter == null) //Premier tour
+                    {
+                        result.Enqueue(new Vector2(col, s.P1.Y));
+
+                        //On calcul le point d'intersection de la prochaine colonne
+                        inter = IntersectionSegment(s, new Segment()
+                        {
+                            P1 = new Vector2(col, 0),
+                            P2 = new Vector2(col, CELL_PACK_SIZE)
+                        });
+                    }
+                    else
+                    {
+                        //On calcul le point d'intersection de la prochaine colonne
+                        Vector2? nextInter = IntersectionSegment(s, new Segment()
+                        {
+                            P1 = new Vector2(col + Math.Sign(cadran.X), 0),
+                            P2 = new Vector2(col + Math.Sign(cadran.X), CELL_PACK_SIZE)
+                        });
+
+                        if (nextInter != null)
+                        {
+                            int row = (int)s.P1.Y;
+                            while (row != s.P2.Y)
+                            {
+                                var cell = m_packs[packX, packY].GetCell((int)s.P1.X, row);
+                                if (cell != null && cell.Material == Grass.Instance)
+                                {
+                                    if (row == (int)s.P1.Y)
+                                    {
+                                        collision = new Vector2(Math.Sign(cadran.X), 0);
+                                    }
+                                    else
+                                    {
+                                        collision = new Vector2(0, Math.Sign(cadran.Y));
+                                    }
+                                    break;
+                                }
+                                else
+                                {
+                                    result.Enqueue(new Vector2(s.P1.X, row));
+                                    row += Math.Sign(cadran.Y);
+                                }
+                            }
+
+                            if (col == s.P2.X)
+                            {
+                                var cell = m_packs[packX, packY].GetCell(col, (int)s.P1.Y);
+                                if (!(cell != null && cell.Material == Grass.Instance))
+                                {
+                                    result.Enqueue(new Vector2(col, s.P1.Y));
+                                }
+                                else
+                                {
+                                    collision = new Vector2(Math.Sign(cadran.X), 0);
+                                }
+                            }
+
+                            inter = nextInter;
+                        }
+                    }
+
+                    if (inter == null)
+                    {
+                        break;
+                    }
+
+                    col += Math.Sign(cadran.X);
+                }
+
+            }
+
+            return result;
+        }
+
+        public static Vector2 Cadran(Vector2 start, Vector2 end)
+        {
+            Vector2 cadran = new Vector2(end.X - start.X, end.Y - start.Y);
+
+            if (cadran != Vector2.Zero)
+            {
+                return cadran.Normalize();
+            }
+            else
+            {
+                return Vector2.Zero;
+            }
+        }
+
+        public Vector2? IntersectionSegment(Segment s1, Segment s2)
+        {
+            Vector2? result = null;
+
+            var a1 = s1.P2.Y - s1.P1.Y;
+            var b1 = s1.P1.X - s1.P2.X;
+            var c1 = a1 * s1.P1.X + b1 * s1.P1.Y;
+
+            var a2 = s2.P2.Y - s2.P1.Y;
+            var b2 = s2.P1.X - s2.P2.X;
+            var c2 = a2 * s2.P1.X + b2 * s2.P1.Y;
+
+            var det = a1 * b2 - a2 * b1;
+            if (det != 0)
+            {
+                var x = (b2 * c1 - b1 * c2) / det;
+                var y = (a1 * c2 - a2 * c1) / det;
+                result = new Vector2(x, y);
+            }
+
+            return result;
+        }
+
+        public bool Intersect(Vector2d startSegment, Vector2d endSegment, Vector2 cell)
+        {
+            //On test les 4 coté de la cellule
+            var p1 = IntersectSegmentCorner(startSegment, endSegment, cell.X, cell.Y);
+            var p2 = IntersectSegmentCorner(startSegment, endSegment, cell.X + 70, cell.Y);
+            var p3 = IntersectSegmentCorner(startSegment, endSegment, cell.X + 70, cell.Y + 70);
+            var p4 = IntersectSegmentCorner(startSegment, endSegment, cell.X, cell.Y + 70);
+
+            return p1 || p2 || p3 || p4;
+        }
+
+        public bool IntersectSegmentCorner(Vector2d startSegment, Vector2d endSegment, double x, double y)
+        {
+            //On test les 4 coté de la cellule
+            return (endSegment.Y - startSegment.Y) * x +
+                (endSegment.X - startSegment.Y) * y
+                + (endSegment.Y * startSegment.Y - startSegment.X * endSegment.X) == 0;
+        }
+
 
         public Vector2 Size { get { return new Vector2(m_width * CELL_SIZE, m_height * CELL_SIZE); } }
     }

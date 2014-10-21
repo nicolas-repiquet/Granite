@@ -35,7 +35,7 @@ namespace Test.Game_01.Entities
             m_camera.Bounds = new Box2(0, 0, m_level.Map.Size.X, Math.Max(1000, m_level.Map.Size.Y));
             m_camera.Target = m_player;
 
-            Player.SetPosition(new Vector2(0, 500));
+            Player.SetPosition(new Vector2(0, 350));
 
             s_instance = this;
         }

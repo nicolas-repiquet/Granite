@@ -9,34 +9,51 @@ namespace Test.Game_01.Entities
 {
     public sealed class RayCast
     {
+        private readonly Guid m_id;
         public readonly Vector2 m_start;
         public readonly Vector2 m_end;
+        public readonly Vector2 m_indices;
 
-        public RayCast(Vector2 start, Vector2 end)
+        public RayCast(Vector2 start, Vector2 end, Vector2 indices)
         {
             m_start = start;
             m_end = end;
+            m_indices = indices;
+            m_id = Guid.NewGuid();
         }
 
-        //public bool Collision()
-        //{
-        //    var map = World.Instance.Level.Map;
-
-        //    var material = map.GetMaterial(m_start);
-
-        //    if (material == null)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
-        //}
-
-        public bool Collision()
+        public Tuple<Vector2?, Vector2, double, Guid> Collision2()
         {
-            var isCollided = false;
+            var map = World.Instance.Level.Map;
+
+            Tuple<Vector2?, Vector2> result = map.Move(m_start, m_end);
+
+            var distance = -1.0;
+            Vector2? v = null;
+
+            if (result.Item1.HasValue)
+            {
+                v = new Vector2(
+                    result.Item1.Value.X + m_indices.X * Map.CELL_SIZE,
+                    result.Item1.Value.Y + m_indices.Y * Map.CELL_SIZE);
+
+                distance = Math.Sqrt(Math.Pow(v.Value.X - m_start.X, 2) + Math.Pow(v.Value.Y - m_start.Y, 2));
+            }
+
+            return new Tuple<Vector2?, Vector2, double, Guid>(result.Item1, result.Item2, distance, this.m_id);
+        }
+
+        public Guid Id
+        {
+            get
+            {
+                return m_id;
+            }
+        }
+
+        public Vector2? Collision()
+        {
+            Vector2? isCollided = null;
 
             var map = World.Instance.Level.Map;
 
@@ -47,11 +64,11 @@ namespace Test.Game_01.Entities
 
                 if (material != null && material == Grass.Instance)
                 {
-                    isCollided = true;
+                    isCollided = new Vector2(m_start.X, m_start.Y);
                 }
                 else
                 {
-                    isCollided = false;
+                    isCollided = null;
                 }
             }
             else if (Math.Truncate(m_start.Y) == Math.Truncate(m_end.Y))
@@ -65,12 +82,12 @@ namespace Test.Game_01.Entities
 
                     if (material != null && material == Grass.Instance)
                     {
-                        isCollided = true;
+                        isCollided = new Vector2(x, m_start.Y);
                         break;
                     }
                     else
                     {
-                        isCollided = false;
+                        isCollided = null;
                     }
                 }
             }
@@ -85,12 +102,12 @@ namespace Test.Game_01.Entities
 
                     if (material != null && material == Grass.Instance)
                     {
-                        isCollided = true;
+                        isCollided = new Vector2(m_start.X, y);
                         break;
                     }
                     else
                     {
-                        isCollided = false;
+                        isCollided = null;
                     }
                 }
             }
@@ -110,12 +127,12 @@ namespace Test.Game_01.Entities
 
                         if (material != null && material == Grass.Instance)
                         {
-                            isCollided = true;
+                            isCollided = new Vector2(x, y);
                             break;
                         }
                         else
                         {
-                            isCollided = false;
+                            isCollided = null;
                         }
                     }
                 }
