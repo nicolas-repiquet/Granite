@@ -93,35 +93,36 @@ namespace Test.Game_01.Entities
                 new Vector2(0, m_location.Location.Size.Y));
             result.Add(r4.Collision2());
 
-            var collision = Vector2.Zero;
+            float? collisionX = null;
+            float? collisionY = null;
 
             //On parcours tous les ray pour trouve les collisions les plus proches
             foreach (var item in result)
             {
-                if (item.Item3 != -1.0 && item.Item1.HasValue && (collision.X == 0 || item.Item1.Value < collision.X))
+                if (item.Item3 != -1.0 && item.Item1.HasValue && (collisionX == null || item.Item1.Value < collisionX))
                 {
-                    collision = new Vector2(item.Item1.Value, collision.Y);
+                    collisionX = item.Item1.Value;
                 }
 
-                if (item.Item4 != -1.0 && item.Item2.HasValue && (collision.Y == 0 || item.Item2.Value < collision.Y))
+                if (item.Item4 != -1.0 && item.Item2.HasValue && (collisionY == null || item.Item2.Value < collisionY))
                 {
-                    collision = new Vector2(collision.X, item.Item2.Value);
+                    collisionY = item.Item2.Value;
                 }
             }
 
             //S'il y a une collision
-            if (collision != Vector2.Zero)
+            if (collisionX.HasValue || collisionY.HasValue)
             {
                 Velocity = new Vector2(
-                    collision.X != 0f ? 0f : Velocity.X,
-                    collision.Y != 0f ? 0f : Velocity.Y);
+                    collisionX.HasValue ? 0f : Velocity.X,
+                    collisionY.HasValue ? 0f : Velocity.Y);
 
-                Grounded = collision.Y <= m_location.Location.Position.Y;
+                Grounded = collisionY <= m_location.Location.Position.Y;
 
                 m_location.Location = new Box2(
                     new Vector2(
-                        collision.X != 0f ? collision.X : newTargetPosition.X,
-                        collision.Y != 0f ? collision.Y : newTargetPosition.Y
+                        collisionX.HasValue ? collisionX.Value : newTargetPosition.X,
+                        collisionY.HasValue ? collisionY.Value : newTargetPosition.Y
                         ),
                     m_location.Location.Size);
             }
