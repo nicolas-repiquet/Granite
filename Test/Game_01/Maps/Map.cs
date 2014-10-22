@@ -17,11 +17,20 @@ namespace Test.Game_01.Maps
         {
             public SpriteRenderer Renderer { get; private set; }
             private readonly Cell[,] m_cells;
+            public List<Segment> Segments_green { get; set; }
+            public List<Segment> Segments_blue { get; set; }
+            public List<Segment> Segments_purple { get; set; }
+            public List<Segment> Segments_red { get; set; }
 
             public CellPack()
             {
                 Renderer = new SpriteRenderer(TilesSprites.Instance);
                 m_cells = new Cell[CELL_PACK_SIZE, CELL_PACK_SIZE];
+
+                Segments_green = new List<Segment>();
+                Segments_blue = new List<Segment>();
+                Segments_purple = new List<Segment>();
+                Segments_red = new List<Segment>();
             }
 
             public void SetMaterial(int x, int y, Material material, Sprite sprite)
@@ -171,6 +180,8 @@ namespace Test.Game_01.Maps
                     }
                 }
             }
+
+            CalculSegments();
         }
 
         public void Render(Matrix4 transform)
@@ -182,6 +193,105 @@ namespace Test.Game_01.Maps
                     m_packs[x, y].Renderer.Render(
                         transform * Matrix4.Translate(x * CELL_PACK_SIZE * CELL_SIZE, y * CELL_PACK_SIZE * CELL_SIZE, 0f)
                     );
+                }
+            }
+        }
+
+        private void CalculSegments()
+        {
+            
+            for (var packRow = 0; packRow < m_packHeight; packRow++)
+            {
+                for (var packCol = 0; packCol < m_packWidth; packCol++)
+                {
+                    var pack = m_packs[packCol, packRow];
+
+                    for (var row = 0; row < CELL_PACK_SIZE; row++)
+                    {
+                        for (var col = 0; col < CELL_PACK_SIZE; col++)
+                        {
+                            var cell = pack.GetCell(col, row);
+
+                            if (cell != null && cell.Material == Grass.Instance)
+                            {
+                                //Vert
+                                if (row != CELL_PACK_SIZE - 1)
+                                {
+                                    var cellTop = pack.GetCell(col, row+1);
+
+                                    if (cellTop == null)
+                                    {
+                                        pack.Segments_green.Add(new Segment()
+                                            {
+                                                P1 = new Vector2(
+                                                    col * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                    (row + 1) * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                                P2 = new Vector2(
+                                                    (col + 1) * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                    (row + 1) * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                            });
+                                    }
+                                }
+
+                                //Violet
+                                if (row != 0)
+                                {
+                                    var cellBottom = pack.GetCell(col, row-1);
+
+                                    if (cellBottom == null)
+                                    {
+                                        pack.Segments_purple.Add(new Segment()
+                                        {
+                                            P1 = new Vector2(
+                                                col * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                row * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                            P2 = new Vector2(
+                                                (col + 1) * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                row * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                        });
+                                    }
+                                }
+
+                                //Rouge
+                                if (col != 0)
+                                {
+                                    var cellLeft = pack.GetCell(col-1, row);
+
+                                    if (cellLeft == null)
+                                    {
+                                        pack.Segments_red.Add(new Segment()
+                                        {
+                                            P1 = new Vector2(
+                                                col * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                row * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                            P2 = new Vector2(
+                                                col * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                (row + 1) * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                        });
+                                    }
+                                }
+
+                                //Bleu
+                                if (col != CELL_PACK_SIZE - 1)
+                                {
+                                    var cellRight = pack.GetCell(col+1, row);
+
+                                    if (cellRight == null)
+                                    {
+                                        pack.Segments_blue.Add(new Segment()
+                                        {
+                                            P1 = new Vector2(
+                                                (col + 1) * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                row * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                            P2 = new Vector2(
+                                                (col + 1) * CELL_SIZE + packCol * CELL_PACK_SIZE * CELL_SIZE,
+                                                (row + 1) * CELL_SIZE + packRow * CELL_PACK_SIZE * CELL_SIZE),
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -230,7 +340,7 @@ namespace Test.Game_01.Maps
             return cell;
         }
 
-        public Tuple<Vector2?, Vector2> Move(Vector2 location, Vector2 destination)
+        public Tuple<float?, float?> Move(Vector2 location, Vector2 destination)
         {
             Vector2? result = null;
 
@@ -238,52 +348,114 @@ namespace Test.Game_01.Maps
             var cadran = Cadran(location, destination);
 
             //On récupère la case origin
-            var packOriginX = (int)(location.X / (CELL_PACK_SIZE * CELL_SIZE));
-            var cellOriginX = (int)((location.X - (packOriginX * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
+            var packOriginX = (int)(location.X / (CELL_PACK_SIZE * CELL_SIZE));;
             var packOriginY = (int)(location.Y / (CELL_PACK_SIZE * CELL_SIZE));
-            var cellOriginY = (int)((location.Y - (packOriginY * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
 
             //On récupère la case destination
             var packDestX = (int)(destination.X / (CELL_PACK_SIZE * CELL_SIZE));
-            var cellDestX = (int)((destination.X - (packDestX * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
             var packDestY = (int)(destination.Y / (CELL_PACK_SIZE * CELL_SIZE));
-            var cellDestY = (int)((destination.Y - (packDestY * (CELL_PACK_SIZE * CELL_SIZE))) / CELL_SIZE);
 
+            
             var segmentDirection = new Segment()
             {
-                P1 = new Vector2(cellOriginX, cellOriginY),
-                P2 = new Vector2(cellDestX, cellDestY)
+                P1 = new Vector2(
+                    location.X - packOriginX * CELL_PACK_SIZE * CELL_SIZE, 
+                    location.Y - packOriginY * CELL_PACK_SIZE * CELL_SIZE),
+                P2 = new Vector2(
+                    destination.X - packDestX * CELL_PACK_SIZE * CELL_SIZE,
+                    destination.Y - packDestY * CELL_PACK_SIZE * CELL_SIZE)
             };
 
-            Vector2 collision = Vector2.Zero;
-
-            Queue<Vector2> queue = null;
+            float? collisionX = null;
+            float? collisionY = null;
 
             //Si les deux points sont dans le même pack
-            if (cadran != Vector2.Zero 
+            if (cadran != Vector2.Zero
                 && packOriginX == packDestX
-                && packOriginY == packDestY
-                && !(cellOriginX == cellDestX
-                && cellOriginY == cellDestY))
+                && packOriginY == packDestY)
             {
-                queue = SearchPath(segmentDirection, cadran, packOriginX, packOriginY, out collision);
+                var pack = m_packs[packOriginX, packOriginY];
+
+                //Rouge
+                if (cadran.X > 0)
+                {
+                    foreach (var segment in pack.Segments_red.Where(x => x.P1.X >= segmentDirection.P1.X))
+                    {
+                        var inter = IntersectionSegment(segmentDirection, segment);
+
+                        if(inter != null)
+                        {
+                            if (collisionX == null || inter.Value.X < collisionX.Value)
+                            {
+                                collisionX = inter.Value.X;
+                            }
+                        }
+                    }
+                }
+
+                //Bleu
+                if (cadran.X < 0)
+                {
+                    foreach (var segment in pack.Segments_blue.Where(x => x.P1.X <= segmentDirection.P1.X))
+                    {
+                        var inter = IntersectionSegment(segmentDirection, segment);
+
+                        if (inter != null)
+                        {
+                            if (collisionX == null || inter.Value.X > collisionX.Value)
+                            {
+                                collisionX = inter.Value.X;
+                            }
+                        }
+                    }
+                }
+
+                //Violet
+                if (cadran.Y > 0)
+                {
+                    foreach (var segment in pack.Segments_purple.Where(x => x.P1.Y >= segmentDirection.P1.Y))
+                    {
+                        var inter = IntersectionSegment(segmentDirection, segment);
+
+                        if (inter != null)
+                        {
+                            if (collisionY == null || inter.Value.Y < collisionY.Value)
+                            {
+                                collisionY = inter.Value.Y;
+                            }
+                        }
+                    }
+                }
+
+                //Vert
+                if (cadran.Y < 0)
+                {
+                    foreach (var segment in pack.Segments_green.Where(x => x.P1.Y <= segmentDirection.P1.Y))
+                    {
+                        var inter = IntersectionSegment(segmentDirection, segment);
+
+                        if (inter != null)
+                        {
+                            if (collisionY == null || inter.Value.Y > collisionY.Value)
+                            {
+                                collisionY = inter.Value.Y;
+                            }
+                        }
+                    }
+                }
+
+                //On retransforme les coordonnées Pack => Monde
+                if (collisionX.HasValue)
+                {
+                    collisionX = collisionX + packOriginX * CELL_PACK_SIZE * CELL_SIZE;
+                }
+                if (collisionY.HasValue)
+                {
+                    collisionY = collisionY + packOriginY * CELL_PACK_SIZE * CELL_SIZE;
+                }
             }
 
-            if (queue != null && queue.Any())
-            {
-                //On récupère la dernière cellule et on la convertit en coordonnées du monde
-                var lastCell = queue.LastOrDefault();
-
-                result = new Vector2(
-                    (lastCell.X * CELL_SIZE) + (packOriginX * CELL_PACK_SIZE * CELL_SIZE),
-                    (lastCell.Y * CELL_SIZE) + (packOriginX * CELL_PACK_SIZE * CELL_SIZE));
-            }
-            else if (queue != null && !queue.Any())
-            {
-                result = location;
-            }
-
-            return new Tuple<Vector2?, Vector2>(result, collision);
+            return new Tuple<float?, float?>(collisionX, collisionY);
         }
 
         /// <summary>
@@ -459,25 +631,49 @@ namespace Test.Game_01.Maps
 
         public Vector2? IntersectionSegment(Segment s1, Segment s2)
         {
-            Vector2? result = null;
+            float Ax = s1.P1.X;
+            float Ay = s1.P1.Y;
+            float Bx = s1.P2.X;
+            float By = s1.P2.Y;
+            float Cx = s2.P1.X;
+            float Cy = s2.P1.Y;
+            float Dx = s2.P2.X;
+            float Dy = s2.P2.Y;
 
-            var a1 = s1.P2.Y - s1.P1.Y;
-            var b1 = s1.P1.X - s1.P2.X;
-            var c1 = a1 * s1.P1.X + b1 * s1.P1.Y;
+            double Sx;
+            double Sy;
 
-            var a2 = s2.P2.Y - s2.P1.Y;
-            var b2 = s2.P1.X - s2.P2.X;
-            var c2 = a2 * s2.P1.X + b2 * s2.P1.Y;
-
-            var det = a1 * b2 - a2 * b1;
-            if (det != 0)
+            if (Ax == Bx)
             {
-                var x = (b2 * c1 - b1 * c2) / det;
-                var y = (a1 * c2 - a2 * c1) / det;
-                result = new Vector2(x, y);
+                if (Cx == Dx) return null;
+                else
+                {
+                    double pCD = (Cy - Dy) / (Cx - Dx);
+                    Sx = Ax;
+                    Sy = pCD * (Ax - Cx) + Cy;
+                }
             }
-
-            return result;
+            else
+            {
+                if (Cx == Dx)
+                {
+                    double pAB = (Ay - By) / (Ax - Bx);
+                    Sx = Cx;
+                    Sy = pAB * (Cx - Ax) + Ay;
+                }
+                else
+                {
+                    double pCD = (Cy - Dy) / (Cx - Dx);
+                    double pAB = (Ay - By) / (Ax - Bx);
+                    double oCD = Cy - pCD * Cx;
+                    double oAB = Ay - pAB * Ax;
+                    Sx = (oAB - oCD) / (pCD - pAB);
+                    Sy = pCD * Sx + oCD;
+                }
+            }
+            if ((Sx < Ax && Sx < Bx) | (Sx > Ax && Sx > Bx) | (Sx < Cx && Sx < Dx) | (Sx > Cx && Sx > Dx)
+                    | (Sy < Ay && Sy < By) | (Sy > Ay && Sy > By) | (Sy < Cy && Sy < Dy) | (Sy > Cy && Sy > Dy)) return null;
+            return new Vector2((float)Sx, (float)Sy);
         }
 
         public bool Intersect(Vector2d startSegment, Vector2d endSegment, Vector2 cell)

@@ -62,85 +62,50 @@ namespace Test.Game_01.Entities
 
             var cadran = Map.Cadran(m_location.Location.Position, newTargetPosition);
 
-            var skin = 5f;
+            var skin = 0.2f;
 
-            var result = new List<Tuple<Vector2?, Vector2, double, Guid>>();
+            var result = new List<Tuple<float?, float?, double, double>>();
 
-            //On fait 2 raycast par coté
-            if (cadran.X < 0)
-            {
-                Vector2 newPosition = new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + skin) + Velocity * (float)elapsed.TotalSeconds;
-                var r1 = new RayCast(new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + skin), newPosition, new Vector2(0, 0));
-                result.Add(r1.Collision2());
 
-                newPosition = new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + Velocity * (float)elapsed.TotalSeconds;
-                var r2 = new RayCast(new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y - skin), newPosition, new Vector2(0, 0));
-                result.Add(r2.Collision2());
-            }
+            Vector2 newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + skin) + Velocity * (float)elapsed.TotalSeconds;
+            var r1 = new RayCast(new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + skin),
+                newPosition,
+                new Vector2(0, 0));
+            result.Add(r1.Collision2());
 
-            if (cadran.X > 0)
-            {
-                Vector2 newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X-0.1f, m_location.Location.Position.Y + skin) + Velocity * (float)elapsed.TotalSeconds;
-                var r1 = new RayCast(new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + skin), newPosition, new Vector2(0, 0));
-                result.Add(r1.Collision2());
+            newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + skin) + Velocity * (float)elapsed.TotalSeconds;
+            var r2 = new RayCast(new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + skin),
+                newPosition,
+                new Vector2(m_location.Location.Size.X, 0));
+            result.Add(r2.Collision2());
 
-                newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + Velocity * (float)elapsed.TotalSeconds;
-                var r2 = new RayCast(new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + m_location.Location.Size.Y - skin), newPosition, new Vector2(0, 0));
-                result.Add(r2.Collision2());
-            }
+            newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + Velocity * (float)elapsed.TotalSeconds;
+            var r3 = new RayCast(
+                new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - skin),
+                newPosition,
+                new Vector2(m_location.Location.Size.X, m_location.Location.Size.Y));
+            result.Add(r3.Collision2());
 
-            if (cadran.Y > 0)
-            {
-                Vector2 newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f) + Velocity * (float)elapsed.TotalSeconds;
-                var r1 = new RayCast(
-                    new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f), newPosition, new Vector2(0, 0));
-                result.Add(r1.Collision2());
+            newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + Velocity * (float)elapsed.TotalSeconds;
+            var r4 = new RayCast(
+                new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - skin),
+                newPosition,
+                new Vector2(0, m_location.Location.Size.Y));
+            result.Add(r4.Collision2());
 
-                newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f) + Velocity * (float)elapsed.TotalSeconds;
-                var r2 = new RayCast(
-                    new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f), newPosition, new Vector2(0, 0));
-                result.Add(r2.Collision2());
-            }
-
-            if (cadran.Y < 0)
-            {
-                Vector2 newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y) + Velocity * (float)elapsed.TotalSeconds;
-                var r1 = new RayCast(
-                    new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y), newPosition, new Vector2(0, 0));
-                result.Add(r1.Collision2());
-
-                newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y) + Velocity * (float)elapsed.TotalSeconds;
-                var r2 = new RayCast(
-                    new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y), newPosition, new Vector2(0, 0));
-                result.Add(r2.Collision2());
-            }
-
-            Tuple<Vector2?, Vector2, double, Guid> v = null;
             var collision = Vector2.Zero;
 
             //On parcours tous les ray pour trouve les collisions les plus proches
             foreach (var item in result)
             {
-                if (item.Item3 != -1.0 && (item.Item2.X != 0 || item.Item2.Y != 0))
+                if (item.Item3 != -1.0 && item.Item1.HasValue && (collision.X == 0 || item.Item1.Value < collision.X))
                 {
-                    v = item;
+                    collision = new Vector2(item.Item1.Value, collision.Y);
+                }
 
-                    if (item.Item2.X == 1 && (collision.X == 0 || collision.X > item.Item1.Value.X))
-                    {
-                        collision = new Vector2(item.Item1.Value.X, collision.Y);
-                    }
-                    else if (item.Item2.X == -1 && collision.X < item.Item1.Value.X)
-                    {
-                        collision = new Vector2(item.Item1.Value.X, collision.Y);
-                    }
-                    if (item.Item2.Y == 1 && (collision.Y == 0 ||collision.Y > item.Item1.Value.Y))
-                    {
-                        collision = new Vector2(collision.X, item.Item1.Value.Y);
-                    }
-                    else if (item.Item2.Y == -1 && collision.Y < item.Item1.Value.Y)
-                    {
-                        collision = new Vector2(collision.X, item.Item1.Value.Y);
-                    }
+                if (item.Item4 != -1.0 && item.Item2.HasValue && (collision.Y == 0 || item.Item2.Value < collision.Y))
+                {
+                    collision = new Vector2(collision.X, item.Item2.Value);
                 }
             }
 
@@ -150,7 +115,7 @@ namespace Test.Game_01.Entities
                 Velocity = new Vector2(
                     collision.X != 0f ? 0f : Velocity.X,
                     collision.Y != 0f ? 0f : Velocity.Y);
-                
+
                 Grounded = collision.Y <= m_location.Location.Position.Y;
 
                 m_location.Location = new Box2(
@@ -163,8 +128,162 @@ namespace Test.Game_01.Entities
             else
             {
                 m_location.Location = new Box2(newTargetPosition, m_location.Location.Size);
+                Grounded = false;
             }
         }
+
+        //private void TestCollision(TimeSpan elapsed)
+        //{
+        //    var momentum = new Vector2();
+
+        //    momentum += new Vector2(0, -1000); // gravity
+
+        //    if (Engine.Keyboard.IsKeyPressed(Key.Left))
+        //    {
+        //        momentum += new Vector2(-1500, 0);
+        //    }
+
+        //    if (Engine.Keyboard.IsKeyPressed(Key.Right))
+        //    {
+        //        momentum += new Vector2(1500, 0);
+        //    }
+
+        //    Velocity += momentum * (float)elapsed.TotalSeconds;
+
+        //    if (Math.Abs(Velocity.X) > 800)
+        //    {
+        //        Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
+        //    }
+
+        //    {
+        //        var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
+        //        Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
+        //    }
+
+        //    Vector2 newTargetPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
+
+        //    var cadran = Map.Cadran(m_location.Location.Position, newTargetPosition);
+
+        //    var skin = 0f;
+
+        //    var result = new List<Tuple<Vector2?, Vector2, double, Guid>>();
+
+        //    //On fait 2 raycast par coté
+        //    if (cadran.X < 0)
+        //    {
+        //        Vector2 newPosition = new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + skin) + new Vector2(Velocity.X, 0) * (float)elapsed.TotalSeconds;
+        //        var r1 = new RayCast(new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + skin),
+        //            newPosition, 
+        //            new Vector2(0, 0));
+        //        result.Add(r1.Collision2());
+
+        //        newPosition = new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + new Vector2(Velocity.X, 0) * (float)elapsed.TotalSeconds;
+        //        var r2 = new RayCast(new Vector2(m_location.Location.Position.X, m_location.Location.Position.Y + m_location.Location.Size.Y - skin),
+        //            newPosition, 
+        //            new Vector2(0, 0));
+        //        result.Add(r2.Collision2());
+        //    }
+
+        //    if (cadran.X > 0)
+        //    {
+        //        Vector2 newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + skin) + new Vector2(Velocity.X, 0) * (float)elapsed.TotalSeconds;
+        //        var r1 = new RayCast(new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + skin),
+        //            newPosition, 
+        //            new Vector2(0, 0));
+        //        result.Add(r1.Collision2());
+
+        //        newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + m_location.Location.Size.Y - skin) + new Vector2(Velocity.X, 0) * (float)elapsed.TotalSeconds;
+        //        var r2 = new RayCast(new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - 0.1f, m_location.Location.Position.Y + m_location.Location.Size.Y - skin),
+        //            newPosition,
+        //            new Vector2(0, 0));
+        //        result.Add(r2.Collision2());
+        //    }
+
+        //    if (cadran.Y > 0)
+        //    {
+        //        Vector2 newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f) + new Vector2(0, Velocity.Y) * (float)elapsed.TotalSeconds;
+        //        var r1 = new RayCast(
+        //            new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f),
+        //            newPosition,
+        //            new Vector2(0, 0));
+        //        result.Add(r1.Collision2());
+
+        //        newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f) + new Vector2(0, Velocity.Y) * (float)elapsed.TotalSeconds;
+        //        var r2 = new RayCast(
+        //            new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y + m_location.Location.Size.Y - 0.1f),
+        //            newPosition, 
+        //            new Vector2(0, 0));
+        //        result.Add(r2.Collision2());
+        //    }
+
+        //    if (cadran.Y < 0)
+        //    {
+        //        Vector2 newPosition = new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y) + new Vector2(0, Velocity.Y) * (float)elapsed.TotalSeconds;
+        //        var r1 = new RayCast(
+        //            new Vector2(m_location.Location.Position.X + skin, m_location.Location.Position.Y),
+        //            newPosition, 
+        //            new Vector2(0, 0));
+        //        result.Add(r1.Collision2());
+
+        //        newPosition = new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y) + new Vector2(0, Velocity.Y) * (float)elapsed.TotalSeconds;
+        //        var r2 = new RayCast(
+        //            new Vector2(m_location.Location.Position.X + m_location.Location.Size.X - skin, m_location.Location.Position.Y),
+        //            newPosition,  
+        //            new Vector2(0, 0));
+        //        result.Add(r2.Collision2());
+        //    }
+
+        //    Tuple<Vector2?, Vector2, double, Guid> v = null;
+        //    var collision = Vector2.Zero;
+
+        //    //On parcours tous les ray pour trouve les collisions les plus proches
+        //    foreach (var item in result)
+        //    {
+        //        if (item.Item3 != -1.0 && (item.Item2.X != 0 || item.Item2.Y != 0))
+        //        {
+        //            v = item;
+
+        //            if (item.Item2.X == 1 && (collision.X == 0 || collision.X > item.Item1.Value.X))
+        //            {
+        //                collision = new Vector2(item.Item1.Value.X, collision.Y);
+        //            }
+        //            else if (item.Item2.X == -1 && collision.X < item.Item1.Value.X)
+        //            {
+        //                collision = new Vector2(item.Item1.Value.X, collision.Y);
+        //            }
+        //            if (item.Item2.Y == 1 && (collision.Y == 0 ||collision.Y > item.Item1.Value.Y))
+        //            {
+        //                collision = new Vector2(collision.X, item.Item1.Value.Y);
+        //            }
+        //            else if (item.Item2.Y == -1 && collision.Y < item.Item1.Value.Y)
+        //            {
+        //                collision = new Vector2(collision.X, item.Item1.Value.Y);
+        //            }
+        //        }
+        //    }
+
+        //    //S'il y a une collision
+        //    if (collision != Vector2.Zero)
+        //    {
+        //        Velocity = new Vector2(
+        //            collision.X != 0f ? 0f : Velocity.X,
+        //            collision.Y != 0f ? 0f : Velocity.Y);
+                
+        //        Grounded = collision.Y <= m_location.Location.Position.Y;
+
+        //        m_location.Location = new Box2(
+        //            new Vector2(
+        //                collision.X != 0f ? collision.X : newTargetPosition.X,
+        //                collision.Y != 0f ? collision.Y : newTargetPosition.Y
+        //                ),
+        //            m_location.Location.Size);
+        //    }
+        //    else
+        //    {
+        //        m_location.Location = new Box2(newTargetPosition, m_location.Location.Size);
+        //        Grounded = false;
+        //    }
+        //}
 
         //private void TestCollision(TimeSpan elapsed)
         //{

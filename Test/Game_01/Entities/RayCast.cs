@@ -22,25 +22,33 @@ namespace Test.Game_01.Entities
             m_id = Guid.NewGuid();
         }
 
-        public Tuple<Vector2?, Vector2, double, Guid> Collision2()
+        public Tuple<float?, float?, double, double> Collision2()
         {
             var map = World.Instance.Level.Map;
 
-            Tuple<Vector2?, Vector2> result = map.Move(m_start, m_end);
+            Tuple<float?, float?> result = map.Move(m_start, m_end);
 
-            var distance = -1.0;
-            Vector2? v = null;
+            var distanceX = -1.0;
+            var distanceY = -1.0;
 
-            if (result.Item1.HasValue)
+            var collisionX = result.Item1;
+            var collisionY = result.Item2;
+
+            if (collisionX.HasValue)
             {
-                v = new Vector2(
-                    result.Item1.Value.X + m_indices.X * Map.CELL_SIZE,
-                    result.Item1.Value.Y + m_indices.Y * Map.CELL_SIZE);
+                distanceX = Math.Sqrt(Math.Pow(result.Item1.Value - m_start.X, 2) + Math.Pow(m_start.Y - m_start.Y, 2));
 
-                distance = Math.Sqrt(Math.Pow(v.Value.X - m_start.X, 2) + Math.Pow(v.Value.Y - m_start.Y, 2));
+                collisionX = result.Item1 - m_indices.X; 
             }
 
-            return new Tuple<Vector2?, Vector2, double, Guid>(result.Item1, result.Item2, distance, this.m_id);
+            if (collisionY.HasValue)
+            {
+                distanceY = Math.Sqrt(Math.Pow(m_start.X - m_start.X, 2) + Math.Pow(result.Item2.Value - m_start.Y, 2));
+
+                collisionY = result.Item2 - m_indices.Y; 
+            }
+
+            return new Tuple<float?, float?, double, double>(collisionX, collisionY, distanceX, distanceY);
         }
 
         public Guid Id
