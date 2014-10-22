@@ -48,6 +48,11 @@ namespace Test.Game_01.Entities
 
             Velocity += momentum * (float)elapsed.TotalSeconds;
 
+            if (Grounded && Engine.Keyboard.IsKeyPressed(Key.Up))
+            {
+                Velocity += new Vector2(0, 550);
+            }
+
             if (Math.Abs(Velocity.X) > 800)
             {
                 Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
@@ -57,6 +62,41 @@ namespace Test.Game_01.Entities
                 var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
                 Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
             }
+
+            var displacement = Velocity * (float)elapsed.TotalSeconds;
+            var newLocation = m_location.Location.Translate(displacement);
+            var collision = World.Instance.Level.Map.TestCollision(newLocation, displacement);
+
+            Grounded = false;
+
+            if (collision != null)
+            {
+                if (collision.Normal.Y == 1)
+                {
+                    Grounded = true;
+                }
+
+                if (collision.AjustedPosition.Position.Y != newLocation.Position.Y)
+                {
+                    Velocity = new Vector2(Velocity.X, 0);
+                }
+
+                if(collision.AjustedPosition.Position.X != newLocation.Position.X)
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                }
+
+                newLocation = collision.AjustedPosition;
+            }
+
+            m_location.Location = newLocation;
+            
+            //new Box2(
+            //    (float)Math.Round(newLocation.MinX, 1),
+            //    (float)Math.Round(newLocation.MinY, 1),
+            //    newLocation.Size.X, newLocation.Size.Y);
+
+            return;
 
             Vector2 newTargetPosition = m_location.Location.Position + Velocity * (float)elapsed.TotalSeconds;
 

@@ -16,6 +16,7 @@ namespace Test.Game_01.Entities
 
         public Player Player { get { return m_player; } }
         public Level Level { get { return m_level; } }
+        public Camera Camera { get { return m_camera; } }
 
         private static World s_instance;
         public static World Instance {

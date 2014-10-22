@@ -28,5 +28,13 @@ namespace Test.Game_01.Maps
                 return m_top;
             }
         }
+
+        public override bool CanPassThrough
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

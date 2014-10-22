@@ -150,8 +150,8 @@ namespace Test.Game_01.Entities
         {
             if (m_rigidBody.Grounded)
             {
-                m_rigidBody.Velocity += new Vector2(0, 550);
-                m_rigidBody.Grounded = false;
+                //m_rigidBody.Velocity += new Vector2(0, 550);
+                //m_rigidBody.Grounded = false;
             }
         }
 

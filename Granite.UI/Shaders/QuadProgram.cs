@@ -12,8 +12,9 @@ namespace Granite.UI.Shaders
         public ProgramAttribute<Vector2> Vertex { get; private set; }
         public ProgramAttribute<Vector2> Position { get; private set; }
         public ProgramAttribute<Vector2> Size { get; private set; }
-        public ProgramAttribute<int> BorderThickness { get; private set; }
-        public ProgramAttribute<int> CornerRadius { get; private set; }
+        public ProgramAttribute<Vector4> Color { get; private set; }
+        //public ProgramAttribute<int> BorderThickness { get; private set; }
+        //public ProgramAttribute<int> CornerRadius { get; private set; }
 
         private QuadProgram()
             : base(
@@ -25,8 +26,9 @@ namespace Granite.UI.Shaders
             Vertex = GetAttribute<Vector2>("vertex");
             Position = GetAttribute<Vector2>("position");
             Size = GetAttribute<Vector2>("size");
-            BorderThickness = GetAttribute<int>("border_thickness");
-            CornerRadius = GetAttribute<int>("corner_radius");
+            Color = GetAttribute<Vector4>("color");
+            //BorderThickness = GetAttribute<int>("border_thickness");
+            //CornerRadius = GetAttribute<int>("corner_radius");
         }
 
         private static QuadProgram s_instance;

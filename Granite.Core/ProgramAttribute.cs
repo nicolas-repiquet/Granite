@@ -86,7 +86,7 @@ namespace Granite.Core
                 (uint)Location,
                 view.Size,
                 view.Type,
-                true,
+                false,
                 view.Stride,
                 new IntPtr(view.Offset)
             );

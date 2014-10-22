@@ -9,21 +9,28 @@ namespace Granite.UI
 {
     public sealed class Graphics
     {
+        private const int QUAD_COUNT = 10000;
+
         private struct QuadData
         {
             public Vector2 Position;
             public Vector2 Size;
+            public Vector4 Color;
+            //public int BorderThickness;
+            //public int CornerRadius;
+            //public Vector4d TextureCoordinates;
         }
 
-        private readonly List<QuadData> m_quads;
         private readonly Buffer<Vector2> m_vertices;
         private readonly Buffer<QuadData> m_buffer;
+        private readonly QuadData[] m_quads;
         private readonly QuadProgram m_program;
         private readonly VertexArray m_vertexArray;
+        private int m_count;
 
         public Graphics()
         {
-            m_quads = new List<QuadData>();
+            m_quads = new QuadData[QUAD_COUNT];
 
             m_vertices = new Buffer<Vector2>();
             m_vertices.SetData(new Vector2[] {
@@ -34,6 +41,7 @@ namespace Granite.UI
             });
 
             m_buffer = new Buffer<QuadData>();
+            m_buffer.SetData(m_quads);
 
             m_program = QuadProgram.Instance;
             m_vertexArray = new VertexArray();
@@ -49,39 +57,50 @@ namespace Granite.UI
             m_program.Size.SetValue(m_buffer.GetView<Vector2>("Size"));
             m_program.Size.SetDivisor(1);
 
+            m_program.Color.SetValue(m_buffer.GetView<Vector4>("Color"));
+            m_program.Color.SetDivisor(1);
+
             GL.BindVertexArray(null);
             GL.UseProgram(null);
         }
 
-        public void Render()
+        public void Flush()
         {
-            if (m_quads.Count > 0)
+            if (m_count > 0)
             {
-                m_buffer.SetData(m_quads.ToArray());
+                m_buffer.SetData(m_quads);
 
                 GL.UseProgram(m_program);
                 GL.BindVertexArray(m_vertexArray);
 
                 m_program.ScreenSize.SetValue(Engine.Display.GetSize());
 
-                GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_quads.Count);
+                GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_count);
 
                 GL.BindVertexArray(null);
                 GL.UseProgram(null);
+
+                m_count = 0;
             }
         }
 
         public void Clear()
         {
-            m_quads.Clear();
+            m_count = 0;
         }
 
-        public void FillRectangle(Box2 rectangle)
+        public void FillRectangle(Box2i rectangle, Color4 color)
         {
-            m_quads.Add(new QuadData() {
-                Position = rectangle.Position,
-                Size = rectangle.Size
-            });
+            if (m_count == QUAD_COUNT)
+            {
+                Flush();
+            }
+
+            m_quads[m_count++] = new QuadData() {
+                Position = new Vector2(rectangle.Position.X, rectangle.Position.Y),
+                Size = new Vector2(rectangle.Size.X, rectangle.Size.Y),
+                Color = new Vector4(color.R, color.G,color.B, color.A)
+            };
         }
     }
 }

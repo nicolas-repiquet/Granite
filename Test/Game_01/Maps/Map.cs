@@ -1,4 +1,5 @@
 ﻿using Granite.Core;
+using Granite.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,13 +57,64 @@ namespace Test.Game_01.Maps
         public sealed class Cell
         {
             public Material Material { get; private set; }
+            
             public ISpriteInstance Sprite { get; private set; }
+
+            public VerticalEdge LeftEdge { get; set; }
+            public VerticalEdge RightEdge { get; set; }
+            
+            public HorizontalEdge TopEdge { get; set; }
+            public HorizontalEdge BottomEdge { get; set; }
 
             public Cell(Material material, ISpriteInstance sprite)
             {
                 Material = material;
                 Sprite = sprite;
             }
+        }
+
+        public abstract class Edge
+        {
+
+        }
+
+        public sealed class VerticalEdge : Edge
+        {
+            public int X { get; private set; }
+            public int NX { get; private set; }
+            public int Y0 { get; private set; }
+            public int Y1 { get; private set; }
+
+            public VerticalEdge(int x, int nx, int y0, int y1)
+            {
+                X = x;
+                NX = nx;
+                Y0 = y0;
+                Y1 = y1;
+            }
+        }
+
+        public sealed class HorizontalEdge : Edge
+        {
+            public int Y { get; private set; }
+            public int NY { get; private set; }
+            public int X0 { get; private set; }
+            public int X1 { get; private set; }
+
+            public HorizontalEdge(int y, int ny, int x0, int x1)
+            {
+                Y = y;
+                NY = ny;
+                X0 = x0;
+                X1 = x1;
+            }
+        }
+
+        public sealed class Collision
+        {
+            public Box2 AjustedPosition { get; set; }
+            public Vector2 Normal { get; set; }
+            public Material Material { get; set; }
         }
 
         public class Segment
@@ -182,7 +234,278 @@ namespace Test.Game_01.Maps
             }
 
             CalculSegments();
+
+            for (int y = 0; y < m_height; y++)
+            {
+                for (int x = 0; x < m_width; x++)
+                {
+                    var cell = GetCell(x, y);
+
+                    if (cell != null)
+                    {
+                        var leftCell = GetCell(x - 1, y);
+                        var bottomCell = GetCell(x, y - 1);
+                        var rightCell = GetCell(x + 1, y);
+                        var topCell = GetCell(x, y + 1);
+
+                        if (x == 0 || leftCell == null)
+                        {
+                            cell.LeftEdge = new VerticalEdge(
+                                x * CELL_SIZE,
+                                GetNormal(null, cell),
+                                y * CELL_SIZE,
+                                y * CELL_SIZE + CELL_SIZE
+                            );
+                        }
+                        else
+                        {
+                            cell.LeftEdge = leftCell.RightEdge;
+                        }
+
+                        if (y == 0 || bottomCell == null)
+                        {
+                            cell.BottomEdge = new HorizontalEdge(
+                                y * CELL_SIZE,
+                                GetNormal(cell, null),
+                                x * CELL_SIZE,
+                                x * CELL_SIZE + CELL_SIZE
+                            );
+                        }
+                        else
+                        {
+                            cell.BottomEdge = bottomCell.TopEdge;
+                        }
+
+                        cell.RightEdge = new VerticalEdge(
+                            x * CELL_SIZE + CELL_SIZE,
+                            GetNormal(cell, rightCell),
+                            y * CELL_SIZE,
+                            y * CELL_SIZE + CELL_SIZE
+                        );
+
+                        cell.TopEdge = new HorizontalEdge(
+                            y * CELL_SIZE + CELL_SIZE,
+                            GetNormal(topCell, cell),
+                            x * CELL_SIZE,
+                            x * CELL_SIZE + CELL_SIZE
+                        );
+                    }
+                }
+            }
         }
+
+        private int GetNormal(Cell cell0, Cell cell1)
+        {
+            if (cell0 == null || cell0.Material.CanPassThrough)
+            {
+                if (cell1 == null || cell1.Material.CanPassThrough)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else
+            {
+                if (cell1 == null || cell1.Material.CanPassThrough)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public Cell GetCell(int x, int y)
+        {
+            if (x < 0 || x >= m_width || y < 0 || y >= m_height)
+            {
+                return null;
+            }
+            else
+            {
+                return m_packs[x / CELL_PACK_SIZE, y / CELL_PACK_SIZE].GetCell(x % CELL_PACK_SIZE, y % CELL_PACK_SIZE);
+            }
+        }
+
+        private Box2 AdjustYLocation(Box2 location, Vector2 displacement, out Material material, out Vector2 normal)
+        {
+            var adjustedLocation = location;
+
+            var xstart = (int)(location.MinX / CELL_SIZE);
+            var xstop = (int)(location.MaxX / CELL_SIZE);
+            var ystart = (int)(location.MinY / CELL_SIZE);
+            var ystop = (int)(location.MaxY / CELL_SIZE);
+
+            material = null;
+            normal = Vector2.Zero;
+
+            for (int y = ystart; y <= ystop; y++)
+            {
+                for (int x = xstart; x <= xstop; x++)
+                {
+                    var cell = GetCell(x, y);
+
+                    if (cell != null)
+                    {
+                        if (displacement.Y > 0)
+                        {
+                            if (cell.BottomEdge.NY == -1 &&
+                                cell.BottomEdge.X0 < adjustedLocation.MaxX &&
+                                cell.BottomEdge.X1 > adjustedLocation.MinX &&
+                                cell.BottomEdge.Y > adjustedLocation.MinY &&
+                                cell.BottomEdge.Y < adjustedLocation.MaxY)
+                            {
+                                material = cell.Material;
+                                normal = new Vector2(0, -1);
+
+                                adjustedLocation = adjustedLocation.Translate(new Vector2(0, cell.BottomEdge.Y - adjustedLocation.MaxY));
+                            }
+                        }
+                        else if (displacement.Y < 0)
+                        {
+                            if (cell.TopEdge.NY == 1 &&
+                                cell.TopEdge.X0 < adjustedLocation.MaxX &&
+                                cell.TopEdge.X1 > adjustedLocation.MinX &&
+                                cell.TopEdge.Y > adjustedLocation.MinY &&
+                                cell.TopEdge.Y < adjustedLocation.MaxY)
+                            {
+                                material = cell.Material;
+                                normal = new Vector2(0, 1);
+
+                                adjustedLocation = adjustedLocation.Translate(new Vector2(0, cell.TopEdge.Y - adjustedLocation.MinY));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return adjustedLocation;
+        }
+
+        public Box2 AdjustXLocation(Box2 location, Vector2 displacement, out Material material, out Vector2 normal)
+        {
+            var adjustedLocation = location;
+
+            var xstart = (int)(location.MinX / CELL_SIZE);
+            var xstop = (int)(location.MaxX / CELL_SIZE);
+            var ystart = (int)(location.MinY / CELL_SIZE);
+            var ystop = (int)(location.MaxY / CELL_SIZE);
+
+            material = null;
+            normal = Vector2.Zero;
+
+            for (int y = ystart; y <= ystop; y++)
+            {
+                for (int x = xstart; x <= xstop; x++)
+                {
+                    var cell = GetCell(x, y);
+
+                    if (cell != null)
+                    {
+                        if (displacement.X > 0)
+                        {
+                            if (cell.LeftEdge.NX == 1 &&
+                                cell.LeftEdge.Y0 < adjustedLocation.MaxY &&
+                                cell.LeftEdge.Y1 > adjustedLocation.MinY &&
+                                cell.LeftEdge.X > adjustedLocation.MinX &&
+                                cell.LeftEdge.X < adjustedLocation.MaxX)
+                            {
+                                material = cell.Material;
+                                normal = new Vector2(1, 0);
+
+                                adjustedLocation = adjustedLocation.Translate(new Vector2(cell.LeftEdge.X - adjustedLocation.MaxX, 0));
+                            }
+                        }
+                        else if (displacement.X < 0)
+                        {
+                            if (cell.RightEdge.NX == -1 &&
+                                cell.RightEdge.Y0 < adjustedLocation.MaxY &&
+                                cell.RightEdge.Y1 > adjustedLocation.MinY &&
+                                cell.RightEdge.X > adjustedLocation.MinX &&
+                                cell.RightEdge.X < adjustedLocation.MaxX)
+                            {
+                                material = cell.Material;
+                                normal = new Vector2(-1, 0);
+
+                                adjustedLocation = adjustedLocation.Translate(new Vector2(cell.RightEdge.X - adjustedLocation.MinX, 0));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return adjustedLocation;
+        }
+
+        public Collision TestCollision(Box2 location, Vector2 displacement)
+        {
+            Vector2 xnormal;
+            Material xmaterial;
+            var xlocation = AdjustXLocation(location, displacement, out xmaterial, out xnormal);
+            Vector2 ynormal;
+            Material ymaterial;
+            var ylocation = AdjustYLocation(location, displacement, out ymaterial, out ynormal);
+            var xdisplacement = location.Position - xlocation.Position;
+            var ydisplacement = location.Position - ylocation.Position;
+            var xlength = xdisplacement.Length;
+            var ylength = ydisplacement.Length;
+
+            if (xlength > 0)
+            {
+                if (ylength > 0)
+                {
+                    if (xlength < ylength)
+                    {
+                        return new Collision()
+                        {
+                            Normal = xnormal,
+                            Material = xmaterial,
+                            AjustedPosition = AdjustYLocation(xlocation, displacement, out ymaterial, out ynormal)
+                        };
+                    }
+                    else
+                    {
+                        return new Collision()
+                        {
+                            Normal = ynormal,
+                            Material = ymaterial,
+                            AjustedPosition = AdjustXLocation(ylocation, displacement, out xmaterial, out xnormal)
+                        };
+                    }
+                }
+                else
+                {
+                    return new Collision()
+                    {
+                        Normal = xnormal,
+                        Material = xmaterial,
+                        AjustedPosition = xlocation
+                    };
+                }
+            }
+            else
+            {
+                if (ylength > 0)
+                {
+                    return new Collision()
+                    {
+                        Normal = ynormal,
+                        Material = ymaterial,
+                        AjustedPosition = ylocation
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
 
         public void Render(Matrix4 transform)
         {
@@ -195,7 +518,70 @@ namespace Test.Game_01.Maps
                     );
                 }
             }
+
+            RenderDebugData();
         }
+
+        #region DEBUG
+        private readonly Graphics m_g = new Graphics();
+        private void RenderDebugData()
+        {
+            m_g.Clear();
+            var camera = World.Instance.Camera;
+
+            for (int y = 0; y < m_height; y++)
+            {
+                for (int x = 0; x < m_width; x++)
+                {
+                    var cell = GetCell(x, y);
+
+                    if (cell != null)
+                    {
+                        if (cell.LeftEdge.NX == 1)
+                        {
+                            m_g.FillRectangle(new Box2i(
+                                cell.LeftEdge.X - 1 - (int)camera.Location.MinX,
+                                cell.LeftEdge.Y0 - (int)camera.Location.MinY, 2, 70),
+                                new Color4(0xFF, 0x00, 0x00, 0xFF));
+                        }
+
+                        if (cell.RightEdge.NX == -1)
+                        {
+                            m_g.FillRectangle(new Box2i(
+                                cell.RightEdge.X - 1 - (int)camera.Location.MinX,
+                                cell.RightEdge.Y0 - (int)camera.Location.MinY, 2, 70),
+                                new Color4(0x00, 0xFF, 0x00, 0xFF));
+                        }
+
+                        if (cell.TopEdge.NY == 1)
+                        {
+                            m_g.FillRectangle(new Box2i(
+                                cell.TopEdge.X0 - (int)camera.Location.MinX,
+                                cell.TopEdge.Y - 1 - (int)camera.Location.MinY, 70, 2),
+                                new Color4(0xFF, 0x00, 0xFF, 0xFF));
+                        }
+
+                        if (cell.BottomEdge.NY == -1)
+                        {
+                            m_g.FillRectangle(new Box2i(
+                                cell.BottomEdge.X0 - (int)camera.Location.MinX,
+                                cell.BottomEdge.Y - 1 - (int)camera.Location.MinY, 70, 2),
+                                new Color4(0xFF, 0xFF, 0x00, 0xFF));
+                        }
+                    }
+                }
+            }
+
+            var player = World.Instance.Player.Location;
+            m_g.FillRectangle(new Box2i(
+                (int)(player.MinX - camera.Location.MinX),
+                (int)(player.MinY - camera.Location.MinY),
+                (int)player.Size.X, (int)player.Size.Y
+            ), new Color4(0x00, 0xFF, 0xFF, 0x80));
+
+            m_g.Flush();
+        }
+        #endregion
 
         private void CalculSegments()
         {
