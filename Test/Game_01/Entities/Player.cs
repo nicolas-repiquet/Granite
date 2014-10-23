@@ -143,7 +143,7 @@ namespace Test.Game_01.Entities
 
         public void SetPosition(Vector2 position)
         {
-            m_location.Location = new Box2(position, new Vector2(70, 70));
+            m_location.Location = new Box2(position, new Vector2(32, 32));
         }
 
         public void Jump()

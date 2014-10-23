@@ -11,7 +11,7 @@ namespace Test.Game_01.Maps
 {
     public sealed class Map
     {
-        public const int CELL_SIZE = 70;
+        public const int CELL_SIZE = 32;
         private const int CELL_PACK_SIZE = 16;
 
         private sealed class CellPack
@@ -541,7 +541,7 @@ namespace Test.Game_01.Maps
                         {
                             m_g.FillRectangle(new Box2i(
                                 cell.LeftEdge.X - 1 - (int)camera.Location.MinX,
-                                cell.LeftEdge.Y0 - (int)camera.Location.MinY, 2, 70),
+                                cell.LeftEdge.Y0 - (int)camera.Location.MinY, 2, CELL_SIZE),
                                 new Color4(0xFF, 0x00, 0x00, 0xFF));
                         }
 
@@ -549,7 +549,7 @@ namespace Test.Game_01.Maps
                         {
                             m_g.FillRectangle(new Box2i(
                                 cell.RightEdge.X - 1 - (int)camera.Location.MinX,
-                                cell.RightEdge.Y0 - (int)camera.Location.MinY, 2, 70),
+                                cell.RightEdge.Y0 - (int)camera.Location.MinY, 2, CELL_SIZE),
                                 new Color4(0x00, 0xFF, 0x00, 0xFF));
                         }
 
@@ -557,7 +557,7 @@ namespace Test.Game_01.Maps
                         {
                             m_g.FillRectangle(new Box2i(
                                 cell.TopEdge.X0 - (int)camera.Location.MinX,
-                                cell.TopEdge.Y - 1 - (int)camera.Location.MinY, 70, 2),
+                                cell.TopEdge.Y - 1 - (int)camera.Location.MinY, CELL_SIZE, 2),
                                 new Color4(0xFF, 0x00, 0xFF, 0xFF));
                         }
 
@@ -565,7 +565,7 @@ namespace Test.Game_01.Maps
                         {
                             m_g.FillRectangle(new Box2i(
                                 cell.BottomEdge.X0 - (int)camera.Location.MinX,
-                                cell.BottomEdge.Y - 1 - (int)camera.Location.MinY, 70, 2),
+                                cell.BottomEdge.Y - 1 - (int)camera.Location.MinY, CELL_SIZE, 2),
                                 new Color4(0xFF, 0xFF, 0x00, 0xFF));
                         }
                     }

@@ -27,7 +27,7 @@ void main()
 
 	relative_position = vertex * size;
 
-    gl_Position = new vec4(
+    gl_Position = vec4(
 		(position.x + vertex.x * size.x) / screen_size.x * 2 - 1, 
 		(position.y + vertex.y * size.y) / screen_size.y * 2 - 1, 
 		0,

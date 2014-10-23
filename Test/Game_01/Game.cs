@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Test.Game_01.Entities;
+using Test.Game_01.GameStates;
 using Test.Game_01.Levels;
 using Test.Game_01.Maps;
 using Test.Game_01.Sprites;
@@ -21,12 +22,9 @@ namespace Test.Game_01
             });
         }
 
-
-        private World m_world;
-
         public override void Start()
         {
-            m_world = new World(new Level_01());
+            
         }
 
         public override void Render(TimeSpan elapsed)
@@ -35,7 +33,7 @@ namespace Test.Game_01
 
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
 
-            m_world.Update(elapsed);
+            StateManager.Instance.Update(elapsed);
 
             var size = Engine.Display.GetSize();
 
@@ -45,7 +43,7 @@ namespace Test.Game_01
             GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            m_world.Render(Matrix4.Identity);
+            StateManager.Instance.Draw();
 
             //Thread.Sleep(5);
         }

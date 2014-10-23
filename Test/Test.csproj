@@ -67,6 +67,12 @@
     <Compile Include="Game_01\Entities\SpriteSequence.cs" />
     <Compile Include="Game_01\Entities\World.cs" />
     <Compile Include="Game_01\Game.cs" />
+    <Compile Include="Game_01\GameStates\States\PauseState.cs" />
+    <Compile Include="Game_01\GameStates\States\EditorState.cs" />
+    <Compile Include="Game_01\GameStates\States\MainMenuState.cs" />
+    <Compile Include="Game_01\GameStates\States\GameState.cs" />
+    <Compile Include="Game_01\GameStates\IGameState.cs" />
+    <Compile Include="Game_01\GameStates\StateManager.cs" />
     <Compile Include="Game_01\Levels\Level_02.cs" />
     <Compile Include="Game_01\Levels\Level.cs" />
     <Compile Include="Game_01\Levels\Level_01.cs" />
@@ -87,7 +93,6 @@
     <Compile Include="Game_01\Sprites\SpriteRenderer.cs" />
     <Compile Include="Game_01\Sprites\SpriteSheet.cs" />
     <Compile Include="Game_01\Sprites\TilesSprites.cs" />
-    <Compile Include="Game_02\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +135,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Game_02\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
