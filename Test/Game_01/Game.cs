@@ -45,7 +45,7 @@ namespace Test.Game_01
 
             StateManager.Instance.Draw();
 
-            //Thread.Sleep(5);
+            Thread.Sleep(5);
         }
     }
 }

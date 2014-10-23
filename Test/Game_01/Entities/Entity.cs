@@ -9,6 +9,7 @@ namespace Test.Game_01.Entities
     {
         public Component FirstComponent { get; set; }
 
+
         public IEnumerable<Component> Components
         {
             get
