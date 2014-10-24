@@ -18,7 +18,7 @@ namespace Test.Game_01.Entities
             Velocity = new Vector2(0, 0);
         }
 
-
+        public Vector2 Direction { get; set; }
         public double Mass { get; set; }
         public Vector2 Velocity { get; set; }
         public bool Grounded { get; set; }
@@ -36,22 +36,11 @@ namespace Test.Game_01.Entities
 
             momentum += new Vector2(0, -1000); // gravity
 
-            if (Engine.Keyboard.IsKeyPressed(Key.Left))
-            {
-                momentum += new Vector2(-1500, 0);
-            }
-
-            if (Engine.Keyboard.IsKeyPressed(Key.Right))
-            {
-                momentum += new Vector2(1500, 0);
-            }
+            momentum += Direction;
 
             Velocity += momentum * (float)elapsed.TotalSeconds;
 
-            if (Grounded && Engine.Keyboard.IsKeyPressed(Key.Up))
-            {
-                Velocity += new Vector2(0, 550);
-            }
+            Direction = Vector2.Zero;
 
             if (Math.Abs(Velocity.X) > 800)
             {

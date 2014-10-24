@@ -8,13 +8,14 @@ namespace Test.Game_01.Entities
 {
     public sealed class SpriteSequence : IUpdatable
     {
-        private const double SpritesPerSecond = 15;
+        public double SpritesPerSecond { get; set;}
         private readonly Sprite[] m_sprites;
         private double m_time;
 
         public SpriteSequence(params Sprite[] sprites)
         {
             m_sprites = sprites;
+            SpritesPerSecond = 15;
         }
 
         public void Update(TimeSpan elapsed)
@@ -35,5 +36,6 @@ namespace Test.Game_01.Entities
                 return m_sprites[(int)(m_time * SpritesPerSecond) % m_sprites.Length];
             }
         }
+
     }
 }

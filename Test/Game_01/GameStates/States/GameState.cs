@@ -62,12 +62,17 @@ namespace Test.Game_01.GameStates
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Left))
                 {
-                    //momentum += new Vector2(-1500, 0);
+                    m_world.Player.RigidBody.Direction += new Vector2(-30000, 0);
                 }
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Right))
                 {
-                    //momentum += new Vector2(1500, 0);
+                    m_world.Player.RigidBody.Direction += new Vector2(30000, 0);
+                }
+
+                if (m_world.Player.RigidBody.Grounded && Engine.Keyboard.IsKeyPressed(Key.Up))
+                {
+                    m_world.Player.RigidBody.Velocity += new Vector2(0, 550);
                 }
 
                 m_lastInput = DateTime.Now;

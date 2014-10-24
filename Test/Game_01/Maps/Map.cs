@@ -615,6 +615,14 @@ namespace Test.Game_01.Maps
                 (int)player.Size.X, (int)player.Size.Y
             ), new Color4(0x00, 0xFF, 0xFF, 0x80));
 
+            foreach (var ennemy in World.Instance.Ennemies)
+            {
+                m_g.FillRectangle(new Box2i(
+                    (int)(ennemy.Location.MinX - camera.Location.MinX),
+                    (int)(ennemy.Location.MinY - camera.Location.MinY),
+                    (int)ennemy.Location.Size.X, (int)ennemy.Location.Size.Y
+                ), new Color4(0xFF, 0xFF, 0x00, 0x80));
+            }
             m_g.Flush();
         }
         #endregion

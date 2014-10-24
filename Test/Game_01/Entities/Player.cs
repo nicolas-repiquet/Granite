@@ -28,6 +28,7 @@ namespace Test.Game_01.Entities
         private bool m_down;
 
         public Box2 Location { get { return m_location.Location; } }
+        public RigidBodyComponent RigidBody { get { return m_rigidBody; } }
 
         public Player()
         {
