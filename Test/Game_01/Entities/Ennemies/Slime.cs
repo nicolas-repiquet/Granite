@@ -20,8 +20,6 @@ namespace Test.Game_01.Entities.Ennemies
 
         public Slime()
         {
-            m_sprite = m_renderer.AddSprite(EnemiesSprites.Instance.SlimeWalkLeft1);
-
             m_idleLeftSequence = new SpriteSequence(
                 EnemiesSprites.Instance.SlimeWalkLeft1
             );
@@ -79,13 +77,18 @@ namespace Test.Game_01.Entities.Ennemies
             m_location.Location = new Box2(position, new Vector2(50, 32));
         }
 
+        public override void SetSprite(SpriteRenderer renderer)
+        {
+            m_sprite = renderer.AddSprite(EnemiesSprites.Instance.SlimeWalkRight1);
+        }
+
         public override void Update(TimeSpan elapsed)
         {
             if (m_target != null)
             {
                 var direction = new Vector2(
-                    m_target.Location.Position.X - m_location.Location.Position.X,
-                    m_target.Location.Position.Y - m_location.Location.Position.Y
+                    m_target.Location.Center.X - m_location.Location.Position.X,
+                    m_target.Location.Center.Y - m_location.Location.Position.Y
                     );
                 m_rigidBody.Direction = direction;
 
@@ -106,14 +109,15 @@ namespace Test.Game_01.Entities.Ennemies
             }
 
             m_currentSequence.Update(elapsed);
-        }
 
-        public override void Render(Matrix4 transform)
-        {
             m_sprite.Position = m_location.Location.Position;
             m_sprite.Sprite = m_currentSequence.CurrentSprite;
             m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
-            m_renderer.Render(transform);
         }
+
+        //public override void Render(Matrix4 transform)
+        //{
+
+        //}
     }
 }

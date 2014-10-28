@@ -148,13 +148,13 @@ namespace Granite.Core
                     var size = TypeSize * data.Length;
                     GL.BindBuffer(GL.ARRAY_BUFFER, Name);
                     GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), GL.STATIC_DRAW);
-                    int realSize;
-                    GL.GetBufferParameteriv(GL.ARRAY_BUFFER, GL.BUFFER_SIZE, out realSize);
-                    m_count = data.Length;
-                    if (size != realSize)
-                    {
-                        throw new Exception();
-                    }
+                    //int realSize;
+                    //GL.GetBufferParameteriv(GL.ARRAY_BUFFER, GL.BUFFER_SIZE, out realSize);
+                    //m_count = data.Length;
+                    //if (size != realSize)
+                    //{
+                    //    throw new Exception();
+                    //}
                 }
                 finally
                 {

@@ -55,6 +55,7 @@
     <Compile Include="Game_01\Entities\Camera.cs" />
     <Compile Include="Game_01\Entities\Component.cs" />
     <Compile Include="Game_01\Entities\Ennemies\Ennemy.cs" />
+    <Compile Include="Game_01\Entities\Ennemies\EnnemyManager.cs" />
     <Compile Include="Game_01\Entities\Ennemies\Slime.cs" />
     <Compile Include="Game_01\Entities\Entity.cs" />
     <Compile Include="Game_01\Entities\FollowTargetComponent.cs" />

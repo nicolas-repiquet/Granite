@@ -46,6 +46,18 @@ namespace Granite.Core
             Console.WriteLine("Vendor : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.VENDOR)));
             Console.WriteLine("Renderer : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.RENDERER)));
 
+            //float valueF = 0f;
+            //double valueD = 0;
+            //int valueI = 0;
+            //GL.GetFloatv(GL.ALIASED_LINE_WIDTH_RANGE, out valueF);
+            //Console.WriteLine("ALIASED_LINE_WIDTH_RANGE : {0}", valueF);
+            //GL.GetDoublev(GL.MAX_RECTANGLE_TEXTURE_SIZE, out valueD);
+            //Console.WriteLine("MAX_RECTANGLE_TEXTURE_SIZE : {0}", valueD);
+            //GL.GetDoublev(GL.MAX_RENDERBUFFER_SIZE, out valueD);
+            //Console.WriteLine("MAX_RENDERBUFFER_SIZE : {0}", valueD);
+            //GL.GetIntegerv(GL.MAX_SAMPLES, out valueI);
+            //Console.WriteLine("MAX_SAMPLES : {0}", valueI);
+
             Console.WriteLine("=================================");
 
             var oldContext = SynchronizationContext.Current;
@@ -181,7 +193,13 @@ namespace Granite.Core
 
             m_logic.Render(elapsed);
             
-            WinApi.SwapBuffers(m_display.DeviceContext);
+            var result = WinApi.SwapBuffers(m_display.DeviceContext);
+
+            if (!result)
+            {
+                var error = WinApi.GetLastError();
+                Console.WriteLine("Error : " + error);
+            }
         }
 
         public double FramesPerSecond { get { return m_framesPerSecond; } }

@@ -144,8 +144,8 @@ namespace Test.Game_01.Sprites
 
             GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_instances.Count);
 
-            GL.BindVertexArray(null);
-            GL.UseProgram(null);
+            //GL.BindVertexArray(null);
+            //GL.UseProgram(null);
         }
 
         private void RebuildBuffer()
