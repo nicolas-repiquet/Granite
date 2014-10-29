@@ -53,11 +53,6 @@ namespace Test.Game_01.GameStates
                     StateManager.Instance.SetGameState(EGameState.EDITOR);
                 }
 
-                if (Engine.Keyboard.IsKeyPressed(Key.F4))
-                {
-                    StateManager.Instance.SetGameState(EGameState.PAUSE);
-                }
-
                 m_lastInput = DateTime.Now;
             }
         }

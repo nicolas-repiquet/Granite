@@ -15,13 +15,10 @@ namespace Test.Game_01.Entities
         private readonly Level m_level;
         private readonly Camera m_camera;
         private readonly Player m_player;
-        private List<Ennemy> m_ennemies;
 
         public Player Player { get { return m_player; } }
         public Level Level { get { return m_level; } }
         public Camera Camera { get { return m_camera; } }
-
-        public List<Ennemy> Ennemies { get { return m_ennemies; } }
 
         private static World s_instance;
         public static World Instance {
@@ -43,17 +40,15 @@ namespace Test.Game_01.Entities
 
             Player.SetPosition(new Vector2(0, 350));
 
-            m_ennemies = new List<Ennemy>();
-
             var random = new Random();
 
-            for (var i = 0; i < 10000; i++)
+            for (var i = 0; i < 5000; i++)
             {
                 var slime = new Slime();
                 slime.SetPosition(new Vector2((float)random.Next(0, (int)m_level.Map.Size.X), 
                     (float)random.Next(0, (int)m_level.Map.Size.Y)));
                 slime.SetTarget(Player);
-                m_ennemies.Add(slime);
+                EnnemyManager.Instance.AddEnnemy(slime);
             }
 
            
@@ -75,12 +70,7 @@ namespace Test.Game_01.Entities
             m_camera.Update(elapsed);
             m_background.Update(elapsed);
 
-            //foreach(var ennemy in m_ennemies)
-            //{
-            //    ennemy.Update(elapsed);   
-            //}
-
-            Parallel.ForEach(m_ennemies, x => x.Update(elapsed));
+            EnnemyManager.Instance.Update(elapsed);
         }
 
         public void Render(Matrix4 transform)
@@ -91,10 +81,7 @@ namespace Test.Game_01.Entities
             m_level.Map.Render(transform);
             m_player.Render(transform);
 
-            foreach (var ennemy in m_ennemies)
-            {
-                ennemy.Render(transform);
-            }
+            EnnemyManager.Instance.Render(transform);
         }
 
     }

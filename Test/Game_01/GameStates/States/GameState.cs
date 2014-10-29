@@ -45,16 +45,6 @@ namespace Test.Game_01.GameStates
                     StateManager.Instance.SetGameState(EGameState.MAINMENU);
                 }
 
-                if (Engine.Keyboard.IsKeyPressed(Key.F2))
-                {
-                    StateManager.Instance.SetGameState(EGameState.GAME);
-                }
-
-                if (Engine.Keyboard.IsKeyPressed(Key.F3))
-                {
-                    StateManager.Instance.SetGameState(EGameState.EDITOR);
-                }
-
                 if (Engine.Keyboard.IsKeyPressed(Key.F4))
                 {
                     StateManager.Instance.SetGameState(EGameState.PAUSE);

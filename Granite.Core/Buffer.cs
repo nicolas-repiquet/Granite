@@ -178,7 +178,7 @@ namespace Granite.Core
         {
             GL.BindBuffer(GL.ARRAY_BUFFER, this);
             GL.GetError();
-            var address = GL.MapBuffer(GL.ARRAY_BUFFER, GL.READ_WRITE);
+            var address = GL.MapBuffer(GL.ARRAY_BUFFER, GL.WRITE_ONLY);
 
             return new BufferMapping<T>(this, address);
         }

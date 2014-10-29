@@ -37,20 +37,6 @@ namespace Test.Game_01.GameStates
         {
             if ((DateTime.Now - m_lastInput).TotalMilliseconds > 100)
             {
-                if (Engine.Keyboard.IsKeyPressed(Key.F1))
-                {
-                    StateManager.Instance.SetGameState(EGameState.MAINMENU);
-                }
-
-                if (Engine.Keyboard.IsKeyPressed(Key.F2))
-                {
-                    StateManager.Instance.SetGameState(EGameState.GAME);
-                }
-
-                if (Engine.Keyboard.IsKeyPressed(Key.F3))
-                {
-                    StateManager.Instance.SetGameState(EGameState.EDITOR);
-                }
 
                 if (Engine.Keyboard.IsKeyPressed(Key.F4))
                 {

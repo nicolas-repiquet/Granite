@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Test.Game_01.Entities;
+using Test.Game_01.Entities.Ennemies;
 using Test.Game_01.Sprites;
 
 namespace Test.Game_01.Maps
@@ -555,7 +556,7 @@ namespace Test.Game_01.Maps
                 }
             }
 
-            RenderDebugData();
+            //RenderDebugData();
         }
 
         #region DEBUG
@@ -615,7 +616,7 @@ namespace Test.Game_01.Maps
                 (int)player.Size.X, (int)player.Size.Y
             ), new Color4(0x00, 0xFF, 0xFF, 0x80));
 
-            foreach (var ennemy in World.Instance.Ennemies)
+            foreach (var ennemy in EnnemyManager.Instance.Ennemies)
             {
                 m_g.FillRectangle(new Box2i(
                     (int)(ennemy.Location.MinX - camera.Location.MinX),
