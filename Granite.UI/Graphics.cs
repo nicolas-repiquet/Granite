@@ -16,9 +16,7 @@ namespace Granite.UI
             public Vector2 Position;
             public Vector2 Size;
             public Vector4 Color;
-            //public int BorderThickness;
-            //public int CornerRadius;
-            //public Vector4d TextureCoordinates;
+            // public Vector4 TextureCoordinates;
         }
 
         private readonly Buffer<Vector2> m_vertices;
@@ -41,7 +39,7 @@ namespace Granite.UI
             });
 
             m_buffer = new Buffer<QuadData>();
-            m_buffer.SetData(m_quads);
+            m_buffer.SetData(QUAD_COUNT, GL.STREAM_DRAW);
 
             m_program = QuadProgram.Instance;
             m_vertexArray = new VertexArray();
@@ -61,14 +59,13 @@ namespace Granite.UI
             m_program.Color.SetDivisor(1);
 
             GL.BindVertexArray(null);
-            GL.UseProgram(null);
         }
 
         public void Flush()
         {
             if (m_count > 0)
             {
-                m_buffer.SetData(m_quads);
+                m_buffer.SetSubData(m_quads, 0, m_count);
 
                 GL.UseProgram(m_program);
                 GL.BindVertexArray(m_vertexArray);
@@ -78,7 +75,6 @@ namespace Granite.UI
                 GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_count);
 
                 GL.BindVertexArray(null);
-                GL.UseProgram(null);
 
                 m_count = 0;
             }

@@ -111,7 +111,6 @@ namespace Test.Game_01.Sprites
             m_program.TextureTarget.SetValue(m_bufferSprite.GetView<Vector2>("TextureTarget"));
             m_program.TextureTarget.SetDivisor(1);
 
-            GL.UseProgram(null);
             GL.BindVertexArray(null);
 
             m_isDirty = true;
@@ -145,12 +144,11 @@ namespace Test.Game_01.Sprites
             GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_instances.Count);
 
             GL.BindVertexArray(null);
-            GL.UseProgram(null);
         }
 
         private void RebuildBuffer()
         {
-            m_bufferSprite.SetData(m_instances.Count);
+            m_bufferSprite.SetData(m_instances.Count, GL.STREAM_DRAW);
 
             using (var mapping = m_bufferSprite.Map())
             {

@@ -11,7 +11,7 @@ namespace Test.Game_01.Maps
 {
     public sealed class Map
     {
-        public const int CELL_SIZE = 32;
+        public const int CELL_SIZE = 64;
         private const int CELL_PACK_SIZE = 16;
 
         private sealed class CellPack

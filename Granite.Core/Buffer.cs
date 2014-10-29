@@ -124,19 +124,19 @@ namespace Granite.Core
             });
         }
 
-        public void SetData(int count)
+        public void SetData(int count, uint usage = GL.STATIC_DRAW)
         {
             GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-            GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(count * TypeSize), IntPtr.Zero, GL.STATIC_DRAW);
+            GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(count * TypeSize), IntPtr.Zero, usage);
             m_count = count;
         }
 
-        public void SetData(T[] data)
+        public void SetData(T[] data, uint usage = GL.STATIC_DRAW)
         {
             if (data == null)
             {
                 GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-                GL.BufferData(GL.ARRAY_BUFFER, IntPtr.Zero, IntPtr.Zero, GL.STATIC_DRAW);
+                GL.BufferData(GL.ARRAY_BUFFER, IntPtr.Zero, IntPtr.Zero, usage);
                 m_count = 0;
             }
             else
@@ -147,19 +147,30 @@ namespace Granite.Core
                 {
                     var size = TypeSize * data.Length;
                     GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-                    GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), GL.STATIC_DRAW);
-                    int realSize;
-                    GL.GetBufferParameteriv(GL.ARRAY_BUFFER, GL.BUFFER_SIZE, out realSize);
+                    GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), usage);
                     m_count = data.Length;
-                    if (size != realSize)
-                    {
-                        throw new Exception();
-                    }
                 }
                 finally
                 {
                     handle.Free();
                 }
+            }
+        }
+
+        public void SetSubData(T[] data, int offset, int count)
+        {
+            var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+
+            try
+            {
+                var size = TypeSize * count;
+                GL.BindBuffer(GL.ARRAY_BUFFER, Name);
+                GL.BufferSubData(GL.ARRAY_BUFFER, new IntPtr(offset), new IntPtr(size), handle.AddrOfPinnedObject());
+                m_count = count;
+            }
+            finally
+            {
+                handle.Free();
             }
         }
 
