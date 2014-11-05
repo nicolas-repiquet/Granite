@@ -16,6 +16,7 @@ namespace Test.Game_02
 
         private int N = 4;
         private int R = 100;
+        private int Pic = 20;
         public int NbTriangles = 0;
 
         private DateTime m_lastInput;
@@ -173,28 +174,10 @@ namespace Test.Game_02
                     }
 
                     /* production des triangles entre les deux lignes */
-                    sphere.Add(new Triangle(up[0], down[0], down[1], 
-                        new Vector4(
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble(),
-                            1
-                            )));
+                    sphere.Add(new Triangle(up[0], down[0], down[1]));
                     for (k=1;k<=j;k++) {
-                        sphere.Add(new Triangle(up[k - 1], down[k], up[k],
-                        new Vector4(
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble(),
-                            1
-                            )));
-                        sphere.Add(new Triangle(up[k], down[k], down[k + 1],
-                        new Vector4(
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble(),
-                            1
-                            )));
+                        sphere.Add(new Triangle(up[k - 1], down[k], up[k]));
+                        sphere.Add(new Triangle(up[k], down[k], down[k + 1]));
                     }
 
                     /* recopie de down dans up pour le prochain tour de boucle */
@@ -205,7 +188,19 @@ namespace Test.Game_02
                     }
                 }
             }
-            m_triangles = sphere;
+
+            m_triangles.Clear();
+            foreach (var triangle in sphere)
+            {
+                var bary = Barycentre(triangle, 1, 1, 1);
+                bary = SetNorm(bary, R+Pic);
+
+                m_triangles.Add(new Triangle(triangle.P1, triangle.P2, bary));
+                m_triangles.Add(new Triangle(triangle.P1, bary, triangle.P3));
+                m_triangles.Add(new Triangle(bary, triangle.P2, triangle.P3));
+            };
+
+            //m_triangles = sphere;
 
             NbTriangles = m_triangles.Count();
 
@@ -329,6 +324,38 @@ namespace Test.Game_02
                     {
                         N = 4;
                     }
+                    Build();
+                }
+
+                if (Engine.Keyboard.IsKeyPressed(Key.NumPad4))
+                {
+                    Pic -= 10;
+                    if (Pic < -R)
+                    {
+                        Pic = -R;
+                    }
+                    Build();
+                }
+
+                if (Engine.Keyboard.IsKeyPressed(Key.NumPad5))
+                {
+                    Pic += 10;
+                    Build();
+                }
+
+                if (Engine.Keyboard.IsKeyPressed(Key.NumPad1))
+                {
+                    R -= 10;
+                    if (R < 10)
+                    {
+                        R = 10;
+                    }
+                    Build();
+                }
+
+                if (Engine.Keyboard.IsKeyPressed(Key.NumPad2))
+                {
+                    R += 10;
                     Build();
                 }
 
