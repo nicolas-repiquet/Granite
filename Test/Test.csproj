@@ -39,7 +39,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Test.Game_01.Game</StartupObject>
+    <StartupObject>Test.Game_02.Game</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -96,6 +96,20 @@
     <Compile Include="Game_01\Sprites\SpriteRenderer.cs" />
     <Compile Include="Game_01\Sprites\SpriteSheet.cs" />
     <Compile Include="Game_01\Sprites\TilesSprites.cs" />
+    <Compile Include="Game_02\Camera.cs" />
+    <Compile Include="Game_02\Component.cs" />
+    <Compile Include="Game_02\Entity.cs" />
+    <Compile Include="Game_02\FollowTargetComponent.cs" />
+    <Compile Include="Game_02\Game.cs" />
+    <Compile Include="Game_02\Geode.cs" />
+    <Compile Include="Game_02\GeodeRenderer.cs" />
+    <Compile Include="Game_02\ILocated.cs" />
+    <Compile Include="Game_02\IRenderable.cs" />
+    <Compile Include="Game_02\ITriangleInstance.cs" />
+    <Compile Include="Game_02\IUpdatable.cs" />
+    <Compile Include="Game_02\LocationComponent.cs" />
+    <Compile Include="Game_02\Shaders\TriangleProgram.cs" />
+    <Compile Include="Game_02\Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,8 +152,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Game_02\" />
+    <EmbeddedResource Include="Game_02\Shaders\TriangleProgram.Fragment.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_02\Shaders\TriangleProgram.Vertex.glsl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
