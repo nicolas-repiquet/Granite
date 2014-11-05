@@ -217,7 +217,11 @@ namespace Test.Game_02
             foreach (var triangle in m_triangles)
             {
                 var normal = Normal(triangle);
-                triangle.Color = new Vector4(normal.X, normal.Y, normal.Z, 1);
+                triangle.Color = new Vector4(
+                    normal.X * 0.5f + 0.5f,
+                    normal.Y * 0.5f + 0.5f,
+                    normal.Z * 0.5f + 0.5f, 
+                    1);
             };
         }
 
@@ -240,7 +244,7 @@ namespace Test.Game_02
                 -(u.X * v.Z - v.X * u.Z),
                 u.X * v.Y - v.X * u.Y);
 
-            return normal;
+            return normal.Normalize();
         }
 
         private void BuildOrigin()
