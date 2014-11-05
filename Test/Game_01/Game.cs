@@ -22,6 +22,11 @@ namespace Test.Game_01
             });
         }
 
+        public override void InputEvent(InputEventArgs e)
+        {
+            Console.WriteLine(e);
+        }
+
         public override void Start()
         {
             

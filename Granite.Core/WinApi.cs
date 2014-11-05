@@ -16,7 +16,6 @@ namespace Granite.Core
         internal const uint INFINITE = 0xFFFFFFFF;
 
         internal const uint WM_QUIT = 0x0012;
-        internal const uint WM_MOUSEMOVE = 0x0200;
         internal const uint WM_CLOSE = 0x0010;
         internal const uint WM_PAINT = 0x000F;
         internal const uint WM_SIZE = 0x0005;
@@ -25,8 +24,18 @@ namespace Granite.Core
         internal const uint WM_SETFOCUS = 0x0007;
         internal const uint WM_KILLFOCUS = 0x0008;
         internal const uint WM_CHAR = 0x0102;
-        internal const uint WM_LBUTTONDOWN = 0x0201;
         internal const uint WM_USER = 0x0400;
+        internal const uint WM_MOUSEMOVE = 0x0200;
+        internal const uint WM_LBUTTONDOWN = 0x0201;
+        internal const uint WM_LBUTTONUP = 0x0202;
+        internal const uint WM_RBUTTONDOWN = 0x0204;
+        internal const uint WM_RBUTTONUP = 0x0205;
+        internal const uint WM_MBUTTONDOWN = 0x0207;
+        internal const uint WM_MBUTTONUP = 0x0208;
+        internal const uint WM_MOUSEWHEEL = 0x020A;
+        internal const uint WM_XBUTTONDOWN = 0x020B;
+        internal const uint WM_XBUTTONUP = 0x020C;
+
 
         internal const byte PFD_TYPE_RGBA = 0;
         internal const byte PFD_TYPE_COLORINDEX = 1;
