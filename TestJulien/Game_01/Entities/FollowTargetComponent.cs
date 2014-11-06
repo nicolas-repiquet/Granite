@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Test.Game_01.Entities
+namespace TestJulien.Game_01.Entities
 {
     public sealed class FollowTargetComponent : Component, IUpdatable
     {
@@ -24,11 +24,18 @@ namespace Test.Game_01.Entities
             {
                 var targetPoint = Target.Location.Center;
                 var currentPoint = m_location.Location.Center;
+                var displacement = (targetPoint - currentPoint);
+                var distance = displacement.Length;
 
-                // TODO: use elapsed... but how ?
-                var distance = (targetPoint - currentPoint) * 0.1f;
+                if (distance > 3)
+                {
+                    var speed = Math.Min(1, distance / 1000);
+                    distance = Math.Min(distance, speed * 5000 * (float)elapsed.TotalSeconds);
 
-                m_location.Location = m_location.Location.Translate(distance);
+                    displacement = displacement.Normalize() * distance;
+
+                    m_location.Location = m_location.Location.Translate(displacement);
+                }
             }
         }
     }

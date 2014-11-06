@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
-using Test.Game_01.Shaders;
+using TestJulien.Game_01.Shaders;
 
-namespace Test.Game_01.Sprites
+namespace TestJulien.Game_01.Sprites
 {
     public sealed class SpriteRenderer
     {
@@ -14,10 +14,8 @@ namespace Test.Game_01.Sprites
         {
             public Vector4 Color;
             public Matrix4 Transform;
-            public Vector2 TextureCoordinates0;
-            public Vector2 TextureCoordinates1;
-            public Vector2 TextureCoordinates2;
-            public Vector2 TextureCoordinates3;
+            public Vector2 TextureOrigin;
+            public Vector2 TextureTarget;
         }
 
         private sealed class SpriteInstance : ISpriteInstance
@@ -45,8 +43,8 @@ namespace Test.Game_01.Sprites
                 }
             }
 
-            private Vector2d m_position;
-            public Vector2d Position
+            private Vector2 m_position;
+            public Vector2 Position
             {
                 get { return m_position; }
                 set
@@ -59,8 +57,8 @@ namespace Test.Game_01.Sprites
                 }
             }
 
-            private Vector2d m_size;
-            public Vector2d Size
+            private Vector2 m_size;
+            public Vector2 Size
             {
                 get { return m_size; }
                 set
@@ -78,45 +76,42 @@ namespace Test.Game_01.Sprites
         private readonly List<SpriteInstance> m_instances;
         private readonly Buffer<SpriteData> m_bufferSprite;
         private readonly Buffer<Vector3> m_bufferQuad;
-        private readonly IBufferView m_positionView;
-        private readonly IBufferView m_textureCoordinatesView;
-
-        private readonly Vector3 m_p0 = new Vector3(0f, 0f, 0f);
-        private readonly Vector3 m_p1 = new Vector3(0f, 1f, 0f);
-        private readonly Vector3 m_p2 = new Vector3(1f, 1f, 0f);
-        private readonly Vector3 m_p3 = new Vector3(1f, 0f, 0f);
+        private readonly VertexArray m_vao;
 
         public SpriteSheet SpriteSheet { get; private set; }
 
         private bool m_isDirty;
-        private uint m_vao;
 
         public SpriteRenderer(SpriteSheet spriteSheet)
         {
-            m_program = SpriteProgram.Instance;
-            
-            m_instances = new List<SpriteInstance>();
-
-            GL.GenVertexArrays(1, out m_vao);
-            GL.BindVertexArray(m_vao);
-
-            m_bufferSprite = new Buffer<SpriteData>();
-            m_bufferQuad = new Buffer<Vector3>();
-
-            GL.BindVertexArray(0);
-
             SpriteSheet = spriteSheet;
 
-            try
-            {
+            m_program = SpriteProgram.Instance;
+            m_instances = new List<SpriteInstance>();
+            m_bufferSprite = new Buffer<SpriteData>();
+            m_bufferQuad = new Buffer<Vector3>();
+            m_vao = new VertexArray();
 
-                BuildBuffer();
+            m_bufferQuad.SetData(new Vector3[] {
+                new Vector3(0f, 0f, 0f),
+                new Vector3(0f, 1f, 0f),
+                new Vector3(1f, 1f, 0f),
+                new Vector3(1f, 0f, 0f)
+            });
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message + ", " + e.StackTrace);
-            }
+            GL.BindVertexArray(m_vao);
+            GL.UseProgram(m_program);
+
+            m_program.Position.SetValue(m_bufferQuad.GetView());
+
+            m_program.Transform.SetValue(m_bufferSprite.GetView<Matrix4>("Transform"));
+            m_program.Transform.SetDivisor(1);
+            m_program.TextureOrigin.SetValue(m_bufferSprite.GetView<Vector2>("TextureOrigin"));
+            m_program.TextureOrigin.SetDivisor(1);
+            m_program.TextureTarget.SetValue(m_bufferSprite.GetView<Vector2>("TextureTarget"));
+            m_program.TextureTarget.SetDivisor(1);
+
+            GL.BindVertexArray(null);
 
             m_isDirty = true;
         }
@@ -128,152 +123,60 @@ namespace Test.Game_01.Sprites
             var instance = new SpriteInstance(this, sprite);
             m_instances.Add(instance);
 
-            instance.Size = new Vector2d(sprite.Size.X, sprite.Size.Y);
+            instance.Size = new Vector2(sprite.Size.X, sprite.Size.Y);
 
             return instance;
         }
 
         public void Render(Matrix4 transform)
         {
-            try
+            if (m_isDirty)
             {
-                if (m_isDirty)
-                {
-                    RebuildBuffer();
-                }
-
-            
-                GL.UseProgram(m_program);
-
-                GL.BindVertexArray(m_vao);
-
-                m_program.Projection.SetValue(transform);
-                m_program.Texture.SetValue(SpriteSheet.Texture);
-
-                GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_bufferSprite.Count);
-                //GL.DrawArraysInstanced(GL.POINTS, 0, 4, m_bufferSprite.Count);
-
-                GL.BindVertexArray(0);
-
-                GL.UseProgram(null);
+                RebuildBuffer();
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message + ", " + e.StackTrace);
-            }
-        }
-
-        private void BuildBuffer()
-        {
-            Vector3[] vertices = new Vector3[4]
-            {
-                    m_p0,
-                    m_p1,
-                    m_p2,
-                    m_p3
-            };
-
-            //=================================================
 
             GL.UseProgram(m_program);
-
             GL.BindVertexArray(m_vao);
 
-            m_bufferQuad.SetData(vertices);
-            m_program.Position.SetValue(m_bufferQuad.GetView());
+            m_program.Projection.SetValue(transform);
+            m_program.Texture.SetValue(SpriteSheet.Texture);
 
-            //===================================================
-            var listInstances = new List<SpriteData>(m_instances.Count);
+            GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_instances.Count);
 
-            foreach (var instance in m_instances)
-            {
-                var sprite = instance.Sprite;
+            GL.BindVertexArray(null);
 
-                var matrix = Matrix4.Identity * Matrix4.Translate(
-                    (float)instance.Position.X,
-                    (float)instance.Position.Y,
-                    0f);
-                matrix *= Matrix4.Scale((float)instance.Size.X, (float)instance.Size.Y, 0f);
-
-
-                var data = new SpriteData()
-                {
-                    Color = new Vector4(1f, 1f ,1f, 1f),
-                    Transform = matrix
-                };
-
-                listInstances.Add(data);
-            }
-
-            m_bufferSprite.SetData(listInstances.ToArray());
-
-            m_program.Color.SetValue(m_bufferSprite.GetView("Color"));
-            m_program.Color.SetDivisor(1);
-            m_program.Transform.SetValue(m_bufferSprite.GetView("Transform"));
-            m_program.Transform.SetDivisor(1);
-            m_program.TextureCoordinates0.SetValue(m_bufferSprite.GetView("TextureCoordinates0"));
-            m_program.TextureCoordinates0.SetDivisor(1);
-            m_program.TextureCoordinates1.SetValue(m_bufferSprite.GetView("TextureCoordinates1"));
-            m_program.TextureCoordinates1.SetDivisor(1);
-            m_program.TextureCoordinates2.SetValue(m_bufferSprite.GetView("TextureCoordinates2"));
-            m_program.TextureCoordinates2.SetDivisor(1);
-            m_program.TextureCoordinates3.SetValue(m_bufferSprite.GetView("TextureCoordinates3"));
-            m_program.TextureCoordinates3.SetDivisor(1);
-
-            GL.BindVertexArray(0);
-
-            GL.UseProgram(null);
         }
 
         private void RebuildBuffer()
         {
-            var listInstances = new List<SpriteData>(m_instances.Count);
+            m_bufferSprite.SetData(m_instances.Count, GL.STREAM_DRAW);
 
-            foreach (var instance in m_instances)
+            using (var mapping = m_bufferSprite.Map())
             {
-                var sprite = instance.Sprite;
-
-                //var matrix = Matrix4.Identity * Matrix4.Scale((float)instance.Size.X, (float)instance.Size.Y, 0f);
-                //matrix = matrix * Matrix4.Translate(
-                //    (float)instance.Position.X,
-                //    0,
-                //    0f);
-
-                var matrix = Matrix4.Identity *  Matrix4.Translate(
-                    (float)instance.Position.X,
-                    (float)instance.Position.Y,
-                    0f);
-                matrix *= Matrix4.Scale((float)instance.Size.X, (float)instance.Size.Y, 0f);
-
-                var data = new SpriteData()
+                unsafe
                 {
-                    Color = new Vector4(1f, 1f ,1f, 1f),
-                    Transform = matrix,
-                    TextureCoordinates0 = new Vector2((float)sprite.Coordinates.MinX, (float)sprite.Coordinates.MaxY),
-                    TextureCoordinates1 = new Vector2((float)sprite.Coordinates.MinX, (float)sprite.Coordinates.MinY),
-                    TextureCoordinates2 = new Vector2((float)sprite.Coordinates.MaxX, (float)sprite.Coordinates.MinY),
-                    TextureCoordinates3 = new Vector2((float)sprite.Coordinates.MaxX, (float)sprite.Coordinates.MaxY)
-                };
+                    SpriteData* data = (SpriteData*)mapping.Address.ToPointer();
 
-                listInstances.Add(data);
+                    for (int i = 0; i < m_instances.Count; i++)
+                    {
+                        var instance = m_instances[i];
+                        var sprite = instance.Sprite;
+
+                        var matrix = Matrix4.Identity;
+                        matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
+                        matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
+
+                        data[i] = new SpriteData()
+                        {
+                            Color = new Vector4(1f, 1f, 1f, 1f),
+                            Transform = matrix,
+                            TextureOrigin = sprite.Coordinates.Position,
+                            TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
+                        };
+                    }
+                }
+
             }
-
-            m_bufferSprite.SetData(listInstances.ToArray());
-
-            GL.UseProgram(m_program);
-
-            GL.BindVertexArray(m_vao);
-
-            m_program.Color.SetValue(m_bufferSprite.GetView("Color"));
-            m_program.Transform.SetValue(m_bufferSprite.GetView("Transform"));
-            m_program.TextureCoordinates0.SetValue(m_bufferSprite.GetView("TextureCoordinates0"));
-            m_program.TextureCoordinates1.SetValue(m_bufferSprite.GetView("TextureCoordinates1"));
-            m_program.TextureCoordinates2.SetValue(m_bufferSprite.GetView("TextureCoordinates2"));
-            m_program.TextureCoordinates3.SetValue(m_bufferSprite.GetView("TextureCoordinates3"));
-
-            GL.BindVertexArray(0);
-
-            GL.UseProgram(null);
 
             m_isDirty = false;
         }

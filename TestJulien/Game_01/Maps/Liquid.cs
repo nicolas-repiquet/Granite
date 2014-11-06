@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Test.Game_01.Sprites;
+using TestJulien.Game_01.Sprites;
 
-namespace Test.Game_01.Maps
+namespace TestJulien.Game_01.Maps
 {
     public abstract class Liquid : Material
     {
@@ -26,6 +26,14 @@ namespace Test.Game_01.Maps
             else
             {
                 return m_top;
+            }
+        }
+
+        public override bool CanPassThrough
+        {
+            get
+            {
+                return true;
             }
         }
     }

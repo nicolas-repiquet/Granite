@@ -10,9 +10,12 @@ flyFly2 = 0 0 75 31
 pokerMad = 255 0 48 146
 pokerSad = 304 0 48 146
 slimeDead = 0 112 59 12
-slimeWalk1 = 52 125 50 28
-slimeWalk2 = 0 125 51 26
+slimeWalkLeft1 = 52 125 50 28
+slimeWalkLeft2 = 0 125 51 26
 snailShell = 103 119 44 30
 snailShell_upsidedown = 148 118 44 30
 snailWalk1 = 143 34 54 31
 snailWalk2 = 67 87 57 31
+
+slimeWalkRight1 = 102 125 -50 28
+slimeWalkRight2 = 51 125 -51 26

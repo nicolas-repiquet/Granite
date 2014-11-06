@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Test.Game_01.Sprites
+namespace TestJulien.Game_01.Sprites
 {
     public class SpriteSheet
     {
@@ -39,14 +39,14 @@ namespace Test.Game_01.Sprites
                             var w = int.Parse(tokens[3]);
                             var h = int.Parse(tokens[4]);
 
-                            var tw = (double)Texture.Size.X;
-                            var th = (double)Texture.Size.Y;
+                            var tw = (float)Texture.Size.X;
+                            var th = (float)Texture.Size.Y;
 
                             m_sprites.Add(name, new Sprite(
                                 this,
                                 name,
-                                new Vector2i(w, h),
-                                new Box2d(
+                                new Vector2i(Math.Abs(w), Math.Abs(h)),
+                                new Box2(
                                     x / tw,
                                     y / th,
                                     w / tw,
@@ -78,14 +78,14 @@ namespace Test.Game_01.Sprites
 
         public Sprite AddSprite(string name, Box2i coordinates)
         {
-            var tw = (double)Texture.Size.X;
-            var th = (double)Texture.Size.Y;
+            var tw = (float)Texture.Size.X;
+            var th = (float)Texture.Size.Y;
 
             var sprite = new Sprite(
                 this,
                 name,
                 coordinates.Size,
-                new Box2d(
+                new Box2(
                     coordinates.Position.X / tw,
                     coordinates.Position.Y / th,
                     coordinates.Size.X / tw,

@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Test.Game_01.Entities;
-using Test.Game_01.Levels;
-using Test.Game_01.Maps;
-using Test.Game_01.Sprites;
+using System.Threading;
+using TestJulien.Game_01.Entities;
+using TestJulien.Game_01.GameStates;
+using TestJulien.Game_01.Levels;
+using TestJulien.Game_01.Maps;
+using TestJulien.Game_01.Sprites;
 
-namespace Test.Game_01
+namespace TestJulien.Game_01
 {
     public class Game : ApplicationLogicBase
     {
@@ -16,93 +18,39 @@ namespace Test.Game_01
         {
             Engine.Run(new Game(), new ApplicationSettings()
             {
-                DisplayStyle = DisplayStyle.FixedWithTitle
+                DisplayStyle = DisplayStyle.ResizeableWithTitle
             });
         }
 
-
-        private World m_world;
-        private HashSet<Key> m_keys;
+        public override void InputEvent(InputEventArgs e)
+        {
+            //Console.WriteLine(e);
+        }
 
         public override void Start()
         {
-            m_keys = new HashSet<Key>();
-            m_world = new World(new Level_01());
+            
         }
 
-        int x = 0;
-        int y = 0;
-
-        public override void KeyDown(Key key)
+        public override void Render(TimeSpan elapsed)
         {
-            m_keys.Add(key);
-        }
+            Engine.Display.Invalidate();
 
-        public override void KeyUp(Key key)
-        {
-            m_keys.Remove(key);
-        }
+            Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
 
-        private void Update(TimeSpan elapsed)
-        {
-            if (m_keys.Contains(Key.Right))
-            {
-                x += 5;
-            }
-            if (m_keys.Contains(Key.Left))
-            {
-                x -= 5;
-            }
-            if (m_keys.Contains(Key.Up))
-            {
-                y += 5;
-            }
-            if (m_keys.Contains(Key.Down))
-            {
-                y -= 5;
-            }
+            StateManager.Instance.Update(elapsed);
 
-            //m_world.Player.SetPosition(new Vector2d(x, y));
-        }
+            var size = Engine.Display.GetSize();
 
-        private DateTime? m_previousFrame;
+            GL.Viewport(size);
+            GL.ClearColor(0.6f, 0.8f, 1.0f, 1.0f);
+            GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+            GL.Enable_BLEND();
+            GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-        public override void Render()
-        {
-            try
-            {
-                var now = DateTime.Now;
-                TimeSpan elapsed;
-                if (m_previousFrame.HasValue)
-                {
-                    elapsed = now - m_previousFrame.Value;
-                }
-                else
-                {
-                    elapsed = TimeSpan.Zero;
-                }
-                m_previousFrame = now;
+            StateManager.Instance.Draw();
 
-                Update(elapsed);
-                m_world.Update(elapsed);
-
-                var size = Engine.Display.GetSize();
-
-                GL.Viewport(size);
-                GL.ClearColor(0.6f, 0.8f, 1.0f, 1.0f);
-                //GL.ClearColor(1f, 0.0f, 0.0f, 1.0f);
-                GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
-                GL.Enable_BLEND();
-                GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
-
-                m_world.Render(Matrix4.Identity);
-
-                Engine.Display.Invalidate();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message + ", " + e.StackTrace);
-            }
+            GL.Finish();
         }
     }
 }

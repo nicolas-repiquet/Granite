@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Granite.Core;
-using Test.Game_01.Maps;
+using TestJulien.Game_01.Maps;
 
-namespace Test.Game_01.Levels
+namespace TestJulien.Game_01.Levels
 {
     public abstract class Level
     {

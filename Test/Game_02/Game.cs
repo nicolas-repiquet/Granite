@@ -17,7 +17,8 @@ namespace Test.Game_02
         {
             Engine.Run(new Game(), new ApplicationSettings()
             {
-                DisplayStyle = DisplayStyle.ResizeableWithTitle
+                DisplayStyle = DisplayStyle.ResizeableWithTitle,
+                DisplayDepthBits = 32 
             });
         }
 

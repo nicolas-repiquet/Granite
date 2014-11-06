@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Test.Game_01.Sprites;
+using TestJulien.Game_01.Sprites;
 
-namespace Test.Game_01.Maps
+namespace TestJulien.Game_01.Maps
 {
     public sealed class Grass : Terrain
     {

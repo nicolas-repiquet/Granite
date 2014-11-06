@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TestJulien.Game_01.Maps;
 
-namespace Test.Game_01.Entities
+namespace TestJulien.Game_01.Entities
 {
     public sealed class RigidBodyComponent : Component, IUpdatable
     {
@@ -14,26 +15,71 @@ namespace Test.Game_01.Entities
             : base(entity)
         {
             m_location = location;
-            Velocity = new Vector2d(200, 0);
+            Velocity = new Vector2(0, 0);
         }
 
-
+        public Vector2 Direction { get; set; }
         public double Mass { get; set; }
-        public Vector2d Velocity { get; set; }
+        public Vector2 Velocity { get; set; }
+        public bool Grounded { get; set; }
+        public bool BlockedLeft { get; set; }
+        public bool BlockedRight { get; set; }
 
         public void Update(TimeSpan elapsed)
         {
-            Velocity += new Vector2d(0, -300) * elapsed.TotalSeconds;
+            TestCollision(elapsed);
+        }
 
-            var p = m_location.Location.Position + Velocity * elapsed.TotalSeconds;
+        private void TestCollision(TimeSpan elapsed)
+        {
+            var momentum = new Vector2();
 
-            if (p.Y <= 0)
+            momentum += new Vector2(0, -1000); // gravity
+
+            momentum += Direction;
+
+            Velocity += momentum * (float)elapsed.TotalSeconds;
+
+            Direction = Vector2.Zero;
+
+            if (Math.Abs(Velocity.X) > 800)
             {
-                p = new Vector2d(p.X, 0);
-                Velocity = new Vector2d(Velocity.X, -Velocity.Y);
+                Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
             }
 
-            m_location.Location = new Box2d(p, m_location.Location.Size);
+            {
+                var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
+                Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
+            }
+
+            var displacement = Velocity * (float)elapsed.TotalSeconds;
+            var newLocation = m_location.Location.Translate(displacement);
+            var collision = World.Instance.Level.Map.TestCollision(newLocation, displacement);
+
+            Grounded = false;
+
+            if (collision.HasValue)
+            {
+                if (collision.Value.Normal.Y == 1)
+                {
+                    Grounded = true;
+                }
+
+                if (collision.Value.AjustedLocation.Position.Y != newLocation.Position.Y)
+                {
+                    Velocity = new Vector2(Velocity.X, 0);
+                }
+
+                if (collision.Value.AjustedLocation.Position.X != newLocation.Position.X)
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                }
+
+                newLocation = collision.Value.AjustedLocation;
+            }
+
+            m_location.Location = newLocation;
+            
         }
     }
 }

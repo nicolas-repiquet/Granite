@@ -7,8 +7,8 @@
     <ProjectGuid>{EA217A95-D865-4A95-A050-FB88F6ED6A37}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test</RootNamespace>
-    <AssemblyName>Test</AssemblyName>
+    <RootNamespace>TestJulien</RootNamespace>
+    <AssemblyName>TestJulien</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,6 +45,9 @@
     <Compile Include="Game_01\Entities\Background.cs" />
     <Compile Include="Game_01\Entities\Camera.cs" />
     <Compile Include="Game_01\Entities\Component.cs" />
+    <Compile Include="Game_01\Entities\Ennemies\Ennemy.cs" />
+    <Compile Include="Game_01\Entities\Ennemies\EnnemyManager.cs" />
+    <Compile Include="Game_01\Entities\Ennemies\Slime.cs" />
     <Compile Include="Game_01\Entities\Entity.cs" />
     <Compile Include="Game_01\Entities\FollowTargetComponent.cs" />
     <Compile Include="Game_01\Entities\ILocated.cs" />
@@ -51,10 +55,18 @@
     <Compile Include="Game_01\Entities\IUpdatable.cs" />
     <Compile Include="Game_01\Entities\LocationComponent.cs" />
     <Compile Include="Game_01\Entities\Player.cs" />
+    <Compile Include="Game_01\Entities\RayCast.cs" />
     <Compile Include="Game_01\Entities\RestrictLocationComponent.cs" />
     <Compile Include="Game_01\Entities\RigidBodyComponent.cs" />
+    <Compile Include="Game_01\Entities\SpriteSequence.cs" />
     <Compile Include="Game_01\Entities\World.cs" />
     <Compile Include="Game_01\Game.cs" />
+    <Compile Include="Game_01\GameStates\IGameState.cs" />
+    <Compile Include="Game_01\GameStates\StateManager.cs" />
+    <Compile Include="Game_01\GameStates\States\EditorState.cs" />
+    <Compile Include="Game_01\GameStates\States\GameState.cs" />
+    <Compile Include="Game_01\GameStates\States\MainMenuState.cs" />
+    <Compile Include="Game_01\GameStates\States\PauseState.cs" />
     <Compile Include="Game_01\Levels\Level.cs" />
     <Compile Include="Game_01\Levels\Level_01.cs" />
     <Compile Include="Game_01\Levels\Level_02.cs" />
@@ -83,26 +95,60 @@
     <EmbeddedResource Include="Game_01\Shaders\SpriteProgram.Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Game_01\Levels\Level_01.txt" />
-    <EmbeddedResource Include="Game_01\Levels\Level_02.txt" />
-    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.png" />
-    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.txt" />
-    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.png" />
-    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.txt" />
-    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.png" />
-    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.txt" />
-    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.png" />
-    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.txt" />
-    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.png" />
-    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.txt" />
-    <EmbeddedResource Include="Game_01\Textures\Background_01.png" />
-    <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Granite.Collision\Granite.Collision.csproj">
+      <Project>{3ac3017d-55f9-4056-afd5-1a31ce790684}</Project>
+      <Name>Granite.Collision</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Granite.Core\Granite.Core.csproj">
       <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
       <Name>Granite.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Granite.UI\Granite.UI.csproj">
+      <Project>{95cdca6e-e490-4a43-8fe2-7c8aa59f3386}</Project>
+      <Name>Granite.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Levels\Level_01.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Levels\Level_02.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\EnemiesSprites.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\GuiSprites.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\ItemsSprites.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\PlayerSprites.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Sprites\TilesSprites.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Textures\Background_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

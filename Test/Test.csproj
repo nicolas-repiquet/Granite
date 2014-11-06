@@ -152,7 +152,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Game_01\Textures\Background_02.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Game_02\Shaders\TriangleProgram.Fragment.glsl" />
   </ItemGroup>
