@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TestJulien.Game_01.Entities
 {
-    public class Player : Entity, ILocated, IUpdatable, IRenderable
+    public class PlayerFinal : Entity, ILocated, IUpdatable, IRenderable
     {
         public Triangle[] Triangles { get; set; }
 
@@ -16,11 +16,10 @@ namespace TestJulien.Game_01.Entities
         public Box2 Location { get { return m_location.Location; } }
         public RigidBodyComponent RigidBody { get { return m_rigidBody; } }
 
-        public Player()
+        public PlayerFinal()
         {
             m_location = new LocationComponent(this);
             m_rigidBody = new RigidBodyComponent(this, m_location);
-
         }
 
 
@@ -45,7 +44,7 @@ namespace TestJulien.Game_01.Entities
         {
             Triangles = new Triangle[2];
 
-            var color = new Vector4(0, 1, 0, 1);
+            var color = new Vector4(0, 1, 0, 0.5f);
 
             Triangles[0] = new Triangle()
             {

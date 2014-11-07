@@ -96,8 +96,8 @@ namespace Granite.Collision
             Vector2 A, Vector2 B, Vector2 O, Vector2 P)
         {
             var AB = new Vector2(B.X - A.X, B.Y - A.Y);
-            var AP = new Vector2(P.X - A.X, B.Y - A.Y);
-            var AO = new Vector2(O.X - A.X, B.Y - A.Y);
+            var AP = new Vector2(P.X - A.X, P.Y - A.Y);
+            var AO = new Vector2(O.X - A.X, O.Y - A.Y);
 
             if ((AB.X * AP.Y - AB.Y * AP.X) * (AB.X * AO.Y - AB.Y * AO.X) < 0)
                 return true;

@@ -6,9 +6,6 @@ using System.Text;
 using System.Threading;
 using TestJulien.Game_01.Entities;
 using TestJulien.Game_01.GameStates;
-using TestJulien.Game_01.Levels;
-using TestJulien.Game_01.Maps;
-using TestJulien.Game_01.Sprites;
 
 namespace TestJulien.Game_01
 {

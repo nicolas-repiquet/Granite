@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TestJulien.Game_01.Maps;
 
 namespace TestJulien.Game_01.Entities
 {
@@ -32,53 +31,7 @@ namespace TestJulien.Game_01.Entities
 
         private void TestCollision(TimeSpan elapsed)
         {
-            var momentum = new Vector2();
-
-            momentum += new Vector2(0, -1000); // gravity
-
-            momentum += Direction;
-
-            Velocity += momentum * (float)elapsed.TotalSeconds;
-
-            Direction = Vector2.Zero;
-
-            if (Math.Abs(Velocity.X) > 800)
-            {
-                Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
-            }
-
-            {
-                var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
-                Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
-            }
-
-            var displacement = Velocity * (float)elapsed.TotalSeconds;
-            var newLocation = m_location.Location.Translate(displacement);
-            var collision = World.Instance.Level.Map.TestCollision(newLocation, displacement);
-
-            Grounded = false;
-
-            if (collision.HasValue)
-            {
-                if (collision.Value.Normal.Y == 1)
-                {
-                    Grounded = true;
-                }
-
-                if (collision.Value.AjustedLocation.Position.Y != newLocation.Position.Y)
-                {
-                    Velocity = new Vector2(Velocity.X, 0);
-                }
-
-                if (collision.Value.AjustedLocation.Position.X != newLocation.Position.X)
-                {
-                    Velocity = new Vector2(0, Velocity.Y);
-                }
-
-                newLocation = collision.Value.AjustedLocation;
-            }
-
-            m_location.Location = newLocation;
+           
             
         }
     }
