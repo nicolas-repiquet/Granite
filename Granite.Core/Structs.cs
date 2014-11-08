@@ -100,6 +100,13 @@ namespace Granite.Core
                 0, 0, 0, 1
             );
         }
+
+        public static Matrix4 operator *(Matrix4 a, Matrix4 b)
+        {
+            Matrix4 r;
+            Matrix4.Multiply(ref a, ref b, out r);
+            return r;
+        }
     }
 
     partial struct Matrix4d

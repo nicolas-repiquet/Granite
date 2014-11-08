@@ -39,7 +39,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Test.Game_02.Game</StartupObject>
+    <StartupObject>Test.Game_01.Game</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

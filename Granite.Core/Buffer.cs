@@ -174,11 +174,12 @@ namespace Granite.Core
             }
         }
 
-        public BufferMapping<T> Map()
+        public BufferMapping<T> Map(int count)
         {
-            GL.BindBuffer(GL.ARRAY_BUFFER, this);
-            GL.GetError();
-            var address = GL.MapBuffer(GL.ARRAY_BUFFER, GL.WRITE_ONLY);
+            var size = TypeSize * count;
+            GL.BindBuffer(GL.ARRAY_BUFFER, Name);
+            //GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), IntPtr.Zero, GL.STREAM_DRAW);
+            var address = GL.MapBufferRange(GL.ARRAY_BUFFER, new IntPtr(0), new IntPtr(size), GL.MAP_WRITE_BIT | GL.MAP_INVALIDATE_BUFFER_BIT);
 
             return new BufferMapping<T>(this, address);
         }

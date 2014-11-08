@@ -42,7 +42,7 @@ namespace Test.Game_01.Entities
 
             var random = new Random();
 
-            for (var i = 0; i < 5000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 var slime = new Slime();
                 slime.SetPosition(new Vector2((float)random.Next(0, (int)m_level.Map.Size.X), 

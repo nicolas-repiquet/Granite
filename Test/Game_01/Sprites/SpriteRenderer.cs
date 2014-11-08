@@ -12,7 +12,7 @@ namespace Test.Game_01.Sprites
     {
         private struct SpriteData
         {
-            public Vector4 Color;
+            //public Vector4 Color;
             public Matrix4 Transform;
             public Vector2 TextureOrigin;
             public Vector2 TextureTarget;
@@ -151,7 +151,7 @@ namespace Test.Game_01.Sprites
         {
             m_bufferSprite.SetData(m_instances.Count, GL.STREAM_DRAW);
 
-            using (var mapping = m_bufferSprite.Map())
+            using (var mapping = m_bufferSprite.Map(m_instances.Count))
             {
                 unsafe
                 {
@@ -168,7 +168,7 @@ namespace Test.Game_01.Sprites
 
                         data[i] = new SpriteData()
                         {
-                            Color = new Vector4(1f, 1f, 1f, 1f),
+                            //Color = new Vector4(1f, 1f, 1f, 1f),
                             Transform = matrix,
                             TextureOrigin = sprite.Coordinates.Position,
                             TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
