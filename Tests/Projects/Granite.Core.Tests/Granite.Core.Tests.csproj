@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25A44087-FCFA-4D80-8673-1B839A9A65E9}</ProjectGuid>
+    <ProjectGuid>{2200D195-44A0-4B30-9A44-57C554E05C68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTestProject</RootNamespace>
-    <AssemblyName>UnitTestProject</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Granite.Core.Tests</RootNamespace>
+    <AssemblyName>Granite.Core.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -36,6 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,22 +53,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Collision\Intersection.cs" />
-    <Compile Include="Collision\Detection.cs" />
+    <Compile Include="Vectors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Granite.Collision\Granite.Collision.csproj">
-      <Project>{3ac3017d-55f9-4056-afd5-1a31ce790684}</Project>
-      <Name>Granite.Collision</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Granite.Core\Granite.Core.csproj">
+    <ProjectReference Include="..\..\..\Sources\Projects\Granite.Core\Granite.Core.csproj">
       <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
       <Name>Granite.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Granite.UI\Granite.UI.csproj">
-      <Project>{95cdca6e-e490-4a43-8fe2-7c8aa59f3386}</Project>
-      <Name>Granite.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
