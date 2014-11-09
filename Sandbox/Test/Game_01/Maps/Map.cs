@@ -579,7 +579,7 @@ namespace Test.Game_01.Maps
                             m_g.FillRectangle(new Box2i(
                                 cell.LeftEdge.X - 1 - (int)camera.Location.MinX,
                                 cell.LeftEdge.Y0 - (int)camera.Location.MinY, 2, CELL_SIZE),
-                                new Color4(0xFF, 0x00, 0x00, 0xFF));
+                                new Color4ub(0xFF, 0x00, 0x00, 0xFF));
                         }
 
                         if (cell.RightEdge.NX == -1)
@@ -587,7 +587,7 @@ namespace Test.Game_01.Maps
                             m_g.FillRectangle(new Box2i(
                                 cell.RightEdge.X - 1 - (int)camera.Location.MinX,
                                 cell.RightEdge.Y0 - (int)camera.Location.MinY, 2, CELL_SIZE),
-                                new Color4(0x00, 0xFF, 0x00, 0xFF));
+                                new Color4ub(0x00, 0xFF, 0x00, 0xFF));
                         }
 
                         if (cell.TopEdge.NY == 1)
@@ -595,7 +595,7 @@ namespace Test.Game_01.Maps
                             m_g.FillRectangle(new Box2i(
                                 cell.TopEdge.X0 - (int)camera.Location.MinX,
                                 cell.TopEdge.Y - 1 - (int)camera.Location.MinY, CELL_SIZE, 2),
-                                new Color4(0xFF, 0x00, 0xFF, 0xFF));
+                                new Color4ub(0xFF, 0x00, 0xFF, 0xFF));
                         }
 
                         if (cell.BottomEdge.NY == -1)
@@ -603,7 +603,7 @@ namespace Test.Game_01.Maps
                             m_g.FillRectangle(new Box2i(
                                 cell.BottomEdge.X0 - (int)camera.Location.MinX,
                                 cell.BottomEdge.Y - 1 - (int)camera.Location.MinY, CELL_SIZE, 2),
-                                new Color4(0xFF, 0xFF, 0x00, 0xFF));
+                                new Color4ub(0xFF, 0xFF, 0x00, 0xFF));
                         }
                     }
                 }
@@ -614,7 +614,7 @@ namespace Test.Game_01.Maps
                 (int)(player.MinX - camera.Location.MinX),
                 (int)(player.MinY - camera.Location.MinY),
                 (int)player.Size.X, (int)player.Size.Y
-            ), new Color4(0x00, 0xFF, 0xFF, 0x80));
+            ), new Color4ub(0x80, 0x80, 0x80, 0x80));
 
             foreach (var ennemy in EnnemyManager.Instance.Ennemies)
             {
@@ -622,7 +622,7 @@ namespace Test.Game_01.Maps
                     (int)(ennemy.Location.MinX - camera.Location.MinX),
                     (int)(ennemy.Location.MinY - camera.Location.MinY),
                     (int)ennemy.Location.Size.X, (int)ennemy.Location.Size.Y
-                ), new Color4(0xFF, 0xFF, 0x00, 0x80));
+                ), new Color4ub(0xFF, 0xFF, 0x00, 0x80));
             }
             m_g.Flush();
         }

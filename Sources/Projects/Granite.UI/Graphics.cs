@@ -13,9 +13,9 @@ namespace Granite.UI
 
         private struct QuadData
         {
-            public Vector2 Position;
-            public Vector2 Size;
-            public Vector4 Color;
+            public Vector2i Position;
+            public Vector2i Size;
+            public Color4ub Color;
             // public Vector4 TextureCoordinates;
         }
 
@@ -49,13 +49,13 @@ namespace Granite.UI
 
             m_program.Vertex.SetValue(m_vertices.GetView());
 
-            m_program.Position.SetValue(m_buffer.GetView<Vector2>("Position"));
+            m_program.Position.SetValue(m_buffer.GetView<Vector2i>("Position"));
             m_program.Position.SetDivisor(1);
 
-            m_program.Size.SetValue(m_buffer.GetView<Vector2>("Size"));
+            m_program.Size.SetValue(m_buffer.GetView<Vector2i>("Size"));
             m_program.Size.SetDivisor(1);
 
-            m_program.Color.SetValue(m_buffer.GetView<Vector4>("Color"));
+            m_program.Color.SetValue(m_buffer.GetView<Color4ub>("Color"));
             m_program.Color.SetDivisor(1);
 
             GL.BindVertexArray(null);
@@ -85,7 +85,7 @@ namespace Granite.UI
             m_count = 0;
         }
 
-        public void FillRectangle(Box2i rectangle, Color4 color)
+        public void FillRectangle(Box2i rectangle, Color4ub color)
         {
             if (m_count == QUAD_COUNT)
             {
@@ -93,9 +93,9 @@ namespace Granite.UI
             }
 
             m_quads[m_count++] = new QuadData() {
-                Position = new Vector2(rectangle.Position.X, rectangle.Position.Y),
-                Size = new Vector2(rectangle.Size.X, rectangle.Size.Y),
-                Color = new Vector4(color.R, color.G,color.B, color.A)
+                Position = new Vector2i(rectangle.Position.X, rectangle.Position.Y),
+                Size = new Vector2i(rectangle.Size.X, rectangle.Size.Y),
+                Color = color
             };
         }
     }

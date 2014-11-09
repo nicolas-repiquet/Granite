@@ -149,34 +149,58 @@ namespace Test.Game_01.Sprites
 
         private void RebuildBuffer()
         {
-            m_bufferSprite.SetData(m_instances.Count, GL.STREAM_DRAW);
+            var data = new SpriteData[m_instances.Count];
 
-            using (var mapping = m_bufferSprite.Map(m_instances.Count))
+            for (int i = 0; i < m_instances.Count; i++)
             {
-                unsafe
+                var instance = m_instances[i];
+                var sprite = instance.Sprite;
+
+                var matrix = Matrix4.Identity;
+                matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
+                matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
+
+                data[i] = new SpriteData()
                 {
-                    SpriteData* data = (SpriteData*)mapping.Address.ToPointer();
-
-                    for (int i = 0; i < m_instances.Count; i++)
-                    {
-                        var instance = m_instances[i];
-                        var sprite = instance.Sprite;
-
-                        var matrix = Matrix4.Identity;
-                        matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
-                        matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
-
-                        data[i] = new SpriteData()
-                        {
-                            //Color = new Vector4(1f, 1f, 1f, 1f),
-                            Transform = matrix,
-                            TextureOrigin = sprite.Coordinates.Position,
-                            TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
-                        };
-                    }
-                }
-
+                    //Color = new Vector4(1f, 1f, 1f, 1f),
+                    Transform = matrix,
+                    TextureOrigin = sprite.Coordinates.Position,
+                    TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
+                };
             }
+
+            m_bufferSprite.SetData(data, GL.STREAM_DRAW);
+
+
+
+            //m_bufferSprite.SetData(m_instances.Count, GL.STREAM_DRAW);
+
+            //using (var mapping = m_bufferSprite.Map(m_instances.Count))
+            //{
+            //    unsafe
+            //    {
+            //        SpriteData* data = (SpriteData*)mapping.Address.ToPointer();
+
+            //        for (int i = 0; i < m_instances.Count; i++)
+            //        {
+            //            var instance = m_instances[i];
+            //            var sprite = instance.Sprite;
+
+            //            var matrix = Matrix4.Identity;
+            //            matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
+            //            matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
+
+            //            data[i] = new SpriteData()
+            //            {
+            //                //Color = new Vector4(1f, 1f, 1f, 1f),
+            //                Transform = matrix,
+            //                TextureOrigin = sprite.Coordinates.Position,
+            //                TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
+            //            };
+            //        }
+            //    }
+
+            //}
 
             m_isDirty = false;
         }

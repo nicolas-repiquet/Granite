@@ -642,6 +642,7 @@ public void UniformMatrix4fv(int location, int count, bool transpose, inptr<Matr
 
 # public void UniformMatrix4x2fv(int location, int count, bool transpose, IntPtr value);
 # public void UniformMatrix4x3fv(int location, int count, bool transpose, IntPtr value);
+
 # public void VertexAttribDivisor(uint index, uint divisor);
 # public void VertexAttribP1ui(uint index, uint type, bool normalized, uint value);
 # public void VertexAttribP1uiv(uint index, uint type, bool normalized, IntPtr value);
@@ -709,6 +710,8 @@ public void UniformMatrix4fv(int location, int count, bool transpose, inptr<Matr
 # public void VertexAttribI4usv(uint index, IntPtr v);
 # public void VertexAttribIPointer(uint index, int size, uint type, int stride, IntPtr pointer);
 # public void VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, IntPtr pointer);
+
+
 # public void Viewport(int x, int y, int width, int height);
 # public void WaitSync(IntPtr sync, uint flags, ulong timeout);
 # public void BindFragDataLocationIndexed(uint program, uint colorNumber, uint index, IntPtr name);

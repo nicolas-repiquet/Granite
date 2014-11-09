@@ -125,11 +125,6 @@ namespace Granite.Core
                             }
                         }
                     }
-
-                    if (m_flattenedType != 0)
-                    {
-                        m_flattenedCount = m_fields.Length;
-                    }
                 }
             }
         }

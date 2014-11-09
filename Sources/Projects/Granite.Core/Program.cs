@@ -12,8 +12,8 @@ namespace Granite.Core
         private readonly FragmentShader m_fragmentShader;
 
         private readonly uint m_name;
-        private readonly ProgramAttribute[] m_attributes;
         private readonly ProgramUniform[] m_uniforms;
+        private readonly Dictionary<string, ProgramAttributeInfo> m_attributes;
 
         public Program(VertexShader vertex = null, GeometryShader geometry = null, FragmentShader fragment = null)
         {
@@ -53,21 +53,33 @@ namespace Granite.Core
             }
             m_uniforms = uniforms.ToArray();
 
-            var attributes = new List<ProgramAttribute>();
-            int attribCount;
-            GL.GetProgramiv(m_name, GL.ACTIVE_ATTRIBUTES, out attribCount);
-            for (uint i = 0; i < attribCount; i++)
+            m_attributes = new Dictionary<string, ProgramAttributeInfo>();
+            LoadAttributes();
+
+        }
+
+        private void LoadAttributes()
+        {
+            int attributeCount;
+            GL.GetProgramiv(m_name, GL.ACTIVE_ATTRIBUTES, out attributeCount);
+            for (uint i = 0; i < attributeCount; i++)
             {
                 var buffer = new byte[4096];
                 int length;
                 int size;
                 uint type;
+
                 GL.GetActiveAttrib(m_name, i, buffer.Length, out length, out size, out type, buffer);
-                var attribName = Encoding.ASCII.GetString(buffer, 0, length);
-                var location = GL.GetAttribLocation(m_name, buffer);
-                attributes.Add(ProgramAttribute.Create(this, type, attribName, location));
+
+                string attributeName = Encoding.ASCII.GetString(buffer, 0, length);
+
+                int location = GL.GetAttribLocation(m_name, attributeName);
+
+                m_attributes.Add(
+                    attributeName,
+                    new ProgramAttributeInfo(this, attributeName, i, (uint)location, type)
+                );
             }
-            m_attributes = attributes.ToArray();
         }
 
         public IEnumerable<ProgramUniform> Uniforms { get { return m_uniforms; } }
@@ -92,30 +104,18 @@ namespace Granite.Core
             throw new Exception("Can't find uniform " + name);
         }
 
-        public IEnumerable<ProgramAttribute> Attributes { get { return m_attributes; } }
-
-        public ProgramAttribute<T> GetAttribute<T>(string name)
+        public ProgramAttribute<T> GetAttribute<T>(string name, bool normalized = false)
         {
-            foreach (var attribute in m_attributes)
-            {
-                if (attribute.Name == name)
-                {
-                    if (attribute is ProgramAttribute<T>)
-                    {
-                        return (ProgramAttribute<T>)attribute;
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException(string.Format(
-                            "Can't convert from {0} to {1}",
-                            attribute.Type.Name,
-                            typeof(T).Name
-                        ));
-                    }
-                }
-            }
+            ProgramAttributeInfo info;
 
-            throw new Exception("Can't find attribute " + name);
+            if (m_attributes.TryGetValue(name, out info))
+            {
+                return ProgramAttribute<T>.Create(this, info, normalized);
+            }
+            else
+            {
+                throw new Exception(string.Format("Attribute \"{0}\" does not exists or is not active", name));
+            }
         }
 
         internal uint Name { get { return m_name; } }
