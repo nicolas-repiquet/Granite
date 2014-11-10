@@ -51,39 +51,39 @@ namespace TestJulien.Game_01.GameStates
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Left))
                 {
-                   m_world.PlayerDestination.SetPosition(
-                       new Vector2(m_world.PlayerDestination.Location.Position.X - 20, 
-                       m_world.PlayerDestination.Location.Position.Y));
-                   m_world.PlayerFinal.SetPosition(m_world.PlayerDestination.Location.Position);
+                   m_world.Player.SetPositionNext(
+                       new Vector2(m_world.Player.LocationNext.Position.X - 20,
+                       m_world.Player.LocationNext.Position.Y));
+                   //m_world.Player.SetPositionFinal(m_world.Player.LocationNext.Position);
                 }
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Right))
                 {
-                    m_world.PlayerDestination.SetPosition(
-                       new Vector2(m_world.PlayerDestination.Location.Position.X + 20,
-                       m_world.PlayerDestination.Location.Position.Y));
-                    m_world.PlayerFinal.SetPosition(m_world.PlayerDestination.Location.Position);
+                    m_world.Player.SetPositionNext(
+                       new Vector2(m_world.Player.LocationNext.Position.X + 20,
+                       m_world.Player.LocationNext.Position.Y));
+                    //m_world.Player.SetPositionFinal(m_world.Player.LocationNext.Position);
                 }
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Down))
                 {
-                    m_world.PlayerDestination.SetPosition(
-                       new Vector2(m_world.PlayerDestination.Location.Position.X,
-                       m_world.PlayerDestination.Location.Position.Y - 20));
-                    m_world.PlayerFinal.SetPosition(m_world.PlayerDestination.Location.Position);
+                    m_world.Player.SetPositionNext(
+                       new Vector2(m_world.Player.LocationNext.Position.X,
+                       m_world.Player.LocationNext.Position.Y - 20));
+                    //m_world.Player.SetPositionFinal(m_world.Player.LocationNext.Position);
                 }
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Up))
                 {
-                    m_world.PlayerDestination.SetPosition(
-                       new Vector2(m_world.PlayerDestination.Location.Position.X,
-                       m_world.PlayerDestination.Location.Position.Y + 20));
-                    m_world.PlayerFinal.SetPosition(m_world.PlayerDestination.Location.Position);
+                    m_world.Player.SetPositionNext(
+                       new Vector2(m_world.Player.LocationNext.Position.X,
+                       m_world.Player.LocationNext.Position.Y + 20));
+                    //m_world.Player.SetPositionFinal(m_world.Player.LocationNext.Position);
                 }
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Space))
                 {
-                    m_world.Player.SetPosition(m_world.PlayerFinal.Location.Position);
+                    m_world.Player.SetPosition(m_world.Player.LocationFinal.Position);
                 }
 
                 m_lastInput = DateTime.Now;

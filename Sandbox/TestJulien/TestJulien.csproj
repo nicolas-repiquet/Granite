@@ -81,15 +81,19 @@
     <EmbeddedResource Include="Game_01\Shaders\TriangleProgram.Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Granite.Collision\Granite.Collision.csproj">
+    <ProjectReference Include="..\..\Sources\Projects\Granite.Collision\Granite.Collision.csproj">
       <Project>{3ac3017d-55f9-4056-afd5-1a31ce790684}</Project>
       <Name>Granite.Collision</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Granite.Core\Granite.Core.csproj">
+    <ProjectReference Include="..\..\Sources\Projects\Granite.Core\Granite.Core.csproj">
       <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
       <Name>Granite.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Granite.UI\Granite.UI.csproj">
+    <ProjectReference Include="..\..\Sources\Projects\Granite.Time\Granite.Time.csproj">
+      <Project>{7d66b66d-2f7e-4535-a9ef-814711bfd7be}</Project>
+      <Name>Granite.Time</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sources\Projects\Granite.UI\Granite.UI.csproj">
       <Project>{95cdca6e-e490-4a43-8fe2-7c8aa59f3386}</Project>
       <Name>Granite.UI</Name>
     </ProjectReference>

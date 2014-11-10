@@ -33,6 +33,13 @@ namespace TestJulien.Game_01
             Color = color;
         }
 
+        public Vector2 ToVector()
+        {
+            return new Vector2(
+                P2.X - P1.X,
+                P2.Y - P1.X);
+        }
+
         public Triangle ToTriangles()
         {
             Triangle = new Triangle()

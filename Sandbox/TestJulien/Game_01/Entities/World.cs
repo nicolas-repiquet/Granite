@@ -1,5 +1,6 @@
 ﻿using Granite.Collision;
 using Granite.Core;
+using Granite.Time;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,17 @@ namespace TestJulien.Game_01.Entities
     {
         private readonly Camera m_camera;
         private readonly Player m_player;
-        private readonly PlayerFinal m_playerFinal;
-        private readonly PlayerDestination m_playerDest;
         private readonly TriangleRenderer m_renderer;
         private readonly SegmentRenderer m_SRenderer;
 
         private List<Triangle> m_triangles;
         private List<Segment> m_walls;
         private List<Point> m_intersections;
+        private List<Player> m_players;
+        private Time m_time;
+        private Random m_random;
 
         public Player Player { get { return m_player; } }
-        public PlayerDestination PlayerDestination { get { return m_playerDest; } }
-        public PlayerFinal PlayerFinal { get { return m_playerFinal; } }
         public Camera Camera { get { return m_camera; } }
         public List<Point> Intersections { get { return m_intersections; } }
 
@@ -42,223 +42,137 @@ namespace TestJulien.Game_01.Entities
             m_intersections = new List<Point>();
             m_renderer = new TriangleRenderer();
             m_SRenderer = new SegmentRenderer();
-
+            m_players = new List<Player>();
+             
             m_camera = new Camera();
 
             //Creation des joueurs
             m_player = new Player();
-            m_playerDest = new PlayerDestination();
-            m_playerFinal = new PlayerFinal();
 
             m_camera.Bounds = new Box2(0, 0, 1000, 1000);
             m_camera.Target = m_player;
 
             Player.SetPosition(new Vector2(200, 200));
-            PlayerDestination.SetPosition(new Vector2(200, 200));
-            PlayerFinal.SetPosition(new Vector2(200, 200));
 
-            var random = new Random();
+            m_random = new Random();
+
+            for (var i = 0; i < 20; i++)
+            {
+                var x = m_random.Next(0, 500);
+                var y = m_random.Next(0, 500);
+
+                var p = new Player();
+                p.SetPosition(new Vector2(x, y));
+                m_players.Add(p);
+            }
 
             for (var i = 0; i < 10; i++)
             {
-                var t = random.NextDouble();
+                var x = m_random.Next(0, 500);
+                var y = m_random.Next(0, 500);
+                var sx = m_random.Next(10, 50);
+                var sy = m_random.Next(10, 50);
 
-                if (t < 0.5)
+                m_walls.Add(new Segment()
                 {
-                    var p1X = random.Next(0, 1000);
-                    var p1Y = random.Next(0, 1000);
-                    var p2X = random.Next(0, 1000);
-                    var p2Y = p1Y;
+                    P1 = new Vector3(x, y, 0),
+                    P2 = new Vector3(x+sx, y, 0),
+                    Color = new Vector4(0.5f, 0.2f, 0, 1)
+                });
 
-                    m_walls.Add(new Segment()
-                    {
-                        P1 = new Vector3(p1X, p1Y, 0),
-                        P2 = new Vector3(p2X, p2Y, 0),
-                        Color = new Vector4(0.5f, 0.2f, 0, 1)
-                    });
-                }
-                else
+                m_walls.Add(new Segment()
                 {
-                    var p1X = random.Next(0, 1000);
-                    var p1Y = random.Next(0, 1000);
-                    var p2X = p1X;
-                    var p2Y = random.Next(0, 1000);
+                    P1 = new Vector3(x + sx, y, 0),
+                    P2 = new Vector3(x + sx, y + sy, 0),
+                    Color = new Vector4(0.5f, 0.2f, 0, 1)
+                });
 
-                    m_walls.Add(new Segment()
-                    {
-                        P1 = new Vector3(p1X, p1Y, 0),
-                        P2 = new Vector3(p2X, p2Y, 0),
-                        Color = new Vector4(0.5f, 0.2f, 0, 1)
-                    });
-                }
+                m_walls.Add(new Segment()
+                {
+                    P1 = new Vector3(x + sx, y + sy, 0),
+                    P2 = new Vector3(x, y + sy, 0),
+                    Color = new Vector4(0.5f, 0.2f, 0, 1)
+                });
+
+                m_walls.Add(new Segment()
+                {
+                    P1 = new Vector3(x, y + sy, 0),
+                    P2 = new Vector3(x, y, 0),
+                    Color = new Vector4(0.5f, 0.2f, 0, 1)
+                });
             }
 
-           
+            //m_walls.Add(new Segment()
+            //{
+            //    P1 = new Vector3(300, 300, 0),
+            //    P2 = new Vector3(300, 400, 0),
+            //    Color = new Vector4(0.5f, 0.2f, 0, 1)
+            //});
+
+            //m_walls.Add(new Segment()
+            //{
+            //    P1 = new Vector3(300, 400, 0),
+            //    P2 = new Vector3(400, 400, 0),
+            //    Color = new Vector4(0.5f, 0.2f, 0, 1)
+            //});
+
+            //m_walls.Add(new Segment()
+            //{
+            //    P1 = new Vector3(400, 400, 0),
+            //    P2 = new Vector3(400, 300, 0),
+            //    Color = new Vector4(0.5f, 0.2f, 0, 1)
+            //});
+
+            //m_walls.Add(new Segment()
+            //{
+            //    P1 = new Vector3(400, 300, 0),
+            //    P2 = new Vector3(300, 300, 0),
+            //    Color = new Vector4(0.5f, 0.2f, 0, 1)
+            //});
 
             s_instance = this;
+
+            //Triangles();
+
+            m_time = Time.Instance;
+            m_time.AddAction(new Granite.Time.Action(Update, 0.1));
+            m_time.AddAction(new Granite.Time.Action(UpdatePlayers, 2));
+            m_time.Start();
         }
 
         private void Triangles()
         {
             m_triangles.Clear();
-
-            //Ajout triangle joueurs
-            m_triangles.AddRange(m_player.ToTriangles());
-            m_triangles.AddRange(m_playerDest.ToTriangles());
-
-            //Creation des segments entre les joueurs
-            var b1 = m_player.Location;
-            var b2 = m_playerDest.Location;
-
-            var s1 = new Segment(
-                new Vector3(b1.MinX, b1.MinY, 0),
-                new Vector3(b2.MinX, b2.MinY, 0), 
-                new Vector4(1, 0, 0, 1));
-
-            var s2 = new Segment(
-                new Vector3(b1.MinX, b1.MaxY, 0),
-                new Vector3(b2.MinX, b2.MaxY, 0),
-                new Vector4(1, 0, 0, 1));
-
-            var s3 = new Segment(
-                new Vector3(b1.MaxX, b1.MinY, 0),
-                new Vector3(b2.MaxX, b2.MinY, 0),
-                new Vector4(1, 0, 0, 1));
-
-            var s4 = new Segment(
-                new Vector3(b1.MaxX, b1.MaxY, 0),
-                new Vector3(b2.MaxX, b2.MaxY, 0),
-                new Vector4(1, 0, 0, 1));
-
-           
-
-
             m_renderer.Clear();
             m_SRenderer.Clear();
-            m_intersections.Clear();
+            //m_intersections.Clear();
 
-            m_SRenderer.AddSegment(s1);
-            m_SRenderer.AddSegment(s2);
-            m_SRenderer.AddSegment(s3);
-            m_SRenderer.AddSegment(s4);
-
-            Tuple<double, int, Point> intersectMin = null;
+            foreach (var s in m_player.GetSegments())
+            {
+                m_SRenderer.AddSegment(s);
+            }
 
             foreach (var wall in m_walls)
             {
                 m_SRenderer.AddSegment(wall);
+                m_player.CollisionTest(wall);
 
-                //Collisions
-                var inter = Collision.IntersectSegmentSegment(
-                    new Vector2(wall.P1.X, wall.P1.Y), 
-                    new Vector2(wall.P2.X, wall.P2.Y),
-                    new Vector2(s1.P1.X, s1.P1.Y), 
-                    new Vector2(s1.P2.X, s1.P2.Y)
-                    );
-
-                if (inter != null)
+                foreach (var player in m_players)
                 {
-                    var p = new Point(new Vector3(inter.Value.X, inter.Value.Y, 0), 10);
-
-                    m_intersections.Add(p);
-
-                    var dist = Distance(s1.P1, new Vector3(p.Center.X, p.Center.Y, 0));
-                    if (intersectMin == null || dist < intersectMin.Item1)
-                    {
-                        intersectMin = new Tuple<double, int, Point>(dist, 0, p);
-                    }
-                }
-
-                inter = Collision.IntersectSegmentSegment(
-                    new Vector2(wall.P1.X, wall.P1.Y),
-                    new Vector2(wall.P2.X, wall.P2.Y),
-                    new Vector2(s2.P1.X, s2.P1.Y),
-                    new Vector2(s2.P2.X, s2.P2.Y));
-                    
-
-                if (inter != null)
-                {
-                    var p = new Point(new Vector3(inter.Value.X, inter.Value.Y, 0), 10);
-
-                    m_intersections.Add(p);
-
-                    var dist = Distance(s2.P1, new Vector3(p.Center.X, p.Center.Y, 0));
-                    if (intersectMin == null || dist < intersectMin.Item1)
-                    {
-                        intersectMin = new Tuple<double, int, Point>(dist, 3, p);
-                    }
-                }
-
-                inter = Collision.IntersectSegmentSegment(
-                    new Vector2(wall.P1.X, wall.P1.Y),
-                    new Vector2(wall.P2.X, wall.P2.Y),
-                    new Vector2(s3.P1.X, s3.P1.Y),
-                    new Vector2(s3.P2.X, s3.P2.Y));
-
-                if (inter != null)
-                {
-                    var p = new Point(new Vector3(inter.Value.X, inter.Value.Y, 0), 10);
-
-                    m_intersections.Add(p);
-
-                    var dist = Distance(s3.P1, new Vector3(p.Center.X, p.Center.Y, 0));
-                    if (intersectMin == null || dist < intersectMin.Item1)
-                    {
-                        intersectMin = new Tuple<double, int, Point>(dist, 1, p);
-                    }
-                }
-
-                inter = Collision.IntersectSegmentSegment(
-                    new Vector2(wall.P1.X, wall.P1.Y),
-                    new Vector2(wall.P2.X, wall.P2.Y),
-                    new Vector2(s4.P1.X, s4.P1.Y),
-                    new Vector2(s4.P2.X, s4.P2.Y)
-                    );
-
-                if (inter != null)
-                {
-                    var p = new Point(new Vector3(inter.Value.X, inter.Value.Y, 0), 10);
-
-                    m_intersections.Add(p);
-
-                    var dist = Distance(s4.P1, new Vector3(p.Center.X, p.Center.Y, 0));
-                    if (intersectMin == null || dist < intersectMin.Item1)
-                    {
-                        intersectMin = new Tuple<double, int, Point>(dist, 2, p);
-                    }
+                    player.CollisionTest(wall);
                 }
             }
 
-            
+            m_triangles.AddRange(m_player.ToTriangles());
 
-            if (intersectMin != null)
+            foreach (var player in m_players)
             {
-                if (intersectMin.Item2 == 0)
-                {
-                    m_playerFinal.SetPosition(new Vector2(
-                        intersectMin.Item3.Center.X,
-                        intersectMin.Item3.Center.Y));
-                }
-                else if (intersectMin.Item2 == 1)
-                {
-                    m_playerFinal.SetPosition(new Vector2(
-                        intersectMin.Item3.Center.X - m_playerFinal.Location.Size.X,
-                        intersectMin.Item3.Center.Y));
-                }
-                else if (intersectMin.Item2 == 2)
-                {
-                    m_playerFinal.SetPosition(new Vector2(
-                        intersectMin.Item3.Center.X - m_playerFinal.Location.Size.X,
-                        intersectMin.Item3.Center.Y - m_playerFinal.Location.Size.Y));
-                }
-                else if (intersectMin.Item2 == 3)
-                {
-                    m_playerFinal.SetPosition(new Vector2(
-                        intersectMin.Item3.Center.X,
-                        intersectMin.Item3.Center.Y - m_playerFinal.Location.Size.Y));
-                }
+                m_triangles.AddRange(player.ToTriangles());
 
-                m_triangles.AddRange(m_playerFinal.ToTriangles());
+                foreach (var s in player.GetSegments())
+                {
+                    m_SRenderer.AddSegment(s);
+                }
             }
 
             foreach (var triangle in m_triangles)
@@ -266,37 +180,61 @@ namespace TestJulien.Game_01.Entities
                 m_renderer.AddTriangle(triangle);
             }
 
-            foreach (var inter in m_intersections)
-            {
-                foreach (var triangle in inter.ToTriangles())
-                {
-                    m_renderer.AddTriangle(triangle);
-                }
-            }
+            //foreach (var inter in m_intersections)
+            //{
+            //    foreach (var triangle in inter.ToTriangles())
+            //    {
+            //        m_renderer.AddTriangle(triangle);
+            //    }
+            //}
 
         }
 
-        public double Distance(Vector3 p1, Vector3 p2)
+
+        public void Update(double interval)
         {
-            var v = new Vector3(p2.X-p1.X, p2.Y-p1.Y, 0);
-            return Math.Sqrt(Math.Pow(v.X, 2) + Math.Pow(v.Y, 2));
+            Triangles();
+
+            var size = Engine.Display.GetSize();
+            m_camera.SetSize(new Vector2(size.X, size.Y));
+
+            var elapsed = TimeSpan.FromMilliseconds(interval);
+            m_player.Update(elapsed);
+            m_camera.Update(elapsed);
+        }
+
+        public void UpdatePlayers(double interval)
+        {
+            var elapsed = TimeSpan.FromMilliseconds(interval);
+            foreach (var player in m_players)
+            {
+                player.SetPosition(player.LocationFinal.Position);
+
+                var x = m_random.Next(-50, 50);
+                var y = m_random.Next(-50, 50);
+                player.SetPositionNext(new Vector2(player.Location.Position.X + x, player.Location.Position.Y + y));
+
+                player.Update(elapsed);
+            }
         }
 
         public void Update(TimeSpan elapsed)
         {
-            var size = Engine.Display.GetSize();
-            m_camera.SetSize(new Vector2(size.X, size.Y));
+            //Triangles();
 
-            m_player.Update(elapsed);
-            m_playerDest.Update(elapsed);
-            m_camera.Update(elapsed);
+            //var size = Engine.Display.GetSize();
+            //m_camera.SetSize(new Vector2(size.X, size.Y));
+
+            //m_player.Update(elapsed);
+            //m_playerDest.Update(elapsed);
+            //m_camera.Update(elapsed);
         }
 
         public void Render(Matrix4 transform)
         {
             transform *= m_camera.CreateWorldToCameraTransform();
 
-            Triangles();
+            
 
             m_renderer.Render(transform);
             m_SRenderer.Render(transform);

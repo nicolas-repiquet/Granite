@@ -99,7 +99,7 @@ namespace Granite.Collision
             var AP = new Vector2(P.X - A.X, P.Y - A.Y);
             var AO = new Vector2(O.X - A.X, O.Y - A.Y);
 
-            if ((AB.X * AP.Y - AB.Y * AP.X) * (AB.X * AO.Y - AB.Y * AO.X) < 0)
+            if ((AB.X * AP.Y - AB.Y * AP.X) * (AB.X * AO.Y - AB.Y * AO.X) <= 0)
                 return true;
             else
                 return false; 
@@ -135,8 +135,8 @@ namespace Granite.Collision
             {
                 float l = -(-AB.X * A.Y + AB.X * O.Y + AB.Y * A.X - AB.Y * O.X) / (AB.X * OP.Y - AB.Y * OP.X);
 
-                return O + (OP * l);
-                //return O + (OP * (l - 0.001f));
+                //return OP * l;
+                return (OP * (l - 0.001f));
             }
         }
         #endregion

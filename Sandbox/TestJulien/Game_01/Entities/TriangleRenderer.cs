@@ -125,13 +125,19 @@ namespace TestJulien.Game_01
 
         public void Clear()
         {
-            m_instances.Clear();
+            lock (m_instances)
+            {
+                m_instances.Clear();
+            }
         }
 
         public ITriangleInstance AddTriangle(Triangle triangle)
         {
             var instance = new TriangleInstance(this);
-            m_instances.Add(instance);
+            lock (m_instances)
+            {
+                m_instances.Add(instance);
+            }
 
             instance.P1 = triangle.P1;
             instance.P2 = triangle.P2;
@@ -143,6 +149,7 @@ namespace TestJulien.Game_01
 
         public void Render(Matrix4 transform)
         {
+            
             if (m_isDirty)
             {
                 GL.BindVertexArray(m_vao);
@@ -154,42 +161,52 @@ namespace TestJulien.Game_01
 
             m_program.Projection.SetValue(transform);
 
-            GL.DrawArrays(GL.TRIANGLES, 0, m_instances.Count*3);
+            GL.DrawArrays(GL.TRIANGLES, 0, m_instances.Count * 3);
 
             GL.BindVertexArray(null);
-
         }
 
         private void RebuildBuffer()
         {
-            TriangleData[] data = new TriangleData[m_instances.Count*3];
-
-            for (int i = 0; i < m_instances.Count*3; i=i+3)
+            List<TriangleInstance> tempInstances = null;
+            lock (m_instances)
             {
-                var instance = m_instances[i/3];
-
-                var matrix = Matrix4.Identity;
-                
-                data[i] = new TriangleData()
-                {
-                    Color = instance.Color,
-                    Position = instance.P1
-                };
-
-                data[i+1] = new TriangleData()
-                {
-                    Color = instance.Color,
-                    Position = instance.P2
-                };
-
-                data[i+2] = new TriangleData()
-                {
-                    Color = instance.Color,
-                    Position = instance.P3
-                };
+                tempInstances = new List<TriangleInstance>(m_instances);
             }
 
-            m_bufferSprite.SetData(data, GL.STREAM_DRAW);
+            var length = tempInstances.Count;
+
+            if (length != 0)
+            {
+                TriangleData[] data = new TriangleData[length * 3];
+
+                for (int i = 0; i < length * 3; i = i + 3)
+                {
+                    var instance = tempInstances[i / 3];
+
+                    var matrix = Matrix4.Identity;
+
+                    data[i] = new TriangleData()
+                    {
+                        Color = instance.Color,
+                        Position = instance.P1
+                    };
+
+                    data[i + 1] = new TriangleData()
+                    {
+                        Color = instance.Color,
+                        Position = instance.P2
+                    };
+
+                    data[i + 2] = new TriangleData()
+                    {
+                        Color = instance.Color,
+                        Position = instance.P3
+                    };
+                }
+
+                m_bufferSprite.SetData(data, GL.STREAM_DRAW);
+            }
 
             m_isDirty = false;
         }

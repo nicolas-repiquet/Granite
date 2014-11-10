@@ -60,7 +60,7 @@ namespace TestJulien.Game_01.GameStates
         public void Draw()
         {
             m_g.FillRectangle(new Box2i(100, 100, 100, 100),
-                new Color4(0x00, 0xFF, 0x00, 0xFF));
+                new Color4ub(0x00, 0xFF, 0x00, 0xFF));
 
             m_g.Flush();
         }

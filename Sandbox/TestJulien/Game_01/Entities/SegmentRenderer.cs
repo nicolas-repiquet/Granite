@@ -111,13 +111,19 @@ namespace TestJulien.Game_01
 
         public void Clear()
         {
-            m_instances.Clear();
+            lock (m_instances)
+            {
+                m_instances.Clear();
+            }
         }
 
         public ISegmentInstance AddSegment(Segment segment)
         {
             var instance = new SegmentInstance(this);
-            m_instances.Add(instance);
+            lock (m_instances)
+            {
+                m_instances.Add(instance);
+            }
 
             instance.P1 = segment.P1;
             instance.P2 = segment.P2;
@@ -139,40 +145,49 @@ namespace TestJulien.Game_01
 
             m_program.Projection.SetValue(transform);
 
-            GL.DrawArrays(GL.LINES, 0, m_instances.Count*2);
+            GL.DrawArrays(GL.LINES, 0, m_instances.Count * 2);
 
             GL.BindVertexArray(null);
-
         }
 
         private void RebuildBuffer()
         {
-            SegmentData[] data = new SegmentData[m_instances.Count * 2];
-
-            for (int i = 0; i < m_instances.Count*2; i=i+2)
+            List<SegmentInstance> tempInstances = null;
+            lock (m_instances)
             {
-                var instance = m_instances[i/2];
-
-                var matrix = Matrix4.Identity;
-
-                data[i] = new SegmentData()
-                {
-                    Color = instance.Color,
-                    Position = instance.P1
-                };
-
-                data[i + 1] = new SegmentData()
-                {
-                    Color = instance.Color,
-                    Position = instance.P2
-                };
+                tempInstances = new List<SegmentInstance>(m_instances);
             }
 
-            m_bufferSprite.SetData(data, GL.STREAM_DRAW);
+            var length = tempInstances.Count;
 
+            if (length != 0)
+            {
+                SegmentData[] data = new SegmentData[length * 2];
+
+                for (int i = 0; i < length * 2; i = i + 2)
+                {
+                    var instance = tempInstances.ElementAt(i / 2);
+
+                    var matrix = Matrix4.Identity;
+
+                    data[i] = new SegmentData()
+                    {
+                        Color = instance.Color,
+                        Position = instance.P1
+                    };
+
+                    data[i + 1] = new SegmentData()
+                    {
+                        Color = instance.Color,
+                        Position = instance.P2
+                    };
+                }
+
+                m_bufferSprite.SetData(data, GL.STREAM_DRAW);
+
+            }
+            
             m_isDirty = false;
         }
-
-        
     }
 }
