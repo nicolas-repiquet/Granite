@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zombie.Sprites
+namespace Zombie.Game.Sprites
 {
     public sealed class PlayerSprites : SpriteSheet
     {

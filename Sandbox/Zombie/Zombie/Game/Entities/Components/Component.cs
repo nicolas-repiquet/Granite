@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zombie.Entities.Components
+namespace Zombie.Game.Entities.Components
 {
     public abstract class Component
     {

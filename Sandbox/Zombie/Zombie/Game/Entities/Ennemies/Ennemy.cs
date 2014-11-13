@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Zombie.Entities.Components;
-using Zombie.Sprites;
+using Zombie.Game.Entities.Components;
+using Zombie.Game.Sprites;
 
-namespace Zombie.Entities.Ennemies
+namespace Zombie.Game.Entities.Ennemies
 {
     public class Ennemy : Entity, ILocated, IUpdatable, IRenderable
     {

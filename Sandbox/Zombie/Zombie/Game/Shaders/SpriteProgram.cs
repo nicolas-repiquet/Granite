@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zombie.Shaders
+namespace Zombie.Game.Shaders
 {
     public sealed class SpriteProgram : Program
     {

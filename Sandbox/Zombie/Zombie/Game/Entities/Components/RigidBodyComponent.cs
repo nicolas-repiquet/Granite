@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace Zombie.Entities.Components
+namespace Zombie.Game.Entities.Components
 {
     public sealed class RigidBodyComponent : Component, IUpdatable
     {

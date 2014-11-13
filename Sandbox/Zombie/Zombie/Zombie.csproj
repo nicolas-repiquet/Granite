@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Zombie.Game</StartupObject>
+    <StartupObject>Zombie.EntryPoint</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,7 +71,7 @@
     <Compile Include="Game\Sprites\Sprite.cs" />
     <Compile Include="Game\Sprites\SpriteRenderer.cs" />
     <Compile Include="Game\Sprites\SpriteSheet.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="EntryPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,8 +86,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Game\Shaders\SpriteProgram.Fragment.glsl" />
-    <None Include="Game\Shaders\SpriteProgram.Vertex.glsl" />
+    <EmbeddedResource Include="Game\Shaders\SpriteProgram.Fragment.glsl" />
+    <EmbeddedResource Include="Game\Shaders\SpriteProgram.Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Game\Sprites\PlayerSprites.png" />

@@ -7,11 +7,11 @@ using Zombie.GameStates;
 
 namespace Zombie
 {
-    public class Game : ApplicationLogicBase
+    public class EntryPoint : ApplicationLogicBase
     {
         public static void Main(string[] args)
         {
-            Engine.Run(new Game(), new ApplicationSettings()
+            Engine.Run(new EntryPoint(), new ApplicationSettings()
             {
                 DisplayStyle = DisplayStyle.ResizeableWithTitle
             });

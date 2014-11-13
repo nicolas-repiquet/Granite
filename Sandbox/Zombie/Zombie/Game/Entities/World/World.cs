@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zombie.Entities.Components;
-using Zombie.Entities.Ennemies;
-using Zombie.Entities.Tools;
+using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Ennemies;
+using Zombie.Game.Entities.Tools;
 
-namespace Zombie.Entities
+namespace Zombie.Game.Entities
 {
     public sealed class World : Entity, IUpdatable, IRenderable
     {

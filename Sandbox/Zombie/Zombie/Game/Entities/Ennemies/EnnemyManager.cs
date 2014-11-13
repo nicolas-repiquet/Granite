@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zombie.Sprites;
+using Zombie.Game.Sprites;
 
-namespace Zombie.Entities.Ennemies
+namespace Zombie.Game.Entities.Ennemies
 {
     public class EnnemyManager
     {

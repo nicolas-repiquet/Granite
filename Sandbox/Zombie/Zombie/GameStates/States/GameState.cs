@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Zombie.Entities;
+using Zombie.Game.Entities;
 
 namespace Zombie.GameStates.States
 {

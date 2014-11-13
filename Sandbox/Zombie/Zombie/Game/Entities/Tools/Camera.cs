@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Zombie.Entities.Components;
+using Zombie.Game.Entities.Components;
 
-namespace Zombie.Entities.Tools
+namespace Zombie.Game.Entities.Tools
 {
     public sealed class Camera : Entity, IUpdatable
     {

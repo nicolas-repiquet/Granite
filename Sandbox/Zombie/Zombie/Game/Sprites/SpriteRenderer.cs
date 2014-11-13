@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
-using Zombie.Shaders;
+using Zombie.Game.Shaders;
 
-namespace Zombie.Sprites
+namespace Zombie.Game.Sprites
 {
     public sealed class SpriteRenderer
     {

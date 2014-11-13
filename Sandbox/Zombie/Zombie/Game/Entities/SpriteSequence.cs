@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Zombie.Entities.Components;
-using Zombie.Sprites;
+using Zombie.Game.Entities.Components;
+using Zombie.Game.Sprites;
 
-namespace Zombie.Entities
+namespace Zombie.Game.Entities
 {
     public sealed class SpriteSequence : IUpdatable
     {
