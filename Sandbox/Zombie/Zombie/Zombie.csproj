@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{23B90FCD-5D37-4519-99AC-3A23BDDD0AE7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zombie</RootNamespace>
+    <AssemblyName>Zombie</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Zombie.Game</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameStates\IGameState.cs" />
+    <Compile Include="GameStates\StateManager.cs" />
+    <Compile Include="GameStates\States\EditorState.cs" />
+    <Compile Include="GameStates\States\GameState.cs" />
+    <Compile Include="GameStates\States\MainMenuState.cs" />
+    <Compile Include="GameStates\States\PauseState.cs" />
+    <Compile Include="Game\Entities\Components\Component.cs" />
+    <Compile Include="Game\Entities\Components\FollowTargetComponent.cs" />
+    <Compile Include="Game\Entities\Components\ILocated.cs" />
+    <Compile Include="Game\Entities\Components\IRenderable.cs" />
+    <Compile Include="Game\Entities\Components\IUpdatable.cs" />
+    <Compile Include="Game\Entities\Components\LocationComponent.cs" />
+    <Compile Include="Game\Entities\Components\RestrictLocationComponent.cs" />
+    <Compile Include="Game\Entities\Components\RigidBodyComponent.cs" />
+    <Compile Include="Game\Entities\Ennemies\Ennemy.cs" />
+    <Compile Include="Game\Entities\Ennemies\EnnemyManager.cs" />
+    <Compile Include="Game\Entities\Entity.cs" />
+    <Compile Include="Game\Entities\Player\Player.cs" />
+    <Compile Include="Game\Entities\SpriteSequence.cs" />
+    <Compile Include="Game\Entities\Tools\Camera.cs" />
+    <Compile Include="Game\Entities\World\World.cs" />
+    <Compile Include="Game\Shaders\SpriteProgram.cs" />
+    <Compile Include="Game\Sprites\ISpriteInstance.cs" />
+    <Compile Include="Game\Sprites\PlayerSprites.cs" />
+    <Compile Include="Game\Sprites\Sprite.cs" />
+    <Compile Include="Game\Sprites\SpriteRenderer.cs" />
+    <Compile Include="Game\Sprites\SpriteSheet.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Sources\Projects\Granite.Core\Granite.Core.csproj">
+      <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
+      <Name>Granite.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Sources\Projects\Granite.UI\Granite.UI.csproj">
+      <Project>{95cdca6e-e490-4a43-8fe2-7c8aa59f3386}</Project>
+      <Name>Granite.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Game\Shaders\SpriteProgram.Fragment.glsl" />
+    <None Include="Game\Shaders\SpriteProgram.Vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game\Sprites\PlayerSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\PlayerSprites.txt" />
+    <Content Include="Game\Textures\zombies.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
