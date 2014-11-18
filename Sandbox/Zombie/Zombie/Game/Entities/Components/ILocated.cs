@@ -8,6 +8,6 @@ namespace Zombie.Game.Entities.Components
 {
     public interface ILocated
     {
-        Box2 Location { get; }
+        LocationComponent Location { get; }
     }
 }

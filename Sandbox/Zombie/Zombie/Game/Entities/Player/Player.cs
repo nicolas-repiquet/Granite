@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Weapons;
 using Zombie.Game.Sprites;
 
 namespace Zombie.Game.Entities
@@ -12,6 +13,8 @@ namespace Zombie.Game.Entities
     {
         private readonly LocationComponent m_location;
         private readonly RigidBodyComponent m_rigidBody;
+        private readonly Vector2 m_box;
+
 
         private readonly SpriteRenderer m_renderer;
         private readonly ISpriteInstance m_sprite;
@@ -22,15 +25,18 @@ namespace Zombie.Game.Entities
         private readonly SpriteSequence m_walkBackSequence;
 
         private SpriteSequence m_currentSequence;
-        private bool m_down;
+        private Weapon m_weapon;
 
-        public Box2 Location { get { return m_location.Location; } }
+        public LocationComponent Location { get { return m_location; } }
+        public Vector2 Box { get { return m_box; } }
         public RigidBodyComponent RigidBody { get { return m_rigidBody; } }
+        public Weapon Weapon { get { return m_weapon; } }
 
         public Player()
         {
             m_location = new LocationComponent(this);
             m_rigidBody = new RigidBodyComponent(this, m_location);
+            m_box = new Vector2(32, 32);
 
             m_renderer = new SpriteRenderer(PlayerSprites.Instance);
             m_sprite = m_renderer.AddSprite(PlayerSprites.Instance.Front1);
@@ -41,7 +47,7 @@ namespace Zombie.Game.Entities
                 PlayerSprites.Instance.Right3
             );
 
-            m_walkRightSequence = new SpriteSequence(
+            m_walkLeftSequence = new SpriteSequence(
                PlayerSprites.Instance.Left1,
                PlayerSprites.Instance.Left2,
                PlayerSprites.Instance.Left3
@@ -87,19 +93,22 @@ namespace Zombie.Game.Entities
                 }
             }
 
+            if (seq == null)
+            {
+                seq = m_walkFrontSequence;
+            }
+
             return seq;
         }
 
         public void SetPosition(Vector2 position)
         {
-            m_location.Location = new Box2(position, new Vector2(70, 70));
+            m_location.SetPosition(position);
         }
 
         public void Update(TimeSpan elapsed)
         {
             m_rigidBody.Update(elapsed);
-
-            m_down = m_rigidBody.Grounded && Engine.Keyboard.IsKeyPressed(Key.Down);
 
             var sequence = GetSpriteSequence();
 
@@ -110,14 +119,38 @@ namespace Zombie.Game.Entities
             }
 
             m_currentSequence.Update(elapsed);
+
+            if (m_weapon != null)
+            {
+                m_weapon.Update(elapsed);
+            }
         }
 
         public void Render(Matrix4 transform)
         {
-            m_sprite.Position = m_location.Location.Position;
+            m_sprite.Position = m_location.Position;
             m_sprite.Sprite = m_currentSequence.CurrentSprite;
             m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
             m_renderer.Render(transform);
+        }
+
+        public void EquipWeapon(Weapon weapon)
+        {
+            Console.WriteLine("Player equip " + weapon.Name);
+            m_weapon = weapon;
+        }
+
+        public void Fire()
+        {
+            if (m_weapon != null)
+            {
+                //Console.WriteLine("Player fire with " + m_weapon.Name);
+                m_weapon.Fire(m_location.Position, m_rigidBody.Velocity.Normalize());
+            }
+            else
+            {
+                Console.WriteLine("Player don't fire because he doesn't have gun !");
+            }
         }
     }
 }

@@ -13,7 +13,10 @@ namespace Zombie.Game.Entities.Tools
         private readonly FollowTargetComponent m_target;
         private readonly RestrictLocationComponent m_restrictPosition;
 
-        public Box2 Location { get { return m_location.Location; } }
+        private Box2 m_box;
+
+        public LocationComponent Location { get { return m_location; } }
+        public Box2 Box { get { return m_box; } }
         public ILocated Target { get { return m_target.Target; } set { m_target.Target = value; } }
         public Box2 Bounds { get { return m_restrictPosition.Bounds; } set { m_restrictPosition.Bounds = value; } }
 
@@ -26,8 +29,8 @@ namespace Zombie.Game.Entities.Tools
 
         public void SetSize(Vector2 size)
         {
-            var center = m_location.Location.Center;
-            m_location.Location = new Box2(center - size / 2, size);
+            var center = m_location.Position;
+            m_box = new Box2(center - size / 2, size);
         }
 
         public void Update(TimeSpan elapsed)
@@ -38,25 +41,21 @@ namespace Zombie.Game.Entities.Tools
 
         public Matrix4 CreateWorldToCameraTransform()
         {
-            var location = m_location.Location;
-
             var transform = Matrix4.Identity;
 
             transform *= Matrix4.Translate(-1f, -1f, 0.0f);
-            transform *= Matrix4.Scale(2f / (float)location.Size.X, 2f / (float)location.Size.Y, 1f);
-            transform *= Matrix4.Translate(-(int)location.Position.X, -(int)location.Position.Y, 0);
+            transform *= Matrix4.Scale(2f / (float)m_box.Size.X, 2f / (float)m_box.Size.Y, 1f);
+            transform *= Matrix4.Translate(-(int)m_location.Position.X + m_box.Size.X / 2, -(int)m_location.Position.Y + m_box.Size.Y / 2, 0);
 
             return transform;
         }
 
         public Matrix4 CreateCameraToWorldTransform()
         {
-            var location = m_location.Location;
-
             var transform = Matrix4.Identity;
 
-            transform *= Matrix4.Translate((int)location.Position.X, (int)location.Position.Y, 0);
-            transform *= Matrix4.Scale((float)location.Size.X / 2f, (float)location.Size.Y / 2f, 1f);
+            transform *= Matrix4.Translate((int)m_location.Position.X, (int)m_location.Position.Y, 0);
+            transform *= Matrix4.Scale((float)m_box.Size.X / 2f, (float)m_box.Size.Y / 2f, 1f);
             transform *= Matrix4.Translate(1f, 1f, 0.0f);
 
             return transform;

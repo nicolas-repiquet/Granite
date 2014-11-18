@@ -36,28 +36,25 @@ namespace Zombie.Game.Entities.Components
         {
             var momentum = new Vector2();
 
-            momentum += new Vector2(0, -1000); // gravity
-
             momentum += Direction;
 
             Velocity += momentum * (float)elapsed.TotalSeconds;
 
             Direction = Vector2.Zero;
 
-            if (Math.Abs(Velocity.X) > 800)
+            if (Math.Abs(Velocity.X) > 100)
             {
-                Velocity = new Vector2(Math.Sign(Velocity.X) * 800, Velocity.Y);
+                Velocity = new Vector2(Math.Sign(Velocity.X) * 100, Velocity.Y);
             }
 
-            {
-                var loss = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
-                Velocity = new Vector2(Velocity.X - loss, Velocity.Y);
-            }
+            var lossX = Velocity.X * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
+            var lossY = Velocity.Y * Math.Min(1f, 5f * (float)elapsed.TotalSeconds);
+            Velocity = new Vector2(Velocity.X - lossX, Velocity.Y - lossY);
 
             var displacement = Velocity * (float)elapsed.TotalSeconds;
-            var newLocation = m_location.Location.Translate(displacement);
+            var newLocation = m_location.Position + displacement;
 
-            m_location.Location = newLocation;
+            m_location.SetPosition(newLocation);
             
         }
     }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Zombie.Game.Entities.Components;
 using Zombie.Game.Entities.Ennemies;
 using Zombie.Game.Entities.Tools;
+using Zombie.Game.Entities.Weapons;
 
 namespace Zombie.Game.Entities
 {
@@ -14,6 +15,8 @@ namespace Zombie.Game.Entities
     {
         private readonly Camera m_camera;
         private readonly Player m_player;
+
+        
 
         public Player Player { get { return m_player; } }
         public Camera Camera { get { return m_camera; } }
@@ -35,25 +38,31 @@ namespace Zombie.Game.Entities
             m_camera.Target = m_player;
 
             Player.SetPosition(new Vector2(350, 350));
-
+            Player.EquipWeapon(new Weapon(
+                "Gatling gun",
+                10,
+                50,
+                0.1,
+                3,
+                1000,
+                100));
 
             s_instance = this;
         }
 
+        
+
         public void Update(TimeSpan elapsed)
         {
-            if (m_player.Location.Position.Y < -10)
-            {
-                Player.SetPosition(new Vector2(0, 500));
-            }
-
             var size = Engine.Display.GetSize();
             m_camera.SetSize(new Vector2(size.X, size.Y));
 
             m_player.Update(elapsed);
             m_camera.Update(elapsed);
 
-            EnnemyManager.Instance.Update(elapsed);
+            BulletManager.Instance.Update(elapsed);
+
+            //EnnemyManager.Instance.Update(elapsed);
         }
 
         public void Render(Matrix4 transform)
@@ -62,7 +71,9 @@ namespace Zombie.Game.Entities
 
             m_player.Render(transform);
 
-            EnnemyManager.Instance.Render(transform);
+            BulletManager.Instance.Render(transform);
+
+            //EnnemyManager.Instance.Render(transform);
         }
 
     }

@@ -49,20 +49,36 @@ namespace Zombie.GameStates.States
                     StateManager.Instance.SetGameState(EGameState.PAUSE);
                 }
 
+                if (Engine.Keyboard.IsKeyPressed(Key.Up))
+                {
+                    m_world.Player.RigidBody.Direction += new Vector2(0, 30);
+                }
+
+                if (Engine.Keyboard.IsKeyPressed(Key.Down))
+                {
+                    m_world.Player.RigidBody.Direction += new Vector2(0, -30);
+                }
+
                 if (Engine.Keyboard.IsKeyPressed(Key.Left))
                 {
-                    m_world.Player.RigidBody.Direction += new Vector2(-30000, 0);
+                    m_world.Player.RigidBody.Direction += new Vector2(-30, 0);
                 }
 
                 if (Engine.Keyboard.IsKeyPressed(Key.Right))
                 {
-                    m_world.Player.RigidBody.Direction += new Vector2(30000, 0);
+                    m_world.Player.RigidBody.Direction += new Vector2(30, 0);
                 }
 
-                if (m_world.Player.RigidBody.Grounded && Engine.Keyboard.IsKeyPressed(Key.Up))
+                if (Engine.Keyboard.IsKeyPressed(Key.Space))
                 {
-                    m_world.Player.RigidBody.Velocity += new Vector2(0, 550);
+                    m_world.Player.Fire();
                 }
+
+                if (Engine.Keyboard.IsKeyPressed(Key.R))
+                {
+                    m_world.Player.Weapon.ReloadCharger();
+                }
+
 
                 m_lastInput = DateTime.Now;
             }

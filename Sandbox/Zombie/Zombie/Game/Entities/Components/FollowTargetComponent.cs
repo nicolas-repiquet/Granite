@@ -22,19 +22,17 @@ namespace Zombie.Game.Entities.Components
         {
             if (Target != null)
             {
-                var targetPoint = Target.Location.Center;
-                var currentPoint = m_location.Location.Center;
+                var targetPoint = Target.Location.Position;
+                var currentPoint = m_location.Position;
                 var displacement = (targetPoint - currentPoint);
                 var distance = displacement.Length;
 
-                if (distance > 3)
+                if (distance > 1)
                 {
-                    var speed = Math.Min(1, distance / 1000);
-                    distance = Math.Min(distance, speed * 5000 * (float)elapsed.TotalSeconds);
-
+                    
                     displacement = displacement.Normalize() * distance;
 
-                    m_location.Location = m_location.Location.Translate(displacement);
+                    m_location.SetPosition(m_location.Position + displacement);
                 }
             }
         }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TestJulien.Game_01
+namespace Zombie.Game.Entities.Tools
 {
     public class Segment
     {

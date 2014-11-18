@@ -8,12 +8,22 @@ namespace Zombie.Game.Entities.Components
 {
     public class LocationComponent : Component
     {
-        public Box2 Location { get; set; }
+        public Vector2 m_previousPosition;
+        public Vector2 m_position;
+
+        public Vector2 PreviousPosition { get { return m_previousPosition; } }
+        public Vector2 Position { get { return m_position; } }
 
         public LocationComponent(Entity entity)
             : base(entity)
         {
 
+        }
+
+        public void SetPosition(Vector2 position)
+        {
+            m_previousPosition = m_position;
+            m_position = position;
         }
     }
 }

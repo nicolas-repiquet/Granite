@@ -24,6 +24,7 @@ namespace TestJulien.Game_01.Entities
         private Random m_random;
 
         public Player Player { get { return m_player; } }
+        public List<Player> Players { get { return m_players; } }
         public Camera Camera { get { return m_camera; } }
         public List<Point> Intersections { get { return m_intersections; } }
 
@@ -56,15 +57,20 @@ namespace TestJulien.Game_01.Entities
 
             m_random = new Random();
 
-            for (var i = 0; i < 20; i++)
-            {
-                var x = m_random.Next(0, 500);
-                var y = m_random.Next(0, 500);
+            //for (var i = 0; i < 20; i++)
+            //{
+            //    var x = m_random.Next(0, 500);
+            //    var y = m_random.Next(0, 500);
 
-                var p = new Player();
-                p.SetPosition(new Vector2(x, y));
-                m_players.Add(p);
-            }
+            //    var p = new Player();
+            //    p.SetPosition(new Vector2(x, y));
+            //    m_players.Add(p);
+            //}
+
+            var p = new Player();
+            p.SetPosition(new Vector2(400, 100));
+            p.SetPositionNext(new Vector2(400, 400));
+            m_players.Add(p);
 
             for (var i = 0; i < 10; i++)
             {
@@ -75,29 +81,29 @@ namespace TestJulien.Game_01.Entities
 
                 m_walls.Add(new Segment()
                 {
-                    P1 = new Vector3(x, y, 0),
-                    P2 = new Vector3(x+sx, y, 0),
+                    P1 = new Vector2(x, y),
+                    P2 = new Vector2(x + sx, y),
                     Color = new Vector4(0.5f, 0.2f, 0, 1)
                 });
 
                 m_walls.Add(new Segment()
                 {
-                    P1 = new Vector3(x + sx, y, 0),
-                    P2 = new Vector3(x + sx, y + sy, 0),
+                    P1 = new Vector2(x + sx, y),
+                    P2 = new Vector2(x + sx, y + sy),
                     Color = new Vector4(0.5f, 0.2f, 0, 1)
                 });
 
                 m_walls.Add(new Segment()
                 {
-                    P1 = new Vector3(x + sx, y + sy, 0),
-                    P2 = new Vector3(x, y + sy, 0),
+                    P1 = new Vector2(x + sx, y + sy),
+                    P2 = new Vector2(x, y + sy),
                     Color = new Vector4(0.5f, 0.2f, 0, 1)
                 });
 
                 m_walls.Add(new Segment()
                 {
-                    P1 = new Vector3(x, y + sy, 0),
-                    P2 = new Vector3(x, y, 0),
+                    P1 = new Vector2(x, y + sy),
+                    P2 = new Vector2(x, y),
                     Color = new Vector4(0.5f, 0.2f, 0, 1)
                 });
             }
@@ -136,7 +142,7 @@ namespace TestJulien.Game_01.Entities
 
             m_time = Time.Instance;
             m_time.AddAction(new Granite.Time.Action(Update, 0.1));
-            m_time.AddAction(new Granite.Time.Action(UpdatePlayers, 2));
+            //m_time.AddAction(new Granite.Time.Action(UpdatePlayers, 2));
             m_time.Start();
         }
 
@@ -155,12 +161,17 @@ namespace TestJulien.Game_01.Entities
             foreach (var wall in m_walls)
             {
                 m_SRenderer.AddSegment(wall);
-                m_player.CollisionTest(wall);
+                //m_player.CollisionTest(wall);
 
-                foreach (var player in m_players)
-                {
-                    player.CollisionTest(wall);
-                }
+                //foreach (var player in m_players)
+                //{
+                //    player.CollisionTest(wall);
+                //}
+            }
+
+            foreach (var player in m_players)
+            {
+                Player.CollisionTest2(player);
             }
 
             m_triangles.AddRange(m_player.ToTriangles());
@@ -198,9 +209,14 @@ namespace TestJulien.Game_01.Entities
             var size = Engine.Display.GetSize();
             m_camera.SetSize(new Vector2(size.X, size.Y));
 
-            var elapsed = TimeSpan.FromMilliseconds(interval);
+            var elapsed = TimeSpan.FromSeconds(interval);
             m_player.Update(elapsed);
             m_camera.Update(elapsed);
+
+            foreach (var player in m_players)
+            {
+                player.Update(elapsed);
+            }
         }
 
         public void UpdatePlayers(double interval)

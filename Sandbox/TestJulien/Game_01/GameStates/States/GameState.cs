@@ -86,6 +86,15 @@ namespace TestJulien.Game_01.GameStates
                     m_world.Player.SetPosition(m_world.Player.LocationFinal.Position);
                 }
 
+                if (Engine.Keyboard.IsKeyPressed(Key.NumPad0))
+                {
+                    foreach (var player in m_world.Players)
+                    {
+                        player.MovingPercent = 0;
+                    }
+                    m_world.Player.MovingPercent = 0;
+                }
+
                 m_lastInput = DateTime.Now;
             }
         }

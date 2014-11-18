@@ -19,10 +19,10 @@ namespace Zombie.Game.Entities.Components
 
         public void Update(TimeSpan elapsed)
         {
-            var x = m_location.Location.Position.X;
-            var y = m_location.Location.Position.Y;
-            var width = Math.Min(Bounds.Size.X, m_location.Location.Size.X);
-            var height = Math.Min(Bounds.Size.Y, m_location.Location.Size.Y);
+            var x = m_location.Position.X;
+            var y = m_location.Position.Y;
+            var width = Math.Min(Bounds.Size.X, Bounds.Size.X);
+            var height = Math.Min(Bounds.Size.Y, Bounds.Size.Y);
 
             if (x < Bounds.MinX)
             {
@@ -42,7 +42,7 @@ namespace Zombie.Game.Entities.Components
                 y = Bounds.MaxY - height;
             }
 
-            m_location.Location = new Box2(x, y, width, height);
+            Bounds = new Box2(x, y, width, height);
         }
     }
 }

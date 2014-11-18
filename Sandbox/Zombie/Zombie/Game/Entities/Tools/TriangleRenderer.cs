@@ -4,24 +4,24 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
-using TestJulien.Game_01.Shaders;
+using Zombie.Game.Shaders;
 
-namespace TestJulien.Game_01
+namespace Zombie.Game.Entities.Tools
 {
-    public sealed class SegmentRenderer
+    public sealed class TriangleRenderer
     {
-        private struct SegmentData
+        private struct TriangleData
         {
             public Vector4 Color;
             public Vector3 Position;
         }
 
-        private sealed class SegmentInstance : ISegmentInstance
+        private sealed class TriangleInstance : ITriangleInstance
         {
 
-            private readonly SegmentRenderer m_renderer;
+            private readonly TriangleRenderer m_renderer;
 
-            public SegmentInstance(SegmentRenderer renderer)
+            public TriangleInstance(TriangleRenderer renderer)
             {
                 m_renderer = renderer;
             }
@@ -67,20 +67,34 @@ namespace TestJulien.Game_01
                     }
                 }
             }
+
+            private Vector3 m_p3;
+            public Vector3 P3
+            {
+                get { return m_p3; }
+                set
+                {
+                    if (m_p3 != value)
+                    {
+                        m_p3 = value;
+                        m_renderer.m_isDirty = true;
+                    }
+                }
+            }
         }
 
         private readonly TriangleProgram m_program;
-        private readonly List<SegmentInstance> m_instances;
-        private readonly Buffer<SegmentData> m_bufferSprite;
+        private readonly List<TriangleInstance> m_instances;
+        private readonly Buffer<TriangleData> m_bufferSprite;
         private readonly Buffer<Vector3> m_bufferTriangle;
         private readonly VertexArray m_vao;
 
         private bool m_isDirty;
 
-        public SegmentRenderer()
+        public TriangleRenderer()
         {
             m_program = TriangleProgram.Instance;
-            m_instances = new List<SegmentInstance>();
+            m_instances = new List<TriangleInstance>();
             
             
             m_vao = new VertexArray();
@@ -88,7 +102,7 @@ namespace TestJulien.Game_01
             GL.BindVertexArray(m_vao);
             GL.UseProgram(m_program);
 
-            m_bufferSprite = new Buffer<SegmentData>();
+            m_bufferSprite = new Buffer<TriangleData>();
             m_bufferTriangle = new Buffer<Vector3>();
 
             m_program.Position.SetValue(m_bufferSprite.GetView<Vector3>("Position"));
@@ -117,23 +131,25 @@ namespace TestJulien.Game_01
             }
         }
 
-        public ISegmentInstance AddSegment(Segment segment)
+        public ITriangleInstance AddTriangle(Triangle triangle)
         {
-            var instance = new SegmentInstance(this);
+            var instance = new TriangleInstance(this);
             lock (m_instances)
             {
                 m_instances.Add(instance);
             }
 
-            instance.P1 = new Vector3(segment.P1.X, segment.P1.Y, 0);
-            instance.P2 = new Vector3(segment.P2.X, segment.P2.Y, 0);
-            instance.Color = segment.Color;
+            instance.P1 = triangle.P1;
+            instance.P2 = triangle.P2;
+            instance.P3 = triangle.P3;
+            instance.Color = triangle.Color;
 
             return instance;
         }
 
         public void Render(Matrix4 transform)
         {
+            
             if (m_isDirty)
             {
                 GL.BindVertexArray(m_vao);
@@ -145,49 +161,56 @@ namespace TestJulien.Game_01
 
             m_program.Projection.SetValue(transform);
 
-            GL.DrawArrays(GL.LINES, 0, m_instances.Count * 2);
+            GL.DrawArrays(GL.TRIANGLES, 0, m_instances.Count * 3);
 
             GL.BindVertexArray(null);
         }
 
         private void RebuildBuffer()
         {
-            List<SegmentInstance> tempInstances = null;
+            List<TriangleInstance> tempInstances = null;
             lock (m_instances)
             {
-                tempInstances = new List<SegmentInstance>(m_instances);
+                tempInstances = new List<TriangleInstance>(m_instances);
             }
 
             var length = tempInstances.Count;
 
             if (length != 0)
             {
-                SegmentData[] data = new SegmentData[length * 2];
+                TriangleData[] data = new TriangleData[length * 3];
 
-                for (int i = 0; i < length * 2; i = i + 2)
+                for (int i = 0; i < length * 3; i = i + 3)
                 {
-                    var instance = tempInstances.ElementAt(i / 2);
+                    var instance = tempInstances[i / 3];
 
                     var matrix = Matrix4.Identity;
 
-                    data[i] = new SegmentData()
+                    data[i] = new TriangleData()
                     {
                         Color = instance.Color,
                         Position = instance.P1
                     };
 
-                    data[i + 1] = new SegmentData()
+                    data[i + 1] = new TriangleData()
                     {
                         Color = instance.Color,
                         Position = instance.P2
                     };
+
+                    data[i + 2] = new TriangleData()
+                    {
+                        Color = instance.Color,
+                        Position = instance.P3
+                    };
                 }
 
                 m_bufferSprite.SetData(data, GL.STREAM_DRAW);
-
             }
-            
+
             m_isDirty = false;
         }
+
+        
     }
 }

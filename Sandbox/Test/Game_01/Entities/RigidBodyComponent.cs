@@ -1,6 +1,7 @@
 ﻿using Granite.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Test.Game_01.Maps;
@@ -27,7 +28,9 @@ namespace Test.Game_01.Entities
 
         public void Update(TimeSpan elapsed)
         {
+            
             TestCollision(elapsed);
+            
         }
 
         private void TestCollision(TimeSpan elapsed)
@@ -54,7 +57,13 @@ namespace Test.Game_01.Entities
 
             var displacement = Velocity * (float)elapsed.TotalSeconds;
             var newLocation = m_location.Location.Translate(displacement);
+
+            //Stopwatch sw = new Stopwatch();
+            //sw.Start();
             var collision = World.Instance.Level.Map.TestCollision(newLocation, displacement);
+            //sw.Stop();
+
+            //Console.WriteLine(string.Format("TestCollision : {0}", sw.Elapsed));
 
             Grounded = false;
 

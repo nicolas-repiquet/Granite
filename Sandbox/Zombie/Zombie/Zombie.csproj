@@ -56,6 +56,7 @@
     <Compile Include="Game\Entities\Components\IRenderable.cs" />
     <Compile Include="Game\Entities\Components\IUpdatable.cs" />
     <Compile Include="Game\Entities\Components\LocationComponent.cs" />
+    <Compile Include="Game\Entities\Components\MoveComponent.cs" />
     <Compile Include="Game\Entities\Components\RestrictLocationComponent.cs" />
     <Compile Include="Game\Entities\Components\RigidBodyComponent.cs" />
     <Compile Include="Game\Entities\Ennemies\Ennemy.cs" />
@@ -64,8 +65,20 @@
     <Compile Include="Game\Entities\Player\Player.cs" />
     <Compile Include="Game\Entities\SpriteSequence.cs" />
     <Compile Include="Game\Entities\Tools\Camera.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\ISegmentInstance.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\ITriangleInstance.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\Point.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\Polygone.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\Segment.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\Triangle.cs" />
+    <Compile Include="Game\Entities\Tools\SegmentRenderer.cs" />
+    <Compile Include="Game\Entities\Tools\TriangleRenderer.cs" />
+    <Compile Include="Game\Entities\Weapons\Bullet.cs" />
+    <Compile Include="Game\Entities\Weapons\BulletManager.cs" />
+    <Compile Include="Game\Entities\Weapons\Weapon.cs" />
     <Compile Include="Game\Entities\World\World.cs" />
     <Compile Include="Game\Shaders\SpriteProgram.cs" />
+    <Compile Include="Game\Shaders\TriangleProgram.cs" />
     <Compile Include="Game\Sprites\ISpriteInstance.cs" />
     <Compile Include="Game\Sprites\PlayerSprites.cs" />
     <Compile Include="Game\Sprites\Sprite.cs" />
@@ -84,7 +97,10 @@
       <Name>Granite.UI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Game\Shaders\TriangleProgram.Fragment.glsl" />
+    <EmbeddedResource Include="Game\Shaders\TriangleProgram.Vertex.glsl" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Game\Shaders\SpriteProgram.Fragment.glsl" />
     <EmbeddedResource Include="Game\Shaders\SpriteProgram.Vertex.glsl" />

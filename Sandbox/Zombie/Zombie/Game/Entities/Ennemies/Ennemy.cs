@@ -10,9 +10,9 @@ namespace Zombie.Game.Entities.Ennemies
 {
     public class Ennemy : Entity, ILocated, IUpdatable, IRenderable
     {
-        protected readonly LocationComponent m_location;
-        protected readonly RigidBodyComponent m_rigidBody;
-
+        private readonly LocationComponent m_location;
+        private readonly RigidBodyComponent m_rigidBody;
+        private readonly Vector2 m_box;
         
         protected ISpriteInstance m_sprite;
 
@@ -20,7 +20,8 @@ namespace Zombie.Game.Entities.Ennemies
 
         protected Player m_target;
 
-        public Box2 Location { get { return m_location.Location; } }
+        public LocationComponent Location { get { return m_location; } }
+        public Vector2 Box { get { return m_box; } }
         public ISpriteInstance Sprite { get { return m_sprite; } }
 
         public Ennemy()

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
-using TestJulien.Game_01.Shaders;
+using Zombie.Game.Shaders;
 
-namespace TestJulien.Game_01
+namespace Zombie.Game.Entities.Tools
 {
     public sealed class SegmentRenderer
     {

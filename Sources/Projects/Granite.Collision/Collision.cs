@@ -139,6 +139,7 @@ namespace Granite.Collision
                 return (OP * (l - 0.001f));
             }
         }
+
         #endregion
     }
 }

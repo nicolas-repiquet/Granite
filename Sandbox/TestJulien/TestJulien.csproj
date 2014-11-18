@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game_01\Entities\AABB.cs" />
+    <Compile Include="Game_01\Entities\AABBCollision.cs" />
     <Compile Include="Game_01\Entities\Camera.cs" />
     <Compile Include="Game_01\Entities\Component.cs" />
     <Compile Include="Game_01\Entities\PlayerFinal.cs" />
