@@ -32,7 +32,7 @@ namespace Zombie.Game.Entities.Ennemies
         {
             m_ennemies = new List<Ennemy>();
 
-            //m_renderer = new SpriteRenderer(EnemiesSprites.Instance);
+            m_renderer = new SpriteRenderer(EnnemiesSprites.Instance);
         }
 
         public void AddEnnemy(Ennemy ennemy)

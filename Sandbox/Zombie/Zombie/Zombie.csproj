@@ -61,6 +61,7 @@
     <Compile Include="Game\Entities\Components\RigidBodyComponent.cs" />
     <Compile Include="Game\Entities\Ennemies\Ennemy.cs" />
     <Compile Include="Game\Entities\Ennemies\EnnemyManager.cs" />
+    <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\Player\Player.cs" />
     <Compile Include="Game\Entities\SpriteSequence.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Game\Entities\World\World.cs" />
     <Compile Include="Game\Shaders\SpriteProgram.cs" />
     <Compile Include="Game\Shaders\TriangleProgram.cs" />
+    <Compile Include="Game\Sprites\EnnemiesSprites.cs" />
     <Compile Include="Game\Sprites\ISpriteInstance.cs" />
     <Compile Include="Game\Sprites\PlayerSprites.cs" />
     <Compile Include="Game\Sprites\Sprite.cs" />
@@ -109,6 +111,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Game\Sprites\PlayerSprites.png" />
     <EmbeddedResource Include="Game\Sprites\PlayerSprites.txt" />
+    <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.txt" />
     <Content Include="Game\Textures\zombies.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

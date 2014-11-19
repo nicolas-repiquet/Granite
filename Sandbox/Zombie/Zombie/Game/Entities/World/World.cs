@@ -45,7 +45,7 @@ namespace Zombie.Game.Entities
                 0.1,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 1f), 0.2f, 200)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 1, 1), new Vector4(1, 1, 0, 1f), 0.2f, 200)));
 
             Player.AddWeapon(new Weapon(
                 "Sniper",
@@ -54,7 +54,7 @@ namespace Zombie.Game.Entities
                 0.8,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 1f), 0.02f, 600)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 1, 1), new Vector4(1, 1, 0, 1f), 0.02f, 600)));
 
             Player.AddWeapon(new Weapon(
                 "ShotGun",
@@ -63,7 +63,19 @@ namespace Zombie.Game.Entities
                 0.5,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 1f), 1f, 100)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 1, 1), new Vector4(1, 1, 0, 1f), 1f, 100)));
+
+            //Ennemies
+            var random = new Random();
+
+            for (var i = 0; i < 100; i++)
+            {
+                var z1 = new Zombie1();
+                z1.SetPosition(new Vector2((float)random.Next(0, 500),
+                    (float)random.Next(0, 500)));
+                z1.SetTarget(Player);
+                EnnemyManager.Instance.AddEnnemy(z1);
+            }
 
             s_instance = this;
         }
@@ -80,7 +92,8 @@ namespace Zombie.Game.Entities
 
             ShootManager.Instance.Update(elapsed);
 
-            //EnnemyManager.Instance.Update(elapsed);
+            EnnemyManager.Instance.Update(elapsed);
+
         }
 
         public void Render(Matrix4 transform)
@@ -91,7 +104,8 @@ namespace Zombie.Game.Entities
 
             ShootManager.Instance.Render(transform);
 
-            //EnnemyManager.Instance.Render(transform);
+            EnnemyManager.Instance.Render(transform);
+
         }
 
     }
