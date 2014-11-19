@@ -38,14 +38,32 @@ namespace Zombie.Game.Entities
             m_camera.Target = m_player;
 
             Player.SetPosition(new Vector2(350, 350));
-            Player.EquipWeapon(new Weapon(
+            Player.AddWeapon(new Weapon(
                 "Gatling gun",
                 10,
                 50,
                 0.1,
                 3,
                 1000,
-                100));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 0f), 0.2f, 200)));
+
+            Player.AddWeapon(new Weapon(
+                "Sniper",
+                10,
+                50,
+                0.8,
+                3,
+                1000,
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 0f), 0.02f, 600)));
+
+            Player.AddWeapon(new Weapon(
+                "ShotGun",
+                10,
+                50,
+                0.5,
+                3,
+                1000,
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 0f), 1f, 100)));
 
             s_instance = this;
         }
@@ -60,7 +78,7 @@ namespace Zombie.Game.Entities
             m_player.Update(elapsed);
             m_camera.Update(elapsed);
 
-            BulletManager.Instance.Update(elapsed);
+            ShootManager.Instance.Update(elapsed);
 
             //EnnemyManager.Instance.Update(elapsed);
         }
@@ -71,7 +89,7 @@ namespace Zombie.Game.Entities
 
             m_player.Render(transform);
 
-            BulletManager.Instance.Render(transform);
+            ShootManager.Instance.Render(transform);
 
             //EnnemyManager.Instance.Render(transform);
         }

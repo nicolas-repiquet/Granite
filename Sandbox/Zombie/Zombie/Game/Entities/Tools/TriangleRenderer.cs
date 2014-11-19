@@ -26,15 +26,41 @@ namespace Zombie.Game.Entities.Tools
                 m_renderer = renderer;
             }
 
-            private Vector4 m_color;
-            public Vector4 Color
+            private Vector4 m_colorP1;
+            private Vector4 m_colorP2;
+            private Vector4 m_colorP3;
+            public Vector4 ColorP1
             {
-                get { return m_color; }
+                get { return m_colorP1; }
                 set
                 {
-                    if (m_color != value)
+                    if (m_colorP1 != value)
                     {
-                        m_color = value;
+                        m_colorP1 = value;
+                        m_renderer.m_isDirty = true;
+                    }
+                }
+            }
+            public Vector4 ColorP2
+            {
+                get { return m_colorP2; }
+                set
+                {
+                    if (m_colorP2 != value)
+                    {
+                        m_colorP2 = value;
+                        m_renderer.m_isDirty = true;
+                    }
+                }
+            }
+            public Vector4 ColorP3
+            {
+                get { return m_colorP3; }
+                set
+                {
+                    if (m_colorP3 != value)
+                    {
+                        m_colorP3 = value;
                         m_renderer.m_isDirty = true;
                     }
                 }
@@ -108,7 +134,6 @@ namespace Zombie.Game.Entities.Tools
             m_program.Position.SetValue(m_bufferSprite.GetView<Vector3>("Position"));
 
             m_program.Color.SetValue(m_bufferSprite.GetView<Vector4>("Color"));
-            //m_program.Position.SetDivisor(1);
            // m_program.Normal.SetValue(m_bufferSprite.GetView<Vector3>("Normal"));
            //// m_program.Normal.SetDivisor(1);
            // m_program.Transform.SetValue(m_bufferSprite.GetView<Matrix4>("Transform"));
@@ -142,7 +167,9 @@ namespace Zombie.Game.Entities.Tools
             instance.P1 = triangle.P1;
             instance.P2 = triangle.P2;
             instance.P3 = triangle.P3;
-            instance.Color = triangle.Color;
+            instance.ColorP1 = triangle.ColorP1;
+            instance.ColorP2 = triangle.ColorP2;
+            instance.ColorP3 = triangle.ColorP3;
 
             return instance;
         }
@@ -188,19 +215,19 @@ namespace Zombie.Game.Entities.Tools
 
                     data[i] = new TriangleData()
                     {
-                        Color = instance.Color,
+                        Color = instance.ColorP1,
                         Position = instance.P1
                     };
 
                     data[i + 1] = new TriangleData()
                     {
-                        Color = instance.Color,
+                        Color = instance.ColorP2,
                         Position = instance.P2
                     };
 
                     data[i + 2] = new TriangleData()
                     {
-                        Color = instance.Color,
+                        Color = instance.ColorP3,
                         Position = instance.P3
                     };
                 }

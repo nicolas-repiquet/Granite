@@ -13,13 +13,13 @@ namespace Zombie
         {
             Engine.Run(new EntryPoint(), new ApplicationSettings()
             {
-                DisplayStyle = DisplayStyle.ResizeableWithTitle
+                DisplayStyle = DisplayStyle.ResizeableWithTitle,
             });
         }
 
         public override void InputEvent(InputEventArgs e)
         {
-            Console.WriteLine(e);
+            StateManager.Instance.Input(e);
         }
 
         public override void Start()

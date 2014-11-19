@@ -6,34 +6,41 @@ using System.Text;
 
 namespace Zombie.Game.Entities.Tools
 {
-    public class Point
+    public class Cone
     {
-        private const double SLOTS = 8;
-        private const double PI_2 = Math.PI * 2;
-        private const double SLOT_ANGLE = (PI_2) / SLOTS;
+        private const double SLOTS = 4;
 
         public Vector3 Center { get; set; }
         public float Radius { get; set; }
-        public Vector4 Color { get; set; }
+        public float Angle { get; set; }
+        public float StartAngle { get; set; }
+        public Vector4 StartColor { get; set; }
+        public Vector4 EndColor { get; set; }
         public Triangle[] Triangles { get; set; }
 
-        public Point()
+        public Cone()
         {
 
         }
 
-        public Point(Vector3 p, float radius)
+        public Cone(Vector3 p, float radius, float angle, float startAngle = 0)
         {
             Center = p;
             Radius = radius;
-            Color = new Vector4(0, 0, 1, 1);
+            Angle = angle;
+            StartAngle = startAngle;
+            StartColor = new Vector4(0, 0, 1, 1);
+            EndColor = new Vector4(0, 0, 1, 1);
         }
 
-        public Point(Vector3 p, float radius, Vector4 color)
+        public Cone(Vector3 p, float radius, float angle, Vector4 startColor, Vector4 endColor, float startAngle = 0)
         {
             Center = p;
             Radius = radius;
-            Color = color;
+            Angle = angle;
+            StartAngle = startAngle;
+            StartColor = startColor;
+            EndColor = endColor;
         }
 
         public Triangle[] ToTriangles()
@@ -43,7 +50,7 @@ namespace Zombie.Game.Entities.Tools
 
             for (int i = 0; i < SLOTS; i++)
             {
-                var t1 = i + 1 * SLOT_ANGLE;
+                var t1 = StartAngle + (i + 1) * (Angle / SLOTS);
                 var p1 = new Vector3(
                     (float)Math.Cos(t1) * Radius + Center.X,
                     (float)Math.Sin(t1) * Radius + Center.Y,
@@ -51,7 +58,7 @@ namespace Zombie.Game.Entities.Tools
 
                 if (i == 0)
                 {
-                    var t0 = i * SLOT_ANGLE;
+                    var t0 = StartAngle + (Angle / SLOTS);
                     var p0 = new Vector3(
                         (float)Math.Cos(t0) * Radius + Center.X,
                         (float)Math.Sin(t0) * Radius + Center.Y,
@@ -62,9 +69,9 @@ namespace Zombie.Game.Entities.Tools
                         P1 = Center,
                         P2 = p1,
                         P3 = p0,
-                        ColorP1 = Color,
-                        ColorP2 = Color,
-                        ColorP3 = Color
+                        ColorP1 = StartColor,
+                        ColorP2 = EndColor,
+                        ColorP3 = EndColor
                     };
                 }
                 else
@@ -76,9 +83,9 @@ namespace Zombie.Game.Entities.Tools
                         P1 = Center,
                         P2 = p,
                         P3 = p1,
-                        ColorP1 = Color,
-                        ColorP2 = Color,
-                        ColorP3 = Color
+                        ColorP1 = StartColor,
+                        ColorP2 = EndColor,
+                        ColorP3 = EndColor
                     };
                 }
             }

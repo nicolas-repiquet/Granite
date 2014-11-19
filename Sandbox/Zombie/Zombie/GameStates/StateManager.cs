@@ -125,6 +125,14 @@ namespace Zombie.GameStates
             }
         }
 
+        public void Input(InputEventArgs e)
+        {
+            if (m_gameState.HasValue)
+            {
+                m_gameStates[m_gameState.Value].Input(e);
+            }
+        }
+
         public void Update(TimeSpan elapsed)
         {
             if (m_gameState.HasValue)

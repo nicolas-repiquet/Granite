@@ -65,6 +65,7 @@
     <Compile Include="Game\Entities\Player\Player.cs" />
     <Compile Include="Game\Entities\SpriteSequence.cs" />
     <Compile Include="Game\Entities\Tools\Camera.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\Cone.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\ISegmentInstance.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\ITriangleInstance.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\Point.cs" />
@@ -73,8 +74,8 @@
     <Compile Include="Game\Entities\Tools\Geometries\Triangle.cs" />
     <Compile Include="Game\Entities\Tools\SegmentRenderer.cs" />
     <Compile Include="Game\Entities\Tools\TriangleRenderer.cs" />
-    <Compile Include="Game\Entities\Weapons\Bullet.cs" />
-    <Compile Include="Game\Entities\Weapons\BulletManager.cs" />
+    <Compile Include="Game\Entities\Weapons\Shoot.cs" />
+    <Compile Include="Game\Entities\Weapons\ShootManager.cs" />
     <Compile Include="Game\Entities\Weapons\Weapon.cs" />
     <Compile Include="Game\Entities\World\World.cs" />
     <Compile Include="Game\Shaders\SpriteProgram.cs" />

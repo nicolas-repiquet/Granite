@@ -33,7 +33,7 @@ namespace Zombie.GameStates.States
             
         }
 
-        private void Input()
+        public void Input(InputEventArgs e)
         {
             if ((DateTime.Now - m_lastInput).TotalMilliseconds > 100)
             {
@@ -49,7 +49,7 @@ namespace Zombie.GameStates.States
 
         public void Update(TimeSpan elapsed)
         {
-            Input();
+
         }
 
         public void Draw()

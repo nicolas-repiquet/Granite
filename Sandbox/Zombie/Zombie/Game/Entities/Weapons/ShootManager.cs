@@ -8,16 +8,16 @@ using Zombie.Game.Entities.Tools;
 
 namespace Zombie.Game.Entities.Weapons
 {
-    public class BulletManager
+    public class ShootManager
     {
-        private static BulletManager s_instance;
-        public static BulletManager Instance
+        private static ShootManager s_instance;
+        public static ShootManager Instance
         {
             get
             {
                 if (s_instance == null)
                 {
-                    s_instance = new BulletManager();
+                    s_instance = new ShootManager();
                 }
                 return s_instance;
             }
@@ -25,31 +25,34 @@ namespace Zombie.Game.Entities.Weapons
 
         protected readonly TriangleRenderer m_renderer;
 
-        private List<Bullet> Bullets;
+        private List<Shoot> Shoots;
 
-        public BulletManager()
+        public ShootManager()
         {
-            Bullets = new List<Bullet>();
+            Shoots = new List<Shoot>();
             m_renderer = new TriangleRenderer();
         }
 
-        public void AddBullet(Bullet bullet)
+        public void AddShoot(Shoot shoot)
         {
-            Bullets.Add(bullet);
+            Shoots.Add(shoot);
         }
 
         public void Update(TimeSpan elapsed)
         {
-            Parallel.ForEach(Bullets, b =>
+            Parallel.ForEach(Shoots, b =>
             {
                 b.Update(elapsed);
             });
 
+            //On vire les shoots terminés
+            Shoots.RemoveAll(x => x.LifeTime <= 0);
+
             m_renderer.Clear();
 
-            foreach (var b in Bullets)
+            foreach (var b in Shoots)
             {
-                var triangles = b.Point.ToTriangles();
+                var triangles = b.Cone.ToTriangles();
                 foreach (var t in triangles)
                 {
                     m_renderer.AddTriangle(t);

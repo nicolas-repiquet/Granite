@@ -14,6 +14,7 @@ namespace Zombie.GameStates
         void Pause();
         void Resume();
 
+        void Input(InputEventArgs e);
         void Update(TimeSpan elapsed);
         void Draw();
     }

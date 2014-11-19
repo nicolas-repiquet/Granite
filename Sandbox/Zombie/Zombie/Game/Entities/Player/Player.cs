@@ -26,17 +26,20 @@ namespace Zombie.Game.Entities
 
         private SpriteSequence m_currentSequence;
         private Weapon m_weapon;
+        private Dictionary<string, Weapon> m_weapons;
 
         public LocationComponent Location { get { return m_location; } }
         public Vector2 Box { get { return m_box; } }
         public RigidBodyComponent RigidBody { get { return m_rigidBody; } }
         public Weapon Weapon { get { return m_weapon; } }
+        public Dictionary<string, Weapon> Weapons { get { return m_weapons; } }
 
         public Player()
         {
             m_location = new LocationComponent(this);
             m_rigidBody = new RigidBodyComponent(this, m_location);
             m_box = new Vector2(32, 32);
+            m_weapons = new Dictionary<string, Weapon>();
 
             m_renderer = new SpriteRenderer(PlayerSprites.Instance);
             m_sprite = m_renderer.AddSprite(PlayerSprites.Instance.Front1);
@@ -64,6 +67,45 @@ namespace Zombie.Game.Entities
                PlayerSprites.Instance.Back2,
                PlayerSprites.Instance.Back3
            );
+        }
+
+        public void AddWeapon(Weapon weapon)
+        {
+            if(!Weapons.ContainsKey(weapon.Name))
+            {
+                Weapons.Add(weapon.Name, weapon);
+            }
+
+            if (m_weapon == null)
+            {
+                EquipWeapon(weapon.Name);
+            }
+        }
+
+        public void EquipWeapon(string name)
+        {
+            if (Weapons.ContainsKey(name))
+            {
+                m_weapon = Weapons[name];
+                Console.WriteLine("Player equip " + name);
+            }
+        }
+
+        public void NextWeapon()
+        {
+            if (Weapons.Count > 1)
+            {
+                List<string> keys = new List<string>(Weapons.Keys);
+                var index = keys.IndexOf(m_weapon.Name);
+
+                var newIndex = index + 1;
+                if (newIndex >= Weapons.Count)
+                {
+                    newIndex = 0;
+                }
+
+                EquipWeapon(keys.ElementAt(newIndex));
+            }
         }
 
         private SpriteSequence GetSpriteSequence()
@@ -128,24 +170,22 @@ namespace Zombie.Game.Entities
 
         public void Render(Matrix4 transform)
         {
-            m_sprite.Position = m_location.Position;
+            m_sprite.Position = new Vector2(m_location.Position.X - m_sprite.Sprite.Size.X/2, m_location.Position.Y - m_sprite.Sprite.Size.Y/2);
             m_sprite.Sprite = m_currentSequence.CurrentSprite;
             m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
             m_renderer.Render(transform);
         }
 
-        public void EquipWeapon(Weapon weapon)
-        {
-            Console.WriteLine("Player equip " + weapon.Name);
-            m_weapon = weapon;
-        }
-
-        public void Fire()
+        public void Fire(Vector2 target)
         {
             if (m_weapon != null)
             {
                 //Console.WriteLine("Player fire with " + m_weapon.Name);
-                m_weapon.Fire(m_location.Position, m_rigidBody.Velocity.Normalize());
+                var v = new Vector2(
+                    target.X - m_location.Position.X,
+                    target.Y - m_location.Position.Y
+                    );
+                m_weapon.Fire(m_location.Position, v.Normalize());
             }
             else
             {

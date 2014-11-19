@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Tools;
 
 namespace Zombie.Game.Entities.Weapons
 {
@@ -17,10 +18,10 @@ namespace Zombie.Game.Entities.Weapons
         private double m_timeLoadBullet;
         private double m_timeLoadCharger;
         private int m_ammoSize;
-        private double m_bulletSpeed;
         private double m_startReloadBullet;
         private double m_startReloadCharger;
         private bool m_loaded;
+        private Shoot m_shoot;
         #endregion
 
         #region Accessors
@@ -30,7 +31,7 @@ namespace Zombie.Game.Entities.Weapons
 
         #region Constructor
         public Weapon(string name, double damage, int charger, 
-            double timeLoadBullet, double timeLoadCharger, int ammoSize, double bulletSpeed)
+            double timeLoadBullet, double timeLoadCharger, int ammoSize, Shoot shoot)
         {
             m_name = name;
             m_damage = damage;
@@ -39,10 +40,11 @@ namespace Zombie.Game.Entities.Weapons
             m_timeLoadBullet = timeLoadBullet;
             m_timeLoadCharger = timeLoadCharger;
             m_ammoSize = ammoSize;
-            m_bulletSpeed = bulletSpeed;
+            m_shoot = shoot;
             m_startReloadBullet = 0;
             m_startReloadCharger = 0;
             m_loaded = true;
+            shoot.SetWeapon(this);
         }
         #endregion
 
@@ -86,8 +88,11 @@ namespace Zombie.Game.Entities.Weapons
             else if (m_loaded)
             {
                 Console.WriteLine("Fire !");
-                var bullet = new Bullet(position, direction, m_bulletSpeed);
-                BulletManager.Instance.AddBullet(bullet);
+                var shoot = (Shoot)m_shoot.Clone();
+                shoot.SetPosition(position);
+                shoot.SetDirection(direction);
+                    
+                ShootManager.Instance.AddShoot(shoot);
 
                 m_loaded = false;
 
