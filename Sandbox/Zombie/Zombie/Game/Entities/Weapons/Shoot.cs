@@ -16,6 +16,7 @@ namespace Zombie.Game.Entities.Weapons
         private MoveComponent m_move;
         private Cone m_cone;
         private double m_lifeTime;
+        private double m_lifeTimeTotal;
         #endregion
 
         #region Accessors
@@ -44,7 +45,8 @@ namespace Zombie.Game.Entities.Weapons
                 (float)Math.Atan2(direction.Y, direction.X) - (angle /2)
                 );
 
-            m_lifeTime = 0.5;
+            m_lifeTimeTotal = 1;
+            m_lifeTime = m_lifeTimeTotal;
         }
         #endregion
 
@@ -57,6 +59,15 @@ namespace Zombie.Game.Entities.Weapons
             m_cone.Center = new Vector3(newPos.X, newPos.Y, 0);
 
             m_lifeTime -= elapsed.TotalSeconds;
+
+            //Pourcentage du temps de vie passée
+            var percent = m_lifeTime / m_lifeTimeTotal / 100;
+            m_cone.StartColor = new Vector4(m_cone.StartColor.X, m_cone.StartColor.Y, m_cone.StartColor.Z, m_cone.StartColor.W - (float)percent);
+
+            //if (m_cone.StartColor.W < 0.2f)
+            //{
+                m_cone.EndColor = new Vector4(m_cone.EndColor.X, m_cone.EndColor.Y, m_cone.EndColor.Z, m_cone.EndColor.W - (float)(percent /2));
+            //}
         }
 
         public void SetWeapon(Weapon weapon)
@@ -78,7 +89,9 @@ namespace Zombie.Game.Entities.Weapons
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            var clone = (Shoot)this.MemberwiseClone();
+            clone.m_cone = (Cone)m_cone.Clone();
+            return (object)clone;
         }
         #endregion
     }

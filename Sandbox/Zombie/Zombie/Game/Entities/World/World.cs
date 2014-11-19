@@ -45,7 +45,7 @@ namespace Zombie.Game.Entities
                 0.1,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 0f), 0.2f, 200)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 1f), 0.2f, 200)));
 
             Player.AddWeapon(new Weapon(
                 "Sniper",
@@ -54,7 +54,7 @@ namespace Zombie.Game.Entities
                 0.8,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 0f), 0.02f, 600)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 1f), 0.02f, 600)));
 
             Player.AddWeapon(new Weapon(
                 "ShotGun",
@@ -63,7 +63,7 @@ namespace Zombie.Game.Entities
                 0.5,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 0f), 1f, 100)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 0, 1), new Vector4(1, 1, 0, 1f), 1f, 100)));
 
             s_instance = this;
         }

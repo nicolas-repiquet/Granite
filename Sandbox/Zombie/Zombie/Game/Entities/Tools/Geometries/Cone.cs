@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Zombie.Game.Entities.Tools
 {
-    public class Cone
+    public class Cone : ICloneable
     {
         private const double SLOTS = 4;
 
@@ -91,6 +91,11 @@ namespace Zombie.Game.Entities.Tools
             }
 
             return Triangles;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }
