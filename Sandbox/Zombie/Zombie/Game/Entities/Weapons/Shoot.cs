@@ -13,7 +13,6 @@ namespace Zombie.Game.Entities.Weapons
         #region Properties
         private Weapon m_weapon;
         private LocationComponent m_location;
-        private MoveComponent m_move;
         private Cone m_cone;
         private double m_lifeTime;
         private double m_lifeTimeTotal;
@@ -29,12 +28,6 @@ namespace Zombie.Game.Entities.Weapons
         {
             m_location = new LocationComponent(this);
             m_location.SetPosition(position);
-
-            m_move = new MoveComponent(this)
-            {
-                Direction = direction,
-                Speed = 0
-            };
 
             m_cone = new Cone(
                 new Vector3(position.X, position.Y, 0),
@@ -53,10 +46,7 @@ namespace Zombie.Game.Entities.Weapons
         #region Methods
         public void Update(TimeSpan elapsed)
         {
-            var newPos = m_location.Position + m_move.Direction * (float)elapsed.TotalSeconds * (float)m_move.Speed;
-            m_location.SetPosition(newPos);
-
-            m_cone.Center = new Vector3(newPos.X, newPos.Y, 0);
+            m_cone.Center = new Vector3(m_location.Position.X, m_location.Position.Y, 0);
 
             m_lifeTime -= elapsed.TotalSeconds;
 
@@ -83,7 +73,6 @@ namespace Zombie.Game.Entities.Weapons
 
         public void SetDirection(Vector2 direction)
         {
-            m_move.Direction = direction;
             m_cone.StartAngle = (float)Math.Atan2(direction.Y, direction.X) - (m_cone.Angle / 2);
         }
 

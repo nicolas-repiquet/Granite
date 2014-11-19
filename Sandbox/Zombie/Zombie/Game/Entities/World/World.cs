@@ -102,10 +102,9 @@ namespace Zombie.Game.Entities
 
             m_player.Render(transform);
 
-            ShootManager.Instance.Render(transform);
-
             EnnemyManager.Instance.Render(transform);
 
+            ShootManager.Instance.Render(transform);
         }
 
     }

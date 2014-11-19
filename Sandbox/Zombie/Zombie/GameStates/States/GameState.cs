@@ -11,11 +11,19 @@ namespace Zombie.GameStates.States
     {
         private World m_world;
         private bool m_mouseLeftPressed;
+        private bool m_keyUpPressed;
+        private bool m_keyDownPressed;
+        private bool m_keyLeftPressed;
+        private bool m_keyRightPressed;
         private Vector2 m_mousePosition;
 
         public void Init()
         {
             m_mouseLeftPressed = false;
+            m_keyUpPressed = false;
+            m_keyDownPressed = false;
+            m_keyLeftPressed = false;
+            m_keyRightPressed = false;
             m_mousePosition = Vector2.Zero;
             m_world = new World();
             Update(new TimeSpan());
@@ -85,29 +93,54 @@ namespace Zombie.GameStates.States
                     StateManager.Instance.SetGameState(EGameState.PAUSE);
                 }
 
-                if (keyboardKeyDownEvent.Key == Key.Up)
+                if (keyboardKeyDownEvent.Key == Key.Up || keyboardKeyDownEvent.Key == Key.Z)
                 {
-                    m_world.Player.RigidBody.Direction += new Vector2(0, 30);
+                    m_keyUpPressed = true;
                 }
 
-                if (keyboardKeyDownEvent.Key == Key.Down)
+                if (keyboardKeyDownEvent.Key == Key.Down || keyboardKeyDownEvent.Key == Key.S)
                 {
-                    m_world.Player.RigidBody.Direction += new Vector2(0, -30);
+                    m_keyDownPressed = true;
                 }
 
-                if (keyboardKeyDownEvent.Key == Key.Left)
+                if (keyboardKeyDownEvent.Key == Key.Left || keyboardKeyDownEvent.Key == Key.Q)
                 {
-                    m_world.Player.RigidBody.Direction += new Vector2(-30, 0);
+                    m_keyLeftPressed = true;
                 }
 
-                if (keyboardKeyDownEvent.Key == Key.Right)
+                if (keyboardKeyDownEvent.Key == Key.Right || keyboardKeyDownEvent.Key == Key.D)
                 {
-                    m_world.Player.RigidBody.Direction += new Vector2(30, 0);
+                    m_keyRightPressed = true;
                 }
 
                 if (keyboardKeyDownEvent.Key == Key.R)
                 {
                     m_world.Player.Weapon.ReloadCharger();
+                }
+            }
+
+            var keyboardKeyUpEvent = e as KeyboardKeyUpEventArgs;
+
+            if (keyboardKeyUpEvent != null)
+            {
+                if (keyboardKeyUpEvent.Key == Key.Up || keyboardKeyUpEvent.Key == Key.Z)
+                {
+                    m_keyUpPressed = false;
+                }
+
+                if (keyboardKeyUpEvent.Key == Key.Down || keyboardKeyUpEvent.Key == Key.S)
+                {
+                    m_keyDownPressed = false;
+                }
+
+                if (keyboardKeyUpEvent.Key == Key.Left || keyboardKeyUpEvent.Key == Key.Q)
+                {
+                    m_keyLeftPressed = false;
+                }
+
+                if (keyboardKeyUpEvent.Key == Key.Right || keyboardKeyUpEvent.Key == Key.D)
+                {
+                    m_keyRightPressed = false;
                 }
             }
         }
@@ -123,6 +156,26 @@ namespace Zombie.GameStates.States
                     Engine.Display.GetSize().Y-m_mousePosition.Y);
                 m_world.Player.Fire(target);
                 Console.WriteLine("Target : " + target.ToString());
+            }
+
+            if (m_keyUpPressed)
+            {
+                m_world.Player.Move.Direction += new Vector2(0, 1);
+            }
+
+            if (m_keyDownPressed)
+            {
+                m_world.Player.Move.Direction += new Vector2(0, -1);
+            }
+
+            if (m_keyLeftPressed)
+            {
+                m_world.Player.Move.Direction += new Vector2(-1, 0);
+            }
+
+            if (m_keyRightPressed)
+            {
+                m_world.Player.Move.Direction += new Vector2(1, 0);
             }
         }
 

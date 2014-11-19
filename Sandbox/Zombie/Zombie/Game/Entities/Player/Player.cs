@@ -13,6 +13,7 @@ namespace Zombie.Game.Entities
     {
         private readonly LocationComponent m_location;
         private readonly RigidBodyComponent m_rigidBody;
+        private readonly MoveComponent m_move;
         private readonly Vector2 m_box;
 
 
@@ -31,13 +32,17 @@ namespace Zombie.Game.Entities
         public LocationComponent Location { get { return m_location; } }
         public Vector2 Box { get { return m_box; } }
         public RigidBodyComponent RigidBody { get { return m_rigidBody; } }
+        public MoveComponent Move { get { return m_move; } }
         public Weapon Weapon { get { return m_weapon; } }
         public Dictionary<string, Weapon> Weapons { get { return m_weapons; } }
+
+        //public bool NeedMove { set; get; }
 
         public Player()
         {
             m_location = new LocationComponent(this);
             m_rigidBody = new RigidBodyComponent(this, m_location);
+            m_move = new MoveComponent(this, m_location);
             m_box = new Vector2(32, 32);
             m_weapons = new Dictionary<string, Weapon>();
 
@@ -110,26 +115,26 @@ namespace Zombie.Game.Entities
 
         private SpriteSequence GetSpriteSequence()
         {
-            SpriteSequence seq = null; 
+            SpriteSequence seq = null;
 
-            if (Math.Abs(m_rigidBody.Velocity.X) > Math.Abs(m_rigidBody.Velocity.Y))
+            if (Math.Abs(m_move.LastDirection.X) > Math.Abs(m_move.LastDirection.Y))
             {
-                if (m_rigidBody.Velocity.X > 0)
+                if (m_move.LastDirection.X > 0)
                 {
                     seq = m_walkRightSequence;
                 }
-                else
+                else if (m_move.LastDirection.X < 0)
                 {
                     seq = m_walkLeftSequence;
                 }
             }
             else
             {
-                if (m_rigidBody.Velocity.Y > 0)
+                if (m_move.LastDirection.Y > 0)
                 {
                     seq = m_walkBackSequence;
                 }
-                else
+                else if (m_move.LastDirection.Y < 0)
                 {
                     seq = m_walkFrontSequence;
                 }
@@ -151,6 +156,13 @@ namespace Zombie.Game.Entities
         public void Update(TimeSpan elapsed)
         {
             m_rigidBody.Update(elapsed);
+            m_move.Update(elapsed);
+
+            //if (NeedMove)
+            //{
+            //    m_location.SetPosition(m_move.NewLocation);
+            //    NeedMove = false;
+            //}
 
             var sequence = GetSpriteSequence();
 
