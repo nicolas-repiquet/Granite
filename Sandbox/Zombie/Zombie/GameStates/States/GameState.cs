@@ -64,6 +64,13 @@ namespace Zombie.GameStates.States
                 }
             }
 
+            var mouseMoveEvent = e as MouseMoveEventArgs;
+
+            if (mouseMoveEvent != null)
+            {
+                m_mousePosition = mouseMoveEvent.Position;
+            }
+
             var keyboardKeyDownEvent = e as KeyboardKeyDownEventArgs;
 
             if (keyboardKeyDownEvent != null)
