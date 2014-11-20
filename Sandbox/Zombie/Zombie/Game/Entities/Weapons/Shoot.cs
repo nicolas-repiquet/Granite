@@ -21,6 +21,7 @@ namespace Zombie.Game.Entities.Weapons
         #region Accessors
         public Cone Cone { get { return m_cone; } }
         public double LifeTime { get { return m_lifeTime; } }
+        public Weapon Weapon { get { return m_weapon; } }
         #endregion
 
         #region Constructor

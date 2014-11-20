@@ -26,7 +26,7 @@ namespace Zombie.Game.Entities.Weapons
 
         #region Accessors
         public string Name { get { return m_name; } }
-        
+        public double Damage { get { return m_damage; } }
         #endregion
 
         #region Constructor

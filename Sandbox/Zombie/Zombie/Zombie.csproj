@@ -59,6 +59,7 @@
     <Compile Include="Game\Entities\Components\MoveComponent.cs" />
     <Compile Include="Game\Entities\Components\RestrictLocationComponent.cs" />
     <Compile Include="Game\Entities\Components\RigidBodyComponent.cs" />
+    <Compile Include="Game\Entities\Components\LifeComponent.cs" />
     <Compile Include="Game\Entities\Ennemies\Ennemy.cs" />
     <Compile Include="Game\Entities\Ennemies\EnnemyManager.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
@@ -91,6 +92,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Sources\Projects\Granite.Collision\Granite.Collision.csproj">
+      <Project>{3ac3017d-55f9-4056-afd5-1a31ce790684}</Project>
+      <Name>Granite.Collision</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Sources\Projects\Granite.Core\Granite.Core.csproj">
       <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
       <Name>Granite.Core</Name>

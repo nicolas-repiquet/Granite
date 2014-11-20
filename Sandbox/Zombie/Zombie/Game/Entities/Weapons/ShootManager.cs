@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zombie.Game.Entities.Ennemies;
 using Zombie.Game.Entities.Tools;
 
 namespace Zombie.Game.Entities.Weapons
@@ -36,6 +37,7 @@ namespace Zombie.Game.Entities.Weapons
         public void AddShoot(Shoot shoot)
         {
             Shoots.Add(shoot);
+            EnnemyManager.Instance.LastShoot = shoot;
         }
 
         public void Update(TimeSpan elapsed)

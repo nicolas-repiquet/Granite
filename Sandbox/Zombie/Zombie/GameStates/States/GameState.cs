@@ -155,7 +155,7 @@ namespace Zombie.GameStates.States
                     m_mousePosition.X,
                     Engine.Display.GetSize().Y-m_mousePosition.Y);
                 m_world.Player.Fire(target);
-                Console.WriteLine("Target : " + target.ToString());
+                //Console.WriteLine("Target : " + target.ToString());
             }
 
             if (m_keyUpPressed)

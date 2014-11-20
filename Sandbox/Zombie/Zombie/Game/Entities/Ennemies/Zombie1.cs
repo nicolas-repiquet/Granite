@@ -90,6 +90,8 @@ namespace Zombie.Game.Entities.Ennemies
 
         public override void Update(TimeSpan elapsed)
         {
+            base.Update(elapsed);
+
             if (m_target != null)
             {
                 var direction = new Vector2(

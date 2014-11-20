@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Zombie.Game.Shaders;
 
 namespace Zombie.Game.Entities.Tools
@@ -207,30 +208,55 @@ namespace Zombie.Game.Entities.Tools
             {
                 TriangleData[] data = new TriangleData[length * 3];
 
-                for (int i = 0; i < length * 3; i = i + 3)
-                {
-                    var instance = tempInstances[i / 3];
-
-                    var matrix = Matrix4.Identity;
-
-                    data[i] = new TriangleData()
+                Parallel.For(0, length, i =>
                     {
-                        Color = instance.ColorP1,
-                        Position = instance.P1
-                    };
+                        var instance = tempInstances[i];
 
-                    data[i + 1] = new TriangleData()
-                    {
-                        Color = instance.ColorP2,
-                        Position = instance.P2
-                    };
+                        var matrix = Matrix4.Identity;
 
-                    data[i + 2] = new TriangleData()
-                    {
-                        Color = instance.ColorP3,
-                        Position = instance.P3
-                    };
-                }
+                        data[i*3] = new TriangleData()
+                        {
+                            Color = instance.ColorP1,
+                            Position = instance.P1
+                        };
+
+                        data[(i*3) + 1] = new TriangleData()
+                        {
+                            Color = instance.ColorP2,
+                            Position = instance.P2
+                        };
+
+                        data[(i * 3) + 2] = new TriangleData()
+                        {
+                            Color = instance.ColorP3,
+                            Position = instance.P3
+                        };
+                    });
+
+                //for (int i = 0; i < length; i = i++)
+                //{
+                //    var instance = tempInstances[i / 3];
+
+                //    var matrix = Matrix4.Identity;
+
+                //    data[i] = new TriangleData()
+                //    {
+                //        Color = instance.ColorP1,
+                //        Position = instance.P1
+                //    };
+
+                //    data[i + 1] = new TriangleData()
+                //    {
+                //        Color = instance.ColorP2,
+                //        Position = instance.P2
+                //    };
+
+                //    data[i + 2] = new TriangleData()
+                //    {
+                //        Color = instance.ColorP3,
+                //        Position = instance.P3
+                //    };
+                //}
 
                 m_bufferSprite.SetData(data, GL.STREAM_DRAW);
             }

@@ -14,6 +14,7 @@ namespace Zombie.Game.Entities
         private readonly LocationComponent m_location;
         private readonly RigidBodyComponent m_rigidBody;
         private readonly MoveComponent m_move;
+        private readonly LifeComponent m_life;
         private readonly Vector2 m_box;
 
 
@@ -33,6 +34,7 @@ namespace Zombie.Game.Entities
         public Vector2 Box { get { return m_box; } }
         public RigidBodyComponent RigidBody { get { return m_rigidBody; } }
         public MoveComponent Move { get { return m_move; } }
+        public LifeComponent Life { get { return m_life; } }
         public Weapon Weapon { get { return m_weapon; } }
         public Dictionary<string, Weapon> Weapons { get { return m_weapons; } }
 
@@ -43,6 +45,7 @@ namespace Zombie.Game.Entities
             m_location = new LocationComponent(this);
             m_rigidBody = new RigidBodyComponent(this, m_location);
             m_move = new MoveComponent(this, m_location);
+            m_life = new LifeComponent(this, 100);
             m_box = new Vector2(32, 32);
             m_weapons = new Dictionary<string, Weapon>();
 
@@ -188,11 +191,16 @@ namespace Zombie.Game.Entities
             m_renderer.Render(transform);
         }
 
-        public void Fire(Vector2 target)
+        public void Fire(Vector2 mouse)
         {
             if (m_weapon != null)
             {
-                //Console.WriteLine("Player fire with " + m_weapon.Name);
+                //Transformation des coordonnées
+                //var cameraMatrix = World.Instance.Camera.CreateCameraToWorldTransform();
+                //var target =  cameraMatrix * new Vector3(mouse.X, mouse.Y, 0);
+
+                var target = mouse;
+
                 var v = new Vector2(
                     target.X - m_location.Position.X,
                     target.Y - m_location.Position.Y
