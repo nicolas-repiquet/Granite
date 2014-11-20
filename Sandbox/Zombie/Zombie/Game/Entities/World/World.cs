@@ -68,7 +68,7 @@ namespace Zombie.Game.Entities
             //Ennemies
             var random = new Random();
 
-            for (var i = 0; i < 2; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var z1 = new Zombie1();
                 z1.SetPosition(new Vector2((float)random.Next(0, 500),

@@ -13,13 +13,13 @@ namespace Zombie.Game.Entities.Weapons
         #region Properties
         private Weapon m_weapon;
         private LocationComponent m_location;
-        private Cone m_cone;
+        private Cone2 m_cone;
         private double m_lifeTime;
         private double m_lifeTimeTotal;
         #endregion
 
         #region Accessors
-        public Cone Cone { get { return m_cone; } }
+        public Cone2 Cone { get { return m_cone; } }
         public double LifeTime { get { return m_lifeTime; } }
         public Weapon Weapon { get { return m_weapon; } }
         #endregion
@@ -30,13 +30,13 @@ namespace Zombie.Game.Entities.Weapons
             m_location = new LocationComponent(this);
             m_location.SetPosition(position);
 
-            m_cone = new Cone(
+            m_cone = new Cone2(
                 new Vector3(position.X, position.Y, 0),
                 radius,
                 angle,
                 startColor,
                 endColor,
-                (float)Math.Atan2(direction.Y, direction.X) - (angle /2)
+                (float)((Math.Atan2(direction.Y, direction.X) + Math.PI*2) - (angle / 2) - Math.PI*2)
                 );
 
             m_lifeTimeTotal = 1;
@@ -80,7 +80,7 @@ namespace Zombie.Game.Entities.Weapons
         public object Clone()
         {
             var clone = (Shoot)this.MemberwiseClone();
-            clone.m_cone = (Cone)m_cone.Clone();
+            clone.m_cone = (Cone2)m_cone.Clone();
             return (object)clone;
         }
         #endregion

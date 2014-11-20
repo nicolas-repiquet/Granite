@@ -68,6 +68,7 @@
     <Compile Include="Game\Entities\SpriteSequence.cs" />
     <Compile Include="Game\Entities\Tools\Camera.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\Cone.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\Cone2.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\ISegmentInstance.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\ITriangleInstance.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\Point.cs" />

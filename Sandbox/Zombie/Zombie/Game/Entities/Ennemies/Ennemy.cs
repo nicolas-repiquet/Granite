@@ -69,25 +69,33 @@ namespace Zombie.Game.Entities.Ennemies
 
         private void CollisionShoot()
         {
-            foreach(var triangle in LastShoot.Cone.Triangles)
+            var collide = LastShoot.Cone.Collision(m_location.Position);
+
+            if (collide)
             {
-                var listPoint = new List<Vector2>()
-                {
-                    new Vector2(triangle.P1.X, triangle.P1.Y), 
-                    new Vector2(triangle.P2.X, triangle.P2.Y), 
-                    new Vector2(triangle.P3.X, triangle.P3.Y)
-                };
-                var center = m_location.Position;
-
-                var collide = Collision.Detection(listPoint, new List<Vector2>() { center });
-
-                if (collide)
-                {
-                    m_life.TakeDamage(LastShoot.Weapon.Damage);
-                    Console.WriteLine("Ennemy take " + LastShoot.Weapon.Damage + " damages (" + m_life.Life + ")");
-                    break;
-                }
+                m_life.TakeDamage(LastShoot.Weapon.Damage);
+                Console.WriteLine("Ennemy take " + LastShoot.Weapon.Damage + " damages (" + m_life.Life + ")");
             }
+
+            //foreach(var triangle in LastShoot.Cone.Triangles)
+            //{
+            //    var listPoint = new List<Vector2>()
+            //    {
+            //        new Vector2(triangle.P1.X, triangle.P1.Y), 
+            //        new Vector2(triangle.P2.X, triangle.P2.Y), 
+            //        new Vector2(triangle.P3.X, triangle.P3.Y)
+            //    };
+            //    var center = m_location.Position;
+
+            //    var collide = Collision.Detection(listPoint, new List<Vector2>() { center });
+
+            //    if (collide)
+            //    {
+            //        m_life.TakeDamage(LastShoot.Weapon.Damage);
+            //        Console.WriteLine("Ennemy take " + LastShoot.Weapon.Damage + " damages (" + m_life.Life + ")");
+            //        break;
+            //    }
+            //}
         }
     }
 }
