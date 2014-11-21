@@ -40,8 +40,8 @@ namespace Zombie.Game.Entities
             Player.SetPosition(new Vector2(350, 350));
             Player.AddWeapon(new Weapon(
                 "Gatling gun",
-                10,
-                50,
+                5,
+                100,
                 0.1,
                 3,
                 1000,
@@ -58,7 +58,7 @@ namespace Zombie.Game.Entities
 
             Player.AddWeapon(new Weapon(
                 "ShotGun",
-                25,
+                50,
                 50,
                 0.5,
                 3,
@@ -68,7 +68,7 @@ namespace Zombie.Game.Entities
             //Ennemies
             var random = new Random();
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 100; i++)
             {
                 var z1 = new Zombie1();
                 z1.SetPosition(new Vector2((float)random.Next(0, 500),

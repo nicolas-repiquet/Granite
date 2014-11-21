@@ -36,7 +36,7 @@ namespace Zombie.Game.Entities.Weapons
                 angle,
                 startColor,
                 endColor,
-                (float)((Math.Atan2(direction.Y, direction.X) + Math.PI*2) - (angle / 2) - Math.PI*2)
+                (float)((Math.Atan2(direction.Y, direction.X) + Math.PI*2) - (angle / 2.0) - Math.PI*2)
                 );
 
             m_lifeTimeTotal = 1;

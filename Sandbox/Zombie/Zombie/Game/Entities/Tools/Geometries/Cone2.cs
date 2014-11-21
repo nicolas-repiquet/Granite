@@ -14,8 +14,8 @@ namespace Zombie.Game.Entities.Tools
             public int Segment;
         }
 
-        private const int SLOTS = 16;
-        private const int INITIAL_SEGMENTS = 4;
+        private const int SLOTS = 32;
+        private const int INITIAL_SEGMENTS = 16;
         private const int SLOTS_PER_SEGMENT = SLOTS / INITIAL_SEGMENTS;
         private const double PI_2 = Math.PI * 2;
         private double SLOT_ANGLE;
@@ -82,7 +82,7 @@ namespace Zombie.Game.Entities.Tools
         public void Clear()
         {
             SLOT_ANGLE = Angle / SLOTS;
-            HALF_SLOT_ANGLE = Angle / 2;
+            HALF_SLOT_ANGLE = SLOT_ANGLE / 2;
 
             s_rays = new Vector2[SLOTS];
 
@@ -170,33 +170,86 @@ namespace Zombie.Game.Entities.Tools
             m_segment++;
         }
 
-        public bool Collision(Vector2 point)
+        public bool Collision(Vector2 point, float r = 5)
         {
             var x1 = point.X - Center.X;
             var y1 = point.Y - Center.Y;
 
-            var start = (double)StartAngle;
-            var angle = Math.Atan2(y1, x1);
+            //Calcul de la normal de l'origin du tir jusqu'au point
+            var normal = new Vector2(-y1, x1).Normalize() * r;
 
-            if (angle >= start && angle < start + Angle)
+            var point1 = new Vector2(point.X + normal.X, point.Y + normal.Y);
+            var point2 = new Vector2(point.X - normal.X, point.Y - normal.Y);
+
+            var t0 = Math.Atan2(point.Y - Center.Y, point.X - Center.X);
+            var t1 = Math.Atan2(point1.Y - Center.Y, point1.X - Center.X);
+            var t2 = Math.Atan2(point2.Y - Center.Y, point2.X - Center.X);
+
+            if (t1 > t2)
             {
-                if (start < 0)
+                var temp = t2;
+                t2 = t1;
+                t1 = temp;
+
+                var tempPoint = point2;
+                point2 = point1;
+                point1 = tempPoint;
+            }
+
+            var start = (double)StartAngle;
+
+            //Cible entierement inclut dans l'angle du tir
+            if (t1 >= start && t1 < start + Angle
+                && t2 >= start && t2 < start + Angle)
+            {
+                var vecteurDirecteur = new Vector2(x1, y1);
+                var radius = (float)Math.Sqrt(vecteurDirecteur.X * vecteurDirecteur.X + vecteurDirecteur.Y * vecteurDirecteur.Y);
+
+                if (radius <= Radius)
                 {
-                    start += Math.PI;
-                    angle += Math.PI;
+                    return true;
                 }
+            }
+            //Tir entierement inclut dans l'angle de la cible
+            else if (start >= t1 && start + Angle < t2)
+            {
+                var vecteurDirecteur = new Vector2(x1, y1);
+                var radius = (float)Math.Sqrt(vecteurDirecteur.X * vecteurDirecteur.X + vecteurDirecteur.Y * vecteurDirecteur.Y);
 
-                double ecart = angle - start;
+                if (radius <= Radius)
+                {
+                    return true;
+                }
+            }
+            //Cible partiellement inclut dans l'angle du tir (point gauche)
+            else if (t1 >= start && t1 < start + Angle)
+            {
+                var vecteurDirecteur = new Vector2(point1.X, point1.Y);
+                var radius = (float)Math.Sqrt(vecteurDirecteur.X * vecteurDirecteur.X + vecteurDirecteur.Y * vecteurDirecteur.Y);
 
-                var index = (int)Math.Floor(ecart / SLOT_ANGLE);
+                if (radius <= Radius)
+                {
+                    return true;
+                }
+            }
+            //Cible partiellement inclut dans l'angle du tir (point droite)
+            else if (t2 >= start && t2 < start + Angle)
+            {
+                var vecteurDirecteur = new Vector2(point2.X, point2.Y);
+                var radius = (float)Math.Sqrt(vecteurDirecteur.X * vecteurDirecteur.X + vecteurDirecteur.Y * vecteurDirecteur.Y);
 
-                //var totalSlots = (int)((SLOTS * PI_2) / SLOT_ANGLE);
+                if (radius <= Radius)
+                {
+                    return true;
+                }
+            }
+            //Cible partiellement inclut dans l'angle du tir (point central)
+            else if (t0 >= start && t0 < start + Angle)
+            {
+                var vecteurDirecteur = new Vector2(point.X, point.Y).Normalize();
+                var radius = (float)Math.Sqrt(vecteurDirecteur.X * vecteurDirecteur.X + vecteurDirecteur.Y * vecteurDirecteur.Y);
 
-                //var index = (int)((i0 % totalSlots) - (StartAngle / SLOT_ANGLE));
-
-                var radius = (float)Math.Sqrt(x1 * x1 + y1 * y1);
-
-                if (radius < m_slots[index].Radius)
+                if (radius <= Radius)
                 {
                     return true;
                 }
@@ -204,6 +257,41 @@ namespace Zombie.Game.Entities.Tools
 
             return false;
         }
+
+        //public bool Collision(Vector2 point)
+        //{
+        //    var x1 = point.X - Center.X;
+        //    var y1 = point.Y - Center.Y;
+
+        //    var start = (double)StartAngle;
+        //    var angle = Math.Atan2(y1, x1);
+
+        //    if (angle >= start && angle < start + Angle)
+        //    {
+        //        if (start < 0)
+        //        {
+        //            start += Math.PI;
+        //            angle += Math.PI;
+        //        }
+
+        //        double ecart = angle - start;
+
+        //        var index = (int)Math.Floor(ecart / SLOT_ANGLE);
+
+        //        //var totalSlots = (int)((SLOTS * PI_2) / SLOT_ANGLE);
+
+        //        //var index = (int)((i0 % totalSlots) - (StartAngle / SLOT_ANGLE));
+
+        //        var radius = (float)Math.Sqrt(x1 * x1 + y1 * y1);
+
+        //        if (radius < m_slots[index].Radius)
+        //        {
+        //            return true;
+        //        }
+        //    }
+
+        //    return false;
+        //}
 
         public IEnumerable<Triangle> ToTriangles()
         {

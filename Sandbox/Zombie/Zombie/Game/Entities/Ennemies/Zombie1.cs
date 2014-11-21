@@ -80,7 +80,7 @@ namespace Zombie.Game.Entities.Ennemies
         public void SetPosition(Vector2 position)
         {
             m_location.SetPosition(position);
-            m_box = new Vector2(50, 32);
+            m_box = new Vector2(23, 23);
         }
 
         public override void SetSprite(SpriteRenderer renderer)
@@ -118,7 +118,7 @@ namespace Zombie.Game.Entities.Ennemies
 
             m_currentSequence.Update(elapsed);
 
-            m_sprite.Position = m_location.Position;
+            m_sprite.Position = new Vector2(m_location.Position.X-m_box.X/2, m_location.Position.Y-m_box.Y/2);
             m_sprite.Sprite = m_currentSequence.CurrentSprite;
             m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
         }
