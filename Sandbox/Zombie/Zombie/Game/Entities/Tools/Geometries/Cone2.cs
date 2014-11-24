@@ -196,7 +196,7 @@ namespace Zombie.Game.Entities.Tools
             if (t2 - t1 > Math.PI)
             {
                 t2 -= PI_2;
-                start -= PI_2;
+                start = start < PI_2 ? start : start - PI_2;
             }
 
             if (t1 > t2)
@@ -234,7 +234,7 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
-                    Console.WriteLine(string.Format("Tir entierement inclut dans l'angle de la cible : t1={0} < start={1} < s+a={2} < t2={3}", t1, start, start + Angle, t2));
+                    //Console.WriteLine(string.Format("Tir entierement inclut dans l'angle de la cible : t1={0} < start={1} < s+a={2} < t2={3}", t1, start, start + Angle, t2));
 
                     return true;
                 }
@@ -247,7 +247,7 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
-                    Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point gauche)");
+                    //Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point gauche)");
 
                     return true;
                 }
@@ -260,7 +260,7 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
-                    Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point droite)");
+                    //Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point droite)");
 
                     return true;
                 }
@@ -273,7 +273,7 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
-                    Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point central)");
+                    //Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point central)");
 
                     return true;
                 }

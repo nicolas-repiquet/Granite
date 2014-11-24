@@ -69,7 +69,7 @@ namespace Zombie.Game.Entities.Ennemies
 
         private void CollisionShoot()
         {
-            var collide = LastShoot.Cone.Collision(m_location.Position, 5);
+            var collide = LastShoot.Cone.Collision(m_location.Position, 10);
 
             if (collide)
             {
