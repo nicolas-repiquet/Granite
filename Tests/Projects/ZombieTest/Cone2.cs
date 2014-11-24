@@ -170,6 +170,26 @@ namespace ZombieTest
         }
 
         [TestMethod]
+        public void CollisionLeft4()
+        {
+            var z = new Vector2(-8, -1);
+
+            var result = m_coneLeft.Collision(z, 5);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void CollisionLeft5()
+        {
+            var z = new Vector2(-8, 1);
+
+            var result = m_coneLeft.Collision(z, 5);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void CollisionDown1()
         {
             var z = new Vector2(0, -10);

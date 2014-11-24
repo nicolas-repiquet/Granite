@@ -79,11 +79,11 @@ namespace Zombie.Game.Entities.Weapons
         {
             if (m_startReloadCharger != 0)
             {
-                Console.WriteLine("Weapon reload charger !");
+                //Console.WriteLine("Weapon reload charger !");
             }
             else if (m_startReloadBullet != 0)
             {
-                Console.WriteLine("Weapon reload bullet !");
+                //Console.WriteLine("Weapon reload bullet !");
             }
             else if (m_loaded)
             {

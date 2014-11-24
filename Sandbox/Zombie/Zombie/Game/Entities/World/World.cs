@@ -40,7 +40,7 @@ namespace Zombie.Game.Entities
             Player.SetPosition(new Vector2(350, 350));
             Player.AddWeapon(new Weapon(
                 "Gatling gun",
-                5,
+                25,
                 100,
                 0.1,
                 3,

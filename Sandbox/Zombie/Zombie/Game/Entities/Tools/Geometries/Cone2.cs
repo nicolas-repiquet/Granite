@@ -1,4 +1,5 @@
 ﻿using Granite.Core;
+using Granite.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -181,9 +182,22 @@ namespace Zombie.Game.Entities.Tools
             var point1 = new Vector2(point.X + normal.X, point.Y + normal.Y);
             var point2 = new Vector2(point.X - normal.X, point.Y - normal.Y);
 
-            var t0 = Math.Atan2(point.Y - Center.Y, point.X - Center.X);
-            var t1 = Math.Atan2(point1.Y - Center.Y, point1.X - Center.X);
-            var t2 = Math.Atan2(point2.Y - Center.Y, point2.X - Center.X);
+            var t0 = Math.Atan2(point.Y - Center.Y, point.X - Center.X) + PI_2;
+            var t1 = Math.Atan2(point1.Y - Center.Y, point1.X - Center.X) + PI_2;
+            var t2 = Math.Atan2(point2.Y - Center.Y, point2.X - Center.X) + PI_2;
+
+            var start = (double)StartAngle + PI_2;
+
+            if (t0 - t1 > Math.PI)
+            {
+                t0 -= PI_2;
+            }
+
+            if (t2 - t1 > Math.PI)
+            {
+                t2 -= PI_2;
+                start -= PI_2;
+            }
 
             if (t1 > t2)
             {
@@ -196,7 +210,7 @@ namespace Zombie.Game.Entities.Tools
                 point1 = tempPoint;
             }
 
-            var start = (double)StartAngle;
+            
 
             //Cible entierement inclut dans l'angle du tir
             if (t1 >= start && t1 < start + Angle
@@ -207,6 +221,8 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
+                    Console.WriteLine("Cible entierement inclut dans l'angle du tir");
+
                     return true;
                 }
             }
@@ -218,6 +234,8 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
+                    Console.WriteLine(string.Format("Tir entierement inclut dans l'angle de la cible : t1={0} < start={1} < s+a={2} < t2={3}", t1, start, start + Angle, t2));
+
                     return true;
                 }
             }
@@ -229,6 +247,8 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
+                    Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point gauche)");
+
                     return true;
                 }
             }
@@ -240,6 +260,8 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
+                    Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point droite)");
+
                     return true;
                 }
             }
@@ -251,6 +273,8 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
+                    Console.WriteLine("Cible partiellement inclut dans l'angle du tir (point central)");
+
                     return true;
                 }
             }
