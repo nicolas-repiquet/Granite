@@ -128,7 +128,8 @@ namespace Zombie.Game.Entities.Zones
             //On récupère la position du joueur et on met a jour les zones
             var player = World.Instance.Player;
 
-            var indexPlayer = new Tuple<int, int>((int)player.Location.Position.X / ZoneSize.X, (int)player.Location.Position.Y / ZoneSize.Y);
+            var indexPlayer = new Tuple<int, int>((int)Math.Floor(player.Location.Position.X / ZoneSize.X),
+                (int)Math.Floor(player.Location.Position.Y / ZoneSize.Y));
 
             if (indexPlayer != m_currentZoneIndex)
             {

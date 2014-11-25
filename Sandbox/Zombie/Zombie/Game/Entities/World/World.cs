@@ -39,7 +39,7 @@ namespace Zombie.Game.Entities
             m_camera.Bounds = new Box2(0, 0, 1000, 1000);
             m_camera.Target = m_player;
 
-            Player.SetPosition(new Vector2(350, 350));
+            Player.SetPosition(new Vector2(0, 0));
             Player.AddWeapon(new Weapon(
                 "Gatling gun",
                 25,
