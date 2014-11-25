@@ -23,7 +23,7 @@ namespace Zombie.Game.Entities.Tools
         {
             P1 = p1;
             P2 = p2;
-            Color = new Vector4(1, 1, 0, 1);
+            Color = new Vector4(1, 0, 0, 1);
         }
 
         public Segment(Vector2 p1, Vector2 p2, Vector4 color)

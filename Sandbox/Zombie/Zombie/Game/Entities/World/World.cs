@@ -8,6 +8,7 @@ using Zombie.Game.Entities.Components;
 using Zombie.Game.Entities.Ennemies;
 using Zombie.Game.Entities.Tools;
 using Zombie.Game.Entities.Weapons;
+using Zombie.Game.Entities.Zones;
 
 namespace Zombie.Game.Entities
 {
@@ -15,11 +16,11 @@ namespace Zombie.Game.Entities
     {
         private readonly Camera m_camera;
         private readonly Player m_player;
-
-        
+        private readonly Map m_map;
 
         public Player Player { get { return m_player; } }
         public Camera Camera { get { return m_camera; } }
+        public Map Map { get { return m_map; } }
 
         private static World s_instance;
         public static World Instance {
@@ -33,6 +34,7 @@ namespace Zombie.Game.Entities
         {
             m_camera = new Camera();
             m_player = new Player();
+            m_map = new Map(new Vector2i(500, 500));
 
             m_camera.Bounds = new Box2(0, 0, 1000, 1000);
             m_camera.Target = m_player;
@@ -94,11 +96,14 @@ namespace Zombie.Game.Entities
 
             EnnemyManager.Instance.Update(elapsed);
 
+            m_map.Update(elapsed);
         }
 
         public void Render(Matrix4 transform)
         {
             transform *= m_camera.CreateWorldToCameraTransform();
+
+            m_map.Render(transform);
 
             m_player.Render(transform);
 

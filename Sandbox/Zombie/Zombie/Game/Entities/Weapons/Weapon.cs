@@ -91,7 +91,7 @@ namespace Zombie.Game.Entities.Weapons
                 var shoot = (Shoot)m_shoot.Clone();
                 shoot.SetPosition(position);
                 shoot.SetDirection(direction);
-                    
+
                 ShootManager.Instance.AddShoot(shoot);
 
                 m_loaded = false;

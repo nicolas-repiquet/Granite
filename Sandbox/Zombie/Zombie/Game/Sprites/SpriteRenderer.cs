@@ -89,9 +89,13 @@ namespace Zombie.Game.Sprites
 
             m_program = SpriteProgram.Instance;
             m_instances = new List<SpriteInstance>();
+            m_vao = new VertexArray();
+
+            GL.BindVertexArray(m_vao);
+
             m_bufferSprite = new Buffer<SpriteData>();
             m_bufferQuad = new Buffer<Vector3>();
-            m_vao = new VertexArray();
+           
 
             m_bufferQuad.SetData(new Vector3[] {
                 new Vector3(0f, 0f, 0f),
@@ -100,7 +104,7 @@ namespace Zombie.Game.Sprites
                 new Vector3(1f, 0f, 0f)
             });
 
-            GL.BindVertexArray(m_vao);
+            
             GL.UseProgram(m_program);
 
             m_program.Position.SetValue(m_bufferQuad.GetView());
@@ -122,9 +126,13 @@ namespace Zombie.Game.Sprites
             Contract.Requires(sprite != null && sprite.SpriteSheet == SpriteSheet);
 
             var instance = new SpriteInstance(this, sprite);
-            m_instances.Add(instance);
-
+           
             instance.Size = new Vector2(sprite.Size.X, sprite.Size.Y);
+
+            lock (m_instances)
+            {
+                m_instances.Add(instance);
+            }
 
             return instance;
         }
@@ -135,6 +143,7 @@ namespace Zombie.Game.Sprites
             {
                 m_instances.Clear();
             }
+            m_isDirty = true;
         }
 
         public void Render(Matrix4 transform)
@@ -144,92 +153,67 @@ namespace Zombie.Game.Sprites
                 RebuildBuffer();
             }
 
-            GL.UseProgram(m_program);
-            GL.BindVertexArray(m_vao);
+            if (m_instances.Count != 0)
+            {
+                GL.BindVertexArray(m_vao);
+                GL.UseProgram(m_program);
+               
+                m_program.Projection.SetValue(transform);
+                m_program.Texture.SetValue(SpriteSheet.Texture);
 
-            m_program.Projection.SetValue(transform);
-            m_program.Texture.SetValue(SpriteSheet.Texture);
+                GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_instances.Count);
 
-            GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_instances.Count);
-
-            GL.BindVertexArray(null);
+                //GL.BindVertexArray(null);
+            }
 
         }
 
         private void RebuildBuffer()
         {
-            var data = new SpriteData[m_instances.Count];
+            List<SpriteInstance> tempInstances = null;
+            lock (m_instances)
+            {
+                tempInstances = new List<SpriteInstance>(m_instances);
+            }
 
-            Parallel.For(0, m_instances.Count, i =>
-                {
-                    var instance = m_instances[i];
-                    var sprite = instance.Sprite;
+            var length = tempInstances.Count;
 
-                    var matrix = Matrix4.Identity;
-                    matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
-                    matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
+            if (length != 0)
+            {
 
-                    data[i] = new SpriteData()
+                var data = new SpriteData[length];
+
+                Parallel.For(0, length, i =>
                     {
-                        //Color = new Vector4(1f, 1f, 1f, 1f),
-                        Transform = matrix,
-                        TextureOrigin = sprite.Coordinates.Position,
-                        TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
-                    };
-                });
+                        var instance = tempInstances[i];
+                        var sprite = instance.Sprite;
 
-            //for (int i = 0; i < m_instances.Count; i++)
-            //{
-            //    var instance = m_instances[i];
-            //    var sprite = instance.Sprite;
+                        var matrix = Matrix4.Identity;
+                        matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
+                        matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
 
-            //    var matrix = Matrix4.Identity;
-            //    matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
-            //    matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
-
-            //    data[i] = new SpriteData()
-            //    {
-            //        //Color = new Vector4(1f, 1f, 1f, 1f),
-            //        Transform = matrix,
-            //        TextureOrigin = sprite.Coordinates.Position,
-            //        TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
-            //    };
-            //}
-
-            m_bufferSprite.SetData(data, GL.STREAM_DRAW);
+                        data[i] = new SpriteData()
+                        {
+                            //Color = new Vector4(1f, 1f, 1f, 1f),
+                            Transform = matrix,
+                            TextureOrigin = sprite.Coordinates.Position,
+                            TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
+                        };
+                    });
 
 
+                GL.BindVertexArray(m_vao);
+                m_bufferSprite.SetData(data, GL.STREAM_DRAW);
 
-            //m_bufferSprite.SetData(m_instances.Count, GL.STREAM_DRAW);
-
-            //using (var mapping = m_bufferSprite.Map(m_instances.Count))
-            //{
-            //    unsafe
-            //    {
-            //        SpriteData* data = (SpriteData*)mapping.Address.ToPointer();
-
-            //        for (int i = 0; i < m_instances.Count; i++)
-            //        {
-            //            var instance = m_instances[i];
-            //            var sprite = instance.Sprite;
-
-            //            var matrix = Matrix4.Identity;
-            //            matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
-            //            matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
-
-            //            data[i] = new SpriteData()
-            //            {
-            //                //Color = new Vector4(1f, 1f, 1f, 1f),
-            //                Transform = matrix,
-            //                TextureOrigin = sprite.Coordinates.Position,
-            //                TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
-            //            };
-            //        }
-            //    }
-
-            //}
+            }
+            else
+            {
+                GL.BindVertexArray(m_vao);
+                m_bufferSprite.SetData(null, GL.STREAM_DRAW);
+            }
 
             m_isDirty = false;
+            
         }
     }
 }

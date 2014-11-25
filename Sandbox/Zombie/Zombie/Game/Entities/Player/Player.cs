@@ -19,7 +19,7 @@ namespace Zombie.Game.Entities
 
 
         private readonly SpriteRenderer m_renderer;
-        private readonly ISpriteInstance m_sprite;
+        private ISpriteInstance m_sprite;
 
         private readonly SpriteSequence m_walkRightSequence;
         private readonly SpriteSequence m_walkLeftSequence;
@@ -158,7 +158,7 @@ namespace Zombie.Game.Entities
 
         public void Update(TimeSpan elapsed)
         {
-            m_rigidBody.Update(elapsed);
+            
             m_move.Update(elapsed);
 
             //if (NeedMove)

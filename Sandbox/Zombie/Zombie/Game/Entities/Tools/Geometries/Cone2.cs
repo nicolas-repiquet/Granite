@@ -221,7 +221,7 @@ namespace Zombie.Game.Entities.Tools
 
                 if (radius <= Radius)
                 {
-                    Console.WriteLine("Cible entierement inclut dans l'angle du tir");
+                    //Console.WriteLine("Cible entierement inclut dans l'angle du tir");
 
                     return true;
                 }

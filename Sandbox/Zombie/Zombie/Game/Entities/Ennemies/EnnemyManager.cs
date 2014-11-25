@@ -54,7 +54,7 @@ namespace Zombie.Game.Entities.Ennemies
             //On test les collisions entre le dernier tir et les zombies
             if (LastShoot != null)
             {
-                Parallel.ForEach(m_ennemies, x => x.LastShoot = LastShoot);
+                Parallel.ForEach(m_ennemies, x => x.LastShoot.Enqueue(LastShoot));
                 LastShoot = null;
             }
 

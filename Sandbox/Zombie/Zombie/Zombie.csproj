@@ -64,6 +64,9 @@
     <Compile Include="Game\Entities\Ennemies\EnnemyManager.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
+    <Compile Include="Game\Entities\Zones\Map.cs" />
+    <Compile Include="Game\Entities\Zones\Wall.cs" />
+    <Compile Include="Game\Entities\Zones\Zone.cs" />
     <Compile Include="Game\Entities\Player\Player.cs" />
     <Compile Include="Game\Entities\SpriteSequence.cs" />
     <Compile Include="Game\Entities\Tools\Camera.cs" />
@@ -120,6 +123,9 @@
     <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.png" />
     <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.txt" />
     <Content Include="Game\Textures\zombies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\Entities\Effects\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -155,22 +155,24 @@ namespace Zombie.Game.Entities.Tools
             {
                 m_instances.Clear();
             }
+            m_isDirty = true;
         }
 
         public ITriangleInstance AddTriangle(Triangle triangle)
         {
             var instance = new TriangleInstance(this);
-            lock (m_instances)
-            {
-                m_instances.Add(instance);
-            }
-
+            
             instance.P1 = triangle.P1;
             instance.P2 = triangle.P2;
             instance.P3 = triangle.P3;
             instance.ColorP1 = triangle.ColorP1;
             instance.ColorP2 = triangle.ColorP2;
             instance.ColorP3 = triangle.ColorP3;
+
+            lock (m_instances)
+            {
+                m_instances.Add(instance);
+            }
 
             return instance;
         }
@@ -180,18 +182,20 @@ namespace Zombie.Game.Entities.Tools
             
             if (m_isDirty)
             {
-                GL.BindVertexArray(m_vao);
                 RebuildBuffer();
             }
 
-            GL.UseProgram(m_program);
-            GL.BindVertexArray(m_vao);
+            if (m_instances.Count != 0)
+            {
+                GL.BindVertexArray(m_vao);
+                GL.UseProgram(m_program);
 
-            m_program.Projection.SetValue(transform);
+                m_program.Projection.SetValue(transform);
 
-            GL.DrawArrays(GL.TRIANGLES, 0, m_instances.Count * 3);
+                GL.DrawArrays(GL.TRIANGLES, 0, m_instances.Count * 3);
 
-            GL.BindVertexArray(null);
+                //GL.BindVertexArray(null);
+            }
         }
 
         private void RebuildBuffer()
@@ -214,13 +218,13 @@ namespace Zombie.Game.Entities.Tools
 
                         var matrix = Matrix4.Identity;
 
-                        data[i*3] = new TriangleData()
+                        data[i * 3] = new TriangleData()
                         {
                             Color = instance.ColorP1,
                             Position = instance.P1
                         };
 
-                        data[(i*3) + 1] = new TriangleData()
+                        data[(i * 3) + 1] = new TriangleData()
                         {
                             Color = instance.ColorP2,
                             Position = instance.P2
@@ -233,32 +237,13 @@ namespace Zombie.Game.Entities.Tools
                         };
                     });
 
-                //for (int i = 0; i < length; i = i++)
-                //{
-                //    var instance = tempInstances[i / 3];
-
-                //    var matrix = Matrix4.Identity;
-
-                //    data[i] = new TriangleData()
-                //    {
-                //        Color = instance.ColorP1,
-                //        Position = instance.P1
-                //    };
-
-                //    data[i + 1] = new TriangleData()
-                //    {
-                //        Color = instance.ColorP2,
-                //        Position = instance.P2
-                //    };
-
-                //    data[i + 2] = new TriangleData()
-                //    {
-                //        Color = instance.ColorP3,
-                //        Position = instance.P3
-                //    };
-                //}
-
+                GL.BindVertexArray(m_vao);
                 m_bufferSprite.SetData(data, GL.STREAM_DRAW);
+            }
+            else
+            {
+                GL.BindVertexArray(m_vao);
+                m_bufferSprite.SetData(null, GL.STREAM_DRAW);
             }
 
             m_isDirty = false;

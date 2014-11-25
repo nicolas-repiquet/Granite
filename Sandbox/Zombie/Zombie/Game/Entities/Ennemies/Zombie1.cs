@@ -40,30 +40,32 @@ namespace Zombie.Game.Entities.Ennemies
                 EnnemiesSprites.Instance.Back2,
                 EnnemiesSprites.Instance.Back3
             );
+
+            m_move.Speed = 10;
         }
 
         private SpriteSequence GetSpriteSequence()
         {
             SpriteSequence seq = null;
 
-            if (Math.Abs(m_rigidBody.Velocity.X) > Math.Abs(m_rigidBody.Velocity.Y))
+            if (Math.Abs(m_move.LastDirection.X) > Math.Abs(m_move.LastDirection.Y))
             {
-                if (m_rigidBody.Velocity.X > 0)
+                if (m_move.LastDirection.X > 0)
                 {
                     seq = m_walkRightSequence;
                 }
-                else
+                else if (m_move.LastDirection.X < 0)
                 {
                     seq = m_walkLeftSequence;
                 }
             }
             else
             {
-                if (m_rigidBody.Velocity.Y > 0)
+                if (m_move.LastDirection.Y > 0)
                 {
                     seq = m_walkBackSequence;
                 }
-                else
+                else if (m_move.LastDirection.Y < 0)
                 {
                     seq = m_walkFrontSequence;
                 }
@@ -90,23 +92,18 @@ namespace Zombie.Game.Entities.Ennemies
 
         public override void Update(TimeSpan elapsed)
         {
-            base.Update(elapsed);
-
             if (m_target != null)
             {
                 var direction = new Vector2(
                     m_target.Location.Position.X - m_location.Position.X,
                     m_target.Location.Position.Y - m_location.Position.Y
                     );
-                m_rigidBody.Direction = direction;
-
-                if (m_rigidBody.Grounded)
-                {
-                    m_rigidBody.Velocity += new Vector2(0, 550);
-                }
+                m_move.Direction = direction;
             }
 
-            m_rigidBody.Update(elapsed);
+            base.Update(elapsed);
+
+            //m_rigidBody.Update(elapsed);
 
             var sequence = GetSpriteSequence();
 
@@ -118,7 +115,7 @@ namespace Zombie.Game.Entities.Ennemies
 
             m_currentSequence.Update(elapsed);
 
-            m_sprite.Position = new Vector2(m_location.Position.X-m_box.X/2, m_location.Position.Y-m_box.Y/2);
+            m_sprite.Position = new Vector2(m_location.Position.X - m_box.X / 2, m_location.Position.Y - m_box.Y / 2);
             m_sprite.Sprite = m_currentSequence.CurrentSprite;
             m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
         }

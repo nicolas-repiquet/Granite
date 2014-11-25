@@ -27,13 +27,7 @@ namespace Zombie.Game.Entities.Components
 
         public void Update(TimeSpan elapsed)
         {
-            
-            TestCollision(elapsed);
-            
-        }
 
-        private void TestCollision(TimeSpan elapsed)
-        {
             var momentum = new Vector2();
 
             momentum += Direction;
@@ -57,5 +51,6 @@ namespace Zombie.Game.Entities.Components
             m_location.SetPosition(newLocation);
             
         }
+
     }
 }
