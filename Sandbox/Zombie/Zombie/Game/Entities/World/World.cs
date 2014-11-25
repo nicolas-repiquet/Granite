@@ -22,6 +22,8 @@ namespace Zombie.Game.Entities
         public Camera Camera { get { return m_camera; } }
         public Map Map { get { return m_map; } }
 
+        public Night Night { get; set; }
+
         private static World s_instance;
         public static World Instance {
             get
@@ -79,6 +81,8 @@ namespace Zombie.Game.Entities
                 EnnemyManager.Instance.AddEnnemy(z1);
             }
 
+            Night = new Night(m_camera);
+
             s_instance = this;
         }
 
@@ -97,6 +101,8 @@ namespace Zombie.Game.Entities
             EnnemyManager.Instance.Update(elapsed);
 
             m_map.Update(elapsed);
+
+            Night.Update(elapsed);
         }
 
         public void Render(Matrix4 transform)
@@ -110,6 +116,8 @@ namespace Zombie.Game.Entities
             EnnemyManager.Instance.Render(transform);
 
             ShootManager.Instance.Render(transform);
+
+            Night.Render(transform);
         }
 
     }

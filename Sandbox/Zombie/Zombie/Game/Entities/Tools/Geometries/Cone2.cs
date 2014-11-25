@@ -282,41 +282,6 @@ namespace Zombie.Game.Entities.Tools
             return false;
         }
 
-        //public bool Collision(Vector2 point)
-        //{
-        //    var x1 = point.X - Center.X;
-        //    var y1 = point.Y - Center.Y;
-
-        //    var start = (double)StartAngle;
-        //    var angle = Math.Atan2(y1, x1);
-
-        //    if (angle >= start && angle < start + Angle)
-        //    {
-        //        if (start < 0)
-        //        {
-        //            start += Math.PI;
-        //            angle += Math.PI;
-        //        }
-
-        //        double ecart = angle - start;
-
-        //        var index = (int)Math.Floor(ecart / SLOT_ANGLE);
-
-        //        //var totalSlots = (int)((SLOTS * PI_2) / SLOT_ANGLE);
-
-        //        //var index = (int)((i0 % totalSlots) - (StartAngle / SLOT_ANGLE));
-
-        //        var radius = (float)Math.Sqrt(x1 * x1 + y1 * y1);
-
-        //        if (radius < m_slots[index].Radius)
-        //        {
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
-
         public IEnumerable<Triangle> ToTriangles()
         {
             Clear();
@@ -362,20 +327,39 @@ namespace Zombie.Game.Entities.Tools
                 }
             }
 
-            var triangles = new Triangle[points.Count-1];
+            var triangles = new Triangle[Angle >= PI_2 ? points.Count : points.Count-1];
 
-            for (var i = 0; i < points.Count-1; i++ )
+            for (var i = 0; i < triangles.Length; i++ )
             {
-                var t = new Triangle()
+                if (i == triangles.Length - 1 && Angle >= PI_2)
                 {
-                    P1 = Center,
-                    P2 = points[i],
-                    P3 = points[i + 1],
-                    ColorP1 = StartColor,
-                    ColorP2 = EndColor,
-                    ColorP3 = EndColor
-                };
-                triangles[i] = t;
+                    var t = new Triangle()
+                    {
+                        P1 = Center,
+                        P2 = points[i],
+                        P3 = points[0],
+                        ColorP1 = StartColor,
+                        ColorP2 = EndColor,
+                        ColorP3 = EndColor
+                    };
+
+                    triangles[i] = t;
+                }
+                else if (i != points.Count - 1)
+                {
+                    var t = new Triangle()
+                    {
+                        P1 = Center,
+                        P2 = points[i],
+                        P3 = points[i + 1],
+                        ColorP1 = StartColor,
+                        ColorP2 = EndColor,
+                        ColorP3 = EndColor
+                    };
+
+                    triangles[i] = t;
+                }
+                
             }
 
             Triangles = triangles;

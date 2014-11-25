@@ -14,7 +14,8 @@ namespace Zombie.Game.Entities.Tools
 
         public Vector3 Center { get; set; }
         public float Radius { get; set; }
-        public Vector4 Color { get; set; }
+        public Vector4 StartColor { get; set; }
+        public Vector4 EndColor { get; set; }
         public Triangle[] Triangles { get; set; }
 
         public Point()
@@ -26,14 +27,16 @@ namespace Zombie.Game.Entities.Tools
         {
             Center = p;
             Radius = radius;
-            Color = new Vector4(0, 0, 1, 1);
+            StartColor = new Vector4(0, 0, 1, 1);
+            EndColor = new Vector4(0, 0, 1, 1);
         }
 
-        public Point(Vector3 p, float radius, Vector4 color)
+        public Point(Vector3 p, float radius, Vector4 startColor, Vector4 endColor)
         {
             Center = p;
             Radius = radius;
-            Color = color;
+            StartColor = startColor;
+            EndColor = endColor;
         }
 
         public Triangle[] ToTriangles()
@@ -62,9 +65,9 @@ namespace Zombie.Game.Entities.Tools
                         P1 = Center,
                         P2 = p1,
                         P3 = p0,
-                        ColorP1 = Color,
-                        ColorP2 = Color,
-                        ColorP3 = Color
+                        ColorP1 = StartColor,
+                        ColorP2 = EndColor,
+                        ColorP3 = EndColor
                     };
                 }
                 else
@@ -76,9 +79,9 @@ namespace Zombie.Game.Entities.Tools
                         P1 = Center,
                         P2 = p,
                         P3 = p1,
-                        ColorP1 = Color,
-                        ColorP2 = Color,
-                        ColorP3 = Color
+                        ColorP1 = StartColor,
+                        ColorP2 = EndColor,
+                        ColorP3 = EndColor
                     };
                 }
             }
