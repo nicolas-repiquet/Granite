@@ -5,36 +5,63 @@ using System.Text;
 
 namespace Granite.Core
 {
+    public sealed class ProgramUniformInfo
+    {
+        public Program Program { get; private set; }
+        public string Name { get; private set; }
+        public uint Index { get; private set; }
+        public int Location { get; private set; }
+        public uint Type { get; private set; }
+
+        public ProgramUniformInfo(Program program, string name, uint index, int location, uint type)
+        {
+            Program = program;
+            Name = name;
+            Index = index;
+            Location = location;
+            Type = type;
+        }
+    }
+
     public abstract class ProgramUniform
     {
-        #region FACTORY
-        internal static ProgramUniform Create(Program program, uint type, string name, int location)
+        public Program Program { get; private set; }
+        public ProgramUniformInfo Info { get; private set; }
+
+        internal ProgramUniform(Program program, ProgramUniformInfo info)
         {
-            switch (type)
+            Program = program;
+            Info = info;
+        }
+
+        #region FACTORY
+        internal static ProgramUniform Create(Program program, ProgramUniformInfo info, uint textureUnit)
+        {
+            switch (info.Type)
             {
-                case GL.FLOAT: return new ProgramUniformFloat1(program, name, location);
-                case GL.FLOAT_VEC2: return new ProgramUniformFloat2(program, name, location);
-                case GL.FLOAT_VEC3: return new ProgramUniformFloat3(program, name, location);
-                case GL.FLOAT_VEC4: return new ProgramUniformFloat4(program, name, location);
+                case GL.FLOAT: return new ProgramUniformFloat1(program, info);
+                case GL.FLOAT_VEC2: return new ProgramUniformFloat2(program, info);
+                case GL.FLOAT_VEC3: return new ProgramUniformFloat3(program, info);
+                case GL.FLOAT_VEC4: return new ProgramUniformFloat4(program, info);
 
-                case GL.INT: return new ProgramUniformInt1(program, name, location);
-                case GL.INT_VEC2: return new ProgramUniformInt2(program, name, location);
-                case GL.INT_VEC3: return new ProgramUniformInt3(program, name, location);
-                case GL.INT_VEC4: return new ProgramUniformInt4(program, name, location);
+                case GL.INT: return new ProgramUniformInt1(program, info);
+                case GL.INT_VEC2: return new ProgramUniformInt2(program, info);
+                case GL.INT_VEC3: return new ProgramUniformInt3(program, info);
+                case GL.INT_VEC4: return new ProgramUniformInt4(program, info);
 
-                case GL.UNSIGNED_INT: return new ProgramUniformUInt1(program, name, location);
+                case GL.UNSIGNED_INT: return new ProgramUniformUInt1(program, info);
                 //case GL.UNSIGNED_INT_VEC2:
                 //case GL.UNSIGNED_INT_VEC3:
                 //case GL.UNSIGNED_INT_VEC4:
 
-                case GL.BOOL: return new ProgramUniformBool1(program, name, location);
+                case GL.BOOL: return new ProgramUniformBool1(program, info);
                 //case GL.BOOL_VEC2:
                 //case GL.BOOL_VEC3:
                 //case GL.BOOL_VEC4:
 
-                case GL.FLOAT_MAT2: return new ProgramUniformFloatMatrix2(program, name, location);
-                case GL.FLOAT_MAT3: return new ProgramUniformFloatMatrix3(program, name, location);
-                case GL.FLOAT_MAT4: return new ProgramUniformFloatMatrix4(program, name, location);
+                case GL.FLOAT_MAT2: return new ProgramUniformFloatMatrix2(program, info);
+                case GL.FLOAT_MAT3: return new ProgramUniformFloatMatrix3(program, info);
+                case GL.FLOAT_MAT4: return new ProgramUniformFloatMatrix4(program, info);
                 //case GL.FLOAT_MAT2x3:
                 //case GL.FLOAT_MAT2x4:
                 //case GL.FLOAT_MAT3x2:
@@ -43,7 +70,7 @@ namespace Granite.Core
                 //case GL.FLOAT_MAT4x3:
 
                 //case GL.SAMPLER_1D:
-                case GL.SAMPLER_2D: return new ProgramUniformSampler2D(program, name, location);
+                case GL.SAMPLER_2D: return new ProgramUniformSampler2D(program, info, textureUnit);
                 //case GL.SAMPLER_3D:
                 //case GL.SAMPLER_CUBE:
                 //case GL.SAMPLER_1D_SHADOW:
@@ -84,27 +111,12 @@ namespace Granite.Core
             }
         }
         #endregion
-
-        private readonly Program m_program;
-        private readonly string m_name;
-        private readonly int m_location;
-
-        internal ProgramUniform(Program program, string name, int location)
-        {
-            m_program = program;
-            m_name = name;
-            m_location = location;
-        }
-
-        public Program Program { get { return m_program; } }
-        public string Name { get { return m_name; } }
-        public int Location { get { return m_location; } }
     }
 
     public abstract class ProgramUniform<T> : ProgramUniform
     {
-        internal ProgramUniform(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniform(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
@@ -112,204 +124,208 @@ namespace Granite.Core
         public abstract void SetValue(T value);
     }
 
-    public sealed class ProgramUniformFloat1 : ProgramUniform<float>
+    #region Implementations
+    internal sealed class ProgramUniformFloat1 : ProgramUniform<float>
     {
-        internal ProgramUniformFloat1(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformFloat1(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(float value)
         {
-            GL.Uniform1f(Location, value);
+            GL.Uniform1f(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformFloat2 : ProgramUniform<Vector2>
+    internal sealed class ProgramUniformFloat2 : ProgramUniform<Vector2>
     {
-        internal ProgramUniformFloat2(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformFloat2(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Vector2 value)
         {
-            GL.Uniform2f(Location, value);
+            GL.Uniform2f(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformFloat3 : ProgramUniform<Vector3>
+    internal sealed class ProgramUniformFloat3 : ProgramUniform<Vector3>
     {
-        internal ProgramUniformFloat3(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformFloat3(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Vector3 value)
         {
-            GL.Uniform3f(Location, value);
+            GL.Uniform3f(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformFloat4 : ProgramUniform<Vector4>
+    internal sealed class ProgramUniformFloat4 : ProgramUniform<Vector4>
     {
-        internal ProgramUniformFloat4(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformFloat4(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Vector4 value)
         {
-            GL.Uniform4f(Location, value);
+            GL.Uniform4f(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformInt1 : ProgramUniform<int>
+    internal sealed class ProgramUniformInt1 : ProgramUniform<int>
     {
-        internal ProgramUniformInt1(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformInt1(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(int value)
         {
-            GL.Uniform1i(Location, value);
+            GL.Uniform1i(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformInt2 : ProgramUniform<Vector2i>
+    internal sealed class ProgramUniformInt2 : ProgramUniform<Vector2i>
     {
-        internal ProgramUniformInt2(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformInt2(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Vector2i value)
         {
-            GL.Uniform2i(Location, value);
+            GL.Uniform2i(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformInt3 : ProgramUniform<Vector3i>
+    internal sealed class ProgramUniformInt3 : ProgramUniform<Vector3i>
     {
-        internal ProgramUniformInt3(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformInt3(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Vector3i value)
         {
-            GL.Uniform3i(Location, value);
+            GL.Uniform3i(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformInt4 : ProgramUniform<Vector4i>
+    internal sealed class ProgramUniformInt4 : ProgramUniform<Vector4i>
     {
-        internal ProgramUniformInt4(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformInt4(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Vector4i value)
         {
-            GL.Uniform4i(Location, value);
+            GL.Uniform4i(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformUInt1 : ProgramUniform<uint>
+    internal sealed class ProgramUniformUInt1 : ProgramUniform<uint>
     {
-        internal ProgramUniformUInt1(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformUInt1(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(uint value)
         {
-            GL.Uniform1ui(Location, value);
+            GL.Uniform1ui(Info.Location, value);
         }
     }
 
-    public sealed class ProgramUniformBool1 : ProgramUniform<bool>
+    internal sealed class ProgramUniformBool1 : ProgramUniform<bool>
     {
-        internal ProgramUniformBool1(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformBool1(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(bool value)
         {
-            GL.Uniform1ui(Location, value ? 0u : 1u);
+            GL.Uniform1ui(Info.Location, value ? 0u : 1u);
         }
     }
 
-    public sealed class ProgramUniformFloatMatrix2 : ProgramUniform<Matrix2>
+    internal sealed class ProgramUniformFloatMatrix2 : ProgramUniform<Matrix2>
     {
-        internal ProgramUniformFloatMatrix2(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformFloatMatrix2(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Matrix2 value)
         {
-            GL.UniformMatrix2fv(Location, 1, false, ref value);
+            GL.UniformMatrix2fv(Info.Location, 1, false, ref value);
         }
     }
 
-    public sealed class ProgramUniformFloatMatrix3 : ProgramUniform<Matrix3>
+    internal sealed class ProgramUniformFloatMatrix3 : ProgramUniform<Matrix3>
     {
-        internal ProgramUniformFloatMatrix3(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformFloatMatrix3(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Matrix3 value)
         {
-            GL.UniformMatrix3fv(Location, 1, false, ref value);
+            GL.UniformMatrix3fv(Info.Location, 1, false, ref value);
         }
     }
 
-    public sealed class ProgramUniformFloatMatrix4 : ProgramUniform<Matrix4>
+    internal sealed class ProgramUniformFloatMatrix4 : ProgramUniform<Matrix4>
     {
-        internal ProgramUniformFloatMatrix4(Program program, string name, int location)
-            : base(program, name, location)
+        internal ProgramUniformFloatMatrix4(Program program, ProgramUniformInfo info)
+            : base(program, info)
         {
 
         }
 
         public override void SetValue(Matrix4 value)
         {
-            GL.UniformMatrix4fv(Location, 1, false, ref value);
+            GL.UniformMatrix4fv(Info.Location, 1, false, ref value);
         }
     }
 
-    public sealed class ProgramUniformSampler2D : ProgramUniform<Texture2D>
+    internal sealed class ProgramUniformSampler2D : ProgramUniform<Texture2D>
     {
-        internal ProgramUniformSampler2D(Program program, string name, int location)
-            : base(program, name, location)
-        {
+        private readonly uint m_textureUnit;
 
+        internal ProgramUniformSampler2D(Program program, ProgramUniformInfo info, uint textureUnit)
+            : base(program, info)
+        {
+            m_textureUnit = textureUnit;
         }
 
         public override void SetValue(Texture2D value)
         {
             if (value != null)
             {
-                GL.ActiveTexture(GL.TEXTURE0);
+                GL.ActiveTexture(m_textureUnit);
                 GL.BindTexture(GL.TEXTURE_2D, value.Name);
-                GL.Uniform1i(Location, 0);
+                GL.Uniform1i(Info.Location, (int)(m_textureUnit - GL.TEXTURE0));
             }
         }
     }
+    #endregion
 }

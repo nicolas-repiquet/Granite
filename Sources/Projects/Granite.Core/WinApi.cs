@@ -154,6 +154,8 @@ namespace Granite.Core
         internal const uint SIZE_MINIMIZED = 1;
         internal const uint SIZE_RESTORED = 0;
 
+        internal const int CW_USEDEFAULT = unchecked((int)0x80000000);
+
         internal delegate IntPtr WndProc(IntPtr windowHandle, uint messageId, IntPtr wParam, IntPtr lParam);
 
         [StructLayout(LayoutKind.Sequential)]

@@ -12,7 +12,7 @@ namespace Granite.Core
         private readonly FragmentShader m_fragmentShader;
 
         private readonly uint m_name;
-        private readonly ProgramUniform[] m_uniforms;
+        private readonly Dictionary<string, ProgramUniformInfo> m_uniforms;
         private readonly Dictionary<string, ProgramAttributeInfo> m_attributes;
 
         public Program(VertexShader vertex = null, GeometryShader geometry = null, FragmentShader fragment = null)
@@ -22,9 +22,11 @@ namespace Granite.Core
             m_fragmentShader = fragment;
 
             m_name = GL.CreateProgram();
+
             if(vertex != null) GL.AttachShader(m_name, vertex.Name);
             if (geometry != null) GL.AttachShader(m_name, geometry.Name);
             if(fragment != null) GL.AttachShader(m_name, fragment.Name);
+            
             GL.LinkProgram(m_name);
             int linkStatus;
             GL.GetProgramiv(m_name, GL.LINK_STATUS, out linkStatus);
@@ -37,7 +39,15 @@ namespace Granite.Core
                 throw new Exception(log);
             }
 
-            var uniforms = new List<ProgramUniform>();
+            m_uniforms = new Dictionary<string, ProgramUniformInfo>();
+            LoadUniforms();
+
+            m_attributes = new Dictionary<string, ProgramAttributeInfo>();
+            LoadAttributes();
+        }
+
+        private void LoadUniforms()
+        {
             int uniformCount;
             GL.GetProgramiv(m_name, GL.ACTIVE_UNIFORMS, out uniformCount);
             for (uint i = 0; i < uniformCount; i++)
@@ -46,16 +56,18 @@ namespace Granite.Core
                 int length;
                 int size;
                 uint type;
+
                 GL.GetActiveUniform(m_name, i, buffer.Length, out length, out size, out type, buffer);
-                var uniformName = Encoding.ASCII.GetString(buffer, 0, length);
-                var location = GL.GetUniformLocation(m_name, buffer);
-                uniforms.Add(ProgramUniform.Create(this, type, uniformName, location));
+
+                string uniformName = Encoding.ASCII.GetString(buffer, 0, length);
+
+                int location = GL.GetUniformLocation(m_name, uniformName);
+
+                m_uniforms.Add(
+                    uniformName,
+                    new ProgramUniformInfo(this, uniformName, i, location, type)
+                );
             }
-            m_uniforms = uniforms.ToArray();
-
-            m_attributes = new Dictionary<string, ProgramAttributeInfo>();
-            LoadAttributes();
-
         }
 
         private void LoadAttributes()
@@ -82,26 +94,34 @@ namespace Granite.Core
             }
         }
 
-        public IEnumerable<ProgramUniform> Uniforms { get { return m_uniforms; } }
-
-        public ProgramUniform<T> GetUniform<T>(string name)
+        public ProgramUniform<T> GetUniform<T>(string name, uint textureUnit = GL.TEXTURE0)
         {
-            foreach (var uniform in m_uniforms)
-            {
-                if (uniform.Name == name)
-                {
-                    if (uniform is ProgramUniform<T>)
-                    {
-                        return (ProgramUniform<T>)uniform;
-                    }
-                    else
-                    {
+            ProgramUniformInfo info;
 
-                    }
+            if (m_uniforms.TryGetValue(name, out info))
+            {
+                var uniform = ProgramUniform.Create(this, info, textureUnit);
+                if (uniform is ProgramUniform<T>)
+                {
+                    return (ProgramUniform<T>)uniform;
+                }
+                else if(uniform == null)
+                {
+                    throw new Exception(string.Format("Uniform \"{0}\" data type is not supported",
+                        info.Name
+                    ));
+                }
+                else
+                {
+                    throw new Exception(string.Format("Uniform \"{0}\" data type does not match: can't convert from {1} to {2}",
+                        info.Name, uniform.GetType().Name, typeof(ProgramUniform<T>).Name
+                    ));
                 }
             }
-
-            throw new Exception("Can't find uniform " + name);
+            else
+            {
+                throw new Exception(string.Format("Uniform \"{0}\" does not exists or is not active", name));
+            }
         }
 
         public ProgramAttribute<T> GetAttribute<T>(string name, bool normalized = false)

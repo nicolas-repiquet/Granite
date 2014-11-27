@@ -8,29 +8,35 @@ namespace Granite.UI
 {
     public sealed class Glyph
     {
-        private readonly Font m_font;
-        private readonly Vector2i m_size;
-        private readonly Box2 m_textureCoordinates;
+        public Font Font { get; private set; }
+        public char Character { get; private set; }
+        public Vector2i Size { get; private set; }
+        public Sprite Sprite { get; private set; }
 
-        public Glyph(Font font, Vector2i size, Box2 textureCoordinates)
+        public Glyph(Font font, GlyphInfo info)
         {
-            m_font = font;
-            m_size = size;
-            m_textureCoordinates = textureCoordinates;
+            Font = font;
+            Character = info.Character;
+            Size = info.TextureBox.Size;
+            Sprite = new Sprite(
+                font.Texture,
+                info.TextureBox.Position / (Vector2)font.Texture.Size,
+                (info.TextureBox.Position + info.TextureBox.Size) / (Vector2)font.Texture.Size
+            );
         }
     }
 
-    public struct GlyphPosition
+    public struct GlyphInfo
     {
         private readonly char m_character;
         public char Character { get { return m_character; } }
-        private readonly Box2i m_position;
-        public Box2i Position { get { return m_position; } }
+        private readonly Box2i m_textureBox;
+        public Box2i TextureBox { get { return m_textureBox; } }
 
-        public GlyphPosition(char character, Box2i position)
+        public GlyphInfo(char character, Box2i textureBox)
         {
             m_character = character;
-            m_position = position;
+            m_textureBox = textureBox;
         }
     }
 }

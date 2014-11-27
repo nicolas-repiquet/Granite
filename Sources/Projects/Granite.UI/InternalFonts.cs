@@ -46,8 +46,15 @@ namespace Granite.UI
                     }
                 }
 
+                var pixels = new Color4ub[c_width * c_height * 4];
+
+                for (int i = 0; i < c_width * c_height; i++)
+                {
+                    pixels[i] = new Color4ub(0xFF, 0xFF, 0xFF, bytes[i]);
+                }
+
                 var texture = new Texture2D();
-                texture.SetData(c_width, c_height, bytes);
+                texture.SetData(c_width, c_height, pixels);
                 return texture;
             });
 

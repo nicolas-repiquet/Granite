@@ -556,7 +556,7 @@ namespace Test.Game_01.Maps
                 }
             }
 
-            //RenderDebugData();
+            RenderDebugData();
         }
 
         #region DEBUG

@@ -206,4 +206,19 @@ namespace Granite.Core
     }
 
 
+    partial struct Matrix3x2
+    {
+        public static void Multiply(ref Matrix3x2 left, ref Matrix3x2 right, out Matrix3x2 result)
+        {
+            result = new Matrix3x2(
+                left.E11 * right.E11 + left.E12 * right.E21,
+                left.E11 * right.E12 + left.E12 * right.E22,
+                left.E11 * right.E13 + left.E12 * right.E23 + left.E13,
+                left.E21 * right.E11 + left.E22 * right.E21,
+                left.E21 * right.E12 + left.E22 * right.E22,
+                left.E21 * right.E13 + left.E22 * right.E23 + left.E23
+            );
+        }
+    }
+
 }

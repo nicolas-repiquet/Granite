@@ -98,7 +98,7 @@ WriteLine("");
 
 foreach (var set in sets)
 {
-	WriteLine("private static GlyphPosition[] s_{0}Glyphs = new GlyphPosition[] {{", set.Name);
+	WriteLine("private static GlyphInfo[] s_{0}Glyphs = new GlyphInfo[] {{", set.Name);
 	PushIndent("    ");
     foreach (var c in set.Characters)
     {
@@ -110,7 +110,7 @@ foreach (var set in sets)
         {
             WriteLine(string.Format(
 				System.Globalization.CultureInfo.InvariantCulture,
-				"new GlyphPosition('\\u{0:X4}', new Granite.Core.Box2i({1}, {2}, {3}, {4})), // {5}",
+				"new GlyphInfo('\\u{0:X4}', new Granite.Core.Box2i({1}, {2}, {3}, {4})), // {5}",
 				(int)c.C,
 				c.Position.X,
 				c.Position.Y,

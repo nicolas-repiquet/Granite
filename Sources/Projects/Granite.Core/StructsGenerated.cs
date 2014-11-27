@@ -4050,9 +4050,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2 left, ref Matrix2x3 right, out Matrix2x3 result)
+        public static void Multiply(ref Matrix2 left, ref Matrix3x2 right, out Matrix3x2 result)
         {
-            result = new Matrix2x3(
+            result = new Matrix3x2(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -4062,9 +4062,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2 left, ref Matrix2x4 right, out Matrix2x4 result)
+        public static void Multiply(ref Matrix2 left, ref Matrix4x2 right, out Matrix4x2 result)
         {
-            result = new Matrix2x4(
+            result = new Matrix4x2(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -4081,55 +4081,61 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix2x3 : System.IEquatable<Matrix2x3>
+    public partial struct Matrix3x2 : System.IEquatable<Matrix3x2>
     {
-        public readonly Vector2 Column1;
-        public readonly Vector2 Column2;
-        public readonly Vector2 Column3;
+        public Vector2 Column1 { get { return new Vector2(E11, E21); } }
+        public Vector2 Column2 { get { return new Vector2(E12, E22); } }
+        public Vector2 Column3 { get { return new Vector2(E13, E23); } }
 
         public Vector3 Row1 { get { return new Vector3(Column1.X, Column2.X, Column3.X); } }
         public Vector3 Row2 { get { return new Vector3(Column1.Y, Column2.Y, Column3.Y); } }
 
-        public float E11 { get { return Column1.X; } }
-        public float E12 { get { return Column2.X; } }
-        public float E13 { get { return Column3.X; } }
-        public float E21 { get { return Column1.Y; } }
-        public float E22 { get { return Column2.Y; } }
-        public float E23 { get { return Column3.Y; } }
+        public readonly float E11;
+        public readonly float E21;
+        public readonly float E12;
+        public readonly float E22;
+        public readonly float E13;
+        public readonly float E23;
 
-        public Matrix2x3(Vector2 column1, Vector2 column2, Vector2 column3)
+        public Matrix3x2(Vector2 column1, Vector2 column2, Vector2 column3)
         {
-            Column1 = column1;
-            Column2 = column2;
-            Column3 = column3;
+            E11 = column1.X;
+            E21 = column1.Y;
+            E12 = column2.X;
+            E22 = column2.Y;
+            E13 = column3.X;
+            E23 = column3.Y;
         }
 
-        public Matrix2x3(float e11, float e12, float e13, float e21, float e22, float e23)
+        public Matrix3x2(float e11, float e12, float e13, float e21, float e22, float e23)
         {
-            Column1 = new Vector2(e11, e21);
-            Column2 = new Vector2(e12, e22);
-            Column3 = new Vector2(e13, e23);
+            E11 = e11;
+            E21 = e21;
+            E12 = e12;
+            E22 = e22;
+            E13 = e13;
+            E23 = e23;
         }
 
-        public static bool operator ==(Matrix2x3 a, Matrix2x3 b)
+        public static bool operator ==(Matrix3x2 a, Matrix3x2 b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3;
         }
 
-        public static bool operator !=(Matrix2x3 a, Matrix2x3 b)
+        public static bool operator !=(Matrix3x2 a, Matrix3x2 b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3;
         }
 
-        public bool Equals(Matrix2x3 other)
+        public bool Equals(Matrix3x2 other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix2x3)) return false;
-            var m = (Matrix2x3)other;
+            if (!(other is Matrix3x2)) return false;
+            var m = (Matrix3x2)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3;
         }
 
@@ -4143,7 +4149,7 @@
             return Row1.ToString() + Row2.ToString();
         }
 
-        public static void Multiply(ref Matrix2x3 left, ref Matrix3x2 right, out Matrix2 result)
+        public static void Multiply(ref Matrix3x2 left, ref Matrix2x3 right, out Matrix2 result)
         {
             result = new Matrix2(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
@@ -4153,9 +4159,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x3 left, ref Matrix3 right, out Matrix2x3 result)
+        public static void Multiply(ref Matrix3x2 left, ref Matrix3 right, out Matrix3x2 result)
         {
-            result = new Matrix2x3(
+            result = new Matrix3x2(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -4165,9 +4171,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x3 left, ref Matrix3x4 right, out Matrix2x4 result)
+        public static void Multiply(ref Matrix3x2 left, ref Matrix4x3 right, out Matrix4x2 result)
         {
-            result = new Matrix2x4(
+            result = new Matrix4x2(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -4184,7 +4190,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix2x4 : System.IEquatable<Matrix2x4>
+    public partial struct Matrix4x2 : System.IEquatable<Matrix4x2>
     {
         public readonly Vector2 Column1;
         public readonly Vector2 Column2;
@@ -4203,7 +4209,7 @@
         public float E23 { get { return Column3.Y; } }
         public float E24 { get { return Column4.Y; } }
 
-        public Matrix2x4(Vector2 column1, Vector2 column2, Vector2 column3, Vector2 column4)
+        public Matrix4x2(Vector2 column1, Vector2 column2, Vector2 column3, Vector2 column4)
         {
             Column1 = column1;
             Column2 = column2;
@@ -4211,7 +4217,7 @@
             Column4 = column4;
         }
 
-        public Matrix2x4(float e11, float e12, float e13, float e14, float e21, float e22, float e23, float e24)
+        public Matrix4x2(float e11, float e12, float e13, float e14, float e21, float e22, float e23, float e24)
         {
             Column1 = new Vector2(e11, e21);
             Column2 = new Vector2(e12, e22);
@@ -4219,25 +4225,25 @@
             Column4 = new Vector2(e14, e24);
         }
 
-        public static bool operator ==(Matrix2x4 a, Matrix2x4 b)
+        public static bool operator ==(Matrix4x2 a, Matrix4x2 b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3 && a.Column4 == b.Column4;
         }
 
-        public static bool operator !=(Matrix2x4 a, Matrix2x4 b)
+        public static bool operator !=(Matrix4x2 a, Matrix4x2 b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3 || a.Column4 != b.Column4;
         }
 
-        public bool Equals(Matrix2x4 other)
+        public bool Equals(Matrix4x2 other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3 && Column4 == other.Column4;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix2x4)) return false;
-            var m = (Matrix2x4)other;
+            if (!(other is Matrix4x2)) return false;
+            var m = (Matrix4x2)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3 && Column4 == m.Column4;
         }
 
@@ -4251,7 +4257,7 @@
             return Row1.ToString() + Row2.ToString();
         }
 
-        public static void Multiply(ref Matrix2x4 left, ref Matrix4x2 right, out Matrix2 result)
+        public static void Multiply(ref Matrix4x2 left, ref Matrix2x4 right, out Matrix2 result)
         {
             result = new Matrix2(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
@@ -4261,9 +4267,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x4 left, ref Matrix4x3 right, out Matrix2x3 result)
+        public static void Multiply(ref Matrix4x2 left, ref Matrix3x4 right, out Matrix3x2 result)
         {
-            result = new Matrix2x3(
+            result = new Matrix3x2(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,
@@ -4273,9 +4279,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x4 left, ref Matrix4 right, out Matrix2x4 result)
+        public static void Multiply(ref Matrix4x2 left, ref Matrix4 right, out Matrix4x2 result)
         {
-            result = new Matrix2x4(
+            result = new Matrix4x2(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,
@@ -4292,7 +4298,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix3x2 : System.IEquatable<Matrix3x2>
+    public partial struct Matrix2x3 : System.IEquatable<Matrix2x3>
     {
         public readonly Vector3 Column1;
         public readonly Vector3 Column2;
@@ -4308,37 +4314,37 @@
         public float E31 { get { return Column1.Z; } }
         public float E32 { get { return Column2.Z; } }
 
-        public Matrix3x2(Vector3 column1, Vector3 column2)
+        public Matrix2x3(Vector3 column1, Vector3 column2)
         {
             Column1 = column1;
             Column2 = column2;
         }
 
-        public Matrix3x2(float e11, float e12, float e21, float e22, float e31, float e32)
+        public Matrix2x3(float e11, float e12, float e21, float e22, float e31, float e32)
         {
             Column1 = new Vector3(e11, e21, e31);
             Column2 = new Vector3(e12, e22, e32);
         }
 
-        public static bool operator ==(Matrix3x2 a, Matrix3x2 b)
+        public static bool operator ==(Matrix2x3 a, Matrix2x3 b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2;
         }
 
-        public static bool operator !=(Matrix3x2 a, Matrix3x2 b)
+        public static bool operator !=(Matrix2x3 a, Matrix2x3 b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2;
         }
 
-        public bool Equals(Matrix3x2 other)
+        public bool Equals(Matrix2x3 other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix3x2)) return false;
-            var m = (Matrix3x2)other;
+            if (!(other is Matrix2x3)) return false;
+            var m = (Matrix2x3)other;
             return Column1 == m.Column1 && Column2 == m.Column2;
         }
 
@@ -4352,9 +4358,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString();
         }
 
-        public static void Multiply(ref Matrix3x2 left, ref Matrix2 right, out Matrix3x2 result)
+        public static void Multiply(ref Matrix2x3 left, ref Matrix2 right, out Matrix2x3 result)
         {
-            result = new Matrix3x2(
+            result = new Matrix2x3(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E21 * right.E11 + left.E22 * right.E21,
@@ -4364,7 +4370,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x2 left, ref Matrix2x3 right, out Matrix3 result)
+        public static void Multiply(ref Matrix2x3 left, ref Matrix3x2 right, out Matrix3 result)
         {
             result = new Matrix3(
                 left.E11 * right.E11 + left.E12 * right.E21,
@@ -4379,9 +4385,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x2 left, ref Matrix2x4 right, out Matrix3x4 result)
+        public static void Multiply(ref Matrix2x3 left, ref Matrix4x2 right, out Matrix4x3 result)
         {
-            result = new Matrix3x4(
+            result = new Matrix4x3(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -4470,9 +4476,9 @@
 
         public static readonly Matrix3 Identity = new Matrix3(Vector3.UnitX, Vector3.UnitY, Vector3.UnitZ);
 
-        public static void Multiply(ref Matrix3 left, ref Matrix3x2 right, out Matrix3x2 result)
+        public static void Multiply(ref Matrix3 left, ref Matrix2x3 right, out Matrix2x3 result)
         {
-            result = new Matrix3x2(
+            result = new Matrix2x3(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31,
@@ -4497,9 +4503,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix3 left, ref Matrix3x4 right, out Matrix3x4 result)
+        public static void Multiply(ref Matrix3 left, ref Matrix4x3 right, out Matrix4x3 result)
         {
-            result = new Matrix3x4(
+            result = new Matrix4x3(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -4520,7 +4526,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix3x4 : System.IEquatable<Matrix3x4>
+    public partial struct Matrix4x3 : System.IEquatable<Matrix4x3>
     {
         public readonly Vector3 Column1;
         public readonly Vector3 Column2;
@@ -4544,7 +4550,7 @@
         public float E33 { get { return Column3.Z; } }
         public float E34 { get { return Column4.Z; } }
 
-        public Matrix3x4(Vector3 column1, Vector3 column2, Vector3 column3, Vector3 column4)
+        public Matrix4x3(Vector3 column1, Vector3 column2, Vector3 column3, Vector3 column4)
         {
             Column1 = column1;
             Column2 = column2;
@@ -4552,7 +4558,7 @@
             Column4 = column4;
         }
 
-        public Matrix3x4(float e11, float e12, float e13, float e14, float e21, float e22, float e23, float e24, float e31, float e32, float e33, float e34)
+        public Matrix4x3(float e11, float e12, float e13, float e14, float e21, float e22, float e23, float e24, float e31, float e32, float e33, float e34)
         {
             Column1 = new Vector3(e11, e21, e31);
             Column2 = new Vector3(e12, e22, e32);
@@ -4560,25 +4566,25 @@
             Column4 = new Vector3(e14, e24, e34);
         }
 
-        public static bool operator ==(Matrix3x4 a, Matrix3x4 b)
+        public static bool operator ==(Matrix4x3 a, Matrix4x3 b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3 && a.Column4 == b.Column4;
         }
 
-        public static bool operator !=(Matrix3x4 a, Matrix3x4 b)
+        public static bool operator !=(Matrix4x3 a, Matrix4x3 b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3 || a.Column4 != b.Column4;
         }
 
-        public bool Equals(Matrix3x4 other)
+        public bool Equals(Matrix4x3 other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3 && Column4 == other.Column4;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix3x4)) return false;
-            var m = (Matrix3x4)other;
+            if (!(other is Matrix4x3)) return false;
+            var m = (Matrix4x3)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3 && Column4 == m.Column4;
         }
 
@@ -4592,9 +4598,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString();
         }
 
-        public static void Multiply(ref Matrix3x4 left, ref Matrix4x2 right, out Matrix3x2 result)
+        public static void Multiply(ref Matrix4x3 left, ref Matrix2x4 right, out Matrix2x3 result)
         {
-            result = new Matrix3x2(
+            result = new Matrix2x3(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31 + left.E24 * right.E41,
@@ -4604,7 +4610,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x4 left, ref Matrix4x3 right, out Matrix3 result)
+        public static void Multiply(ref Matrix4x3 left, ref Matrix3x4 right, out Matrix3 result)
         {
             result = new Matrix3(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
@@ -4619,9 +4625,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x4 left, ref Matrix4 right, out Matrix3x4 result)
+        public static void Multiply(ref Matrix4x3 left, ref Matrix4 right, out Matrix4x3 result)
         {
-            result = new Matrix3x4(
+            result = new Matrix4x3(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,
@@ -4642,7 +4648,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix4x2 : System.IEquatable<Matrix4x2>
+    public partial struct Matrix2x4 : System.IEquatable<Matrix2x4>
     {
         public readonly Vector4 Column1;
         public readonly Vector4 Column2;
@@ -4661,37 +4667,37 @@
         public float E41 { get { return Column1.W; } }
         public float E42 { get { return Column2.W; } }
 
-        public Matrix4x2(Vector4 column1, Vector4 column2)
+        public Matrix2x4(Vector4 column1, Vector4 column2)
         {
             Column1 = column1;
             Column2 = column2;
         }
 
-        public Matrix4x2(float e11, float e12, float e21, float e22, float e31, float e32, float e41, float e42)
+        public Matrix2x4(float e11, float e12, float e21, float e22, float e31, float e32, float e41, float e42)
         {
             Column1 = new Vector4(e11, e21, e31, e41);
             Column2 = new Vector4(e12, e22, e32, e42);
         }
 
-        public static bool operator ==(Matrix4x2 a, Matrix4x2 b)
+        public static bool operator ==(Matrix2x4 a, Matrix2x4 b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2;
         }
 
-        public static bool operator !=(Matrix4x2 a, Matrix4x2 b)
+        public static bool operator !=(Matrix2x4 a, Matrix2x4 b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2;
         }
 
-        public bool Equals(Matrix4x2 other)
+        public bool Equals(Matrix2x4 other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix4x2)) return false;
-            var m = (Matrix4x2)other;
+            if (!(other is Matrix2x4)) return false;
+            var m = (Matrix2x4)other;
             return Column1 == m.Column1 && Column2 == m.Column2;
         }
 
@@ -4705,9 +4711,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString() + Row4.ToString();
         }
 
-        public static void Multiply(ref Matrix4x2 left, ref Matrix2 right, out Matrix4x2 result)
+        public static void Multiply(ref Matrix2x4 left, ref Matrix2 right, out Matrix2x4 result)
         {
-            result = new Matrix4x2(
+            result = new Matrix2x4(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E21 * right.E11 + left.E22 * right.E21,
@@ -4719,9 +4725,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x2 left, ref Matrix2x3 right, out Matrix4x3 result)
+        public static void Multiply(ref Matrix2x4 left, ref Matrix3x2 right, out Matrix3x4 result)
         {
-            result = new Matrix4x3(
+            result = new Matrix3x4(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -4737,7 +4743,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x2 left, ref Matrix2x4 right, out Matrix4 result)
+        public static void Multiply(ref Matrix2x4 left, ref Matrix4x2 right, out Matrix4 result)
         {
             result = new Matrix4(
                 left.E11 * right.E11 + left.E12 * right.E21,
@@ -4764,7 +4770,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix4x3 : System.IEquatable<Matrix4x3>
+    public partial struct Matrix3x4 : System.IEquatable<Matrix3x4>
     {
         public readonly Vector4 Column1;
         public readonly Vector4 Column2;
@@ -4788,39 +4794,39 @@
         public float E42 { get { return Column2.W; } }
         public float E43 { get { return Column3.W; } }
 
-        public Matrix4x3(Vector4 column1, Vector4 column2, Vector4 column3)
+        public Matrix3x4(Vector4 column1, Vector4 column2, Vector4 column3)
         {
             Column1 = column1;
             Column2 = column2;
             Column3 = column3;
         }
 
-        public Matrix4x3(float e11, float e12, float e13, float e21, float e22, float e23, float e31, float e32, float e33, float e41, float e42, float e43)
+        public Matrix3x4(float e11, float e12, float e13, float e21, float e22, float e23, float e31, float e32, float e33, float e41, float e42, float e43)
         {
             Column1 = new Vector4(e11, e21, e31, e41);
             Column2 = new Vector4(e12, e22, e32, e42);
             Column3 = new Vector4(e13, e23, e33, e43);
         }
 
-        public static bool operator ==(Matrix4x3 a, Matrix4x3 b)
+        public static bool operator ==(Matrix3x4 a, Matrix3x4 b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3;
         }
 
-        public static bool operator !=(Matrix4x3 a, Matrix4x3 b)
+        public static bool operator !=(Matrix3x4 a, Matrix3x4 b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3;
         }
 
-        public bool Equals(Matrix4x3 other)
+        public bool Equals(Matrix3x4 other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix4x3)) return false;
-            var m = (Matrix4x3)other;
+            if (!(other is Matrix3x4)) return false;
+            var m = (Matrix3x4)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3;
         }
 
@@ -4834,9 +4840,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString() + Row4.ToString();
         }
 
-        public static void Multiply(ref Matrix4x3 left, ref Matrix3x2 right, out Matrix4x2 result)
+        public static void Multiply(ref Matrix3x4 left, ref Matrix2x3 right, out Matrix2x4 result)
         {
-            result = new Matrix4x2(
+            result = new Matrix2x4(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31,
@@ -4848,9 +4854,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x3 left, ref Matrix3 right, out Matrix4x3 result)
+        public static void Multiply(ref Matrix3x4 left, ref Matrix3 right, out Matrix3x4 result)
         {
-            result = new Matrix4x3(
+            result = new Matrix3x4(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -4866,7 +4872,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x3 left, ref Matrix3x4 right, out Matrix4 result)
+        public static void Multiply(ref Matrix3x4 left, ref Matrix4x3 right, out Matrix4 result)
         {
             result = new Matrix4(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
@@ -4972,9 +4978,9 @@
 
         public static readonly Matrix4 Identity = new Matrix4(Vector4.UnitX, Vector4.UnitY, Vector4.UnitZ, Vector4.UnitW);
 
-        public static void Multiply(ref Matrix4 left, ref Matrix4x2 right, out Matrix4x2 result)
+        public static void Multiply(ref Matrix4 left, ref Matrix2x4 right, out Matrix2x4 result)
         {
-            result = new Matrix4x2(
+            result = new Matrix2x4(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31 + left.E24 * right.E41,
@@ -4986,9 +4992,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix4 left, ref Matrix4x3 right, out Matrix4x3 result)
+        public static void Multiply(ref Matrix4 left, ref Matrix3x4 right, out Matrix3x4 result)
         {
-            result = new Matrix4x3(
+            result = new Matrix3x4(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,
@@ -5100,9 +5106,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2d left, ref Matrix2x3d right, out Matrix2x3d result)
+        public static void Multiply(ref Matrix2d left, ref Matrix3x2d right, out Matrix3x2d result)
         {
-            result = new Matrix2x3d(
+            result = new Matrix3x2d(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -5112,9 +5118,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2d left, ref Matrix2x4d right, out Matrix2x4d result)
+        public static void Multiply(ref Matrix2d left, ref Matrix4x2d right, out Matrix4x2d result)
         {
-            result = new Matrix2x4d(
+            result = new Matrix4x2d(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -5131,7 +5137,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix2x3d : System.IEquatable<Matrix2x3d>
+    public partial struct Matrix3x2d : System.IEquatable<Matrix3x2d>
     {
         public readonly Vector2d Column1;
         public readonly Vector2d Column2;
@@ -5147,39 +5153,39 @@
         public double E22 { get { return Column2.Y; } }
         public double E23 { get { return Column3.Y; } }
 
-        public Matrix2x3d(Vector2d column1, Vector2d column2, Vector2d column3)
+        public Matrix3x2d(Vector2d column1, Vector2d column2, Vector2d column3)
         {
             Column1 = column1;
             Column2 = column2;
             Column3 = column3;
         }
 
-        public Matrix2x3d(double e11, double e12, double e13, double e21, double e22, double e23)
+        public Matrix3x2d(double e11, double e12, double e13, double e21, double e22, double e23)
         {
             Column1 = new Vector2d(e11, e21);
             Column2 = new Vector2d(e12, e22);
             Column3 = new Vector2d(e13, e23);
         }
 
-        public static bool operator ==(Matrix2x3d a, Matrix2x3d b)
+        public static bool operator ==(Matrix3x2d a, Matrix3x2d b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3;
         }
 
-        public static bool operator !=(Matrix2x3d a, Matrix2x3d b)
+        public static bool operator !=(Matrix3x2d a, Matrix3x2d b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3;
         }
 
-        public bool Equals(Matrix2x3d other)
+        public bool Equals(Matrix3x2d other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix2x3d)) return false;
-            var m = (Matrix2x3d)other;
+            if (!(other is Matrix3x2d)) return false;
+            var m = (Matrix3x2d)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3;
         }
 
@@ -5193,7 +5199,7 @@
             return Row1.ToString() + Row2.ToString();
         }
 
-        public static void Multiply(ref Matrix2x3d left, ref Matrix3x2d right, out Matrix2d result)
+        public static void Multiply(ref Matrix3x2d left, ref Matrix2x3d right, out Matrix2d result)
         {
             result = new Matrix2d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
@@ -5203,9 +5209,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x3d left, ref Matrix3d right, out Matrix2x3d result)
+        public static void Multiply(ref Matrix3x2d left, ref Matrix3d right, out Matrix3x2d result)
         {
-            result = new Matrix2x3d(
+            result = new Matrix3x2d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -5215,9 +5221,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x3d left, ref Matrix3x4d right, out Matrix2x4d result)
+        public static void Multiply(ref Matrix3x2d left, ref Matrix4x3d right, out Matrix4x2d result)
         {
-            result = new Matrix2x4d(
+            result = new Matrix4x2d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -5234,7 +5240,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix2x4d : System.IEquatable<Matrix2x4d>
+    public partial struct Matrix4x2d : System.IEquatable<Matrix4x2d>
     {
         public readonly Vector2d Column1;
         public readonly Vector2d Column2;
@@ -5253,7 +5259,7 @@
         public double E23 { get { return Column3.Y; } }
         public double E24 { get { return Column4.Y; } }
 
-        public Matrix2x4d(Vector2d column1, Vector2d column2, Vector2d column3, Vector2d column4)
+        public Matrix4x2d(Vector2d column1, Vector2d column2, Vector2d column3, Vector2d column4)
         {
             Column1 = column1;
             Column2 = column2;
@@ -5261,7 +5267,7 @@
             Column4 = column4;
         }
 
-        public Matrix2x4d(double e11, double e12, double e13, double e14, double e21, double e22, double e23, double e24)
+        public Matrix4x2d(double e11, double e12, double e13, double e14, double e21, double e22, double e23, double e24)
         {
             Column1 = new Vector2d(e11, e21);
             Column2 = new Vector2d(e12, e22);
@@ -5269,25 +5275,25 @@
             Column4 = new Vector2d(e14, e24);
         }
 
-        public static bool operator ==(Matrix2x4d a, Matrix2x4d b)
+        public static bool operator ==(Matrix4x2d a, Matrix4x2d b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3 && a.Column4 == b.Column4;
         }
 
-        public static bool operator !=(Matrix2x4d a, Matrix2x4d b)
+        public static bool operator !=(Matrix4x2d a, Matrix4x2d b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3 || a.Column4 != b.Column4;
         }
 
-        public bool Equals(Matrix2x4d other)
+        public bool Equals(Matrix4x2d other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3 && Column4 == other.Column4;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix2x4d)) return false;
-            var m = (Matrix2x4d)other;
+            if (!(other is Matrix4x2d)) return false;
+            var m = (Matrix4x2d)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3 && Column4 == m.Column4;
         }
 
@@ -5301,7 +5307,7 @@
             return Row1.ToString() + Row2.ToString();
         }
 
-        public static void Multiply(ref Matrix2x4d left, ref Matrix4x2d right, out Matrix2d result)
+        public static void Multiply(ref Matrix4x2d left, ref Matrix2x4d right, out Matrix2d result)
         {
             result = new Matrix2d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
@@ -5311,9 +5317,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x4d left, ref Matrix4x3d right, out Matrix2x3d result)
+        public static void Multiply(ref Matrix4x2d left, ref Matrix3x4d right, out Matrix3x2d result)
         {
-            result = new Matrix2x3d(
+            result = new Matrix3x2d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,
@@ -5323,9 +5329,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix2x4d left, ref Matrix4d right, out Matrix2x4d result)
+        public static void Multiply(ref Matrix4x2d left, ref Matrix4d right, out Matrix4x2d result)
         {
-            result = new Matrix2x4d(
+            result = new Matrix4x2d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,
@@ -5342,7 +5348,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix3x2d : System.IEquatable<Matrix3x2d>
+    public partial struct Matrix2x3d : System.IEquatable<Matrix2x3d>
     {
         public readonly Vector3d Column1;
         public readonly Vector3d Column2;
@@ -5358,37 +5364,37 @@
         public double E31 { get { return Column1.Z; } }
         public double E32 { get { return Column2.Z; } }
 
-        public Matrix3x2d(Vector3d column1, Vector3d column2)
+        public Matrix2x3d(Vector3d column1, Vector3d column2)
         {
             Column1 = column1;
             Column2 = column2;
         }
 
-        public Matrix3x2d(double e11, double e12, double e21, double e22, double e31, double e32)
+        public Matrix2x3d(double e11, double e12, double e21, double e22, double e31, double e32)
         {
             Column1 = new Vector3d(e11, e21, e31);
             Column2 = new Vector3d(e12, e22, e32);
         }
 
-        public static bool operator ==(Matrix3x2d a, Matrix3x2d b)
+        public static bool operator ==(Matrix2x3d a, Matrix2x3d b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2;
         }
 
-        public static bool operator !=(Matrix3x2d a, Matrix3x2d b)
+        public static bool operator !=(Matrix2x3d a, Matrix2x3d b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2;
         }
 
-        public bool Equals(Matrix3x2d other)
+        public bool Equals(Matrix2x3d other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix3x2d)) return false;
-            var m = (Matrix3x2d)other;
+            if (!(other is Matrix2x3d)) return false;
+            var m = (Matrix2x3d)other;
             return Column1 == m.Column1 && Column2 == m.Column2;
         }
 
@@ -5402,9 +5408,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString();
         }
 
-        public static void Multiply(ref Matrix3x2d left, ref Matrix2d right, out Matrix3x2d result)
+        public static void Multiply(ref Matrix2x3d left, ref Matrix2d right, out Matrix2x3d result)
         {
-            result = new Matrix3x2d(
+            result = new Matrix2x3d(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E21 * right.E11 + left.E22 * right.E21,
@@ -5414,7 +5420,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x2d left, ref Matrix2x3d right, out Matrix3d result)
+        public static void Multiply(ref Matrix2x3d left, ref Matrix3x2d right, out Matrix3d result)
         {
             result = new Matrix3d(
                 left.E11 * right.E11 + left.E12 * right.E21,
@@ -5429,9 +5435,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x2d left, ref Matrix2x4d right, out Matrix3x4d result)
+        public static void Multiply(ref Matrix2x3d left, ref Matrix4x2d right, out Matrix4x3d result)
         {
-            result = new Matrix3x4d(
+            result = new Matrix4x3d(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -5520,9 +5526,9 @@
 
         public static readonly Matrix3d Identity = new Matrix3d(Vector3d.UnitX, Vector3d.UnitY, Vector3d.UnitZ);
 
-        public static void Multiply(ref Matrix3d left, ref Matrix3x2d right, out Matrix3x2d result)
+        public static void Multiply(ref Matrix3d left, ref Matrix2x3d right, out Matrix2x3d result)
         {
-            result = new Matrix3x2d(
+            result = new Matrix2x3d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31,
@@ -5547,9 +5553,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix3d left, ref Matrix3x4d right, out Matrix3x4d result)
+        public static void Multiply(ref Matrix3d left, ref Matrix4x3d right, out Matrix4x3d result)
         {
-            result = new Matrix3x4d(
+            result = new Matrix4x3d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -5570,7 +5576,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix3x4d : System.IEquatable<Matrix3x4d>
+    public partial struct Matrix4x3d : System.IEquatable<Matrix4x3d>
     {
         public readonly Vector3d Column1;
         public readonly Vector3d Column2;
@@ -5594,7 +5600,7 @@
         public double E33 { get { return Column3.Z; } }
         public double E34 { get { return Column4.Z; } }
 
-        public Matrix3x4d(Vector3d column1, Vector3d column2, Vector3d column3, Vector3d column4)
+        public Matrix4x3d(Vector3d column1, Vector3d column2, Vector3d column3, Vector3d column4)
         {
             Column1 = column1;
             Column2 = column2;
@@ -5602,7 +5608,7 @@
             Column4 = column4;
         }
 
-        public Matrix3x4d(double e11, double e12, double e13, double e14, double e21, double e22, double e23, double e24, double e31, double e32, double e33, double e34)
+        public Matrix4x3d(double e11, double e12, double e13, double e14, double e21, double e22, double e23, double e24, double e31, double e32, double e33, double e34)
         {
             Column1 = new Vector3d(e11, e21, e31);
             Column2 = new Vector3d(e12, e22, e32);
@@ -5610,25 +5616,25 @@
             Column4 = new Vector3d(e14, e24, e34);
         }
 
-        public static bool operator ==(Matrix3x4d a, Matrix3x4d b)
+        public static bool operator ==(Matrix4x3d a, Matrix4x3d b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3 && a.Column4 == b.Column4;
         }
 
-        public static bool operator !=(Matrix3x4d a, Matrix3x4d b)
+        public static bool operator !=(Matrix4x3d a, Matrix4x3d b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3 || a.Column4 != b.Column4;
         }
 
-        public bool Equals(Matrix3x4d other)
+        public bool Equals(Matrix4x3d other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3 && Column4 == other.Column4;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix3x4d)) return false;
-            var m = (Matrix3x4d)other;
+            if (!(other is Matrix4x3d)) return false;
+            var m = (Matrix4x3d)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3 && Column4 == m.Column4;
         }
 
@@ -5642,9 +5648,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString();
         }
 
-        public static void Multiply(ref Matrix3x4d left, ref Matrix4x2d right, out Matrix3x2d result)
+        public static void Multiply(ref Matrix4x3d left, ref Matrix2x4d right, out Matrix2x3d result)
         {
-            result = new Matrix3x2d(
+            result = new Matrix2x3d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31 + left.E24 * right.E41,
@@ -5654,7 +5660,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x4d left, ref Matrix4x3d right, out Matrix3d result)
+        public static void Multiply(ref Matrix4x3d left, ref Matrix3x4d right, out Matrix3d result)
         {
             result = new Matrix3d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
@@ -5669,9 +5675,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix3x4d left, ref Matrix4d right, out Matrix3x4d result)
+        public static void Multiply(ref Matrix4x3d left, ref Matrix4d right, out Matrix4x3d result)
         {
-            result = new Matrix3x4d(
+            result = new Matrix4x3d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,
@@ -5692,7 +5698,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix4x2d : System.IEquatable<Matrix4x2d>
+    public partial struct Matrix2x4d : System.IEquatable<Matrix2x4d>
     {
         public readonly Vector4d Column1;
         public readonly Vector4d Column2;
@@ -5711,37 +5717,37 @@
         public double E41 { get { return Column1.W; } }
         public double E42 { get { return Column2.W; } }
 
-        public Matrix4x2d(Vector4d column1, Vector4d column2)
+        public Matrix2x4d(Vector4d column1, Vector4d column2)
         {
             Column1 = column1;
             Column2 = column2;
         }
 
-        public Matrix4x2d(double e11, double e12, double e21, double e22, double e31, double e32, double e41, double e42)
+        public Matrix2x4d(double e11, double e12, double e21, double e22, double e31, double e32, double e41, double e42)
         {
             Column1 = new Vector4d(e11, e21, e31, e41);
             Column2 = new Vector4d(e12, e22, e32, e42);
         }
 
-        public static bool operator ==(Matrix4x2d a, Matrix4x2d b)
+        public static bool operator ==(Matrix2x4d a, Matrix2x4d b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2;
         }
 
-        public static bool operator !=(Matrix4x2d a, Matrix4x2d b)
+        public static bool operator !=(Matrix2x4d a, Matrix2x4d b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2;
         }
 
-        public bool Equals(Matrix4x2d other)
+        public bool Equals(Matrix2x4d other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix4x2d)) return false;
-            var m = (Matrix4x2d)other;
+            if (!(other is Matrix2x4d)) return false;
+            var m = (Matrix2x4d)other;
             return Column1 == m.Column1 && Column2 == m.Column2;
         }
 
@@ -5755,9 +5761,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString() + Row4.ToString();
         }
 
-        public static void Multiply(ref Matrix4x2d left, ref Matrix2d right, out Matrix4x2d result)
+        public static void Multiply(ref Matrix2x4d left, ref Matrix2d right, out Matrix2x4d result)
         {
-            result = new Matrix4x2d(
+            result = new Matrix2x4d(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E21 * right.E11 + left.E22 * right.E21,
@@ -5769,9 +5775,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x2d left, ref Matrix2x3d right, out Matrix4x3d result)
+        public static void Multiply(ref Matrix2x4d left, ref Matrix3x2d right, out Matrix3x4d result)
         {
-            result = new Matrix4x3d(
+            result = new Matrix3x4d(
                 left.E11 * right.E11 + left.E12 * right.E21,
                 left.E11 * right.E12 + left.E12 * right.E22,
                 left.E11 * right.E13 + left.E12 * right.E23,
@@ -5787,7 +5793,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x2d left, ref Matrix2x4d right, out Matrix4d result)
+        public static void Multiply(ref Matrix2x4d left, ref Matrix4x2d right, out Matrix4d result)
         {
             result = new Matrix4d(
                 left.E11 * right.E11 + left.E12 * right.E21,
@@ -5814,7 +5820,7 @@
 
     [System.Serializable]
     [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Matrix4x3d : System.IEquatable<Matrix4x3d>
+    public partial struct Matrix3x4d : System.IEquatable<Matrix3x4d>
     {
         public readonly Vector4d Column1;
         public readonly Vector4d Column2;
@@ -5838,39 +5844,39 @@
         public double E42 { get { return Column2.W; } }
         public double E43 { get { return Column3.W; } }
 
-        public Matrix4x3d(Vector4d column1, Vector4d column2, Vector4d column3)
+        public Matrix3x4d(Vector4d column1, Vector4d column2, Vector4d column3)
         {
             Column1 = column1;
             Column2 = column2;
             Column3 = column3;
         }
 
-        public Matrix4x3d(double e11, double e12, double e13, double e21, double e22, double e23, double e31, double e32, double e33, double e41, double e42, double e43)
+        public Matrix3x4d(double e11, double e12, double e13, double e21, double e22, double e23, double e31, double e32, double e33, double e41, double e42, double e43)
         {
             Column1 = new Vector4d(e11, e21, e31, e41);
             Column2 = new Vector4d(e12, e22, e32, e42);
             Column3 = new Vector4d(e13, e23, e33, e43);
         }
 
-        public static bool operator ==(Matrix4x3d a, Matrix4x3d b)
+        public static bool operator ==(Matrix3x4d a, Matrix3x4d b)
         {
             return a.Column1 == b.Column1 && a.Column2 == b.Column2 && a.Column3 == b.Column3;
         }
 
-        public static bool operator !=(Matrix4x3d a, Matrix4x3d b)
+        public static bool operator !=(Matrix3x4d a, Matrix3x4d b)
         {
             return a.Column1 != b.Column1 || a.Column2 != b.Column2 || a.Column3 != b.Column3;
         }
 
-        public bool Equals(Matrix4x3d other)
+        public bool Equals(Matrix3x4d other)
         {
             return Column1 == other.Column1 && Column2 == other.Column2 && Column3 == other.Column3;
         }
 
         public override bool Equals(object other)
         {
-            if (!(other is Matrix4x3d)) return false;
-            var m = (Matrix4x3d)other;
+            if (!(other is Matrix3x4d)) return false;
+            var m = (Matrix3x4d)other;
             return Column1 == m.Column1 && Column2 == m.Column2 && Column3 == m.Column3;
         }
 
@@ -5884,9 +5890,9 @@
             return Row1.ToString() + Row2.ToString() + Row3.ToString() + Row4.ToString();
         }
 
-        public static void Multiply(ref Matrix4x3d left, ref Matrix3x2d right, out Matrix4x2d result)
+        public static void Multiply(ref Matrix3x4d left, ref Matrix2x3d right, out Matrix2x4d result)
         {
-            result = new Matrix4x2d(
+            result = new Matrix2x4d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31,
@@ -5898,9 +5904,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x3d left, ref Matrix3d right, out Matrix4x3d result)
+        public static void Multiply(ref Matrix3x4d left, ref Matrix3d right, out Matrix3x4d result)
         {
-            result = new Matrix4x3d(
+            result = new Matrix3x4d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33,
@@ -5916,7 +5922,7 @@
             );
         }
 
-        public static void Multiply(ref Matrix4x3d left, ref Matrix3x4d right, out Matrix4d result)
+        public static void Multiply(ref Matrix3x4d left, ref Matrix4x3d right, out Matrix4d result)
         {
             result = new Matrix4d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31,
@@ -6022,9 +6028,9 @@
 
         public static readonly Matrix4d Identity = new Matrix4d(Vector4d.UnitX, Vector4d.UnitY, Vector4d.UnitZ, Vector4d.UnitW);
 
-        public static void Multiply(ref Matrix4d left, ref Matrix4x2d right, out Matrix4x2d result)
+        public static void Multiply(ref Matrix4d left, ref Matrix2x4d right, out Matrix2x4d result)
         {
-            result = new Matrix4x2d(
+            result = new Matrix2x4d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E21 * right.E11 + left.E22 * right.E21 + left.E23 * right.E31 + left.E24 * right.E41,
@@ -6036,9 +6042,9 @@
             );
         }
 
-        public static void Multiply(ref Matrix4d left, ref Matrix4x3d right, out Matrix4x3d result)
+        public static void Multiply(ref Matrix4d left, ref Matrix3x4d right, out Matrix3x4d result)
         {
-            result = new Matrix4x3d(
+            result = new Matrix3x4d(
                 left.E11 * right.E11 + left.E12 * right.E21 + left.E13 * right.E31 + left.E14 * right.E41,
                 left.E11 * right.E12 + left.E12 * right.E22 + left.E13 * right.E32 + left.E14 * right.E42,
                 left.E11 * right.E13 + left.E12 * right.E23 + left.E13 * right.E33 + left.E14 * right.E43,

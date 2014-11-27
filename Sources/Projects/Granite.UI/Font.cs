@@ -8,26 +8,31 @@ namespace Granite.UI
 {
     public sealed class Font
     {
-        private readonly Texture2D m_texture;
+        public Texture2D Texture { get; private set; }
         private readonly Dictionary<char, Glyph> m_glyphs;
 
-        public Font(Texture2D texture, IEnumerable<GlyphPosition> glyphs)
+        public Font(Texture2D texture, IEnumerable<GlyphInfo> glyphs)
         {
-            m_texture = texture;
+            Texture = texture;
             m_glyphs = new Dictionary<char, Glyph>();
 
             foreach (var glyph in glyphs)
             {
-                m_glyphs[glyph.Character] = new Glyph(
-                    this,
-                    glyph.Position.Size,
-                    new Box2(
-                        glyph.Position.Position.X / m_texture.Size.X,
-                        glyph.Position.Position.Y / m_texture.Size.Y,
-                        glyph.Position.Size.X / m_texture.Size.X,
-                        glyph.Position.Size.Y / m_texture.Size.Y
-                    )
-                );
+                m_glyphs[glyph.Character] = new Glyph(this, glyph);
+            }
+        }
+
+        public Glyph GetGlyph(char character)
+        {
+            Glyph glyph;
+
+            if (m_glyphs.TryGetValue(character, out glyph))
+            {
+                return glyph;
+            }
+            else
+            {
+                return null;
             }
         }
     }

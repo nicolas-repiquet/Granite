@@ -1,36 +1,22 @@
 ﻿#version 330
 
-uniform ivec2 screen_size;
-
 in vec2 vertex;
-in vec2 size;
-in vec2 position;
+in mat3x2 transform;
 in vec4 color;
-in int border_thickness;
-in int corner_radius;
+in vec2 texture_coordinates0;
+in vec2 texture_coordinates1;
+in int texture;
 
-flat out int f_border_thickness;
-flat out int f_corner_radius;
-flat out vec2 f_size;
 flat out vec4 f_color;
-
-out vec2 relative_position;
-
-const vec2 factor = vec2(0.5, 0.5);
+flat out int f_texture;
+out vec2 f_texture_coordinates;
 
 void main()
 {
-	f_border_thickness = border_thickness;
-	f_corner_radius = corner_radius;
-	f_size = size;
 	f_color = color;
+	f_texture = texture;
 
-	relative_position = vertex * size;
+	f_texture_coordinates = mix(texture_coordinates0, texture_coordinates1, vertex);
 
-    gl_Position = vec4(
-		(position.x + vertex.x * size.x) / screen_size.x * 2 - 1, 
-		(position.y + vertex.y * size.y) / screen_size.y * 2 - 1, 
-		0,
-		1
-	);
+    gl_Position = vec4(transform * vec3(vertex, 1), 0, 1);
 }
