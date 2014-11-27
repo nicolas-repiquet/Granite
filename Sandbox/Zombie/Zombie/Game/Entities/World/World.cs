@@ -109,6 +109,9 @@ namespace Zombie.Game.Entities
         {
             transform *= m_camera.CreateWorldToCameraTransform();
 
+           // GL.BlendFunc(GL.SRC_ALPHA, GL.DST_ALPHA);
+            //GL.BlendEquation(GL.FUNC_ADD);
+            
             m_map.Render(transform);
 
             m_player.Render(transform);
@@ -117,6 +120,10 @@ namespace Zombie.Game.Entities
 
             ShootManager.Instance.Render(transform);
 
+            //var frameBuffer = new FrameBuffer();
+            //GL.BlendFunc(GL.ONE_MINUS_SRC_ALPHA, GL.ONE_MINUS_DST_ALPHA);
+            m_map.RenderLights(transform);
+            
             Night.Render(transform);
         }
 

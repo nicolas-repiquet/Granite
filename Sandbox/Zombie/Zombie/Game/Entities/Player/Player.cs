@@ -38,7 +38,8 @@ namespace Zombie.Game.Entities
         public Weapon Weapon { get { return m_weapon; } }
         public Dictionary<string, Weapon> Weapons { get { return m_weapons; } }
 
-        //public bool NeedMove { set; get; }
+        //Score
+        public int Kills { get; set; }
 
         public Player()
         {
