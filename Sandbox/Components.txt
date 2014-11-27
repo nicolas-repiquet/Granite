@@ -1,0 +1,8 @@
+Location float:X float:Y
+Orientation float:X float:Y
+Health int:Current int:Max bool:IsAlive
+Quad float:Width float:Height
+Triangle float:X1 float:X2 float X3 float:Y1 float:Y2 float:Y3
+Cone float:Radius
+Color byte:R byte:G byte:B byte:A
+Duration double:Start double:Current
