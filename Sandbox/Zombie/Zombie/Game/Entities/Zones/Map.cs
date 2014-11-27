@@ -172,5 +172,20 @@ namespace Zombie.Game.Entities.Zones
                 
             }
         }
+
+        public void RenderLights(Matrix4 transform)
+        {
+            if (m_currentZone != null)
+            {
+                for (var row = m_currentZoneIndex.Item1 - 1; row <= m_currentZoneIndex.Item1 + 1; row++)
+                {
+                    for (var col = m_currentZoneIndex.Item2 - 1; col <= m_currentZoneIndex.Item2 + 1; col++)
+                    {
+                        m_zones[new Tuple<int, int>(row, col)].RenderLights(transform);
+                    }
+                }
+
+            }
+        }
     }
 }

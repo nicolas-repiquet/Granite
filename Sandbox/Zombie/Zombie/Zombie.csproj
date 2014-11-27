@@ -64,6 +64,7 @@
     <Compile Include="Game\Entities\Ennemies\EnnemyManager.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
+    <Compile Include="Game\Entities\Tools\FrameBuffer.cs" />
     <Compile Include="Game\Entities\Zones\Night.cs" />
     <Compile Include="Game\Entities\Zones\Floor.cs" />
     <Compile Include="Game\Entities\Zones\Light.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Game\Sprites\SpriteRenderer.cs" />
     <Compile Include="Game\Sprites\SpriteSheet.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Game\Textures\GrassTexture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

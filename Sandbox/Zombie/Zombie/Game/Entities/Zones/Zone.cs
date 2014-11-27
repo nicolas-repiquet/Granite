@@ -118,9 +118,15 @@ namespace Zombie.Game.Entities.Zones
 
             Floor.Render(transform);
             m_wallRenderer.Render(transform);
-            m_lightRenderer.Render(transform);
 
-            
+            m_lightRenderer.Render(transform);
+        }
+
+        public void RenderLights(Matrix4 transform)
+        {
+            transform *= Matrix4.Translate(m_map.ZoneSize.X * m_id.Item1, m_map.ZoneSize.Y * m_id.Item2, 0);
+
+            m_lightRenderer.Render(transform);
         }
     }
 }
