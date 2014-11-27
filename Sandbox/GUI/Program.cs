@@ -18,14 +18,18 @@ namespace GUI
             });
         }
 
-        private Theme_01 m_theme;
-        private Graphics m_graphics;
+        private UIManager m_uiManager;
 
         public override void Start()
         {
-            m_graphics = new Graphics(10000);
-            m_theme = Theme_01.Instance;
+            m_uiManager = new UIManager();
         }
+
+        public override void InputEvent(InputEventArgs e)
+        {
+            m_uiManager.ProcessInputEvent(e);
+        }
+
 
         public override void Render(TimeSpan elapsed)
         {
@@ -39,40 +43,7 @@ namespace GUI
             GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            m_graphics.Clear();
-            m_graphics.Translate(new Vector2(-1, 1));
-            m_graphics.Scale(new Vector2(2f / size.X, -2f / size.Y));
-
-  
-            m_graphics.Draw(
-                new Box2(100f, 100f, 180f, 180f),
-                new Color4ub(0xFF, 0x00, 0xFF, 0xFF)
-            );
-
-            m_graphics.Draw(
-                new Box2(300f, 100f, 180f, 180f),
-                new Color4ub(0xFF, 0xFF, 0x00, 0xFF)
-            );
-
-            m_graphics.Draw(
-                new Box2(100f, 300f, 180f, 180f),
-                new Color4ub(0x00, 0xFF, 0xFF, 0xFF)
-            );
-
-            m_graphics.Draw(
-                new Box2(300f, 300f, 180f, 180f),
-                m_theme.Texture,
-                new Vector2(0, 0),
-                new Vector2(1, 1)
-            );
-
-            m_graphics.Draw(
-                new Vector2(100f, 500f),
-                InternalFonts.RegularSmallVariableWidthFont,
-                "Est-ce que ça va s'afficher bordel !!"
-            );
-
-            m_graphics.Flush();
+            m_uiManager.Render(elapsed);
 
             GL.Finish();
 

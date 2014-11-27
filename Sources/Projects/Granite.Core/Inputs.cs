@@ -7,7 +7,7 @@ namespace Granite.Core
 {
     public abstract class InputEventArgs : EventArgs
     {
-
+        public bool Handled { get; set; }
     }
 
     #region Mouse
