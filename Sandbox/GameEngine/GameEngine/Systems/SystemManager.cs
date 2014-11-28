@@ -9,7 +9,8 @@ namespace GameEngine.Systems
 {
     public enum SystemType
     {
-        MoveSystem = 0
+        MoveSystem = 0,
+        SpriteRenderSystem = 1
     }
 
     /// <summary>
@@ -57,7 +58,11 @@ namespace GameEngine.Systems
             var move = new MoveSystem();
             m_updateSystems.Add(SystemType.MoveSystem, move);
             m_systems.Add(move);
-            //m_renderSystems.Add(SystemType.MoveSystem, move);
+
+            var render = new SpriteRenderSystem();
+            m_updateSystems.Add(SystemType.SpriteRenderSystem, render);
+            m_renderSystems.Add(SystemType.SpriteRenderSystem, render);
+            m_systems.Add(render);
         }
 
         public void Update(TimeSpan elapsed)

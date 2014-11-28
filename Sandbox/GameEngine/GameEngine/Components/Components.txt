@@ -7,3 +7,4 @@ Cone float:Radius float:Angle
 Color byte:R byte:G byte:B byte:A
 Duration double:Start double:Current
 Speed double:Current double:Acceleration
+Texture int:Id float:StartX float:StartY float:EndX float:EndY

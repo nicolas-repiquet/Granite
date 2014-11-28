@@ -5,27 +5,27 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Components
 {
-    public class Component : IObservable<Component>
+    public class Component
     {
 		private Guid m_componentId;
 		public Guid ComponentId { get{ return m_componentId; } }
 
-        private Guid m_componentParentId;
+		private Guid m_componentParentId;
         public Guid ComponentParentId { get { return m_componentParentId; } }
 
 		private ComponentType m_componentType;
 		public ComponentType ComponentType { get{ return m_componentType; } }
 
-        private List<IObserver<Component>> m_observers;
+		private List<IObserver<Component>> m_observers;
 
 		public Component(ComponentType type)
 		{
 			m_componentId = Guid.NewGuid();
 			m_componentType = type;
-            m_observers = new List<IObserver<Component>>();
+			m_observers = new List<IObserver<Component>>();
 		}
 
-        public IDisposable Subscribe(IObserver<Component> observer)
+		public IDisposable Subscribe(IObserver<Component> observer)
         {
             if (observer != null)
             {
@@ -36,7 +36,7 @@ namespace GameEngine.Components
             return null;
         }
 
-        public void SetParent(Guid id)
+		public void SetParent(Guid id)
         {
             m_componentParentId = id;
         }
@@ -55,7 +55,7 @@ namespace GameEngine.Components
 
             return str;
         }
-    }
+	}
 
 	public class LocationComponent : Component
 	{
@@ -68,7 +68,7 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", X:" + X;
@@ -91,7 +91,7 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", X:" + X;
@@ -115,7 +115,7 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", Current:" + Current;
@@ -139,7 +139,7 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", Width:" + Width;
@@ -166,7 +166,7 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", X1:" + X1;
@@ -185,6 +185,7 @@ namespace GameEngine.Components
 	public class ConeComponent : Component
 	{
 		public float Radius { get; set; }
+		public float Angle { get; set; }
 
 		public ConeComponent()
 			:base(ComponentType.Cone)
@@ -192,10 +193,11 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", Radius:" + Radius;
+			str += ", Angle:" + Angle;
 			str += "]";
 
 			return str;
@@ -216,7 +218,7 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", R:" + R;
@@ -241,11 +243,63 @@ namespace GameEngine.Components
 
 		}
 
-		public string Serialize()
+		public new string Serialize()
 		{
 			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
 			str += ", Start:" + Start;
 			str += ", Current:" + Current;
+			str += "]";
+
+			return str;
+		}
+		
+	}
+
+	public class SpeedComponent : Component
+	{
+		public double Current { get; set; }
+		public double Acceleration { get; set; }
+
+		public SpeedComponent()
+			:base(ComponentType.Speed)
+		{
+
+		}
+
+		public new string Serialize()
+		{
+			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
+			str += ", Current:" + Current;
+			str += ", Acceleration:" + Acceleration;
+			str += "]";
+
+			return str;
+		}
+		
+	}
+
+	public class TextureComponent : Component
+	{
+		public int Id { get; set; }
+		public float StartX { get; set; }
+		public float StartY { get; set; }
+		public float EndX { get; set; }
+		public float EndY { get; set; }
+
+		public TextureComponent()
+			:base(ComponentType.Texture)
+		{
+
+		}
+
+		public new string Serialize()
+		{
+			var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType;
+			str += ", Id:" + Id;
+			str += ", StartX:" + StartX;
+			str += ", StartY:" + StartY;
+			str += ", EndX:" + EndX;
+			str += ", EndY:" + EndY;
 			str += "]";
 
 			return str;
@@ -264,5 +318,7 @@ namespace GameEngine.Components
 		Cone = 5,
 		Color = 6,
 		Duration = 7,
+		Speed = 8,
+		Texture = 9,
 	}
 }

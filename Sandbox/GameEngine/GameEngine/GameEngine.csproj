@@ -47,10 +47,18 @@
       <DependentUpon>Components.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\GameObject.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Graphics\ISpriteInstance.cs" />
+    <Compile Include="Graphics\Shaders\SpriteProgram.cs" />
+    <Compile Include="Graphics\Shaders\TriangleProgram.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
+    <Compile Include="Graphics\SpriteRenderer.cs" />
+    <Compile Include="Graphics\SpriteSheet.cs" />
+    <Compile Include="Graphics\Textures\MapSprites.cs" />
+    <Compile Include="EntryPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\MoveSystem.cs" />
+    <Compile Include="Systems\SpriteRenderSystem.cs" />
     <Compile Include="Systems\SystemManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,12 +67,18 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Components.gen.cs</LastGenOutput>
     </None>
+    <EmbeddedResource Include="Graphics\Shaders\SpriteProgram.Fragment.glsl" />
+    <EmbeddedResource Include="Graphics\Shaders\SpriteProgram.Vertex.glsl" />
+    <EmbeddedResource Include="Graphics\Shaders\TriangleProgram.Fragment.glsl" />
+    <EmbeddedResource Include="Graphics\Shaders\TriangleProgram.Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components\Components.txt" />
+    <EmbeddedResource Include="Graphics\Textures\MapSprites.png" />
+    <EmbeddedResource Include="Graphics\Textures\MapSprites.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />

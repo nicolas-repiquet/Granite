@@ -14,8 +14,9 @@ namespace GameEngine.Systems
             public LocationComponent Location { get; set; }
             public LocationComponent PreviousLocation { get; set; }
             public OrientationComponent Orientation { get; set; }
+            public SpeedComponent Speed { get; set; }
 
-            public bool IsComplete { get { return Location != null && Orientation != null; } }
+            public bool IsComplete { get { return Location != null && Orientation != null && Speed != null; } }
         }
 
         private Dictionary<Guid, MoveData> m_datas;
@@ -35,10 +36,11 @@ namespace GameEngine.Systems
 
         private void Execute(TimeSpan elapsed, MoveData data)
         {
-            var speed = 10; //En attendant d'avoir le composant speed
+            data.Speed.Current += data.Speed.Acceleration;
+            data.Speed.Acceleration = 0;
 
-            data.Location.X += (float)(speed * data.Orientation.X * elapsed.TotalSeconds);
-            data.Location.Y += (float)(speed * data.Orientation.Y * elapsed.TotalSeconds);
+            data.Location.X += (float)(data.Speed.Current * data.Orientation.X * elapsed.TotalSeconds);
+            data.Location.Y += (float)(data.Speed.Current * data.Orientation.Y * elapsed.TotalSeconds);
 
             data.Location.Notify();
         }
@@ -72,6 +74,10 @@ namespace GameEngine.Systems
                     {
                         data.Orientation = value as OrientationComponent;
                     }
+                    else if (value.ComponentType == ComponentType.Speed)
+                    {
+                        data.Speed = value as SpeedComponent;
+                    }
                 }
                 else
                 {
@@ -84,6 +90,10 @@ namespace GameEngine.Systems
                     else if (value.ComponentType == ComponentType.Orientation)
                     {
                         data.Orientation = value as OrientationComponent;
+                    }
+                    else if (value.ComponentType == ComponentType.Speed)
+                    {
+                        data.Speed = value as SpeedComponent;
                     }
 
                     m_datas.Add(value.ComponentParentId, data);
