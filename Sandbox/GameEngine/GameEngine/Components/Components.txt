@@ -3,6 +3,7 @@ Orientation float:X float:Y
 Health int:Current int:Max bool:IsAlive
 Quad float:Width float:Height
 Triangle float:X1 float:X2 float:X3 float:Y1 float:Y2 float:Y3
-Cone float:Radius
+Cone float:Radius float:Angle
 Color byte:R byte:G byte:B byte:A
 Duration double:Start double:Current
+Speed double:Current double:Acceleration

@@ -1,22 +1,61 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GameEngine.Components
 {
-    public class Component
+    public class Component : IObservable<Component>
     {
 		private Guid m_componentId;
 		public Guid ComponentId { get{ return m_componentId; } }
 
+        private Guid m_componentParentId;
+        public Guid ComponentParentId { get { return m_componentParentId; } }
+
 		private ComponentType m_componentType;
 		public ComponentType ComponentType { get{ return m_componentType; } }
+
+        private List<IObserver<Component>> m_observers;
 
 		public Component(ComponentType type)
 		{
 			m_componentId = Guid.NewGuid();
 			m_componentType = type;
+            m_observers = new List<IObserver<Component>>();
 		}
-	}
+
+        public IDisposable Subscribe(IObserver<Component> observer)
+        {
+            if (observer != null)
+            {
+                m_observers.Add(observer);
+                observer.OnNext(this);
+            }
+
+            return null;
+        }
+
+        public void SetParent(Guid id)
+        {
+            m_componentParentId = id;
+        }
+
+        public void Notify()
+        {
+            if (m_observers != null)
+            {
+                Parallel.ForEach(m_observers, x => x.OnNext(this));
+            }
+        }
+
+        public string Serialize()
+        {
+            var str = "[ComponentId:" + ComponentId + ", ComponentType:" + ComponentType + "]";
+
+            return str;
+        }
+    }
 
 	public class LocationComponent : Component
 	{
