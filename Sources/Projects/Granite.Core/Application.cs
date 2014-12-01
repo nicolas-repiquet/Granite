@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -14,7 +15,8 @@ namespace Granite.Core
         private readonly Queue<Action> m_actions;
         private readonly Display m_display;
         private readonly ApplicationSynchronizationContext m_synchronizationContext;
-        private DateTime m_previousFrame = DateTime.MinValue;
+        private readonly Stopwatch m_stopwatch;
+        private TimeSpan m_previousFrame = TimeSpan.MinValue;
         private double m_framesPerSecond = 0f;
         private bool[] m_keys;
 
@@ -31,6 +33,7 @@ namespace Granite.Core
                 settings.DisplayDepthBits
             );
             m_synchronizationContext = new ApplicationSynchronizationContext(m_display.Handle);
+            m_stopwatch = new Stopwatch();
         }
 
         public void Dispose()
@@ -70,6 +73,8 @@ namespace Granite.Core
                 var message = new WinApi.Message();
 
                 m_display.Show();
+
+                m_stopwatch.Start();
 
                 while (WinApi.GetMessage(ref message, IntPtr.Zero, 0, 0))
                 {
@@ -244,10 +249,10 @@ namespace Granite.Core
 
         private void Render()
         {
-            var now = DateTime.Now;
+            var now = m_stopwatch.Elapsed;
             TimeSpan elapsed;
 
-            if (m_previousFrame == DateTime.MinValue)
+            if (m_previousFrame == TimeSpan.MinValue)
             {
                 elapsed = TimeSpan.Zero;
             }
@@ -260,7 +265,7 @@ namespace Granite.Core
 
             if (elapsed != TimeSpan.Zero)
             {
-                m_framesPerSecond = m_framesPerSecond * 0.95 + (1 / elapsed.TotalSeconds) * 0.05;
+                m_framesPerSecond = m_framesPerSecond * 0.99 + (1 / elapsed.TotalSeconds) * 0.01;
             }
 
             WinApi.ValidateRect(m_display.Handle, IntPtr.Zero);

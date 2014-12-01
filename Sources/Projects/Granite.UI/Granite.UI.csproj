@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Font.cs" />
+    <Compile Include="FormattedText.cs" />
     <Compile Include="Glyph.cs" />
     <Compile Include="Graphics.cs" />
     <Compile Include="InternalFonts.cs" />
@@ -54,8 +55,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shaders\QuadProgram.cs" />
+    <Compile Include="SizeConstraint.cs" />
     <Compile Include="Sprite.cs" />
+    <Compile Include="TextAlignment.cs" />
     <Compile Include="UIElement.cs" />
+    <Compile Include="UIElementCollection.cs" />
+    <Compile Include="UILabel.cs" />
     <Compile Include="UIManager.cs" />
   </ItemGroup>
   <ItemGroup>

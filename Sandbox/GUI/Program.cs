@@ -19,10 +19,17 @@ namespace GUI
         }
 
         private UIManager m_uiManager;
+        private UILabel m_label;
 
         public override void Start()
         {
             m_uiManager = new UIManager();
+            m_label = new UILabel()
+            {
+                Color = new Color4ub(0xFF, 0x80, 0x80, 0xFF),
+                Font = InternalFonts.BoldSmallVariableWidthFont
+            };
+            m_uiManager.Root = m_label;
         }
 
         public override void InputEvent(InputEventArgs e)
@@ -43,6 +50,7 @@ namespace GUI
             GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
+            m_label.Text = string.Format("Time elapsed since previous frame: {0}", elapsed.ToString());
             m_uiManager.Render(elapsed);
 
             GL.Finish();

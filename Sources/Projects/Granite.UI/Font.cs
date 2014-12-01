@@ -35,5 +35,13 @@ namespace Granite.UI
                 return null;
             }
         }
+
+        public int Height
+        {
+            get
+            {
+                return m_glyphs.First().Value.Size.X;
+            }
+        }
     }
 }
