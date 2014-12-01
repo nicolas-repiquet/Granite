@@ -1,0 +1,4 @@
+﻿Fonction systeme qui dit les composants dont il a besoin, pour que quand on le passe a un gameobject la liaision observer se fasse ou non.
+Gérer les dépendances entre systèmes
+Gérer l'héritage des gameobjects
+Gérer le dessin des gameobjects
