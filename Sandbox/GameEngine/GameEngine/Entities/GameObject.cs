@@ -34,6 +34,23 @@ namespace GameEngine.Entities
             {
                 m_components.Add(type, component);
                 component.SetParent(this.m_gameObjectId);
+
+                Parallel.ForEach(SystemManager.Instance.Systems, x =>
+                    {
+                        var hasAll = true;
+                        foreach (var c in x.Components)
+                        {
+                            if (!m_components.ContainsKey(c))
+                            {
+                                hasAll = false;
+                            }
+                        }
+
+                        if (hasAll)
+                        {
+                            Subscribe(x);
+                        }
+                    });
             }
         }
 

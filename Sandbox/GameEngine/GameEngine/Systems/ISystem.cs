@@ -1,4 +1,5 @@
 ﻿using GameEngine.Components;
+using GameEngine.Entities;
 using Granite.Core;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,12 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Systems
 {
-    public interface ISystem : IObserver<Component>
-    {
-
-    }
-
-    public interface IUpdateSystem
+    public interface ISystem : IObserver<GameObject>
     {
         void Update(TimeSpan elapsed);
     }
 
-    public interface IRenderSystem
+    public interface IRenderSystem : ISystem
     {
         void Render(Matrix4 transform);
     }

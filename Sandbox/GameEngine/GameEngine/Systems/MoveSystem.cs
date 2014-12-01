@@ -1,4 +1,5 @@
 ﻿using GameEngine.Components;
+using GameEngine.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,100 +8,38 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Systems
 {
-    public class MoveSystem : ISystem, IUpdateSystem
+    public class MoveSystem : System
     {
-        private class MoveData
-        {
-            public LocationComponent Location { get; set; }
-            public LocationComponent PreviousLocation { get; set; }
-            public OrientationComponent Orientation { get; set; }
-            public SpeedComponent Speed { get; set; }
-
-            public bool IsComplete { get { return Location != null && Orientation != null && Speed != null; } }
-        }
-
-        private Dictionary<Guid, MoveData> m_datas;
-
         public MoveSystem()
+            :base(SystemType.MoveSystem)
         {
-            m_datas = new Dictionary<Guid, MoveData>();
+            m_components.Add(ComponentType.Location);
+            m_components.Add(ComponentType.Orientation);
+            m_components.Add(ComponentType.Speed);
         }
 
         public void Update(TimeSpan elapsed)
         {
-            Parallel.ForEach(m_datas.Where(x => x.Value.IsComplete), x =>
+            Parallel.ForEach(m_datas, x =>
             {
                 Execute(elapsed, x.Value);
             });
         }
 
-        private void Execute(TimeSpan elapsed, MoveData data)
+        private void Execute(TimeSpan elapsed, GameObject data)
         {
-            data.Speed.Current += data.Speed.Acceleration;
-            data.Speed.Acceleration = 0;
+            var speed = data.GetComponent(ComponentType.Speed) as SpeedComponent;
+            speed.Current += speed.Acceleration;
+            speed.Acceleration = 0;
 
-            data.Location.X += (float)(data.Speed.Current * data.Orientation.X * elapsed.TotalSeconds);
-            data.Location.Y += (float)(data.Speed.Current * data.Orientation.Y * elapsed.TotalSeconds);
+            var orientation = data.GetComponent(ComponentType.Orientation) as OrientationComponent;
 
-            data.Location.Notify();
-        }
+            var location = data.GetComponent(ComponentType.Location) as LocationComponent;
+            location.X += (float)(speed.Current * orientation.X * elapsed.TotalSeconds);
+            location.Y += (float)(speed.Current * orientation.Y * elapsed.TotalSeconds);
 
-        public void OnCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnError(Exception error)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnNext(Component value)
-        {
-            if (value != null)
-            {
-                MoveData data = null;
-
-                if (m_datas.ContainsKey(value.ComponentParentId))
-                {
-                    data = m_datas[value.ComponentParentId];
-
-                    if (value.ComponentType == ComponentType.Location)
-                    {
-                        data.PreviousLocation = data.Location;
-                        data.Location = value as LocationComponent;
-                    }
-                    else if (value.ComponentType == ComponentType.Orientation)
-                    {
-                        data.Orientation = value as OrientationComponent;
-                    }
-                    else if (value.ComponentType == ComponentType.Speed)
-                    {
-                        data.Speed = value as SpeedComponent;
-                    }
-                }
-                else
-                {
-                    data = new MoveData();
-
-                    if (value.ComponentType == ComponentType.Location)
-                    {
-                        data.Location = value as LocationComponent;
-                    }
-                    else if (value.ComponentType == ComponentType.Orientation)
-                    {
-                        data.Orientation = value as OrientationComponent;
-                    }
-                    else if (value.ComponentType == ComponentType.Speed)
-                    {
-                        data.Speed = value as SpeedComponent;
-                    }
-
-                    m_datas.Add(value.ComponentParentId, data);
-                }
-
-                
-            }
+            data.Notify();
+            Notify();
         }
     }
 }

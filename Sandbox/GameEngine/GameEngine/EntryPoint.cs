@@ -140,7 +140,7 @@ namespace GameEngine
             GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            SystemManager.Instance.Render(Matrix4.Identity);
+            SystemManager.Instance.Render(Matrix4.Identity, elapsed);
 
             GL.Finish();
         }

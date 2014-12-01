@@ -59,6 +59,7 @@
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\MoveSystem.cs" />
     <Compile Include="Systems\SpriteRenderSystem.cs" />
+    <Compile Include="Systems\System.cs" />
     <Compile Include="Systems\SystemManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components\Components.txt" />
+    <Content Include="TODO.txt" />
     <EmbeddedResource Include="Graphics\Textures\MapSprites.png" />
     <EmbeddedResource Include="Graphics\Textures\MapSprites.txt" />
   </ItemGroup>

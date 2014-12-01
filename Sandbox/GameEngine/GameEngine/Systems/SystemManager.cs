@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Systems
 {
-    public enum SystemType
-    {
-        MoveSystem = 0,
-        SpriteRenderSystem = 1
-    }
-
     /// <summary>
     /// Pour l'instant je n'ai séparé que que les updates des renders,
     /// mais il faudrait un moyen de dire que tel ou tel system peuvent s'update ensemble ou non,
@@ -34,11 +28,20 @@ namespace GameEngine.Systems
             }
         }
 
-        private Dictionary<SystemType, IUpdateSystem> m_updateSystems;
+        private Dictionary<SystemType, System> m_updateSystems;
         private Dictionary<SystemType, IRenderSystem> m_renderSystems;
-        private List<ISystem> m_systems;
+        private Dictionary<SystemType, System> m_systems;
+        private TimeSpan m_timeElapsed;
 
-        public List<ISystem> Systems
+        public TimeSpan TimeElapsed
+        {
+            get
+            {
+                return m_timeElapsed;
+            }
+        }
+
+        public Dictionary<SystemType, System> Systems
         {
             get
             {
@@ -48,30 +51,41 @@ namespace GameEngine.Systems
 
         public SystemManager()
         {
-            m_updateSystems = new Dictionary<SystemType, IUpdateSystem>();
+            m_updateSystems = new Dictionary<SystemType, System>();
             m_renderSystems = new Dictionary<SystemType, IRenderSystem>();
-            m_systems = new List<ISystem>();
+            m_systems = new Dictionary<SystemType, System>();
         }
 
         public void Initialize()
         {
             var move = new MoveSystem();
             m_updateSystems.Add(SystemType.MoveSystem, move);
-            m_systems.Add(move);
+            m_systems.Add(SystemType.MoveSystem, move);
 
             var render = new SpriteRenderSystem();
-            m_updateSystems.Add(SystemType.SpriteRenderSystem, render);
             m_renderSystems.Add(SystemType.SpriteRenderSystem, render);
-            m_systems.Add(render);
+            m_systems.Add(SystemType.SpriteRenderSystem, render);
+
+            //On créé le graph de succession des systèmes
+            foreach (var system in m_systems)
+            {
+                foreach (var predecessor in system.Value.Predecessors)
+                {
+                    system.Value.Subscribe(m_systems[predecessor]);
+                }
+            }
         }
 
         public void Update(TimeSpan elapsed)
         {
-            Parallel.ForEach(m_updateSystems, x => x.Value.Update(elapsed));
+            m_timeElapsed = elapsed;
+            Parallel.ForEach(m_updateSystems.Where(x => !x.Value.Predecessors.Any()), x => x.Value.Update(elapsed));
         }
 
-        public void Render(Matrix4 transform)
+        public void Render(Matrix4 transform, TimeSpan elapsed)
         {
+            Parallel.ForEach(m_renderSystems, x => x.Value.Update(elapsed));
+
             foreach(var render in m_renderSystems)
             {
                 render.Value.Render(transform);
