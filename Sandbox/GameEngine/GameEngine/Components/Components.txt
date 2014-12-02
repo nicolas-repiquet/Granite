@@ -1,4 +1,4 @@
-Location float:X float:Y
+Position float:X float:Y
 Orientation float:X float:Y
 Health int:Current int:Max bool:IsAlive
 Quad float:Width float:Height
