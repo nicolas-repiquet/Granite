@@ -35,6 +35,7 @@ namespace Granite.Core
         internal const uint WM_MOUSEWHEEL = 0x020A;
         internal const uint WM_XBUTTONDOWN = 0x020B;
         internal const uint WM_XBUTTONUP = 0x020C;
+        internal const uint WM_MOUSELEAVE = 0x02A3;
 
 
         internal const byte PFD_TYPE_RGBA = 0;
@@ -154,6 +155,9 @@ namespace Granite.Core
         internal const uint SIZE_MINIMIZED = 1;
         internal const uint SIZE_RESTORED = 0;
 
+        // TrackMouseEvent
+        internal const uint TME_LEAVE = 0x00000002;
+
         internal const int CW_USEDEFAULT = unchecked((int)0x80000000);
 
         internal delegate IntPtr WndProc(IntPtr windowHandle, uint messageId, IntPtr wParam, IntPtr lParam);
@@ -166,6 +170,15 @@ namespace Granite.Core
             public int right;
             public int bottom;
         }
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct TrackMouseEventParameters
+        {
+            public uint cbSize;
+            public uint dwFlags;
+            public IntPtr hwndTrack;
+            public uint dwHoverTime;
+        };
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct Message
@@ -266,6 +279,9 @@ namespace Granite.Core
 
         [DllImport(USER32)]
         internal static extern bool GetClientRect(IntPtr windowHandle, ref Rect rect);
+
+        [DllImport(USER32)]
+        internal static extern bool TrackMouseEvent(ref TrackMouseEventParameters parameters);
 
         [DllImport(KERNEL32)]
         internal static extern IntPtr GetModuleHandle(string moduleName);

@@ -20,6 +20,7 @@ namespace Granite.Core
         private readonly Stopwatch m_stopwatch;
         private TimeSpan m_previousFrame = TimeSpan.MinValue;
         private double m_framesPerSecond = 0f;
+        private bool m_isMouseInWindow = false;
         private bool[] m_keys;
 
         public Application(IApplicationLogic logic, ApplicationSettings settings)
@@ -103,11 +104,13 @@ namespace Granite.Core
 
 
         #region Display
-        private Vector2i GetMousePosition(IntPtr lParam)
+        private Vector2 GetMousePosition(IntPtr window, IntPtr lParam)
         {
-            return new Vector2i(
-                (short)(lParam.ToInt32() & 0xFFFF),
-                (short)((lParam.ToInt32() >> 16) & 0xFFFF)
+            WinApi.Rect r = new WinApi.Rect();
+            WinApi.GetClientRect(window, ref r);
+            return new Vector2(
+                ((short)(lParam.ToInt32() & 0xFFFF) / (float)r.right) * 2f - 1f,
+                (((short)((lParam.ToInt32() >> 16) & 0xFFFF) / (float)r.bottom) * 2f - 1f) * -1f
             );
         }
 
@@ -131,7 +134,6 @@ namespace Granite.Core
                             if (m_keys[(int)key] == false)
                             {
                                 m_keys[(int)key] = true;
-                                m_logic.KeyDown(key);
                                 m_logic.InputEvent(new KeyboardKeyDownEventArgs(key));
                             }
                         }
@@ -141,7 +143,6 @@ namespace Granite.Core
                         {
                             var key = (Key)wParam.ToInt32();
                             m_keys[(int)key] = false ;
-                            m_logic.KeyUp(key);
                             m_logic.InputEvent(new KeyboardKeyUpEventArgs(key));
                         }
                         return IntPtr.Zero;
@@ -161,39 +162,36 @@ namespace Granite.Core
 
                     case WinApi.WM_LBUTTONDOWN:
                         {
-                            int x = lParam.ToInt32() & 0xFFFF;
-                            int y = (lParam.ToInt32() >> 16) & 0xFFFF;
-                            m_logic.MouseLButtonDown(x, y);
-                            m_logic.InputEvent(new MouseButtonDownEventArgs(MouseButton.Left, GetMousePosition(lParam)));
+                            m_logic.InputEvent(new MouseButtonDownEventArgs(MouseButton.Left, GetMousePosition(handle, lParam)));
                         }
                         return IntPtr.Zero;
 
                     case WinApi.WM_LBUTTONUP:
-                        m_logic.InputEvent(new MouseButtonUpEventArgs(MouseButton.Left, GetMousePosition(lParam)));
+                        m_logic.InputEvent(new MouseButtonUpEventArgs(MouseButton.Left, GetMousePosition(handle, lParam)));
                         return IntPtr.Zero;
 
                     case WinApi.WM_RBUTTONDOWN:
-                        m_logic.InputEvent(new MouseButtonDownEventArgs(MouseButton.Right, GetMousePosition(lParam)));
+                        m_logic.InputEvent(new MouseButtonDownEventArgs(MouseButton.Right, GetMousePosition(handle, lParam)));
                         return IntPtr.Zero;
 
                     case WinApi.WM_RBUTTONUP:
-                        m_logic.InputEvent(new MouseButtonUpEventArgs(MouseButton.Right, GetMousePosition(lParam)));
+                        m_logic.InputEvent(new MouseButtonUpEventArgs(MouseButton.Right, GetMousePosition(handle, lParam)));
                         return IntPtr.Zero;
 
                     case WinApi.WM_MBUTTONDOWN:
-                        m_logic.InputEvent(new MouseButtonDownEventArgs(MouseButton.Middle, GetMousePosition(lParam)));
+                        m_logic.InputEvent(new MouseButtonDownEventArgs(MouseButton.Middle, GetMousePosition(handle, lParam)));
                         return IntPtr.Zero;
 
                     case WinApi.WM_MBUTTONUP:
-                        m_logic.InputEvent(new MouseButtonUpEventArgs(MouseButton.Middle, GetMousePosition(lParam)));
+                        m_logic.InputEvent(new MouseButtonUpEventArgs(MouseButton.Middle, GetMousePosition(handle, lParam)));
                         return IntPtr.Zero;
 
                     case WinApi.WM_XBUTTONDOWN:
                         {
                             var button = (wParam.ToInt32() >> 16) & 0xFFFF;
                             m_logic.InputEvent(new MouseButtonDownEventArgs(
-                                button == 1 ? MouseButton.Aux1 : MouseButton.Aux2, 
-                                GetMousePosition(lParam)
+                                button == 1 ? MouseButton.Aux1 : MouseButton.Aux2,
+                                GetMousePosition(handle, lParam)
                             ));
                         }
                         return IntPtr.Zero;
@@ -203,19 +201,34 @@ namespace Granite.Core
                             var button = (wParam.ToInt32() >> 16) & 0xFFFF;
                             m_logic.InputEvent(new MouseButtonUpEventArgs(
                                 button == 1 ? MouseButton.Aux1 : MouseButton.Aux2,
-                                GetMousePosition(lParam)
+                                GetMousePosition(handle, lParam)
                             ));
                         }
                         return IntPtr.Zero;
 
                     case WinApi.WM_MOUSEMOVE:
-                        m_logic.InputEvent(new MouseMoveEventArgs(GetMousePosition(lParam)));
+                        if (!m_isMouseInWindow)
+                        {
+                            m_isMouseInWindow = true;
+                            WinApi.TrackMouseEventParameters p = new WinApi.TrackMouseEventParameters();
+                            p.cbSize = (uint)Marshal.SizeOf(typeof(WinApi.TrackMouseEventParameters));
+                            p.dwFlags = WinApi.TME_LEAVE;
+                            p.hwndTrack = handle;
+                            WinApi.TrackMouseEvent(ref p);
+                            m_logic.InputEvent(new MouseEnterEventArgs());
+                        }
+                        m_logic.InputEvent(new MouseMoveEventArgs(GetMousePosition(handle, lParam)));
+                        return IntPtr.Zero;
+
+                    case WinApi.WM_MOUSELEAVE:
+                        m_isMouseInWindow = false;
+                        m_logic.InputEvent(new MouseLeaveEventArgs());
                         return IntPtr.Zero;
 
                     case WinApi.WM_MOUSEWHEEL:
                         {
                             var ticks = (short)((wParam.ToInt32() >> 16) & 0xFFFF);
-                            m_logic.InputEvent(new MouseWheelEventArgs(ticks / 120f, GetMousePosition(lParam)));
+                            m_logic.InputEvent(new MouseWheelEventArgs(ticks / 120f, GetMousePosition(handle, lParam)));
                         }
                         return IntPtr.Zero;
 

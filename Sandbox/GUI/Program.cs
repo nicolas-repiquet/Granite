@@ -43,6 +43,7 @@ namespace GUI
 
         public override void InputEvent(InputEventArgs e)
         {
+            Engine.LogDebug(e.ToString());
             m_uiManager.ProcessInputEvent(e);
         }
 

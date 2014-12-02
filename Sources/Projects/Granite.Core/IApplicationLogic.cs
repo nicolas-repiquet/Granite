@@ -11,9 +11,6 @@ namespace Granite.Core
         void Stop();
         void CloseRequest();
         void Render(TimeSpan elapsed);
-        void KeyDown(Key key);
-        void KeyUp(Key key);
-        void MouseLButtonDown(int x, int y);
         void InputEvent(InputEventArgs e);
         void UnhandledException(Exception ex);
     }
@@ -24,9 +21,6 @@ namespace Granite.Core
         public virtual void Stop() { }
         public virtual void CloseRequest() { Engine.Stop(); }
         public virtual void Render(TimeSpan elapsed) { }
-        public virtual void KeyDown(Key key) { }
-        public virtual void KeyUp(Key key) { }
-        public virtual void MouseLButtonDown(int x, int y) { }
         public virtual void InputEvent(InputEventArgs e) { }
         public virtual void UnhandledException(Exception ex) { }
     }

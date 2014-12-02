@@ -27,19 +27,25 @@ namespace Granite.Core
 
     public sealed class MouseEnterEventArgs : MouseEventArgs
     {
-
+        public override string ToString()
+        {
+            return string.Format("Mouse enter");
+        }
     }
 
     public sealed class MouseLeaveEventArgs : MouseEventArgs
     {
-
+        public override string ToString()
+        {
+            return string.Format("Mouse leave");
+        }
     }
 
     public sealed class MouseButtonDownEventArgs : MouseEventArgs
     {
         public MouseButton Button { get; private set; }
-        public Vector2i Position { get; private set; }
-        public MouseButtonDownEventArgs(MouseButton button, Vector2i position)
+        public Vector2 Position { get; private set; }
+        public MouseButtonDownEventArgs(MouseButton button, Vector2 position)
         {
             Button = button;
             Position = position;
@@ -54,8 +60,8 @@ namespace Granite.Core
     public sealed class MouseButtonUpEventArgs : MouseEventArgs
     {
         public MouseButton Button { get; private set; }
-        public Vector2i Position { get; private set; }
-        public MouseButtonUpEventArgs(MouseButton button, Vector2i position)
+        public Vector2 Position { get; private set; }
+        public MouseButtonUpEventArgs(MouseButton button, Vector2 position)
         {
             Button = button;
             Position = position;
@@ -69,8 +75,8 @@ namespace Granite.Core
 
     public sealed class MouseMoveEventArgs : MouseEventArgs
     {
-        public Vector2i Position { get; private set; }
-        public MouseMoveEventArgs(Vector2i position)
+        public Vector2 Position { get; private set; }
+        public MouseMoveEventArgs(Vector2 position)
         {
             Position = position;
         }
@@ -84,8 +90,8 @@ namespace Granite.Core
     public sealed class MouseWheelEventArgs : MouseEventArgs
     {
         public float Ticks { get; private set; }
-        public Vector2i Position { get; private set; }
-        public MouseWheelEventArgs(float ticks, Vector2i position)
+        public Vector2 Position { get; private set; }
+        public MouseWheelEventArgs(float ticks, Vector2 position)
         {
             Ticks = ticks;
             Position = position;
