@@ -62,6 +62,7 @@
     <Compile Include="IDisplay.cs" />
     <Compile Include="IKeyboard.cs" />
     <Compile Include="Inputs.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="ProgramAttribute.cs" />
     <Compile Include="ProgramUniform.cs" />
     <Compile Include="GL.cs" />

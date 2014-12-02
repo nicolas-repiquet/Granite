@@ -36,14 +36,17 @@ namespace Granite.Core
 
         private static readonly IntPtr m_opengl32Library;
         private static IntPtr m_context;
+        private static bool m_debug;
         
         static GL()
         {
             m_opengl32Library = LoadLibrary(OPENGL32);
         }
 
-        internal static void Initialize(Display display, int colorBits, int depthBits)
+        internal static void Initialize(Display display, int colorBits, int depthBits, bool debug)
         {
+            m_debug = debug;
+
             WinApi.PixelFormatDescriptor pixelFormat = new WinApi.PixelFormatDescriptor()
             {
                 size = (ushort)Marshal.SizeOf(typeof(WinApi.PixelFormatDescriptor)),
@@ -68,11 +71,18 @@ namespace Granite.Core
                 typeof(Delegate_CreateContextAttribsARB)
             );
 
+            var profileBit = CONTEXT_CORE_PROFILE_BIT_ARB;
+
+            if (debug)
+            {
+                profileBit |= CONTEXT_DEBUG_BIT_ARB;
+            }
+
             m_context = wglCreateContextAttribsARB(
                 display.DeviceContext, IntPtr.Zero, new uint[] {
                     CONTEXT_MAJOR_VERSION_ARB, 3,
                     CONTEXT_MINOR_VERSION_ARB, 0,
-                    CONTEXT_PROFILE_MASK_ARB, CONTEXT_CORE_PROFILE_BIT_ARB,
+                    CONTEXT_PROFILE_MASK_ARB, profileBit,
                     0
                 }
             );
@@ -81,6 +91,13 @@ namespace Granite.Core
             WinApi.wglMakeCurrent(display.DeviceContext, m_context);
 
             InitializeFunctions();
+
+            Engine.LogInfo("OpenGL version: {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.VERSION)));
+            Engine.LogInfo("GLSL version: {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.SHADING_LANGUAGE_VERSION)));
+            Engine.LogInfo("Vendor: {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.VENDOR)));
+            Engine.LogInfo("Renderer: {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.RENDERER)));
+
+            m_SwapInterval = (Delegate_SwapInterval)GetFunctionDelegate("wglSwapIntervalEXT", typeof(Delegate_SwapInterval));
         }
 
         internal static void Uninitialize()
@@ -89,7 +106,45 @@ namespace Granite.Core
             WinApi.wglDeleteContext(m_context);
             m_context = IntPtr.Zero;
             UninitializeFunctions();
+
+            m_SwapInterval = null;
         }
+
+        private static void CheckError(string functionName)
+        {
+            var error = m_GetError_0();
+            if (error != NO_ERROR)
+            {
+                var errorType = string.Empty;
+
+                switch (error)
+                {
+                    case INVALID_ENUM: errorType = "INVALID_ENUM"; break;
+                    case INVALID_VALUE: errorType = "INVALID_VALUE"; break;
+                    case INVALID_OPERATION: errorType = "INVALID_OPERATION"; break;
+                    case INVALID_FRAMEBUFFER_OPERATION: errorType = "INVALID_FRAMEBUFFER_OPERATION"; break;
+                    case OUT_OF_MEMORY: errorType = "OUT_OF_MEMORY"; break;
+                }
+
+                throw new Exception(string.Format("Function GL.{0} failed: {1}", functionName, errorType));
+            }
+        }
+
+        #region Extensions
+        private delegate bool Delegate_SwapInterval(int interval);
+        private static Delegate_SwapInterval m_SwapInterval;
+        internal static bool SwapInterval(int interval)
+        {
+            if (m_SwapInterval != null)
+            {
+                return m_SwapInterval(interval);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
 
         #region Loading
         private static Delegate GetFunctionDelegate(string name, Type t)
@@ -103,7 +158,7 @@ namespace Granite.Core
 
             if (address == IntPtr.Zero)
             {
-                Debug.WriteLine("function " + name + " not found");
+                Engine.LogWarning("OpenGL function {0} not found", name);
                 return null;
             }
             else

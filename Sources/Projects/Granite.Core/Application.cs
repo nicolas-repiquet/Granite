@@ -30,8 +30,10 @@ namespace Granite.Core
             GL.Initialize(
                 m_display,
                 settings.DisplayColorBits,
-                settings.DisplayDepthBits
+                settings.DisplayDepthBits,
+                settings.Debug
             );
+            GL.SwapInterval(settings.VerticalSynchronization ? 1 : 0);
             m_synchronizationContext = new ApplicationSynchronizationContext(m_display.Handle);
             m_stopwatch = new Stopwatch();
         }
@@ -44,24 +46,6 @@ namespace Granite.Core
 
         public void Run()
         {
-            Console.WriteLine("Version : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.VERSION)));
-            Console.WriteLine("GLSL {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.SHADING_LANGUAGE_VERSION)));
-            Console.WriteLine("Vendor : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.VENDOR)));
-            Console.WriteLine("Renderer : {0}", Marshal.PtrToStringAnsi(GL.GetString(GL.RENDERER)));
-
-            //float valueF = 0f;
-            //double valueD = 0;
-            //int valueI = 0;
-            //GL.GetFloatv(GL.ALIASED_LINE_WIDTH_RANGE, out valueF);
-            //Console.WriteLine("ALIASED_LINE_WIDTH_RANGE : {0}", valueF);
-            //GL.GetDoublev(GL.MAX_RECTANGLE_TEXTURE_SIZE, out valueD);
-            //Console.WriteLine("MAX_RECTANGLE_TEXTURE_SIZE : {0}", valueD);
-            //GL.GetDoublev(GL.MAX_RENDERBUFFER_SIZE, out valueD);
-            //Console.WriteLine("MAX_RENDERBUFFER_SIZE : {0}", valueD);
-            //GL.GetIntegerv(GL.MAX_SAMPLES, out valueI);
-            //Console.WriteLine("MAX_SAMPLES : {0}", valueI);
-
-            Console.WriteLine("=================================");
 
             var oldContext = SynchronizationContext.Current;
             SynchronizationContext.SetSynchronizationContext(m_synchronizationContext);
@@ -265,7 +249,7 @@ namespace Granite.Core
 
             if (elapsed != TimeSpan.Zero)
             {
-                m_framesPerSecond = m_framesPerSecond * 0.99 + (1 / elapsed.TotalSeconds) * 0.01;
+                m_framesPerSecond = m_framesPerSecond * 0.95 + (1 / elapsed.TotalSeconds) * 0.05;
             }
 
             WinApi.ValidateRect(m_display.Handle, IntPtr.Zero);

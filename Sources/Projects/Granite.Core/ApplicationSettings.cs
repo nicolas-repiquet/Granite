@@ -22,10 +22,14 @@ namespace Granite.Core
             DisplayStyle = DisplayStyle.FixedWithTitle;
             DisplayColorBits = 24;
             DisplayDepthBits = 16;
+            VerticalSynchronization = false;
+            Debug = false;
         }
 
         public DisplayStyle DisplayStyle { get; set; }
         public int DisplayColorBits { get; set; }
         public int DisplayDepthBits { get; set; }
+        public bool VerticalSynchronization { get; set; }
+        public bool Debug { get; set; }
     }
 }
