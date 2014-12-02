@@ -14,7 +14,8 @@ namespace GUI
         {
             Engine.Run(new Program(), new ApplicationSettings()
             {
-                DisplayStyle = DisplayStyle.ResizeableWithTitle
+                DisplayStyle = DisplayStyle.ResizeableWithTitle,
+                VerticalSynchronization = true
             });
         }
 

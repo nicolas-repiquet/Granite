@@ -32,6 +32,7 @@ namespace Granite.Core
                 settings.DisplayColorBits,
                 settings.DisplayDepthBits
             );
+            GL.SwapInterval(settings.VerticalSynchronization ? 1 : 0);
             m_synchronizationContext = new ApplicationSynchronizationContext(m_display.Handle);
             m_stopwatch = new Stopwatch();
         }
@@ -265,7 +266,7 @@ namespace Granite.Core
 
             if (elapsed != TimeSpan.Zero)
             {
-                m_framesPerSecond = m_framesPerSecond * 0.99 + (1 / elapsed.TotalSeconds) * 0.01;
+                m_framesPerSecond = m_framesPerSecond * 0.95 + (1 / elapsed.TotalSeconds) * 0.05;
             }
 
             WinApi.ValidateRect(m_display.Handle, IntPtr.Zero);

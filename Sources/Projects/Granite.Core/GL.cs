@@ -81,6 +81,8 @@ namespace Granite.Core
             WinApi.wglMakeCurrent(display.DeviceContext, m_context);
 
             InitializeFunctions();
+
+            m_SwapInterval = (Delegate_SwapInterval)GetFunctionDelegate("wglSwapIntervalEXT", typeof(Delegate_SwapInterval));
         }
 
         internal static void Uninitialize()
@@ -89,7 +91,25 @@ namespace Granite.Core
             WinApi.wglDeleteContext(m_context);
             m_context = IntPtr.Zero;
             UninitializeFunctions();
+
+            m_SwapInterval = null;
         }
+
+        #region Extensions
+        private delegate bool Delegate_SwapInterval(int interval);
+        private static Delegate_SwapInterval m_SwapInterval;
+        internal static bool SwapInterval(int interval)
+        {
+            if (m_SwapInterval != null)
+            {
+                return m_SwapInterval(interval);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
 
         #region Loading
         private static Delegate GetFunctionDelegate(string name, Type t)
