@@ -28,73 +28,58 @@ namespace GameEngine.Systems
             }
         }
 
-        private Dictionary<SystemType, System> m_updateSystems;
-        private Dictionary<SystemType, IRenderSystem> m_renderSystems;
-        private Dictionary<SystemType, System> m_systems;
-        private TimeSpan m_timeElapsed;
+        private Dictionary<int, List<ISystem>> m_systems;
 
-        public TimeSpan TimeElapsed
+        public bool AddSystem(ISystem system, int priority)
         {
-            get
+            if (m_systems == null)
             {
-                return m_timeElapsed;
+                m_systems = new Dictionary<int, List<ISystem>>();
             }
-        }
 
-        public Dictionary<SystemType, System> Systems
-        {
-            get
+            if (system.Start())
             {
-                return m_systems;
-            }
-        }
-
-        public SystemManager()
-        {
-            m_updateSystems = new Dictionary<SystemType, System>();
-            m_renderSystems = new Dictionary<SystemType, IRenderSystem>();
-            m_systems = new Dictionary<SystemType, System>();
-        }
-
-        public void Initialize()
-        {
-            var move = new MoveSystem();
-            m_updateSystems.Add(SystemType.MoveSystem, move);
-            m_systems.Add(SystemType.MoveSystem, move);
-
-            var collision = new CollisionSystem();
-            m_updateSystems.Add(SystemType.CollisionSystem, collision);
-            m_systems.Add(SystemType.CollisionSystem, collision);
-
-            var render = new SpriteRenderSystem();
-            m_renderSystems.Add(SystemType.SpriteRenderSystem, render);
-            m_systems.Add(SystemType.SpriteRenderSystem, render);
-
-            //On créé le graph de succession des systèmes
-            foreach (var system in m_systems)
-            {
-                var predecessors = system.Value.Predecessors;
-                foreach (var predecessor in predecessors)
+                if (!m_systems.ContainsKey(priority))
                 {
-                    m_systems[predecessor].Subscribe(system.Value);
+                    m_systems.Add(priority, new List<ISystem>());
+                }
+                m_systems[priority].Add(system);
+                return true;
+            }
+            return false;
+        }
+
+        public void Update(TimeSpan elapsed, Matrix4 transform)
+        {
+            foreach (var proc in m_systems)
+            {
+                Parallel.ForEach(proc.Value, x => x.Update(elapsed, transform));
+            }
+        }
+
+        public void RemoveSystem(ISystem system)
+        {
+            system.End();
+            foreach (var priority in m_systems)
+            {
+                if (priority.Value.Contains(system))
+                {
+                    priority.Value.Remove(system);
                 }
             }
         }
 
-        public void Update(TimeSpan elapsed)
+        public void RemoveAllSystems()
         {
-            m_timeElapsed = elapsed;
-            Parallel.ForEach(m_updateSystems.Where(x => !x.Value.Predecessors.Any()).ToList(), x => x.Value.Update(elapsed));
-        }
-
-        public void Render(Matrix4 transform, TimeSpan elapsed)
-        {
-            Parallel.ForEach(m_renderSystems, x => x.Value.Update(elapsed));
-
-            foreach(var render in m_renderSystems)
+            foreach (var priority in m_systems)
             {
-                render.Value.Render(transform);
+                Parallel.ForEach(priority.Value, x =>
+                {
+                    x.End();
+                });
             }
+
+            m_systems.Clear();
         }
     }
 }

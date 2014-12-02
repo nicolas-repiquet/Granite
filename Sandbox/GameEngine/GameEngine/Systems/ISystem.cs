@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Systems
 {
-    public interface ISystem : IObserver<GameObject>
+    public interface ISystem
     {
-        void Update(TimeSpan elapsed);
-    }
-
-    public interface IRenderSystem : ISystem
-    {
-        void Render(Matrix4 transform);
+        bool Start();
+        bool Update(TimeSpan elapsed, Matrix4 transform);
+        bool End();
     }
 }

@@ -92,11 +92,8 @@ namespace GameEngine
 
         public override void Start()
         {
-            //Initialisations de tous les systems
-            SystemManager.Instance.Initialize();
-
             //Creation du joueur
-            var player = new GameObject();
+            var player = new Entity();
             //A chaque ajout de composant on ajoute les systems en observer
             player.AddComponent(ComponentType.Location, new LocationComponent());
             player.AddComponent(ComponentType.Orientation, new OrientationComponent());
@@ -123,7 +120,11 @@ namespace GameEngine
             texture.EndY = 1;
             texture.Id = 1;
 
+            EntityManager.Instance.AddEntity(player);
+
             Console.WriteLine("==================================");
+
+            GameManager.Instance.Start();
         }
 
         public override void Render(TimeSpan elapsed)
@@ -131,8 +132,6 @@ namespace GameEngine
             Engine.Display.Invalidate();
 
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
-
-            SystemManager.Instance.Update(elapsed);
 
             var size = Engine.Display.GetSize();
 
@@ -142,7 +141,7 @@ namespace GameEngine
             GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            SystemManager.Instance.Render(Matrix4.Identity, elapsed);
+            GameManager.Instance.Update(elapsed, Matrix4.Identity);
 
             GL.Finish();
         }
