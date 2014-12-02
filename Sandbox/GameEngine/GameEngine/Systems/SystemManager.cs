@@ -62,6 +62,10 @@ namespace GameEngine.Systems
             m_updateSystems.Add(SystemType.MoveSystem, move);
             m_systems.Add(SystemType.MoveSystem, move);
 
+            var collision = new CollisionSystem();
+            m_updateSystems.Add(SystemType.CollisionSystem, collision);
+            m_systems.Add(SystemType.CollisionSystem, collision);
+
             var render = new SpriteRenderSystem();
             m_renderSystems.Add(SystemType.SpriteRenderSystem, render);
             m_systems.Add(SystemType.SpriteRenderSystem, render);
@@ -69,9 +73,10 @@ namespace GameEngine.Systems
             //On créé le graph de succession des systèmes
             foreach (var system in m_systems)
             {
-                foreach (var predecessor in system.Value.Predecessors)
+                var predecessors = system.Value.Predecessors;
+                foreach (var predecessor in predecessors)
                 {
-                    system.Value.Subscribe(m_systems[predecessor]);
+                    m_systems[predecessor].Subscribe(system.Value);
                 }
             }
         }
@@ -79,7 +84,7 @@ namespace GameEngine.Systems
         public void Update(TimeSpan elapsed)
         {
             m_timeElapsed = elapsed;
-            Parallel.ForEach(m_updateSystems.Where(x => !x.Value.Predecessors.Any()), x => x.Value.Update(elapsed));
+            Parallel.ForEach(m_updateSystems.Where(x => !x.Value.Predecessors.Any()).ToList(), x => x.Value.Update(elapsed));
         }
 
         public void Render(Matrix4 transform, TimeSpan elapsed)

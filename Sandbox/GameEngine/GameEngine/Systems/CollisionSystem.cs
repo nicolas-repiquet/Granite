@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Systems
 {
-    public class MoveSystem : System
+    public class CollisionSystem : System
     {
-        public MoveSystem()
-            :base(SystemType.MoveSystem)
+        public CollisionSystem()
+            : base(SystemType.CollisionSystem)
         {
             m_components.Add(ComponentType.Location);
             m_components.Add(ComponentType.Orientation);
             m_components.Add(ComponentType.Speed);
 
-            
+            m_predecessorDefinition.Add(SystemType.MoveSystem);
         }
 
         public void Update(TimeSpan elapsed)
@@ -27,21 +27,12 @@ namespace GameEngine.Systems
                 Execute(elapsed, x.Value);
             });
 
-            Console.WriteLine("[MoveSystem] Update ended");
+            Console.WriteLine("[CollisionSystem] Update ended");
         }
 
         private void Execute(TimeSpan elapsed, GameObject data)
         {
-            var speed = data.GetComponent(ComponentType.Speed) as SpeedComponent;
-            speed.Current += speed.Acceleration;
-            speed.Acceleration = 0;
-
-            var orientation = data.GetComponent(ComponentType.Orientation) as OrientationComponent;
-
-            var location = data.GetComponent(ComponentType.Location) as LocationComponent;
-            location.X += (float)(speed.Current * orientation.X * elapsed.TotalSeconds);
-            location.Y += (float)(speed.Current * orientation.Y * elapsed.TotalSeconds);
-
+           
             data.Notify();
             Notify();
         }

@@ -18,5 +18,5 @@ void main()
 
 	f_texture_coordinates = mix(texture_coordinates0, texture_coordinates1, vertex);
 
-    gl_Position = vec4(transform * vec3(vertex, 1), 0, 1);
+    gl_Position = vec4(transform * vec3(vertex, 1), 1);
 }

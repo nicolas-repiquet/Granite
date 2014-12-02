@@ -34,11 +34,15 @@ namespace GameEngine.Systems
             //    data.Value.Sprite.Size = new Vector2(1, 1);
             //    data.Value.Sprite.Sprite = MapSprites.Instance.Grass;
             //};
+
+            Console.WriteLine("[SpriteRenderSystem] Update ended");
         }
 
         public void Render(Matrix4 transform)
         {
             m_renderer.Render(transform);
+
+            Console.WriteLine("[SpriteRenderSystem] Render ended");
         }
     }
 }

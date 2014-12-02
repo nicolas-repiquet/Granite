@@ -72,6 +72,8 @@ namespace GameEngine
 
         public static void Main(string[] args)
         {
+            Engine.AddLogAppender(new ConsoleLogAppender());
+
             Engine.Run(new EntryPoint(), new ApplicationSettings()
             {
                 DisplayStyle = DisplayStyle.ResizeableWithTitle,

@@ -4,23 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GameEngine.Entities
 {
-    public class GameObject : IObservable<GameObject>
+    public class GameObject
     {
         private Guid m_gameObjectId;
         public Guid GameObjectId { get { return m_gameObjectId; } }
 
-		private Dictionary<ComponentType, Component> m_components;
+        private List<GameObject> m_children;
+        public List<GameObject> Children { get { return m_children; } }
+        public bool HasChildren { get { return m_children != null && m_children.Any(); } }
 
-        private List<IObserver<GameObject>> m_observers;
+		private Dictionary<ComponentType, Component> m_components;
 
         public GameObject()
 		{
             m_gameObjectId = Guid.NewGuid();
-            m_observers = new List<IObserver<GameObject>>();
 		}
 
         public void AddComponent(ComponentType type, Component component)
@@ -35,22 +35,22 @@ namespace GameEngine.Entities
                 m_components.Add(type, component);
                 component.SetParent(this.m_gameObjectId);
 
-                Parallel.ForEach(SystemManager.Instance.Systems, x =>
-                    {
-                        var hasAll = true;
-                        foreach (var c in x.Components)
-                        {
-                            if (!m_components.ContainsKey(c))
-                            {
-                                hasAll = false;
-                            }
-                        }
+                //Parallel.ForEach(SystemManager.Instance.Systems, x =>
+                //    {
+                //        var hasAll = true;
+                //        foreach (var c in x.Value.Components)
+                //        {
+                //            if (!m_components.ContainsKey(c))
+                //            {
+                //                hasAll = false;
+                //            }
+                //        }
 
-                        if (hasAll)
-                        {
-                            Subscribe(x);
-                        }
-                    });
+                //        if (hasAll)
+                //        {
+                //            Subscribe(x.Value);
+                //        }
+                //    });
             }
         }
 
@@ -64,23 +64,33 @@ namespace GameEngine.Entities
             return null;
         }
 
-        public IDisposable Subscribe(IObserver<GameObject> observer)
+        public void AddChild(GameObject child)
         {
-            if (observer != null)
+            if (m_children == null)
             {
-                m_observers.Add(observer);
-                observer.OnNext(this);
+                m_children = new List<GameObject>();
             }
 
-            return null;
+            m_children.Add(child);
         }
 
-        public void Notify()
-        {
-            if (m_observers != null)
-            {
-                Parallel.ForEach(m_observers, x => x.OnNext(this));
-            }
-        }
+        //public IDisposable Subscribe(IObserver<GameObject> observer)
+        //{
+        //    if (observer != null)
+        //    {
+        //        m_observers.Add(observer);
+        //        observer.OnNext(this);
+        //    }
+
+        //    return null;
+        //}
+
+        //public void Notify()
+        //{
+        //    if (m_observers != null)
+        //    {
+        //        Parallel.ForEach(m_observers, x => x.OnNext(this));
+        //    }
+        //}
     }
 }

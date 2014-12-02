@@ -11,23 +11,26 @@ namespace GameEngine.Systems
     public enum SystemType
     {
         MoveSystem = 0,
-        SpriteRenderSystem = 1
+        SpriteRenderSystem = 1,
+        CollisionSystem = 2
     }
 
     public abstract class System : ISystem, IObservable<System>, IObserver<System>
     {
+        protected List<SystemType> m_predecessorDefinition;
         protected Dictionary<SystemType, System> m_predecessor;
         protected List<ComponentType> m_components;
         protected List<IObserver<System>> m_observers;
         protected SystemType m_type;
         protected Dictionary<Guid, GameObject> m_datas;
 
-        public IEnumerable<SystemType> Predecessors { get { return m_predecessor.Select(x => x.Key); } }
+        public List<SystemType> Predecessors { get { return m_predecessorDefinition; } }
         public List<ComponentType> Components { get { return m_components; } }
         public SystemType Type { get { return m_type; } }
 
         public System(SystemType type)
         {
+            m_predecessorDefinition = new List<SystemType>();
             m_predecessor = new Dictionary<SystemType, System>();
             m_components = new List<ComponentType>();
             m_observers = new List<IObserver<System>>();
@@ -37,7 +40,7 @@ namespace GameEngine.Systems
 
         public void AddPredecessor(SystemType type)
         {
-            if (!m_predecessor.ContainsKey(type))
+            if (!m_predecessorDefinition.Contains(type))
             {
                 m_predecessor.Add(type, null);
             }
