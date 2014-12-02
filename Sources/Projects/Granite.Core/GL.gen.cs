@@ -1611,2873 +1611,2337 @@ namespace Granite.Core
 
 
 
-		private delegate void Delegate_ActiveTexture_0(uint texture);
+		private delegate void GlDelegate_uint(uint p0);
 
-		private delegate void Delegate_AttachShader_0(uint program, uint shader);
+		private delegate void GlDelegate_uint_uint(uint p0, uint p1);
 
-		private delegate void Delegate_BeginConditionalRender_0(uint id, uint mode);
+		private delegate void GlDelegate_uint_uint_string(uint p0, uint p1, string p2);
 
-		private delegate void Delegate_BeginQuery_0(uint target, uint id);
+		private delegate void GlDelegate_uint_uint_uint(uint p0, uint p1, uint p2);
 
-		private delegate void Delegate_BeginTransformFeedback_0(uint primitiveMode);
+		private delegate void GlDelegate_uint_uint_uint_systemintptr_systemintptr(uint p0, uint p1, uint p2, System.IntPtr p3, System.IntPtr p4);
 
-		private delegate void Delegate_BindAttribLocation_0(uint program, uint index, string name);
+		private delegate void GlDelegate_float_float_float_float(float p0, float p1, float p2, float p3);
 
-		private delegate void Delegate_BindBuffer_0(uint target, uint buffer);
+		private delegate void GlDelegate_uint_uint_uint_uint(uint p0, uint p1, uint p2, uint p3);
 
-		private delegate void Delegate_BindBufferBase_0(uint target, uint index, uint buffer);
+		private delegate void GlDelegate_int_int_int_int_int_int_int_int_uint_uint(int p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7, uint p8, uint p9);
 
-		private delegate void Delegate_BindBufferRange_0(uint target, uint index, uint buffer, System.IntPtr offset, System.IntPtr size);
+		private delegate void GlDelegate_uint_systemintptr_systemintptr_uint(uint p0, System.IntPtr p1, System.IntPtr p2, uint p3);
 
-		private delegate void Delegate_BindFragDataLocation_0(uint program, uint color, string name);
+		private delegate void GlDelegate_uint_systemintptr_systemintptr_systemintptr(uint p0, System.IntPtr p1, System.IntPtr p2, System.IntPtr p3);
 
-		private delegate void Delegate_BindFramebuffer_0(uint target, uint framebuffer);
+		private delegate uint GlDelegate_uint_Returns_uint(uint p0);
 
-		private delegate void Delegate_BindRenderbuffer_0(uint target, uint renderbuffer);
+		private delegate void GlDelegate_uint_int_float_int(uint p0, int p1, float p2, int p3);
 
-		private delegate void Delegate_BindTexture_0(uint target, uint texture);
+		private delegate void GlDelegate_uint_int_systemintptr(uint p0, int p1, System.IntPtr p2);
 
-		private delegate void Delegate_BindVertexArray_0(uint array);
+		private delegate void GlDelegate_double(double p0);
 
-		private delegate void Delegate_BlendColor_0(float red, float green, float blue, float alpha);
+		private delegate void GlDelegate_int(int p0);
 
-		private delegate void Delegate_BlendColor_1(Color4 color);
+		private delegate uint GlDelegate_systemintptr_uint_ulong_Returns_uint(System.IntPtr p0, uint p1, ulong p2);
 
-		private delegate void Delegate_BlendEquation_0(uint mode);
+		private delegate void GlDelegate_bool_bool_bool_bool(bool p0, bool p1, bool p2, bool p3);
 
-		private delegate void Delegate_BlendEquationSeparate_0(uint modeRGB, uint modeAlpha);
+		private delegate void GlDelegate_uint_bool_bool_bool_bool(uint p0, bool p1, bool p2, bool p3, bool p4);
 
-		private delegate void Delegate_BlendFunc_0(uint sfactor, uint dfactor);
+		private delegate void GlDelegate_uint_int_uint_int_int_int_systemintptr(uint p0, int p1, uint p2, int p3, int p4, int p5, System.IntPtr p6);
 
-		private delegate void Delegate_BlendFuncSeparate_0(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha);
+		private delegate void GlDelegate_uint_int_uint_int_int_int_int_systemintptr(uint p0, int p1, uint p2, int p3, int p4, int p5, int p6, System.IntPtr p7);
 
-		private delegate void Delegate_BlitFramebuffer_0(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint mask, uint filter);
+		private delegate void GlDelegate_uint_int_uint_int_int_int_int_int_systemintptr(uint p0, int p1, uint p2, int p3, int p4, int p5, int p6, int p7, System.IntPtr p8);
 
-		private delegate void Delegate_BlitFramebuffer_1(Vector2i src0, Vector2i src1, Vector2i dst0, Vector2i dst1, uint mask, uint filter);
+		private delegate void GlDelegate_uint_int_int_int_uint_int_systemintptr(uint p0, int p1, int p2, int p3, uint p4, int p5, System.IntPtr p6);
 
-		private delegate void Delegate_BufferData_0(uint target, System.IntPtr size, System.IntPtr data, uint usage);
+		private delegate void GlDelegate_uint_int_int_int_int_int_uint_int_systemintptr(uint p0, int p1, int p2, int p3, int p4, int p5, uint p6, int p7, System.IntPtr p8);
 
-		private delegate void Delegate_BufferSubData_0(uint target, System.IntPtr offset, System.IntPtr size, System.IntPtr data);
+		private delegate void GlDelegate_uint_int_int_int_int_int_int_int_uint_int_systemintptr(uint p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7, uint p8, int p9, System.IntPtr p10);
 
-		private delegate uint Delegate_CheckFramebufferStatus_0(uint target);
+		private delegate void GlDelegate_uint_uint_systemintptr_systemintptr_systemintptr(uint p0, uint p1, System.IntPtr p2, System.IntPtr p3, System.IntPtr p4);
 
-		private delegate void Delegate_ClampColor_0(uint target, uint clamp);
+		private delegate void GlDelegate_uint_int_uint_int_int_int_int(uint p0, int p1, uint p2, int p3, int p4, int p5, int p6);
 
-		private delegate void Delegate_Clear_0(uint mask);
+		private delegate void GlDelegate_uint_int_uint_int_int_int_int_int(uint p0, int p1, uint p2, int p3, int p4, int p5, int p6, int p7);
 
-		private delegate void Delegate_ClearBufferfi_0(uint buffer, int drawbuffer, float depth, int stencil);
+		private delegate void GlDelegate_uint_int_int_int_int_int(uint p0, int p1, int p2, int p3, int p4, int p5);
 
-		private delegate void Delegate_ClearBufferfv_0(uint buffer, int drawbuffer, System.IntPtr value);
+		private delegate void GlDelegate_uint_int_int_int_int_int_int_int(uint p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7);
 
-		private delegate void Delegate_ClearBufferfv_1(uint buffer, int drawbuffer, ref Color4 value);
+		private delegate void GlDelegate_uint_int_int_int_int_int_int_int_int(uint p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8);
 
-		private delegate void Delegate_ClearBufferfv_2(uint buffer, int drawbuffer, ref float value);
+		private delegate uint GlDelegate_Returns_uint();
 
-		private delegate void Delegate_ClearBufferiv_0(uint buffer, int drawbuffer, System.IntPtr value);
+		private delegate void GlDelegate_int_systemintptr(int p0, System.IntPtr p1);
 
-		private delegate void Delegate_ClearBufferiv_1(uint buffer, int drawbuffer, ref Color4i value);
+		private delegate void GlDelegate_systemintptr(System.IntPtr p0);
 
-		private delegate void Delegate_ClearBufferiv_2(uint buffer, int drawbuffer, ref int value);
+		private delegate void GlDelegate_bool(bool p0);
 
-		private delegate void Delegate_ClearBufferuiv_0(uint buffer, int drawbuffer, System.IntPtr value);
+		private delegate void GlDelegate_double_double(double p0, double p1);
 
-		private delegate void Delegate_ClearBufferuiv_1(uint buffer, int drawbuffer, ref Color4ui value);
+		private delegate void GlDelegate_uint_int_int(uint p0, int p1, int p2);
 
-		private delegate void Delegate_ClearBufferuiv_2(uint buffer, int drawbuffer, ref uint value);
+		private delegate void GlDelegate_uint_int_int_int(uint p0, int p1, int p2, int p3);
 
-		private delegate void Delegate_ClearColor_0(float red, float green, float blue, float alpha);
+		private delegate void GlDelegate_uint_int_uint_systemintptr(uint p0, int p1, uint p2, System.IntPtr p3);
 
-		private delegate void Delegate_ClearColor_1(Color4 color);
+		private delegate void GlDelegate_uint_int_uint_systemintptr_int(uint p0, int p1, uint p2, System.IntPtr p3, int p4);
 
-		private delegate void Delegate_ClearDepth_0(double depth);
+		private delegate void GlDelegate_uint_int_uint_systemintptr_int_int(uint p0, int p1, uint p2, System.IntPtr p3, int p4, int p5);
 
-		private delegate void Delegate_ClearStencil_0(int s);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_systemintptr(uint p0, uint p1, uint p2, int p3, uint p4, System.IntPtr p5);
 
-		private delegate uint Delegate_ClientWaitSync_0(System.IntPtr sync, uint flags, ulong timeout);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_systemintptr_int(uint p0, uint p1, uint p2, int p3, uint p4, System.IntPtr p5, int p6);
 
-		private delegate void Delegate_ColorMask_0(bool red, bool green, bool blue, bool alpha);
+		private delegate void GlDelegate();
 
-		private delegate void Delegate_ColorMaski_0(uint index, bool r, bool g, bool b, bool a);
+		private delegate System.IntPtr GlDelegate_uint_uint_Returns_systemintptr(uint p0, uint p1);
 
-		private delegate void Delegate_CompileShader_0(uint shader);
+		private delegate void GlDelegate_uint_systemintptr_systemintptr(uint p0, System.IntPtr p1, System.IntPtr p2);
 
-		private delegate void Delegate_CompressedTexImage1D_0(uint target, int level, uint internalformat, int width, int border, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_uint_int(uint p0, uint p1, uint p2, int p3);
 
-		private delegate void Delegate_CompressedTexImage2D_0(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_uint_uint_int(uint p0, uint p1, uint p2, uint p3, int p4);
 
-		private delegate void Delegate_CompressedTexImage3D_0(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_uint_uint_int_int(uint p0, uint p1, uint p2, uint p3, int p4, int p5);
 
-		private delegate void Delegate_CompressedTexSubImage1D_0(uint target, int level, int xoffset, int width, uint format, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_uint_int_int(uint p0, uint p1, uint p2, int p3, int p4);
 
-		private delegate void Delegate_CompressedTexSubImage2D_0(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string(uint p0, uint p1, int p2, System.IntPtr p3, System.IntPtr p4, System.IntPtr p5, string p6);
 
-		private delegate void Delegate_CompressedTexSubImage2D_1(uint target, int level, Box2i imagePosition, uint format, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_uint_systemintptr(uint p0, uint p1, uint p2, System.IntPtr p3);
 
-		private delegate void Delegate_CompressedTexSubImage3D_0(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_int_systemintptr_systemintptr(uint p0, uint p1, int p2, System.IntPtr p3, System.IntPtr p4);
 
-		private delegate void Delegate_CompressedTexSubImage3D_1(uint target, int level, Box3i imagePosition, uint format, int imageSize, System.IntPtr data);
+		private delegate void GlDelegate_uint_int_systemintptr_uint_systemintptr(uint p0, int p1, System.IntPtr p2, uint p3, System.IntPtr p4);
 
-		private delegate void Delegate_CopyBufferSubData_0(uint readTarget, uint writeTarget, System.IntPtr readOffset, System.IntPtr writeOffset, System.IntPtr size);
+		private delegate void GlDelegate_uint_int_systemintptr_systemintptr(uint p0, int p1, System.IntPtr p2, System.IntPtr p3);
 
-		private delegate void Delegate_CopyTexImage1D_0(uint target, int level, uint internalformat, int x, int y, int width, int border);
+		private delegate int GlDelegate_uint_systemintptr_Returns_int(uint p0, System.IntPtr p1);
 
-		private delegate void Delegate_CopyTexImage1D_1(uint target, int level, uint internalformat, Vector2i imagePosition, int width, int border);
+		private delegate void GlDelegate_uint_uint_systemintptr(uint p0, uint p1, System.IntPtr p2);
 
-		private delegate void Delegate_CopyTexImage2D_0(uint target, int level, uint internalformat, int x, int y, int width, int height, int border);
+		private delegate void GlDelegate_uint_systemintptr(uint p0, System.IntPtr p1);
 
-		private delegate void Delegate_CopyTexImage2D_1(uint target, int level, uint internalformat, Vector2i imagePosition, Vector2i imageSize, int border);
+		private delegate int GlDelegate_uint_string_Returns_int(uint p0, string p1);
 
-		private delegate void Delegate_CopyTexImage2D_2(uint target, int level, uint internalformat, Box2i image, int border);
+		private delegate void GlDelegate_uint_int_systemintptr_string(uint p0, int p1, System.IntPtr p2, string p3);
 
-		private delegate void Delegate_CopyTexSubImage1D_0(uint target, int level, int xoffset, int x, int y, int width);
+		private delegate System.IntPtr GlDelegate_uint_Returns_systemintptr(uint p0);
 
-		private delegate void Delegate_CopyTexSubImage1D_1(uint target, int level, int xoffset, Vector2i imagePosition, int width);
+		private delegate void GlDelegate_systemintptr_uint_int_systemintptr_systemintptr(System.IntPtr p0, uint p1, int p2, System.IntPtr p3, System.IntPtr p4);
 
-		private delegate void Delegate_CopyTexSubImage2D_0(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height);
+		private delegate void GlDelegate_uint_int_uint_uint_systemintptr(uint p0, int p1, uint p2, uint p3, System.IntPtr p4);
 
-		private delegate void Delegate_CopyTexSubImage2D_1(uint target, int level, Vector2i texturePosition, Vector2i imagePosition, Vector2i size);
+		private delegate uint GlDelegate_uint_string_Returns_uint(uint p0, string p1);
 
-		private delegate void Delegate_CopyTexSubImage3D_0(uint target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height);
+		private delegate bool GlDelegate_uint_Returns_bool(uint p0);
 
-		private delegate void Delegate_CopyTexSubImage3D_1(uint target, int level, Vector3i texturePosition, Vector2i imagePosition, Vector2i size);
+		private delegate bool GlDelegate_uint_uint_Returns_bool(uint p0, uint p1);
 
-		private delegate uint Delegate_CreateProgram_0();
+		private delegate bool GlDelegate_systemintptr_Returns_bool(System.IntPtr p0);
 
-		private delegate uint Delegate_CreateShader_0(uint type);
+		private delegate void GlDelegate_float(float p0);
 
-		private delegate void Delegate_CullFace_0(uint mode);
+		private delegate System.IntPtr GlDelegate_uint_systemintptr_systemintptr_uint_Returns_systemintptr(uint p0, System.IntPtr p1, System.IntPtr p2, uint p3);
 
-		private delegate void Delegate_DeleteBuffers_0(int n, System.IntPtr buffers);
+		private delegate void GlDelegate_uint_systemintptr_systemintptr_int(uint p0, System.IntPtr p1, System.IntPtr p2, int p3);
 
-		private delegate void Delegate_DeleteBuffers_1(int n, uint[] buffers);
+		private delegate void GlDelegate_uint_systemintptr_uint_systemintptr_int(uint p0, System.IntPtr p1, uint p2, System.IntPtr p3, int p4);
 
-		private delegate void Delegate_DeleteBuffers_2(int n, ref uint buffers);
+		private delegate void GlDelegate_uint_systemintptr_uint_systemintptr_int_systemintptr(uint p0, System.IntPtr p1, uint p2, System.IntPtr p3, int p4, System.IntPtr p5);
 
-		private delegate void Delegate_DeleteFramebuffers_0(int n, System.IntPtr framebuffers);
+		private delegate void GlDelegate_uint_float(uint p0, float p1);
 
-		private delegate void Delegate_DeleteFramebuffers_1(int n, uint[] framebuffers);
+		private delegate void GlDelegate_uint_int(uint p0, int p1);
 
-		private delegate void Delegate_DeleteFramebuffers_2(int n, ref uint framebuffers);
+		private delegate void GlDelegate_float_float(float p0, float p1);
 
-		private delegate void Delegate_DeleteProgram_0(uint program);
+		private delegate void GlDelegate_int_int_int_int_uint_uint_systemintptr(int p0, int p1, int p2, int p3, uint p4, uint p5, System.IntPtr p6);
 
-		private delegate void Delegate_DeleteQueries_0(int n, System.IntPtr ids);
+		private delegate void GlDelegate_uint_uint_int_int(uint p0, uint p1, int p2, int p3);
 
-		private delegate void Delegate_DeleteQueries_1(int n, uint[] ids);
+		private delegate void GlDelegate_uint_int_uint_int_int(uint p0, int p1, uint p2, int p3, int p4);
 
-		private delegate void Delegate_DeleteQueries_2(int n, ref uint ids);
+		private delegate void GlDelegate_float_bool(float p0, bool p1);
 
-		private delegate void Delegate_DeleteRenderbuffers_0(int n, System.IntPtr renderbuffers);
+		private delegate void GlDelegate_int_int_int_int(int p0, int p1, int p2, int p3);
 
-		private delegate void Delegate_DeleteRenderbuffers_1(int n, uint[] renderbuffers);
+		private delegate void GlDelegate_uint_int_uint(uint p0, int p1, uint p2);
 
-		private delegate void Delegate_DeleteRenderbuffers_2(int n, ref uint renderbuffers);
+		private delegate void GlDelegate_uint_uint_int_uint(uint p0, uint p1, int p2, uint p3);
 
-		private delegate void Delegate_DeleteShader_0(uint shader);
+		private delegate void GlDelegate_uint_int_int_int_int_uint_uint_systemintptr(uint p0, int p1, int p2, int p3, int p4, uint p5, uint p6, System.IntPtr p7);
 
-		private delegate void Delegate_DeleteSync_0(System.IntPtr sync);
+		private delegate void GlDelegate_uint_int_int_int_int_int_uint_uint_systemintptr(uint p0, int p1, int p2, int p3, int p4, int p5, uint p6, uint p7, System.IntPtr p8);
 
-		private delegate void Delegate_DeleteTextures_0(int n, System.IntPtr textures);
+		private delegate void GlDelegate_uint_int_uint_int_int_bool(uint p0, int p1, uint p2, int p3, int p4, bool p5);
 
-		private delegate void Delegate_DeleteTextures_1(int n, uint[] textures);
+		private delegate void GlDelegate_uint_int_int_int_int_int_int_uint_uint_systemintptr(uint p0, int p1, int p2, int p3, int p4, int p5, int p6, uint p7, uint p8, System.IntPtr p9);
 
-		private delegate void Delegate_DeleteTextures_2(int n, ref uint textures);
+		private delegate void GlDelegate_uint_int_uint_int_int_int_bool(uint p0, int p1, uint p2, int p3, int p4, int p5, bool p6);
 
-		private delegate void Delegate_DeleteVertexArrays_0(int n, System.IntPtr arrays);
+		private delegate void GlDelegate_uint_uint_float(uint p0, uint p1, float p2);
 
-		private delegate void Delegate_DeleteVertexArrays_1(int n, uint[] arrays);
+		private delegate void GlDelegate_uint_uint_int(uint p0, uint p1, int p2);
 
-		private delegate void Delegate_DeleteVertexArrays_2(int n, ref uint arrays);
+		private delegate void GlDelegate_uint_int_int_int_uint_uint_systemintptr(uint p0, int p1, int p2, int p3, uint p4, uint p5, System.IntPtr p6);
 
-		private delegate void Delegate_DepthFunc_0(uint func);
+		private delegate void GlDelegate_uint_int_int_int_int_int_int_int_uint_uint_systemintptr(uint p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7, uint p8, uint p9, System.IntPtr p10);
 
-		private delegate void Delegate_DepthMask_0(bool flag);
+		private delegate void GlDelegate_uint_int_systemintptr_uint(uint p0, int p1, System.IntPtr p2, uint p3);
 
-		private delegate void Delegate_DepthRange_0(double near, double far);
+		private delegate void GlDelegate_int_float(int p0, float p1);
 
-		private delegate void Delegate_DetachShader_0(uint program, uint shader);
+		private delegate void GlDelegate_int_int_systemintptr(int p0, int p1, System.IntPtr p2);
 
-		private delegate void Delegate_Disable_0(uint cap);
+		private delegate void GlDelegate_int_int(int p0, int p1);
 
-		private delegate void Delegate_Disablei_0(uint target, uint index);
+		private delegate void GlDelegate_int_uint(int p0, uint p1);
 
-		private delegate void Delegate_DisableVertexAttribArray_0(uint index);
+		private delegate void GlDelegate_int_float_float(int p0, float p1, float p2);
 
-		private delegate void Delegate_DrawArrays_0(uint mode, int first, int count);
+		private delegate void GlDelegate_int_int_int(int p0, int p1, int p2);
 
-		private delegate void Delegate_DrawArraysInstanced_0(uint mode, int first, int count, int instancecount);
+		private delegate void GlDelegate_int_uint_uint(int p0, uint p1, uint p2);
 
-		private delegate void Delegate_DrawBuffer_0(uint mode);
+		private delegate void GlDelegate_int_float_float_float(int p0, float p1, float p2, float p3);
 
-		private delegate void Delegate_DrawBuffers_0(int n, System.IntPtr bufs);
+		private delegate void GlDelegate_int_uint_uint_uint(int p0, uint p1, uint p2, uint p3);
 
-		private delegate void Delegate_DrawBuffers_1(int n, uint[] bufs);
+		private delegate void GlDelegate_int_float_float_float_float(int p0, float p1, float p2, float p3, float p4);
 
-		private delegate void Delegate_DrawBuffers_2(int n, ref uint bufs);
+		private delegate void GlDelegate_int_int_int_int_int(int p0, int p1, int p2, int p3, int p4);
 
-		private delegate void Delegate_DrawElements_0(uint mode, int count, uint type, System.IntPtr indices);
+		private delegate void GlDelegate_int_uint_uint_uint_uint(int p0, uint p1, uint p2, uint p3, uint p4);
 
-		private delegate void Delegate_DrawElements_1(uint mode, int count, uint type, byte[] indices);
+		private delegate void GlDelegate_int_int_bool_systemintptr(int p0, int p1, bool p2, System.IntPtr p3);
 
-		private delegate void Delegate_DrawElements_2(uint mode, int count, uint type, ushort[] indices);
+		private delegate void GlDelegate_uint_double(uint p0, double p1);
 
-		private delegate void Delegate_DrawElements_3(uint mode, int count, uint type, uint[] indices);
+		private delegate void GlDelegate_uint_short(uint p0, short p1);
 
-		private delegate void Delegate_DrawElementsBaseVertex_0(uint mode, int count, uint type, System.IntPtr indices, int basevertex);
+		private delegate void GlDelegate_uint_double_double(uint p0, double p1, double p2);
 
-		private delegate void Delegate_DrawElementsBaseVertex_1(uint mode, int count, uint type, byte[] indices, int basevertex);
+		private delegate void GlDelegate_uint_float_float(uint p0, float p1, float p2);
 
-		private delegate void Delegate_DrawElementsBaseVertex_2(uint mode, int count, uint type, ushort[] indices, int basevertex);
+		private delegate void GlDelegate_uint_short_short(uint p0, short p1, short p2);
 
-		private delegate void Delegate_DrawElementsBaseVertex_3(uint mode, int count, uint type, uint[] indices, int basevertex);
+		private delegate void GlDelegate_uint_double_double_double(uint p0, double p1, double p2, double p3);
 
-		private delegate void Delegate_DrawElementsInstanced_0(uint mode, int count, uint type, System.IntPtr indices, int instancecount);
+		private delegate void GlDelegate_uint_float_float_float(uint p0, float p1, float p2, float p3);
 
-		private delegate void Delegate_DrawElementsInstanced_1(uint mode, int count, uint type, byte[] indices, int instancecount);
+		private delegate void GlDelegate_uint_short_short_short(uint p0, short p1, short p2, short p3);
 
-		private delegate void Delegate_DrawElementsInstanced_2(uint mode, int count, uint type, ushort[] indices, int instancecount);
+		private delegate void GlDelegate_uint_double_double_double_double(uint p0, double p1, double p2, double p3, double p4);
 
-		private delegate void Delegate_DrawElementsInstanced_3(uint mode, int count, uint type, uint[] indices, int instancecount);
+		private delegate void GlDelegate_uint_float_float_float_float(uint p0, float p1, float p2, float p3, float p4);
 
-		private delegate void Delegate_DrawElementsInstancedBaseVertex_0(uint mode, int count, uint type, System.IntPtr indices, int instancecount, int basevertex);
+		private delegate void GlDelegate_uint_byte_byte_byte_byte(uint p0, byte p1, byte p2, byte p3, byte p4);
 
-		private delegate void Delegate_DrawElementsInstancedBaseVertex_1(uint mode, int count, uint type, byte[] indices, int instancecount, int basevertex);
+		private delegate void GlDelegate_uint_short_short_short_short(uint p0, short p1, short p2, short p3, short p4);
 
-		private delegate void Delegate_DrawElementsInstancedBaseVertex_2(uint mode, int count, uint type, ushort[] indices, int instancecount, int basevertex);
+		private delegate void GlDelegate_uint_int_int_int_int(uint p0, int p1, int p2, int p3, int p4);
 
-		private delegate void Delegate_DrawElementsInstancedBaseVertex_3(uint mode, int count, uint type, uint[] indices, int instancecount, int basevertex);
+		private delegate void GlDelegate_uint_uint_uint_uint_uint(uint p0, uint p1, uint p2, uint p3, uint p4);
 
-		private delegate void Delegate_DrawRangeElements_0(uint mode, uint start, uint end, int count, uint type, System.IntPtr indices);
+		private delegate void GlDelegate_uint_int_uint_int_systemintptr(uint p0, int p1, uint p2, int p3, System.IntPtr p4);
 
-		private delegate void Delegate_DrawRangeElements_1(uint mode, uint start, uint end, int count, uint type, byte[] indices);
+		private delegate void GlDelegate_uint_int_uint_bool_int_systemintptr(uint p0, int p1, uint p2, bool p3, int p4, System.IntPtr p5);
 
-		private delegate void Delegate_DrawRangeElements_2(uint mode, uint start, uint end, int count, uint type, ushort[] indices);
+		private delegate void GlDelegate_systemintptr_uint_ulong(System.IntPtr p0, uint p1, ulong p2);
 
-		private delegate void Delegate_DrawRangeElements_3(uint mode, uint start, uint end, int count, uint type, uint[] indices);
+		private delegate void GlDelegate_uint_uint_bool_uint(uint p0, uint p1, bool p2, uint p3);
 
-		private delegate void Delegate_DrawRangeElementsBaseVertex_0(uint mode, uint start, uint end, int count, uint type, System.IntPtr indices, int basevertex);
+		private delegate void GlDelegate_uint_uint_bool_systemintptr(uint p0, uint p1, bool p2, System.IntPtr p3);
 
-		private delegate void Delegate_DrawRangeElementsBaseVertex_1(uint mode, uint start, uint end, int count, uint type, byte[] indices, int basevertex);
+		private delegate void GlDelegate_color4(Color4 p0);
 
-		private delegate void Delegate_DrawRangeElementsBaseVertex_2(uint mode, uint start, uint end, int count, uint type, ushort[] indices, int basevertex);
+		private delegate void GlDelegate_vector2i_vector2i_vector2i_vector2i_uint_uint(Vector2i p0, Vector2i p1, Vector2i p2, Vector2i p3, uint p4, uint p5);
 
-		private delegate void Delegate_DrawRangeElementsBaseVertex_3(uint mode, uint start, uint end, int count, uint type, uint[] indices, int basevertex);
+		private delegate void GlDelegate_uint_int_refcolor4(uint p0, int p1, ref Color4 p2);
 
-		private delegate void Delegate_Enable_0(uint cap);
+		private delegate void GlDelegate_uint_int_reffloat(uint p0, int p1, ref float p2);
 
-		private delegate void Delegate_Enablei_0(uint target, uint index);
+		private delegate void GlDelegate_uint_int_refcolor4i(uint p0, int p1, ref Color4i p2);
 
-		private delegate void Delegate_EnableVertexAttribArray_0(uint index);
+		private delegate void GlDelegate_uint_int_refint(uint p0, int p1, ref int p2);
 
-		private delegate void Delegate_EndConditionalRender_0();
+		private delegate void GlDelegate_uint_int_refcolor4ui(uint p0, int p1, ref Color4ui p2);
 
-		private delegate void Delegate_EndQuery_0(uint target);
+		private delegate void GlDelegate_uint_int_refuint(uint p0, int p1, ref uint p2);
 
-		private delegate void Delegate_EndTransformFeedback_0();
+		private delegate void GlDelegate_uint_int_box2i_uint_int_systemintptr(uint p0, int p1, Box2i p2, uint p3, int p4, System.IntPtr p5);
 
-		private delegate System.IntPtr Delegate_FenceSync_0(uint condition, uint flags);
+		private delegate void GlDelegate_uint_int_box3i_uint_int_systemintptr(uint p0, int p1, Box3i p2, uint p3, int p4, System.IntPtr p5);
 
-		private delegate void Delegate_Finish_0();
+		private delegate void GlDelegate_uint_int_uint_vector2i_int_int(uint p0, int p1, uint p2, Vector2i p3, int p4, int p5);
 
-		private delegate void Delegate_Flush_0();
+		private delegate void GlDelegate_uint_int_uint_vector2i_vector2i_int(uint p0, int p1, uint p2, Vector2i p3, Vector2i p4, int p5);
 
-		private delegate void Delegate_FlushMappedBufferRange_0(uint target, System.IntPtr offset, System.IntPtr length);
+		private delegate void GlDelegate_uint_int_uint_box2i_int(uint p0, int p1, uint p2, Box2i p3, int p4);
 
-		private delegate void Delegate_FramebufferRenderbuffer_0(uint target, uint attachment, uint renderbuffertarget, uint renderbuffer);
+		private delegate void GlDelegate_uint_int_int_vector2i_int(uint p0, int p1, int p2, Vector2i p3, int p4);
 
-		private delegate void Delegate_FramebufferTexture_0(uint target, uint attachment, uint texture, int level);
+		private delegate void GlDelegate_uint_int_vector2i_vector2i_vector2i(uint p0, int p1, Vector2i p2, Vector2i p3, Vector2i p4);
 
-		private delegate void Delegate_FramebufferTexture1D_0(uint target, uint attachment, uint textarget, uint texture, int level);
+		private delegate void GlDelegate_uint_int_vector3i_vector2i_vector2i(uint p0, int p1, Vector3i p2, Vector2i p3, Vector2i p4);
 
-		private delegate void Delegate_FramebufferTexture2D_0(uint target, uint attachment, uint textarget, uint texture, int level);
+		private delegate void GlDelegate_int_uintarray(int p0, uint[] p1);
 
-		private delegate void Delegate_FramebufferTexture3D_0(uint target, uint attachment, uint textarget, uint texture, int level, int zoffset);
+		private delegate void GlDelegate_int_refuint(int p0, ref uint p1);
 
-		private delegate void Delegate_FramebufferTextureLayer_0(uint target, uint attachment, uint texture, int level, int layer);
+		private delegate void GlDelegate_uint_int_uint_bytearray(uint p0, int p1, uint p2, byte[] p3);
 
-		private delegate void Delegate_FrontFace_0(uint mode);
+		private delegate void GlDelegate_uint_int_uint_ushortarray(uint p0, int p1, uint p2, ushort[] p3);
 
-		private delegate void Delegate_GenBuffers_0(int n, System.IntPtr buffers);
+		private delegate void GlDelegate_uint_int_uint_uintarray(uint p0, int p1, uint p2, uint[] p3);
 
-		private delegate void Delegate_GenBuffers_1(int n, uint[] buffers);
+		private delegate void GlDelegate_uint_int_uint_bytearray_int(uint p0, int p1, uint p2, byte[] p3, int p4);
 
-		private delegate void Delegate_GenBuffers_2(int n, out uint buffers);
+		private delegate void GlDelegate_uint_int_uint_ushortarray_int(uint p0, int p1, uint p2, ushort[] p3, int p4);
 
-		private delegate void Delegate_GenerateMipmap_0(uint target);
+		private delegate void GlDelegate_uint_int_uint_uintarray_int(uint p0, int p1, uint p2, uint[] p3, int p4);
 
-		private delegate void Delegate_GenFramebuffers_0(int n, System.IntPtr framebuffers);
+		private delegate void GlDelegate_uint_int_uint_bytearray_int_int(uint p0, int p1, uint p2, byte[] p3, int p4, int p5);
 
-		private delegate void Delegate_GenFramebuffers_1(int n, uint[] framebuffers);
+		private delegate void GlDelegate_uint_int_uint_ushortarray_int_int(uint p0, int p1, uint p2, ushort[] p3, int p4, int p5);
 
-		private delegate void Delegate_GenFramebuffers_2(int n, out uint framebuffers);
+		private delegate void GlDelegate_uint_int_uint_uintarray_int_int(uint p0, int p1, uint p2, uint[] p3, int p4, int p5);
 
-		private delegate void Delegate_GenQueries_0(int n, System.IntPtr ids);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_bytearray(uint p0, uint p1, uint p2, int p3, uint p4, byte[] p5);
 
-		private delegate void Delegate_GenQueries_1(int n, uint[] ids);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_ushortarray(uint p0, uint p1, uint p2, int p3, uint p4, ushort[] p5);
 
-		private delegate void Delegate_GenQueries_2(int n, out uint ids);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_uintarray(uint p0, uint p1, uint p2, int p3, uint p4, uint[] p5);
 
-		private delegate void Delegate_GenRenderbuffers_0(int n, System.IntPtr renderbuffers);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_bytearray_int(uint p0, uint p1, uint p2, int p3, uint p4, byte[] p5, int p6);
 
-		private delegate void Delegate_GenRenderbuffers_1(int n, uint[] renderbuffers);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_ushortarray_int(uint p0, uint p1, uint p2, int p3, uint p4, ushort[] p5, int p6);
 
-		private delegate void Delegate_GenRenderbuffers_2(int n, out uint renderbuffers);
+		private delegate void GlDelegate_uint_uint_uint_int_uint_uintarray_int(uint p0, uint p1, uint p2, int p3, uint p4, uint[] p5, int p6);
 
-		private delegate void Delegate_GenTextures_0(int n, System.IntPtr textures);
+		private delegate void GlDelegate_int_outuint(int p0, out uint p1);
 
-		private delegate void Delegate_GenTextures_1(int n, uint[] textures);
+		private delegate void GlDelegate_uint_uint_int_outint_outint_outuint_bytearray(uint p0, uint p1, int p2, out int p3, out int p4, out uint p5, byte[] p6);
 
-		private delegate void Delegate_GenTextures_2(int n, out uint textures);
+		private delegate void GlDelegate_uint_uint_uint_intarray(uint p0, uint p1, uint p2, int[] p3);
 
-		private delegate void Delegate_GenVertexArrays_0(int n, System.IntPtr arrays);
+		private delegate void GlDelegate_uint_uint_uint_outint(uint p0, uint p1, uint p2, out int p3);
 
-		private delegate void Delegate_GenVertexArrays_1(int n, uint[] arrays);
+		private delegate void GlDelegate_uint_uint_int_outint_bytearray(uint p0, uint p1, int p2, out int p3, byte[] p4);
 
-		private delegate void Delegate_GenVertexArrays_2(int n, out uint arrays);
+		private delegate void GlDelegate_uint_int_uintarray_uint_intarray(uint p0, int p1, uint[] p2, uint p3, int[] p4);
 
-		private delegate void Delegate_GetActiveAttrib_0(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name);
+		private delegate void GlDelegate_uint_int_outint_uint_intarray(uint p0, int p1, out int p2, uint p3, int[] p4);
 
-		private delegate void Delegate_GetActiveAttrib_1(uint program, uint index, int bufSize, out int length, out int size, out uint type, byte[] name);
+		private delegate void GlDelegate_uint_int_uintarray_uint_refint(uint p0, int p1, uint[] p2, uint p3, ref int p4);
 
-		private delegate void Delegate_GetActiveUniform_0(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name);
+		private delegate void GlDelegate_uint_int_outint_uint_refint(uint p0, int p1, out int p2, uint p3, ref int p4);
 
-		private delegate void Delegate_GetActiveUniform_1(uint program, uint index, int bufSize, out int length, out int size, out uint type, byte[] name);
+		private delegate int GlDelegate_uint_bytearray_Returns_int(uint p0, byte[] p1);
 
-		private delegate void Delegate_GetActiveUniformBlockiv_0(uint program, uint uniformBlockIndex, uint pname, System.IntPtr _params);
+		private delegate void GlDelegate_uint_uint_outbool(uint p0, uint p1, out bool p2);
 
-		private delegate void Delegate_GetActiveUniformBlockiv_1(uint program, uint uniformBlockIndex, uint pname, int[] _params);
+		private delegate void GlDelegate_uint_outbool(uint p0, out bool p1);
 
-		private delegate void Delegate_GetActiveUniformBlockiv_2(uint program, uint uniformBlockIndex, uint pname, out int _params);
+		private delegate void GlDelegate_uint_uint_outlong(uint p0, uint p1, out long p2);
 
-		private delegate void Delegate_GetActiveUniformBlockName_0(uint program, uint uniformBlockIndex, int bufSize, System.IntPtr length, System.IntPtr uniformBlockName);
+		private delegate void GlDelegate_uint_uint_outint(uint p0, uint p1, out int p2);
 
-		private delegate void Delegate_GetActiveUniformBlockName_1(uint program, uint uniformBlockIndex, int bufSize, out int length, byte[] uniformBlockName);
+		private delegate void GlDelegate_uint_uint_outsystemintptr(uint p0, uint p1, out System.IntPtr p2);
 
-		private delegate void Delegate_GetActiveUniformName_0(uint program, uint uniformIndex, int bufSize, System.IntPtr length, System.IntPtr uniformName);
+		private delegate void GlDelegate_uint_doublearray(uint p0, double[] p1);
 
-		private delegate void Delegate_GetActiveUniformName_1(uint program, uint uniformIndex, int bufSize, out int length, byte[] uniformName);
+		private delegate void GlDelegate_uint_outdouble(uint p0, out double p1);
 
-		private delegate void Delegate_GetActiveUniformsiv_0(uint program, int uniformCount, System.IntPtr uniformIndices, uint pname, System.IntPtr _params);
+		private delegate void GlDelegate_uint_outvector2d(uint p0, out Vector2d p1);
 
-		private delegate void Delegate_GetActiveUniformsiv_1(uint program, int uniformCount, uint[] uniformIndices, uint pname, int[] _params);
+		private delegate void GlDelegate_uint_outvector3d(uint p0, out Vector3d p1);
 
-		private delegate void Delegate_GetActiveUniformsiv_2(uint program, int uniformCount, out int uniformIndices, uint pname, int[] _params);
+		private delegate void GlDelegate_uint_outvector4d(uint p0, out Vector4d p1);
 
-		private delegate void Delegate_GetActiveUniformsiv_3(uint program, int uniformCount, uint[] uniformIndices, uint pname, ref int _params);
+		private delegate void GlDelegate_uint_outcolor3d(uint p0, out Color3d p1);
 
-		private delegate void Delegate_GetActiveUniformsiv_4(uint program, int uniformCount, out int uniformIndices, uint pname, ref int _params);
+		private delegate void GlDelegate_uint_outcolor4d(uint p0, out Color4d p1);
 
-		private delegate void Delegate_GetAttachedShaders_0(uint program, int maxCount, System.IntPtr count, System.IntPtr shaders);
+		private delegate void GlDelegate_uint_outbox2d(uint p0, out Box2d p1);
 
-		private delegate void Delegate_GetAttachedShaders_1(uint program, int maxCount, uint count, uint[] shaders);
+		private delegate void GlDelegate_uint_outbox3d(uint p0, out Box3d p1);
 
-		private delegate int Delegate_GetAttribLocation_0(uint program, System.IntPtr name);
+		private delegate void GlDelegate_uint_floatarray(uint p0, float[] p1);
 
-		private delegate int Delegate_GetAttribLocation_1(uint program, byte[] name);
+		private delegate void GlDelegate_uint_outfloat(uint p0, out float p1);
 
-		private delegate int Delegate_GetAttribLocation_2(uint program, string name);
+		private delegate void GlDelegate_uint_outvector2(uint p0, out Vector2 p1);
 
-		private delegate void Delegate_GetBooleani_v_0(uint target, uint index, System.IntPtr data);
+		private delegate void GlDelegate_uint_outvector3(uint p0, out Vector3 p1);
 
-		private delegate void Delegate_GetBooleani_v_1(uint target, uint index, out bool data);
+		private delegate void GlDelegate_uint_outvector4(uint p0, out Vector4 p1);
 
-		private delegate void Delegate_GetBooleanv_0(uint pname, System.IntPtr data);
+		private delegate void GlDelegate_uint_outcolor3(uint p0, out Color3 p1);
 
-		private delegate void Delegate_GetBooleanv_1(uint pname, out bool data);
+		private delegate void GlDelegate_uint_outcolor4(uint p0, out Color4 p1);
 
-		private delegate void Delegate_GetBufferParameteri64v_0(uint target, uint pname, System.IntPtr _params);
+		private delegate void GlDelegate_uint_outbox2(uint p0, out Box2 p1);
 
-		private delegate void Delegate_GetBufferParameteri64v_1(uint target, uint pname, out long _params);
+		private delegate void GlDelegate_uint_outbox3(uint p0, out Box3 p1);
 
-		private delegate void Delegate_GetBufferParameteriv_0(uint target, uint pname, System.IntPtr _params);
+		private delegate void GlDelegate_uint_uint_longarray(uint p0, uint p1, long[] p2);
 
-		private delegate void Delegate_GetBufferParameteriv_1(uint target, uint pname, out int _params);
+		private delegate void GlDelegate_uint_longarray(uint p0, long[] p1);
 
-		private delegate void Delegate_GetBufferPointerv_0(uint target, uint pname, System.IntPtr _params);
+		private delegate void GlDelegate_uint_outlong(uint p0, out long p1);
 
-		private delegate void Delegate_GetBufferPointerv_1(uint target, uint pname, out System.IntPtr _params);
+		private delegate void GlDelegate_uint_uint_intarray(uint p0, uint p1, int[] p2);
 
-		private delegate void Delegate_GetBufferSubData_0(uint target, System.IntPtr offset, System.IntPtr size, System.IntPtr data);
+		private delegate void GlDelegate_uint_intarray(uint p0, int[] p1);
 
-		private delegate void Delegate_GetCompressedTexImage_0(uint target, int level, System.IntPtr img);
+		private delegate void GlDelegate_uint_outint(uint p0, out int p1);
 
-		private delegate void Delegate_GetDoublev_0(uint pname, System.IntPtr data);
+		private delegate void GlDelegate_uint_uint_outfloat(uint p0, uint p1, out float p2);
 
-		private delegate void Delegate_GetDoublev_1(uint pname, double[] data);
+		private delegate void GlDelegate_uint_int_outint_bytearray(uint p0, int p1, out int p2, byte[] p3);
 
-		private delegate void Delegate_GetDoublev_2(uint pname, out double data);
+		private delegate void GlDelegate_uint_int_intptrarray_intarray(uint p0, int p1, IntPtr[] p2, int[] p3);
 
-		private delegate void Delegate_GetDoublev_3(uint pname, out Vector2d data);
+		private delegate void GlDelegate_int_vector2(int p0, Vector2 p1);
 
-		private delegate void Delegate_GetDoublev_4(uint pname, out Vector3d data);
+		private delegate void GlDelegate_int_vector2i(int p0, Vector2i p1);
 
-		private delegate void Delegate_GetDoublev_5(uint pname, out Vector4d data);
+		private delegate void GlDelegate_int_vector3(int p0, Vector3 p1);
 
-		private delegate void Delegate_GetDoublev_6(uint pname, out Color3d data);
+		private delegate void GlDelegate_int_vector3i(int p0, Vector3i p1);
 
-		private delegate void Delegate_GetDoublev_7(uint pname, out Color4d data);
+		private delegate void GlDelegate_int_vector4(int p0, Vector4 p1);
 
-		private delegate void Delegate_GetDoublev_8(uint pname, out Box2d data);
+		private delegate void GlDelegate_int_vector4i(int p0, Vector4i p1);
 
-		private delegate void Delegate_GetDoublev_9(uint pname, out Box3d data);
+		private delegate void GlDelegate_int_int_bool_floatarray(int p0, int p1, bool p2, float[] p3);
 
-		private delegate uint Delegate_GetError_0();
+		private delegate void GlDelegate_int_int_bool_refmatrix2(int p0, int p1, bool p2, ref Matrix2 p3);
 
-		private delegate void Delegate_GetFloatv_0(uint pname, System.IntPtr data);
+		private delegate void GlDelegate_int_int_bool_refmatrix3(int p0, int p1, bool p2, ref Matrix3 p3);
 
-		private delegate void Delegate_GetFloatv_1(uint pname, float[] data);
+		private delegate void GlDelegate_int_int_bool_refmatrix4(int p0, int p1, bool p2, ref Matrix4 p3);
 
-		private delegate void Delegate_GetFloatv_2(uint pname, out float data);
+		private delegate void GlDelegate_box2i(Box2i p0);
 
-		private delegate void Delegate_GetFloatv_3(uint pname, out Vector2 data);
 
-		private delegate void Delegate_GetFloatv_4(uint pname, out Vector3 data);
 
-		private delegate void Delegate_GetFloatv_5(uint pname, out Vector4 data);
+		private static GlDelegate_uint m_ActiveTexture_0;
 
-		private delegate void Delegate_GetFloatv_6(uint pname, out Color3 data);
+		private static GlDelegate_uint_uint m_AttachShader_0;
 
-		private delegate void Delegate_GetFloatv_7(uint pname, out Color4 data);
+		private static GlDelegate_uint_uint m_BeginConditionalRender_0;
 
-		private delegate void Delegate_GetFloatv_8(uint pname, out Box2 data);
+		private static GlDelegate_uint_uint m_BeginQuery_0;
 
-		private delegate void Delegate_GetFloatv_9(uint pname, out Box3 data);
+		private static GlDelegate_uint m_BeginTransformFeedback_0;
 
-		private delegate int Delegate_GetFragDataLocation_0(uint program, string name);
+		private static GlDelegate_uint_uint_string m_BindAttribLocation_0;
 
-		private delegate void Delegate_GetFramebufferAttachmentParameteriv_0(uint target, uint attachment, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_uint m_BindBuffer_0;
 
-		private delegate void Delegate_GetFramebufferAttachmentParameteriv_1(uint target, uint attachment, uint pname, out int _params);
+		private static GlDelegate_uint_uint_uint m_BindBufferBase_0;
 
-		private delegate void Delegate_GetInteger64i_v_0(uint target, uint index, System.IntPtr data);
+		private static GlDelegate_uint_uint_uint_systemintptr_systemintptr m_BindBufferRange_0;
 
-		private delegate void Delegate_GetInteger64i_v_1(uint target, uint index, long[] data);
+		private static GlDelegate_uint_uint_string m_BindFragDataLocation_0;
 
-		private delegate void Delegate_GetInteger64i_v_2(uint target, uint index, out long data);
+		private static GlDelegate_uint_uint m_BindFramebuffer_0;
 
-		private delegate void Delegate_GetInteger64v_0(uint pname, System.IntPtr data);
+		private static GlDelegate_uint_uint m_BindRenderbuffer_0;
 
-		private delegate void Delegate_GetInteger64v_1(uint pname, long[] data);
+		private static GlDelegate_uint_uint m_BindTexture_0;
 
-		private delegate void Delegate_GetInteger64v_2(uint pname, out long data);
+		private static GlDelegate_uint m_BindVertexArray_0;
 
-		private delegate void Delegate_GetIntegeri_v_0(uint target, uint index, System.IntPtr data);
+		private static GlDelegate_float_float_float_float m_BlendColor_0;
 
-		private delegate void Delegate_GetIntegeri_v_1(uint target, uint index, int[] data);
+		private static GlDelegate_color4 m_BlendColor_1;
 
-		private delegate void Delegate_GetIntegeri_v_2(uint target, uint index, out int data);
+		private static GlDelegate_uint m_BlendEquation_0;
 
-		private delegate void Delegate_GetIntegerv_0(uint pname, System.IntPtr data);
+		private static GlDelegate_uint_uint m_BlendEquationSeparate_0;
 
-		private delegate void Delegate_GetIntegerv_1(uint pname, int[] data);
+		private static GlDelegate_uint_uint m_BlendFunc_0;
 
-		private delegate void Delegate_GetIntegerv_2(uint pname, out int data);
+		private static GlDelegate_uint_uint_uint_uint m_BlendFuncSeparate_0;
 
-		private delegate void Delegate_GetMultisamplefv_0(uint pname, uint index, System.IntPtr val);
+		private static GlDelegate_int_int_int_int_int_int_int_int_uint_uint m_BlitFramebuffer_0;
 
-		private delegate void Delegate_GetMultisamplefv_1(uint pname, uint index, out float val);
+		private static GlDelegate_vector2i_vector2i_vector2i_vector2i_uint_uint m_BlitFramebuffer_1;
 
-		private delegate void Delegate_GetProgramInfoLog_0(uint program, int bufSize, System.IntPtr length, string infoLog);
+		private static GlDelegate_uint_systemintptr_systemintptr_uint m_BufferData_0;
 
-		private delegate void Delegate_GetProgramInfoLog_1(uint program, int bufSize, out int length, byte[] infoLog);
+		private static GlDelegate_uint_systemintptr_systemintptr_systemintptr m_BufferSubData_0;
 
-		private delegate void Delegate_GetProgramiv_0(uint program, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_Returns_uint m_CheckFramebufferStatus_0;
 
-		private delegate void Delegate_GetProgramiv_1(uint program, uint pname, int[] _params);
+		private static GlDelegate_uint_uint m_ClampColor_0;
 
-		private delegate void Delegate_GetProgramiv_2(uint program, uint pname, out int _params);
+		private static GlDelegate_uint m_Clear_0;
 
-		private delegate void Delegate_GetQueryiv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_float_int m_ClearBufferfi_0;
 
-		private delegate void Delegate_GetQueryObjectiv_0(uint id, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_systemintptr m_ClearBufferfv_0;
 
-		private delegate void Delegate_GetQueryObjectuiv_0(uint id, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_refcolor4 m_ClearBufferfv_1;
 
-		private delegate void Delegate_GetRenderbufferParameteriv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_reffloat m_ClearBufferfv_2;
 
-		private delegate void Delegate_GetShaderInfoLog_0(uint shader, int bufSize, System.IntPtr length, string infoLog);
+		private static GlDelegate_uint_int_systemintptr m_ClearBufferiv_0;
 
-		private delegate void Delegate_GetShaderInfoLog_1(uint shader, int bufSize, out int length, byte[] infoLog);
+		private static GlDelegate_uint_int_refcolor4i m_ClearBufferiv_1;
 
-		private delegate void Delegate_GetShaderiv_0(uint shader, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_refint m_ClearBufferiv_2;
 
-		private delegate void Delegate_GetShaderiv_1(uint shader, uint pname, int[] _params);
+		private static GlDelegate_uint_int_systemintptr m_ClearBufferuiv_0;
 
-		private delegate void Delegate_GetShaderiv_2(uint shader, uint pname, out int _params);
+		private static GlDelegate_uint_int_refcolor4ui m_ClearBufferuiv_1;
 
-		private delegate void Delegate_GetShaderSource_0(uint shader, int bufSize, System.IntPtr length, string source);
+		private static GlDelegate_uint_int_refuint m_ClearBufferuiv_2;
 
-		private delegate System.IntPtr Delegate_GetString_0(uint name);
+		private static GlDelegate_float_float_float_float m_ClearColor_0;
 
-		private delegate System.IntPtr Delegate_GetStringi_0(uint name, uint index);
+		private static GlDelegate_color4 m_ClearColor_1;
 
-		private delegate void Delegate_GetSynciv_0(System.IntPtr sync, uint pname, int bufSize, System.IntPtr length, System.IntPtr values);
+		private static GlDelegate_double m_ClearDepth_0;
 
-		private delegate void Delegate_GetTexImage_0(uint target, int level, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_int m_ClearStencil_0;
 
-		private delegate void Delegate_GetTexLevelParameterfv_0(uint target, int level, uint pname, System.IntPtr _params);
+		private static GlDelegate_systemintptr_uint_ulong_Returns_uint m_ClientWaitSync_0;
 
-		private delegate void Delegate_GetTexLevelParameteriv_0(uint target, int level, uint pname, System.IntPtr _params);
+		private static GlDelegate_bool_bool_bool_bool m_ColorMask_0;
 
-		private delegate void Delegate_GetTexParameterfv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_bool_bool_bool_bool m_ColorMaski_0;
 
-		private delegate void Delegate_GetTexParameterIiv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint m_CompileShader_0;
 
-		private delegate void Delegate_GetTexParameterIuiv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_int_int_int_systemintptr m_CompressedTexImage1D_0;
 
-		private delegate void Delegate_GetTexParameteriv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_int_int_int_int_systemintptr m_CompressedTexImage2D_0;
 
-		private delegate void Delegate_GetTransformFeedbackVarying_0(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name);
+		private static GlDelegate_uint_int_uint_int_int_int_int_int_systemintptr m_CompressedTexImage3D_0;
 
-		private delegate uint Delegate_GetUniformBlockIndex_0(uint program, string uniformBlockName);
+		private static GlDelegate_uint_int_int_int_uint_int_systemintptr m_CompressedTexSubImage1D_0;
 
-		private delegate void Delegate_GetUniformfv_0(uint program, int location, System.IntPtr _params);
+		private static GlDelegate_uint_int_int_int_int_int_uint_int_systemintptr m_CompressedTexSubImage2D_0;
 
-		private delegate void Delegate_GetUniformIndices_0(uint program, int uniformCount, System.IntPtr uniformNames, System.IntPtr uniformIndices);
+		private static GlDelegate_uint_int_box2i_uint_int_systemintptr m_CompressedTexSubImage2D_1;
 
-		private delegate void Delegate_GetUniformiv_0(uint program, int location, System.IntPtr _params);
+		private static GlDelegate_uint_int_int_int_int_int_int_int_uint_int_systemintptr m_CompressedTexSubImage3D_0;
 
-		private delegate int Delegate_GetUniformLocation_0(uint program, System.IntPtr name);
+		private static GlDelegate_uint_int_box3i_uint_int_systemintptr m_CompressedTexSubImage3D_1;
 
-		private delegate int Delegate_GetUniformLocation_1(uint program, byte[] name);
+		private static GlDelegate_uint_uint_systemintptr_systemintptr_systemintptr m_CopyBufferSubData_0;
 
-		private delegate int Delegate_GetUniformLocation_2(uint program, string name);
+		private static GlDelegate_uint_int_uint_int_int_int_int m_CopyTexImage1D_0;
 
-		private delegate void Delegate_GetUniformuiv_0(uint program, int location, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_vector2i_int_int m_CopyTexImage1D_1;
 
-		private delegate void Delegate_GetVertexAttribdv_0(uint index, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_int_int_int_int_int m_CopyTexImage2D_0;
 
-		private delegate void Delegate_GetVertexAttribfv_0(uint index, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_vector2i_vector2i_int m_CopyTexImage2D_1;
 
-		private delegate void Delegate_GetVertexAttribIiv_0(uint index, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_box2i_int m_CopyTexImage2D_2;
 
-		private delegate void Delegate_GetVertexAttribIuiv_0(uint index, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_int_int_int_int m_CopyTexSubImage1D_0;
 
-		private delegate void Delegate_GetVertexAttribiv_0(uint index, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_int_vector2i_int m_CopyTexSubImage1D_1;
 
-		private delegate void Delegate_GetVertexAttribPointerv_0(uint index, uint pname, System.IntPtr pointer);
+		private static GlDelegate_uint_int_int_int_int_int_int_int m_CopyTexSubImage2D_0;
 
-		private delegate void Delegate_Hint_0(uint target, uint mode);
+		private static GlDelegate_uint_int_vector2i_vector2i_vector2i m_CopyTexSubImage2D_1;
 
-		private delegate bool Delegate_IsBuffer_0(uint buffer);
+		private static GlDelegate_uint_int_int_int_int_int_int_int_int m_CopyTexSubImage3D_0;
 
-		private delegate bool Delegate_IsEnabled_0(uint cap);
+		private static GlDelegate_uint_int_vector3i_vector2i_vector2i m_CopyTexSubImage3D_1;
 
-		private delegate bool Delegate_IsEnabledi_0(uint target, uint index);
+		private static GlDelegate_Returns_uint m_CreateProgram_0;
 
-		private delegate bool Delegate_IsFramebuffer_0(uint framebuffer);
+		private static GlDelegate_uint_Returns_uint m_CreateShader_0;
 
-		private delegate bool Delegate_IsProgram_0(uint program);
+		private static GlDelegate_uint m_CullFace_0;
 
-		private delegate bool Delegate_IsQuery_0(uint id);
+		private static GlDelegate_int_systemintptr m_DeleteBuffers_0;
 
-		private delegate bool Delegate_IsRenderbuffer_0(uint renderbuffer);
+		private static GlDelegate_int_uintarray m_DeleteBuffers_1;
 
-		private delegate bool Delegate_IsShader_0(uint shader);
+		private static GlDelegate_int_refuint m_DeleteBuffers_2;
 
-		private delegate bool Delegate_IsSync_0(System.IntPtr sync);
+		private static GlDelegate_int_systemintptr m_DeleteFramebuffers_0;
 
-		private delegate bool Delegate_IsTexture_0(uint texture);
+		private static GlDelegate_int_uintarray m_DeleteFramebuffers_1;
 
-		private delegate bool Delegate_IsVertexArray_0(uint array);
+		private static GlDelegate_int_refuint m_DeleteFramebuffers_2;
 
-		private delegate void Delegate_LineWidth_0(float width);
+		private static GlDelegate_uint m_DeleteProgram_0;
 
-		private delegate void Delegate_LinkProgram_0(uint program);
+		private static GlDelegate_int_systemintptr m_DeleteQueries_0;
 
-		private delegate void Delegate_LogicOp_0(uint opcode);
+		private static GlDelegate_int_uintarray m_DeleteQueries_1;
 
-		private delegate System.IntPtr Delegate_MapBuffer_0(uint target, uint access);
+		private static GlDelegate_int_refuint m_DeleteQueries_2;
 
-		private delegate System.IntPtr Delegate_MapBufferRange_0(uint target, System.IntPtr offset, System.IntPtr length, uint access);
+		private static GlDelegate_int_systemintptr m_DeleteRenderbuffers_0;
 
-		private delegate void Delegate_MultiDrawArrays_0(uint mode, System.IntPtr first, System.IntPtr count, int drawcount);
+		private static GlDelegate_int_uintarray m_DeleteRenderbuffers_1;
 
-		private delegate void Delegate_MultiDrawElements_0(uint mode, System.IntPtr count, uint type, System.IntPtr indices, int drawcount);
+		private static GlDelegate_int_refuint m_DeleteRenderbuffers_2;
 
-		private delegate void Delegate_MultiDrawElementsBaseVertex_0(uint mode, System.IntPtr count, uint type, System.IntPtr indices, int drawcount, System.IntPtr basevertex);
+		private static GlDelegate_uint m_DeleteShader_0;
 
-		private delegate void Delegate_PixelStoref_0(uint pname, float param);
+		private static GlDelegate_systemintptr m_DeleteSync_0;
 
-		private delegate void Delegate_PixelStorei_0(uint pname, int param);
+		private static GlDelegate_int_systemintptr m_DeleteTextures_0;
 
-		private delegate void Delegate_PointParameterf_0(uint pname, float param);
+		private static GlDelegate_int_uintarray m_DeleteTextures_1;
 
-		private delegate void Delegate_PointParameterfv_0(uint pname, System.IntPtr _params);
+		private static GlDelegate_int_refuint m_DeleteTextures_2;
 
-		private delegate void Delegate_PointParameteri_0(uint pname, int param);
+		private static GlDelegate_int_systemintptr m_DeleteVertexArrays_0;
 
-		private delegate void Delegate_PointParameteriv_0(uint pname, System.IntPtr _params);
+		private static GlDelegate_int_uintarray m_DeleteVertexArrays_1;
 
-		private delegate void Delegate_PointSize_0(float size);
+		private static GlDelegate_int_refuint m_DeleteVertexArrays_2;
 
-		private delegate void Delegate_PolygonMode_0(uint face, uint mode);
+		private static GlDelegate_uint m_DepthFunc_0;
 
-		private delegate void Delegate_PolygonOffset_0(float factor, float units);
+		private static GlDelegate_bool m_DepthMask_0;
 
-		private delegate void Delegate_PrimitiveRestartIndex_0(uint index);
+		private static GlDelegate_double_double m_DepthRange_0;
 
-		private delegate void Delegate_ProvokingVertex_0(uint mode);
+		private static GlDelegate_uint_uint m_DetachShader_0;
 
-		private delegate void Delegate_ReadBuffer_0(uint mode);
+		private static GlDelegate_uint m_Disable_0;
 
-		private delegate void Delegate_ReadPixels_0(int x, int y, int width, int height, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_uint_uint m_Disablei_0;
 
-		private delegate void Delegate_RenderbufferStorage_0(uint target, uint internalformat, int width, int height);
+		private static GlDelegate_uint m_DisableVertexAttribArray_0;
 
-		private delegate void Delegate_RenderbufferStorageMultisample_0(uint target, int samples, uint internalformat, int width, int height);
+		private static GlDelegate_uint_int_int m_DrawArrays_0;
 
-		private delegate void Delegate_SampleCoverage_0(float value, bool invert);
+		private static GlDelegate_uint_int_int_int m_DrawArraysInstanced_0;
 
-		private delegate void Delegate_SampleMaski_0(uint index, uint mask);
+		private static GlDelegate_uint m_DrawBuffer_0;
 
-		private delegate void Delegate_Scissor_0(int x, int y, int width, int height);
+		private static GlDelegate_int_systemintptr m_DrawBuffers_0;
 
-		private delegate void Delegate_ShaderSource_0(uint shader, int count, System.IntPtr _string, System.IntPtr length);
+		private static GlDelegate_int_uintarray m_DrawBuffers_1;
 
-		private delegate void Delegate_ShaderSource_1(uint shader, int count, IntPtr[] _string, int[] length);
+		private static GlDelegate_int_refuint m_DrawBuffers_2;
 
-		private delegate void Delegate_StencilFunc_0(uint func, int _ref, uint mask);
+		private static GlDelegate_uint_int_uint_systemintptr m_DrawElements_0;
 
-		private delegate void Delegate_StencilFuncSeparate_0(uint face, uint func, int _ref, uint mask);
+		private static GlDelegate_uint_int_uint_bytearray m_DrawElements_1;
 
-		private delegate void Delegate_StencilMask_0(uint mask);
+		private static GlDelegate_uint_int_uint_ushortarray m_DrawElements_2;
 
-		private delegate void Delegate_StencilMaskSeparate_0(uint face, uint mask);
+		private static GlDelegate_uint_int_uint_uintarray m_DrawElements_3;
 
-		private delegate void Delegate_StencilOp_0(uint fail, uint zfail, uint zpass);
+		private static GlDelegate_uint_int_uint_systemintptr_int m_DrawElementsBaseVertex_0;
 
-		private delegate void Delegate_StencilOpSeparate_0(uint face, uint sfail, uint dpfail, uint dppass);
+		private static GlDelegate_uint_int_uint_bytearray_int m_DrawElementsBaseVertex_1;
 
-		private delegate void Delegate_TexBuffer_0(uint target, uint internalformat, uint buffer);
+		private static GlDelegate_uint_int_uint_ushortarray_int m_DrawElementsBaseVertex_2;
 
-		private delegate void Delegate_TexImage1D_0(uint target, int level, int internalformat, int width, int border, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_uint_int_uint_uintarray_int m_DrawElementsBaseVertex_3;
 
-		private delegate void Delegate_TexImage2D_0(uint target, int level, int internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_uint_int_uint_systemintptr_int m_DrawElementsInstanced_0;
 
-		private delegate void Delegate_TexImage2DMultisample_0(uint target, int samples, uint internalformat, int width, int height, bool fixedsamplelocations);
+		private static GlDelegate_uint_int_uint_bytearray_int m_DrawElementsInstanced_1;
 
-		private delegate void Delegate_TexImage3D_0(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_uint_int_uint_ushortarray_int m_DrawElementsInstanced_2;
 
-		private delegate void Delegate_TexImage3DMultisample_0(uint target, int samples, uint internalformat, int width, int height, int depth, bool fixedsamplelocations);
+		private static GlDelegate_uint_int_uint_uintarray_int m_DrawElementsInstanced_3;
 
-		private delegate void Delegate_TexParameterf_0(uint target, uint pname, float param);
+		private static GlDelegate_uint_int_uint_systemintptr_int_int m_DrawElementsInstancedBaseVertex_0;
 
-		private delegate void Delegate_TexParameterfv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_bytearray_int_int m_DrawElementsInstancedBaseVertex_1;
 
-		private delegate void Delegate_TexParameteri_0(uint target, uint pname, int param);
+		private static GlDelegate_uint_int_uint_ushortarray_int_int m_DrawElementsInstancedBaseVertex_2;
 
-		private delegate void Delegate_TexParameterIiv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_uintarray_int_int m_DrawElementsInstancedBaseVertex_3;
 
-		private delegate void Delegate_TexParameterIuiv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_uint_uint_int_uint_systemintptr m_DrawRangeElements_0;
 
-		private delegate void Delegate_TexParameteriv_0(uint target, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_uint_uint_int_uint_bytearray m_DrawRangeElements_1;
 
-		private delegate void Delegate_TexSubImage1D_0(uint target, int level, int xoffset, int width, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_uint_uint_uint_int_uint_ushortarray m_DrawRangeElements_2;
 
-		private delegate void Delegate_TexSubImage2D_0(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_uint_uint_uint_int_uint_uintarray m_DrawRangeElements_3;
 
-		private delegate void Delegate_TexSubImage3D_0(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, uint type, System.IntPtr pixels);
+		private static GlDelegate_uint_uint_uint_int_uint_systemintptr_int m_DrawRangeElementsBaseVertex_0;
 
-		private delegate void Delegate_TransformFeedbackVaryings_0(uint program, int count, System.IntPtr varyings, uint bufferMode);
+		private static GlDelegate_uint_uint_uint_int_uint_bytearray_int m_DrawRangeElementsBaseVertex_1;
 
-		private delegate void Delegate_Uniform1f_0(int location, float v0);
+		private static GlDelegate_uint_uint_uint_int_uint_ushortarray_int m_DrawRangeElementsBaseVertex_2;
 
-		private delegate void Delegate_Uniform1fv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_uint_uint_uint_int_uint_uintarray_int m_DrawRangeElementsBaseVertex_3;
 
-		private delegate void Delegate_Uniform1i_0(int location, int v0);
+		private static GlDelegate_uint m_Enable_0;
 
-		private delegate void Delegate_Uniform1iv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_uint_uint m_Enablei_0;
 
-		private delegate void Delegate_Uniform1ui_0(int location, uint v0);
+		private static GlDelegate_uint m_EnableVertexAttribArray_0;
 
-		private delegate void Delegate_Uniform1uiv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate m_EndConditionalRender_0;
 
-		private delegate void Delegate_Uniform2f_0(int location, float v0, float v1);
+		private static GlDelegate_uint m_EndQuery_0;
 
-		private delegate void Delegate_Uniform2f_1(int location, Vector2 value);
+		private static GlDelegate m_EndTransformFeedback_0;
 
-		private delegate void Delegate_Uniform2fv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_uint_uint_Returns_systemintptr m_FenceSync_0;
 
-		private delegate void Delegate_Uniform2i_0(int location, int v0, int v1);
+		private static GlDelegate m_Finish_0;
 
-		private delegate void Delegate_Uniform2i_1(int location, Vector2i value);
+		private static GlDelegate m_Flush_0;
 
-		private delegate void Delegate_Uniform2iv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_uint_systemintptr_systemintptr m_FlushMappedBufferRange_0;
 
-		private delegate void Delegate_Uniform2ui_0(int location, uint v0, uint v1);
+		private static GlDelegate_uint_uint_uint_uint m_FramebufferRenderbuffer_0;
 
-		private delegate void Delegate_Uniform2uiv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_uint_uint_uint_int m_FramebufferTexture_0;
 
-		private delegate void Delegate_Uniform3f_0(int location, float v0, float v1, float v2);
+		private static GlDelegate_uint_uint_uint_uint_int m_FramebufferTexture1D_0;
 
-		private delegate void Delegate_Uniform3f_1(int location, Vector3 value);
+		private static GlDelegate_uint_uint_uint_uint_int m_FramebufferTexture2D_0;
 
-		private delegate void Delegate_Uniform3fv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_uint_uint_uint_uint_int_int m_FramebufferTexture3D_0;
 
-		private delegate void Delegate_Uniform3i_0(int location, int v0, int v1, int v2);
+		private static GlDelegate_uint_uint_uint_int_int m_FramebufferTextureLayer_0;
 
-		private delegate void Delegate_Uniform3i_1(int location, Vector3i value);
+		private static GlDelegate_uint m_FrontFace_0;
 
-		private delegate void Delegate_Uniform3iv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_int_systemintptr m_GenBuffers_0;
 
-		private delegate void Delegate_Uniform3ui_0(int location, uint v0, uint v1, uint v2);
+		private static GlDelegate_int_uintarray m_GenBuffers_1;
 
-		private delegate void Delegate_Uniform3uiv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_int_outuint m_GenBuffers_2;
 
-		private delegate void Delegate_Uniform4f_0(int location, float v0, float v1, float v2, float v3);
+		private static GlDelegate_uint m_GenerateMipmap_0;
 
-		private delegate void Delegate_Uniform4f_1(int location, Vector4 value);
+		private static GlDelegate_int_systemintptr m_GenFramebuffers_0;
 
-		private delegate void Delegate_Uniform4fv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_int_uintarray m_GenFramebuffers_1;
 
-		private delegate void Delegate_Uniform4i_0(int location, int v0, int v1, int v2, int v3);
+		private static GlDelegate_int_outuint m_GenFramebuffers_2;
 
-		private delegate void Delegate_Uniform4i_1(int location, Vector4i value);
+		private static GlDelegate_int_systemintptr m_GenQueries_0;
 
-		private delegate void Delegate_Uniform4iv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_int_uintarray m_GenQueries_1;
 
-		private delegate void Delegate_Uniform4ui_0(int location, uint v0, uint v1, uint v2, uint v3);
+		private static GlDelegate_int_outuint m_GenQueries_2;
 
-		private delegate void Delegate_Uniform4uiv_0(int location, int count, System.IntPtr value);
+		private static GlDelegate_int_systemintptr m_GenRenderbuffers_0;
 
-		private delegate void Delegate_UniformBlockBinding_0(uint program, uint uniformBlockIndex, uint uniformBlockBinding);
+		private static GlDelegate_int_uintarray m_GenRenderbuffers_1;
 
-		private delegate void Delegate_UniformMatrix2fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_int_outuint m_GenRenderbuffers_2;
 
-		private delegate void Delegate_UniformMatrix2fv_1(int location, int count, bool transpose, float[] value);
+		private static GlDelegate_int_systemintptr m_GenTextures_0;
 
-		private delegate void Delegate_UniformMatrix2fv_2(int location, int count, bool transpose, ref Matrix2 value);
+		private static GlDelegate_int_uintarray m_GenTextures_1;
 
-		private delegate void Delegate_UniformMatrix2x3fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_int_outuint m_GenTextures_2;
 
-		private delegate void Delegate_UniformMatrix2x4fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_int_systemintptr m_GenVertexArrays_0;
 
-		private delegate void Delegate_UniformMatrix3fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_int_uintarray m_GenVertexArrays_1;
 
-		private delegate void Delegate_UniformMatrix3fv_1(int location, int count, bool transpose, float[] value);
+		private static GlDelegate_int_outuint m_GenVertexArrays_2;
 
-		private delegate void Delegate_UniformMatrix3fv_2(int location, int count, bool transpose, ref Matrix3 value);
+		private static GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string m_GetActiveAttrib_0;
 
-		private delegate void Delegate_UniformMatrix3x2fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_uint_uint_int_outint_outint_outuint_bytearray m_GetActiveAttrib_1;
 
-		private delegate void Delegate_UniformMatrix3x4fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string m_GetActiveUniform_0;
 
-		private delegate void Delegate_UniformMatrix4fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_uint_uint_int_outint_outint_outuint_bytearray m_GetActiveUniform_1;
 
-		private delegate void Delegate_UniformMatrix4fv_1(int location, int count, bool transpose, float[] value);
+		private static GlDelegate_uint_uint_uint_systemintptr m_GetActiveUniformBlockiv_0;
 
-		private delegate void Delegate_UniformMatrix4fv_2(int location, int count, bool transpose, ref Matrix4 value);
+		private static GlDelegate_uint_uint_uint_intarray m_GetActiveUniformBlockiv_1;
 
-		private delegate void Delegate_UniformMatrix4x2fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_uint_uint_uint_outint m_GetActiveUniformBlockiv_2;
 
-		private delegate void Delegate_UniformMatrix4x3fv_0(int location, int count, bool transpose, System.IntPtr value);
+		private static GlDelegate_uint_uint_int_systemintptr_systemintptr m_GetActiveUniformBlockName_0;
 
-		private delegate bool Delegate_UnmapBuffer_0(uint target);
+		private static GlDelegate_uint_uint_int_outint_bytearray m_GetActiveUniformBlockName_1;
 
-		private delegate void Delegate_UseProgram_0(uint program);
+		private static GlDelegate_uint_uint_int_systemintptr_systemintptr m_GetActiveUniformName_0;
 
-		private delegate void Delegate_ValidateProgram_0(uint program);
+		private static GlDelegate_uint_uint_int_outint_bytearray m_GetActiveUniformName_1;
 
-		private delegate void Delegate_VertexAttrib1d_0(uint index, double x);
+		private static GlDelegate_uint_int_systemintptr_uint_systemintptr m_GetActiveUniformsiv_0;
 
-		private delegate void Delegate_VertexAttrib1dv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_int_uintarray_uint_intarray m_GetActiveUniformsiv_1;
 
-		private delegate void Delegate_VertexAttrib1f_0(uint index, float x);
+		private static GlDelegate_uint_int_outint_uint_intarray m_GetActiveUniformsiv_2;
 
-		private delegate void Delegate_VertexAttrib1fv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_int_uintarray_uint_refint m_GetActiveUniformsiv_3;
 
-		private delegate void Delegate_VertexAttrib1s_0(uint index, short x);
+		private static GlDelegate_uint_int_outint_uint_refint m_GetActiveUniformsiv_4;
 
-		private delegate void Delegate_VertexAttrib1sv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_int_systemintptr_systemintptr m_GetAttachedShaders_0;
 
-		private delegate void Delegate_VertexAttrib2d_0(uint index, double x, double y);
+		private static GlDelegate_uint_int_uint_uintarray m_GetAttachedShaders_1;
 
-		private delegate void Delegate_VertexAttrib2dv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_systemintptr_Returns_int m_GetAttribLocation_0;
 
-		private delegate void Delegate_VertexAttrib2f_0(uint index, float x, float y);
+		private static GlDelegate_uint_bytearray_Returns_int m_GetAttribLocation_1;
 
-		private delegate void Delegate_VertexAttrib2fv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_string_Returns_int m_GetAttribLocation_2;
 
-		private delegate void Delegate_VertexAttrib2s_0(uint index, short x, short y);
+		private static GlDelegate_uint_uint_systemintptr m_GetBooleani_v_0;
 
-		private delegate void Delegate_VertexAttrib2sv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_outbool m_GetBooleani_v_1;
 
-		private delegate void Delegate_VertexAttrib3d_0(uint index, double x, double y, double z);
+		private static GlDelegate_uint_systemintptr m_GetBooleanv_0;
 
-		private delegate void Delegate_VertexAttrib3dv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outbool m_GetBooleanv_1;
 
-		private delegate void Delegate_VertexAttrib3f_0(uint index, float x, float y, float z);
+		private static GlDelegate_uint_uint_systemintptr m_GetBufferParameteri64v_0;
 
-		private delegate void Delegate_VertexAttrib3fv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_outlong m_GetBufferParameteri64v_1;
 
-		private delegate void Delegate_VertexAttrib3s_0(uint index, short x, short y, short z);
+		private static GlDelegate_uint_uint_systemintptr m_GetBufferParameteriv_0;
 
-		private delegate void Delegate_VertexAttrib3sv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_outint m_GetBufferParameteriv_1;
 
-		private delegate void Delegate_VertexAttrib4bv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_systemintptr m_GetBufferPointerv_0;
 
-		private delegate void Delegate_VertexAttrib4d_0(uint index, double x, double y, double z, double w);
+		private static GlDelegate_uint_uint_outsystemintptr m_GetBufferPointerv_1;
 
-		private delegate void Delegate_VertexAttrib4dv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_systemintptr_systemintptr_systemintptr m_GetBufferSubData_0;
 
-		private delegate void Delegate_VertexAttrib4f_0(uint index, float x, float y, float z, float w);
+		private static GlDelegate_uint_int_systemintptr m_GetCompressedTexImage_0;
 
-		private delegate void Delegate_VertexAttrib4fv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_systemintptr m_GetDoublev_0;
 
-		private delegate void Delegate_VertexAttrib4iv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_doublearray m_GetDoublev_1;
 
-		private delegate void Delegate_VertexAttrib4Nbv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outdouble m_GetDoublev_2;
 
-		private delegate void Delegate_VertexAttrib4Niv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outvector2d m_GetDoublev_3;
 
-		private delegate void Delegate_VertexAttrib4Nsv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outvector3d m_GetDoublev_4;
 
-		private delegate void Delegate_VertexAttrib4Nub_0(uint index, byte x, byte y, byte z, byte w);
+		private static GlDelegate_uint_outvector4d m_GetDoublev_5;
 
-		private delegate void Delegate_VertexAttrib4Nubv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outcolor3d m_GetDoublev_6;
 
-		private delegate void Delegate_VertexAttrib4Nuiv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outcolor4d m_GetDoublev_7;
 
-		private delegate void Delegate_VertexAttrib4Nusv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outbox2d m_GetDoublev_8;
 
-		private delegate void Delegate_VertexAttrib4s_0(uint index, short x, short y, short z, short w);
+		private static GlDelegate_uint_outbox3d m_GetDoublev_9;
 
-		private delegate void Delegate_VertexAttrib4sv_0(uint index, System.IntPtr v);
+		private static GlDelegate_Returns_uint m_GetError_0;
 
-		private delegate void Delegate_VertexAttrib4ubv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_systemintptr m_GetFloatv_0;
 
-		private delegate void Delegate_VertexAttrib4uiv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_floatarray m_GetFloatv_1;
 
-		private delegate void Delegate_VertexAttrib4usv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outfloat m_GetFloatv_2;
 
-		private delegate void Delegate_VertexAttribI1i_0(uint index, int x);
+		private static GlDelegate_uint_outvector2 m_GetFloatv_3;
 
-		private delegate void Delegate_VertexAttribI1iv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outvector3 m_GetFloatv_4;
 
-		private delegate void Delegate_VertexAttribI1ui_0(uint index, uint x);
+		private static GlDelegate_uint_outvector4 m_GetFloatv_5;
 
-		private delegate void Delegate_VertexAttribI1uiv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outcolor3 m_GetFloatv_6;
 
-		private delegate void Delegate_VertexAttribI2i_0(uint index, int x, int y);
+		private static GlDelegate_uint_outcolor4 m_GetFloatv_7;
 
-		private delegate void Delegate_VertexAttribI2iv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outbox2 m_GetFloatv_8;
 
-		private delegate void Delegate_VertexAttribI2ui_0(uint index, uint x, uint y);
+		private static GlDelegate_uint_outbox3 m_GetFloatv_9;
 
-		private delegate void Delegate_VertexAttribI2uiv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_string_Returns_int m_GetFragDataLocation_0;
 
-		private delegate void Delegate_VertexAttribI3i_0(uint index, int x, int y, int z);
+		private static GlDelegate_uint_uint_uint_systemintptr m_GetFramebufferAttachmentParameteriv_0;
 
-		private delegate void Delegate_VertexAttribI3iv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_uint_outint m_GetFramebufferAttachmentParameteriv_1;
 
-		private delegate void Delegate_VertexAttribI3ui_0(uint index, uint x, uint y, uint z);
+		private static GlDelegate_uint_uint_systemintptr m_GetInteger64i_v_0;
 
-		private delegate void Delegate_VertexAttribI3uiv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_longarray m_GetInteger64i_v_1;
 
-		private delegate void Delegate_VertexAttribI4bv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_outlong m_GetInteger64i_v_2;
 
-		private delegate void Delegate_VertexAttribI4i_0(uint index, int x, int y, int z, int w);
+		private static GlDelegate_uint_systemintptr m_GetInteger64v_0;
 
-		private delegate void Delegate_VertexAttribI4iv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_longarray m_GetInteger64v_1;
 
-		private delegate void Delegate_VertexAttribI4sv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_outlong m_GetInteger64v_2;
 
-		private delegate void Delegate_VertexAttribI4ubv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_systemintptr m_GetIntegeri_v_0;
 
-		private delegate void Delegate_VertexAttribI4ui_0(uint index, uint x, uint y, uint z, uint w);
+		private static GlDelegate_uint_uint_intarray m_GetIntegeri_v_1;
 
-		private delegate void Delegate_VertexAttribI4uiv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_uint_outint m_GetIntegeri_v_2;
 
-		private delegate void Delegate_VertexAttribI4usv_0(uint index, System.IntPtr v);
+		private static GlDelegate_uint_systemintptr m_GetIntegerv_0;
 
-		private delegate void Delegate_VertexAttribIPointer_0(uint index, int size, uint type, int stride, System.IntPtr pointer);
+		private static GlDelegate_uint_intarray m_GetIntegerv_1;
 
-		private delegate void Delegate_VertexAttribPointer_0(uint index, int size, uint type, bool normalized, int stride, System.IntPtr pointer);
+		private static GlDelegate_uint_outint m_GetIntegerv_2;
 
-		private delegate void Delegate_Viewport_0(int x, int y, int width, int height);
+		private static GlDelegate_uint_uint_systemintptr m_GetMultisamplefv_0;
 
-		private delegate void Delegate_Viewport_1(Box2i dimensions);
+		private static GlDelegate_uint_uint_outfloat m_GetMultisamplefv_1;
 
-		private delegate void Delegate_WaitSync_0(System.IntPtr sync, uint flags, ulong timeout);
+		private static GlDelegate_uint_int_systemintptr_string m_GetProgramInfoLog_0;
 
-		private delegate void Delegate_BindFragDataLocationIndexed_0(uint program, uint colorNumber, uint index, System.IntPtr name);
+		private static GlDelegate_uint_int_outint_bytearray m_GetProgramInfoLog_1;
 
-		private delegate int Delegate_GetFragDataIndex_0(uint program, System.IntPtr name);
+		private static GlDelegate_uint_uint_systemintptr m_GetProgramiv_0;
 
-		private delegate void Delegate_GenSamplers_0(int count, System.IntPtr samplers);
+		private static GlDelegate_uint_uint_intarray m_GetProgramiv_1;
 
-		private delegate void Delegate_GenSamplers_1(int n, uint[] samplers);
+		private static GlDelegate_uint_uint_outint m_GetProgramiv_2;
 
-		private delegate void Delegate_GenSamplers_2(int n, out uint samplers);
+		private static GlDelegate_uint_uint_systemintptr m_GetQueryiv_0;
 
-		private delegate void Delegate_DeleteSamplers_0(int count, System.IntPtr samplers);
+		private static GlDelegate_uint_uint_systemintptr m_GetQueryObjectiv_0;
 
-		private delegate void Delegate_DeleteSamplers_1(int n, uint[] samplers);
+		private static GlDelegate_uint_uint_systemintptr m_GetQueryObjectuiv_0;
 
-		private delegate void Delegate_DeleteSamplers_2(int n, ref uint samplers);
+		private static GlDelegate_uint_uint_systemintptr m_GetRenderbufferParameteriv_0;
 
-		private delegate bool Delegate_IsSampler_0(uint shader);
+		private static GlDelegate_uint_int_systemintptr_string m_GetShaderInfoLog_0;
 
-		private delegate void Delegate_BindSampler_0(uint unit, uint sampler);
+		private static GlDelegate_uint_int_outint_bytearray m_GetShaderInfoLog_1;
 
-		private delegate void Delegate_SamplerParameteri_0(uint sampler, uint pname, int param);
+		private static GlDelegate_uint_uint_systemintptr m_GetShaderiv_0;
 
-		private delegate void Delegate_SamplerParameteriv_0(uint sampler, uint pname, System.IntPtr param);
+		private static GlDelegate_uint_uint_intarray m_GetShaderiv_1;
 
-		private delegate void Delegate_SamplerParameterf_0(uint sampler, uint pname, float param);
+		private static GlDelegate_uint_uint_outint m_GetShaderiv_2;
 
-		private delegate void Delegate_SamplerParameterfv_0(uint sampler, uint pname, System.IntPtr param);
+		private static GlDelegate_uint_int_systemintptr_string m_GetShaderSource_0;
 
-		private delegate void Delegate_SamplerParameterIiv_0(uint sampler, uint pname, System.IntPtr param);
+		private static GlDelegate_uint_Returns_systemintptr m_GetString_0;
 
-		private delegate void Delegate_SamplerParameterIuiv_0(uint sampler, uint pname, System.IntPtr param);
+		private static GlDelegate_uint_uint_Returns_systemintptr m_GetStringi_0;
 
-		private delegate void Delegate_GetSamplerParameteriv_0(uint sampler, uint pname, System.IntPtr _params);
+		private static GlDelegate_systemintptr_uint_int_systemintptr_systemintptr m_GetSynciv_0;
 
-		private delegate void Delegate_GetSamplerParameterIiv_0(uint sampler, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_uint_systemintptr m_GetTexImage_0;
 
-		private delegate void Delegate_GetSamplerParameterfv_0(uint sampler, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_systemintptr m_GetTexLevelParameterfv_0;
 
-		private delegate void Delegate_GetSamplerParameterIuiv_0(uint sampler, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_int_uint_systemintptr m_GetTexLevelParameteriv_0;
 
-		private delegate void Delegate_QueryCounter_0(uint id, uint target);
+		private static GlDelegate_uint_uint_systemintptr m_GetTexParameterfv_0;
 
-		private delegate void Delegate_GetQueryObjecti64v_0(uint id, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_uint_systemintptr m_GetTexParameterIiv_0;
 
-		private delegate void Delegate_GetQueryObjectui64v_0(uint id, uint pname, System.IntPtr _params);
+		private static GlDelegate_uint_uint_systemintptr m_GetTexParameterIuiv_0;
 
-		private delegate void Delegate_VertexAttribDivisor_0(uint index, uint divisor);
+		private static GlDelegate_uint_uint_systemintptr m_GetTexParameteriv_0;
 
-		private delegate void Delegate_VertexAttribP1ui_0(uint index, uint type, bool normalized, uint value);
+		private static GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string m_GetTransformFeedbackVarying_0;
 
-		private delegate void Delegate_VertexAttribP1uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
+		private static GlDelegate_uint_string_Returns_uint m_GetUniformBlockIndex_0;
 
-		private delegate void Delegate_VertexAttribP2ui_0(uint index, uint type, bool normalized, uint value);
+		private static GlDelegate_uint_int_systemintptr m_GetUniformfv_0;
 
-		private delegate void Delegate_VertexAttribP2uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
+		private static GlDelegate_uint_int_systemintptr_systemintptr m_GetUniformIndices_0;
 
-		private delegate void Delegate_VertexAttribP3ui_0(uint index, uint type, bool normalized, uint value);
+		private static GlDelegate_uint_int_systemintptr m_GetUniformiv_0;
 
-		private delegate void Delegate_VertexAttribP3uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
+		private static GlDelegate_uint_systemintptr_Returns_int m_GetUniformLocation_0;
 
-		private delegate void Delegate_VertexAttribP4ui_0(uint index, uint type, bool normalized, uint value);
+		private static GlDelegate_uint_bytearray_Returns_int m_GetUniformLocation_1;
 
-		private delegate void Delegate_VertexAttribP4uiv_0(uint index, uint type, bool normalized, System.IntPtr value);
+		private static GlDelegate_uint_string_Returns_int m_GetUniformLocation_2;
 
+		private static GlDelegate_uint_int_systemintptr m_GetUniformuiv_0;
 
+		private static GlDelegate_uint_uint_systemintptr m_GetVertexAttribdv_0;
 
-		private static Delegate_ActiveTexture_0 m_ActiveTexture_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetVertexAttribfv_0;
 
-		private static Delegate_AttachShader_0 m_AttachShader_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetVertexAttribIiv_0;
 
-		private static Delegate_BeginConditionalRender_0 m_BeginConditionalRender_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetVertexAttribIuiv_0;
 
-		private static Delegate_BeginQuery_0 m_BeginQuery_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetVertexAttribiv_0;
 
-		private static Delegate_BeginTransformFeedback_0 m_BeginTransformFeedback_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetVertexAttribPointerv_0;
 
-		private static Delegate_BindAttribLocation_0 m_BindAttribLocation_0;
+		private static GlDelegate_uint_uint m_Hint_0;
 
-		private static Delegate_BindBuffer_0 m_BindBuffer_0;
+		private static GlDelegate_uint_Returns_bool m_IsBuffer_0;
 
-		private static Delegate_BindBufferBase_0 m_BindBufferBase_0;
+		private static GlDelegate_uint_Returns_bool m_IsEnabled_0;
 
-		private static Delegate_BindBufferRange_0 m_BindBufferRange_0;
+		private static GlDelegate_uint_uint_Returns_bool m_IsEnabledi_0;
 
-		private static Delegate_BindFragDataLocation_0 m_BindFragDataLocation_0;
+		private static GlDelegate_uint_Returns_bool m_IsFramebuffer_0;
 
-		private static Delegate_BindFramebuffer_0 m_BindFramebuffer_0;
+		private static GlDelegate_uint_Returns_bool m_IsProgram_0;
 
-		private static Delegate_BindRenderbuffer_0 m_BindRenderbuffer_0;
+		private static GlDelegate_uint_Returns_bool m_IsQuery_0;
 
-		private static Delegate_BindTexture_0 m_BindTexture_0;
+		private static GlDelegate_uint_Returns_bool m_IsRenderbuffer_0;
 
-		private static Delegate_BindVertexArray_0 m_BindVertexArray_0;
+		private static GlDelegate_uint_Returns_bool m_IsShader_0;
 
-		private static Delegate_BlendColor_0 m_BlendColor_0;
+		private static GlDelegate_systemintptr_Returns_bool m_IsSync_0;
 
-		private static Delegate_BlendColor_1 m_BlendColor_1;
+		private static GlDelegate_uint_Returns_bool m_IsTexture_0;
 
-		private static Delegate_BlendEquation_0 m_BlendEquation_0;
+		private static GlDelegate_uint_Returns_bool m_IsVertexArray_0;
 
-		private static Delegate_BlendEquationSeparate_0 m_BlendEquationSeparate_0;
+		private static GlDelegate_float m_LineWidth_0;
 
-		private static Delegate_BlendFunc_0 m_BlendFunc_0;
+		private static GlDelegate_uint m_LinkProgram_0;
 
-		private static Delegate_BlendFuncSeparate_0 m_BlendFuncSeparate_0;
+		private static GlDelegate_uint m_LogicOp_0;
 
-		private static Delegate_BlitFramebuffer_0 m_BlitFramebuffer_0;
+		private static GlDelegate_uint_uint_Returns_systemintptr m_MapBuffer_0;
 
-		private static Delegate_BlitFramebuffer_1 m_BlitFramebuffer_1;
+		private static GlDelegate_uint_systemintptr_systemintptr_uint_Returns_systemintptr m_MapBufferRange_0;
 
-		private static Delegate_BufferData_0 m_BufferData_0;
+		private static GlDelegate_uint_systemintptr_systemintptr_int m_MultiDrawArrays_0;
 
-		private static Delegate_BufferSubData_0 m_BufferSubData_0;
+		private static GlDelegate_uint_systemintptr_uint_systemintptr_int m_MultiDrawElements_0;
 
-		private static Delegate_CheckFramebufferStatus_0 m_CheckFramebufferStatus_0;
+		private static GlDelegate_uint_systemintptr_uint_systemintptr_int_systemintptr m_MultiDrawElementsBaseVertex_0;
 
-		private static Delegate_ClampColor_0 m_ClampColor_0;
+		private static GlDelegate_uint_float m_PixelStoref_0;
 
-		private static Delegate_Clear_0 m_Clear_0;
+		private static GlDelegate_uint_int m_PixelStorei_0;
 
-		private static Delegate_ClearBufferfi_0 m_ClearBufferfi_0;
+		private static GlDelegate_uint_float m_PointParameterf_0;
 
-		private static Delegate_ClearBufferfv_0 m_ClearBufferfv_0;
+		private static GlDelegate_uint_systemintptr m_PointParameterfv_0;
 
-		private static Delegate_ClearBufferfv_1 m_ClearBufferfv_1;
+		private static GlDelegate_uint_int m_PointParameteri_0;
 
-		private static Delegate_ClearBufferfv_2 m_ClearBufferfv_2;
+		private static GlDelegate_uint_systemintptr m_PointParameteriv_0;
 
-		private static Delegate_ClearBufferiv_0 m_ClearBufferiv_0;
+		private static GlDelegate_float m_PointSize_0;
 
-		private static Delegate_ClearBufferiv_1 m_ClearBufferiv_1;
+		private static GlDelegate_uint_uint m_PolygonMode_0;
 
-		private static Delegate_ClearBufferiv_2 m_ClearBufferiv_2;
+		private static GlDelegate_float_float m_PolygonOffset_0;
 
-		private static Delegate_ClearBufferuiv_0 m_ClearBufferuiv_0;
+		private static GlDelegate_uint m_PrimitiveRestartIndex_0;
 
-		private static Delegate_ClearBufferuiv_1 m_ClearBufferuiv_1;
+		private static GlDelegate_uint m_ProvokingVertex_0;
 
-		private static Delegate_ClearBufferuiv_2 m_ClearBufferuiv_2;
+		private static GlDelegate_uint m_ReadBuffer_0;
 
-		private static Delegate_ClearColor_0 m_ClearColor_0;
+		private static GlDelegate_int_int_int_int_uint_uint_systemintptr m_ReadPixels_0;
 
-		private static Delegate_ClearColor_1 m_ClearColor_1;
+		private static GlDelegate_uint_uint_int_int m_RenderbufferStorage_0;
 
-		private static Delegate_ClearDepth_0 m_ClearDepth_0;
+		private static GlDelegate_uint_int_uint_int_int m_RenderbufferStorageMultisample_0;
 
-		private static Delegate_ClearStencil_0 m_ClearStencil_0;
+		private static GlDelegate_float_bool m_SampleCoverage_0;
 
-		private static Delegate_ClientWaitSync_0 m_ClientWaitSync_0;
+		private static GlDelegate_uint_uint m_SampleMaski_0;
 
-		private static Delegate_ColorMask_0 m_ColorMask_0;
+		private static GlDelegate_int_int_int_int m_Scissor_0;
 
-		private static Delegate_ColorMaski_0 m_ColorMaski_0;
+		private static GlDelegate_uint_int_systemintptr_systemintptr m_ShaderSource_0;
 
-		private static Delegate_CompileShader_0 m_CompileShader_0;
+		private static GlDelegate_uint_int_intptrarray_intarray m_ShaderSource_1;
 
-		private static Delegate_CompressedTexImage1D_0 m_CompressedTexImage1D_0;
+		private static GlDelegate_uint_int_uint m_StencilFunc_0;
 
-		private static Delegate_CompressedTexImage2D_0 m_CompressedTexImage2D_0;
+		private static GlDelegate_uint_uint_int_uint m_StencilFuncSeparate_0;
 
-		private static Delegate_CompressedTexImage3D_0 m_CompressedTexImage3D_0;
+		private static GlDelegate_uint m_StencilMask_0;
 
-		private static Delegate_CompressedTexSubImage1D_0 m_CompressedTexSubImage1D_0;
+		private static GlDelegate_uint_uint m_StencilMaskSeparate_0;
 
-		private static Delegate_CompressedTexSubImage2D_0 m_CompressedTexSubImage2D_0;
+		private static GlDelegate_uint_uint_uint m_StencilOp_0;
 
-		private static Delegate_CompressedTexSubImage2D_1 m_CompressedTexSubImage2D_1;
+		private static GlDelegate_uint_uint_uint_uint m_StencilOpSeparate_0;
 
-		private static Delegate_CompressedTexSubImage3D_0 m_CompressedTexSubImage3D_0;
+		private static GlDelegate_uint_uint_uint m_TexBuffer_0;
 
-		private static Delegate_CompressedTexSubImage3D_1 m_CompressedTexSubImage3D_1;
+		private static GlDelegate_uint_int_int_int_int_uint_uint_systemintptr m_TexImage1D_0;
 
-		private static Delegate_CopyBufferSubData_0 m_CopyBufferSubData_0;
+		private static GlDelegate_uint_int_int_int_int_int_uint_uint_systemintptr m_TexImage2D_0;
 
-		private static Delegate_CopyTexImage1D_0 m_CopyTexImage1D_0;
+		private static GlDelegate_uint_int_uint_int_int_bool m_TexImage2DMultisample_0;
 
-		private static Delegate_CopyTexImage1D_1 m_CopyTexImage1D_1;
+		private static GlDelegate_uint_int_int_int_int_int_int_uint_uint_systemintptr m_TexImage3D_0;
 
-		private static Delegate_CopyTexImage2D_0 m_CopyTexImage2D_0;
+		private static GlDelegate_uint_int_uint_int_int_int_bool m_TexImage3DMultisample_0;
 
-		private static Delegate_CopyTexImage2D_1 m_CopyTexImage2D_1;
+		private static GlDelegate_uint_uint_float m_TexParameterf_0;
 
-		private static Delegate_CopyTexImage2D_2 m_CopyTexImage2D_2;
+		private static GlDelegate_uint_uint_systemintptr m_TexParameterfv_0;
 
-		private static Delegate_CopyTexSubImage1D_0 m_CopyTexSubImage1D_0;
+		private static GlDelegate_uint_uint_int m_TexParameteri_0;
 
-		private static Delegate_CopyTexSubImage1D_1 m_CopyTexSubImage1D_1;
+		private static GlDelegate_uint_uint_systemintptr m_TexParameterIiv_0;
 
-		private static Delegate_CopyTexSubImage2D_0 m_CopyTexSubImage2D_0;
+		private static GlDelegate_uint_uint_systemintptr m_TexParameterIuiv_0;
 
-		private static Delegate_CopyTexSubImage2D_1 m_CopyTexSubImage2D_1;
+		private static GlDelegate_uint_uint_systemintptr m_TexParameteriv_0;
 
-		private static Delegate_CopyTexSubImage3D_0 m_CopyTexSubImage3D_0;
+		private static GlDelegate_uint_int_int_int_uint_uint_systemintptr m_TexSubImage1D_0;
 
-		private static Delegate_CopyTexSubImage3D_1 m_CopyTexSubImage3D_1;
+		private static GlDelegate_uint_int_int_int_int_int_uint_uint_systemintptr m_TexSubImage2D_0;
 
-		private static Delegate_CreateProgram_0 m_CreateProgram_0;
+		private static GlDelegate_uint_int_int_int_int_int_int_int_uint_uint_systemintptr m_TexSubImage3D_0;
 
-		private static Delegate_CreateShader_0 m_CreateShader_0;
+		private static GlDelegate_uint_int_systemintptr_uint m_TransformFeedbackVaryings_0;
 
-		private static Delegate_CullFace_0 m_CullFace_0;
+		private static GlDelegate_int_float m_Uniform1f_0;
 
-		private static Delegate_DeleteBuffers_0 m_DeleteBuffers_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform1fv_0;
 
-		private static Delegate_DeleteBuffers_1 m_DeleteBuffers_1;
+		private static GlDelegate_int_int m_Uniform1i_0;
 
-		private static Delegate_DeleteBuffers_2 m_DeleteBuffers_2;
+		private static GlDelegate_int_int_systemintptr m_Uniform1iv_0;
 
-		private static Delegate_DeleteFramebuffers_0 m_DeleteFramebuffers_0;
+		private static GlDelegate_int_uint m_Uniform1ui_0;
 
-		private static Delegate_DeleteFramebuffers_1 m_DeleteFramebuffers_1;
+		private static GlDelegate_int_int_systemintptr m_Uniform1uiv_0;
 
-		private static Delegate_DeleteFramebuffers_2 m_DeleteFramebuffers_2;
+		private static GlDelegate_int_float_float m_Uniform2f_0;
 
-		private static Delegate_DeleteProgram_0 m_DeleteProgram_0;
+		private static GlDelegate_int_vector2 m_Uniform2f_1;
 
-		private static Delegate_DeleteQueries_0 m_DeleteQueries_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform2fv_0;
 
-		private static Delegate_DeleteQueries_1 m_DeleteQueries_1;
+		private static GlDelegate_int_int_int m_Uniform2i_0;
 
-		private static Delegate_DeleteQueries_2 m_DeleteQueries_2;
+		private static GlDelegate_int_vector2i m_Uniform2i_1;
 
-		private static Delegate_DeleteRenderbuffers_0 m_DeleteRenderbuffers_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform2iv_0;
 
-		private static Delegate_DeleteRenderbuffers_1 m_DeleteRenderbuffers_1;
+		private static GlDelegate_int_uint_uint m_Uniform2ui_0;
 
-		private static Delegate_DeleteRenderbuffers_2 m_DeleteRenderbuffers_2;
+		private static GlDelegate_int_int_systemintptr m_Uniform2uiv_0;
 
-		private static Delegate_DeleteShader_0 m_DeleteShader_0;
+		private static GlDelegate_int_float_float_float m_Uniform3f_0;
 
-		private static Delegate_DeleteSync_0 m_DeleteSync_0;
+		private static GlDelegate_int_vector3 m_Uniform3f_1;
 
-		private static Delegate_DeleteTextures_0 m_DeleteTextures_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform3fv_0;
 
-		private static Delegate_DeleteTextures_1 m_DeleteTextures_1;
+		private static GlDelegate_int_int_int_int m_Uniform3i_0;
 
-		private static Delegate_DeleteTextures_2 m_DeleteTextures_2;
+		private static GlDelegate_int_vector3i m_Uniform3i_1;
 
-		private static Delegate_DeleteVertexArrays_0 m_DeleteVertexArrays_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform3iv_0;
 
-		private static Delegate_DeleteVertexArrays_1 m_DeleteVertexArrays_1;
+		private static GlDelegate_int_uint_uint_uint m_Uniform3ui_0;
 
-		private static Delegate_DeleteVertexArrays_2 m_DeleteVertexArrays_2;
+		private static GlDelegate_int_int_systemintptr m_Uniform3uiv_0;
 
-		private static Delegate_DepthFunc_0 m_DepthFunc_0;
+		private static GlDelegate_int_float_float_float_float m_Uniform4f_0;
 
-		private static Delegate_DepthMask_0 m_DepthMask_0;
+		private static GlDelegate_int_vector4 m_Uniform4f_1;
 
-		private static Delegate_DepthRange_0 m_DepthRange_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform4fv_0;
 
-		private static Delegate_DetachShader_0 m_DetachShader_0;
+		private static GlDelegate_int_int_int_int_int m_Uniform4i_0;
 
-		private static Delegate_Disable_0 m_Disable_0;
+		private static GlDelegate_int_vector4i m_Uniform4i_1;
 
-		private static Delegate_Disablei_0 m_Disablei_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform4iv_0;
 
-		private static Delegate_DisableVertexAttribArray_0 m_DisableVertexAttribArray_0;
+		private static GlDelegate_int_uint_uint_uint_uint m_Uniform4ui_0;
 
-		private static Delegate_DrawArrays_0 m_DrawArrays_0;
+		private static GlDelegate_int_int_systemintptr m_Uniform4uiv_0;
 
-		private static Delegate_DrawArraysInstanced_0 m_DrawArraysInstanced_0;
+		private static GlDelegate_uint_uint_uint m_UniformBlockBinding_0;
 
-		private static Delegate_DrawBuffer_0 m_DrawBuffer_0;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix2fv_0;
 
-		private static Delegate_DrawBuffers_0 m_DrawBuffers_0;
+		private static GlDelegate_int_int_bool_floatarray m_UniformMatrix2fv_1;
 
-		private static Delegate_DrawBuffers_1 m_DrawBuffers_1;
+		private static GlDelegate_int_int_bool_refmatrix2 m_UniformMatrix2fv_2;
 
-		private static Delegate_DrawBuffers_2 m_DrawBuffers_2;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix2x3fv_0;
 
-		private static Delegate_DrawElements_0 m_DrawElements_0;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix2x4fv_0;
 
-		private static Delegate_DrawElements_1 m_DrawElements_1;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix3fv_0;
 
-		private static Delegate_DrawElements_2 m_DrawElements_2;
+		private static GlDelegate_int_int_bool_floatarray m_UniformMatrix3fv_1;
 
-		private static Delegate_DrawElements_3 m_DrawElements_3;
+		private static GlDelegate_int_int_bool_refmatrix3 m_UniformMatrix3fv_2;
 
-		private static Delegate_DrawElementsBaseVertex_0 m_DrawElementsBaseVertex_0;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix3x2fv_0;
 
-		private static Delegate_DrawElementsBaseVertex_1 m_DrawElementsBaseVertex_1;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix3x4fv_0;
 
-		private static Delegate_DrawElementsBaseVertex_2 m_DrawElementsBaseVertex_2;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix4fv_0;
 
-		private static Delegate_DrawElementsBaseVertex_3 m_DrawElementsBaseVertex_3;
+		private static GlDelegate_int_int_bool_floatarray m_UniformMatrix4fv_1;
 
-		private static Delegate_DrawElementsInstanced_0 m_DrawElementsInstanced_0;
+		private static GlDelegate_int_int_bool_refmatrix4 m_UniformMatrix4fv_2;
 
-		private static Delegate_DrawElementsInstanced_1 m_DrawElementsInstanced_1;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix4x2fv_0;
 
-		private static Delegate_DrawElementsInstanced_2 m_DrawElementsInstanced_2;
+		private static GlDelegate_int_int_bool_systemintptr m_UniformMatrix4x3fv_0;
 
-		private static Delegate_DrawElementsInstanced_3 m_DrawElementsInstanced_3;
+		private static GlDelegate_uint_Returns_bool m_UnmapBuffer_0;
 
-		private static Delegate_DrawElementsInstancedBaseVertex_0 m_DrawElementsInstancedBaseVertex_0;
+		private static GlDelegate_uint m_UseProgram_0;
 
-		private static Delegate_DrawElementsInstancedBaseVertex_1 m_DrawElementsInstancedBaseVertex_1;
+		private static GlDelegate_uint m_ValidateProgram_0;
 
-		private static Delegate_DrawElementsInstancedBaseVertex_2 m_DrawElementsInstancedBaseVertex_2;
+		private static GlDelegate_uint_double m_VertexAttrib1d_0;
 
-		private static Delegate_DrawElementsInstancedBaseVertex_3 m_DrawElementsInstancedBaseVertex_3;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib1dv_0;
 
-		private static Delegate_DrawRangeElements_0 m_DrawRangeElements_0;
+		private static GlDelegate_uint_float m_VertexAttrib1f_0;
 
-		private static Delegate_DrawRangeElements_1 m_DrawRangeElements_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib1fv_0;
 
-		private static Delegate_DrawRangeElements_2 m_DrawRangeElements_2;
+		private static GlDelegate_uint_short m_VertexAttrib1s_0;
 
-		private static Delegate_DrawRangeElements_3 m_DrawRangeElements_3;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib1sv_0;
 
-		private static Delegate_DrawRangeElementsBaseVertex_0 m_DrawRangeElementsBaseVertex_0;
+		private static GlDelegate_uint_double_double m_VertexAttrib2d_0;
 
-		private static Delegate_DrawRangeElementsBaseVertex_1 m_DrawRangeElementsBaseVertex_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib2dv_0;
 
-		private static Delegate_DrawRangeElementsBaseVertex_2 m_DrawRangeElementsBaseVertex_2;
+		private static GlDelegate_uint_float_float m_VertexAttrib2f_0;
 
-		private static Delegate_DrawRangeElementsBaseVertex_3 m_DrawRangeElementsBaseVertex_3;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib2fv_0;
 
-		private static Delegate_Enable_0 m_Enable_0;
+		private static GlDelegate_uint_short_short m_VertexAttrib2s_0;
 
-		private static Delegate_Enablei_0 m_Enablei_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib2sv_0;
 
-		private static Delegate_EnableVertexAttribArray_0 m_EnableVertexAttribArray_0;
+		private static GlDelegate_uint_double_double_double m_VertexAttrib3d_0;
 
-		private static Delegate_EndConditionalRender_0 m_EndConditionalRender_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib3dv_0;
 
-		private static Delegate_EndQuery_0 m_EndQuery_0;
+		private static GlDelegate_uint_float_float_float m_VertexAttrib3f_0;
 
-		private static Delegate_EndTransformFeedback_0 m_EndTransformFeedback_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib3fv_0;
 
-		private static Delegate_FenceSync_0 m_FenceSync_0;
+		private static GlDelegate_uint_short_short_short m_VertexAttrib3s_0;
 
-		private static Delegate_Finish_0 m_Finish_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib3sv_0;
 
-		private static Delegate_Flush_0 m_Flush_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4bv_0;
 
-		private static Delegate_FlushMappedBufferRange_0 m_FlushMappedBufferRange_0;
+		private static GlDelegate_uint_double_double_double_double m_VertexAttrib4d_0;
 
-		private static Delegate_FramebufferRenderbuffer_0 m_FramebufferRenderbuffer_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4dv_0;
 
-		private static Delegate_FramebufferTexture_0 m_FramebufferTexture_0;
+		private static GlDelegate_uint_float_float_float_float m_VertexAttrib4f_0;
 
-		private static Delegate_FramebufferTexture1D_0 m_FramebufferTexture1D_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4fv_0;
 
-		private static Delegate_FramebufferTexture2D_0 m_FramebufferTexture2D_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4iv_0;
 
-		private static Delegate_FramebufferTexture3D_0 m_FramebufferTexture3D_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4Nbv_0;
 
-		private static Delegate_FramebufferTextureLayer_0 m_FramebufferTextureLayer_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4Niv_0;
 
-		private static Delegate_FrontFace_0 m_FrontFace_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4Nsv_0;
 
-		private static Delegate_GenBuffers_0 m_GenBuffers_0;
+		private static GlDelegate_uint_byte_byte_byte_byte m_VertexAttrib4Nub_0;
 
-		private static Delegate_GenBuffers_1 m_GenBuffers_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4Nubv_0;
 
-		private static Delegate_GenBuffers_2 m_GenBuffers_2;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4Nuiv_0;
 
-		private static Delegate_GenerateMipmap_0 m_GenerateMipmap_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4Nusv_0;
 
-		private static Delegate_GenFramebuffers_0 m_GenFramebuffers_0;
+		private static GlDelegate_uint_short_short_short_short m_VertexAttrib4s_0;
 
-		private static Delegate_GenFramebuffers_1 m_GenFramebuffers_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4sv_0;
 
-		private static Delegate_GenFramebuffers_2 m_GenFramebuffers_2;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4ubv_0;
 
-		private static Delegate_GenQueries_0 m_GenQueries_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4uiv_0;
 
-		private static Delegate_GenQueries_1 m_GenQueries_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttrib4usv_0;
 
-		private static Delegate_GenQueries_2 m_GenQueries_2;
+		private static GlDelegate_uint_int m_VertexAttribI1i_0;
 
-		private static Delegate_GenRenderbuffers_0 m_GenRenderbuffers_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI1iv_0;
 
-		private static Delegate_GenRenderbuffers_1 m_GenRenderbuffers_1;
+		private static GlDelegate_uint_uint m_VertexAttribI1ui_0;
 
-		private static Delegate_GenRenderbuffers_2 m_GenRenderbuffers_2;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI1uiv_0;
 
-		private static Delegate_GenTextures_0 m_GenTextures_0;
+		private static GlDelegate_uint_int_int m_VertexAttribI2i_0;
 
-		private static Delegate_GenTextures_1 m_GenTextures_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI2iv_0;
 
-		private static Delegate_GenTextures_2 m_GenTextures_2;
+		private static GlDelegate_uint_uint_uint m_VertexAttribI2ui_0;
 
-		private static Delegate_GenVertexArrays_0 m_GenVertexArrays_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI2uiv_0;
 
-		private static Delegate_GenVertexArrays_1 m_GenVertexArrays_1;
+		private static GlDelegate_uint_int_int_int m_VertexAttribI3i_0;
 
-		private static Delegate_GenVertexArrays_2 m_GenVertexArrays_2;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI3iv_0;
 
-		private static Delegate_GetActiveAttrib_0 m_GetActiveAttrib_0;
+		private static GlDelegate_uint_uint_uint_uint m_VertexAttribI3ui_0;
 
-		private static Delegate_GetActiveAttrib_1 m_GetActiveAttrib_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI3uiv_0;
 
-		private static Delegate_GetActiveUniform_0 m_GetActiveUniform_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI4bv_0;
 
-		private static Delegate_GetActiveUniform_1 m_GetActiveUniform_1;
+		private static GlDelegate_uint_int_int_int_int m_VertexAttribI4i_0;
 
-		private static Delegate_GetActiveUniformBlockiv_0 m_GetActiveUniformBlockiv_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI4iv_0;
 
-		private static Delegate_GetActiveUniformBlockiv_1 m_GetActiveUniformBlockiv_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI4sv_0;
 
-		private static Delegate_GetActiveUniformBlockiv_2 m_GetActiveUniformBlockiv_2;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI4ubv_0;
 
-		private static Delegate_GetActiveUniformBlockName_0 m_GetActiveUniformBlockName_0;
+		private static GlDelegate_uint_uint_uint_uint_uint m_VertexAttribI4ui_0;
 
-		private static Delegate_GetActiveUniformBlockName_1 m_GetActiveUniformBlockName_1;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI4uiv_0;
 
-		private static Delegate_GetActiveUniformName_0 m_GetActiveUniformName_0;
+		private static GlDelegate_uint_systemintptr m_VertexAttribI4usv_0;
 
-		private static Delegate_GetActiveUniformName_1 m_GetActiveUniformName_1;
+		private static GlDelegate_uint_int_uint_int_systemintptr m_VertexAttribIPointer_0;
 
-		private static Delegate_GetActiveUniformsiv_0 m_GetActiveUniformsiv_0;
+		private static GlDelegate_uint_int_uint_bool_int_systemintptr m_VertexAttribPointer_0;
 
-		private static Delegate_GetActiveUniformsiv_1 m_GetActiveUniformsiv_1;
+		private static GlDelegate_int_int_int_int m_Viewport_0;
 
-		private static Delegate_GetActiveUniformsiv_2 m_GetActiveUniformsiv_2;
+		private static GlDelegate_box2i m_Viewport_1;
 
-		private static Delegate_GetActiveUniformsiv_3 m_GetActiveUniformsiv_3;
+		private static GlDelegate_systemintptr_uint_ulong m_WaitSync_0;
 
-		private static Delegate_GetActiveUniformsiv_4 m_GetActiveUniformsiv_4;
+		private static GlDelegate_uint_uint_uint_systemintptr m_BindFragDataLocationIndexed_0;
 
-		private static Delegate_GetAttachedShaders_0 m_GetAttachedShaders_0;
+		private static GlDelegate_uint_systemintptr_Returns_int m_GetFragDataIndex_0;
 
-		private static Delegate_GetAttachedShaders_1 m_GetAttachedShaders_1;
+		private static GlDelegate_int_systemintptr m_GenSamplers_0;
 
-		private static Delegate_GetAttribLocation_0 m_GetAttribLocation_0;
+		private static GlDelegate_int_uintarray m_GenSamplers_1;
 
-		private static Delegate_GetAttribLocation_1 m_GetAttribLocation_1;
+		private static GlDelegate_int_outuint m_GenSamplers_2;
 
-		private static Delegate_GetAttribLocation_2 m_GetAttribLocation_2;
+		private static GlDelegate_int_systemintptr m_DeleteSamplers_0;
 
-		private static Delegate_GetBooleani_v_0 m_GetBooleani_v_0;
+		private static GlDelegate_int_uintarray m_DeleteSamplers_1;
 
-		private static Delegate_GetBooleani_v_1 m_GetBooleani_v_1;
+		private static GlDelegate_int_refuint m_DeleteSamplers_2;
 
-		private static Delegate_GetBooleanv_0 m_GetBooleanv_0;
+		private static GlDelegate_uint_Returns_bool m_IsSampler_0;
 
-		private static Delegate_GetBooleanv_1 m_GetBooleanv_1;
+		private static GlDelegate_uint_uint m_BindSampler_0;
 
-		private static Delegate_GetBufferParameteri64v_0 m_GetBufferParameteri64v_0;
+		private static GlDelegate_uint_uint_int m_SamplerParameteri_0;
 
-		private static Delegate_GetBufferParameteri64v_1 m_GetBufferParameteri64v_1;
+		private static GlDelegate_uint_uint_systemintptr m_SamplerParameteriv_0;
 
-		private static Delegate_GetBufferParameteriv_0 m_GetBufferParameteriv_0;
+		private static GlDelegate_uint_uint_float m_SamplerParameterf_0;
 
-		private static Delegate_GetBufferParameteriv_1 m_GetBufferParameteriv_1;
+		private static GlDelegate_uint_uint_systemintptr m_SamplerParameterfv_0;
 
-		private static Delegate_GetBufferPointerv_0 m_GetBufferPointerv_0;
+		private static GlDelegate_uint_uint_systemintptr m_SamplerParameterIiv_0;
 
-		private static Delegate_GetBufferPointerv_1 m_GetBufferPointerv_1;
+		private static GlDelegate_uint_uint_systemintptr m_SamplerParameterIuiv_0;
 
-		private static Delegate_GetBufferSubData_0 m_GetBufferSubData_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetSamplerParameteriv_0;
 
-		private static Delegate_GetCompressedTexImage_0 m_GetCompressedTexImage_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetSamplerParameterIiv_0;
 
-		private static Delegate_GetDoublev_0 m_GetDoublev_0;
+		private static GlDelegate_uint_uint_systemintptr m_GetSamplerParameterfv_0;
 
-		private static Delegate_GetDoublev_1 m_GetDoublev_1;
+		private static GlDelegate_uint_uint_systemintptr m_GetSamplerParameterIuiv_0;
 
-		private static Delegate_GetDoublev_2 m_GetDoublev_2;
+		private static GlDelegate_uint_uint m_QueryCounter_0;
 
-		private static Delegate_GetDoublev_3 m_GetDoublev_3;
+		private static GlDelegate_uint_uint_systemintptr m_GetQueryObjecti64v_0;
 
-		private static Delegate_GetDoublev_4 m_GetDoublev_4;
+		private static GlDelegate_uint_uint_systemintptr m_GetQueryObjectui64v_0;
 
-		private static Delegate_GetDoublev_5 m_GetDoublev_5;
+		private static GlDelegate_uint_uint m_VertexAttribDivisor_0;
 
-		private static Delegate_GetDoublev_6 m_GetDoublev_6;
+		private static GlDelegate_uint_uint_bool_uint m_VertexAttribP1ui_0;
 
-		private static Delegate_GetDoublev_7 m_GetDoublev_7;
+		private static GlDelegate_uint_uint_bool_systemintptr m_VertexAttribP1uiv_0;
 
-		private static Delegate_GetDoublev_8 m_GetDoublev_8;
+		private static GlDelegate_uint_uint_bool_uint m_VertexAttribP2ui_0;
 
-		private static Delegate_GetDoublev_9 m_GetDoublev_9;
+		private static GlDelegate_uint_uint_bool_systemintptr m_VertexAttribP2uiv_0;
 
-		private static Delegate_GetError_0 m_GetError_0;
+		private static GlDelegate_uint_uint_bool_uint m_VertexAttribP3ui_0;
 
-		private static Delegate_GetFloatv_0 m_GetFloatv_0;
+		private static GlDelegate_uint_uint_bool_systemintptr m_VertexAttribP3uiv_0;
 
-		private static Delegate_GetFloatv_1 m_GetFloatv_1;
+		private static GlDelegate_uint_uint_bool_uint m_VertexAttribP4ui_0;
 
-		private static Delegate_GetFloatv_2 m_GetFloatv_2;
-
-		private static Delegate_GetFloatv_3 m_GetFloatv_3;
-
-		private static Delegate_GetFloatv_4 m_GetFloatv_4;
-
-		private static Delegate_GetFloatv_5 m_GetFloatv_5;
-
-		private static Delegate_GetFloatv_6 m_GetFloatv_6;
-
-		private static Delegate_GetFloatv_7 m_GetFloatv_7;
-
-		private static Delegate_GetFloatv_8 m_GetFloatv_8;
-
-		private static Delegate_GetFloatv_9 m_GetFloatv_9;
-
-		private static Delegate_GetFragDataLocation_0 m_GetFragDataLocation_0;
-
-		private static Delegate_GetFramebufferAttachmentParameteriv_0 m_GetFramebufferAttachmentParameteriv_0;
-
-		private static Delegate_GetFramebufferAttachmentParameteriv_1 m_GetFramebufferAttachmentParameteriv_1;
-
-		private static Delegate_GetInteger64i_v_0 m_GetInteger64i_v_0;
-
-		private static Delegate_GetInteger64i_v_1 m_GetInteger64i_v_1;
-
-		private static Delegate_GetInteger64i_v_2 m_GetInteger64i_v_2;
-
-		private static Delegate_GetInteger64v_0 m_GetInteger64v_0;
-
-		private static Delegate_GetInteger64v_1 m_GetInteger64v_1;
-
-		private static Delegate_GetInteger64v_2 m_GetInteger64v_2;
-
-		private static Delegate_GetIntegeri_v_0 m_GetIntegeri_v_0;
-
-		private static Delegate_GetIntegeri_v_1 m_GetIntegeri_v_1;
-
-		private static Delegate_GetIntegeri_v_2 m_GetIntegeri_v_2;
-
-		private static Delegate_GetIntegerv_0 m_GetIntegerv_0;
-
-		private static Delegate_GetIntegerv_1 m_GetIntegerv_1;
-
-		private static Delegate_GetIntegerv_2 m_GetIntegerv_2;
-
-		private static Delegate_GetMultisamplefv_0 m_GetMultisamplefv_0;
-
-		private static Delegate_GetMultisamplefv_1 m_GetMultisamplefv_1;
-
-		private static Delegate_GetProgramInfoLog_0 m_GetProgramInfoLog_0;
-
-		private static Delegate_GetProgramInfoLog_1 m_GetProgramInfoLog_1;
-
-		private static Delegate_GetProgramiv_0 m_GetProgramiv_0;
-
-		private static Delegate_GetProgramiv_1 m_GetProgramiv_1;
-
-		private static Delegate_GetProgramiv_2 m_GetProgramiv_2;
-
-		private static Delegate_GetQueryiv_0 m_GetQueryiv_0;
-
-		private static Delegate_GetQueryObjectiv_0 m_GetQueryObjectiv_0;
-
-		private static Delegate_GetQueryObjectuiv_0 m_GetQueryObjectuiv_0;
-
-		private static Delegate_GetRenderbufferParameteriv_0 m_GetRenderbufferParameteriv_0;
-
-		private static Delegate_GetShaderInfoLog_0 m_GetShaderInfoLog_0;
-
-		private static Delegate_GetShaderInfoLog_1 m_GetShaderInfoLog_1;
-
-		private static Delegate_GetShaderiv_0 m_GetShaderiv_0;
-
-		private static Delegate_GetShaderiv_1 m_GetShaderiv_1;
-
-		private static Delegate_GetShaderiv_2 m_GetShaderiv_2;
-
-		private static Delegate_GetShaderSource_0 m_GetShaderSource_0;
-
-		private static Delegate_GetString_0 m_GetString_0;
-
-		private static Delegate_GetStringi_0 m_GetStringi_0;
-
-		private static Delegate_GetSynciv_0 m_GetSynciv_0;
-
-		private static Delegate_GetTexImage_0 m_GetTexImage_0;
-
-		private static Delegate_GetTexLevelParameterfv_0 m_GetTexLevelParameterfv_0;
-
-		private static Delegate_GetTexLevelParameteriv_0 m_GetTexLevelParameteriv_0;
-
-		private static Delegate_GetTexParameterfv_0 m_GetTexParameterfv_0;
-
-		private static Delegate_GetTexParameterIiv_0 m_GetTexParameterIiv_0;
-
-		private static Delegate_GetTexParameterIuiv_0 m_GetTexParameterIuiv_0;
-
-		private static Delegate_GetTexParameteriv_0 m_GetTexParameteriv_0;
-
-		private static Delegate_GetTransformFeedbackVarying_0 m_GetTransformFeedbackVarying_0;
-
-		private static Delegate_GetUniformBlockIndex_0 m_GetUniformBlockIndex_0;
-
-		private static Delegate_GetUniformfv_0 m_GetUniformfv_0;
-
-		private static Delegate_GetUniformIndices_0 m_GetUniformIndices_0;
-
-		private static Delegate_GetUniformiv_0 m_GetUniformiv_0;
-
-		private static Delegate_GetUniformLocation_0 m_GetUniformLocation_0;
-
-		private static Delegate_GetUniformLocation_1 m_GetUniformLocation_1;
-
-		private static Delegate_GetUniformLocation_2 m_GetUniformLocation_2;
-
-		private static Delegate_GetUniformuiv_0 m_GetUniformuiv_0;
-
-		private static Delegate_GetVertexAttribdv_0 m_GetVertexAttribdv_0;
-
-		private static Delegate_GetVertexAttribfv_0 m_GetVertexAttribfv_0;
-
-		private static Delegate_GetVertexAttribIiv_0 m_GetVertexAttribIiv_0;
-
-		private static Delegate_GetVertexAttribIuiv_0 m_GetVertexAttribIuiv_0;
-
-		private static Delegate_GetVertexAttribiv_0 m_GetVertexAttribiv_0;
-
-		private static Delegate_GetVertexAttribPointerv_0 m_GetVertexAttribPointerv_0;
-
-		private static Delegate_Hint_0 m_Hint_0;
-
-		private static Delegate_IsBuffer_0 m_IsBuffer_0;
-
-		private static Delegate_IsEnabled_0 m_IsEnabled_0;
-
-		private static Delegate_IsEnabledi_0 m_IsEnabledi_0;
-
-		private static Delegate_IsFramebuffer_0 m_IsFramebuffer_0;
-
-		private static Delegate_IsProgram_0 m_IsProgram_0;
-
-		private static Delegate_IsQuery_0 m_IsQuery_0;
-
-		private static Delegate_IsRenderbuffer_0 m_IsRenderbuffer_0;
-
-		private static Delegate_IsShader_0 m_IsShader_0;
-
-		private static Delegate_IsSync_0 m_IsSync_0;
-
-		private static Delegate_IsTexture_0 m_IsTexture_0;
-
-		private static Delegate_IsVertexArray_0 m_IsVertexArray_0;
-
-		private static Delegate_LineWidth_0 m_LineWidth_0;
-
-		private static Delegate_LinkProgram_0 m_LinkProgram_0;
-
-		private static Delegate_LogicOp_0 m_LogicOp_0;
-
-		private static Delegate_MapBuffer_0 m_MapBuffer_0;
-
-		private static Delegate_MapBufferRange_0 m_MapBufferRange_0;
-
-		private static Delegate_MultiDrawArrays_0 m_MultiDrawArrays_0;
-
-		private static Delegate_MultiDrawElements_0 m_MultiDrawElements_0;
-
-		private static Delegate_MultiDrawElementsBaseVertex_0 m_MultiDrawElementsBaseVertex_0;
-
-		private static Delegate_PixelStoref_0 m_PixelStoref_0;
-
-		private static Delegate_PixelStorei_0 m_PixelStorei_0;
-
-		private static Delegate_PointParameterf_0 m_PointParameterf_0;
-
-		private static Delegate_PointParameterfv_0 m_PointParameterfv_0;
-
-		private static Delegate_PointParameteri_0 m_PointParameteri_0;
-
-		private static Delegate_PointParameteriv_0 m_PointParameteriv_0;
-
-		private static Delegate_PointSize_0 m_PointSize_0;
-
-		private static Delegate_PolygonMode_0 m_PolygonMode_0;
-
-		private static Delegate_PolygonOffset_0 m_PolygonOffset_0;
-
-		private static Delegate_PrimitiveRestartIndex_0 m_PrimitiveRestartIndex_0;
-
-		private static Delegate_ProvokingVertex_0 m_ProvokingVertex_0;
-
-		private static Delegate_ReadBuffer_0 m_ReadBuffer_0;
-
-		private static Delegate_ReadPixels_0 m_ReadPixels_0;
-
-		private static Delegate_RenderbufferStorage_0 m_RenderbufferStorage_0;
-
-		private static Delegate_RenderbufferStorageMultisample_0 m_RenderbufferStorageMultisample_0;
-
-		private static Delegate_SampleCoverage_0 m_SampleCoverage_0;
-
-		private static Delegate_SampleMaski_0 m_SampleMaski_0;
-
-		private static Delegate_Scissor_0 m_Scissor_0;
-
-		private static Delegate_ShaderSource_0 m_ShaderSource_0;
-
-		private static Delegate_ShaderSource_1 m_ShaderSource_1;
-
-		private static Delegate_StencilFunc_0 m_StencilFunc_0;
-
-		private static Delegate_StencilFuncSeparate_0 m_StencilFuncSeparate_0;
-
-		private static Delegate_StencilMask_0 m_StencilMask_0;
-
-		private static Delegate_StencilMaskSeparate_0 m_StencilMaskSeparate_0;
-
-		private static Delegate_StencilOp_0 m_StencilOp_0;
-
-		private static Delegate_StencilOpSeparate_0 m_StencilOpSeparate_0;
-
-		private static Delegate_TexBuffer_0 m_TexBuffer_0;
-
-		private static Delegate_TexImage1D_0 m_TexImage1D_0;
-
-		private static Delegate_TexImage2D_0 m_TexImage2D_0;
-
-		private static Delegate_TexImage2DMultisample_0 m_TexImage2DMultisample_0;
-
-		private static Delegate_TexImage3D_0 m_TexImage3D_0;
-
-		private static Delegate_TexImage3DMultisample_0 m_TexImage3DMultisample_0;
-
-		private static Delegate_TexParameterf_0 m_TexParameterf_0;
-
-		private static Delegate_TexParameterfv_0 m_TexParameterfv_0;
-
-		private static Delegate_TexParameteri_0 m_TexParameteri_0;
-
-		private static Delegate_TexParameterIiv_0 m_TexParameterIiv_0;
-
-		private static Delegate_TexParameterIuiv_0 m_TexParameterIuiv_0;
-
-		private static Delegate_TexParameteriv_0 m_TexParameteriv_0;
-
-		private static Delegate_TexSubImage1D_0 m_TexSubImage1D_0;
-
-		private static Delegate_TexSubImage2D_0 m_TexSubImage2D_0;
-
-		private static Delegate_TexSubImage3D_0 m_TexSubImage3D_0;
-
-		private static Delegate_TransformFeedbackVaryings_0 m_TransformFeedbackVaryings_0;
-
-		private static Delegate_Uniform1f_0 m_Uniform1f_0;
-
-		private static Delegate_Uniform1fv_0 m_Uniform1fv_0;
-
-		private static Delegate_Uniform1i_0 m_Uniform1i_0;
-
-		private static Delegate_Uniform1iv_0 m_Uniform1iv_0;
-
-		private static Delegate_Uniform1ui_0 m_Uniform1ui_0;
-
-		private static Delegate_Uniform1uiv_0 m_Uniform1uiv_0;
-
-		private static Delegate_Uniform2f_0 m_Uniform2f_0;
-
-		private static Delegate_Uniform2f_1 m_Uniform2f_1;
-
-		private static Delegate_Uniform2fv_0 m_Uniform2fv_0;
-
-		private static Delegate_Uniform2i_0 m_Uniform2i_0;
-
-		private static Delegate_Uniform2i_1 m_Uniform2i_1;
-
-		private static Delegate_Uniform2iv_0 m_Uniform2iv_0;
-
-		private static Delegate_Uniform2ui_0 m_Uniform2ui_0;
-
-		private static Delegate_Uniform2uiv_0 m_Uniform2uiv_0;
-
-		private static Delegate_Uniform3f_0 m_Uniform3f_0;
-
-		private static Delegate_Uniform3f_1 m_Uniform3f_1;
-
-		private static Delegate_Uniform3fv_0 m_Uniform3fv_0;
-
-		private static Delegate_Uniform3i_0 m_Uniform3i_0;
-
-		private static Delegate_Uniform3i_1 m_Uniform3i_1;
-
-		private static Delegate_Uniform3iv_0 m_Uniform3iv_0;
-
-		private static Delegate_Uniform3ui_0 m_Uniform3ui_0;
-
-		private static Delegate_Uniform3uiv_0 m_Uniform3uiv_0;
-
-		private static Delegate_Uniform4f_0 m_Uniform4f_0;
-
-		private static Delegate_Uniform4f_1 m_Uniform4f_1;
-
-		private static Delegate_Uniform4fv_0 m_Uniform4fv_0;
-
-		private static Delegate_Uniform4i_0 m_Uniform4i_0;
-
-		private static Delegate_Uniform4i_1 m_Uniform4i_1;
-
-		private static Delegate_Uniform4iv_0 m_Uniform4iv_0;
-
-		private static Delegate_Uniform4ui_0 m_Uniform4ui_0;
-
-		private static Delegate_Uniform4uiv_0 m_Uniform4uiv_0;
-
-		private static Delegate_UniformBlockBinding_0 m_UniformBlockBinding_0;
-
-		private static Delegate_UniformMatrix2fv_0 m_UniformMatrix2fv_0;
-
-		private static Delegate_UniformMatrix2fv_1 m_UniformMatrix2fv_1;
-
-		private static Delegate_UniformMatrix2fv_2 m_UniformMatrix2fv_2;
-
-		private static Delegate_UniformMatrix2x3fv_0 m_UniformMatrix2x3fv_0;
-
-		private static Delegate_UniformMatrix2x4fv_0 m_UniformMatrix2x4fv_0;
-
-		private static Delegate_UniformMatrix3fv_0 m_UniformMatrix3fv_0;
-
-		private static Delegate_UniformMatrix3fv_1 m_UniformMatrix3fv_1;
-
-		private static Delegate_UniformMatrix3fv_2 m_UniformMatrix3fv_2;
-
-		private static Delegate_UniformMatrix3x2fv_0 m_UniformMatrix3x2fv_0;
-
-		private static Delegate_UniformMatrix3x4fv_0 m_UniformMatrix3x4fv_0;
-
-		private static Delegate_UniformMatrix4fv_0 m_UniformMatrix4fv_0;
-
-		private static Delegate_UniformMatrix4fv_1 m_UniformMatrix4fv_1;
-
-		private static Delegate_UniformMatrix4fv_2 m_UniformMatrix4fv_2;
-
-		private static Delegate_UniformMatrix4x2fv_0 m_UniformMatrix4x2fv_0;
-
-		private static Delegate_UniformMatrix4x3fv_0 m_UniformMatrix4x3fv_0;
-
-		private static Delegate_UnmapBuffer_0 m_UnmapBuffer_0;
-
-		private static Delegate_UseProgram_0 m_UseProgram_0;
-
-		private static Delegate_ValidateProgram_0 m_ValidateProgram_0;
-
-		private static Delegate_VertexAttrib1d_0 m_VertexAttrib1d_0;
-
-		private static Delegate_VertexAttrib1dv_0 m_VertexAttrib1dv_0;
-
-		private static Delegate_VertexAttrib1f_0 m_VertexAttrib1f_0;
-
-		private static Delegate_VertexAttrib1fv_0 m_VertexAttrib1fv_0;
-
-		private static Delegate_VertexAttrib1s_0 m_VertexAttrib1s_0;
-
-		private static Delegate_VertexAttrib1sv_0 m_VertexAttrib1sv_0;
-
-		private static Delegate_VertexAttrib2d_0 m_VertexAttrib2d_0;
-
-		private static Delegate_VertexAttrib2dv_0 m_VertexAttrib2dv_0;
-
-		private static Delegate_VertexAttrib2f_0 m_VertexAttrib2f_0;
-
-		private static Delegate_VertexAttrib2fv_0 m_VertexAttrib2fv_0;
-
-		private static Delegate_VertexAttrib2s_0 m_VertexAttrib2s_0;
-
-		private static Delegate_VertexAttrib2sv_0 m_VertexAttrib2sv_0;
-
-		private static Delegate_VertexAttrib3d_0 m_VertexAttrib3d_0;
-
-		private static Delegate_VertexAttrib3dv_0 m_VertexAttrib3dv_0;
-
-		private static Delegate_VertexAttrib3f_0 m_VertexAttrib3f_0;
-
-		private static Delegate_VertexAttrib3fv_0 m_VertexAttrib3fv_0;
-
-		private static Delegate_VertexAttrib3s_0 m_VertexAttrib3s_0;
-
-		private static Delegate_VertexAttrib3sv_0 m_VertexAttrib3sv_0;
-
-		private static Delegate_VertexAttrib4bv_0 m_VertexAttrib4bv_0;
-
-		private static Delegate_VertexAttrib4d_0 m_VertexAttrib4d_0;
-
-		private static Delegate_VertexAttrib4dv_0 m_VertexAttrib4dv_0;
-
-		private static Delegate_VertexAttrib4f_0 m_VertexAttrib4f_0;
-
-		private static Delegate_VertexAttrib4fv_0 m_VertexAttrib4fv_0;
-
-		private static Delegate_VertexAttrib4iv_0 m_VertexAttrib4iv_0;
-
-		private static Delegate_VertexAttrib4Nbv_0 m_VertexAttrib4Nbv_0;
-
-		private static Delegate_VertexAttrib4Niv_0 m_VertexAttrib4Niv_0;
-
-		private static Delegate_VertexAttrib4Nsv_0 m_VertexAttrib4Nsv_0;
-
-		private static Delegate_VertexAttrib4Nub_0 m_VertexAttrib4Nub_0;
-
-		private static Delegate_VertexAttrib4Nubv_0 m_VertexAttrib4Nubv_0;
-
-		private static Delegate_VertexAttrib4Nuiv_0 m_VertexAttrib4Nuiv_0;
-
-		private static Delegate_VertexAttrib4Nusv_0 m_VertexAttrib4Nusv_0;
-
-		private static Delegate_VertexAttrib4s_0 m_VertexAttrib4s_0;
-
-		private static Delegate_VertexAttrib4sv_0 m_VertexAttrib4sv_0;
-
-		private static Delegate_VertexAttrib4ubv_0 m_VertexAttrib4ubv_0;
-
-		private static Delegate_VertexAttrib4uiv_0 m_VertexAttrib4uiv_0;
-
-		private static Delegate_VertexAttrib4usv_0 m_VertexAttrib4usv_0;
-
-		private static Delegate_VertexAttribI1i_0 m_VertexAttribI1i_0;
-
-		private static Delegate_VertexAttribI1iv_0 m_VertexAttribI1iv_0;
-
-		private static Delegate_VertexAttribI1ui_0 m_VertexAttribI1ui_0;
-
-		private static Delegate_VertexAttribI1uiv_0 m_VertexAttribI1uiv_0;
-
-		private static Delegate_VertexAttribI2i_0 m_VertexAttribI2i_0;
-
-		private static Delegate_VertexAttribI2iv_0 m_VertexAttribI2iv_0;
-
-		private static Delegate_VertexAttribI2ui_0 m_VertexAttribI2ui_0;
-
-		private static Delegate_VertexAttribI2uiv_0 m_VertexAttribI2uiv_0;
-
-		private static Delegate_VertexAttribI3i_0 m_VertexAttribI3i_0;
-
-		private static Delegate_VertexAttribI3iv_0 m_VertexAttribI3iv_0;
-
-		private static Delegate_VertexAttribI3ui_0 m_VertexAttribI3ui_0;
-
-		private static Delegate_VertexAttribI3uiv_0 m_VertexAttribI3uiv_0;
-
-		private static Delegate_VertexAttribI4bv_0 m_VertexAttribI4bv_0;
-
-		private static Delegate_VertexAttribI4i_0 m_VertexAttribI4i_0;
-
-		private static Delegate_VertexAttribI4iv_0 m_VertexAttribI4iv_0;
-
-		private static Delegate_VertexAttribI4sv_0 m_VertexAttribI4sv_0;
-
-		private static Delegate_VertexAttribI4ubv_0 m_VertexAttribI4ubv_0;
-
-		private static Delegate_VertexAttribI4ui_0 m_VertexAttribI4ui_0;
-
-		private static Delegate_VertexAttribI4uiv_0 m_VertexAttribI4uiv_0;
-
-		private static Delegate_VertexAttribI4usv_0 m_VertexAttribI4usv_0;
-
-		private static Delegate_VertexAttribIPointer_0 m_VertexAttribIPointer_0;
-
-		private static Delegate_VertexAttribPointer_0 m_VertexAttribPointer_0;
-
-		private static Delegate_Viewport_0 m_Viewport_0;
-
-		private static Delegate_Viewport_1 m_Viewport_1;
-
-		private static Delegate_WaitSync_0 m_WaitSync_0;
-
-		private static Delegate_BindFragDataLocationIndexed_0 m_BindFragDataLocationIndexed_0;
-
-		private static Delegate_GetFragDataIndex_0 m_GetFragDataIndex_0;
-
-		private static Delegate_GenSamplers_0 m_GenSamplers_0;
-
-		private static Delegate_GenSamplers_1 m_GenSamplers_1;
-
-		private static Delegate_GenSamplers_2 m_GenSamplers_2;
-
-		private static Delegate_DeleteSamplers_0 m_DeleteSamplers_0;
-
-		private static Delegate_DeleteSamplers_1 m_DeleteSamplers_1;
-
-		private static Delegate_DeleteSamplers_2 m_DeleteSamplers_2;
-
-		private static Delegate_IsSampler_0 m_IsSampler_0;
-
-		private static Delegate_BindSampler_0 m_BindSampler_0;
-
-		private static Delegate_SamplerParameteri_0 m_SamplerParameteri_0;
-
-		private static Delegate_SamplerParameteriv_0 m_SamplerParameteriv_0;
-
-		private static Delegate_SamplerParameterf_0 m_SamplerParameterf_0;
-
-		private static Delegate_SamplerParameterfv_0 m_SamplerParameterfv_0;
-
-		private static Delegate_SamplerParameterIiv_0 m_SamplerParameterIiv_0;
-
-		private static Delegate_SamplerParameterIuiv_0 m_SamplerParameterIuiv_0;
-
-		private static Delegate_GetSamplerParameteriv_0 m_GetSamplerParameteriv_0;
-
-		private static Delegate_GetSamplerParameterIiv_0 m_GetSamplerParameterIiv_0;
-
-		private static Delegate_GetSamplerParameterfv_0 m_GetSamplerParameterfv_0;
-
-		private static Delegate_GetSamplerParameterIuiv_0 m_GetSamplerParameterIuiv_0;
-
-		private static Delegate_QueryCounter_0 m_QueryCounter_0;
-
-		private static Delegate_GetQueryObjecti64v_0 m_GetQueryObjecti64v_0;
-
-		private static Delegate_GetQueryObjectui64v_0 m_GetQueryObjectui64v_0;
-
-		private static Delegate_VertexAttribDivisor_0 m_VertexAttribDivisor_0;
-
-		private static Delegate_VertexAttribP1ui_0 m_VertexAttribP1ui_0;
-
-		private static Delegate_VertexAttribP1uiv_0 m_VertexAttribP1uiv_0;
-
-		private static Delegate_VertexAttribP2ui_0 m_VertexAttribP2ui_0;
-
-		private static Delegate_VertexAttribP2uiv_0 m_VertexAttribP2uiv_0;
-
-		private static Delegate_VertexAttribP3ui_0 m_VertexAttribP3ui_0;
-
-		private static Delegate_VertexAttribP3uiv_0 m_VertexAttribP3uiv_0;
-
-		private static Delegate_VertexAttribP4ui_0 m_VertexAttribP4ui_0;
-
-		private static Delegate_VertexAttribP4uiv_0 m_VertexAttribP4uiv_0;
+		private static GlDelegate_uint_uint_bool_systemintptr m_VertexAttribP4uiv_0;
 
 
 		private static void InitializeFunctions()
 		{
 
-			m_ActiveTexture_0 = (Delegate_ActiveTexture_0)GetFunctionDelegate("glActiveTexture", typeof(Delegate_ActiveTexture_0));
+			m_ActiveTexture_0 = (GlDelegate_uint)GetFunctionDelegate("glActiveTexture", typeof(GlDelegate_uint));
 
-			m_AttachShader_0 = (Delegate_AttachShader_0)GetFunctionDelegate("glAttachShader", typeof(Delegate_AttachShader_0));
+			m_AttachShader_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glAttachShader", typeof(GlDelegate_uint_uint));
 
-			m_BeginConditionalRender_0 = (Delegate_BeginConditionalRender_0)GetFunctionDelegate("glBeginConditionalRender", typeof(Delegate_BeginConditionalRender_0));
+			m_BeginConditionalRender_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBeginConditionalRender", typeof(GlDelegate_uint_uint));
 
-			m_BeginQuery_0 = (Delegate_BeginQuery_0)GetFunctionDelegate("glBeginQuery", typeof(Delegate_BeginQuery_0));
+			m_BeginQuery_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBeginQuery", typeof(GlDelegate_uint_uint));
 
-			m_BeginTransformFeedback_0 = (Delegate_BeginTransformFeedback_0)GetFunctionDelegate("glBeginTransformFeedback", typeof(Delegate_BeginTransformFeedback_0));
+			m_BeginTransformFeedback_0 = (GlDelegate_uint)GetFunctionDelegate("glBeginTransformFeedback", typeof(GlDelegate_uint));
 
-			m_BindAttribLocation_0 = (Delegate_BindAttribLocation_0)GetFunctionDelegate("glBindAttribLocation", typeof(Delegate_BindAttribLocation_0));
+			m_BindAttribLocation_0 = (GlDelegate_uint_uint_string)GetFunctionDelegate("glBindAttribLocation", typeof(GlDelegate_uint_uint_string));
 
-			m_BindBuffer_0 = (Delegate_BindBuffer_0)GetFunctionDelegate("glBindBuffer", typeof(Delegate_BindBuffer_0));
+			m_BindBuffer_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBindBuffer", typeof(GlDelegate_uint_uint));
 
-			m_BindBufferBase_0 = (Delegate_BindBufferBase_0)GetFunctionDelegate("glBindBufferBase", typeof(Delegate_BindBufferBase_0));
+			m_BindBufferBase_0 = (GlDelegate_uint_uint_uint)GetFunctionDelegate("glBindBufferBase", typeof(GlDelegate_uint_uint_uint));
 
-			m_BindBufferRange_0 = (Delegate_BindBufferRange_0)GetFunctionDelegate("glBindBufferRange", typeof(Delegate_BindBufferRange_0));
+			m_BindBufferRange_0 = (GlDelegate_uint_uint_uint_systemintptr_systemintptr)GetFunctionDelegate("glBindBufferRange", typeof(GlDelegate_uint_uint_uint_systemintptr_systemintptr));
 
-			m_BindFragDataLocation_0 = (Delegate_BindFragDataLocation_0)GetFunctionDelegate("glBindFragDataLocation", typeof(Delegate_BindFragDataLocation_0));
+			m_BindFragDataLocation_0 = (GlDelegate_uint_uint_string)GetFunctionDelegate("glBindFragDataLocation", typeof(GlDelegate_uint_uint_string));
 
-			m_BindFramebuffer_0 = (Delegate_BindFramebuffer_0)GetFunctionDelegate("glBindFramebuffer", typeof(Delegate_BindFramebuffer_0));
+			m_BindFramebuffer_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBindFramebuffer", typeof(GlDelegate_uint_uint));
 
-			m_BindRenderbuffer_0 = (Delegate_BindRenderbuffer_0)GetFunctionDelegate("glBindRenderbuffer", typeof(Delegate_BindRenderbuffer_0));
+			m_BindRenderbuffer_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBindRenderbuffer", typeof(GlDelegate_uint_uint));
 
-			m_BindTexture_0 = (Delegate_BindTexture_0)GetFunctionDelegate("glBindTexture", typeof(Delegate_BindTexture_0));
+			m_BindTexture_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBindTexture", typeof(GlDelegate_uint_uint));
 
-			m_BindVertexArray_0 = (Delegate_BindVertexArray_0)GetFunctionDelegate("glBindVertexArray", typeof(Delegate_BindVertexArray_0));
+			m_BindVertexArray_0 = (GlDelegate_uint)GetFunctionDelegate("glBindVertexArray", typeof(GlDelegate_uint));
 
-			m_BlendColor_0 = (Delegate_BlendColor_0)GetFunctionDelegate("glBlendColor", typeof(Delegate_BlendColor_0));
+			m_BlendColor_0 = (GlDelegate_float_float_float_float)GetFunctionDelegate("glBlendColor", typeof(GlDelegate_float_float_float_float));
 
-			m_BlendColor_1 = (Delegate_BlendColor_1)GetFunctionDelegate("glBlendColor", typeof(Delegate_BlendColor_1));
+			m_BlendColor_1 = (GlDelegate_color4)GetFunctionDelegate("glBlendColor", typeof(GlDelegate_color4));
 
-			m_BlendEquation_0 = (Delegate_BlendEquation_0)GetFunctionDelegate("glBlendEquation", typeof(Delegate_BlendEquation_0));
+			m_BlendEquation_0 = (GlDelegate_uint)GetFunctionDelegate("glBlendEquation", typeof(GlDelegate_uint));
 
-			m_BlendEquationSeparate_0 = (Delegate_BlendEquationSeparate_0)GetFunctionDelegate("glBlendEquationSeparate", typeof(Delegate_BlendEquationSeparate_0));
+			m_BlendEquationSeparate_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBlendEquationSeparate", typeof(GlDelegate_uint_uint));
 
-			m_BlendFunc_0 = (Delegate_BlendFunc_0)GetFunctionDelegate("glBlendFunc", typeof(Delegate_BlendFunc_0));
+			m_BlendFunc_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBlendFunc", typeof(GlDelegate_uint_uint));
 
-			m_BlendFuncSeparate_0 = (Delegate_BlendFuncSeparate_0)GetFunctionDelegate("glBlendFuncSeparate", typeof(Delegate_BlendFuncSeparate_0));
+			m_BlendFuncSeparate_0 = (GlDelegate_uint_uint_uint_uint)GetFunctionDelegate("glBlendFuncSeparate", typeof(GlDelegate_uint_uint_uint_uint));
 
-			m_BlitFramebuffer_0 = (Delegate_BlitFramebuffer_0)GetFunctionDelegate("glBlitFramebuffer", typeof(Delegate_BlitFramebuffer_0));
+			m_BlitFramebuffer_0 = (GlDelegate_int_int_int_int_int_int_int_int_uint_uint)GetFunctionDelegate("glBlitFramebuffer", typeof(GlDelegate_int_int_int_int_int_int_int_int_uint_uint));
 
-			m_BlitFramebuffer_1 = (Delegate_BlitFramebuffer_1)GetFunctionDelegate("glBlitFramebuffer", typeof(Delegate_BlitFramebuffer_1));
+			m_BlitFramebuffer_1 = (GlDelegate_vector2i_vector2i_vector2i_vector2i_uint_uint)GetFunctionDelegate("glBlitFramebuffer", typeof(GlDelegate_vector2i_vector2i_vector2i_vector2i_uint_uint));
 
-			m_BufferData_0 = (Delegate_BufferData_0)GetFunctionDelegate("glBufferData", typeof(Delegate_BufferData_0));
+			m_BufferData_0 = (GlDelegate_uint_systemintptr_systemintptr_uint)GetFunctionDelegate("glBufferData", typeof(GlDelegate_uint_systemintptr_systemintptr_uint));
 
-			m_BufferSubData_0 = (Delegate_BufferSubData_0)GetFunctionDelegate("glBufferSubData", typeof(Delegate_BufferSubData_0));
+			m_BufferSubData_0 = (GlDelegate_uint_systemintptr_systemintptr_systemintptr)GetFunctionDelegate("glBufferSubData", typeof(GlDelegate_uint_systemintptr_systemintptr_systemintptr));
 
-			m_CheckFramebufferStatus_0 = (Delegate_CheckFramebufferStatus_0)GetFunctionDelegate("glCheckFramebufferStatus", typeof(Delegate_CheckFramebufferStatus_0));
+			m_CheckFramebufferStatus_0 = (GlDelegate_uint_Returns_uint)GetFunctionDelegate("glCheckFramebufferStatus", typeof(GlDelegate_uint_Returns_uint));
 
-			m_ClampColor_0 = (Delegate_ClampColor_0)GetFunctionDelegate("glClampColor", typeof(Delegate_ClampColor_0));
+			m_ClampColor_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glClampColor", typeof(GlDelegate_uint_uint));
 
-			m_Clear_0 = (Delegate_Clear_0)GetFunctionDelegate("glClear", typeof(Delegate_Clear_0));
+			m_Clear_0 = (GlDelegate_uint)GetFunctionDelegate("glClear", typeof(GlDelegate_uint));
 
-			m_ClearBufferfi_0 = (Delegate_ClearBufferfi_0)GetFunctionDelegate("glClearBufferfi", typeof(Delegate_ClearBufferfi_0));
+			m_ClearBufferfi_0 = (GlDelegate_uint_int_float_int)GetFunctionDelegate("glClearBufferfi", typeof(GlDelegate_uint_int_float_int));
 
-			m_ClearBufferfv_0 = (Delegate_ClearBufferfv_0)GetFunctionDelegate("glClearBufferfv", typeof(Delegate_ClearBufferfv_0));
+			m_ClearBufferfv_0 = (GlDelegate_uint_int_systemintptr)GetFunctionDelegate("glClearBufferfv", typeof(GlDelegate_uint_int_systemintptr));
 
-			m_ClearBufferfv_1 = (Delegate_ClearBufferfv_1)GetFunctionDelegate("glClearBufferfv", typeof(Delegate_ClearBufferfv_1));
+			m_ClearBufferfv_1 = (GlDelegate_uint_int_refcolor4)GetFunctionDelegate("glClearBufferfv", typeof(GlDelegate_uint_int_refcolor4));
 
-			m_ClearBufferfv_2 = (Delegate_ClearBufferfv_2)GetFunctionDelegate("glClearBufferfv", typeof(Delegate_ClearBufferfv_2));
+			m_ClearBufferfv_2 = (GlDelegate_uint_int_reffloat)GetFunctionDelegate("glClearBufferfv", typeof(GlDelegate_uint_int_reffloat));
 
-			m_ClearBufferiv_0 = (Delegate_ClearBufferiv_0)GetFunctionDelegate("glClearBufferiv", typeof(Delegate_ClearBufferiv_0));
+			m_ClearBufferiv_0 = (GlDelegate_uint_int_systemintptr)GetFunctionDelegate("glClearBufferiv", typeof(GlDelegate_uint_int_systemintptr));
 
-			m_ClearBufferiv_1 = (Delegate_ClearBufferiv_1)GetFunctionDelegate("glClearBufferiv", typeof(Delegate_ClearBufferiv_1));
+			m_ClearBufferiv_1 = (GlDelegate_uint_int_refcolor4i)GetFunctionDelegate("glClearBufferiv", typeof(GlDelegate_uint_int_refcolor4i));
 
-			m_ClearBufferiv_2 = (Delegate_ClearBufferiv_2)GetFunctionDelegate("glClearBufferiv", typeof(Delegate_ClearBufferiv_2));
+			m_ClearBufferiv_2 = (GlDelegate_uint_int_refint)GetFunctionDelegate("glClearBufferiv", typeof(GlDelegate_uint_int_refint));
 
-			m_ClearBufferuiv_0 = (Delegate_ClearBufferuiv_0)GetFunctionDelegate("glClearBufferuiv", typeof(Delegate_ClearBufferuiv_0));
+			m_ClearBufferuiv_0 = (GlDelegate_uint_int_systemintptr)GetFunctionDelegate("glClearBufferuiv", typeof(GlDelegate_uint_int_systemintptr));
 
-			m_ClearBufferuiv_1 = (Delegate_ClearBufferuiv_1)GetFunctionDelegate("glClearBufferuiv", typeof(Delegate_ClearBufferuiv_1));
+			m_ClearBufferuiv_1 = (GlDelegate_uint_int_refcolor4ui)GetFunctionDelegate("glClearBufferuiv", typeof(GlDelegate_uint_int_refcolor4ui));
 
-			m_ClearBufferuiv_2 = (Delegate_ClearBufferuiv_2)GetFunctionDelegate("glClearBufferuiv", typeof(Delegate_ClearBufferuiv_2));
+			m_ClearBufferuiv_2 = (GlDelegate_uint_int_refuint)GetFunctionDelegate("glClearBufferuiv", typeof(GlDelegate_uint_int_refuint));
 
-			m_ClearColor_0 = (Delegate_ClearColor_0)GetFunctionDelegate("glClearColor", typeof(Delegate_ClearColor_0));
+			m_ClearColor_0 = (GlDelegate_float_float_float_float)GetFunctionDelegate("glClearColor", typeof(GlDelegate_float_float_float_float));
 
-			m_ClearColor_1 = (Delegate_ClearColor_1)GetFunctionDelegate("glClearColor", typeof(Delegate_ClearColor_1));
+			m_ClearColor_1 = (GlDelegate_color4)GetFunctionDelegate("glClearColor", typeof(GlDelegate_color4));
 
-			m_ClearDepth_0 = (Delegate_ClearDepth_0)GetFunctionDelegate("glClearDepth", typeof(Delegate_ClearDepth_0));
+			m_ClearDepth_0 = (GlDelegate_double)GetFunctionDelegate("glClearDepth", typeof(GlDelegate_double));
 
-			m_ClearStencil_0 = (Delegate_ClearStencil_0)GetFunctionDelegate("glClearStencil", typeof(Delegate_ClearStencil_0));
+			m_ClearStencil_0 = (GlDelegate_int)GetFunctionDelegate("glClearStencil", typeof(GlDelegate_int));
 
-			m_ClientWaitSync_0 = (Delegate_ClientWaitSync_0)GetFunctionDelegate("glClientWaitSync", typeof(Delegate_ClientWaitSync_0));
+			m_ClientWaitSync_0 = (GlDelegate_systemintptr_uint_ulong_Returns_uint)GetFunctionDelegate("glClientWaitSync", typeof(GlDelegate_systemintptr_uint_ulong_Returns_uint));
 
-			m_ColorMask_0 = (Delegate_ColorMask_0)GetFunctionDelegate("glColorMask", typeof(Delegate_ColorMask_0));
+			m_ColorMask_0 = (GlDelegate_bool_bool_bool_bool)GetFunctionDelegate("glColorMask", typeof(GlDelegate_bool_bool_bool_bool));
 
-			m_ColorMaski_0 = (Delegate_ColorMaski_0)GetFunctionDelegate("glColorMaski", typeof(Delegate_ColorMaski_0));
+			m_ColorMaski_0 = (GlDelegate_uint_bool_bool_bool_bool)GetFunctionDelegate("glColorMaski", typeof(GlDelegate_uint_bool_bool_bool_bool));
 
-			m_CompileShader_0 = (Delegate_CompileShader_0)GetFunctionDelegate("glCompileShader", typeof(Delegate_CompileShader_0));
+			m_CompileShader_0 = (GlDelegate_uint)GetFunctionDelegate("glCompileShader", typeof(GlDelegate_uint));
 
-			m_CompressedTexImage1D_0 = (Delegate_CompressedTexImage1D_0)GetFunctionDelegate("glCompressedTexImage1D", typeof(Delegate_CompressedTexImage1D_0));
+			m_CompressedTexImage1D_0 = (GlDelegate_uint_int_uint_int_int_int_systemintptr)GetFunctionDelegate("glCompressedTexImage1D", typeof(GlDelegate_uint_int_uint_int_int_int_systemintptr));
 
-			m_CompressedTexImage2D_0 = (Delegate_CompressedTexImage2D_0)GetFunctionDelegate("glCompressedTexImage2D", typeof(Delegate_CompressedTexImage2D_0));
+			m_CompressedTexImage2D_0 = (GlDelegate_uint_int_uint_int_int_int_int_systemintptr)GetFunctionDelegate("glCompressedTexImage2D", typeof(GlDelegate_uint_int_uint_int_int_int_int_systemintptr));
 
-			m_CompressedTexImage3D_0 = (Delegate_CompressedTexImage3D_0)GetFunctionDelegate("glCompressedTexImage3D", typeof(Delegate_CompressedTexImage3D_0));
+			m_CompressedTexImage3D_0 = (GlDelegate_uint_int_uint_int_int_int_int_int_systemintptr)GetFunctionDelegate("glCompressedTexImage3D", typeof(GlDelegate_uint_int_uint_int_int_int_int_int_systemintptr));
 
-			m_CompressedTexSubImage1D_0 = (Delegate_CompressedTexSubImage1D_0)GetFunctionDelegate("glCompressedTexSubImage1D", typeof(Delegate_CompressedTexSubImage1D_0));
+			m_CompressedTexSubImage1D_0 = (GlDelegate_uint_int_int_int_uint_int_systemintptr)GetFunctionDelegate("glCompressedTexSubImage1D", typeof(GlDelegate_uint_int_int_int_uint_int_systemintptr));
 
-			m_CompressedTexSubImage2D_0 = (Delegate_CompressedTexSubImage2D_0)GetFunctionDelegate("glCompressedTexSubImage2D", typeof(Delegate_CompressedTexSubImage2D_0));
+			m_CompressedTexSubImage2D_0 = (GlDelegate_uint_int_int_int_int_int_uint_int_systemintptr)GetFunctionDelegate("glCompressedTexSubImage2D", typeof(GlDelegate_uint_int_int_int_int_int_uint_int_systemintptr));
 
-			m_CompressedTexSubImage2D_1 = (Delegate_CompressedTexSubImage2D_1)GetFunctionDelegate("glCompressedTexSubImage2D", typeof(Delegate_CompressedTexSubImage2D_1));
+			m_CompressedTexSubImage2D_1 = (GlDelegate_uint_int_box2i_uint_int_systemintptr)GetFunctionDelegate("glCompressedTexSubImage2D", typeof(GlDelegate_uint_int_box2i_uint_int_systemintptr));
 
-			m_CompressedTexSubImage3D_0 = (Delegate_CompressedTexSubImage3D_0)GetFunctionDelegate("glCompressedTexSubImage3D", typeof(Delegate_CompressedTexSubImage3D_0));
+			m_CompressedTexSubImage3D_0 = (GlDelegate_uint_int_int_int_int_int_int_int_uint_int_systemintptr)GetFunctionDelegate("glCompressedTexSubImage3D", typeof(GlDelegate_uint_int_int_int_int_int_int_int_uint_int_systemintptr));
 
-			m_CompressedTexSubImage3D_1 = (Delegate_CompressedTexSubImage3D_1)GetFunctionDelegate("glCompressedTexSubImage3D", typeof(Delegate_CompressedTexSubImage3D_1));
+			m_CompressedTexSubImage3D_1 = (GlDelegate_uint_int_box3i_uint_int_systemintptr)GetFunctionDelegate("glCompressedTexSubImage3D", typeof(GlDelegate_uint_int_box3i_uint_int_systemintptr));
 
-			m_CopyBufferSubData_0 = (Delegate_CopyBufferSubData_0)GetFunctionDelegate("glCopyBufferSubData", typeof(Delegate_CopyBufferSubData_0));
+			m_CopyBufferSubData_0 = (GlDelegate_uint_uint_systemintptr_systemintptr_systemintptr)GetFunctionDelegate("glCopyBufferSubData", typeof(GlDelegate_uint_uint_systemintptr_systemintptr_systemintptr));
 
-			m_CopyTexImage1D_0 = (Delegate_CopyTexImage1D_0)GetFunctionDelegate("glCopyTexImage1D", typeof(Delegate_CopyTexImage1D_0));
+			m_CopyTexImage1D_0 = (GlDelegate_uint_int_uint_int_int_int_int)GetFunctionDelegate("glCopyTexImage1D", typeof(GlDelegate_uint_int_uint_int_int_int_int));
 
-			m_CopyTexImage1D_1 = (Delegate_CopyTexImage1D_1)GetFunctionDelegate("glCopyTexImage1D", typeof(Delegate_CopyTexImage1D_1));
+			m_CopyTexImage1D_1 = (GlDelegate_uint_int_uint_vector2i_int_int)GetFunctionDelegate("glCopyTexImage1D", typeof(GlDelegate_uint_int_uint_vector2i_int_int));
 
-			m_CopyTexImage2D_0 = (Delegate_CopyTexImage2D_0)GetFunctionDelegate("glCopyTexImage2D", typeof(Delegate_CopyTexImage2D_0));
+			m_CopyTexImage2D_0 = (GlDelegate_uint_int_uint_int_int_int_int_int)GetFunctionDelegate("glCopyTexImage2D", typeof(GlDelegate_uint_int_uint_int_int_int_int_int));
 
-			m_CopyTexImage2D_1 = (Delegate_CopyTexImage2D_1)GetFunctionDelegate("glCopyTexImage2D", typeof(Delegate_CopyTexImage2D_1));
+			m_CopyTexImage2D_1 = (GlDelegate_uint_int_uint_vector2i_vector2i_int)GetFunctionDelegate("glCopyTexImage2D", typeof(GlDelegate_uint_int_uint_vector2i_vector2i_int));
 
-			m_CopyTexImage2D_2 = (Delegate_CopyTexImage2D_2)GetFunctionDelegate("glCopyTexImage2D", typeof(Delegate_CopyTexImage2D_2));
+			m_CopyTexImage2D_2 = (GlDelegate_uint_int_uint_box2i_int)GetFunctionDelegate("glCopyTexImage2D", typeof(GlDelegate_uint_int_uint_box2i_int));
 
-			m_CopyTexSubImage1D_0 = (Delegate_CopyTexSubImage1D_0)GetFunctionDelegate("glCopyTexSubImage1D", typeof(Delegate_CopyTexSubImage1D_0));
+			m_CopyTexSubImage1D_0 = (GlDelegate_uint_int_int_int_int_int)GetFunctionDelegate("glCopyTexSubImage1D", typeof(GlDelegate_uint_int_int_int_int_int));
 
-			m_CopyTexSubImage1D_1 = (Delegate_CopyTexSubImage1D_1)GetFunctionDelegate("glCopyTexSubImage1D", typeof(Delegate_CopyTexSubImage1D_1));
+			m_CopyTexSubImage1D_1 = (GlDelegate_uint_int_int_vector2i_int)GetFunctionDelegate("glCopyTexSubImage1D", typeof(GlDelegate_uint_int_int_vector2i_int));
 
-			m_CopyTexSubImage2D_0 = (Delegate_CopyTexSubImage2D_0)GetFunctionDelegate("glCopyTexSubImage2D", typeof(Delegate_CopyTexSubImage2D_0));
+			m_CopyTexSubImage2D_0 = (GlDelegate_uint_int_int_int_int_int_int_int)GetFunctionDelegate("glCopyTexSubImage2D", typeof(GlDelegate_uint_int_int_int_int_int_int_int));
 
-			m_CopyTexSubImage2D_1 = (Delegate_CopyTexSubImage2D_1)GetFunctionDelegate("glCopyTexSubImage2D", typeof(Delegate_CopyTexSubImage2D_1));
+			m_CopyTexSubImage2D_1 = (GlDelegate_uint_int_vector2i_vector2i_vector2i)GetFunctionDelegate("glCopyTexSubImage2D", typeof(GlDelegate_uint_int_vector2i_vector2i_vector2i));
 
-			m_CopyTexSubImage3D_0 = (Delegate_CopyTexSubImage3D_0)GetFunctionDelegate("glCopyTexSubImage3D", typeof(Delegate_CopyTexSubImage3D_0));
+			m_CopyTexSubImage3D_0 = (GlDelegate_uint_int_int_int_int_int_int_int_int)GetFunctionDelegate("glCopyTexSubImage3D", typeof(GlDelegate_uint_int_int_int_int_int_int_int_int));
 
-			m_CopyTexSubImage3D_1 = (Delegate_CopyTexSubImage3D_1)GetFunctionDelegate("glCopyTexSubImage3D", typeof(Delegate_CopyTexSubImage3D_1));
+			m_CopyTexSubImage3D_1 = (GlDelegate_uint_int_vector3i_vector2i_vector2i)GetFunctionDelegate("glCopyTexSubImage3D", typeof(GlDelegate_uint_int_vector3i_vector2i_vector2i));
 
-			m_CreateProgram_0 = (Delegate_CreateProgram_0)GetFunctionDelegate("glCreateProgram", typeof(Delegate_CreateProgram_0));
+			m_CreateProgram_0 = (GlDelegate_Returns_uint)GetFunctionDelegate("glCreateProgram", typeof(GlDelegate_Returns_uint));
 
-			m_CreateShader_0 = (Delegate_CreateShader_0)GetFunctionDelegate("glCreateShader", typeof(Delegate_CreateShader_0));
+			m_CreateShader_0 = (GlDelegate_uint_Returns_uint)GetFunctionDelegate("glCreateShader", typeof(GlDelegate_uint_Returns_uint));
 
-			m_CullFace_0 = (Delegate_CullFace_0)GetFunctionDelegate("glCullFace", typeof(Delegate_CullFace_0));
+			m_CullFace_0 = (GlDelegate_uint)GetFunctionDelegate("glCullFace", typeof(GlDelegate_uint));
 
-			m_DeleteBuffers_0 = (Delegate_DeleteBuffers_0)GetFunctionDelegate("glDeleteBuffers", typeof(Delegate_DeleteBuffers_0));
+			m_DeleteBuffers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDeleteBuffers", typeof(GlDelegate_int_systemintptr));
 
-			m_DeleteBuffers_1 = (Delegate_DeleteBuffers_1)GetFunctionDelegate("glDeleteBuffers", typeof(Delegate_DeleteBuffers_1));
+			m_DeleteBuffers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDeleteBuffers", typeof(GlDelegate_int_uintarray));
 
-			m_DeleteBuffers_2 = (Delegate_DeleteBuffers_2)GetFunctionDelegate("glDeleteBuffers", typeof(Delegate_DeleteBuffers_2));
+			m_DeleteBuffers_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDeleteBuffers", typeof(GlDelegate_int_refuint));
 
-			m_DeleteFramebuffers_0 = (Delegate_DeleteFramebuffers_0)GetFunctionDelegate("glDeleteFramebuffers", typeof(Delegate_DeleteFramebuffers_0));
+			m_DeleteFramebuffers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDeleteFramebuffers", typeof(GlDelegate_int_systemintptr));
 
-			m_DeleteFramebuffers_1 = (Delegate_DeleteFramebuffers_1)GetFunctionDelegate("glDeleteFramebuffers", typeof(Delegate_DeleteFramebuffers_1));
+			m_DeleteFramebuffers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDeleteFramebuffers", typeof(GlDelegate_int_uintarray));
 
-			m_DeleteFramebuffers_2 = (Delegate_DeleteFramebuffers_2)GetFunctionDelegate("glDeleteFramebuffers", typeof(Delegate_DeleteFramebuffers_2));
+			m_DeleteFramebuffers_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDeleteFramebuffers", typeof(GlDelegate_int_refuint));
 
-			m_DeleteProgram_0 = (Delegate_DeleteProgram_0)GetFunctionDelegate("glDeleteProgram", typeof(Delegate_DeleteProgram_0));
+			m_DeleteProgram_0 = (GlDelegate_uint)GetFunctionDelegate("glDeleteProgram", typeof(GlDelegate_uint));
 
-			m_DeleteQueries_0 = (Delegate_DeleteQueries_0)GetFunctionDelegate("glDeleteQueries", typeof(Delegate_DeleteQueries_0));
+			m_DeleteQueries_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDeleteQueries", typeof(GlDelegate_int_systemintptr));
 
-			m_DeleteQueries_1 = (Delegate_DeleteQueries_1)GetFunctionDelegate("glDeleteQueries", typeof(Delegate_DeleteQueries_1));
+			m_DeleteQueries_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDeleteQueries", typeof(GlDelegate_int_uintarray));
 
-			m_DeleteQueries_2 = (Delegate_DeleteQueries_2)GetFunctionDelegate("glDeleteQueries", typeof(Delegate_DeleteQueries_2));
+			m_DeleteQueries_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDeleteQueries", typeof(GlDelegate_int_refuint));
 
-			m_DeleteRenderbuffers_0 = (Delegate_DeleteRenderbuffers_0)GetFunctionDelegate("glDeleteRenderbuffers", typeof(Delegate_DeleteRenderbuffers_0));
+			m_DeleteRenderbuffers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDeleteRenderbuffers", typeof(GlDelegate_int_systemintptr));
 
-			m_DeleteRenderbuffers_1 = (Delegate_DeleteRenderbuffers_1)GetFunctionDelegate("glDeleteRenderbuffers", typeof(Delegate_DeleteRenderbuffers_1));
+			m_DeleteRenderbuffers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDeleteRenderbuffers", typeof(GlDelegate_int_uintarray));
 
-			m_DeleteRenderbuffers_2 = (Delegate_DeleteRenderbuffers_2)GetFunctionDelegate("glDeleteRenderbuffers", typeof(Delegate_DeleteRenderbuffers_2));
+			m_DeleteRenderbuffers_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDeleteRenderbuffers", typeof(GlDelegate_int_refuint));
 
-			m_DeleteShader_0 = (Delegate_DeleteShader_0)GetFunctionDelegate("glDeleteShader", typeof(Delegate_DeleteShader_0));
+			m_DeleteShader_0 = (GlDelegate_uint)GetFunctionDelegate("glDeleteShader", typeof(GlDelegate_uint));
 
-			m_DeleteSync_0 = (Delegate_DeleteSync_0)GetFunctionDelegate("glDeleteSync", typeof(Delegate_DeleteSync_0));
+			m_DeleteSync_0 = (GlDelegate_systemintptr)GetFunctionDelegate("glDeleteSync", typeof(GlDelegate_systemintptr));
 
-			m_DeleteTextures_0 = (Delegate_DeleteTextures_0)GetFunctionDelegate("glDeleteTextures", typeof(Delegate_DeleteTextures_0));
+			m_DeleteTextures_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDeleteTextures", typeof(GlDelegate_int_systemintptr));
 
-			m_DeleteTextures_1 = (Delegate_DeleteTextures_1)GetFunctionDelegate("glDeleteTextures", typeof(Delegate_DeleteTextures_1));
+			m_DeleteTextures_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDeleteTextures", typeof(GlDelegate_int_uintarray));
 
-			m_DeleteTextures_2 = (Delegate_DeleteTextures_2)GetFunctionDelegate("glDeleteTextures", typeof(Delegate_DeleteTextures_2));
+			m_DeleteTextures_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDeleteTextures", typeof(GlDelegate_int_refuint));
 
-			m_DeleteVertexArrays_0 = (Delegate_DeleteVertexArrays_0)GetFunctionDelegate("glDeleteVertexArrays", typeof(Delegate_DeleteVertexArrays_0));
+			m_DeleteVertexArrays_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDeleteVertexArrays", typeof(GlDelegate_int_systemintptr));
 
-			m_DeleteVertexArrays_1 = (Delegate_DeleteVertexArrays_1)GetFunctionDelegate("glDeleteVertexArrays", typeof(Delegate_DeleteVertexArrays_1));
+			m_DeleteVertexArrays_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDeleteVertexArrays", typeof(GlDelegate_int_uintarray));
 
-			m_DeleteVertexArrays_2 = (Delegate_DeleteVertexArrays_2)GetFunctionDelegate("glDeleteVertexArrays", typeof(Delegate_DeleteVertexArrays_2));
+			m_DeleteVertexArrays_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDeleteVertexArrays", typeof(GlDelegate_int_refuint));
 
-			m_DepthFunc_0 = (Delegate_DepthFunc_0)GetFunctionDelegate("glDepthFunc", typeof(Delegate_DepthFunc_0));
+			m_DepthFunc_0 = (GlDelegate_uint)GetFunctionDelegate("glDepthFunc", typeof(GlDelegate_uint));
 
-			m_DepthMask_0 = (Delegate_DepthMask_0)GetFunctionDelegate("glDepthMask", typeof(Delegate_DepthMask_0));
+			m_DepthMask_0 = (GlDelegate_bool)GetFunctionDelegate("glDepthMask", typeof(GlDelegate_bool));
 
-			m_DepthRange_0 = (Delegate_DepthRange_0)GetFunctionDelegate("glDepthRange", typeof(Delegate_DepthRange_0));
+			m_DepthRange_0 = (GlDelegate_double_double)GetFunctionDelegate("glDepthRange", typeof(GlDelegate_double_double));
 
-			m_DetachShader_0 = (Delegate_DetachShader_0)GetFunctionDelegate("glDetachShader", typeof(Delegate_DetachShader_0));
+			m_DetachShader_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glDetachShader", typeof(GlDelegate_uint_uint));
 
-			m_Disable_0 = (Delegate_Disable_0)GetFunctionDelegate("glDisable", typeof(Delegate_Disable_0));
+			m_Disable_0 = (GlDelegate_uint)GetFunctionDelegate("glDisable", typeof(GlDelegate_uint));
 
-			m_Disablei_0 = (Delegate_Disablei_0)GetFunctionDelegate("glDisablei", typeof(Delegate_Disablei_0));
+			m_Disablei_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glDisablei", typeof(GlDelegate_uint_uint));
 
-			m_DisableVertexAttribArray_0 = (Delegate_DisableVertexAttribArray_0)GetFunctionDelegate("glDisableVertexAttribArray", typeof(Delegate_DisableVertexAttribArray_0));
+			m_DisableVertexAttribArray_0 = (GlDelegate_uint)GetFunctionDelegate("glDisableVertexAttribArray", typeof(GlDelegate_uint));
 
-			m_DrawArrays_0 = (Delegate_DrawArrays_0)GetFunctionDelegate("glDrawArrays", typeof(Delegate_DrawArrays_0));
+			m_DrawArrays_0 = (GlDelegate_uint_int_int)GetFunctionDelegate("glDrawArrays", typeof(GlDelegate_uint_int_int));
 
-			m_DrawArraysInstanced_0 = (Delegate_DrawArraysInstanced_0)GetFunctionDelegate("glDrawArraysInstanced", typeof(Delegate_DrawArraysInstanced_0));
+			m_DrawArraysInstanced_0 = (GlDelegate_uint_int_int_int)GetFunctionDelegate("glDrawArraysInstanced", typeof(GlDelegate_uint_int_int_int));
 
-			m_DrawBuffer_0 = (Delegate_DrawBuffer_0)GetFunctionDelegate("glDrawBuffer", typeof(Delegate_DrawBuffer_0));
+			m_DrawBuffer_0 = (GlDelegate_uint)GetFunctionDelegate("glDrawBuffer", typeof(GlDelegate_uint));
 
-			m_DrawBuffers_0 = (Delegate_DrawBuffers_0)GetFunctionDelegate("glDrawBuffers", typeof(Delegate_DrawBuffers_0));
+			m_DrawBuffers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDrawBuffers", typeof(GlDelegate_int_systemintptr));
 
-			m_DrawBuffers_1 = (Delegate_DrawBuffers_1)GetFunctionDelegate("glDrawBuffers", typeof(Delegate_DrawBuffers_1));
+			m_DrawBuffers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDrawBuffers", typeof(GlDelegate_int_uintarray));
 
-			m_DrawBuffers_2 = (Delegate_DrawBuffers_2)GetFunctionDelegate("glDrawBuffers", typeof(Delegate_DrawBuffers_2));
+			m_DrawBuffers_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDrawBuffers", typeof(GlDelegate_int_refuint));
 
-			m_DrawElements_0 = (Delegate_DrawElements_0)GetFunctionDelegate("glDrawElements", typeof(Delegate_DrawElements_0));
+			m_DrawElements_0 = (GlDelegate_uint_int_uint_systemintptr)GetFunctionDelegate("glDrawElements", typeof(GlDelegate_uint_int_uint_systemintptr));
 
-			m_DrawElements_1 = (Delegate_DrawElements_1)GetFunctionDelegate("glDrawElements", typeof(Delegate_DrawElements_1));
+			m_DrawElements_1 = (GlDelegate_uint_int_uint_bytearray)GetFunctionDelegate("glDrawElements", typeof(GlDelegate_uint_int_uint_bytearray));
 
-			m_DrawElements_2 = (Delegate_DrawElements_2)GetFunctionDelegate("glDrawElements", typeof(Delegate_DrawElements_2));
+			m_DrawElements_2 = (GlDelegate_uint_int_uint_ushortarray)GetFunctionDelegate("glDrawElements", typeof(GlDelegate_uint_int_uint_ushortarray));
 
-			m_DrawElements_3 = (Delegate_DrawElements_3)GetFunctionDelegate("glDrawElements", typeof(Delegate_DrawElements_3));
+			m_DrawElements_3 = (GlDelegate_uint_int_uint_uintarray)GetFunctionDelegate("glDrawElements", typeof(GlDelegate_uint_int_uint_uintarray));
 
-			m_DrawElementsBaseVertex_0 = (Delegate_DrawElementsBaseVertex_0)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(Delegate_DrawElementsBaseVertex_0));
+			m_DrawElementsBaseVertex_0 = (GlDelegate_uint_int_uint_systemintptr_int)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(GlDelegate_uint_int_uint_systemintptr_int));
 
-			m_DrawElementsBaseVertex_1 = (Delegate_DrawElementsBaseVertex_1)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(Delegate_DrawElementsBaseVertex_1));
+			m_DrawElementsBaseVertex_1 = (GlDelegate_uint_int_uint_bytearray_int)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(GlDelegate_uint_int_uint_bytearray_int));
 
-			m_DrawElementsBaseVertex_2 = (Delegate_DrawElementsBaseVertex_2)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(Delegate_DrawElementsBaseVertex_2));
+			m_DrawElementsBaseVertex_2 = (GlDelegate_uint_int_uint_ushortarray_int)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(GlDelegate_uint_int_uint_ushortarray_int));
 
-			m_DrawElementsBaseVertex_3 = (Delegate_DrawElementsBaseVertex_3)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(Delegate_DrawElementsBaseVertex_3));
+			m_DrawElementsBaseVertex_3 = (GlDelegate_uint_int_uint_uintarray_int)GetFunctionDelegate("glDrawElementsBaseVertex", typeof(GlDelegate_uint_int_uint_uintarray_int));
 
-			m_DrawElementsInstanced_0 = (Delegate_DrawElementsInstanced_0)GetFunctionDelegate("glDrawElementsInstanced", typeof(Delegate_DrawElementsInstanced_0));
+			m_DrawElementsInstanced_0 = (GlDelegate_uint_int_uint_systemintptr_int)GetFunctionDelegate("glDrawElementsInstanced", typeof(GlDelegate_uint_int_uint_systemintptr_int));
 
-			m_DrawElementsInstanced_1 = (Delegate_DrawElementsInstanced_1)GetFunctionDelegate("glDrawElementsInstanced", typeof(Delegate_DrawElementsInstanced_1));
+			m_DrawElementsInstanced_1 = (GlDelegate_uint_int_uint_bytearray_int)GetFunctionDelegate("glDrawElementsInstanced", typeof(GlDelegate_uint_int_uint_bytearray_int));
 
-			m_DrawElementsInstanced_2 = (Delegate_DrawElementsInstanced_2)GetFunctionDelegate("glDrawElementsInstanced", typeof(Delegate_DrawElementsInstanced_2));
+			m_DrawElementsInstanced_2 = (GlDelegate_uint_int_uint_ushortarray_int)GetFunctionDelegate("glDrawElementsInstanced", typeof(GlDelegate_uint_int_uint_ushortarray_int));
 
-			m_DrawElementsInstanced_3 = (Delegate_DrawElementsInstanced_3)GetFunctionDelegate("glDrawElementsInstanced", typeof(Delegate_DrawElementsInstanced_3));
+			m_DrawElementsInstanced_3 = (GlDelegate_uint_int_uint_uintarray_int)GetFunctionDelegate("glDrawElementsInstanced", typeof(GlDelegate_uint_int_uint_uintarray_int));
 
-			m_DrawElementsInstancedBaseVertex_0 = (Delegate_DrawElementsInstancedBaseVertex_0)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(Delegate_DrawElementsInstancedBaseVertex_0));
+			m_DrawElementsInstancedBaseVertex_0 = (GlDelegate_uint_int_uint_systemintptr_int_int)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(GlDelegate_uint_int_uint_systemintptr_int_int));
 
-			m_DrawElementsInstancedBaseVertex_1 = (Delegate_DrawElementsInstancedBaseVertex_1)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(Delegate_DrawElementsInstancedBaseVertex_1));
+			m_DrawElementsInstancedBaseVertex_1 = (GlDelegate_uint_int_uint_bytearray_int_int)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(GlDelegate_uint_int_uint_bytearray_int_int));
 
-			m_DrawElementsInstancedBaseVertex_2 = (Delegate_DrawElementsInstancedBaseVertex_2)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(Delegate_DrawElementsInstancedBaseVertex_2));
+			m_DrawElementsInstancedBaseVertex_2 = (GlDelegate_uint_int_uint_ushortarray_int_int)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(GlDelegate_uint_int_uint_ushortarray_int_int));
 
-			m_DrawElementsInstancedBaseVertex_3 = (Delegate_DrawElementsInstancedBaseVertex_3)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(Delegate_DrawElementsInstancedBaseVertex_3));
+			m_DrawElementsInstancedBaseVertex_3 = (GlDelegate_uint_int_uint_uintarray_int_int)GetFunctionDelegate("glDrawElementsInstancedBaseVertex", typeof(GlDelegate_uint_int_uint_uintarray_int_int));
 
-			m_DrawRangeElements_0 = (Delegate_DrawRangeElements_0)GetFunctionDelegate("glDrawRangeElements", typeof(Delegate_DrawRangeElements_0));
+			m_DrawRangeElements_0 = (GlDelegate_uint_uint_uint_int_uint_systemintptr)GetFunctionDelegate("glDrawRangeElements", typeof(GlDelegate_uint_uint_uint_int_uint_systemintptr));
 
-			m_DrawRangeElements_1 = (Delegate_DrawRangeElements_1)GetFunctionDelegate("glDrawRangeElements", typeof(Delegate_DrawRangeElements_1));
+			m_DrawRangeElements_1 = (GlDelegate_uint_uint_uint_int_uint_bytearray)GetFunctionDelegate("glDrawRangeElements", typeof(GlDelegate_uint_uint_uint_int_uint_bytearray));
 
-			m_DrawRangeElements_2 = (Delegate_DrawRangeElements_2)GetFunctionDelegate("glDrawRangeElements", typeof(Delegate_DrawRangeElements_2));
+			m_DrawRangeElements_2 = (GlDelegate_uint_uint_uint_int_uint_ushortarray)GetFunctionDelegate("glDrawRangeElements", typeof(GlDelegate_uint_uint_uint_int_uint_ushortarray));
 
-			m_DrawRangeElements_3 = (Delegate_DrawRangeElements_3)GetFunctionDelegate("glDrawRangeElements", typeof(Delegate_DrawRangeElements_3));
+			m_DrawRangeElements_3 = (GlDelegate_uint_uint_uint_int_uint_uintarray)GetFunctionDelegate("glDrawRangeElements", typeof(GlDelegate_uint_uint_uint_int_uint_uintarray));
 
-			m_DrawRangeElementsBaseVertex_0 = (Delegate_DrawRangeElementsBaseVertex_0)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(Delegate_DrawRangeElementsBaseVertex_0));
+			m_DrawRangeElementsBaseVertex_0 = (GlDelegate_uint_uint_uint_int_uint_systemintptr_int)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(GlDelegate_uint_uint_uint_int_uint_systemintptr_int));
 
-			m_DrawRangeElementsBaseVertex_1 = (Delegate_DrawRangeElementsBaseVertex_1)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(Delegate_DrawRangeElementsBaseVertex_1));
+			m_DrawRangeElementsBaseVertex_1 = (GlDelegate_uint_uint_uint_int_uint_bytearray_int)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(GlDelegate_uint_uint_uint_int_uint_bytearray_int));
 
-			m_DrawRangeElementsBaseVertex_2 = (Delegate_DrawRangeElementsBaseVertex_2)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(Delegate_DrawRangeElementsBaseVertex_2));
+			m_DrawRangeElementsBaseVertex_2 = (GlDelegate_uint_uint_uint_int_uint_ushortarray_int)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(GlDelegate_uint_uint_uint_int_uint_ushortarray_int));
 
-			m_DrawRangeElementsBaseVertex_3 = (Delegate_DrawRangeElementsBaseVertex_3)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(Delegate_DrawRangeElementsBaseVertex_3));
+			m_DrawRangeElementsBaseVertex_3 = (GlDelegate_uint_uint_uint_int_uint_uintarray_int)GetFunctionDelegate("glDrawRangeElementsBaseVertex", typeof(GlDelegate_uint_uint_uint_int_uint_uintarray_int));
 
-			m_Enable_0 = (Delegate_Enable_0)GetFunctionDelegate("glEnable", typeof(Delegate_Enable_0));
+			m_Enable_0 = (GlDelegate_uint)GetFunctionDelegate("glEnable", typeof(GlDelegate_uint));
 
-			m_Enablei_0 = (Delegate_Enablei_0)GetFunctionDelegate("glEnablei", typeof(Delegate_Enablei_0));
+			m_Enablei_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glEnablei", typeof(GlDelegate_uint_uint));
 
-			m_EnableVertexAttribArray_0 = (Delegate_EnableVertexAttribArray_0)GetFunctionDelegate("glEnableVertexAttribArray", typeof(Delegate_EnableVertexAttribArray_0));
+			m_EnableVertexAttribArray_0 = (GlDelegate_uint)GetFunctionDelegate("glEnableVertexAttribArray", typeof(GlDelegate_uint));
 
-			m_EndConditionalRender_0 = (Delegate_EndConditionalRender_0)GetFunctionDelegate("glEndConditionalRender", typeof(Delegate_EndConditionalRender_0));
+			m_EndConditionalRender_0 = (GlDelegate)GetFunctionDelegate("glEndConditionalRender", typeof(GlDelegate));
 
-			m_EndQuery_0 = (Delegate_EndQuery_0)GetFunctionDelegate("glEndQuery", typeof(Delegate_EndQuery_0));
+			m_EndQuery_0 = (GlDelegate_uint)GetFunctionDelegate("glEndQuery", typeof(GlDelegate_uint));
 
-			m_EndTransformFeedback_0 = (Delegate_EndTransformFeedback_0)GetFunctionDelegate("glEndTransformFeedback", typeof(Delegate_EndTransformFeedback_0));
+			m_EndTransformFeedback_0 = (GlDelegate)GetFunctionDelegate("glEndTransformFeedback", typeof(GlDelegate));
 
-			m_FenceSync_0 = (Delegate_FenceSync_0)GetFunctionDelegate("glFenceSync", typeof(Delegate_FenceSync_0));
+			m_FenceSync_0 = (GlDelegate_uint_uint_Returns_systemintptr)GetFunctionDelegate("glFenceSync", typeof(GlDelegate_uint_uint_Returns_systemintptr));
 
-			m_Finish_0 = (Delegate_Finish_0)GetFunctionDelegate("glFinish", typeof(Delegate_Finish_0));
+			m_Finish_0 = (GlDelegate)GetFunctionDelegate("glFinish", typeof(GlDelegate));
 
-			m_Flush_0 = (Delegate_Flush_0)GetFunctionDelegate("glFlush", typeof(Delegate_Flush_0));
+			m_Flush_0 = (GlDelegate)GetFunctionDelegate("glFlush", typeof(GlDelegate));
 
-			m_FlushMappedBufferRange_0 = (Delegate_FlushMappedBufferRange_0)GetFunctionDelegate("glFlushMappedBufferRange", typeof(Delegate_FlushMappedBufferRange_0));
+			m_FlushMappedBufferRange_0 = (GlDelegate_uint_systemintptr_systemintptr)GetFunctionDelegate("glFlushMappedBufferRange", typeof(GlDelegate_uint_systemintptr_systemintptr));
 
-			m_FramebufferRenderbuffer_0 = (Delegate_FramebufferRenderbuffer_0)GetFunctionDelegate("glFramebufferRenderbuffer", typeof(Delegate_FramebufferRenderbuffer_0));
+			m_FramebufferRenderbuffer_0 = (GlDelegate_uint_uint_uint_uint)GetFunctionDelegate("glFramebufferRenderbuffer", typeof(GlDelegate_uint_uint_uint_uint));
 
-			m_FramebufferTexture_0 = (Delegate_FramebufferTexture_0)GetFunctionDelegate("glFramebufferTexture", typeof(Delegate_FramebufferTexture_0));
+			m_FramebufferTexture_0 = (GlDelegate_uint_uint_uint_int)GetFunctionDelegate("glFramebufferTexture", typeof(GlDelegate_uint_uint_uint_int));
 
-			m_FramebufferTexture1D_0 = (Delegate_FramebufferTexture1D_0)GetFunctionDelegate("glFramebufferTexture1D", typeof(Delegate_FramebufferTexture1D_0));
+			m_FramebufferTexture1D_0 = (GlDelegate_uint_uint_uint_uint_int)GetFunctionDelegate("glFramebufferTexture1D", typeof(GlDelegate_uint_uint_uint_uint_int));
 
-			m_FramebufferTexture2D_0 = (Delegate_FramebufferTexture2D_0)GetFunctionDelegate("glFramebufferTexture2D", typeof(Delegate_FramebufferTexture2D_0));
+			m_FramebufferTexture2D_0 = (GlDelegate_uint_uint_uint_uint_int)GetFunctionDelegate("glFramebufferTexture2D", typeof(GlDelegate_uint_uint_uint_uint_int));
 
-			m_FramebufferTexture3D_0 = (Delegate_FramebufferTexture3D_0)GetFunctionDelegate("glFramebufferTexture3D", typeof(Delegate_FramebufferTexture3D_0));
+			m_FramebufferTexture3D_0 = (GlDelegate_uint_uint_uint_uint_int_int)GetFunctionDelegate("glFramebufferTexture3D", typeof(GlDelegate_uint_uint_uint_uint_int_int));
 
-			m_FramebufferTextureLayer_0 = (Delegate_FramebufferTextureLayer_0)GetFunctionDelegate("glFramebufferTextureLayer", typeof(Delegate_FramebufferTextureLayer_0));
+			m_FramebufferTextureLayer_0 = (GlDelegate_uint_uint_uint_int_int)GetFunctionDelegate("glFramebufferTextureLayer", typeof(GlDelegate_uint_uint_uint_int_int));
 
-			m_FrontFace_0 = (Delegate_FrontFace_0)GetFunctionDelegate("glFrontFace", typeof(Delegate_FrontFace_0));
+			m_FrontFace_0 = (GlDelegate_uint)GetFunctionDelegate("glFrontFace", typeof(GlDelegate_uint));
 
-			m_GenBuffers_0 = (Delegate_GenBuffers_0)GetFunctionDelegate("glGenBuffers", typeof(Delegate_GenBuffers_0));
+			m_GenBuffers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glGenBuffers", typeof(GlDelegate_int_systemintptr));
 
-			m_GenBuffers_1 = (Delegate_GenBuffers_1)GetFunctionDelegate("glGenBuffers", typeof(Delegate_GenBuffers_1));
+			m_GenBuffers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glGenBuffers", typeof(GlDelegate_int_uintarray));
 
-			m_GenBuffers_2 = (Delegate_GenBuffers_2)GetFunctionDelegate("glGenBuffers", typeof(Delegate_GenBuffers_2));
+			m_GenBuffers_2 = (GlDelegate_int_outuint)GetFunctionDelegate("glGenBuffers", typeof(GlDelegate_int_outuint));
 
-			m_GenerateMipmap_0 = (Delegate_GenerateMipmap_0)GetFunctionDelegate("glGenerateMipmap", typeof(Delegate_GenerateMipmap_0));
+			m_GenerateMipmap_0 = (GlDelegate_uint)GetFunctionDelegate("glGenerateMipmap", typeof(GlDelegate_uint));
 
-			m_GenFramebuffers_0 = (Delegate_GenFramebuffers_0)GetFunctionDelegate("glGenFramebuffers", typeof(Delegate_GenFramebuffers_0));
+			m_GenFramebuffers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glGenFramebuffers", typeof(GlDelegate_int_systemintptr));
 
-			m_GenFramebuffers_1 = (Delegate_GenFramebuffers_1)GetFunctionDelegate("glGenFramebuffers", typeof(Delegate_GenFramebuffers_1));
+			m_GenFramebuffers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glGenFramebuffers", typeof(GlDelegate_int_uintarray));
 
-			m_GenFramebuffers_2 = (Delegate_GenFramebuffers_2)GetFunctionDelegate("glGenFramebuffers", typeof(Delegate_GenFramebuffers_2));
+			m_GenFramebuffers_2 = (GlDelegate_int_outuint)GetFunctionDelegate("glGenFramebuffers", typeof(GlDelegate_int_outuint));
 
-			m_GenQueries_0 = (Delegate_GenQueries_0)GetFunctionDelegate("glGenQueries", typeof(Delegate_GenQueries_0));
+			m_GenQueries_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glGenQueries", typeof(GlDelegate_int_systemintptr));
 
-			m_GenQueries_1 = (Delegate_GenQueries_1)GetFunctionDelegate("glGenQueries", typeof(Delegate_GenQueries_1));
+			m_GenQueries_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glGenQueries", typeof(GlDelegate_int_uintarray));
 
-			m_GenQueries_2 = (Delegate_GenQueries_2)GetFunctionDelegate("glGenQueries", typeof(Delegate_GenQueries_2));
+			m_GenQueries_2 = (GlDelegate_int_outuint)GetFunctionDelegate("glGenQueries", typeof(GlDelegate_int_outuint));
 
-			m_GenRenderbuffers_0 = (Delegate_GenRenderbuffers_0)GetFunctionDelegate("glGenRenderbuffers", typeof(Delegate_GenRenderbuffers_0));
+			m_GenRenderbuffers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glGenRenderbuffers", typeof(GlDelegate_int_systemintptr));
 
-			m_GenRenderbuffers_1 = (Delegate_GenRenderbuffers_1)GetFunctionDelegate("glGenRenderbuffers", typeof(Delegate_GenRenderbuffers_1));
+			m_GenRenderbuffers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glGenRenderbuffers", typeof(GlDelegate_int_uintarray));
 
-			m_GenRenderbuffers_2 = (Delegate_GenRenderbuffers_2)GetFunctionDelegate("glGenRenderbuffers", typeof(Delegate_GenRenderbuffers_2));
+			m_GenRenderbuffers_2 = (GlDelegate_int_outuint)GetFunctionDelegate("glGenRenderbuffers", typeof(GlDelegate_int_outuint));
 
-			m_GenTextures_0 = (Delegate_GenTextures_0)GetFunctionDelegate("glGenTextures", typeof(Delegate_GenTextures_0));
+			m_GenTextures_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glGenTextures", typeof(GlDelegate_int_systemintptr));
 
-			m_GenTextures_1 = (Delegate_GenTextures_1)GetFunctionDelegate("glGenTextures", typeof(Delegate_GenTextures_1));
+			m_GenTextures_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glGenTextures", typeof(GlDelegate_int_uintarray));
 
-			m_GenTextures_2 = (Delegate_GenTextures_2)GetFunctionDelegate("glGenTextures", typeof(Delegate_GenTextures_2));
+			m_GenTextures_2 = (GlDelegate_int_outuint)GetFunctionDelegate("glGenTextures", typeof(GlDelegate_int_outuint));
 
-			m_GenVertexArrays_0 = (Delegate_GenVertexArrays_0)GetFunctionDelegate("glGenVertexArrays", typeof(Delegate_GenVertexArrays_0));
+			m_GenVertexArrays_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glGenVertexArrays", typeof(GlDelegate_int_systemintptr));
 
-			m_GenVertexArrays_1 = (Delegate_GenVertexArrays_1)GetFunctionDelegate("glGenVertexArrays", typeof(Delegate_GenVertexArrays_1));
+			m_GenVertexArrays_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glGenVertexArrays", typeof(GlDelegate_int_uintarray));
 
-			m_GenVertexArrays_2 = (Delegate_GenVertexArrays_2)GetFunctionDelegate("glGenVertexArrays", typeof(Delegate_GenVertexArrays_2));
+			m_GenVertexArrays_2 = (GlDelegate_int_outuint)GetFunctionDelegate("glGenVertexArrays", typeof(GlDelegate_int_outuint));
 
-			m_GetActiveAttrib_0 = (Delegate_GetActiveAttrib_0)GetFunctionDelegate("glGetActiveAttrib", typeof(Delegate_GetActiveAttrib_0));
+			m_GetActiveAttrib_0 = (GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string)GetFunctionDelegate("glGetActiveAttrib", typeof(GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string));
 
-			m_GetActiveAttrib_1 = (Delegate_GetActiveAttrib_1)GetFunctionDelegate("glGetActiveAttrib", typeof(Delegate_GetActiveAttrib_1));
+			m_GetActiveAttrib_1 = (GlDelegate_uint_uint_int_outint_outint_outuint_bytearray)GetFunctionDelegate("glGetActiveAttrib", typeof(GlDelegate_uint_uint_int_outint_outint_outuint_bytearray));
 
-			m_GetActiveUniform_0 = (Delegate_GetActiveUniform_0)GetFunctionDelegate("glGetActiveUniform", typeof(Delegate_GetActiveUniform_0));
+			m_GetActiveUniform_0 = (GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string)GetFunctionDelegate("glGetActiveUniform", typeof(GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string));
 
-			m_GetActiveUniform_1 = (Delegate_GetActiveUniform_1)GetFunctionDelegate("glGetActiveUniform", typeof(Delegate_GetActiveUniform_1));
+			m_GetActiveUniform_1 = (GlDelegate_uint_uint_int_outint_outint_outuint_bytearray)GetFunctionDelegate("glGetActiveUniform", typeof(GlDelegate_uint_uint_int_outint_outint_outuint_bytearray));
 
-			m_GetActiveUniformBlockiv_0 = (Delegate_GetActiveUniformBlockiv_0)GetFunctionDelegate("glGetActiveUniformBlockiv", typeof(Delegate_GetActiveUniformBlockiv_0));
+			m_GetActiveUniformBlockiv_0 = (GlDelegate_uint_uint_uint_systemintptr)GetFunctionDelegate("glGetActiveUniformBlockiv", typeof(GlDelegate_uint_uint_uint_systemintptr));
 
-			m_GetActiveUniformBlockiv_1 = (Delegate_GetActiveUniformBlockiv_1)GetFunctionDelegate("glGetActiveUniformBlockiv", typeof(Delegate_GetActiveUniformBlockiv_1));
+			m_GetActiveUniformBlockiv_1 = (GlDelegate_uint_uint_uint_intarray)GetFunctionDelegate("glGetActiveUniformBlockiv", typeof(GlDelegate_uint_uint_uint_intarray));
 
-			m_GetActiveUniformBlockiv_2 = (Delegate_GetActiveUniformBlockiv_2)GetFunctionDelegate("glGetActiveUniformBlockiv", typeof(Delegate_GetActiveUniformBlockiv_2));
+			m_GetActiveUniformBlockiv_2 = (GlDelegate_uint_uint_uint_outint)GetFunctionDelegate("glGetActiveUniformBlockiv", typeof(GlDelegate_uint_uint_uint_outint));
 
-			m_GetActiveUniformBlockName_0 = (Delegate_GetActiveUniformBlockName_0)GetFunctionDelegate("glGetActiveUniformBlockName", typeof(Delegate_GetActiveUniformBlockName_0));
+			m_GetActiveUniformBlockName_0 = (GlDelegate_uint_uint_int_systemintptr_systemintptr)GetFunctionDelegate("glGetActiveUniformBlockName", typeof(GlDelegate_uint_uint_int_systemintptr_systemintptr));
 
-			m_GetActiveUniformBlockName_1 = (Delegate_GetActiveUniformBlockName_1)GetFunctionDelegate("glGetActiveUniformBlockName", typeof(Delegate_GetActiveUniformBlockName_1));
+			m_GetActiveUniformBlockName_1 = (GlDelegate_uint_uint_int_outint_bytearray)GetFunctionDelegate("glGetActiveUniformBlockName", typeof(GlDelegate_uint_uint_int_outint_bytearray));
 
-			m_GetActiveUniformName_0 = (Delegate_GetActiveUniformName_0)GetFunctionDelegate("glGetActiveUniformName", typeof(Delegate_GetActiveUniformName_0));
+			m_GetActiveUniformName_0 = (GlDelegate_uint_uint_int_systemintptr_systemintptr)GetFunctionDelegate("glGetActiveUniformName", typeof(GlDelegate_uint_uint_int_systemintptr_systemintptr));
 
-			m_GetActiveUniformName_1 = (Delegate_GetActiveUniformName_1)GetFunctionDelegate("glGetActiveUniformName", typeof(Delegate_GetActiveUniformName_1));
+			m_GetActiveUniformName_1 = (GlDelegate_uint_uint_int_outint_bytearray)GetFunctionDelegate("glGetActiveUniformName", typeof(GlDelegate_uint_uint_int_outint_bytearray));
 
-			m_GetActiveUniformsiv_0 = (Delegate_GetActiveUniformsiv_0)GetFunctionDelegate("glGetActiveUniformsiv", typeof(Delegate_GetActiveUniformsiv_0));
+			m_GetActiveUniformsiv_0 = (GlDelegate_uint_int_systemintptr_uint_systemintptr)GetFunctionDelegate("glGetActiveUniformsiv", typeof(GlDelegate_uint_int_systemintptr_uint_systemintptr));
 
-			m_GetActiveUniformsiv_1 = (Delegate_GetActiveUniformsiv_1)GetFunctionDelegate("glGetActiveUniformsiv", typeof(Delegate_GetActiveUniformsiv_1));
+			m_GetActiveUniformsiv_1 = (GlDelegate_uint_int_uintarray_uint_intarray)GetFunctionDelegate("glGetActiveUniformsiv", typeof(GlDelegate_uint_int_uintarray_uint_intarray));
 
-			m_GetActiveUniformsiv_2 = (Delegate_GetActiveUniformsiv_2)GetFunctionDelegate("glGetActiveUniformsiv", typeof(Delegate_GetActiveUniformsiv_2));
+			m_GetActiveUniformsiv_2 = (GlDelegate_uint_int_outint_uint_intarray)GetFunctionDelegate("glGetActiveUniformsiv", typeof(GlDelegate_uint_int_outint_uint_intarray));
 
-			m_GetActiveUniformsiv_3 = (Delegate_GetActiveUniformsiv_3)GetFunctionDelegate("glGetActiveUniformsiv", typeof(Delegate_GetActiveUniformsiv_3));
+			m_GetActiveUniformsiv_3 = (GlDelegate_uint_int_uintarray_uint_refint)GetFunctionDelegate("glGetActiveUniformsiv", typeof(GlDelegate_uint_int_uintarray_uint_refint));
 
-			m_GetActiveUniformsiv_4 = (Delegate_GetActiveUniformsiv_4)GetFunctionDelegate("glGetActiveUniformsiv", typeof(Delegate_GetActiveUniformsiv_4));
+			m_GetActiveUniformsiv_4 = (GlDelegate_uint_int_outint_uint_refint)GetFunctionDelegate("glGetActiveUniformsiv", typeof(GlDelegate_uint_int_outint_uint_refint));
 
-			m_GetAttachedShaders_0 = (Delegate_GetAttachedShaders_0)GetFunctionDelegate("glGetAttachedShaders", typeof(Delegate_GetAttachedShaders_0));
+			m_GetAttachedShaders_0 = (GlDelegate_uint_int_systemintptr_systemintptr)GetFunctionDelegate("glGetAttachedShaders", typeof(GlDelegate_uint_int_systemintptr_systemintptr));
 
-			m_GetAttachedShaders_1 = (Delegate_GetAttachedShaders_1)GetFunctionDelegate("glGetAttachedShaders", typeof(Delegate_GetAttachedShaders_1));
+			m_GetAttachedShaders_1 = (GlDelegate_uint_int_uint_uintarray)GetFunctionDelegate("glGetAttachedShaders", typeof(GlDelegate_uint_int_uint_uintarray));
 
-			m_GetAttribLocation_0 = (Delegate_GetAttribLocation_0)GetFunctionDelegate("glGetAttribLocation", typeof(Delegate_GetAttribLocation_0));
+			m_GetAttribLocation_0 = (GlDelegate_uint_systemintptr_Returns_int)GetFunctionDelegate("glGetAttribLocation", typeof(GlDelegate_uint_systemintptr_Returns_int));
 
-			m_GetAttribLocation_1 = (Delegate_GetAttribLocation_1)GetFunctionDelegate("glGetAttribLocation", typeof(Delegate_GetAttribLocation_1));
+			m_GetAttribLocation_1 = (GlDelegate_uint_bytearray_Returns_int)GetFunctionDelegate("glGetAttribLocation", typeof(GlDelegate_uint_bytearray_Returns_int));
 
-			m_GetAttribLocation_2 = (Delegate_GetAttribLocation_2)GetFunctionDelegate("glGetAttribLocation", typeof(Delegate_GetAttribLocation_2));
+			m_GetAttribLocation_2 = (GlDelegate_uint_string_Returns_int)GetFunctionDelegate("glGetAttribLocation", typeof(GlDelegate_uint_string_Returns_int));
 
-			m_GetBooleani_v_0 = (Delegate_GetBooleani_v_0)GetFunctionDelegate("glGetBooleani_v", typeof(Delegate_GetBooleani_v_0));
+			m_GetBooleani_v_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetBooleani_v", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetBooleani_v_1 = (Delegate_GetBooleani_v_1)GetFunctionDelegate("glGetBooleani_v", typeof(Delegate_GetBooleani_v_1));
+			m_GetBooleani_v_1 = (GlDelegate_uint_uint_outbool)GetFunctionDelegate("glGetBooleani_v", typeof(GlDelegate_uint_uint_outbool));
 
-			m_GetBooleanv_0 = (Delegate_GetBooleanv_0)GetFunctionDelegate("glGetBooleanv", typeof(Delegate_GetBooleanv_0));
+			m_GetBooleanv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glGetBooleanv", typeof(GlDelegate_uint_systemintptr));
 
-			m_GetBooleanv_1 = (Delegate_GetBooleanv_1)GetFunctionDelegate("glGetBooleanv", typeof(Delegate_GetBooleanv_1));
+			m_GetBooleanv_1 = (GlDelegate_uint_outbool)GetFunctionDelegate("glGetBooleanv", typeof(GlDelegate_uint_outbool));
 
-			m_GetBufferParameteri64v_0 = (Delegate_GetBufferParameteri64v_0)GetFunctionDelegate("glGetBufferParameteri64v", typeof(Delegate_GetBufferParameteri64v_0));
+			m_GetBufferParameteri64v_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetBufferParameteri64v", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetBufferParameteri64v_1 = (Delegate_GetBufferParameteri64v_1)GetFunctionDelegate("glGetBufferParameteri64v", typeof(Delegate_GetBufferParameteri64v_1));
+			m_GetBufferParameteri64v_1 = (GlDelegate_uint_uint_outlong)GetFunctionDelegate("glGetBufferParameteri64v", typeof(GlDelegate_uint_uint_outlong));
 
-			m_GetBufferParameteriv_0 = (Delegate_GetBufferParameteriv_0)GetFunctionDelegate("glGetBufferParameteriv", typeof(Delegate_GetBufferParameteriv_0));
+			m_GetBufferParameteriv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetBufferParameteriv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetBufferParameteriv_1 = (Delegate_GetBufferParameteriv_1)GetFunctionDelegate("glGetBufferParameteriv", typeof(Delegate_GetBufferParameteriv_1));
+			m_GetBufferParameteriv_1 = (GlDelegate_uint_uint_outint)GetFunctionDelegate("glGetBufferParameteriv", typeof(GlDelegate_uint_uint_outint));
 
-			m_GetBufferPointerv_0 = (Delegate_GetBufferPointerv_0)GetFunctionDelegate("glGetBufferPointerv", typeof(Delegate_GetBufferPointerv_0));
+			m_GetBufferPointerv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetBufferPointerv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetBufferPointerv_1 = (Delegate_GetBufferPointerv_1)GetFunctionDelegate("glGetBufferPointerv", typeof(Delegate_GetBufferPointerv_1));
+			m_GetBufferPointerv_1 = (GlDelegate_uint_uint_outsystemintptr)GetFunctionDelegate("glGetBufferPointerv", typeof(GlDelegate_uint_uint_outsystemintptr));
 
-			m_GetBufferSubData_0 = (Delegate_GetBufferSubData_0)GetFunctionDelegate("glGetBufferSubData", typeof(Delegate_GetBufferSubData_0));
+			m_GetBufferSubData_0 = (GlDelegate_uint_systemintptr_systemintptr_systemintptr)GetFunctionDelegate("glGetBufferSubData", typeof(GlDelegate_uint_systemintptr_systemintptr_systemintptr));
 
-			m_GetCompressedTexImage_0 = (Delegate_GetCompressedTexImage_0)GetFunctionDelegate("glGetCompressedTexImage", typeof(Delegate_GetCompressedTexImage_0));
+			m_GetCompressedTexImage_0 = (GlDelegate_uint_int_systemintptr)GetFunctionDelegate("glGetCompressedTexImage", typeof(GlDelegate_uint_int_systemintptr));
 
-			m_GetDoublev_0 = (Delegate_GetDoublev_0)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_0));
+			m_GetDoublev_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_systemintptr));
 
-			m_GetDoublev_1 = (Delegate_GetDoublev_1)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_1));
+			m_GetDoublev_1 = (GlDelegate_uint_doublearray)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_doublearray));
 
-			m_GetDoublev_2 = (Delegate_GetDoublev_2)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_2));
+			m_GetDoublev_2 = (GlDelegate_uint_outdouble)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outdouble));
 
-			m_GetDoublev_3 = (Delegate_GetDoublev_3)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_3));
+			m_GetDoublev_3 = (GlDelegate_uint_outvector2d)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outvector2d));
 
-			m_GetDoublev_4 = (Delegate_GetDoublev_4)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_4));
+			m_GetDoublev_4 = (GlDelegate_uint_outvector3d)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outvector3d));
 
-			m_GetDoublev_5 = (Delegate_GetDoublev_5)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_5));
+			m_GetDoublev_5 = (GlDelegate_uint_outvector4d)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outvector4d));
 
-			m_GetDoublev_6 = (Delegate_GetDoublev_6)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_6));
+			m_GetDoublev_6 = (GlDelegate_uint_outcolor3d)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outcolor3d));
 
-			m_GetDoublev_7 = (Delegate_GetDoublev_7)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_7));
+			m_GetDoublev_7 = (GlDelegate_uint_outcolor4d)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outcolor4d));
 
-			m_GetDoublev_8 = (Delegate_GetDoublev_8)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_8));
+			m_GetDoublev_8 = (GlDelegate_uint_outbox2d)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outbox2d));
 
-			m_GetDoublev_9 = (Delegate_GetDoublev_9)GetFunctionDelegate("glGetDoublev", typeof(Delegate_GetDoublev_9));
+			m_GetDoublev_9 = (GlDelegate_uint_outbox3d)GetFunctionDelegate("glGetDoublev", typeof(GlDelegate_uint_outbox3d));
 
-			m_GetError_0 = (Delegate_GetError_0)GetFunctionDelegate("glGetError", typeof(Delegate_GetError_0));
+			m_GetError_0 = (GlDelegate_Returns_uint)GetFunctionDelegate("glGetError", typeof(GlDelegate_Returns_uint));
 
-			m_GetFloatv_0 = (Delegate_GetFloatv_0)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_0));
+			m_GetFloatv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_systemintptr));
 
-			m_GetFloatv_1 = (Delegate_GetFloatv_1)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_1));
+			m_GetFloatv_1 = (GlDelegate_uint_floatarray)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_floatarray));
 
-			m_GetFloatv_2 = (Delegate_GetFloatv_2)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_2));
+			m_GetFloatv_2 = (GlDelegate_uint_outfloat)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outfloat));
 
-			m_GetFloatv_3 = (Delegate_GetFloatv_3)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_3));
+			m_GetFloatv_3 = (GlDelegate_uint_outvector2)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outvector2));
 
-			m_GetFloatv_4 = (Delegate_GetFloatv_4)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_4));
+			m_GetFloatv_4 = (GlDelegate_uint_outvector3)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outvector3));
 
-			m_GetFloatv_5 = (Delegate_GetFloatv_5)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_5));
+			m_GetFloatv_5 = (GlDelegate_uint_outvector4)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outvector4));
 
-			m_GetFloatv_6 = (Delegate_GetFloatv_6)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_6));
+			m_GetFloatv_6 = (GlDelegate_uint_outcolor3)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outcolor3));
 
-			m_GetFloatv_7 = (Delegate_GetFloatv_7)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_7));
+			m_GetFloatv_7 = (GlDelegate_uint_outcolor4)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outcolor4));
 
-			m_GetFloatv_8 = (Delegate_GetFloatv_8)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_8));
+			m_GetFloatv_8 = (GlDelegate_uint_outbox2)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outbox2));
 
-			m_GetFloatv_9 = (Delegate_GetFloatv_9)GetFunctionDelegate("glGetFloatv", typeof(Delegate_GetFloatv_9));
+			m_GetFloatv_9 = (GlDelegate_uint_outbox3)GetFunctionDelegate("glGetFloatv", typeof(GlDelegate_uint_outbox3));
 
-			m_GetFragDataLocation_0 = (Delegate_GetFragDataLocation_0)GetFunctionDelegate("glGetFragDataLocation", typeof(Delegate_GetFragDataLocation_0));
+			m_GetFragDataLocation_0 = (GlDelegate_uint_string_Returns_int)GetFunctionDelegate("glGetFragDataLocation", typeof(GlDelegate_uint_string_Returns_int));
 
-			m_GetFramebufferAttachmentParameteriv_0 = (Delegate_GetFramebufferAttachmentParameteriv_0)GetFunctionDelegate("glGetFramebufferAttachmentParameteriv", typeof(Delegate_GetFramebufferAttachmentParameteriv_0));
+			m_GetFramebufferAttachmentParameteriv_0 = (GlDelegate_uint_uint_uint_systemintptr)GetFunctionDelegate("glGetFramebufferAttachmentParameteriv", typeof(GlDelegate_uint_uint_uint_systemintptr));
 
-			m_GetFramebufferAttachmentParameteriv_1 = (Delegate_GetFramebufferAttachmentParameteriv_1)GetFunctionDelegate("glGetFramebufferAttachmentParameteriv", typeof(Delegate_GetFramebufferAttachmentParameteriv_1));
+			m_GetFramebufferAttachmentParameteriv_1 = (GlDelegate_uint_uint_uint_outint)GetFunctionDelegate("glGetFramebufferAttachmentParameteriv", typeof(GlDelegate_uint_uint_uint_outint));
 
-			m_GetInteger64i_v_0 = (Delegate_GetInteger64i_v_0)GetFunctionDelegate("glGetInteger64i_v", typeof(Delegate_GetInteger64i_v_0));
+			m_GetInteger64i_v_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetInteger64i_v", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetInteger64i_v_1 = (Delegate_GetInteger64i_v_1)GetFunctionDelegate("glGetInteger64i_v", typeof(Delegate_GetInteger64i_v_1));
+			m_GetInteger64i_v_1 = (GlDelegate_uint_uint_longarray)GetFunctionDelegate("glGetInteger64i_v", typeof(GlDelegate_uint_uint_longarray));
 
-			m_GetInteger64i_v_2 = (Delegate_GetInteger64i_v_2)GetFunctionDelegate("glGetInteger64i_v", typeof(Delegate_GetInteger64i_v_2));
+			m_GetInteger64i_v_2 = (GlDelegate_uint_uint_outlong)GetFunctionDelegate("glGetInteger64i_v", typeof(GlDelegate_uint_uint_outlong));
 
-			m_GetInteger64v_0 = (Delegate_GetInteger64v_0)GetFunctionDelegate("glGetInteger64v", typeof(Delegate_GetInteger64v_0));
+			m_GetInteger64v_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glGetInteger64v", typeof(GlDelegate_uint_systemintptr));
 
-			m_GetInteger64v_1 = (Delegate_GetInteger64v_1)GetFunctionDelegate("glGetInteger64v", typeof(Delegate_GetInteger64v_1));
+			m_GetInteger64v_1 = (GlDelegate_uint_longarray)GetFunctionDelegate("glGetInteger64v", typeof(GlDelegate_uint_longarray));
 
-			m_GetInteger64v_2 = (Delegate_GetInteger64v_2)GetFunctionDelegate("glGetInteger64v", typeof(Delegate_GetInteger64v_2));
+			m_GetInteger64v_2 = (GlDelegate_uint_outlong)GetFunctionDelegate("glGetInteger64v", typeof(GlDelegate_uint_outlong));
 
-			m_GetIntegeri_v_0 = (Delegate_GetIntegeri_v_0)GetFunctionDelegate("glGetIntegeri_v", typeof(Delegate_GetIntegeri_v_0));
+			m_GetIntegeri_v_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetIntegeri_v", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetIntegeri_v_1 = (Delegate_GetIntegeri_v_1)GetFunctionDelegate("glGetIntegeri_v", typeof(Delegate_GetIntegeri_v_1));
+			m_GetIntegeri_v_1 = (GlDelegate_uint_uint_intarray)GetFunctionDelegate("glGetIntegeri_v", typeof(GlDelegate_uint_uint_intarray));
 
-			m_GetIntegeri_v_2 = (Delegate_GetIntegeri_v_2)GetFunctionDelegate("glGetIntegeri_v", typeof(Delegate_GetIntegeri_v_2));
+			m_GetIntegeri_v_2 = (GlDelegate_uint_uint_outint)GetFunctionDelegate("glGetIntegeri_v", typeof(GlDelegate_uint_uint_outint));
 
-			m_GetIntegerv_0 = (Delegate_GetIntegerv_0)GetFunctionDelegate("glGetIntegerv", typeof(Delegate_GetIntegerv_0));
+			m_GetIntegerv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glGetIntegerv", typeof(GlDelegate_uint_systemintptr));
 
-			m_GetIntegerv_1 = (Delegate_GetIntegerv_1)GetFunctionDelegate("glGetIntegerv", typeof(Delegate_GetIntegerv_1));
+			m_GetIntegerv_1 = (GlDelegate_uint_intarray)GetFunctionDelegate("glGetIntegerv", typeof(GlDelegate_uint_intarray));
 
-			m_GetIntegerv_2 = (Delegate_GetIntegerv_2)GetFunctionDelegate("glGetIntegerv", typeof(Delegate_GetIntegerv_2));
+			m_GetIntegerv_2 = (GlDelegate_uint_outint)GetFunctionDelegate("glGetIntegerv", typeof(GlDelegate_uint_outint));
 
-			m_GetMultisamplefv_0 = (Delegate_GetMultisamplefv_0)GetFunctionDelegate("glGetMultisamplefv", typeof(Delegate_GetMultisamplefv_0));
+			m_GetMultisamplefv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetMultisamplefv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetMultisamplefv_1 = (Delegate_GetMultisamplefv_1)GetFunctionDelegate("glGetMultisamplefv", typeof(Delegate_GetMultisamplefv_1));
+			m_GetMultisamplefv_1 = (GlDelegate_uint_uint_outfloat)GetFunctionDelegate("glGetMultisamplefv", typeof(GlDelegate_uint_uint_outfloat));
 
-			m_GetProgramInfoLog_0 = (Delegate_GetProgramInfoLog_0)GetFunctionDelegate("glGetProgramInfoLog", typeof(Delegate_GetProgramInfoLog_0));
+			m_GetProgramInfoLog_0 = (GlDelegate_uint_int_systemintptr_string)GetFunctionDelegate("glGetProgramInfoLog", typeof(GlDelegate_uint_int_systemintptr_string));
 
-			m_GetProgramInfoLog_1 = (Delegate_GetProgramInfoLog_1)GetFunctionDelegate("glGetProgramInfoLog", typeof(Delegate_GetProgramInfoLog_1));
+			m_GetProgramInfoLog_1 = (GlDelegate_uint_int_outint_bytearray)GetFunctionDelegate("glGetProgramInfoLog", typeof(GlDelegate_uint_int_outint_bytearray));
 
-			m_GetProgramiv_0 = (Delegate_GetProgramiv_0)GetFunctionDelegate("glGetProgramiv", typeof(Delegate_GetProgramiv_0));
+			m_GetProgramiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetProgramiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetProgramiv_1 = (Delegate_GetProgramiv_1)GetFunctionDelegate("glGetProgramiv", typeof(Delegate_GetProgramiv_1));
+			m_GetProgramiv_1 = (GlDelegate_uint_uint_intarray)GetFunctionDelegate("glGetProgramiv", typeof(GlDelegate_uint_uint_intarray));
 
-			m_GetProgramiv_2 = (Delegate_GetProgramiv_2)GetFunctionDelegate("glGetProgramiv", typeof(Delegate_GetProgramiv_2));
+			m_GetProgramiv_2 = (GlDelegate_uint_uint_outint)GetFunctionDelegate("glGetProgramiv", typeof(GlDelegate_uint_uint_outint));
 
-			m_GetQueryiv_0 = (Delegate_GetQueryiv_0)GetFunctionDelegate("glGetQueryiv", typeof(Delegate_GetQueryiv_0));
+			m_GetQueryiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetQueryiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetQueryObjectiv_0 = (Delegate_GetQueryObjectiv_0)GetFunctionDelegate("glGetQueryObjectiv", typeof(Delegate_GetQueryObjectiv_0));
+			m_GetQueryObjectiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetQueryObjectiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetQueryObjectuiv_0 = (Delegate_GetQueryObjectuiv_0)GetFunctionDelegate("glGetQueryObjectuiv", typeof(Delegate_GetQueryObjectuiv_0));
+			m_GetQueryObjectuiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetQueryObjectuiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetRenderbufferParameteriv_0 = (Delegate_GetRenderbufferParameteriv_0)GetFunctionDelegate("glGetRenderbufferParameteriv", typeof(Delegate_GetRenderbufferParameteriv_0));
+			m_GetRenderbufferParameteriv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetRenderbufferParameteriv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetShaderInfoLog_0 = (Delegate_GetShaderInfoLog_0)GetFunctionDelegate("glGetShaderInfoLog", typeof(Delegate_GetShaderInfoLog_0));
+			m_GetShaderInfoLog_0 = (GlDelegate_uint_int_systemintptr_string)GetFunctionDelegate("glGetShaderInfoLog", typeof(GlDelegate_uint_int_systemintptr_string));
 
-			m_GetShaderInfoLog_1 = (Delegate_GetShaderInfoLog_1)GetFunctionDelegate("glGetShaderInfoLog", typeof(Delegate_GetShaderInfoLog_1));
+			m_GetShaderInfoLog_1 = (GlDelegate_uint_int_outint_bytearray)GetFunctionDelegate("glGetShaderInfoLog", typeof(GlDelegate_uint_int_outint_bytearray));
 
-			m_GetShaderiv_0 = (Delegate_GetShaderiv_0)GetFunctionDelegate("glGetShaderiv", typeof(Delegate_GetShaderiv_0));
+			m_GetShaderiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetShaderiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetShaderiv_1 = (Delegate_GetShaderiv_1)GetFunctionDelegate("glGetShaderiv", typeof(Delegate_GetShaderiv_1));
+			m_GetShaderiv_1 = (GlDelegate_uint_uint_intarray)GetFunctionDelegate("glGetShaderiv", typeof(GlDelegate_uint_uint_intarray));
 
-			m_GetShaderiv_2 = (Delegate_GetShaderiv_2)GetFunctionDelegate("glGetShaderiv", typeof(Delegate_GetShaderiv_2));
+			m_GetShaderiv_2 = (GlDelegate_uint_uint_outint)GetFunctionDelegate("glGetShaderiv", typeof(GlDelegate_uint_uint_outint));
 
-			m_GetShaderSource_0 = (Delegate_GetShaderSource_0)GetFunctionDelegate("glGetShaderSource", typeof(Delegate_GetShaderSource_0));
+			m_GetShaderSource_0 = (GlDelegate_uint_int_systemintptr_string)GetFunctionDelegate("glGetShaderSource", typeof(GlDelegate_uint_int_systemintptr_string));
 
-			m_GetString_0 = (Delegate_GetString_0)GetFunctionDelegate("glGetString", typeof(Delegate_GetString_0));
+			m_GetString_0 = (GlDelegate_uint_Returns_systemintptr)GetFunctionDelegate("glGetString", typeof(GlDelegate_uint_Returns_systemintptr));
 
-			m_GetStringi_0 = (Delegate_GetStringi_0)GetFunctionDelegate("glGetStringi", typeof(Delegate_GetStringi_0));
+			m_GetStringi_0 = (GlDelegate_uint_uint_Returns_systemintptr)GetFunctionDelegate("glGetStringi", typeof(GlDelegate_uint_uint_Returns_systemintptr));
 
-			m_GetSynciv_0 = (Delegate_GetSynciv_0)GetFunctionDelegate("glGetSynciv", typeof(Delegate_GetSynciv_0));
+			m_GetSynciv_0 = (GlDelegate_systemintptr_uint_int_systemintptr_systemintptr)GetFunctionDelegate("glGetSynciv", typeof(GlDelegate_systemintptr_uint_int_systemintptr_systemintptr));
 
-			m_GetTexImage_0 = (Delegate_GetTexImage_0)GetFunctionDelegate("glGetTexImage", typeof(Delegate_GetTexImage_0));
+			m_GetTexImage_0 = (GlDelegate_uint_int_uint_uint_systemintptr)GetFunctionDelegate("glGetTexImage", typeof(GlDelegate_uint_int_uint_uint_systemintptr));
 
-			m_GetTexLevelParameterfv_0 = (Delegate_GetTexLevelParameterfv_0)GetFunctionDelegate("glGetTexLevelParameterfv", typeof(Delegate_GetTexLevelParameterfv_0));
+			m_GetTexLevelParameterfv_0 = (GlDelegate_uint_int_uint_systemintptr)GetFunctionDelegate("glGetTexLevelParameterfv", typeof(GlDelegate_uint_int_uint_systemintptr));
 
-			m_GetTexLevelParameteriv_0 = (Delegate_GetTexLevelParameteriv_0)GetFunctionDelegate("glGetTexLevelParameteriv", typeof(Delegate_GetTexLevelParameteriv_0));
+			m_GetTexLevelParameteriv_0 = (GlDelegate_uint_int_uint_systemintptr)GetFunctionDelegate("glGetTexLevelParameteriv", typeof(GlDelegate_uint_int_uint_systemintptr));
 
-			m_GetTexParameterfv_0 = (Delegate_GetTexParameterfv_0)GetFunctionDelegate("glGetTexParameterfv", typeof(Delegate_GetTexParameterfv_0));
+			m_GetTexParameterfv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetTexParameterfv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetTexParameterIiv_0 = (Delegate_GetTexParameterIiv_0)GetFunctionDelegate("glGetTexParameterIiv", typeof(Delegate_GetTexParameterIiv_0));
+			m_GetTexParameterIiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetTexParameterIiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetTexParameterIuiv_0 = (Delegate_GetTexParameterIuiv_0)GetFunctionDelegate("glGetTexParameterIuiv", typeof(Delegate_GetTexParameterIuiv_0));
+			m_GetTexParameterIuiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetTexParameterIuiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetTexParameteriv_0 = (Delegate_GetTexParameteriv_0)GetFunctionDelegate("glGetTexParameteriv", typeof(Delegate_GetTexParameteriv_0));
+			m_GetTexParameteriv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetTexParameteriv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetTransformFeedbackVarying_0 = (Delegate_GetTransformFeedbackVarying_0)GetFunctionDelegate("glGetTransformFeedbackVarying", typeof(Delegate_GetTransformFeedbackVarying_0));
+			m_GetTransformFeedbackVarying_0 = (GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string)GetFunctionDelegate("glGetTransformFeedbackVarying", typeof(GlDelegate_uint_uint_int_systemintptr_systemintptr_systemintptr_string));
 
-			m_GetUniformBlockIndex_0 = (Delegate_GetUniformBlockIndex_0)GetFunctionDelegate("glGetUniformBlockIndex", typeof(Delegate_GetUniformBlockIndex_0));
+			m_GetUniformBlockIndex_0 = (GlDelegate_uint_string_Returns_uint)GetFunctionDelegate("glGetUniformBlockIndex", typeof(GlDelegate_uint_string_Returns_uint));
 
-			m_GetUniformfv_0 = (Delegate_GetUniformfv_0)GetFunctionDelegate("glGetUniformfv", typeof(Delegate_GetUniformfv_0));
+			m_GetUniformfv_0 = (GlDelegate_uint_int_systemintptr)GetFunctionDelegate("glGetUniformfv", typeof(GlDelegate_uint_int_systemintptr));
 
-			m_GetUniformIndices_0 = (Delegate_GetUniformIndices_0)GetFunctionDelegate("glGetUniformIndices", typeof(Delegate_GetUniformIndices_0));
+			m_GetUniformIndices_0 = (GlDelegate_uint_int_systemintptr_systemintptr)GetFunctionDelegate("glGetUniformIndices", typeof(GlDelegate_uint_int_systemintptr_systemintptr));
 
-			m_GetUniformiv_0 = (Delegate_GetUniformiv_0)GetFunctionDelegate("glGetUniformiv", typeof(Delegate_GetUniformiv_0));
+			m_GetUniformiv_0 = (GlDelegate_uint_int_systemintptr)GetFunctionDelegate("glGetUniformiv", typeof(GlDelegate_uint_int_systemintptr));
 
-			m_GetUniformLocation_0 = (Delegate_GetUniformLocation_0)GetFunctionDelegate("glGetUniformLocation", typeof(Delegate_GetUniformLocation_0));
+			m_GetUniformLocation_0 = (GlDelegate_uint_systemintptr_Returns_int)GetFunctionDelegate("glGetUniformLocation", typeof(GlDelegate_uint_systemintptr_Returns_int));
 
-			m_GetUniformLocation_1 = (Delegate_GetUniformLocation_1)GetFunctionDelegate("glGetUniformLocation", typeof(Delegate_GetUniformLocation_1));
+			m_GetUniformLocation_1 = (GlDelegate_uint_bytearray_Returns_int)GetFunctionDelegate("glGetUniformLocation", typeof(GlDelegate_uint_bytearray_Returns_int));
 
-			m_GetUniformLocation_2 = (Delegate_GetUniformLocation_2)GetFunctionDelegate("glGetUniformLocation", typeof(Delegate_GetUniformLocation_2));
+			m_GetUniformLocation_2 = (GlDelegate_uint_string_Returns_int)GetFunctionDelegate("glGetUniformLocation", typeof(GlDelegate_uint_string_Returns_int));
 
-			m_GetUniformuiv_0 = (Delegate_GetUniformuiv_0)GetFunctionDelegate("glGetUniformuiv", typeof(Delegate_GetUniformuiv_0));
+			m_GetUniformuiv_0 = (GlDelegate_uint_int_systemintptr)GetFunctionDelegate("glGetUniformuiv", typeof(GlDelegate_uint_int_systemintptr));
 
-			m_GetVertexAttribdv_0 = (Delegate_GetVertexAttribdv_0)GetFunctionDelegate("glGetVertexAttribdv", typeof(Delegate_GetVertexAttribdv_0));
+			m_GetVertexAttribdv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetVertexAttribdv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetVertexAttribfv_0 = (Delegate_GetVertexAttribfv_0)GetFunctionDelegate("glGetVertexAttribfv", typeof(Delegate_GetVertexAttribfv_0));
+			m_GetVertexAttribfv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetVertexAttribfv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetVertexAttribIiv_0 = (Delegate_GetVertexAttribIiv_0)GetFunctionDelegate("glGetVertexAttribIiv", typeof(Delegate_GetVertexAttribIiv_0));
+			m_GetVertexAttribIiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetVertexAttribIiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetVertexAttribIuiv_0 = (Delegate_GetVertexAttribIuiv_0)GetFunctionDelegate("glGetVertexAttribIuiv", typeof(Delegate_GetVertexAttribIuiv_0));
+			m_GetVertexAttribIuiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetVertexAttribIuiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetVertexAttribiv_0 = (Delegate_GetVertexAttribiv_0)GetFunctionDelegate("glGetVertexAttribiv", typeof(Delegate_GetVertexAttribiv_0));
+			m_GetVertexAttribiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetVertexAttribiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetVertexAttribPointerv_0 = (Delegate_GetVertexAttribPointerv_0)GetFunctionDelegate("glGetVertexAttribPointerv", typeof(Delegate_GetVertexAttribPointerv_0));
+			m_GetVertexAttribPointerv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetVertexAttribPointerv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_Hint_0 = (Delegate_Hint_0)GetFunctionDelegate("glHint", typeof(Delegate_Hint_0));
+			m_Hint_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glHint", typeof(GlDelegate_uint_uint));
 
-			m_IsBuffer_0 = (Delegate_IsBuffer_0)GetFunctionDelegate("glIsBuffer", typeof(Delegate_IsBuffer_0));
+			m_IsBuffer_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsBuffer", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsEnabled_0 = (Delegate_IsEnabled_0)GetFunctionDelegate("glIsEnabled", typeof(Delegate_IsEnabled_0));
+			m_IsEnabled_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsEnabled", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsEnabledi_0 = (Delegate_IsEnabledi_0)GetFunctionDelegate("glIsEnabledi", typeof(Delegate_IsEnabledi_0));
+			m_IsEnabledi_0 = (GlDelegate_uint_uint_Returns_bool)GetFunctionDelegate("glIsEnabledi", typeof(GlDelegate_uint_uint_Returns_bool));
 
-			m_IsFramebuffer_0 = (Delegate_IsFramebuffer_0)GetFunctionDelegate("glIsFramebuffer", typeof(Delegate_IsFramebuffer_0));
+			m_IsFramebuffer_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsFramebuffer", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsProgram_0 = (Delegate_IsProgram_0)GetFunctionDelegate("glIsProgram", typeof(Delegate_IsProgram_0));
+			m_IsProgram_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsProgram", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsQuery_0 = (Delegate_IsQuery_0)GetFunctionDelegate("glIsQuery", typeof(Delegate_IsQuery_0));
+			m_IsQuery_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsQuery", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsRenderbuffer_0 = (Delegate_IsRenderbuffer_0)GetFunctionDelegate("glIsRenderbuffer", typeof(Delegate_IsRenderbuffer_0));
+			m_IsRenderbuffer_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsRenderbuffer", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsShader_0 = (Delegate_IsShader_0)GetFunctionDelegate("glIsShader", typeof(Delegate_IsShader_0));
+			m_IsShader_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsShader", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsSync_0 = (Delegate_IsSync_0)GetFunctionDelegate("glIsSync", typeof(Delegate_IsSync_0));
+			m_IsSync_0 = (GlDelegate_systemintptr_Returns_bool)GetFunctionDelegate("glIsSync", typeof(GlDelegate_systemintptr_Returns_bool));
 
-			m_IsTexture_0 = (Delegate_IsTexture_0)GetFunctionDelegate("glIsTexture", typeof(Delegate_IsTexture_0));
+			m_IsTexture_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsTexture", typeof(GlDelegate_uint_Returns_bool));
 
-			m_IsVertexArray_0 = (Delegate_IsVertexArray_0)GetFunctionDelegate("glIsVertexArray", typeof(Delegate_IsVertexArray_0));
+			m_IsVertexArray_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsVertexArray", typeof(GlDelegate_uint_Returns_bool));
 
-			m_LineWidth_0 = (Delegate_LineWidth_0)GetFunctionDelegate("glLineWidth", typeof(Delegate_LineWidth_0));
+			m_LineWidth_0 = (GlDelegate_float)GetFunctionDelegate("glLineWidth", typeof(GlDelegate_float));
 
-			m_LinkProgram_0 = (Delegate_LinkProgram_0)GetFunctionDelegate("glLinkProgram", typeof(Delegate_LinkProgram_0));
+			m_LinkProgram_0 = (GlDelegate_uint)GetFunctionDelegate("glLinkProgram", typeof(GlDelegate_uint));
 
-			m_LogicOp_0 = (Delegate_LogicOp_0)GetFunctionDelegate("glLogicOp", typeof(Delegate_LogicOp_0));
+			m_LogicOp_0 = (GlDelegate_uint)GetFunctionDelegate("glLogicOp", typeof(GlDelegate_uint));
 
-			m_MapBuffer_0 = (Delegate_MapBuffer_0)GetFunctionDelegate("glMapBuffer", typeof(Delegate_MapBuffer_0));
+			m_MapBuffer_0 = (GlDelegate_uint_uint_Returns_systemintptr)GetFunctionDelegate("glMapBuffer", typeof(GlDelegate_uint_uint_Returns_systemintptr));
 
-			m_MapBufferRange_0 = (Delegate_MapBufferRange_0)GetFunctionDelegate("glMapBufferRange", typeof(Delegate_MapBufferRange_0));
+			m_MapBufferRange_0 = (GlDelegate_uint_systemintptr_systemintptr_uint_Returns_systemintptr)GetFunctionDelegate("glMapBufferRange", typeof(GlDelegate_uint_systemintptr_systemintptr_uint_Returns_systemintptr));
 
-			m_MultiDrawArrays_0 = (Delegate_MultiDrawArrays_0)GetFunctionDelegate("glMultiDrawArrays", typeof(Delegate_MultiDrawArrays_0));
+			m_MultiDrawArrays_0 = (GlDelegate_uint_systemintptr_systemintptr_int)GetFunctionDelegate("glMultiDrawArrays", typeof(GlDelegate_uint_systemintptr_systemintptr_int));
 
-			m_MultiDrawElements_0 = (Delegate_MultiDrawElements_0)GetFunctionDelegate("glMultiDrawElements", typeof(Delegate_MultiDrawElements_0));
+			m_MultiDrawElements_0 = (GlDelegate_uint_systemintptr_uint_systemintptr_int)GetFunctionDelegate("glMultiDrawElements", typeof(GlDelegate_uint_systemintptr_uint_systemintptr_int));
 
-			m_MultiDrawElementsBaseVertex_0 = (Delegate_MultiDrawElementsBaseVertex_0)GetFunctionDelegate("glMultiDrawElementsBaseVertex", typeof(Delegate_MultiDrawElementsBaseVertex_0));
+			m_MultiDrawElementsBaseVertex_0 = (GlDelegate_uint_systemintptr_uint_systemintptr_int_systemintptr)GetFunctionDelegate("glMultiDrawElementsBaseVertex", typeof(GlDelegate_uint_systemintptr_uint_systemintptr_int_systemintptr));
 
-			m_PixelStoref_0 = (Delegate_PixelStoref_0)GetFunctionDelegate("glPixelStoref", typeof(Delegate_PixelStoref_0));
+			m_PixelStoref_0 = (GlDelegate_uint_float)GetFunctionDelegate("glPixelStoref", typeof(GlDelegate_uint_float));
 
-			m_PixelStorei_0 = (Delegate_PixelStorei_0)GetFunctionDelegate("glPixelStorei", typeof(Delegate_PixelStorei_0));
+			m_PixelStorei_0 = (GlDelegate_uint_int)GetFunctionDelegate("glPixelStorei", typeof(GlDelegate_uint_int));
 
-			m_PointParameterf_0 = (Delegate_PointParameterf_0)GetFunctionDelegate("glPointParameterf", typeof(Delegate_PointParameterf_0));
+			m_PointParameterf_0 = (GlDelegate_uint_float)GetFunctionDelegate("glPointParameterf", typeof(GlDelegate_uint_float));
 
-			m_PointParameterfv_0 = (Delegate_PointParameterfv_0)GetFunctionDelegate("glPointParameterfv", typeof(Delegate_PointParameterfv_0));
+			m_PointParameterfv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glPointParameterfv", typeof(GlDelegate_uint_systemintptr));
 
-			m_PointParameteri_0 = (Delegate_PointParameteri_0)GetFunctionDelegate("glPointParameteri", typeof(Delegate_PointParameteri_0));
+			m_PointParameteri_0 = (GlDelegate_uint_int)GetFunctionDelegate("glPointParameteri", typeof(GlDelegate_uint_int));
 
-			m_PointParameteriv_0 = (Delegate_PointParameteriv_0)GetFunctionDelegate("glPointParameteriv", typeof(Delegate_PointParameteriv_0));
+			m_PointParameteriv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glPointParameteriv", typeof(GlDelegate_uint_systemintptr));
 
-			m_PointSize_0 = (Delegate_PointSize_0)GetFunctionDelegate("glPointSize", typeof(Delegate_PointSize_0));
+			m_PointSize_0 = (GlDelegate_float)GetFunctionDelegate("glPointSize", typeof(GlDelegate_float));
 
-			m_PolygonMode_0 = (Delegate_PolygonMode_0)GetFunctionDelegate("glPolygonMode", typeof(Delegate_PolygonMode_0));
+			m_PolygonMode_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glPolygonMode", typeof(GlDelegate_uint_uint));
 
-			m_PolygonOffset_0 = (Delegate_PolygonOffset_0)GetFunctionDelegate("glPolygonOffset", typeof(Delegate_PolygonOffset_0));
+			m_PolygonOffset_0 = (GlDelegate_float_float)GetFunctionDelegate("glPolygonOffset", typeof(GlDelegate_float_float));
 
-			m_PrimitiveRestartIndex_0 = (Delegate_PrimitiveRestartIndex_0)GetFunctionDelegate("glPrimitiveRestartIndex", typeof(Delegate_PrimitiveRestartIndex_0));
+			m_PrimitiveRestartIndex_0 = (GlDelegate_uint)GetFunctionDelegate("glPrimitiveRestartIndex", typeof(GlDelegate_uint));
 
-			m_ProvokingVertex_0 = (Delegate_ProvokingVertex_0)GetFunctionDelegate("glProvokingVertex", typeof(Delegate_ProvokingVertex_0));
+			m_ProvokingVertex_0 = (GlDelegate_uint)GetFunctionDelegate("glProvokingVertex", typeof(GlDelegate_uint));
 
-			m_ReadBuffer_0 = (Delegate_ReadBuffer_0)GetFunctionDelegate("glReadBuffer", typeof(Delegate_ReadBuffer_0));
+			m_ReadBuffer_0 = (GlDelegate_uint)GetFunctionDelegate("glReadBuffer", typeof(GlDelegate_uint));
 
-			m_ReadPixels_0 = (Delegate_ReadPixels_0)GetFunctionDelegate("glReadPixels", typeof(Delegate_ReadPixels_0));
+			m_ReadPixels_0 = (GlDelegate_int_int_int_int_uint_uint_systemintptr)GetFunctionDelegate("glReadPixels", typeof(GlDelegate_int_int_int_int_uint_uint_systemintptr));
 
-			m_RenderbufferStorage_0 = (Delegate_RenderbufferStorage_0)GetFunctionDelegate("glRenderbufferStorage", typeof(Delegate_RenderbufferStorage_0));
+			m_RenderbufferStorage_0 = (GlDelegate_uint_uint_int_int)GetFunctionDelegate("glRenderbufferStorage", typeof(GlDelegate_uint_uint_int_int));
 
-			m_RenderbufferStorageMultisample_0 = (Delegate_RenderbufferStorageMultisample_0)GetFunctionDelegate("glRenderbufferStorageMultisample", typeof(Delegate_RenderbufferStorageMultisample_0));
+			m_RenderbufferStorageMultisample_0 = (GlDelegate_uint_int_uint_int_int)GetFunctionDelegate("glRenderbufferStorageMultisample", typeof(GlDelegate_uint_int_uint_int_int));
 
-			m_SampleCoverage_0 = (Delegate_SampleCoverage_0)GetFunctionDelegate("glSampleCoverage", typeof(Delegate_SampleCoverage_0));
+			m_SampleCoverage_0 = (GlDelegate_float_bool)GetFunctionDelegate("glSampleCoverage", typeof(GlDelegate_float_bool));
 
-			m_SampleMaski_0 = (Delegate_SampleMaski_0)GetFunctionDelegate("glSampleMaski", typeof(Delegate_SampleMaski_0));
+			m_SampleMaski_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glSampleMaski", typeof(GlDelegate_uint_uint));
 
-			m_Scissor_0 = (Delegate_Scissor_0)GetFunctionDelegate("glScissor", typeof(Delegate_Scissor_0));
+			m_Scissor_0 = (GlDelegate_int_int_int_int)GetFunctionDelegate("glScissor", typeof(GlDelegate_int_int_int_int));
 
-			m_ShaderSource_0 = (Delegate_ShaderSource_0)GetFunctionDelegate("glShaderSource", typeof(Delegate_ShaderSource_0));
+			m_ShaderSource_0 = (GlDelegate_uint_int_systemintptr_systemintptr)GetFunctionDelegate("glShaderSource", typeof(GlDelegate_uint_int_systemintptr_systemintptr));
 
-			m_ShaderSource_1 = (Delegate_ShaderSource_1)GetFunctionDelegate("glShaderSource", typeof(Delegate_ShaderSource_1));
+			m_ShaderSource_1 = (GlDelegate_uint_int_intptrarray_intarray)GetFunctionDelegate("glShaderSource", typeof(GlDelegate_uint_int_intptrarray_intarray));
 
-			m_StencilFunc_0 = (Delegate_StencilFunc_0)GetFunctionDelegate("glStencilFunc", typeof(Delegate_StencilFunc_0));
+			m_StencilFunc_0 = (GlDelegate_uint_int_uint)GetFunctionDelegate("glStencilFunc", typeof(GlDelegate_uint_int_uint));
 
-			m_StencilFuncSeparate_0 = (Delegate_StencilFuncSeparate_0)GetFunctionDelegate("glStencilFuncSeparate", typeof(Delegate_StencilFuncSeparate_0));
+			m_StencilFuncSeparate_0 = (GlDelegate_uint_uint_int_uint)GetFunctionDelegate("glStencilFuncSeparate", typeof(GlDelegate_uint_uint_int_uint));
 
-			m_StencilMask_0 = (Delegate_StencilMask_0)GetFunctionDelegate("glStencilMask", typeof(Delegate_StencilMask_0));
+			m_StencilMask_0 = (GlDelegate_uint)GetFunctionDelegate("glStencilMask", typeof(GlDelegate_uint));
 
-			m_StencilMaskSeparate_0 = (Delegate_StencilMaskSeparate_0)GetFunctionDelegate("glStencilMaskSeparate", typeof(Delegate_StencilMaskSeparate_0));
+			m_StencilMaskSeparate_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glStencilMaskSeparate", typeof(GlDelegate_uint_uint));
 
-			m_StencilOp_0 = (Delegate_StencilOp_0)GetFunctionDelegate("glStencilOp", typeof(Delegate_StencilOp_0));
+			m_StencilOp_0 = (GlDelegate_uint_uint_uint)GetFunctionDelegate("glStencilOp", typeof(GlDelegate_uint_uint_uint));
 
-			m_StencilOpSeparate_0 = (Delegate_StencilOpSeparate_0)GetFunctionDelegate("glStencilOpSeparate", typeof(Delegate_StencilOpSeparate_0));
+			m_StencilOpSeparate_0 = (GlDelegate_uint_uint_uint_uint)GetFunctionDelegate("glStencilOpSeparate", typeof(GlDelegate_uint_uint_uint_uint));
 
-			m_TexBuffer_0 = (Delegate_TexBuffer_0)GetFunctionDelegate("glTexBuffer", typeof(Delegate_TexBuffer_0));
+			m_TexBuffer_0 = (GlDelegate_uint_uint_uint)GetFunctionDelegate("glTexBuffer", typeof(GlDelegate_uint_uint_uint));
 
-			m_TexImage1D_0 = (Delegate_TexImage1D_0)GetFunctionDelegate("glTexImage1D", typeof(Delegate_TexImage1D_0));
+			m_TexImage1D_0 = (GlDelegate_uint_int_int_int_int_uint_uint_systemintptr)GetFunctionDelegate("glTexImage1D", typeof(GlDelegate_uint_int_int_int_int_uint_uint_systemintptr));
 
-			m_TexImage2D_0 = (Delegate_TexImage2D_0)GetFunctionDelegate("glTexImage2D", typeof(Delegate_TexImage2D_0));
+			m_TexImage2D_0 = (GlDelegate_uint_int_int_int_int_int_uint_uint_systemintptr)GetFunctionDelegate("glTexImage2D", typeof(GlDelegate_uint_int_int_int_int_int_uint_uint_systemintptr));
 
-			m_TexImage2DMultisample_0 = (Delegate_TexImage2DMultisample_0)GetFunctionDelegate("glTexImage2DMultisample", typeof(Delegate_TexImage2DMultisample_0));
+			m_TexImage2DMultisample_0 = (GlDelegate_uint_int_uint_int_int_bool)GetFunctionDelegate("glTexImage2DMultisample", typeof(GlDelegate_uint_int_uint_int_int_bool));
 
-			m_TexImage3D_0 = (Delegate_TexImage3D_0)GetFunctionDelegate("glTexImage3D", typeof(Delegate_TexImage3D_0));
+			m_TexImage3D_0 = (GlDelegate_uint_int_int_int_int_int_int_uint_uint_systemintptr)GetFunctionDelegate("glTexImage3D", typeof(GlDelegate_uint_int_int_int_int_int_int_uint_uint_systemintptr));
 
-			m_TexImage3DMultisample_0 = (Delegate_TexImage3DMultisample_0)GetFunctionDelegate("glTexImage3DMultisample", typeof(Delegate_TexImage3DMultisample_0));
+			m_TexImage3DMultisample_0 = (GlDelegate_uint_int_uint_int_int_int_bool)GetFunctionDelegate("glTexImage3DMultisample", typeof(GlDelegate_uint_int_uint_int_int_int_bool));
 
-			m_TexParameterf_0 = (Delegate_TexParameterf_0)GetFunctionDelegate("glTexParameterf", typeof(Delegate_TexParameterf_0));
+			m_TexParameterf_0 = (GlDelegate_uint_uint_float)GetFunctionDelegate("glTexParameterf", typeof(GlDelegate_uint_uint_float));
 
-			m_TexParameterfv_0 = (Delegate_TexParameterfv_0)GetFunctionDelegate("glTexParameterfv", typeof(Delegate_TexParameterfv_0));
+			m_TexParameterfv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glTexParameterfv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_TexParameteri_0 = (Delegate_TexParameteri_0)GetFunctionDelegate("glTexParameteri", typeof(Delegate_TexParameteri_0));
+			m_TexParameteri_0 = (GlDelegate_uint_uint_int)GetFunctionDelegate("glTexParameteri", typeof(GlDelegate_uint_uint_int));
 
-			m_TexParameterIiv_0 = (Delegate_TexParameterIiv_0)GetFunctionDelegate("glTexParameterIiv", typeof(Delegate_TexParameterIiv_0));
+			m_TexParameterIiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glTexParameterIiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_TexParameterIuiv_0 = (Delegate_TexParameterIuiv_0)GetFunctionDelegate("glTexParameterIuiv", typeof(Delegate_TexParameterIuiv_0));
+			m_TexParameterIuiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glTexParameterIuiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_TexParameteriv_0 = (Delegate_TexParameteriv_0)GetFunctionDelegate("glTexParameteriv", typeof(Delegate_TexParameteriv_0));
+			m_TexParameteriv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glTexParameteriv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_TexSubImage1D_0 = (Delegate_TexSubImage1D_0)GetFunctionDelegate("glTexSubImage1D", typeof(Delegate_TexSubImage1D_0));
+			m_TexSubImage1D_0 = (GlDelegate_uint_int_int_int_uint_uint_systemintptr)GetFunctionDelegate("glTexSubImage1D", typeof(GlDelegate_uint_int_int_int_uint_uint_systemintptr));
 
-			m_TexSubImage2D_0 = (Delegate_TexSubImage2D_0)GetFunctionDelegate("glTexSubImage2D", typeof(Delegate_TexSubImage2D_0));
+			m_TexSubImage2D_0 = (GlDelegate_uint_int_int_int_int_int_uint_uint_systemintptr)GetFunctionDelegate("glTexSubImage2D", typeof(GlDelegate_uint_int_int_int_int_int_uint_uint_systemintptr));
 
-			m_TexSubImage3D_0 = (Delegate_TexSubImage3D_0)GetFunctionDelegate("glTexSubImage3D", typeof(Delegate_TexSubImage3D_0));
+			m_TexSubImage3D_0 = (GlDelegate_uint_int_int_int_int_int_int_int_uint_uint_systemintptr)GetFunctionDelegate("glTexSubImage3D", typeof(GlDelegate_uint_int_int_int_int_int_int_int_uint_uint_systemintptr));
 
-			m_TransformFeedbackVaryings_0 = (Delegate_TransformFeedbackVaryings_0)GetFunctionDelegate("glTransformFeedbackVaryings", typeof(Delegate_TransformFeedbackVaryings_0));
+			m_TransformFeedbackVaryings_0 = (GlDelegate_uint_int_systemintptr_uint)GetFunctionDelegate("glTransformFeedbackVaryings", typeof(GlDelegate_uint_int_systemintptr_uint));
 
-			m_Uniform1f_0 = (Delegate_Uniform1f_0)GetFunctionDelegate("glUniform1f", typeof(Delegate_Uniform1f_0));
+			m_Uniform1f_0 = (GlDelegate_int_float)GetFunctionDelegate("glUniform1f", typeof(GlDelegate_int_float));
 
-			m_Uniform1fv_0 = (Delegate_Uniform1fv_0)GetFunctionDelegate("glUniform1fv", typeof(Delegate_Uniform1fv_0));
+			m_Uniform1fv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform1fv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform1i_0 = (Delegate_Uniform1i_0)GetFunctionDelegate("glUniform1i", typeof(Delegate_Uniform1i_0));
+			m_Uniform1i_0 = (GlDelegate_int_int)GetFunctionDelegate("glUniform1i", typeof(GlDelegate_int_int));
 
-			m_Uniform1iv_0 = (Delegate_Uniform1iv_0)GetFunctionDelegate("glUniform1iv", typeof(Delegate_Uniform1iv_0));
+			m_Uniform1iv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform1iv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform1ui_0 = (Delegate_Uniform1ui_0)GetFunctionDelegate("glUniform1ui", typeof(Delegate_Uniform1ui_0));
+			m_Uniform1ui_0 = (GlDelegate_int_uint)GetFunctionDelegate("glUniform1ui", typeof(GlDelegate_int_uint));
 
-			m_Uniform1uiv_0 = (Delegate_Uniform1uiv_0)GetFunctionDelegate("glUniform1uiv", typeof(Delegate_Uniform1uiv_0));
+			m_Uniform1uiv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform1uiv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform2f_0 = (Delegate_Uniform2f_0)GetFunctionDelegate("glUniform2f", typeof(Delegate_Uniform2f_0));
+			m_Uniform2f_0 = (GlDelegate_int_float_float)GetFunctionDelegate("glUniform2f", typeof(GlDelegate_int_float_float));
 
-			m_Uniform2f_1 = (Delegate_Uniform2f_1)GetFunctionDelegate("glUniform2f", typeof(Delegate_Uniform2f_1));
+			m_Uniform2f_1 = (GlDelegate_int_vector2)GetFunctionDelegate("glUniform2f", typeof(GlDelegate_int_vector2));
 
-			m_Uniform2fv_0 = (Delegate_Uniform2fv_0)GetFunctionDelegate("glUniform2fv", typeof(Delegate_Uniform2fv_0));
+			m_Uniform2fv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform2fv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform2i_0 = (Delegate_Uniform2i_0)GetFunctionDelegate("glUniform2i", typeof(Delegate_Uniform2i_0));
+			m_Uniform2i_0 = (GlDelegate_int_int_int)GetFunctionDelegate("glUniform2i", typeof(GlDelegate_int_int_int));
 
-			m_Uniform2i_1 = (Delegate_Uniform2i_1)GetFunctionDelegate("glUniform2i", typeof(Delegate_Uniform2i_1));
+			m_Uniform2i_1 = (GlDelegate_int_vector2i)GetFunctionDelegate("glUniform2i", typeof(GlDelegate_int_vector2i));
 
-			m_Uniform2iv_0 = (Delegate_Uniform2iv_0)GetFunctionDelegate("glUniform2iv", typeof(Delegate_Uniform2iv_0));
+			m_Uniform2iv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform2iv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform2ui_0 = (Delegate_Uniform2ui_0)GetFunctionDelegate("glUniform2ui", typeof(Delegate_Uniform2ui_0));
+			m_Uniform2ui_0 = (GlDelegate_int_uint_uint)GetFunctionDelegate("glUniform2ui", typeof(GlDelegate_int_uint_uint));
 
-			m_Uniform2uiv_0 = (Delegate_Uniform2uiv_0)GetFunctionDelegate("glUniform2uiv", typeof(Delegate_Uniform2uiv_0));
+			m_Uniform2uiv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform2uiv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform3f_0 = (Delegate_Uniform3f_0)GetFunctionDelegate("glUniform3f", typeof(Delegate_Uniform3f_0));
+			m_Uniform3f_0 = (GlDelegate_int_float_float_float)GetFunctionDelegate("glUniform3f", typeof(GlDelegate_int_float_float_float));
 
-			m_Uniform3f_1 = (Delegate_Uniform3f_1)GetFunctionDelegate("glUniform3f", typeof(Delegate_Uniform3f_1));
+			m_Uniform3f_1 = (GlDelegate_int_vector3)GetFunctionDelegate("glUniform3f", typeof(GlDelegate_int_vector3));
 
-			m_Uniform3fv_0 = (Delegate_Uniform3fv_0)GetFunctionDelegate("glUniform3fv", typeof(Delegate_Uniform3fv_0));
+			m_Uniform3fv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform3fv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform3i_0 = (Delegate_Uniform3i_0)GetFunctionDelegate("glUniform3i", typeof(Delegate_Uniform3i_0));
+			m_Uniform3i_0 = (GlDelegate_int_int_int_int)GetFunctionDelegate("glUniform3i", typeof(GlDelegate_int_int_int_int));
 
-			m_Uniform3i_1 = (Delegate_Uniform3i_1)GetFunctionDelegate("glUniform3i", typeof(Delegate_Uniform3i_1));
+			m_Uniform3i_1 = (GlDelegate_int_vector3i)GetFunctionDelegate("glUniform3i", typeof(GlDelegate_int_vector3i));
 
-			m_Uniform3iv_0 = (Delegate_Uniform3iv_0)GetFunctionDelegate("glUniform3iv", typeof(Delegate_Uniform3iv_0));
+			m_Uniform3iv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform3iv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform3ui_0 = (Delegate_Uniform3ui_0)GetFunctionDelegate("glUniform3ui", typeof(Delegate_Uniform3ui_0));
+			m_Uniform3ui_0 = (GlDelegate_int_uint_uint_uint)GetFunctionDelegate("glUniform3ui", typeof(GlDelegate_int_uint_uint_uint));
 
-			m_Uniform3uiv_0 = (Delegate_Uniform3uiv_0)GetFunctionDelegate("glUniform3uiv", typeof(Delegate_Uniform3uiv_0));
+			m_Uniform3uiv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform3uiv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform4f_0 = (Delegate_Uniform4f_0)GetFunctionDelegate("glUniform4f", typeof(Delegate_Uniform4f_0));
+			m_Uniform4f_0 = (GlDelegate_int_float_float_float_float)GetFunctionDelegate("glUniform4f", typeof(GlDelegate_int_float_float_float_float));
 
-			m_Uniform4f_1 = (Delegate_Uniform4f_1)GetFunctionDelegate("glUniform4f", typeof(Delegate_Uniform4f_1));
+			m_Uniform4f_1 = (GlDelegate_int_vector4)GetFunctionDelegate("glUniform4f", typeof(GlDelegate_int_vector4));
 
-			m_Uniform4fv_0 = (Delegate_Uniform4fv_0)GetFunctionDelegate("glUniform4fv", typeof(Delegate_Uniform4fv_0));
+			m_Uniform4fv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform4fv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform4i_0 = (Delegate_Uniform4i_0)GetFunctionDelegate("glUniform4i", typeof(Delegate_Uniform4i_0));
+			m_Uniform4i_0 = (GlDelegate_int_int_int_int_int)GetFunctionDelegate("glUniform4i", typeof(GlDelegate_int_int_int_int_int));
 
-			m_Uniform4i_1 = (Delegate_Uniform4i_1)GetFunctionDelegate("glUniform4i", typeof(Delegate_Uniform4i_1));
+			m_Uniform4i_1 = (GlDelegate_int_vector4i)GetFunctionDelegate("glUniform4i", typeof(GlDelegate_int_vector4i));
 
-			m_Uniform4iv_0 = (Delegate_Uniform4iv_0)GetFunctionDelegate("glUniform4iv", typeof(Delegate_Uniform4iv_0));
+			m_Uniform4iv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform4iv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_Uniform4ui_0 = (Delegate_Uniform4ui_0)GetFunctionDelegate("glUniform4ui", typeof(Delegate_Uniform4ui_0));
+			m_Uniform4ui_0 = (GlDelegate_int_uint_uint_uint_uint)GetFunctionDelegate("glUniform4ui", typeof(GlDelegate_int_uint_uint_uint_uint));
 
-			m_Uniform4uiv_0 = (Delegate_Uniform4uiv_0)GetFunctionDelegate("glUniform4uiv", typeof(Delegate_Uniform4uiv_0));
+			m_Uniform4uiv_0 = (GlDelegate_int_int_systemintptr)GetFunctionDelegate("glUniform4uiv", typeof(GlDelegate_int_int_systemintptr));
 
-			m_UniformBlockBinding_0 = (Delegate_UniformBlockBinding_0)GetFunctionDelegate("glUniformBlockBinding", typeof(Delegate_UniformBlockBinding_0));
+			m_UniformBlockBinding_0 = (GlDelegate_uint_uint_uint)GetFunctionDelegate("glUniformBlockBinding", typeof(GlDelegate_uint_uint_uint));
 
-			m_UniformMatrix2fv_0 = (Delegate_UniformMatrix2fv_0)GetFunctionDelegate("glUniformMatrix2fv", typeof(Delegate_UniformMatrix2fv_0));
+			m_UniformMatrix2fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix2fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix2fv_1 = (Delegate_UniformMatrix2fv_1)GetFunctionDelegate("glUniformMatrix2fv", typeof(Delegate_UniformMatrix2fv_1));
+			m_UniformMatrix2fv_1 = (GlDelegate_int_int_bool_floatarray)GetFunctionDelegate("glUniformMatrix2fv", typeof(GlDelegate_int_int_bool_floatarray));
 
-			m_UniformMatrix2fv_2 = (Delegate_UniformMatrix2fv_2)GetFunctionDelegate("glUniformMatrix2fv", typeof(Delegate_UniformMatrix2fv_2));
+			m_UniformMatrix2fv_2 = (GlDelegate_int_int_bool_refmatrix2)GetFunctionDelegate("glUniformMatrix2fv", typeof(GlDelegate_int_int_bool_refmatrix2));
 
-			m_UniformMatrix2x3fv_0 = (Delegate_UniformMatrix2x3fv_0)GetFunctionDelegate("glUniformMatrix2x3fv", typeof(Delegate_UniformMatrix2x3fv_0));
+			m_UniformMatrix2x3fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix2x3fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix2x4fv_0 = (Delegate_UniformMatrix2x4fv_0)GetFunctionDelegate("glUniformMatrix2x4fv", typeof(Delegate_UniformMatrix2x4fv_0));
+			m_UniformMatrix2x4fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix2x4fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix3fv_0 = (Delegate_UniformMatrix3fv_0)GetFunctionDelegate("glUniformMatrix3fv", typeof(Delegate_UniformMatrix3fv_0));
+			m_UniformMatrix3fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix3fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix3fv_1 = (Delegate_UniformMatrix3fv_1)GetFunctionDelegate("glUniformMatrix3fv", typeof(Delegate_UniformMatrix3fv_1));
+			m_UniformMatrix3fv_1 = (GlDelegate_int_int_bool_floatarray)GetFunctionDelegate("glUniformMatrix3fv", typeof(GlDelegate_int_int_bool_floatarray));
 
-			m_UniformMatrix3fv_2 = (Delegate_UniformMatrix3fv_2)GetFunctionDelegate("glUniformMatrix3fv", typeof(Delegate_UniformMatrix3fv_2));
+			m_UniformMatrix3fv_2 = (GlDelegate_int_int_bool_refmatrix3)GetFunctionDelegate("glUniformMatrix3fv", typeof(GlDelegate_int_int_bool_refmatrix3));
 
-			m_UniformMatrix3x2fv_0 = (Delegate_UniformMatrix3x2fv_0)GetFunctionDelegate("glUniformMatrix3x2fv", typeof(Delegate_UniformMatrix3x2fv_0));
+			m_UniformMatrix3x2fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix3x2fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix3x4fv_0 = (Delegate_UniformMatrix3x4fv_0)GetFunctionDelegate("glUniformMatrix3x4fv", typeof(Delegate_UniformMatrix3x4fv_0));
+			m_UniformMatrix3x4fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix3x4fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix4fv_0 = (Delegate_UniformMatrix4fv_0)GetFunctionDelegate("glUniformMatrix4fv", typeof(Delegate_UniformMatrix4fv_0));
+			m_UniformMatrix4fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix4fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix4fv_1 = (Delegate_UniformMatrix4fv_1)GetFunctionDelegate("glUniformMatrix4fv", typeof(Delegate_UniformMatrix4fv_1));
+			m_UniformMatrix4fv_1 = (GlDelegate_int_int_bool_floatarray)GetFunctionDelegate("glUniformMatrix4fv", typeof(GlDelegate_int_int_bool_floatarray));
 
-			m_UniformMatrix4fv_2 = (Delegate_UniformMatrix4fv_2)GetFunctionDelegate("glUniformMatrix4fv", typeof(Delegate_UniformMatrix4fv_2));
+			m_UniformMatrix4fv_2 = (GlDelegate_int_int_bool_refmatrix4)GetFunctionDelegate("glUniformMatrix4fv", typeof(GlDelegate_int_int_bool_refmatrix4));
 
-			m_UniformMatrix4x2fv_0 = (Delegate_UniformMatrix4x2fv_0)GetFunctionDelegate("glUniformMatrix4x2fv", typeof(Delegate_UniformMatrix4x2fv_0));
+			m_UniformMatrix4x2fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix4x2fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UniformMatrix4x3fv_0 = (Delegate_UniformMatrix4x3fv_0)GetFunctionDelegate("glUniformMatrix4x3fv", typeof(Delegate_UniformMatrix4x3fv_0));
+			m_UniformMatrix4x3fv_0 = (GlDelegate_int_int_bool_systemintptr)GetFunctionDelegate("glUniformMatrix4x3fv", typeof(GlDelegate_int_int_bool_systemintptr));
 
-			m_UnmapBuffer_0 = (Delegate_UnmapBuffer_0)GetFunctionDelegate("glUnmapBuffer", typeof(Delegate_UnmapBuffer_0));
+			m_UnmapBuffer_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glUnmapBuffer", typeof(GlDelegate_uint_Returns_bool));
 
-			m_UseProgram_0 = (Delegate_UseProgram_0)GetFunctionDelegate("glUseProgram", typeof(Delegate_UseProgram_0));
+			m_UseProgram_0 = (GlDelegate_uint)GetFunctionDelegate("glUseProgram", typeof(GlDelegate_uint));
 
-			m_ValidateProgram_0 = (Delegate_ValidateProgram_0)GetFunctionDelegate("glValidateProgram", typeof(Delegate_ValidateProgram_0));
+			m_ValidateProgram_0 = (GlDelegate_uint)GetFunctionDelegate("glValidateProgram", typeof(GlDelegate_uint));
 
-			m_VertexAttrib1d_0 = (Delegate_VertexAttrib1d_0)GetFunctionDelegate("glVertexAttrib1d", typeof(Delegate_VertexAttrib1d_0));
+			m_VertexAttrib1d_0 = (GlDelegate_uint_double)GetFunctionDelegate("glVertexAttrib1d", typeof(GlDelegate_uint_double));
 
-			m_VertexAttrib1dv_0 = (Delegate_VertexAttrib1dv_0)GetFunctionDelegate("glVertexAttrib1dv", typeof(Delegate_VertexAttrib1dv_0));
+			m_VertexAttrib1dv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib1dv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib1f_0 = (Delegate_VertexAttrib1f_0)GetFunctionDelegate("glVertexAttrib1f", typeof(Delegate_VertexAttrib1f_0));
+			m_VertexAttrib1f_0 = (GlDelegate_uint_float)GetFunctionDelegate("glVertexAttrib1f", typeof(GlDelegate_uint_float));
 
-			m_VertexAttrib1fv_0 = (Delegate_VertexAttrib1fv_0)GetFunctionDelegate("glVertexAttrib1fv", typeof(Delegate_VertexAttrib1fv_0));
+			m_VertexAttrib1fv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib1fv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib1s_0 = (Delegate_VertexAttrib1s_0)GetFunctionDelegate("glVertexAttrib1s", typeof(Delegate_VertexAttrib1s_0));
+			m_VertexAttrib1s_0 = (GlDelegate_uint_short)GetFunctionDelegate("glVertexAttrib1s", typeof(GlDelegate_uint_short));
 
-			m_VertexAttrib1sv_0 = (Delegate_VertexAttrib1sv_0)GetFunctionDelegate("glVertexAttrib1sv", typeof(Delegate_VertexAttrib1sv_0));
+			m_VertexAttrib1sv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib1sv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib2d_0 = (Delegate_VertexAttrib2d_0)GetFunctionDelegate("glVertexAttrib2d", typeof(Delegate_VertexAttrib2d_0));
+			m_VertexAttrib2d_0 = (GlDelegate_uint_double_double)GetFunctionDelegate("glVertexAttrib2d", typeof(GlDelegate_uint_double_double));
 
-			m_VertexAttrib2dv_0 = (Delegate_VertexAttrib2dv_0)GetFunctionDelegate("glVertexAttrib2dv", typeof(Delegate_VertexAttrib2dv_0));
+			m_VertexAttrib2dv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib2dv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib2f_0 = (Delegate_VertexAttrib2f_0)GetFunctionDelegate("glVertexAttrib2f", typeof(Delegate_VertexAttrib2f_0));
+			m_VertexAttrib2f_0 = (GlDelegate_uint_float_float)GetFunctionDelegate("glVertexAttrib2f", typeof(GlDelegate_uint_float_float));
 
-			m_VertexAttrib2fv_0 = (Delegate_VertexAttrib2fv_0)GetFunctionDelegate("glVertexAttrib2fv", typeof(Delegate_VertexAttrib2fv_0));
+			m_VertexAttrib2fv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib2fv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib2s_0 = (Delegate_VertexAttrib2s_0)GetFunctionDelegate("glVertexAttrib2s", typeof(Delegate_VertexAttrib2s_0));
+			m_VertexAttrib2s_0 = (GlDelegate_uint_short_short)GetFunctionDelegate("glVertexAttrib2s", typeof(GlDelegate_uint_short_short));
 
-			m_VertexAttrib2sv_0 = (Delegate_VertexAttrib2sv_0)GetFunctionDelegate("glVertexAttrib2sv", typeof(Delegate_VertexAttrib2sv_0));
+			m_VertexAttrib2sv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib2sv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib3d_0 = (Delegate_VertexAttrib3d_0)GetFunctionDelegate("glVertexAttrib3d", typeof(Delegate_VertexAttrib3d_0));
+			m_VertexAttrib3d_0 = (GlDelegate_uint_double_double_double)GetFunctionDelegate("glVertexAttrib3d", typeof(GlDelegate_uint_double_double_double));
 
-			m_VertexAttrib3dv_0 = (Delegate_VertexAttrib3dv_0)GetFunctionDelegate("glVertexAttrib3dv", typeof(Delegate_VertexAttrib3dv_0));
+			m_VertexAttrib3dv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib3dv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib3f_0 = (Delegate_VertexAttrib3f_0)GetFunctionDelegate("glVertexAttrib3f", typeof(Delegate_VertexAttrib3f_0));
+			m_VertexAttrib3f_0 = (GlDelegate_uint_float_float_float)GetFunctionDelegate("glVertexAttrib3f", typeof(GlDelegate_uint_float_float_float));
 
-			m_VertexAttrib3fv_0 = (Delegate_VertexAttrib3fv_0)GetFunctionDelegate("glVertexAttrib3fv", typeof(Delegate_VertexAttrib3fv_0));
+			m_VertexAttrib3fv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib3fv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib3s_0 = (Delegate_VertexAttrib3s_0)GetFunctionDelegate("glVertexAttrib3s", typeof(Delegate_VertexAttrib3s_0));
+			m_VertexAttrib3s_0 = (GlDelegate_uint_short_short_short)GetFunctionDelegate("glVertexAttrib3s", typeof(GlDelegate_uint_short_short_short));
 
-			m_VertexAttrib3sv_0 = (Delegate_VertexAttrib3sv_0)GetFunctionDelegate("glVertexAttrib3sv", typeof(Delegate_VertexAttrib3sv_0));
+			m_VertexAttrib3sv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib3sv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4bv_0 = (Delegate_VertexAttrib4bv_0)GetFunctionDelegate("glVertexAttrib4bv", typeof(Delegate_VertexAttrib4bv_0));
+			m_VertexAttrib4bv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4bv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4d_0 = (Delegate_VertexAttrib4d_0)GetFunctionDelegate("glVertexAttrib4d", typeof(Delegate_VertexAttrib4d_0));
+			m_VertexAttrib4d_0 = (GlDelegate_uint_double_double_double_double)GetFunctionDelegate("glVertexAttrib4d", typeof(GlDelegate_uint_double_double_double_double));
 
-			m_VertexAttrib4dv_0 = (Delegate_VertexAttrib4dv_0)GetFunctionDelegate("glVertexAttrib4dv", typeof(Delegate_VertexAttrib4dv_0));
+			m_VertexAttrib4dv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4dv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4f_0 = (Delegate_VertexAttrib4f_0)GetFunctionDelegate("glVertexAttrib4f", typeof(Delegate_VertexAttrib4f_0));
+			m_VertexAttrib4f_0 = (GlDelegate_uint_float_float_float_float)GetFunctionDelegate("glVertexAttrib4f", typeof(GlDelegate_uint_float_float_float_float));
 
-			m_VertexAttrib4fv_0 = (Delegate_VertexAttrib4fv_0)GetFunctionDelegate("glVertexAttrib4fv", typeof(Delegate_VertexAttrib4fv_0));
+			m_VertexAttrib4fv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4fv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4iv_0 = (Delegate_VertexAttrib4iv_0)GetFunctionDelegate("glVertexAttrib4iv", typeof(Delegate_VertexAttrib4iv_0));
+			m_VertexAttrib4iv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4iv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4Nbv_0 = (Delegate_VertexAttrib4Nbv_0)GetFunctionDelegate("glVertexAttrib4Nbv", typeof(Delegate_VertexAttrib4Nbv_0));
+			m_VertexAttrib4Nbv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4Nbv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4Niv_0 = (Delegate_VertexAttrib4Niv_0)GetFunctionDelegate("glVertexAttrib4Niv", typeof(Delegate_VertexAttrib4Niv_0));
+			m_VertexAttrib4Niv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4Niv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4Nsv_0 = (Delegate_VertexAttrib4Nsv_0)GetFunctionDelegate("glVertexAttrib4Nsv", typeof(Delegate_VertexAttrib4Nsv_0));
+			m_VertexAttrib4Nsv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4Nsv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4Nub_0 = (Delegate_VertexAttrib4Nub_0)GetFunctionDelegate("glVertexAttrib4Nub", typeof(Delegate_VertexAttrib4Nub_0));
+			m_VertexAttrib4Nub_0 = (GlDelegate_uint_byte_byte_byte_byte)GetFunctionDelegate("glVertexAttrib4Nub", typeof(GlDelegate_uint_byte_byte_byte_byte));
 
-			m_VertexAttrib4Nubv_0 = (Delegate_VertexAttrib4Nubv_0)GetFunctionDelegate("glVertexAttrib4Nubv", typeof(Delegate_VertexAttrib4Nubv_0));
+			m_VertexAttrib4Nubv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4Nubv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4Nuiv_0 = (Delegate_VertexAttrib4Nuiv_0)GetFunctionDelegate("glVertexAttrib4Nuiv", typeof(Delegate_VertexAttrib4Nuiv_0));
+			m_VertexAttrib4Nuiv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4Nuiv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4Nusv_0 = (Delegate_VertexAttrib4Nusv_0)GetFunctionDelegate("glVertexAttrib4Nusv", typeof(Delegate_VertexAttrib4Nusv_0));
+			m_VertexAttrib4Nusv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4Nusv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4s_0 = (Delegate_VertexAttrib4s_0)GetFunctionDelegate("glVertexAttrib4s", typeof(Delegate_VertexAttrib4s_0));
+			m_VertexAttrib4s_0 = (GlDelegate_uint_short_short_short_short)GetFunctionDelegate("glVertexAttrib4s", typeof(GlDelegate_uint_short_short_short_short));
 
-			m_VertexAttrib4sv_0 = (Delegate_VertexAttrib4sv_0)GetFunctionDelegate("glVertexAttrib4sv", typeof(Delegate_VertexAttrib4sv_0));
+			m_VertexAttrib4sv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4sv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4ubv_0 = (Delegate_VertexAttrib4ubv_0)GetFunctionDelegate("glVertexAttrib4ubv", typeof(Delegate_VertexAttrib4ubv_0));
+			m_VertexAttrib4ubv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4ubv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4uiv_0 = (Delegate_VertexAttrib4uiv_0)GetFunctionDelegate("glVertexAttrib4uiv", typeof(Delegate_VertexAttrib4uiv_0));
+			m_VertexAttrib4uiv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4uiv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttrib4usv_0 = (Delegate_VertexAttrib4usv_0)GetFunctionDelegate("glVertexAttrib4usv", typeof(Delegate_VertexAttrib4usv_0));
+			m_VertexAttrib4usv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttrib4usv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI1i_0 = (Delegate_VertexAttribI1i_0)GetFunctionDelegate("glVertexAttribI1i", typeof(Delegate_VertexAttribI1i_0));
+			m_VertexAttribI1i_0 = (GlDelegate_uint_int)GetFunctionDelegate("glVertexAttribI1i", typeof(GlDelegate_uint_int));
 
-			m_VertexAttribI1iv_0 = (Delegate_VertexAttribI1iv_0)GetFunctionDelegate("glVertexAttribI1iv", typeof(Delegate_VertexAttribI1iv_0));
+			m_VertexAttribI1iv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI1iv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI1ui_0 = (Delegate_VertexAttribI1ui_0)GetFunctionDelegate("glVertexAttribI1ui", typeof(Delegate_VertexAttribI1ui_0));
+			m_VertexAttribI1ui_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glVertexAttribI1ui", typeof(GlDelegate_uint_uint));
 
-			m_VertexAttribI1uiv_0 = (Delegate_VertexAttribI1uiv_0)GetFunctionDelegate("glVertexAttribI1uiv", typeof(Delegate_VertexAttribI1uiv_0));
+			m_VertexAttribI1uiv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI1uiv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI2i_0 = (Delegate_VertexAttribI2i_0)GetFunctionDelegate("glVertexAttribI2i", typeof(Delegate_VertexAttribI2i_0));
+			m_VertexAttribI2i_0 = (GlDelegate_uint_int_int)GetFunctionDelegate("glVertexAttribI2i", typeof(GlDelegate_uint_int_int));
 
-			m_VertexAttribI2iv_0 = (Delegate_VertexAttribI2iv_0)GetFunctionDelegate("glVertexAttribI2iv", typeof(Delegate_VertexAttribI2iv_0));
+			m_VertexAttribI2iv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI2iv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI2ui_0 = (Delegate_VertexAttribI2ui_0)GetFunctionDelegate("glVertexAttribI2ui", typeof(Delegate_VertexAttribI2ui_0));
+			m_VertexAttribI2ui_0 = (GlDelegate_uint_uint_uint)GetFunctionDelegate("glVertexAttribI2ui", typeof(GlDelegate_uint_uint_uint));
 
-			m_VertexAttribI2uiv_0 = (Delegate_VertexAttribI2uiv_0)GetFunctionDelegate("glVertexAttribI2uiv", typeof(Delegate_VertexAttribI2uiv_0));
+			m_VertexAttribI2uiv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI2uiv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI3i_0 = (Delegate_VertexAttribI3i_0)GetFunctionDelegate("glVertexAttribI3i", typeof(Delegate_VertexAttribI3i_0));
+			m_VertexAttribI3i_0 = (GlDelegate_uint_int_int_int)GetFunctionDelegate("glVertexAttribI3i", typeof(GlDelegate_uint_int_int_int));
 
-			m_VertexAttribI3iv_0 = (Delegate_VertexAttribI3iv_0)GetFunctionDelegate("glVertexAttribI3iv", typeof(Delegate_VertexAttribI3iv_0));
+			m_VertexAttribI3iv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI3iv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI3ui_0 = (Delegate_VertexAttribI3ui_0)GetFunctionDelegate("glVertexAttribI3ui", typeof(Delegate_VertexAttribI3ui_0));
+			m_VertexAttribI3ui_0 = (GlDelegate_uint_uint_uint_uint)GetFunctionDelegate("glVertexAttribI3ui", typeof(GlDelegate_uint_uint_uint_uint));
 
-			m_VertexAttribI3uiv_0 = (Delegate_VertexAttribI3uiv_0)GetFunctionDelegate("glVertexAttribI3uiv", typeof(Delegate_VertexAttribI3uiv_0));
+			m_VertexAttribI3uiv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI3uiv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI4bv_0 = (Delegate_VertexAttribI4bv_0)GetFunctionDelegate("glVertexAttribI4bv", typeof(Delegate_VertexAttribI4bv_0));
+			m_VertexAttribI4bv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI4bv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI4i_0 = (Delegate_VertexAttribI4i_0)GetFunctionDelegate("glVertexAttribI4i", typeof(Delegate_VertexAttribI4i_0));
+			m_VertexAttribI4i_0 = (GlDelegate_uint_int_int_int_int)GetFunctionDelegate("glVertexAttribI4i", typeof(GlDelegate_uint_int_int_int_int));
 
-			m_VertexAttribI4iv_0 = (Delegate_VertexAttribI4iv_0)GetFunctionDelegate("glVertexAttribI4iv", typeof(Delegate_VertexAttribI4iv_0));
+			m_VertexAttribI4iv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI4iv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI4sv_0 = (Delegate_VertexAttribI4sv_0)GetFunctionDelegate("glVertexAttribI4sv", typeof(Delegate_VertexAttribI4sv_0));
+			m_VertexAttribI4sv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI4sv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI4ubv_0 = (Delegate_VertexAttribI4ubv_0)GetFunctionDelegate("glVertexAttribI4ubv", typeof(Delegate_VertexAttribI4ubv_0));
+			m_VertexAttribI4ubv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI4ubv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI4ui_0 = (Delegate_VertexAttribI4ui_0)GetFunctionDelegate("glVertexAttribI4ui", typeof(Delegate_VertexAttribI4ui_0));
+			m_VertexAttribI4ui_0 = (GlDelegate_uint_uint_uint_uint_uint)GetFunctionDelegate("glVertexAttribI4ui", typeof(GlDelegate_uint_uint_uint_uint_uint));
 
-			m_VertexAttribI4uiv_0 = (Delegate_VertexAttribI4uiv_0)GetFunctionDelegate("glVertexAttribI4uiv", typeof(Delegate_VertexAttribI4uiv_0));
+			m_VertexAttribI4uiv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI4uiv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribI4usv_0 = (Delegate_VertexAttribI4usv_0)GetFunctionDelegate("glVertexAttribI4usv", typeof(Delegate_VertexAttribI4usv_0));
+			m_VertexAttribI4usv_0 = (GlDelegate_uint_systemintptr)GetFunctionDelegate("glVertexAttribI4usv", typeof(GlDelegate_uint_systemintptr));
 
-			m_VertexAttribIPointer_0 = (Delegate_VertexAttribIPointer_0)GetFunctionDelegate("glVertexAttribIPointer", typeof(Delegate_VertexAttribIPointer_0));
+			m_VertexAttribIPointer_0 = (GlDelegate_uint_int_uint_int_systemintptr)GetFunctionDelegate("glVertexAttribIPointer", typeof(GlDelegate_uint_int_uint_int_systemintptr));
 
-			m_VertexAttribPointer_0 = (Delegate_VertexAttribPointer_0)GetFunctionDelegate("glVertexAttribPointer", typeof(Delegate_VertexAttribPointer_0));
+			m_VertexAttribPointer_0 = (GlDelegate_uint_int_uint_bool_int_systemintptr)GetFunctionDelegate("glVertexAttribPointer", typeof(GlDelegate_uint_int_uint_bool_int_systemintptr));
 
-			m_Viewport_0 = (Delegate_Viewport_0)GetFunctionDelegate("glViewport", typeof(Delegate_Viewport_0));
+			m_Viewport_0 = (GlDelegate_int_int_int_int)GetFunctionDelegate("glViewport", typeof(GlDelegate_int_int_int_int));
 
-			m_Viewport_1 = (Delegate_Viewport_1)GetFunctionDelegate("glViewport", typeof(Delegate_Viewport_1));
+			m_Viewport_1 = (GlDelegate_box2i)GetFunctionDelegate("glViewport", typeof(GlDelegate_box2i));
 
-			m_WaitSync_0 = (Delegate_WaitSync_0)GetFunctionDelegate("glWaitSync", typeof(Delegate_WaitSync_0));
+			m_WaitSync_0 = (GlDelegate_systemintptr_uint_ulong)GetFunctionDelegate("glWaitSync", typeof(GlDelegate_systemintptr_uint_ulong));
 
-			m_BindFragDataLocationIndexed_0 = (Delegate_BindFragDataLocationIndexed_0)GetFunctionDelegate("glBindFragDataLocationIndexed", typeof(Delegate_BindFragDataLocationIndexed_0));
+			m_BindFragDataLocationIndexed_0 = (GlDelegate_uint_uint_uint_systemintptr)GetFunctionDelegate("glBindFragDataLocationIndexed", typeof(GlDelegate_uint_uint_uint_systemintptr));
 
-			m_GetFragDataIndex_0 = (Delegate_GetFragDataIndex_0)GetFunctionDelegate("glGetFragDataIndex", typeof(Delegate_GetFragDataIndex_0));
+			m_GetFragDataIndex_0 = (GlDelegate_uint_systemintptr_Returns_int)GetFunctionDelegate("glGetFragDataIndex", typeof(GlDelegate_uint_systemintptr_Returns_int));
 
-			m_GenSamplers_0 = (Delegate_GenSamplers_0)GetFunctionDelegate("glGenSamplers", typeof(Delegate_GenSamplers_0));
+			m_GenSamplers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glGenSamplers", typeof(GlDelegate_int_systemintptr));
 
-			m_GenSamplers_1 = (Delegate_GenSamplers_1)GetFunctionDelegate("glGenSamplers", typeof(Delegate_GenSamplers_1));
+			m_GenSamplers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glGenSamplers", typeof(GlDelegate_int_uintarray));
 
-			m_GenSamplers_2 = (Delegate_GenSamplers_2)GetFunctionDelegate("glGenSamplers", typeof(Delegate_GenSamplers_2));
+			m_GenSamplers_2 = (GlDelegate_int_outuint)GetFunctionDelegate("glGenSamplers", typeof(GlDelegate_int_outuint));
 
-			m_DeleteSamplers_0 = (Delegate_DeleteSamplers_0)GetFunctionDelegate("glDeleteSamplers", typeof(Delegate_DeleteSamplers_0));
+			m_DeleteSamplers_0 = (GlDelegate_int_systemintptr)GetFunctionDelegate("glDeleteSamplers", typeof(GlDelegate_int_systemintptr));
 
-			m_DeleteSamplers_1 = (Delegate_DeleteSamplers_1)GetFunctionDelegate("glDeleteSamplers", typeof(Delegate_DeleteSamplers_1));
+			m_DeleteSamplers_1 = (GlDelegate_int_uintarray)GetFunctionDelegate("glDeleteSamplers", typeof(GlDelegate_int_uintarray));
 
-			m_DeleteSamplers_2 = (Delegate_DeleteSamplers_2)GetFunctionDelegate("glDeleteSamplers", typeof(Delegate_DeleteSamplers_2));
+			m_DeleteSamplers_2 = (GlDelegate_int_refuint)GetFunctionDelegate("glDeleteSamplers", typeof(GlDelegate_int_refuint));
 
-			m_IsSampler_0 = (Delegate_IsSampler_0)GetFunctionDelegate("glIsSampler", typeof(Delegate_IsSampler_0));
+			m_IsSampler_0 = (GlDelegate_uint_Returns_bool)GetFunctionDelegate("glIsSampler", typeof(GlDelegate_uint_Returns_bool));
 
-			m_BindSampler_0 = (Delegate_BindSampler_0)GetFunctionDelegate("glBindSampler", typeof(Delegate_BindSampler_0));
+			m_BindSampler_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glBindSampler", typeof(GlDelegate_uint_uint));
 
-			m_SamplerParameteri_0 = (Delegate_SamplerParameteri_0)GetFunctionDelegate("glSamplerParameteri", typeof(Delegate_SamplerParameteri_0));
+			m_SamplerParameteri_0 = (GlDelegate_uint_uint_int)GetFunctionDelegate("glSamplerParameteri", typeof(GlDelegate_uint_uint_int));
 
-			m_SamplerParameteriv_0 = (Delegate_SamplerParameteriv_0)GetFunctionDelegate("glSamplerParameteriv", typeof(Delegate_SamplerParameteriv_0));
+			m_SamplerParameteriv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glSamplerParameteriv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_SamplerParameterf_0 = (Delegate_SamplerParameterf_0)GetFunctionDelegate("glSamplerParameterf", typeof(Delegate_SamplerParameterf_0));
+			m_SamplerParameterf_0 = (GlDelegate_uint_uint_float)GetFunctionDelegate("glSamplerParameterf", typeof(GlDelegate_uint_uint_float));
 
-			m_SamplerParameterfv_0 = (Delegate_SamplerParameterfv_0)GetFunctionDelegate("glSamplerParameterfv", typeof(Delegate_SamplerParameterfv_0));
+			m_SamplerParameterfv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glSamplerParameterfv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_SamplerParameterIiv_0 = (Delegate_SamplerParameterIiv_0)GetFunctionDelegate("glSamplerParameterIiv", typeof(Delegate_SamplerParameterIiv_0));
+			m_SamplerParameterIiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glSamplerParameterIiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_SamplerParameterIuiv_0 = (Delegate_SamplerParameterIuiv_0)GetFunctionDelegate("glSamplerParameterIuiv", typeof(Delegate_SamplerParameterIuiv_0));
+			m_SamplerParameterIuiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glSamplerParameterIuiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetSamplerParameteriv_0 = (Delegate_GetSamplerParameteriv_0)GetFunctionDelegate("glGetSamplerParameteriv", typeof(Delegate_GetSamplerParameteriv_0));
+			m_GetSamplerParameteriv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetSamplerParameteriv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetSamplerParameterIiv_0 = (Delegate_GetSamplerParameterIiv_0)GetFunctionDelegate("glGetSamplerParameterIiv", typeof(Delegate_GetSamplerParameterIiv_0));
+			m_GetSamplerParameterIiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetSamplerParameterIiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetSamplerParameterfv_0 = (Delegate_GetSamplerParameterfv_0)GetFunctionDelegate("glGetSamplerParameterfv", typeof(Delegate_GetSamplerParameterfv_0));
+			m_GetSamplerParameterfv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetSamplerParameterfv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetSamplerParameterIuiv_0 = (Delegate_GetSamplerParameterIuiv_0)GetFunctionDelegate("glGetSamplerParameterIuiv", typeof(Delegate_GetSamplerParameterIuiv_0));
+			m_GetSamplerParameterIuiv_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetSamplerParameterIuiv", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_QueryCounter_0 = (Delegate_QueryCounter_0)GetFunctionDelegate("glQueryCounter", typeof(Delegate_QueryCounter_0));
+			m_QueryCounter_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glQueryCounter", typeof(GlDelegate_uint_uint));
 
-			m_GetQueryObjecti64v_0 = (Delegate_GetQueryObjecti64v_0)GetFunctionDelegate("glGetQueryObjecti64v", typeof(Delegate_GetQueryObjecti64v_0));
+			m_GetQueryObjecti64v_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetQueryObjecti64v", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_GetQueryObjectui64v_0 = (Delegate_GetQueryObjectui64v_0)GetFunctionDelegate("glGetQueryObjectui64v", typeof(Delegate_GetQueryObjectui64v_0));
+			m_GetQueryObjectui64v_0 = (GlDelegate_uint_uint_systemintptr)GetFunctionDelegate("glGetQueryObjectui64v", typeof(GlDelegate_uint_uint_systemintptr));
 
-			m_VertexAttribDivisor_0 = (Delegate_VertexAttribDivisor_0)GetFunctionDelegate("glVertexAttribDivisor", typeof(Delegate_VertexAttribDivisor_0));
+			m_VertexAttribDivisor_0 = (GlDelegate_uint_uint)GetFunctionDelegate("glVertexAttribDivisor", typeof(GlDelegate_uint_uint));
 
-			m_VertexAttribP1ui_0 = (Delegate_VertexAttribP1ui_0)GetFunctionDelegate("glVertexAttribP1ui", typeof(Delegate_VertexAttribP1ui_0));
+			m_VertexAttribP1ui_0 = (GlDelegate_uint_uint_bool_uint)GetFunctionDelegate("glVertexAttribP1ui", typeof(GlDelegate_uint_uint_bool_uint));
 
-			m_VertexAttribP1uiv_0 = (Delegate_VertexAttribP1uiv_0)GetFunctionDelegate("glVertexAttribP1uiv", typeof(Delegate_VertexAttribP1uiv_0));
+			m_VertexAttribP1uiv_0 = (GlDelegate_uint_uint_bool_systemintptr)GetFunctionDelegate("glVertexAttribP1uiv", typeof(GlDelegate_uint_uint_bool_systemintptr));
 
-			m_VertexAttribP2ui_0 = (Delegate_VertexAttribP2ui_0)GetFunctionDelegate("glVertexAttribP2ui", typeof(Delegate_VertexAttribP2ui_0));
+			m_VertexAttribP2ui_0 = (GlDelegate_uint_uint_bool_uint)GetFunctionDelegate("glVertexAttribP2ui", typeof(GlDelegate_uint_uint_bool_uint));
 
-			m_VertexAttribP2uiv_0 = (Delegate_VertexAttribP2uiv_0)GetFunctionDelegate("glVertexAttribP2uiv", typeof(Delegate_VertexAttribP2uiv_0));
+			m_VertexAttribP2uiv_0 = (GlDelegate_uint_uint_bool_systemintptr)GetFunctionDelegate("glVertexAttribP2uiv", typeof(GlDelegate_uint_uint_bool_systemintptr));
 
-			m_VertexAttribP3ui_0 = (Delegate_VertexAttribP3ui_0)GetFunctionDelegate("glVertexAttribP3ui", typeof(Delegate_VertexAttribP3ui_0));
+			m_VertexAttribP3ui_0 = (GlDelegate_uint_uint_bool_uint)GetFunctionDelegate("glVertexAttribP3ui", typeof(GlDelegate_uint_uint_bool_uint));
 
-			m_VertexAttribP3uiv_0 = (Delegate_VertexAttribP3uiv_0)GetFunctionDelegate("glVertexAttribP3uiv", typeof(Delegate_VertexAttribP3uiv_0));
+			m_VertexAttribP3uiv_0 = (GlDelegate_uint_uint_bool_systemintptr)GetFunctionDelegate("glVertexAttribP3uiv", typeof(GlDelegate_uint_uint_bool_systemintptr));
 
-			m_VertexAttribP4ui_0 = (Delegate_VertexAttribP4ui_0)GetFunctionDelegate("glVertexAttribP4ui", typeof(Delegate_VertexAttribP4ui_0));
+			m_VertexAttribP4ui_0 = (GlDelegate_uint_uint_bool_uint)GetFunctionDelegate("glVertexAttribP4ui", typeof(GlDelegate_uint_uint_bool_uint));
 
-			m_VertexAttribP4uiv_0 = (Delegate_VertexAttribP4uiv_0)GetFunctionDelegate("glVertexAttribP4uiv", typeof(Delegate_VertexAttribP4uiv_0));
+			m_VertexAttribP4uiv_0 = (GlDelegate_uint_uint_bool_systemintptr)GetFunctionDelegate("glVertexAttribP4uiv", typeof(GlDelegate_uint_uint_bool_systemintptr));
 
 		}
 
@@ -5443,2863 +4907,4326 @@ namespace Granite.Core
 
 		public static void ActiveTexture(uint texture)
 		{
+			
 			m_ActiveTexture_0(texture);
+			if(m_debug) CheckError("ActiveTexture");
+			
 		}
 
 
 		public static void AttachShader(uint program, uint shader)
 		{
+			
 			m_AttachShader_0(program, shader);
+			if(m_debug) CheckError("AttachShader");
+			
 		}
 
 
 		public static void BeginConditionalRender(uint id, uint mode)
 		{
+			
 			m_BeginConditionalRender_0(id, mode);
+			if(m_debug) CheckError("BeginConditionalRender");
+			
 		}
 
 
 		public static void BeginQuery(uint target, uint id)
 		{
+			
 			m_BeginQuery_0(target, id);
+			if(m_debug) CheckError("BeginQuery");
+			
 		}
 
 
 		public static void BeginTransformFeedback(uint primitiveMode)
 		{
+			
 			m_BeginTransformFeedback_0(primitiveMode);
+			if(m_debug) CheckError("BeginTransformFeedback");
+			
 		}
 
 
 		public static void BindAttribLocation(uint program, uint index, string name)
 		{
+			
 			m_BindAttribLocation_0(program, index, name);
+			if(m_debug) CheckError("BindAttribLocation");
+			
 		}
 
 
 		public static void BindBuffer(uint target, uint buffer)
 		{
+			
 			m_BindBuffer_0(target, buffer);
+			if(m_debug) CheckError("BindBuffer");
+			
 		}
 
 
 		public static void BindBufferBase(uint target, uint index, uint buffer)
 		{
+			
 			m_BindBufferBase_0(target, index, buffer);
+			if(m_debug) CheckError("BindBufferBase");
+			
 		}
 
 
 		public static void BindBufferRange(uint target, uint index, uint buffer, System.IntPtr offset, System.IntPtr size)
 		{
+			
 			m_BindBufferRange_0(target, index, buffer, offset, size);
+			if(m_debug) CheckError("BindBufferRange");
+			
 		}
 
 
 		public static void BindFragDataLocation(uint program, uint color, string name)
 		{
+			
 			m_BindFragDataLocation_0(program, color, name);
+			if(m_debug) CheckError("BindFragDataLocation");
+			
 		}
 
 
 		public static void BindFramebuffer(uint target, uint framebuffer)
 		{
+			
 			m_BindFramebuffer_0(target, framebuffer);
+			if(m_debug) CheckError("BindFramebuffer");
+			
 		}
 
 
 		public static void BindRenderbuffer(uint target, uint renderbuffer)
 		{
+			
 			m_BindRenderbuffer_0(target, renderbuffer);
+			if(m_debug) CheckError("BindRenderbuffer");
+			
 		}
 
 
 		public static void BindTexture(uint target, uint texture)
 		{
+			
 			m_BindTexture_0(target, texture);
+			if(m_debug) CheckError("BindTexture");
+			
 		}
 
 
 		public static void BindVertexArray(uint array)
 		{
+			
 			m_BindVertexArray_0(array);
+			if(m_debug) CheckError("BindVertexArray");
+			
 		}
 
 
 		public static void BlendColor(float red, float green, float blue, float alpha)
 		{
+			
 			m_BlendColor_0(red, green, blue, alpha);
+			if(m_debug) CheckError("BlendColor");
+			
 		}
 
 
 		public static void BlendColor(Color4 color)
 		{
+			
 			m_BlendColor_1(color);
+			if(m_debug) CheckError("BlendColor");
+			
 		}
 
 
 		public static void BlendEquation(uint mode)
 		{
+			
 			m_BlendEquation_0(mode);
+			if(m_debug) CheckError("BlendEquation");
+			
 		}
 
 
 		public static void BlendEquationSeparate(uint modeRGB, uint modeAlpha)
 		{
+			
 			m_BlendEquationSeparate_0(modeRGB, modeAlpha);
+			if(m_debug) CheckError("BlendEquationSeparate");
+			
 		}
 
 
 		public static void BlendFunc(uint sfactor, uint dfactor)
 		{
+			
 			m_BlendFunc_0(sfactor, dfactor);
+			if(m_debug) CheckError("BlendFunc");
+			
 		}
 
 
 		public static void BlendFuncSeparate(uint sfactorRGB, uint dfactorRGB, uint sfactorAlpha, uint dfactorAlpha)
 		{
+			
 			m_BlendFuncSeparate_0(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
+			if(m_debug) CheckError("BlendFuncSeparate");
+			
 		}
 
 
 		public static void BlitFramebuffer(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint mask, uint filter)
 		{
+			
 			m_BlitFramebuffer_0(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+			if(m_debug) CheckError("BlitFramebuffer");
+			
 		}
 
 
 		public static void BlitFramebuffer(Vector2i src0, Vector2i src1, Vector2i dst0, Vector2i dst1, uint mask, uint filter)
 		{
+			
 			m_BlitFramebuffer_1(src0, src1, dst0, dst1, mask, filter);
+			if(m_debug) CheckError("BlitFramebuffer");
+			
 		}
 
 
 		public static void BufferData(uint target, System.IntPtr size, System.IntPtr data, uint usage)
 		{
+			
 			m_BufferData_0(target, size, data, usage);
+			if(m_debug) CheckError("BufferData");
+			
 		}
 
 
 		public static void BufferSubData(uint target, System.IntPtr offset, System.IntPtr size, System.IntPtr data)
 		{
+			
 			m_BufferSubData_0(target, offset, size, data);
+			if(m_debug) CheckError("BufferSubData");
+			
 		}
 
 
 		public static uint CheckFramebufferStatus(uint target)
 		{
-			return m_CheckFramebufferStatus_0(target);
+			
+			var result = m_CheckFramebufferStatus_0(target);
+			if(m_debug) CheckError("CheckFramebufferStatus");
+			return result;
+			
 		}
 
 
 		public static void ClampColor(uint target, uint clamp)
 		{
+			
 			m_ClampColor_0(target, clamp);
+			if(m_debug) CheckError("ClampColor");
+			
 		}
 
 
 		public static void Clear(uint mask)
 		{
+			
 			m_Clear_0(mask);
+			if(m_debug) CheckError("Clear");
+			
 		}
 
 
 		public static void ClearBufferfi(uint buffer, int drawbuffer, float depth, int stencil)
 		{
+			
 			m_ClearBufferfi_0(buffer, drawbuffer, depth, stencil);
+			if(m_debug) CheckError("ClearBufferfi");
+			
 		}
 
 
 		public static void ClearBufferfv(uint buffer, int drawbuffer, System.IntPtr value)
 		{
+			
 			m_ClearBufferfv_0(buffer, drawbuffer, value);
+			if(m_debug) CheckError("ClearBufferfv");
+			
 		}
 
 
 		public static void ClearBufferfv(uint buffer, int drawbuffer, ref Color4 value)
 		{
+			
 			m_ClearBufferfv_1(buffer, drawbuffer, ref value);
+			if(m_debug) CheckError("ClearBufferfv");
+			
 		}
 
 
 		public static void ClearBufferfv(uint buffer, int drawbuffer, ref float value)
 		{
+			
 			m_ClearBufferfv_2(buffer, drawbuffer, ref value);
+			if(m_debug) CheckError("ClearBufferfv");
+			
 		}
 
 
 		public static void ClearBufferiv(uint buffer, int drawbuffer, System.IntPtr value)
 		{
+			
 			m_ClearBufferiv_0(buffer, drawbuffer, value);
+			if(m_debug) CheckError("ClearBufferiv");
+			
 		}
 
 
 		public static void ClearBufferiv(uint buffer, int drawbuffer, ref Color4i value)
 		{
+			
 			m_ClearBufferiv_1(buffer, drawbuffer, ref value);
+			if(m_debug) CheckError("ClearBufferiv");
+			
 		}
 
 
 		public static void ClearBufferiv(uint buffer, int drawbuffer, ref int value)
 		{
+			
 			m_ClearBufferiv_2(buffer, drawbuffer, ref value);
+			if(m_debug) CheckError("ClearBufferiv");
+			
 		}
 
 
 		public static void ClearBufferuiv(uint buffer, int drawbuffer, System.IntPtr value)
 		{
+			
 			m_ClearBufferuiv_0(buffer, drawbuffer, value);
+			if(m_debug) CheckError("ClearBufferuiv");
+			
 		}
 
 
 		public static void ClearBufferuiv(uint buffer, int drawbuffer, ref Color4ui value)
 		{
+			
 			m_ClearBufferuiv_1(buffer, drawbuffer, ref value);
+			if(m_debug) CheckError("ClearBufferuiv");
+			
 		}
 
 
 		public static void ClearBufferuiv(uint buffer, int drawbuffer, ref uint value)
 		{
+			
 			m_ClearBufferuiv_2(buffer, drawbuffer, ref value);
+			if(m_debug) CheckError("ClearBufferuiv");
+			
 		}
 
 
 		public static void ClearColor(float red, float green, float blue, float alpha)
 		{
+			
 			m_ClearColor_0(red, green, blue, alpha);
+			if(m_debug) CheckError("ClearColor");
+			
 		}
 
 
 		public static void ClearColor(Color4 color)
 		{
+			
 			m_ClearColor_1(color);
+			if(m_debug) CheckError("ClearColor");
+			
 		}
 
 
 		public static void ClearDepth(double depth)
 		{
+			
 			m_ClearDepth_0(depth);
+			if(m_debug) CheckError("ClearDepth");
+			
 		}
 
 
 		public static void ClearStencil(int s)
 		{
+			
 			m_ClearStencil_0(s);
+			if(m_debug) CheckError("ClearStencil");
+			
 		}
 
 
 		public static uint ClientWaitSync(System.IntPtr sync, uint flags, ulong timeout)
 		{
-			return m_ClientWaitSync_0(sync, flags, timeout);
+			
+			var result = m_ClientWaitSync_0(sync, flags, timeout);
+			if(m_debug) CheckError("ClientWaitSync");
+			return result;
+			
 		}
 
 
 		public static void ColorMask(bool red, bool green, bool blue, bool alpha)
 		{
+			
 			m_ColorMask_0(red, green, blue, alpha);
+			if(m_debug) CheckError("ColorMask");
+			
 		}
 
 
 		public static void ColorMaski(uint index, bool r, bool g, bool b, bool a)
 		{
+			
 			m_ColorMaski_0(index, r, g, b, a);
+			if(m_debug) CheckError("ColorMaski");
+			
 		}
 
 
 		public static void CompileShader(uint shader)
 		{
+			
 			m_CompileShader_0(shader);
+			if(m_debug) CheckError("CompileShader");
+			
 		}
 
 
 		public static void CompressedTexImage1D(uint target, int level, uint internalformat, int width, int border, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexImage1D_0(target, level, internalformat, width, border, imageSize, data);
+			if(m_debug) CheckError("CompressedTexImage1D");
+			
 		}
 
 
 		public static void CompressedTexImage2D(uint target, int level, uint internalformat, int width, int height, int border, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexImage2D_0(target, level, internalformat, width, height, border, imageSize, data);
+			if(m_debug) CheckError("CompressedTexImage2D");
+			
 		}
 
 
 		public static void CompressedTexImage3D(uint target, int level, uint internalformat, int width, int height, int depth, int border, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexImage3D_0(target, level, internalformat, width, height, depth, border, imageSize, data);
+			if(m_debug) CheckError("CompressedTexImage3D");
+			
 		}
 
 
 		public static void CompressedTexSubImage1D(uint target, int level, int xoffset, int width, uint format, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexSubImage1D_0(target, level, xoffset, width, format, imageSize, data);
+			if(m_debug) CheckError("CompressedTexSubImage1D");
+			
 		}
 
 
 		public static void CompressedTexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexSubImage2D_0(target, level, xoffset, yoffset, width, height, format, imageSize, data);
+			if(m_debug) CheckError("CompressedTexSubImage2D");
+			
 		}
 
 
 		public static void CompressedTexSubImage2D(uint target, int level, Box2i imagePosition, uint format, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexSubImage2D_1(target, level, imagePosition, format, imageSize, data);
+			if(m_debug) CheckError("CompressedTexSubImage2D");
+			
 		}
 
 
 		public static void CompressedTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexSubImage3D_0(target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
+			if(m_debug) CheckError("CompressedTexSubImage3D");
+			
 		}
 
 
 		public static void CompressedTexSubImage3D(uint target, int level, Box3i imagePosition, uint format, int imageSize, System.IntPtr data)
 		{
+			
 			m_CompressedTexSubImage3D_1(target, level, imagePosition, format, imageSize, data);
+			if(m_debug) CheckError("CompressedTexSubImage3D");
+			
 		}
 
 
 		public static void CopyBufferSubData(uint readTarget, uint writeTarget, System.IntPtr readOffset, System.IntPtr writeOffset, System.IntPtr size)
 		{
+			
 			m_CopyBufferSubData_0(readTarget, writeTarget, readOffset, writeOffset, size);
+			if(m_debug) CheckError("CopyBufferSubData");
+			
 		}
 
 
 		public static void CopyTexImage1D(uint target, int level, uint internalformat, int x, int y, int width, int border)
 		{
+			
 			m_CopyTexImage1D_0(target, level, internalformat, x, y, width, border);
+			if(m_debug) CheckError("CopyTexImage1D");
+			
 		}
 
 
 		public static void CopyTexImage1D(uint target, int level, uint internalformat, Vector2i imagePosition, int width, int border)
 		{
+			
 			m_CopyTexImage1D_1(target, level, internalformat, imagePosition, width, border);
+			if(m_debug) CheckError("CopyTexImage1D");
+			
 		}
 
 
 		public static void CopyTexImage2D(uint target, int level, uint internalformat, int x, int y, int width, int height, int border)
 		{
+			
 			m_CopyTexImage2D_0(target, level, internalformat, x, y, width, height, border);
+			if(m_debug) CheckError("CopyTexImage2D");
+			
 		}
 
 
 		public static void CopyTexImage2D(uint target, int level, uint internalformat, Vector2i imagePosition, Vector2i imageSize, int border)
 		{
+			
 			m_CopyTexImage2D_1(target, level, internalformat, imagePosition, imageSize, border);
+			if(m_debug) CheckError("CopyTexImage2D");
+			
 		}
 
 
 		public static void CopyTexImage2D(uint target, int level, uint internalformat, Box2i image, int border)
 		{
+			
 			m_CopyTexImage2D_2(target, level, internalformat, image, border);
+			if(m_debug) CheckError("CopyTexImage2D");
+			
 		}
 
 
 		public static void CopyTexSubImage1D(uint target, int level, int xoffset, int x, int y, int width)
 		{
+			
 			m_CopyTexSubImage1D_0(target, level, xoffset, x, y, width);
+			if(m_debug) CheckError("CopyTexSubImage1D");
+			
 		}
 
 
 		public static void CopyTexSubImage1D(uint target, int level, int xoffset, Vector2i imagePosition, int width)
 		{
+			
 			m_CopyTexSubImage1D_1(target, level, xoffset, imagePosition, width);
+			if(m_debug) CheckError("CopyTexSubImage1D");
+			
 		}
 
 
 		public static void CopyTexSubImage2D(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height)
 		{
+			
 			m_CopyTexSubImage2D_0(target, level, xoffset, yoffset, x, y, width, height);
+			if(m_debug) CheckError("CopyTexSubImage2D");
+			
 		}
 
 
 		public static void CopyTexSubImage2D(uint target, int level, Vector2i texturePosition, Vector2i imagePosition, Vector2i size)
 		{
+			
 			m_CopyTexSubImage2D_1(target, level, texturePosition, imagePosition, size);
+			if(m_debug) CheckError("CopyTexSubImage2D");
+			
 		}
 
 
 		public static void CopyTexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height)
 		{
+			
 			m_CopyTexSubImage3D_0(target, level, xoffset, yoffset, zoffset, x, y, width, height);
+			if(m_debug) CheckError("CopyTexSubImage3D");
+			
 		}
 
 
 		public static void CopyTexSubImage3D(uint target, int level, Vector3i texturePosition, Vector2i imagePosition, Vector2i size)
 		{
+			
 			m_CopyTexSubImage3D_1(target, level, texturePosition, imagePosition, size);
+			if(m_debug) CheckError("CopyTexSubImage3D");
+			
 		}
 
 
 		public static uint CreateProgram()
 		{
-			return m_CreateProgram_0();
+			
+			var result = m_CreateProgram_0();
+			if(m_debug) CheckError("CreateProgram");
+			return result;
+			
 		}
 
 
 		public static uint CreateShader(uint type)
 		{
-			return m_CreateShader_0(type);
+			
+			var result = m_CreateShader_0(type);
+			if(m_debug) CheckError("CreateShader");
+			return result;
+			
 		}
 
 
 		public static void CullFace(uint mode)
 		{
+			
 			m_CullFace_0(mode);
+			if(m_debug) CheckError("CullFace");
+			
 		}
 
 
 		public static void DeleteBuffers(int n, System.IntPtr buffers)
 		{
+			
 			m_DeleteBuffers_0(n, buffers);
+			if(m_debug) CheckError("DeleteBuffers");
+			
 		}
 
 
 		public static void DeleteBuffers(int n, uint[] buffers)
 		{
+			
 			m_DeleteBuffers_1(n, buffers);
+			if(m_debug) CheckError("DeleteBuffers");
+			
 		}
 
 
 		public static void DeleteBuffers(int n, ref uint buffers)
 		{
+			
 			m_DeleteBuffers_2(n, ref buffers);
+			if(m_debug) CheckError("DeleteBuffers");
+			
 		}
 
 
 		public static void DeleteFramebuffers(int n, System.IntPtr framebuffers)
 		{
+			
 			m_DeleteFramebuffers_0(n, framebuffers);
+			if(m_debug) CheckError("DeleteFramebuffers");
+			
 		}
 
 
 		public static void DeleteFramebuffers(int n, uint[] framebuffers)
 		{
+			
 			m_DeleteFramebuffers_1(n, framebuffers);
+			if(m_debug) CheckError("DeleteFramebuffers");
+			
 		}
 
 
 		public static void DeleteFramebuffers(int n, ref uint framebuffers)
 		{
+			
 			m_DeleteFramebuffers_2(n, ref framebuffers);
+			if(m_debug) CheckError("DeleteFramebuffers");
+			
 		}
 
 
 		public static void DeleteProgram(uint program)
 		{
+			
 			m_DeleteProgram_0(program);
+			if(m_debug) CheckError("DeleteProgram");
+			
 		}
 
 
 		public static void DeleteQueries(int n, System.IntPtr ids)
 		{
+			
 			m_DeleteQueries_0(n, ids);
+			if(m_debug) CheckError("DeleteQueries");
+			
 		}
 
 
 		public static void DeleteQueries(int n, uint[] ids)
 		{
+			
 			m_DeleteQueries_1(n, ids);
+			if(m_debug) CheckError("DeleteQueries");
+			
 		}
 
 
 		public static void DeleteQueries(int n, ref uint ids)
 		{
+			
 			m_DeleteQueries_2(n, ref ids);
+			if(m_debug) CheckError("DeleteQueries");
+			
 		}
 
 
 		public static void DeleteRenderbuffers(int n, System.IntPtr renderbuffers)
 		{
+			
 			m_DeleteRenderbuffers_0(n, renderbuffers);
+			if(m_debug) CheckError("DeleteRenderbuffers");
+			
 		}
 
 
 		public static void DeleteRenderbuffers(int n, uint[] renderbuffers)
 		{
+			
 			m_DeleteRenderbuffers_1(n, renderbuffers);
+			if(m_debug) CheckError("DeleteRenderbuffers");
+			
 		}
 
 
 		public static void DeleteRenderbuffers(int n, ref uint renderbuffers)
 		{
+			
 			m_DeleteRenderbuffers_2(n, ref renderbuffers);
+			if(m_debug) CheckError("DeleteRenderbuffers");
+			
 		}
 
 
 		public static void DeleteShader(uint shader)
 		{
+			
 			m_DeleteShader_0(shader);
+			if(m_debug) CheckError("DeleteShader");
+			
 		}
 
 
 		public static void DeleteSync(System.IntPtr sync)
 		{
+			
 			m_DeleteSync_0(sync);
+			if(m_debug) CheckError("DeleteSync");
+			
 		}
 
 
 		private static void DeleteTextures(int n, System.IntPtr textures)
 		{
+			
 			m_DeleteTextures_0(n, textures);
+			if(m_debug) CheckError("DeleteTextures");
+			
 		}
 
 
 		private static void DeleteTextures(int n, uint[] textures)
 		{
+			
 			m_DeleteTextures_1(n, textures);
+			if(m_debug) CheckError("DeleteTextures");
+			
 		}
 
 
 		private static void DeleteTextures(int n, ref uint textures)
 		{
+			
 			m_DeleteTextures_2(n, ref textures);
+			if(m_debug) CheckError("DeleteTextures");
+			
 		}
 
 
 		public static void DeleteVertexArrays(int n, System.IntPtr arrays)
 		{
+			
 			m_DeleteVertexArrays_0(n, arrays);
+			if(m_debug) CheckError("DeleteVertexArrays");
+			
 		}
 
 
 		public static void DeleteVertexArrays(int n, uint[] arrays)
 		{
+			
 			m_DeleteVertexArrays_1(n, arrays);
+			if(m_debug) CheckError("DeleteVertexArrays");
+			
 		}
 
 
 		public static void DeleteVertexArrays(int n, ref uint arrays)
 		{
+			
 			m_DeleteVertexArrays_2(n, ref arrays);
+			if(m_debug) CheckError("DeleteVertexArrays");
+			
 		}
 
 
 		public static void DepthFunc(uint func)
 		{
+			
 			m_DepthFunc_0(func);
+			if(m_debug) CheckError("DepthFunc");
+			
 		}
 
 
 		public static void DepthMask(bool flag)
 		{
+			
 			m_DepthMask_0(flag);
+			if(m_debug) CheckError("DepthMask");
+			
 		}
 
 
 		public static void DepthRange(double near, double far)
 		{
+			
 			m_DepthRange_0(near, far);
+			if(m_debug) CheckError("DepthRange");
+			
 		}
 
 
 		public static void DetachShader(uint program, uint shader)
 		{
+			
 			m_DetachShader_0(program, shader);
+			if(m_debug) CheckError("DetachShader");
+			
 		}
 
 
 		public static void Disable(uint cap)
 		{
+			
 			m_Disable_0(cap);
+			if(m_debug) CheckError("Disable");
+			
 		}
 
 
 		public static void Disablei(uint target, uint index)
 		{
+			
 			m_Disablei_0(target, index);
+			if(m_debug) CheckError("Disablei");
+			
 		}
 
 
 		public static void DisableVertexAttribArray(uint index)
 		{
+			
 			m_DisableVertexAttribArray_0(index);
+			if(m_debug) CheckError("DisableVertexAttribArray");
+			
 		}
 
 
 		public static void DrawArrays(uint mode, int first, int count)
 		{
+			
 			m_DrawArrays_0(mode, first, count);
+			if(m_debug) CheckError("DrawArrays");
+			
 		}
 
 
 		public static void DrawArraysInstanced(uint mode, int first, int count, int instancecount)
 		{
+			
 			m_DrawArraysInstanced_0(mode, first, count, instancecount);
+			if(m_debug) CheckError("DrawArraysInstanced");
+			
 		}
 
 
 		public static void DrawBuffer(uint mode)
 		{
+			
 			m_DrawBuffer_0(mode);
+			if(m_debug) CheckError("DrawBuffer");
+			
 		}
 
 
 		public static void DrawBuffers(int n, System.IntPtr bufs)
 		{
+			
 			m_DrawBuffers_0(n, bufs);
+			if(m_debug) CheckError("DrawBuffers");
+			
 		}
 
 
 		public static void DrawBuffers(int n, uint[] bufs)
 		{
+			
 			m_DrawBuffers_1(n, bufs);
+			if(m_debug) CheckError("DrawBuffers");
+			
 		}
 
 
 		public static void DrawBuffers(int n, ref uint bufs)
 		{
+			
 			m_DrawBuffers_2(n, ref bufs);
+			if(m_debug) CheckError("DrawBuffers");
+			
 		}
 
 
 		public static void DrawElements(uint mode, int count, uint type, System.IntPtr indices)
 		{
+			
 			m_DrawElements_0(mode, count, type, indices);
+			if(m_debug) CheckError("DrawElements");
+			
 		}
 
 
 		public static void DrawElements(uint mode, int count, uint type, byte[] indices)
 		{
+			
 			m_DrawElements_1(mode, count, type, indices);
+			if(m_debug) CheckError("DrawElements");
+			
 		}
 
 
 		public static void DrawElements(uint mode, int count, uint type, ushort[] indices)
 		{
+			
 			m_DrawElements_2(mode, count, type, indices);
+			if(m_debug) CheckError("DrawElements");
+			
 		}
 
 
 		public static void DrawElements(uint mode, int count, uint type, uint[] indices)
 		{
+			
 			m_DrawElements_3(mode, count, type, indices);
+			if(m_debug) CheckError("DrawElements");
+			
 		}
 
 
 		public static void DrawElementsBaseVertex(uint mode, int count, uint type, System.IntPtr indices, int basevertex)
 		{
+			
 			m_DrawElementsBaseVertex_0(mode, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawElementsBaseVertex");
+			
 		}
 
 
 		public static void DrawElementsBaseVertex(uint mode, int count, uint type, byte[] indices, int basevertex)
 		{
+			
 			m_DrawElementsBaseVertex_1(mode, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawElementsBaseVertex");
+			
 		}
 
 
 		public static void DrawElementsBaseVertex(uint mode, int count, uint type, ushort[] indices, int basevertex)
 		{
+			
 			m_DrawElementsBaseVertex_2(mode, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawElementsBaseVertex");
+			
 		}
 
 
 		public static void DrawElementsBaseVertex(uint mode, int count, uint type, uint[] indices, int basevertex)
 		{
+			
 			m_DrawElementsBaseVertex_3(mode, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawElementsBaseVertex");
+			
 		}
 
 
 		public static void DrawElementsInstanced(uint mode, int count, uint type, System.IntPtr indices, int instancecount)
 		{
+			
 			m_DrawElementsInstanced_0(mode, count, type, indices, instancecount);
+			if(m_debug) CheckError("DrawElementsInstanced");
+			
 		}
 
 
 		public static void DrawElementsInstanced(uint mode, int count, uint type, byte[] indices, int instancecount)
 		{
+			
 			m_DrawElementsInstanced_1(mode, count, type, indices, instancecount);
+			if(m_debug) CheckError("DrawElementsInstanced");
+			
 		}
 
 
 		public static void DrawElementsInstanced(uint mode, int count, uint type, ushort[] indices, int instancecount)
 		{
+			
 			m_DrawElementsInstanced_2(mode, count, type, indices, instancecount);
+			if(m_debug) CheckError("DrawElementsInstanced");
+			
 		}
 
 
 		public static void DrawElementsInstanced(uint mode, int count, uint type, uint[] indices, int instancecount)
 		{
+			
 			m_DrawElementsInstanced_3(mode, count, type, indices, instancecount);
+			if(m_debug) CheckError("DrawElementsInstanced");
+			
 		}
 
 
 		public static void DrawElementsInstancedBaseVertex(uint mode, int count, uint type, System.IntPtr indices, int instancecount, int basevertex)
 		{
+			
 			m_DrawElementsInstancedBaseVertex_0(mode, count, type, indices, instancecount, basevertex);
+			if(m_debug) CheckError("DrawElementsInstancedBaseVertex");
+			
 		}
 
 
 		public static void DrawElementsInstancedBaseVertex(uint mode, int count, uint type, byte[] indices, int instancecount, int basevertex)
 		{
+			
 			m_DrawElementsInstancedBaseVertex_1(mode, count, type, indices, instancecount, basevertex);
+			if(m_debug) CheckError("DrawElementsInstancedBaseVertex");
+			
 		}
 
 
 		public static void DrawElementsInstancedBaseVertex(uint mode, int count, uint type, ushort[] indices, int instancecount, int basevertex)
 		{
+			
 			m_DrawElementsInstancedBaseVertex_2(mode, count, type, indices, instancecount, basevertex);
+			if(m_debug) CheckError("DrawElementsInstancedBaseVertex");
+			
 		}
 
 
 		public static void DrawElementsInstancedBaseVertex(uint mode, int count, uint type, uint[] indices, int instancecount, int basevertex)
 		{
+			
 			m_DrawElementsInstancedBaseVertex_3(mode, count, type, indices, instancecount, basevertex);
+			if(m_debug) CheckError("DrawElementsInstancedBaseVertex");
+			
 		}
 
 
 		public static void DrawRangeElements(uint mode, uint start, uint end, int count, uint type, System.IntPtr indices)
 		{
+			
 			m_DrawRangeElements_0(mode, start, end, count, type, indices);
+			if(m_debug) CheckError("DrawRangeElements");
+			
 		}
 
 
 		public static void DrawRangeElements(uint mode, uint start, uint end, int count, uint type, byte[] indices)
 		{
+			
 			m_DrawRangeElements_1(mode, start, end, count, type, indices);
+			if(m_debug) CheckError("DrawRangeElements");
+			
 		}
 
 
 		public static void DrawRangeElements(uint mode, uint start, uint end, int count, uint type, ushort[] indices)
 		{
+			
 			m_DrawRangeElements_2(mode, start, end, count, type, indices);
+			if(m_debug) CheckError("DrawRangeElements");
+			
 		}
 
 
 		public static void DrawRangeElements(uint mode, uint start, uint end, int count, uint type, uint[] indices)
 		{
+			
 			m_DrawRangeElements_3(mode, start, end, count, type, indices);
+			if(m_debug) CheckError("DrawRangeElements");
+			
 		}
 
 
 		public static void DrawRangeElementsBaseVertex(uint mode, uint start, uint end, int count, uint type, System.IntPtr indices, int basevertex)
 		{
+			
 			m_DrawRangeElementsBaseVertex_0(mode, start, end, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawRangeElementsBaseVertex");
+			
 		}
 
 
 		public static void DrawRangeElementsBaseVertex(uint mode, uint start, uint end, int count, uint type, byte[] indices, int basevertex)
 		{
+			
 			m_DrawRangeElementsBaseVertex_1(mode, start, end, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawRangeElementsBaseVertex");
+			
 		}
 
 
 		public static void DrawRangeElementsBaseVertex(uint mode, uint start, uint end, int count, uint type, ushort[] indices, int basevertex)
 		{
+			
 			m_DrawRangeElementsBaseVertex_2(mode, start, end, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawRangeElementsBaseVertex");
+			
 		}
 
 
 		public static void DrawRangeElementsBaseVertex(uint mode, uint start, uint end, int count, uint type, uint[] indices, int basevertex)
 		{
+			
 			m_DrawRangeElementsBaseVertex_3(mode, start, end, count, type, indices, basevertex);
+			if(m_debug) CheckError("DrawRangeElementsBaseVertex");
+			
 		}
 
 
 		public static void Enable(uint cap)
 		{
+			
 			m_Enable_0(cap);
+			if(m_debug) CheckError("Enable");
+			
 		}
 
 
 		public static void Enablei(uint target, uint index)
 		{
+			
 			m_Enablei_0(target, index);
+			if(m_debug) CheckError("Enablei");
+			
 		}
 
 
 		public static void EnableVertexAttribArray(uint index)
 		{
+			
 			m_EnableVertexAttribArray_0(index);
+			if(m_debug) CheckError("EnableVertexAttribArray");
+			
 		}
 
 
 		public static void EndConditionalRender()
 		{
+			
 			m_EndConditionalRender_0();
+			if(m_debug) CheckError("EndConditionalRender");
+			
 		}
 
 
 		public static void EndQuery(uint target)
 		{
+			
 			m_EndQuery_0(target);
+			if(m_debug) CheckError("EndQuery");
+			
 		}
 
 
 		public static void EndTransformFeedback()
 		{
+			
 			m_EndTransformFeedback_0();
+			if(m_debug) CheckError("EndTransformFeedback");
+			
 		}
 
 
 		public static System.IntPtr FenceSync(uint condition, uint flags)
 		{
-			return m_FenceSync_0(condition, flags);
+			
+			var result = m_FenceSync_0(condition, flags);
+			if(m_debug) CheckError("FenceSync");
+			return result;
+			
 		}
 
 
 		public static void Finish()
 		{
+			
 			m_Finish_0();
+			if(m_debug) CheckError("Finish");
+			
 		}
 
 
 		public static void Flush()
 		{
+			
 			m_Flush_0();
+			if(m_debug) CheckError("Flush");
+			
 		}
 
 
 		public static void FlushMappedBufferRange(uint target, System.IntPtr offset, System.IntPtr length)
 		{
+			
 			m_FlushMappedBufferRange_0(target, offset, length);
+			if(m_debug) CheckError("FlushMappedBufferRange");
+			
 		}
 
 
 		public static void FramebufferRenderbuffer(uint target, uint attachment, uint renderbuffertarget, uint renderbuffer)
 		{
+			
 			m_FramebufferRenderbuffer_0(target, attachment, renderbuffertarget, renderbuffer);
+			if(m_debug) CheckError("FramebufferRenderbuffer");
+			
 		}
 
 
 		public static void FramebufferTexture(uint target, uint attachment, uint texture, int level)
 		{
+			
 			m_FramebufferTexture_0(target, attachment, texture, level);
+			if(m_debug) CheckError("FramebufferTexture");
+			
 		}
 
 
 		public static void FramebufferTexture1D(uint target, uint attachment, uint textarget, uint texture, int level)
 		{
+			
 			m_FramebufferTexture1D_0(target, attachment, textarget, texture, level);
+			if(m_debug) CheckError("FramebufferTexture1D");
+			
 		}
 
 
 		public static void FramebufferTexture2D(uint target, uint attachment, uint textarget, uint texture, int level)
 		{
+			
 			m_FramebufferTexture2D_0(target, attachment, textarget, texture, level);
+			if(m_debug) CheckError("FramebufferTexture2D");
+			
 		}
 
 
 		public static void FramebufferTexture3D(uint target, uint attachment, uint textarget, uint texture, int level, int zoffset)
 		{
+			
 			m_FramebufferTexture3D_0(target, attachment, textarget, texture, level, zoffset);
+			if(m_debug) CheckError("FramebufferTexture3D");
+			
 		}
 
 
 		public static void FramebufferTextureLayer(uint target, uint attachment, uint texture, int level, int layer)
 		{
+			
 			m_FramebufferTextureLayer_0(target, attachment, texture, level, layer);
+			if(m_debug) CheckError("FramebufferTextureLayer");
+			
 		}
 
 
 		public static void FrontFace(uint mode)
 		{
+			
 			m_FrontFace_0(mode);
+			if(m_debug) CheckError("FrontFace");
+			
 		}
 
 
 		public static void GenBuffers(int n, System.IntPtr buffers)
 		{
+			
 			m_GenBuffers_0(n, buffers);
+			if(m_debug) CheckError("GenBuffers");
+			
 		}
 
 
 		public static void GenBuffers(int n, uint[] buffers)
 		{
+			
 			m_GenBuffers_1(n, buffers);
+			if(m_debug) CheckError("GenBuffers");
+			
 		}
 
 
 		public static void GenBuffers(int n, out uint buffers)
 		{
+			
 			m_GenBuffers_2(n, out buffers);
+			if(m_debug) CheckError("GenBuffers");
+			
 		}
 
 
 		public static void GenerateMipmap(uint target)
 		{
+			
 			m_GenerateMipmap_0(target);
+			if(m_debug) CheckError("GenerateMipmap");
+			
 		}
 
 
 		public static void GenFramebuffers(int n, System.IntPtr framebuffers)
 		{
+			
 			m_GenFramebuffers_0(n, framebuffers);
+			if(m_debug) CheckError("GenFramebuffers");
+			
 		}
 
 
 		public static void GenFramebuffers(int n, uint[] framebuffers)
 		{
+			
 			m_GenFramebuffers_1(n, framebuffers);
+			if(m_debug) CheckError("GenFramebuffers");
+			
 		}
 
 
 		public static void GenFramebuffers(int n, out uint framebuffers)
 		{
+			
 			m_GenFramebuffers_2(n, out framebuffers);
+			if(m_debug) CheckError("GenFramebuffers");
+			
 		}
 
 
 		public static void GenQueries(int n, System.IntPtr ids)
 		{
+			
 			m_GenQueries_0(n, ids);
+			if(m_debug) CheckError("GenQueries");
+			
 		}
 
 
 		public static void GenQueries(int n, uint[] ids)
 		{
+			
 			m_GenQueries_1(n, ids);
+			if(m_debug) CheckError("GenQueries");
+			
 		}
 
 
 		public static void GenQueries(int n, out uint ids)
 		{
+			
 			m_GenQueries_2(n, out ids);
+			if(m_debug) CheckError("GenQueries");
+			
 		}
 
 
 		public static void GenRenderbuffers(int n, System.IntPtr renderbuffers)
 		{
+			
 			m_GenRenderbuffers_0(n, renderbuffers);
+			if(m_debug) CheckError("GenRenderbuffers");
+			
 		}
 
 
 		public static void GenRenderbuffers(int n, uint[] renderbuffers)
 		{
+			
 			m_GenRenderbuffers_1(n, renderbuffers);
+			if(m_debug) CheckError("GenRenderbuffers");
+			
 		}
 
 
 		public static void GenRenderbuffers(int n, out uint renderbuffers)
 		{
+			
 			m_GenRenderbuffers_2(n, out renderbuffers);
+			if(m_debug) CheckError("GenRenderbuffers");
+			
 		}
 
 
 		private static void GenTextures(int n, System.IntPtr textures)
 		{
+			
 			m_GenTextures_0(n, textures);
+			if(m_debug) CheckError("GenTextures");
+			
 		}
 
 
 		private static void GenTextures(int n, uint[] textures)
 		{
+			
 			m_GenTextures_1(n, textures);
+			if(m_debug) CheckError("GenTextures");
+			
 		}
 
 
 		private static void GenTextures(int n, out uint textures)
 		{
+			
 			m_GenTextures_2(n, out textures);
+			if(m_debug) CheckError("GenTextures");
+			
 		}
 
 
 		public static void GenVertexArrays(int n, System.IntPtr arrays)
 		{
+			
 			m_GenVertexArrays_0(n, arrays);
+			if(m_debug) CheckError("GenVertexArrays");
+			
 		}
 
 
 		public static void GenVertexArrays(int n, uint[] arrays)
 		{
+			
 			m_GenVertexArrays_1(n, arrays);
+			if(m_debug) CheckError("GenVertexArrays");
+			
 		}
 
 
 		public static void GenVertexArrays(int n, out uint arrays)
 		{
+			
 			m_GenVertexArrays_2(n, out arrays);
+			if(m_debug) CheckError("GenVertexArrays");
+			
 		}
 
 
 		public static void GetActiveAttrib(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name)
 		{
+			
 			m_GetActiveAttrib_0(program, index, bufSize, length, size, type, name);
+			if(m_debug) CheckError("GetActiveAttrib");
+			
 		}
 
 
 		public static void GetActiveAttrib(uint program, uint index, int bufSize, out int length, out int size, out uint type, byte[] name)
 		{
+			
 			m_GetActiveAttrib_1(program, index, bufSize, out length, out size, out type, name);
+			if(m_debug) CheckError("GetActiveAttrib");
+			
 		}
 
 
 		public static void GetActiveUniform(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name)
 		{
+			
 			m_GetActiveUniform_0(program, index, bufSize, length, size, type, name);
+			if(m_debug) CheckError("GetActiveUniform");
+			
 		}
 
 
 		public static void GetActiveUniform(uint program, uint index, int bufSize, out int length, out int size, out uint type, byte[] name)
 		{
+			
 			m_GetActiveUniform_1(program, index, bufSize, out length, out size, out type, name);
+			if(m_debug) CheckError("GetActiveUniform");
+			
 		}
 
 
 		public static void GetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetActiveUniformBlockiv_0(program, uniformBlockIndex, pname, _params);
+			if(m_debug) CheckError("GetActiveUniformBlockiv");
+			
 		}
 
 
 		public static void GetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, int[] _params)
 		{
+			
 			m_GetActiveUniformBlockiv_1(program, uniformBlockIndex, pname, _params);
+			if(m_debug) CheckError("GetActiveUniformBlockiv");
+			
 		}
 
 
 		public static void GetActiveUniformBlockiv(uint program, uint uniformBlockIndex, uint pname, out int _params)
 		{
+			
 			m_GetActiveUniformBlockiv_2(program, uniformBlockIndex, pname, out _params);
+			if(m_debug) CheckError("GetActiveUniformBlockiv");
+			
 		}
 
 
 		public static void GetActiveUniformBlockName(uint program, uint uniformBlockIndex, int bufSize, System.IntPtr length, System.IntPtr uniformBlockName)
 		{
+			
 			m_GetActiveUniformBlockName_0(program, uniformBlockIndex, bufSize, length, uniformBlockName);
+			if(m_debug) CheckError("GetActiveUniformBlockName");
+			
 		}
 
 
 		public static void GetActiveUniformBlockName(uint program, uint uniformBlockIndex, int bufSize, out int length, byte[] uniformBlockName)
 		{
+			
 			m_GetActiveUniformBlockName_1(program, uniformBlockIndex, bufSize, out length, uniformBlockName);
+			if(m_debug) CheckError("GetActiveUniformBlockName");
+			
 		}
 
 
 		public static void GetActiveUniformName(uint program, uint uniformIndex, int bufSize, System.IntPtr length, System.IntPtr uniformName)
 		{
+			
 			m_GetActiveUniformName_0(program, uniformIndex, bufSize, length, uniformName);
+			if(m_debug) CheckError("GetActiveUniformName");
+			
 		}
 
 
 		public static void GetActiveUniformName(uint program, uint uniformIndex, int bufSize, out int length, byte[] uniformName)
 		{
+			
 			m_GetActiveUniformName_1(program, uniformIndex, bufSize, out length, uniformName);
+			if(m_debug) CheckError("GetActiveUniformName");
+			
 		}
 
 
 		public static void GetActiveUniformsiv(uint program, int uniformCount, System.IntPtr uniformIndices, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetActiveUniformsiv_0(program, uniformCount, uniformIndices, pname, _params);
+			if(m_debug) CheckError("GetActiveUniformsiv");
+			
 		}
 
 
 		public static void GetActiveUniformsiv(uint program, int uniformCount, uint[] uniformIndices, uint pname, int[] _params)
 		{
+			
 			m_GetActiveUniformsiv_1(program, uniformCount, uniformIndices, pname, _params);
+			if(m_debug) CheckError("GetActiveUniformsiv");
+			
 		}
 
 
 		public static void GetActiveUniformsiv(uint program, int uniformCount, out int uniformIndices, uint pname, int[] _params)
 		{
+			
 			m_GetActiveUniformsiv_2(program, uniformCount, out uniformIndices, pname, _params);
+			if(m_debug) CheckError("GetActiveUniformsiv");
+			
 		}
 
 
 		public static void GetActiveUniformsiv(uint program, int uniformCount, uint[] uniformIndices, uint pname, ref int _params)
 		{
+			
 			m_GetActiveUniformsiv_3(program, uniformCount, uniformIndices, pname, ref _params);
+			if(m_debug) CheckError("GetActiveUniformsiv");
+			
 		}
 
 
 		public static void GetActiveUniformsiv(uint program, int uniformCount, out int uniformIndices, uint pname, ref int _params)
 		{
+			
 			m_GetActiveUniformsiv_4(program, uniformCount, out uniformIndices, pname, ref _params);
+			if(m_debug) CheckError("GetActiveUniformsiv");
+			
 		}
 
 
 		public static void GetAttachedShaders(uint program, int maxCount, System.IntPtr count, System.IntPtr shaders)
 		{
+			
 			m_GetAttachedShaders_0(program, maxCount, count, shaders);
+			if(m_debug) CheckError("GetAttachedShaders");
+			
 		}
 
 
 		public static void GetAttachedShaders(uint program, int maxCount, uint count, uint[] shaders)
 		{
+			
 			m_GetAttachedShaders_1(program, maxCount, count, shaders);
+			if(m_debug) CheckError("GetAttachedShaders");
+			
 		}
 
 
 		public static int GetAttribLocation(uint program, System.IntPtr name)
 		{
-			return m_GetAttribLocation_0(program, name);
+			
+			var result = m_GetAttribLocation_0(program, name);
+			if(m_debug) CheckError("GetAttribLocation");
+			return result;
+			
 		}
 
 
 		public static int GetAttribLocation(uint program, byte[] name)
 		{
-			return m_GetAttribLocation_1(program, name);
+			
+			var result = m_GetAttribLocation_1(program, name);
+			if(m_debug) CheckError("GetAttribLocation");
+			return result;
+			
 		}
 
 
 		public static int GetAttribLocation(uint program, string name)
 		{
-			return m_GetAttribLocation_2(program, name);
+			
+			var result = m_GetAttribLocation_2(program, name);
+			if(m_debug) CheckError("GetAttribLocation");
+			return result;
+			
 		}
 
 
 		public static void GetBooleani_v(uint target, uint index, System.IntPtr data)
 		{
+			
 			m_GetBooleani_v_0(target, index, data);
+			if(m_debug) CheckError("GetBooleani_v");
+			
 		}
 
 
 		public static void GetBooleani_v(uint target, uint index, out bool data)
 		{
+			
 			m_GetBooleani_v_1(target, index, out data);
+			if(m_debug) CheckError("GetBooleani_v");
+			
 		}
 
 
 		public static void GetBooleanv(uint pname, System.IntPtr data)
 		{
+			
 			m_GetBooleanv_0(pname, data);
+			if(m_debug) CheckError("GetBooleanv");
+			
 		}
 
 
 		public static void GetBooleanv(uint pname, out bool data)
 		{
+			
 			m_GetBooleanv_1(pname, out data);
+			if(m_debug) CheckError("GetBooleanv");
+			
 		}
 
 
 		public static void GetBufferParameteri64v(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetBufferParameteri64v_0(target, pname, _params);
+			if(m_debug) CheckError("GetBufferParameteri64v");
+			
 		}
 
 
 		public static void GetBufferParameteri64v(uint target, uint pname, out long _params)
 		{
+			
 			m_GetBufferParameteri64v_1(target, pname, out _params);
+			if(m_debug) CheckError("GetBufferParameteri64v");
+			
 		}
 
 
 		public static void GetBufferParameteriv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetBufferParameteriv_0(target, pname, _params);
+			if(m_debug) CheckError("GetBufferParameteriv");
+			
 		}
 
 
 		public static void GetBufferParameteriv(uint target, uint pname, out int _params)
 		{
+			
 			m_GetBufferParameteriv_1(target, pname, out _params);
+			if(m_debug) CheckError("GetBufferParameteriv");
+			
 		}
 
 
 		public static void GetBufferPointerv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetBufferPointerv_0(target, pname, _params);
+			if(m_debug) CheckError("GetBufferPointerv");
+			
 		}
 
 
 		public static void GetBufferPointerv(uint target, uint pname, out System.IntPtr _params)
 		{
+			
 			m_GetBufferPointerv_1(target, pname, out _params);
+			if(m_debug) CheckError("GetBufferPointerv");
+			
 		}
 
 
 		public static void GetBufferSubData(uint target, System.IntPtr offset, System.IntPtr size, System.IntPtr data)
 		{
+			
 			m_GetBufferSubData_0(target, offset, size, data);
+			if(m_debug) CheckError("GetBufferSubData");
+			
 		}
 
 
 		public static void GetCompressedTexImage(uint target, int level, System.IntPtr img)
 		{
+			
 			m_GetCompressedTexImage_0(target, level, img);
+			if(m_debug) CheckError("GetCompressedTexImage");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, System.IntPtr data)
 		{
+			
 			m_GetDoublev_0(pname, data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, double[] data)
 		{
+			
 			m_GetDoublev_1(pname, data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out double data)
 		{
+			
 			m_GetDoublev_2(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out Vector2d data)
 		{
+			
 			m_GetDoublev_3(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out Vector3d data)
 		{
+			
 			m_GetDoublev_4(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out Vector4d data)
 		{
+			
 			m_GetDoublev_5(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out Color3d data)
 		{
+			
 			m_GetDoublev_6(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out Color4d data)
 		{
+			
 			m_GetDoublev_7(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out Box2d data)
 		{
+			
 			m_GetDoublev_8(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static void GetDoublev(uint pname, out Box3d data)
 		{
+			
 			m_GetDoublev_9(pname, out data);
+			if(m_debug) CheckError("GetDoublev");
+			
 		}
 
 
 		public static uint GetError()
 		{
-			return m_GetError_0();
+			
+			var result = m_GetError_0();
+			if(m_debug) CheckError("GetError");
+			return result;
+			
 		}
 
 
 		public static void GetFloatv(uint pname, System.IntPtr data)
 		{
+			
 			m_GetFloatv_0(pname, data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, float[] data)
 		{
+			
 			m_GetFloatv_1(pname, data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out float data)
 		{
+			
 			m_GetFloatv_2(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out Vector2 data)
 		{
+			
 			m_GetFloatv_3(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out Vector3 data)
 		{
+			
 			m_GetFloatv_4(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out Vector4 data)
 		{
+			
 			m_GetFloatv_5(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out Color3 data)
 		{
+			
 			m_GetFloatv_6(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out Color4 data)
 		{
+			
 			m_GetFloatv_7(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out Box2 data)
 		{
+			
 			m_GetFloatv_8(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static void GetFloatv(uint pname, out Box3 data)
 		{
+			
 			m_GetFloatv_9(pname, out data);
+			if(m_debug) CheckError("GetFloatv");
+			
 		}
 
 
 		public static int GetFragDataLocation(uint program, string name)
 		{
-			return m_GetFragDataLocation_0(program, name);
+			
+			var result = m_GetFragDataLocation_0(program, name);
+			if(m_debug) CheckError("GetFragDataLocation");
+			return result;
+			
 		}
 
 
 		public static void GetFramebufferAttachmentParameteriv(uint target, uint attachment, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetFramebufferAttachmentParameteriv_0(target, attachment, pname, _params);
+			if(m_debug) CheckError("GetFramebufferAttachmentParameteriv");
+			
 		}
 
 
 		public static void GetFramebufferAttachmentParameteriv(uint target, uint attachment, uint pname, out int _params)
 		{
+			
 			m_GetFramebufferAttachmentParameteriv_1(target, attachment, pname, out _params);
+			if(m_debug) CheckError("GetFramebufferAttachmentParameteriv");
+			
 		}
 
 
 		public static void GetInteger64i_v(uint target, uint index, System.IntPtr data)
 		{
+			
 			m_GetInteger64i_v_0(target, index, data);
+			if(m_debug) CheckError("GetInteger64i_v");
+			
 		}
 
 
 		public static void GetInteger64i_v(uint target, uint index, long[] data)
 		{
+			
 			m_GetInteger64i_v_1(target, index, data);
+			if(m_debug) CheckError("GetInteger64i_v");
+			
 		}
 
 
 		public static void GetInteger64i_v(uint target, uint index, out long data)
 		{
+			
 			m_GetInteger64i_v_2(target, index, out data);
+			if(m_debug) CheckError("GetInteger64i_v");
+			
 		}
 
 
 		public static void GetInteger64v(uint pname, System.IntPtr data)
 		{
+			
 			m_GetInteger64v_0(pname, data);
+			if(m_debug) CheckError("GetInteger64v");
+			
 		}
 
 
 		public static void GetInteger64v(uint pname, long[] data)
 		{
+			
 			m_GetInteger64v_1(pname, data);
+			if(m_debug) CheckError("GetInteger64v");
+			
 		}
 
 
 		public static void GetInteger64v(uint pname, out long data)
 		{
+			
 			m_GetInteger64v_2(pname, out data);
+			if(m_debug) CheckError("GetInteger64v");
+			
 		}
 
 
 		public static void GetIntegeri_v(uint target, uint index, System.IntPtr data)
 		{
+			
 			m_GetIntegeri_v_0(target, index, data);
+			if(m_debug) CheckError("GetIntegeri_v");
+			
 		}
 
 
 		public static void GetIntegeri_v(uint target, uint index, int[] data)
 		{
+			
 			m_GetIntegeri_v_1(target, index, data);
+			if(m_debug) CheckError("GetIntegeri_v");
+			
 		}
 
 
 		public static void GetIntegeri_v(uint target, uint index, out int data)
 		{
+			
 			m_GetIntegeri_v_2(target, index, out data);
+			if(m_debug) CheckError("GetIntegeri_v");
+			
 		}
 
 
 		public static void GetIntegerv(uint pname, System.IntPtr data)
 		{
+			
 			m_GetIntegerv_0(pname, data);
+			if(m_debug) CheckError("GetIntegerv");
+			
 		}
 
 
 		public static void GetIntegerv(uint pname, int[] data)
 		{
+			
 			m_GetIntegerv_1(pname, data);
+			if(m_debug) CheckError("GetIntegerv");
+			
 		}
 
 
 		public static void GetIntegerv(uint pname, out int data)
 		{
+			
 			m_GetIntegerv_2(pname, out data);
+			if(m_debug) CheckError("GetIntegerv");
+			
 		}
 
 
 		public static void GetMultisamplefv(uint pname, uint index, System.IntPtr val)
 		{
+			
 			m_GetMultisamplefv_0(pname, index, val);
+			if(m_debug) CheckError("GetMultisamplefv");
+			
 		}
 
 
 		public static void GetMultisamplefv(uint pname, uint index, out float val)
 		{
+			
 			m_GetMultisamplefv_1(pname, index, out val);
+			if(m_debug) CheckError("GetMultisamplefv");
+			
 		}
 
 
 		public static void GetProgramInfoLog(uint program, int bufSize, System.IntPtr length, string infoLog)
 		{
+			
 			m_GetProgramInfoLog_0(program, bufSize, length, infoLog);
+			if(m_debug) CheckError("GetProgramInfoLog");
+			
 		}
 
 
 		public static void GetProgramInfoLog(uint program, int bufSize, out int length, byte[] infoLog)
 		{
+			
 			m_GetProgramInfoLog_1(program, bufSize, out length, infoLog);
+			if(m_debug) CheckError("GetProgramInfoLog");
+			
 		}
 
 
 		public static void GetProgramiv(uint program, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetProgramiv_0(program, pname, _params);
+			if(m_debug) CheckError("GetProgramiv");
+			
 		}
 
 
 		public static void GetProgramiv(uint program, uint pname, int[] _params)
 		{
+			
 			m_GetProgramiv_1(program, pname, _params);
+			if(m_debug) CheckError("GetProgramiv");
+			
 		}
 
 
 		public static void GetProgramiv(uint program, uint pname, out int _params)
 		{
+			
 			m_GetProgramiv_2(program, pname, out _params);
+			if(m_debug) CheckError("GetProgramiv");
+			
 		}
 
 
 		public static void GetQueryiv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetQueryiv_0(target, pname, _params);
+			if(m_debug) CheckError("GetQueryiv");
+			
 		}
 
 
 		public static void GetQueryObjectiv(uint id, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetQueryObjectiv_0(id, pname, _params);
+			if(m_debug) CheckError("GetQueryObjectiv");
+			
 		}
 
 
 		public static void GetQueryObjectuiv(uint id, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetQueryObjectuiv_0(id, pname, _params);
+			if(m_debug) CheckError("GetQueryObjectuiv");
+			
 		}
 
 
 		public static void GetRenderbufferParameteriv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetRenderbufferParameteriv_0(target, pname, _params);
+			if(m_debug) CheckError("GetRenderbufferParameteriv");
+			
 		}
 
 
 		public static void GetShaderInfoLog(uint shader, int bufSize, System.IntPtr length, string infoLog)
 		{
+			
 			m_GetShaderInfoLog_0(shader, bufSize, length, infoLog);
+			if(m_debug) CheckError("GetShaderInfoLog");
+			
 		}
 
 
 		public static void GetShaderInfoLog(uint shader, int bufSize, out int length, byte[] infoLog)
 		{
+			
 			m_GetShaderInfoLog_1(shader, bufSize, out length, infoLog);
+			if(m_debug) CheckError("GetShaderInfoLog");
+			
 		}
 
 
 		public static void GetShaderiv(uint shader, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetShaderiv_0(shader, pname, _params);
+			if(m_debug) CheckError("GetShaderiv");
+			
 		}
 
 
 		public static void GetShaderiv(uint shader, uint pname, int[] _params)
 		{
+			
 			m_GetShaderiv_1(shader, pname, _params);
+			if(m_debug) CheckError("GetShaderiv");
+			
 		}
 
 
 		public static void GetShaderiv(uint shader, uint pname, out int _params)
 		{
+			
 			m_GetShaderiv_2(shader, pname, out _params);
+			if(m_debug) CheckError("GetShaderiv");
+			
 		}
 
 
 		public static void GetShaderSource(uint shader, int bufSize, System.IntPtr length, string source)
 		{
+			
 			m_GetShaderSource_0(shader, bufSize, length, source);
+			if(m_debug) CheckError("GetShaderSource");
+			
 		}
 
 
 		public static System.IntPtr GetString(uint name)
 		{
-			return m_GetString_0(name);
+			
+			var result = m_GetString_0(name);
+			if(m_debug) CheckError("GetString");
+			return result;
+			
 		}
 
 
 		public static System.IntPtr GetStringi(uint name, uint index)
 		{
-			return m_GetStringi_0(name, index);
+			
+			var result = m_GetStringi_0(name, index);
+			if(m_debug) CheckError("GetStringi");
+			return result;
+			
 		}
 
 
 		public static void GetSynciv(System.IntPtr sync, uint pname, int bufSize, System.IntPtr length, System.IntPtr values)
 		{
+			
 			m_GetSynciv_0(sync, pname, bufSize, length, values);
+			if(m_debug) CheckError("GetSynciv");
+			
 		}
 
 
 		public static void GetTexImage(uint target, int level, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_GetTexImage_0(target, level, format, type, pixels);
+			if(m_debug) CheckError("GetTexImage");
+			
 		}
 
 
 		public static void GetTexLevelParameterfv(uint target, int level, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetTexLevelParameterfv_0(target, level, pname, _params);
+			if(m_debug) CheckError("GetTexLevelParameterfv");
+			
 		}
 
 
 		public static void GetTexLevelParameteriv(uint target, int level, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetTexLevelParameteriv_0(target, level, pname, _params);
+			if(m_debug) CheckError("GetTexLevelParameteriv");
+			
 		}
 
 
 		public static void GetTexParameterfv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetTexParameterfv_0(target, pname, _params);
+			if(m_debug) CheckError("GetTexParameterfv");
+			
 		}
 
 
 		public static void GetTexParameterIiv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetTexParameterIiv_0(target, pname, _params);
+			if(m_debug) CheckError("GetTexParameterIiv");
+			
 		}
 
 
 		public static void GetTexParameterIuiv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetTexParameterIuiv_0(target, pname, _params);
+			if(m_debug) CheckError("GetTexParameterIuiv");
+			
 		}
 
 
 		public static void GetTexParameteriv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetTexParameteriv_0(target, pname, _params);
+			if(m_debug) CheckError("GetTexParameteriv");
+			
 		}
 
 
 		public static void GetTransformFeedbackVarying(uint program, uint index, int bufSize, System.IntPtr length, System.IntPtr size, System.IntPtr type, string name)
 		{
+			
 			m_GetTransformFeedbackVarying_0(program, index, bufSize, length, size, type, name);
+			if(m_debug) CheckError("GetTransformFeedbackVarying");
+			
 		}
 
 
 		public static uint GetUniformBlockIndex(uint program, string uniformBlockName)
 		{
-			return m_GetUniformBlockIndex_0(program, uniformBlockName);
+			
+			var result = m_GetUniformBlockIndex_0(program, uniformBlockName);
+			if(m_debug) CheckError("GetUniformBlockIndex");
+			return result;
+			
 		}
 
 
 		public static void GetUniformfv(uint program, int location, System.IntPtr _params)
 		{
+			
 			m_GetUniformfv_0(program, location, _params);
+			if(m_debug) CheckError("GetUniformfv");
+			
 		}
 
 
 		public static void GetUniformIndices(uint program, int uniformCount, System.IntPtr uniformNames, System.IntPtr uniformIndices)
 		{
+			
 			m_GetUniformIndices_0(program, uniformCount, uniformNames, uniformIndices);
+			if(m_debug) CheckError("GetUniformIndices");
+			
 		}
 
 
 		public static void GetUniformiv(uint program, int location, System.IntPtr _params)
 		{
+			
 			m_GetUniformiv_0(program, location, _params);
+			if(m_debug) CheckError("GetUniformiv");
+			
 		}
 
 
 		public static int GetUniformLocation(uint program, System.IntPtr name)
 		{
-			return m_GetUniformLocation_0(program, name);
+			
+			var result = m_GetUniformLocation_0(program, name);
+			if(m_debug) CheckError("GetUniformLocation");
+			return result;
+			
 		}
 
 
 		public static int GetUniformLocation(uint program, byte[] name)
 		{
-			return m_GetUniformLocation_1(program, name);
+			
+			var result = m_GetUniformLocation_1(program, name);
+			if(m_debug) CheckError("GetUniformLocation");
+			return result;
+			
 		}
 
 
 		public static int GetUniformLocation(uint program, string name)
 		{
-			return m_GetUniformLocation_2(program, name);
+			
+			var result = m_GetUniformLocation_2(program, name);
+			if(m_debug) CheckError("GetUniformLocation");
+			return result;
+			
 		}
 
 
 		public static void GetUniformuiv(uint program, int location, System.IntPtr _params)
 		{
+			
 			m_GetUniformuiv_0(program, location, _params);
+			if(m_debug) CheckError("GetUniformuiv");
+			
 		}
 
 
 		public static void GetVertexAttribdv(uint index, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetVertexAttribdv_0(index, pname, _params);
+			if(m_debug) CheckError("GetVertexAttribdv");
+			
 		}
 
 
 		public static void GetVertexAttribfv(uint index, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetVertexAttribfv_0(index, pname, _params);
+			if(m_debug) CheckError("GetVertexAttribfv");
+			
 		}
 
 
 		public static void GetVertexAttribIiv(uint index, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetVertexAttribIiv_0(index, pname, _params);
+			if(m_debug) CheckError("GetVertexAttribIiv");
+			
 		}
 
 
 		public static void GetVertexAttribIuiv(uint index, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetVertexAttribIuiv_0(index, pname, _params);
+			if(m_debug) CheckError("GetVertexAttribIuiv");
+			
 		}
 
 
 		public static void GetVertexAttribiv(uint index, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetVertexAttribiv_0(index, pname, _params);
+			if(m_debug) CheckError("GetVertexAttribiv");
+			
 		}
 
 
 		public static void GetVertexAttribPointerv(uint index, uint pname, System.IntPtr pointer)
 		{
+			
 			m_GetVertexAttribPointerv_0(index, pname, pointer);
+			if(m_debug) CheckError("GetVertexAttribPointerv");
+			
 		}
 
 
 		public static void Hint(uint target, uint mode)
 		{
+			
 			m_Hint_0(target, mode);
+			if(m_debug) CheckError("Hint");
+			
 		}
 
 
 		public static bool IsBuffer(uint buffer)
 		{
-			return m_IsBuffer_0(buffer);
+			
+			var result = m_IsBuffer_0(buffer);
+			if(m_debug) CheckError("IsBuffer");
+			return result;
+			
 		}
 
 
 		public static bool IsEnabled(uint cap)
 		{
-			return m_IsEnabled_0(cap);
+			
+			var result = m_IsEnabled_0(cap);
+			if(m_debug) CheckError("IsEnabled");
+			return result;
+			
 		}
 
 
 		public static bool IsEnabledi(uint target, uint index)
 		{
-			return m_IsEnabledi_0(target, index);
+			
+			var result = m_IsEnabledi_0(target, index);
+			if(m_debug) CheckError("IsEnabledi");
+			return result;
+			
 		}
 
 
 		public static bool IsFramebuffer(uint framebuffer)
 		{
-			return m_IsFramebuffer_0(framebuffer);
+			
+			var result = m_IsFramebuffer_0(framebuffer);
+			if(m_debug) CheckError("IsFramebuffer");
+			return result;
+			
 		}
 
 
 		public static bool IsProgram(uint program)
 		{
-			return m_IsProgram_0(program);
+			
+			var result = m_IsProgram_0(program);
+			if(m_debug) CheckError("IsProgram");
+			return result;
+			
 		}
 
 
 		public static bool IsQuery(uint id)
 		{
-			return m_IsQuery_0(id);
+			
+			var result = m_IsQuery_0(id);
+			if(m_debug) CheckError("IsQuery");
+			return result;
+			
 		}
 
 
 		public static bool IsRenderbuffer(uint renderbuffer)
 		{
-			return m_IsRenderbuffer_0(renderbuffer);
+			
+			var result = m_IsRenderbuffer_0(renderbuffer);
+			if(m_debug) CheckError("IsRenderbuffer");
+			return result;
+			
 		}
 
 
 		public static bool IsShader(uint shader)
 		{
-			return m_IsShader_0(shader);
+			
+			var result = m_IsShader_0(shader);
+			if(m_debug) CheckError("IsShader");
+			return result;
+			
 		}
 
 
 		public static bool IsSync(System.IntPtr sync)
 		{
-			return m_IsSync_0(sync);
+			
+			var result = m_IsSync_0(sync);
+			if(m_debug) CheckError("IsSync");
+			return result;
+			
 		}
 
 
 		public static bool IsTexture(uint texture)
 		{
-			return m_IsTexture_0(texture);
+			
+			var result = m_IsTexture_0(texture);
+			if(m_debug) CheckError("IsTexture");
+			return result;
+			
 		}
 
 
 		public static bool IsVertexArray(uint array)
 		{
-			return m_IsVertexArray_0(array);
+			
+			var result = m_IsVertexArray_0(array);
+			if(m_debug) CheckError("IsVertexArray");
+			return result;
+			
 		}
 
 
 		public static void LineWidth(float width)
 		{
+			
 			m_LineWidth_0(width);
+			if(m_debug) CheckError("LineWidth");
+			
 		}
 
 
 		public static void LinkProgram(uint program)
 		{
+			
 			m_LinkProgram_0(program);
+			if(m_debug) CheckError("LinkProgram");
+			
 		}
 
 
 		public static void LogicOp(uint opcode)
 		{
+			
 			m_LogicOp_0(opcode);
+			if(m_debug) CheckError("LogicOp");
+			
 		}
 
 
 		public static System.IntPtr MapBuffer(uint target, uint access)
 		{
-			return m_MapBuffer_0(target, access);
+			
+			var result = m_MapBuffer_0(target, access);
+			if(m_debug) CheckError("MapBuffer");
+			return result;
+			
 		}
 
 
 		public static System.IntPtr MapBufferRange(uint target, System.IntPtr offset, System.IntPtr length, uint access)
 		{
-			return m_MapBufferRange_0(target, offset, length, access);
+			
+			var result = m_MapBufferRange_0(target, offset, length, access);
+			if(m_debug) CheckError("MapBufferRange");
+			return result;
+			
 		}
 
 
 		public static void MultiDrawArrays(uint mode, System.IntPtr first, System.IntPtr count, int drawcount)
 		{
+			
 			m_MultiDrawArrays_0(mode, first, count, drawcount);
+			if(m_debug) CheckError("MultiDrawArrays");
+			
 		}
 
 
 		public static void MultiDrawElements(uint mode, System.IntPtr count, uint type, System.IntPtr indices, int drawcount)
 		{
+			
 			m_MultiDrawElements_0(mode, count, type, indices, drawcount);
+			if(m_debug) CheckError("MultiDrawElements");
+			
 		}
 
 
 		public static void MultiDrawElementsBaseVertex(uint mode, System.IntPtr count, uint type, System.IntPtr indices, int drawcount, System.IntPtr basevertex)
 		{
+			
 			m_MultiDrawElementsBaseVertex_0(mode, count, type, indices, drawcount, basevertex);
+			if(m_debug) CheckError("MultiDrawElementsBaseVertex");
+			
 		}
 
 
 		public static void PixelStoref(uint pname, float param)
 		{
+			
 			m_PixelStoref_0(pname, param);
+			if(m_debug) CheckError("PixelStoref");
+			
 		}
 
 
 		public static void PixelStorei(uint pname, int param)
 		{
+			
 			m_PixelStorei_0(pname, param);
+			if(m_debug) CheckError("PixelStorei");
+			
 		}
 
 
 		public static void PointParameterf(uint pname, float param)
 		{
+			
 			m_PointParameterf_0(pname, param);
+			if(m_debug) CheckError("PointParameterf");
+			
 		}
 
 
 		public static void PointParameterfv(uint pname, System.IntPtr _params)
 		{
+			
 			m_PointParameterfv_0(pname, _params);
+			if(m_debug) CheckError("PointParameterfv");
+			
 		}
 
 
 		public static void PointParameteri(uint pname, int param)
 		{
+			
 			m_PointParameteri_0(pname, param);
+			if(m_debug) CheckError("PointParameteri");
+			
 		}
 
 
 		public static void PointParameteriv(uint pname, System.IntPtr _params)
 		{
+			
 			m_PointParameteriv_0(pname, _params);
+			if(m_debug) CheckError("PointParameteriv");
+			
 		}
 
 
 		public static void PointSize(float size)
 		{
+			
 			m_PointSize_0(size);
+			if(m_debug) CheckError("PointSize");
+			
 		}
 
 
 		public static void PolygonMode(uint face, uint mode)
 		{
+			
 			m_PolygonMode_0(face, mode);
+			if(m_debug) CheckError("PolygonMode");
+			
 		}
 
 
 		public static void PolygonOffset(float factor, float units)
 		{
+			
 			m_PolygonOffset_0(factor, units);
+			if(m_debug) CheckError("PolygonOffset");
+			
 		}
 
 
 		public static void PrimitiveRestartIndex(uint index)
 		{
+			
 			m_PrimitiveRestartIndex_0(index);
+			if(m_debug) CheckError("PrimitiveRestartIndex");
+			
 		}
 
 
 		public static void ProvokingVertex(uint mode)
 		{
+			
 			m_ProvokingVertex_0(mode);
+			if(m_debug) CheckError("ProvokingVertex");
+			
 		}
 
 
 		public static void ReadBuffer(uint mode)
 		{
+			
 			m_ReadBuffer_0(mode);
+			if(m_debug) CheckError("ReadBuffer");
+			
 		}
 
 
 		public static void ReadPixels(int x, int y, int width, int height, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_ReadPixels_0(x, y, width, height, format, type, pixels);
+			if(m_debug) CheckError("ReadPixels");
+			
 		}
 
 
 		public static void RenderbufferStorage(uint target, uint internalformat, int width, int height)
 		{
+			
 			m_RenderbufferStorage_0(target, internalformat, width, height);
+			if(m_debug) CheckError("RenderbufferStorage");
+			
 		}
 
 
 		public static void RenderbufferStorageMultisample(uint target, int samples, uint internalformat, int width, int height)
 		{
+			
 			m_RenderbufferStorageMultisample_0(target, samples, internalformat, width, height);
+			if(m_debug) CheckError("RenderbufferStorageMultisample");
+			
 		}
 
 
 		public static void SampleCoverage(float value, bool invert)
 		{
+			
 			m_SampleCoverage_0(value, invert);
+			if(m_debug) CheckError("SampleCoverage");
+			
 		}
 
 
 		public static void SampleMaski(uint index, uint mask)
 		{
+			
 			m_SampleMaski_0(index, mask);
+			if(m_debug) CheckError("SampleMaski");
+			
 		}
 
 
 		public static void Scissor(int x, int y, int width, int height)
 		{
+			
 			m_Scissor_0(x, y, width, height);
+			if(m_debug) CheckError("Scissor");
+			
 		}
 
 
 		public static void ShaderSource(uint shader, int count, System.IntPtr _string, System.IntPtr length)
 		{
+			
 			m_ShaderSource_0(shader, count, _string, length);
+			if(m_debug) CheckError("ShaderSource");
+			
 		}
 
 
 		public static void ShaderSource(uint shader, int count, IntPtr[] _string, int[] length)
 		{
+			
 			m_ShaderSource_1(shader, count, _string, length);
+			if(m_debug) CheckError("ShaderSource");
+			
 		}
 
 
 		public static void StencilFunc(uint func, int _ref, uint mask)
 		{
+			
 			m_StencilFunc_0(func, _ref, mask);
+			if(m_debug) CheckError("StencilFunc");
+			
 		}
 
 
 		public static void StencilFuncSeparate(uint face, uint func, int _ref, uint mask)
 		{
+			
 			m_StencilFuncSeparate_0(face, func, _ref, mask);
+			if(m_debug) CheckError("StencilFuncSeparate");
+			
 		}
 
 
 		public static void StencilMask(uint mask)
 		{
+			
 			m_StencilMask_0(mask);
+			if(m_debug) CheckError("StencilMask");
+			
 		}
 
 
 		public static void StencilMaskSeparate(uint face, uint mask)
 		{
+			
 			m_StencilMaskSeparate_0(face, mask);
+			if(m_debug) CheckError("StencilMaskSeparate");
+			
 		}
 
 
 		public static void StencilOp(uint fail, uint zfail, uint zpass)
 		{
+			
 			m_StencilOp_0(fail, zfail, zpass);
+			if(m_debug) CheckError("StencilOp");
+			
 		}
 
 
 		public static void StencilOpSeparate(uint face, uint sfail, uint dpfail, uint dppass)
 		{
+			
 			m_StencilOpSeparate_0(face, sfail, dpfail, dppass);
+			if(m_debug) CheckError("StencilOpSeparate");
+			
 		}
 
 
 		public static void TexBuffer(uint target, uint internalformat, uint buffer)
 		{
+			
 			m_TexBuffer_0(target, internalformat, buffer);
+			if(m_debug) CheckError("TexBuffer");
+			
 		}
 
 
 		public static void TexImage1D(uint target, int level, int internalformat, int width, int border, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_TexImage1D_0(target, level, internalformat, width, border, format, type, pixels);
+			if(m_debug) CheckError("TexImage1D");
+			
 		}
 
 
 		public static void TexImage2D(uint target, int level, int internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_TexImage2D_0(target, level, internalformat, width, height, border, format, type, pixels);
+			if(m_debug) CheckError("TexImage2D");
+			
 		}
 
 
 		public static void TexImage2DMultisample(uint target, int samples, uint internalformat, int width, int height, bool fixedsamplelocations)
 		{
+			
 			m_TexImage2DMultisample_0(target, samples, internalformat, width, height, fixedsamplelocations);
+			if(m_debug) CheckError("TexImage2DMultisample");
+			
 		}
 
 
 		public static void TexImage3D(uint target, int level, int internalformat, int width, int height, int depth, int border, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_TexImage3D_0(target, level, internalformat, width, height, depth, border, format, type, pixels);
+			if(m_debug) CheckError("TexImage3D");
+			
 		}
 
 
 		public static void TexImage3DMultisample(uint target, int samples, uint internalformat, int width, int height, int depth, bool fixedsamplelocations)
 		{
+			
 			m_TexImage3DMultisample_0(target, samples, internalformat, width, height, depth, fixedsamplelocations);
+			if(m_debug) CheckError("TexImage3DMultisample");
+			
 		}
 
 
 		public static void TexParameterf(uint target, uint pname, float param)
 		{
+			
 			m_TexParameterf_0(target, pname, param);
+			if(m_debug) CheckError("TexParameterf");
+			
 		}
 
 
 		public static void TexParameterfv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_TexParameterfv_0(target, pname, _params);
+			if(m_debug) CheckError("TexParameterfv");
+			
 		}
 
 
 		public static void TexParameteri(uint target, uint pname, int param)
 		{
+			
 			m_TexParameteri_0(target, pname, param);
+			if(m_debug) CheckError("TexParameteri");
+			
 		}
 
 
 		public static void TexParameterIiv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_TexParameterIiv_0(target, pname, _params);
+			if(m_debug) CheckError("TexParameterIiv");
+			
 		}
 
 
 		public static void TexParameterIuiv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_TexParameterIuiv_0(target, pname, _params);
+			if(m_debug) CheckError("TexParameterIuiv");
+			
 		}
 
 
 		public static void TexParameteriv(uint target, uint pname, System.IntPtr _params)
 		{
+			
 			m_TexParameteriv_0(target, pname, _params);
+			if(m_debug) CheckError("TexParameteriv");
+			
 		}
 
 
 		public static void TexSubImage1D(uint target, int level, int xoffset, int width, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_TexSubImage1D_0(target, level, xoffset, width, format, type, pixels);
+			if(m_debug) CheckError("TexSubImage1D");
+			
 		}
 
 
 		public static void TexSubImage2D(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_TexSubImage2D_0(target, level, xoffset, yoffset, width, height, format, type, pixels);
+			if(m_debug) CheckError("TexSubImage2D");
+			
 		}
 
 
 		public static void TexSubImage3D(uint target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, uint format, uint type, System.IntPtr pixels)
 		{
+			
 			m_TexSubImage3D_0(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+			if(m_debug) CheckError("TexSubImage3D");
+			
 		}
 
 
 		public static void TransformFeedbackVaryings(uint program, int count, System.IntPtr varyings, uint bufferMode)
 		{
+			
 			m_TransformFeedbackVaryings_0(program, count, varyings, bufferMode);
+			if(m_debug) CheckError("TransformFeedbackVaryings");
+			
 		}
 
 
 		public static void Uniform1f(int location, float v0)
 		{
+			
 			m_Uniform1f_0(location, v0);
+			if(m_debug) CheckError("Uniform1f");
+			
 		}
 
 
 		public static void Uniform1fv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform1fv_0(location, count, value);
+			if(m_debug) CheckError("Uniform1fv");
+			
 		}
 
 
 		public static void Uniform1i(int location, int v0)
 		{
+			
 			m_Uniform1i_0(location, v0);
+			if(m_debug) CheckError("Uniform1i");
+			
 		}
 
 
 		public static void Uniform1iv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform1iv_0(location, count, value);
+			if(m_debug) CheckError("Uniform1iv");
+			
 		}
 
 
 		public static void Uniform1ui(int location, uint v0)
 		{
+			
 			m_Uniform1ui_0(location, v0);
+			if(m_debug) CheckError("Uniform1ui");
+			
 		}
 
 
 		public static void Uniform1uiv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform1uiv_0(location, count, value);
+			if(m_debug) CheckError("Uniform1uiv");
+			
 		}
 
 
 		public static void Uniform2f(int location, float v0, float v1)
 		{
+			
 			m_Uniform2f_0(location, v0, v1);
+			if(m_debug) CheckError("Uniform2f");
+			
 		}
 
 
 		public static void Uniform2f(int location, Vector2 value)
 		{
+			
 			m_Uniform2f_1(location, value);
+			if(m_debug) CheckError("Uniform2f");
+			
 		}
 
 
 		public static void Uniform2fv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform2fv_0(location, count, value);
+			if(m_debug) CheckError("Uniform2fv");
+			
 		}
 
 
 		public static void Uniform2i(int location, int v0, int v1)
 		{
+			
 			m_Uniform2i_0(location, v0, v1);
+			if(m_debug) CheckError("Uniform2i");
+			
 		}
 
 
 		public static void Uniform2i(int location, Vector2i value)
 		{
+			
 			m_Uniform2i_1(location, value);
+			if(m_debug) CheckError("Uniform2i");
+			
 		}
 
 
 		public static void Uniform2iv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform2iv_0(location, count, value);
+			if(m_debug) CheckError("Uniform2iv");
+			
 		}
 
 
 		public static void Uniform2ui(int location, uint v0, uint v1)
 		{
+			
 			m_Uniform2ui_0(location, v0, v1);
+			if(m_debug) CheckError("Uniform2ui");
+			
 		}
 
 
 		public static void Uniform2uiv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform2uiv_0(location, count, value);
+			if(m_debug) CheckError("Uniform2uiv");
+			
 		}
 
 
 		public static void Uniform3f(int location, float v0, float v1, float v2)
 		{
+			
 			m_Uniform3f_0(location, v0, v1, v2);
+			if(m_debug) CheckError("Uniform3f");
+			
 		}
 
 
 		public static void Uniform3f(int location, Vector3 value)
 		{
+			
 			m_Uniform3f_1(location, value);
+			if(m_debug) CheckError("Uniform3f");
+			
 		}
 
 
 		public static void Uniform3fv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform3fv_0(location, count, value);
+			if(m_debug) CheckError("Uniform3fv");
+			
 		}
 
 
 		public static void Uniform3i(int location, int v0, int v1, int v2)
 		{
+			
 			m_Uniform3i_0(location, v0, v1, v2);
+			if(m_debug) CheckError("Uniform3i");
+			
 		}
 
 
 		public static void Uniform3i(int location, Vector3i value)
 		{
+			
 			m_Uniform3i_1(location, value);
+			if(m_debug) CheckError("Uniform3i");
+			
 		}
 
 
 		public static void Uniform3iv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform3iv_0(location, count, value);
+			if(m_debug) CheckError("Uniform3iv");
+			
 		}
 
 
 		public static void Uniform3ui(int location, uint v0, uint v1, uint v2)
 		{
+			
 			m_Uniform3ui_0(location, v0, v1, v2);
+			if(m_debug) CheckError("Uniform3ui");
+			
 		}
 
 
 		public static void Uniform3uiv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform3uiv_0(location, count, value);
+			if(m_debug) CheckError("Uniform3uiv");
+			
 		}
 
 
 		public static void Uniform4f(int location, float v0, float v1, float v2, float v3)
 		{
+			
 			m_Uniform4f_0(location, v0, v1, v2, v3);
+			if(m_debug) CheckError("Uniform4f");
+			
 		}
 
 
 		public static void Uniform4f(int location, Vector4 value)
 		{
+			
 			m_Uniform4f_1(location, value);
+			if(m_debug) CheckError("Uniform4f");
+			
 		}
 
 
 		public static void Uniform4fv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform4fv_0(location, count, value);
+			if(m_debug) CheckError("Uniform4fv");
+			
 		}
 
 
 		public static void Uniform4i(int location, int v0, int v1, int v2, int v3)
 		{
+			
 			m_Uniform4i_0(location, v0, v1, v2, v3);
+			if(m_debug) CheckError("Uniform4i");
+			
 		}
 
 
 		public static void Uniform4i(int location, Vector4i value)
 		{
+			
 			m_Uniform4i_1(location, value);
+			if(m_debug) CheckError("Uniform4i");
+			
 		}
 
 
 		public static void Uniform4iv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform4iv_0(location, count, value);
+			if(m_debug) CheckError("Uniform4iv");
+			
 		}
 
 
 		public static void Uniform4ui(int location, uint v0, uint v1, uint v2, uint v3)
 		{
+			
 			m_Uniform4ui_0(location, v0, v1, v2, v3);
+			if(m_debug) CheckError("Uniform4ui");
+			
 		}
 
 
 		public static void Uniform4uiv(int location, int count, System.IntPtr value)
 		{
+			
 			m_Uniform4uiv_0(location, count, value);
+			if(m_debug) CheckError("Uniform4uiv");
+			
 		}
 
 
 		public static void UniformBlockBinding(uint program, uint uniformBlockIndex, uint uniformBlockBinding)
 		{
+			
 			m_UniformBlockBinding_0(program, uniformBlockIndex, uniformBlockBinding);
+			if(m_debug) CheckError("UniformBlockBinding");
+			
 		}
 
 
 		public static void UniformMatrix2fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix2fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix2fv");
+			
 		}
 
 
 		public static void UniformMatrix2fv(int location, int count, bool transpose, float[] value)
 		{
+			
 			m_UniformMatrix2fv_1(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix2fv");
+			
 		}
 
 
 		public static void UniformMatrix2fv(int location, int count, bool transpose, ref Matrix2 value)
 		{
+			
 			m_UniformMatrix2fv_2(location, count, transpose, ref value);
+			if(m_debug) CheckError("UniformMatrix2fv");
+			
 		}
 
 
 		public static void UniformMatrix2x3fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix2x3fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix2x3fv");
+			
 		}
 
 
 		public static void UniformMatrix2x4fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix2x4fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix2x4fv");
+			
 		}
 
 
 		public static void UniformMatrix3fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix3fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix3fv");
+			
 		}
 
 
 		public static void UniformMatrix3fv(int location, int count, bool transpose, float[] value)
 		{
+			
 			m_UniformMatrix3fv_1(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix3fv");
+			
 		}
 
 
 		public static void UniformMatrix3fv(int location, int count, bool transpose, ref Matrix3 value)
 		{
+			
 			m_UniformMatrix3fv_2(location, count, transpose, ref value);
+			if(m_debug) CheckError("UniformMatrix3fv");
+			
 		}
 
 
 		public static void UniformMatrix3x2fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix3x2fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix3x2fv");
+			
 		}
 
 
 		public static void UniformMatrix3x4fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix3x4fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix3x4fv");
+			
 		}
 
 
 		public static void UniformMatrix4fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix4fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix4fv");
+			
 		}
 
 
 		public static void UniformMatrix4fv(int location, int count, bool transpose, float[] value)
 		{
+			
 			m_UniformMatrix4fv_1(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix4fv");
+			
 		}
 
 
 		public static void UniformMatrix4fv(int location, int count, bool transpose, ref Matrix4 value)
 		{
+			
 			m_UniformMatrix4fv_2(location, count, transpose, ref value);
+			if(m_debug) CheckError("UniformMatrix4fv");
+			
 		}
 
 
 		public static void UniformMatrix4x2fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix4x2fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix4x2fv");
+			
 		}
 
 
 		public static void UniformMatrix4x3fv(int location, int count, bool transpose, System.IntPtr value)
 		{
+			
 			m_UniformMatrix4x3fv_0(location, count, transpose, value);
+			if(m_debug) CheckError("UniformMatrix4x3fv");
+			
 		}
 
 
 		public static bool UnmapBuffer(uint target)
 		{
-			return m_UnmapBuffer_0(target);
+			
+			var result = m_UnmapBuffer_0(target);
+			if(m_debug) CheckError("UnmapBuffer");
+			return result;
+			
 		}
 
 
 		public static void UseProgram(uint program)
 		{
+			
 			m_UseProgram_0(program);
+			if(m_debug) CheckError("UseProgram");
+			
 		}
 
 
 		public static void ValidateProgram(uint program)
 		{
+			
 			m_ValidateProgram_0(program);
+			if(m_debug) CheckError("ValidateProgram");
+			
 		}
 
 
 		public static void VertexAttrib1d(uint index, double x)
 		{
+			
 			m_VertexAttrib1d_0(index, x);
+			if(m_debug) CheckError("VertexAttrib1d");
+			
 		}
 
 
 		public static void VertexAttrib1dv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib1dv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib1dv");
+			
 		}
 
 
 		public static void VertexAttrib1f(uint index, float x)
 		{
+			
 			m_VertexAttrib1f_0(index, x);
+			if(m_debug) CheckError("VertexAttrib1f");
+			
 		}
 
 
 		public static void VertexAttrib1fv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib1fv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib1fv");
+			
 		}
 
 
 		public static void VertexAttrib1s(uint index, short x)
 		{
+			
 			m_VertexAttrib1s_0(index, x);
+			if(m_debug) CheckError("VertexAttrib1s");
+			
 		}
 
 
 		public static void VertexAttrib1sv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib1sv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib1sv");
+			
 		}
 
 
 		public static void VertexAttrib2d(uint index, double x, double y)
 		{
+			
 			m_VertexAttrib2d_0(index, x, y);
+			if(m_debug) CheckError("VertexAttrib2d");
+			
 		}
 
 
 		public static void VertexAttrib2dv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib2dv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib2dv");
+			
 		}
 
 
 		public static void VertexAttrib2f(uint index, float x, float y)
 		{
+			
 			m_VertexAttrib2f_0(index, x, y);
+			if(m_debug) CheckError("VertexAttrib2f");
+			
 		}
 
 
 		public static void VertexAttrib2fv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib2fv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib2fv");
+			
 		}
 
 
 		public static void VertexAttrib2s(uint index, short x, short y)
 		{
+			
 			m_VertexAttrib2s_0(index, x, y);
+			if(m_debug) CheckError("VertexAttrib2s");
+			
 		}
 
 
 		public static void VertexAttrib2sv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib2sv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib2sv");
+			
 		}
 
 
 		public static void VertexAttrib3d(uint index, double x, double y, double z)
 		{
+			
 			m_VertexAttrib3d_0(index, x, y, z);
+			if(m_debug) CheckError("VertexAttrib3d");
+			
 		}
 
 
 		public static void VertexAttrib3dv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib3dv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib3dv");
+			
 		}
 
 
 		public static void VertexAttrib3f(uint index, float x, float y, float z)
 		{
+			
 			m_VertexAttrib3f_0(index, x, y, z);
+			if(m_debug) CheckError("VertexAttrib3f");
+			
 		}
 
 
 		public static void VertexAttrib3fv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib3fv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib3fv");
+			
 		}
 
 
 		public static void VertexAttrib3s(uint index, short x, short y, short z)
 		{
+			
 			m_VertexAttrib3s_0(index, x, y, z);
+			if(m_debug) CheckError("VertexAttrib3s");
+			
 		}
 
 
 		public static void VertexAttrib3sv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib3sv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib3sv");
+			
 		}
 
 
 		public static void VertexAttrib4bv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4bv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4bv");
+			
 		}
 
 
 		public static void VertexAttrib4d(uint index, double x, double y, double z, double w)
 		{
+			
 			m_VertexAttrib4d_0(index, x, y, z, w);
+			if(m_debug) CheckError("VertexAttrib4d");
+			
 		}
 
 
 		public static void VertexAttrib4dv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4dv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4dv");
+			
 		}
 
 
 		public static void VertexAttrib4f(uint index, float x, float y, float z, float w)
 		{
+			
 			m_VertexAttrib4f_0(index, x, y, z, w);
+			if(m_debug) CheckError("VertexAttrib4f");
+			
 		}
 
 
 		public static void VertexAttrib4fv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4fv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4fv");
+			
 		}
 
 
 		public static void VertexAttrib4iv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4iv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4iv");
+			
 		}
 
 
 		public static void VertexAttrib4Nbv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4Nbv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4Nbv");
+			
 		}
 
 
 		public static void VertexAttrib4Niv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4Niv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4Niv");
+			
 		}
 
 
 		public static void VertexAttrib4Nsv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4Nsv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4Nsv");
+			
 		}
 
 
 		public static void VertexAttrib4Nub(uint index, byte x, byte y, byte z, byte w)
 		{
+			
 			m_VertexAttrib4Nub_0(index, x, y, z, w);
+			if(m_debug) CheckError("VertexAttrib4Nub");
+			
 		}
 
 
 		public static void VertexAttrib4Nubv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4Nubv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4Nubv");
+			
 		}
 
 
 		public static void VertexAttrib4Nuiv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4Nuiv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4Nuiv");
+			
 		}
 
 
 		public static void VertexAttrib4Nusv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4Nusv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4Nusv");
+			
 		}
 
 
 		public static void VertexAttrib4s(uint index, short x, short y, short z, short w)
 		{
+			
 			m_VertexAttrib4s_0(index, x, y, z, w);
+			if(m_debug) CheckError("VertexAttrib4s");
+			
 		}
 
 
 		public static void VertexAttrib4sv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4sv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4sv");
+			
 		}
 
 
 		public static void VertexAttrib4ubv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4ubv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4ubv");
+			
 		}
 
 
 		public static void VertexAttrib4uiv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4uiv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4uiv");
+			
 		}
 
 
 		public static void VertexAttrib4usv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttrib4usv_0(index, v);
+			if(m_debug) CheckError("VertexAttrib4usv");
+			
 		}
 
 
 		public static void VertexAttribI1i(uint index, int x)
 		{
+			
 			m_VertexAttribI1i_0(index, x);
+			if(m_debug) CheckError("VertexAttribI1i");
+			
 		}
 
 
 		public static void VertexAttribI1iv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI1iv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI1iv");
+			
 		}
 
 
 		public static void VertexAttribI1ui(uint index, uint x)
 		{
+			
 			m_VertexAttribI1ui_0(index, x);
+			if(m_debug) CheckError("VertexAttribI1ui");
+			
 		}
 
 
 		public static void VertexAttribI1uiv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI1uiv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI1uiv");
+			
 		}
 
 
 		public static void VertexAttribI2i(uint index, int x, int y)
 		{
+			
 			m_VertexAttribI2i_0(index, x, y);
+			if(m_debug) CheckError("VertexAttribI2i");
+			
 		}
 
 
 		public static void VertexAttribI2iv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI2iv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI2iv");
+			
 		}
 
 
 		public static void VertexAttribI2ui(uint index, uint x, uint y)
 		{
+			
 			m_VertexAttribI2ui_0(index, x, y);
+			if(m_debug) CheckError("VertexAttribI2ui");
+			
 		}
 
 
 		public static void VertexAttribI2uiv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI2uiv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI2uiv");
+			
 		}
 
 
 		public static void VertexAttribI3i(uint index, int x, int y, int z)
 		{
+			
 			m_VertexAttribI3i_0(index, x, y, z);
+			if(m_debug) CheckError("VertexAttribI3i");
+			
 		}
 
 
 		public static void VertexAttribI3iv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI3iv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI3iv");
+			
 		}
 
 
 		public static void VertexAttribI3ui(uint index, uint x, uint y, uint z)
 		{
+			
 			m_VertexAttribI3ui_0(index, x, y, z);
+			if(m_debug) CheckError("VertexAttribI3ui");
+			
 		}
 
 
 		public static void VertexAttribI3uiv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI3uiv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI3uiv");
+			
 		}
 
 
 		public static void VertexAttribI4bv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI4bv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI4bv");
+			
 		}
 
 
 		public static void VertexAttribI4i(uint index, int x, int y, int z, int w)
 		{
+			
 			m_VertexAttribI4i_0(index, x, y, z, w);
+			if(m_debug) CheckError("VertexAttribI4i");
+			
 		}
 
 
 		public static void VertexAttribI4iv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI4iv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI4iv");
+			
 		}
 
 
 		public static void VertexAttribI4sv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI4sv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI4sv");
+			
 		}
 
 
 		public static void VertexAttribI4ubv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI4ubv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI4ubv");
+			
 		}
 
 
 		public static void VertexAttribI4ui(uint index, uint x, uint y, uint z, uint w)
 		{
+			
 			m_VertexAttribI4ui_0(index, x, y, z, w);
+			if(m_debug) CheckError("VertexAttribI4ui");
+			
 		}
 
 
 		public static void VertexAttribI4uiv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI4uiv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI4uiv");
+			
 		}
 
 
 		public static void VertexAttribI4usv(uint index, System.IntPtr v)
 		{
+			
 			m_VertexAttribI4usv_0(index, v);
+			if(m_debug) CheckError("VertexAttribI4usv");
+			
 		}
 
 
 		public static void VertexAttribIPointer(uint index, int size, uint type, int stride, System.IntPtr pointer)
 		{
+			
 			m_VertexAttribIPointer_0(index, size, type, stride, pointer);
+			if(m_debug) CheckError("VertexAttribIPointer");
+			
 		}
 
 
 		public static void VertexAttribPointer(uint index, int size, uint type, bool normalized, int stride, System.IntPtr pointer)
 		{
+			
 			m_VertexAttribPointer_0(index, size, type, normalized, stride, pointer);
+			if(m_debug) CheckError("VertexAttribPointer");
+			
 		}
 
 
 		public static void Viewport(int x, int y, int width, int height)
 		{
+			
 			m_Viewport_0(x, y, width, height);
+			if(m_debug) CheckError("Viewport");
+			
 		}
 
 
 		public static void Viewport(Box2i dimensions)
 		{
+			
 			m_Viewport_1(dimensions);
+			if(m_debug) CheckError("Viewport");
+			
 		}
 
 
 		public static void WaitSync(System.IntPtr sync, uint flags, ulong timeout)
 		{
+			
 			m_WaitSync_0(sync, flags, timeout);
+			if(m_debug) CheckError("WaitSync");
+			
 		}
 
 
 		public static void BindFragDataLocationIndexed(uint program, uint colorNumber, uint index, System.IntPtr name)
 		{
+			
 			m_BindFragDataLocationIndexed_0(program, colorNumber, index, name);
+			if(m_debug) CheckError("BindFragDataLocationIndexed");
+			
 		}
 
 
 		public static int GetFragDataIndex(uint program, System.IntPtr name)
 		{
-			return m_GetFragDataIndex_0(program, name);
+			
+			var result = m_GetFragDataIndex_0(program, name);
+			if(m_debug) CheckError("GetFragDataIndex");
+			return result;
+			
 		}
 
 
 		public static void GenSamplers(int count, System.IntPtr samplers)
 		{
+			
 			m_GenSamplers_0(count, samplers);
+			if(m_debug) CheckError("GenSamplers");
+			
 		}
 
 
 		public static void GenSamplers(int n, uint[] samplers)
 		{
+			
 			m_GenSamplers_1(n, samplers);
+			if(m_debug) CheckError("GenSamplers");
+			
 		}
 
 
 		public static void GenSamplers(int n, out uint samplers)
 		{
+			
 			m_GenSamplers_2(n, out samplers);
+			if(m_debug) CheckError("GenSamplers");
+			
 		}
 
 
 		public static void DeleteSamplers(int count, System.IntPtr samplers)
 		{
+			
 			m_DeleteSamplers_0(count, samplers);
+			if(m_debug) CheckError("DeleteSamplers");
+			
 		}
 
 
 		public static void DeleteSamplers(int n, uint[] samplers)
 		{
+			
 			m_DeleteSamplers_1(n, samplers);
+			if(m_debug) CheckError("DeleteSamplers");
+			
 		}
 
 
 		public static void DeleteSamplers(int n, ref uint samplers)
 		{
+			
 			m_DeleteSamplers_2(n, ref samplers);
+			if(m_debug) CheckError("DeleteSamplers");
+			
 		}
 
 
 		public static bool IsSampler(uint shader)
 		{
-			return m_IsSampler_0(shader);
+			
+			var result = m_IsSampler_0(shader);
+			if(m_debug) CheckError("IsSampler");
+			return result;
+			
 		}
 
 
 		public static void BindSampler(uint unit, uint sampler)
 		{
+			
 			m_BindSampler_0(unit, sampler);
+			if(m_debug) CheckError("BindSampler");
+			
 		}
 
 
 		public static void SamplerParameteri(uint sampler, uint pname, int param)
 		{
+			
 			m_SamplerParameteri_0(sampler, pname, param);
+			if(m_debug) CheckError("SamplerParameteri");
+			
 		}
 
 
 		public static void SamplerParameteriv(uint sampler, uint pname, System.IntPtr param)
 		{
+			
 			m_SamplerParameteriv_0(sampler, pname, param);
+			if(m_debug) CheckError("SamplerParameteriv");
+			
 		}
 
 
 		public static void SamplerParameterf(uint sampler, uint pname, float param)
 		{
+			
 			m_SamplerParameterf_0(sampler, pname, param);
+			if(m_debug) CheckError("SamplerParameterf");
+			
 		}
 
 
 		public static void SamplerParameterfv(uint sampler, uint pname, System.IntPtr param)
 		{
+			
 			m_SamplerParameterfv_0(sampler, pname, param);
+			if(m_debug) CheckError("SamplerParameterfv");
+			
 		}
 
 
 		public static void SamplerParameterIiv(uint sampler, uint pname, System.IntPtr param)
 		{
+			
 			m_SamplerParameterIiv_0(sampler, pname, param);
+			if(m_debug) CheckError("SamplerParameterIiv");
+			
 		}
 
 
 		public static void SamplerParameterIuiv(uint sampler, uint pname, System.IntPtr param)
 		{
+			
 			m_SamplerParameterIuiv_0(sampler, pname, param);
+			if(m_debug) CheckError("SamplerParameterIuiv");
+			
 		}
 
 
 		public static void GetSamplerParameteriv(uint sampler, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetSamplerParameteriv_0(sampler, pname, _params);
+			if(m_debug) CheckError("GetSamplerParameteriv");
+			
 		}
 
 
 		public static void GetSamplerParameterIiv(uint sampler, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetSamplerParameterIiv_0(sampler, pname, _params);
+			if(m_debug) CheckError("GetSamplerParameterIiv");
+			
 		}
 
 
 		public static void GetSamplerParameterfv(uint sampler, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetSamplerParameterfv_0(sampler, pname, _params);
+			if(m_debug) CheckError("GetSamplerParameterfv");
+			
 		}
 
 
 		public static void GetSamplerParameterIuiv(uint sampler, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetSamplerParameterIuiv_0(sampler, pname, _params);
+			if(m_debug) CheckError("GetSamplerParameterIuiv");
+			
 		}
 
 
 		public static void QueryCounter(uint id, uint target)
 		{
+			
 			m_QueryCounter_0(id, target);
+			if(m_debug) CheckError("QueryCounter");
+			
 		}
 
 
 		public static void GetQueryObjecti64v(uint id, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetQueryObjecti64v_0(id, pname, _params);
+			if(m_debug) CheckError("GetQueryObjecti64v");
+			
 		}
 
 
 		public static void GetQueryObjectui64v(uint id, uint pname, System.IntPtr _params)
 		{
+			
 			m_GetQueryObjectui64v_0(id, pname, _params);
+			if(m_debug) CheckError("GetQueryObjectui64v");
+			
 		}
 
 
 		public static void VertexAttribDivisor(uint index, uint divisor)
 		{
+			
 			m_VertexAttribDivisor_0(index, divisor);
+			if(m_debug) CheckError("VertexAttribDivisor");
+			
 		}
 
 
 		public static void VertexAttribP1ui(uint index, uint type, bool normalized, uint value)
 		{
+			
 			m_VertexAttribP1ui_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP1ui");
+			
 		}
 
 
 		public static void VertexAttribP1uiv(uint index, uint type, bool normalized, System.IntPtr value)
 		{
+			
 			m_VertexAttribP1uiv_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP1uiv");
+			
 		}
 
 
 		public static void VertexAttribP2ui(uint index, uint type, bool normalized, uint value)
 		{
+			
 			m_VertexAttribP2ui_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP2ui");
+			
 		}
 
 
 		public static void VertexAttribP2uiv(uint index, uint type, bool normalized, System.IntPtr value)
 		{
+			
 			m_VertexAttribP2uiv_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP2uiv");
+			
 		}
 
 
 		public static void VertexAttribP3ui(uint index, uint type, bool normalized, uint value)
 		{
+			
 			m_VertexAttribP3ui_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP3ui");
+			
 		}
 
 
 		public static void VertexAttribP3uiv(uint index, uint type, bool normalized, System.IntPtr value)
 		{
+			
 			m_VertexAttribP3uiv_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP3uiv");
+			
 		}
 
 
 		public static void VertexAttribP4ui(uint index, uint type, bool normalized, uint value)
 		{
+			
 			m_VertexAttribP4ui_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP4ui");
+			
 		}
 
 
 		public static void VertexAttribP4uiv(uint index, uint type, bool normalized, System.IntPtr value)
 		{
+			
 			m_VertexAttribP4uiv_0(index, type, normalized, value);
+			if(m_debug) CheckError("VertexAttribP4uiv");
+			
 		}
 
 

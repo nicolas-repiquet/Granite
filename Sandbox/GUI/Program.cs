@@ -12,11 +12,19 @@ namespace GUI
     {
         public static void Main(string[] args)
         {
-            Engine.Run(new Program(), new ApplicationSettings()
+            Engine.AddLogAppender(new ConsoleLogAppender());
+
+            var settings = new ApplicationSettings()
             {
                 DisplayStyle = DisplayStyle.ResizeableWithTitle,
                 VerticalSynchronization = true
-            });
+            };
+
+            #if DEBUG
+            settings.Debug = true;
+            #endif
+
+            Engine.Run(new Program(), settings);
         }
 
         private UIManager m_uiManager;

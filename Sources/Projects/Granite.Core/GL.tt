@@ -89,6 +89,8 @@ foreach(var line in lines.Select(s => s.Trim()))
 					Error("\"" + parameter + "\" is invalid, line " + lineNumber);
 				}
 			}
+
+			overload.Delegate = GlDelegate.Create(overload.ReturnType, overload.Parameters.Select(p => p.Type).ToArray());
 		}
 	}
 }
@@ -106,18 +108,18 @@ namespace Granite.Core
 		public const <#= e.Type #> <#= e.Name #> = <#= e.Value #>;
 <# } #>
 
-<# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
-		private delegate <#= o.GetDotNetType() #> Delegate_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>);
-<# } } #>
+<# foreach(var d in GlDelegate.Delegates) { #>
+		private delegate <#= GlFunctionParameter.GetDotNetType(d.ReturnType) #> <#= d.Name #>(<#= d.ParametersRepresentation #>);
+<# } #>
 
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
-		private static Delegate_<#= f.Name #>_<#= o.Index #> m_<#= f.Name #>_<#= o.Index #>;
+		private static <#= o.Delegate.Name #> m_<#= f.Name #>_<#= o.Index #>;
 <# } } #>
 
 		private static void InitializeFunctions()
 		{
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
-			m_<#= f.Name #>_<#= o.Index #> = (Delegate_<#= f.Name #>_<#= o.Index #>)GetFunctionDelegate("gl<#= f.Name #>", typeof(Delegate_<#= f.Name #>_<#= o.Index #>));
+			m_<#= f.Name #>_<#= o.Index #> = (<#= o.Delegate.Name #>)GetFunctionDelegate("gl<#= f.Name #>", typeof(<#= o.Delegate.Name #>));
 <# } } #>
 		}
 
@@ -131,7 +133,14 @@ namespace Granite.Core
 <# foreach(var f in functions.Values) { foreach(var o in f.Overloads) { #>
 		<#= o.Visibility #> static <#= o.GetDotNetType() #> <#= f.Name #>(<#= string.Join(", ", o.Parameters.Select(p => string.Format("{0} {1}", p.GetDotNetType(), p.Name))) #>)
 		{
-			<#= o.ReturnType == "void" ? string.Empty : "return " #>m_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => p.GetForwardName())) #>);
+			<# if(o.ReturnType == "void") { #>
+			m_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => p.GetForwardName())) #>);
+			if(m_debug) CheckError("<#= f.Name #>");
+			<# } else { #>
+			var result = m_<#= f.Name #>_<#= o.Index #>(<#= string.Join(", ", o.Parameters.Select(p => p.GetForwardName())) #>);
+			if(m_debug) CheckError("<#= f.Name #>");
+			return result;
+			<# } #>
 		}
 
 <# } } #>
@@ -140,6 +149,75 @@ namespace Granite.Core
 }
 
 <#+
+
+class GlDelegate
+{
+	private static Dictionary<string,GlDelegate> s_delegates = new Dictionary<string,GlDelegate>();
+
+	public static IEnumerable<GlDelegate> Delegates { get { return s_delegates.Values; } }
+
+	public static GlDelegate Create(string returnType, string[] parameterTypes)
+	{
+		var builder = new System.Text.StringBuilder();
+			
+		builder.Append("GlDelegate");
+
+		for(int i = 0; i < parameterTypes.Length; i++)
+		{
+			builder.Append("_");
+			var type = GlFunctionParameter.Sanitize(GlFunctionParameter.GetDotNetType(parameterTypes[i]));
+			builder.Append(type);
+		}
+
+		if(returnType != "void")
+		{
+			builder.Append("_Returns_");
+			var type = GlFunctionParameter.Sanitize(GlFunctionParameter.GetDotNetType(returnType));
+			builder.Append(type);
+		}
+
+		var name = builder.ToString();
+
+		GlDelegate d;
+
+		if(!s_delegates.TryGetValue(name, out d))
+		{
+			d = new GlDelegate() {
+				Name = builder.ToString(),
+				ReturnType = returnType,
+				ParameterTypes = parameterTypes
+			};
+			s_delegates.Add(name, d);
+		}
+
+		return d;
+	}
+
+	public string Name { get; set; }
+	public string ReturnType { get; set; }
+	public string[] ParameterTypes { get; set; }
+
+	public string ParametersRepresentation
+	{
+		get
+		{
+			var builder = new System.Text.StringBuilder();
+			
+			for(int i = 0; i < ParameterTypes.Length; i++)
+			{
+				if(i != 0)
+				{
+					builder.Append(", ");
+				}
+				builder.Append(GlFunctionParameter.GetDotNetType(ParameterTypes[i]));
+				builder.Append(" p");
+				builder.Append(i);
+			}
+
+			return builder.ToString();
+		}
+	}
+}
 
 class GlEnum
 {
@@ -165,6 +243,7 @@ class GlFunctionOverload
 	public string Visibility { get; set; }
 	public string ReturnType { get; set; }
 	public List<GlFunctionParameter> Parameters { get; private set; }
+	public GlDelegate Delegate { get; set;}
 
 	public GlFunctionOverload()
 	{
@@ -232,6 +311,19 @@ class GlFunctionParameter
 		return GetDotNetType(Type);
 	}
 
+	public static string Sanitize(string s)
+	{
+		var builder = new System.Text.StringBuilder();
+		foreach(var c in s.Replace("[]", "array"))
+		{
+			if(char.IsLetter(c) || char.IsDigit(c))
+			{
+				builder.Append(c);
+			}
+		}
+		return builder.ToString().ToLower();
+	}
+
 	public static string GetDotNetType(string type)
 	{
 		if(type.StartsWith("inptr<") && type[type.Length-1] == '>')
@@ -248,7 +340,6 @@ class GlFunctionParameter
 		{
 			switch(type) {
 				case "IntPtr": return "System.IntPtr";
-				case "inptr<uint>" : return "ref uint";
 				default: return type;
 			}
 		}
