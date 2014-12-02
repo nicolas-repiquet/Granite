@@ -15,6 +15,7 @@ namespace Granite.Core
         void KeyUp(Key key);
         void MouseLButtonDown(int x, int y);
         void InputEvent(InputEventArgs e);
+        void UnhandledException(Exception ex);
     }
 
     public abstract class ApplicationLogicBase : IApplicationLogic
@@ -27,5 +28,6 @@ namespace Granite.Core
         public virtual void KeyUp(Key key) { }
         public virtual void MouseLButtonDown(int x, int y) { }
         public virtual void InputEvent(InputEventArgs e) { }
+        public virtual void UnhandledException(Exception ex) { }
     }
 }

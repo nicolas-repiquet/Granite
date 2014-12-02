@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -224,9 +226,8 @@ namespace Granite.Core
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-
+                Engine.LogError("Unhandled exception", ex);
+                m_logic.UnhandledException(ex);
                 return WinApi.DefWindowProc(handle, messageId, wParam, lParam);
             }
         }
