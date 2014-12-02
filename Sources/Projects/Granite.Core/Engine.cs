@@ -73,57 +73,57 @@ namespace Granite.Core
             }
         }
 
-        internal static void LogDebug(string message)
+        public static void LogDebug(string message)
         {
             Log(new LogEntry(LogEntryType.Debug, message, null));
         }
 
-        internal static void LogDebug(string format, params object[] args)
+        public static void LogDebug(string format, params object[] args)
         {
             Log(new LogEntry(LogEntryType.Debug, string.Format(format, args), null));
         }
 
-        internal static void LogInfo(string message)
+        public static void LogInfo(string message)
         {
             Log(new LogEntry(LogEntryType.Info, message, null));
         }
 
-        internal static void LogInfo(string format, params object[] args)
+        public static void LogInfo(string format, params object[] args)
         {
             Log(new LogEntry(LogEntryType.Info, string.Format(format, args), null));
         }
 
-        internal static void LogWarning(string message)
+        public static void LogWarning(string message)
         {
             Log(new LogEntry(LogEntryType.Warning, message, null));
         }
 
-        internal static void LogWarning(string message, Exception exception)
+        public static void LogWarning(string message, Exception exception)
         {
             Log(new LogEntry(LogEntryType.Warning, message, exception));
         }
 
-        internal static void LogWarning(string format, params object[] args)
+        public static void LogWarning(string format, params object[] args)
         {
             Log(new LogEntry(LogEntryType.Warning, string.Format(format, args), null));
         }
 
-        internal static void LogError(string message)
+        public static void LogError(string message)
         {
             Log(new LogEntry(LogEntryType.Warning, message, null));
         }
 
-        internal static void LogError(string message, Exception exception)
+        public static void LogError(string message, Exception exception)
         {
             Log(new LogEntry(LogEntryType.Error, message, exception));
         }
 
-        internal static void LogError(string format, params object[] args)
+        public static void LogError(string format, params object[] args)
         {
             Log(new LogEntry(LogEntryType.Warning, string.Format(format, args), null));
         }
 
-        internal static void Log(LogEntry entry)
+        public static void Log(LogEntry entry)
         {
             foreach (var appender in m_logAppenders)
             {
