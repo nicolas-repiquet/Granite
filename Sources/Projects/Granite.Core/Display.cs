@@ -100,6 +100,21 @@ namespace Granite.Core
             WinApi.SetWindowText(m_handle, title);
         }
 
+        public void SetCursor(Cursor cursor)
+        {
+            if (cursor == Cursor.None)
+            {
+                WinApi.SetCursor(IntPtr.Zero);
+                WinApi.SetClassLong(m_handle, WinApi.GCL_HCURSOR, 0);
+            }
+            else
+            {
+                var c = WinApi.LoadCursor(IntPtr.Zero, (uint)cursor);
+                WinApi.SetCursor(c);
+                WinApi.SetClassLong(m_handle, WinApi.GCL_HCURSOR, (uint)c);
+            }
+        }
+
         public double FramesPerSecond { get { return m_application.FramesPerSecond; } }
     }
 }

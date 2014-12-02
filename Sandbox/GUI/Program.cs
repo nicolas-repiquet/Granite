@@ -39,6 +39,8 @@ namespace GUI
                 Font = InternalFonts.BoldSmallVariableWidthFont
             };
             m_uiManager.Root = m_label;
+
+            Engine.Display.SetCursor(Cursor.IBeam);
         }
 
         public override void InputEvent(InputEventArgs e)

@@ -9,6 +9,7 @@ namespace Granite.Core
     {
         double FramesPerSecond { get; }
         void SetTitle(string title);
+        void SetCursor(Cursor cursor);
         Vector2i GetSize();
         void Invalidate();
     }

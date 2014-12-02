@@ -210,6 +210,14 @@ namespace Granite.Core
                         if (!m_isMouseInWindow)
                         {
                             m_isMouseInWindow = true;
+
+                            var cursor = WinApi.GetClassLong(handle, WinApi.GCL_HCURSOR);
+
+                            if (cursor == 0)
+                            {
+                                WinApi.SetCursor(IntPtr.Zero);
+                            }
+
                             WinApi.TrackMouseEventParameters p = new WinApi.TrackMouseEventParameters();
                             p.cbSize = (uint)Marshal.SizeOf(typeof(WinApi.TrackMouseEventParameters));
                             p.dwFlags = WinApi.TME_LEAVE;

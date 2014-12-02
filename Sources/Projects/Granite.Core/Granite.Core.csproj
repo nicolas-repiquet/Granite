@@ -50,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Color.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cursor.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="ApplicationResource.cs" />

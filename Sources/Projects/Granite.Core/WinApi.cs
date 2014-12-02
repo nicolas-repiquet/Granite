@@ -158,6 +158,8 @@ namespace Granite.Core
         // TrackMouseEvent
         internal const uint TME_LEAVE = 0x00000002;
 
+        internal const int GCL_HCURSOR = -12;
+
         internal const int CW_USEDEFAULT = unchecked((int)0x80000000);
 
         internal delegate IntPtr WndProc(IntPtr windowHandle, uint messageId, IntPtr wParam, IntPtr lParam);
@@ -257,6 +259,12 @@ namespace Granite.Core
 
         [DllImport(KERNEL32)]
         internal static extern bool CloseHandle(IntPtr handle);
+
+        [DllImport(USER32)]
+        internal static extern uint SetClassLong(IntPtr handle, int index, uint value);
+
+        [DllImport(USER32)]
+        internal static extern uint GetClassLong(IntPtr handle, int index); 
 
         [DllImport(USER32)]
         internal static extern void PostQuitMessage(int exitCode);
@@ -370,6 +378,11 @@ namespace Granite.Core
 
         [DllImport(USER32)]
         internal static extern bool PostMessage(IntPtr windowHandle, uint msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport(USER32)]
+        internal static extern IntPtr SetCursor(IntPtr cursor);
+
+
 
     }
 }
