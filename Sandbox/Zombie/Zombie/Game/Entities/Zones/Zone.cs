@@ -128,5 +128,6 @@ namespace Zombie.Game.Entities.Zones
 
             m_lightRenderer.Render(transform);
         }
+
     }
 }

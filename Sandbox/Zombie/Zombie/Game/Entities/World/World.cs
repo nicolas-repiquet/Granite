@@ -32,11 +32,21 @@ namespace Zombie.Game.Entities
             }
         }
 
+        private Framebuffer m_framebufferAllLight;
+        private Texture2D m_textureLight;
+
         public World()
         {
             m_camera = new Camera();
             m_player = new Player();
             m_map = new Map(new Vector2i(500, 500));
+
+            //Framebuffers
+            m_framebufferAllLight = new Framebuffer();
+            m_textureLight = new Texture2D();
+            var size = Engine.Display.GetSize();
+            m_textureLight.SetData<Color4ub>(size.X, size.Y, null);
+            m_framebufferAllLight.Attach(m_textureLight);
 
             m_camera.Bounds = new Box2(0, 0, 1000, 1000);
             m_camera.Target = m_player;
@@ -109,7 +119,7 @@ namespace Zombie.Game.Entities
         {
             transform *= m_camera.CreateWorldToCameraTransform();
 
-           // GL.BlendFunc(GL.SRC_ALPHA, GL.DST_ALPHA);
+            GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
             //GL.BlendEquation(GL.FUNC_ADD);
             
             m_map.Render(transform);
@@ -120,11 +130,22 @@ namespace Zombie.Game.Entities
 
             ShootManager.Instance.Render(transform);
 
-            //var frameBuffer = new FrameBuffer();
-            //GL.BlendFunc(GL.ONE_MINUS_SRC_ALPHA, GL.ONE_MINUS_DST_ALPHA);
+
+            //GL.BlendFunc(GL.ONE, GL.ONE);
+            GL.BlendEquation(GL.FUNC_ADD);
+
+            GL.BindFramebuffer(m_framebufferAllLight);
+
+            GL.ClearColor(0.0f, 0.0f, 0.0f, 1f);
+            GL.Clear(GL.COLOR_BUFFER_BIT);
+
             m_map.RenderLights(transform);
-            
+
+            GL.BindFramebuffer(null);
+
+            Night.SetTextureLights(m_textureLight);
             Night.Render(transform);
+            
         }
 
     }
