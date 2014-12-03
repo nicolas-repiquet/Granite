@@ -55,6 +55,7 @@
     <Compile Include="Engine.cs" />
     <Compile Include="ApplicationResource.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Framebuffer.cs" />
     <Compile Include="GL.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

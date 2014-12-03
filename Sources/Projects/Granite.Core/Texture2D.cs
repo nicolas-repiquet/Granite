@@ -59,9 +59,7 @@ namespace Granite.Core
             GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, (int)GL.CLAMP_TO_EDGE);
             GL.TexParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, (int)GL.CLAMP_TO_EDGE);
 
-            var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
-
-            try
+            if (data == null)
             {
                 GL.TexImage2D(
                     GL.TEXTURE_2D,
@@ -72,12 +70,31 @@ namespace Granite.Core
                     0,
                     format,
                     descriptor.FlattenedType,
-                    handle.AddrOfPinnedObject()
+                    IntPtr.Zero
                 );
             }
-            finally
+            else
             {
-                handle.Free();
+                var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+
+                try
+                {
+                    GL.TexImage2D(
+                        GL.TEXTURE_2D,
+                        0,
+                        (int)format,
+                        width,
+                        height,
+                        0,
+                        format,
+                        descriptor.FlattenedType,
+                        handle.AddrOfPinnedObject()
+                    );
+                }
+                finally
+                {
+                    handle.Free();
+                }
             }
 
             GL.BindTexture(GL.TEXTURE_2D, 0);

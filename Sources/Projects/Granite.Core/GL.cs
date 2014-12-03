@@ -179,6 +179,15 @@ namespace Granite.Core
         }
         #endregion
 
+        #region Get
+        public static int GetInteger(uint pname)
+        {
+            int value;
+            GetIntegerv(pname, out value);
+            return value;
+        }
+        #endregion
+
         #region Enable/Disable
         public static void Enable_DEPTH_TEST() { Enable(DEPTH_TEST); }
         public static void Disable_DEPTH_TEST() { Disable(DEPTH_TEST); }
@@ -217,6 +226,18 @@ namespace Granite.Core
             DeleteVertexArrays(1, ref name);
         }
 
+        internal static uint GenFramebuffer()
+        {
+            uint name;
+            GenFramebuffers(1, out name);
+            return name;
+        }
+
+        internal static void DeleteFramebuffer(uint name)
+        {
+            DeleteFramebuffers(1, ref name);
+        }
+
         #endregion
 
         #region Buffers
@@ -237,7 +258,7 @@ namespace Granite.Core
         #region VertexArray
         public static void BindVertexArray(VertexArray vertexArray)
         {
-            GL.BindVertexArray(vertexArray == null ? 0 : vertexArray.Name);
+            BindVertexArray(vertexArray == null ? 0 : vertexArray.Name);
         }
         #endregion
 
@@ -280,6 +301,13 @@ namespace Granite.Core
             DrawElementsBaseVertex(mode, indices.Length, GL.UNSIGNED_INT, indices, basevertex);
         }
 
+        #endregion
+
+        #region Framebuffers
+        public static void BindFramebuffer(Framebuffer framebuffer, uint target = FRAMEBUFFER)
+        {
+            BindFramebuffer(target, framebuffer == null ? 0 : framebuffer.Name);
+        }
         #endregion
     }
 }

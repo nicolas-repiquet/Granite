@@ -49,7 +49,6 @@ namespace GUI
             m_uiManager.ProcessInputEvent(e);
         }
 
-
         public override void Render(TimeSpan elapsed)
         {
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
