@@ -240,6 +240,13 @@ namespace Granite.Core
                         }
                         return IntPtr.Zero;
 
+                    case WinApi.WM_CHAR:
+                        {
+                            var c = (char)(wParam.ToInt32() & 0xFFFF);
+                            m_logic.InputEvent(new CharacterEventArgs(c));
+                        }
+                        return IntPtr.Zero;
+
                     default:
                         return WinApi.DefWindowProc(handle, messageId, wParam, lParam);
 

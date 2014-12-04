@@ -137,6 +137,20 @@ namespace Granite.Core
             return string.Format("Keyboard key up, key={0}", Key);
         }
     }
+
+    public class CharacterEventArgs : InputEventArgs
+    {
+        public char Value { get; private set; }
+        public CharacterEventArgs(char value)
+        {
+            Value = value;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Character, value='{0}'", Value);
+        }
+    }
     #endregion
 
 }
