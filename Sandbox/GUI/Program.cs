@@ -59,10 +59,24 @@ namespace GUI
             GL.ClearColor(0.3f, 0.3f, 0.3f, 1f);
             GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
             GL.Enable_BLEND();
-            GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
+            //GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            m_label.Text = string.Format("Time elapsed since previous frame: {0}", elapsed.ToString());
-            m_uiManager.Render(elapsed);
+            //m_label.Text = string.Format("Time elapsed since previous frame: {0}", elapsed.ToString());
+            //m_uiManager.Render(elapsed);
+
+            //GL.ClearColor(0.3f, 0.3f, 0.3f, 1f);
+            //GL.Clear(GL.COLOR_BUFFER_BIT);
+
+            GL.BlendFunc(GL.ONE, GL.ONE);
+            //GL.BlendEquation(GL.FUNC_ADD);
+
+            Graphics g = new Graphics();
+            for (int i = 0; i < 10; i++)
+            {
+                g.Draw(new Box2(i * 0.03f, i * 0.03f, 0.2f, 0.2f), new Color4ub(0xFF, 0x20, 0x02, 0xFF));
+            }
+            g.Flush();
+
 
             GL.Finish();
 

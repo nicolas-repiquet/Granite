@@ -1,4 +1,5 @@
 ﻿using Granite.Core;
+using Granite.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace Zombie.Game.Entities
         public Map Map { get { return m_map; } }
 
         public Night Night { get; set; }
+        public Graphics Graphics { get; set; }
+
 
         private static World s_instance;
         public static World Instance {
@@ -93,6 +96,8 @@ namespace Zombie.Game.Entities
 
             Night = new Night(m_camera);
 
+            Graphics = new Granite.UI.Graphics();
+
             s_instance = this;
         }
 
@@ -119,9 +124,10 @@ namespace Zombie.Game.Entities
         {
             transform *= m_camera.CreateWorldToCameraTransform();
 
+            GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
-            //GL.BlendEquation(GL.FUNC_ADD);
-            
+            GL.BlendEquation(GL.FUNC_ADD);
+
             m_map.Render(transform);
 
             m_player.Render(transform);
@@ -131,21 +137,36 @@ namespace Zombie.Game.Entities
             ShootManager.Instance.Render(transform);
 
 
-            //GL.BlendFunc(GL.ONE, GL.ONE);
-            GL.BlendEquation(GL.FUNC_ADD);
 
             GL.BindFramebuffer(m_framebufferAllLight);
 
-            GL.ClearColor(0.0f, 0.0f, 0.0f, 1f);
-            GL.Clear(GL.COLOR_BUFFER_BIT);
+            GL.ClearColor(0.2f, 0.2f, 0.2f, 1f);
+            GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+            
+            GL.BlendFunc(GL.ONE, GL.ONE);
+            GL.BlendEquation(GL.FUNC_ADD);
 
             m_map.RenderLights(transform);
 
+
             GL.BindFramebuffer(null);
 
-            Night.SetTextureLights(m_textureLight);
-            Night.Render(transform);
-            
+            GL.BlendFunc(GL.ZERO, GL.SRC_COLOR);
+
+
+            //GL.BlendFunc(GL.ONE, GL.ONE);
+            //GL.BlendEquation(GL.FUNC_ADD);
+
+            var size = Engine.Display.GetSize();
+            Graphics.Draw(new Box2(new Vector2(-1, -1), new Vector2(2, 2)),
+                m_textureLight, Vector2.Zero, Vector2.One);
+
+            Graphics.Flush();
+
+            //Night.SetTextureLights(m_textureLight);
+            //Night.Render(transform);
+
+            GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
         }
 
     }

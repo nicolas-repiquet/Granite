@@ -100,7 +100,7 @@ namespace Granite.UI
                 }
 
                 GL.DrawArraysInstanced(GL.TRIANGLE_FAN, 0, 4, m_queueSize);
-                GL.DrawArrays(GL.TRIANGLE_FAN, 0, 4);
+                //GL.DrawArrays(GL.TRIANGLE_FAN, 0, 4);
 
                 GL.BindVertexArray(null);
 

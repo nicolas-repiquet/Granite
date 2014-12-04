@@ -74,14 +74,14 @@ namespace Zombie.Game.Entities.Zones
                 var x = random.Next(0, m_map.ZoneSize.X - 100);
                 var y = random.Next(0, m_map.ZoneSize.Y - 100);
 
-                var radius = random.Next(10, 100);
+                var radius = random.Next(100, 200);
 
                 Lights.Add(
                     new Light(
                         new Vector3(x, y, 0),
                         radius,
-                        new Vector4(1, 1, 1, 0.4f),
-                        new Vector4(1, 1, 0, 0f))
+                        new Vector4(1, 1, 1, 1f),
+                        new Vector4(0, 0, 0, 1f))
                 );
             }
 
@@ -119,7 +119,7 @@ namespace Zombie.Game.Entities.Zones
             Floor.Render(transform);
             m_wallRenderer.Render(transform);
 
-            m_lightRenderer.Render(transform);
+            //m_lightRenderer.Render(transform);
         }
 
         public void RenderLights(Matrix4 transform)

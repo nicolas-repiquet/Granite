@@ -91,26 +91,26 @@ namespace Zombie.Game.Entities.Zones
 
         public void Render(Matrix4 transform)
         {
-            GL.BindFramebuffer(m_framebuffer);
+            //GL.BindFramebuffer(m_framebuffer);
 
-            GL.ClearColor(0.2f, 0.2f, 0.2f, 1f);
-            GL.Clear(GL.COLOR_BUFFER_BIT);
+            //GL.ClearColor(0.2f, 0.2f, 0.2f, 1f);
+            //GL.Clear(GL.COLOR_BUFFER_BIT);
 
-            //m_backgroundRenderer.Render(transform);
+            ////m_backgroundRenderer.Render(transform);
+
+            //if (m_lightRenderer != null)
+            //{
+            //    m_lightRenderer.Render(transform);
+            //}
+
+            //GL.BindFramebuffer(null);
+
+            GL.BlendFunc(GL.ONE, GL.ONE);
+            GL.BlendEquation(GL.FUNC_ADD);
 
             if (m_lightRenderer != null)
             {
                 m_lightRenderer.Render(transform);
-            }
-
-            GL.BindFramebuffer(null);
-
-            GL.BlendFunc(GL.ONE, GL.SRC_COLOR);
-            GL.BlendEquation(GL.FUNC_ADD);
-
-            if (m_finalRenderer != null)
-            {
-                m_finalRenderer.Render(transform);
             }
         }
     }
