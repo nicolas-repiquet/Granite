@@ -282,11 +282,11 @@ namespace Zombie.Game.Entities.Tools
             return false;
         }
 
-        public IEnumerable<Triangle> ToTriangles()
+        public IEnumerable<Vector3> GetPath()
         {
-            Clear();
-
             var points = new List<Vector3>();
+
+            //points.Add(Center);
 
             for (int i = 0; i < SLOTS; i++)
             {
@@ -327,25 +327,143 @@ namespace Zombie.Game.Entities.Tools
                 }
             }
 
-            var triangles = new Triangle[Angle >= PI_2 ? points.Count : points.Count-1];
+            //points.Add(points[1]);
 
-            for (var i = 0; i < triangles.Length; i++ )
+            return points;
+        }
+
+        //public IEnumerable<Triangle> ToTriangles()
+        //{
+        //    Clear();
+
+        //    var points = new List<Vector3>();
+
+        //    for (int i = 0; i < SLOTS; i++)
+        //    {
+        //        var prev = (SLOTS + i - 1) % SLOTS;
+
+        //        if (m_slots[i].Segment != m_slots[prev].Segment)
+        //        {
+        //            Vector3 p0;
+        //            Vector3 p1;
+
+        //            {
+        //                var ray = s_rays[i];
+        //                var slot = m_slots[prev];
+        //                var x = ray.X * slot.Radius + Center.X;
+        //                var y = ray.Y * slot.Radius + Center.Y;
+
+        //                p0 = new Vector3(x, y, 0);
+        //            }
+
+        //            {
+        //                var ray = s_rays[i];
+        //                var slot = m_slots[i];
+        //                var x = ray.X * slot.Radius + Center.X;
+        //                var y = ray.Y * slot.Radius + Center.Y;
+
+        //                p1 = new Vector3(x, y, 0);
+        //            }
+
+        //            if (p0 != p1)
+        //            {
+        //                points.Add(p0);
+        //                points.Add(p1);
+        //            }
+        //            else
+        //            {
+        //                points.Add(p0);
+        //            }
+        //        }
+        //    }
+
+        //    var triangles = new Triangle[Angle >= PI_2 ? points.Count : points.Count-1];
+
+        //    for (var i = 0; i < triangles.Length-1; i++ )
+        //    {
+        //        //if (i == triangles.Length - 1 && Angle >= PI_2)
+        //        //{
+        //        //    var t = new Triangle()
+        //        //    {
+        //        //        P1 = Center,
+        //        //        P2 = points[i],
+        //        //        P3 = points[0],
+        //        //        ColorP1 = StartColor,
+        //        //        ColorP2 = EndColor,
+        //        //        ColorP3 = EndColor
+        //        //    };
+
+        //        //    triangles[i] = t;
+        //        //}
+        //        //else 
+        //        if (i != points.Count - 1)
+        //        {
+        //            var t = new Triangle()
+        //            {
+        //                P1 = Center,
+        //                P2 = points[i],
+        //                P3 = points[i + 1],
+        //                ColorP1 = StartColor,
+        //                ColorP2 = EndColor,
+        //                ColorP3 = EndColor
+        //            };
+
+        //            triangles[i] = t;
+        //        }
+                
+        //    }
+
+        //    Triangles = triangles;
+
+        //    return triangles;
+        //}
+
+        public IEnumerable<Triangle> ToTriangles()
+        {
+            Clear();
+
+            var points = GetPath().ToArray();
+
+            var triangles = new Triangle[Angle >= PI_2 ? points.Length : points.Length - 1];
+
+            if (Angle >= PI_2)
             {
-                if (i == triangles.Length - 1 && Angle >= PI_2)
+                for (var i = 0; i < triangles.Length; i++)
                 {
-                    var t = new Triangle()
+                    if (i == triangles.Length - 1)
                     {
-                        P1 = Center,
-                        P2 = points[i],
-                        P3 = points[0],
-                        ColorP1 = StartColor,
-                        ColorP2 = EndColor,
-                        ColorP3 = EndColor
-                    };
+                        var t = new Triangle()
+                        {
+                            P1 = Center,
+                            P2 = points[i],
+                            P3 = points[0],
+                            ColorP1 = StartColor,
+                            ColorP2 = EndColor,
+                            ColorP3 = EndColor
+                        };
 
-                    triangles[i] = t;
+                        triangles[i] = t;
+                    }
+                    else if (i != triangles.Length - 1)
+                    {
+                        var t = new Triangle()
+                        {
+                            P1 = Center,
+                            P2 = points[i],
+                            P3 = points[i + 1],
+                            ColorP1 = StartColor,
+                            ColorP2 = EndColor,
+                            ColorP3 = EndColor
+                        };
+
+                        triangles[i] = t;
+                    }
+
                 }
-                else if (i != points.Count - 1)
+            }
+            else
+            {
+                for (var i = 0; i < triangles.Length; i++)
                 {
                     var t = new Triangle()
                     {
@@ -359,7 +477,6 @@ namespace Zombie.Game.Entities.Tools
 
                     triangles[i] = t;
                 }
-                
             }
 
             Triangles = triangles;

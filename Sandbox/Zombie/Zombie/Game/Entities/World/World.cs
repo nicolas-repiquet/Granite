@@ -11,21 +11,18 @@ using Zombie.Game.Entities.Tools;
 using Zombie.Game.Entities.Weapons;
 using Zombie.Game.Entities.Zones;
 
-namespace Zombie.Game.Entities
+namespace Zombie.Game.Entities.World
 {
     public sealed class World : Entity, IUpdatable, IRenderable
     {
         private readonly Camera m_camera;
         private readonly Player m_player;
         private readonly Map m_map;
+        private readonly DayLight m_dayLight;
 
         public Player Player { get { return m_player; } }
         public Camera Camera { get { return m_camera; } }
         public Map Map { get { return m_map; } }
-
-        public Night Night { get; set; }
-        public Graphics Graphics { get; set; }
-
 
         private static World s_instance;
         public static World Instance {
@@ -35,21 +32,12 @@ namespace Zombie.Game.Entities
             }
         }
 
-        private Framebuffer m_framebufferAllLight;
-        private Texture2D m_textureLight;
-
         public World()
         {
             m_camera = new Camera();
             m_player = new Player();
             m_map = new Map(new Vector2i(500, 500));
-
-            //Framebuffers
-            m_framebufferAllLight = new Framebuffer();
-            m_textureLight = new Texture2D();
-            var size = Engine.Display.GetSize();
-            m_textureLight.SetData<Color4ub>(size.X, size.Y, null);
-            m_framebufferAllLight.Attach(m_textureLight);
+            m_dayLight = new DayLight(m_map, 10);
 
             m_camera.Bounds = new Box2(0, 0, 1000, 1000);
             m_camera.Target = m_player;
@@ -94,10 +82,6 @@ namespace Zombie.Game.Entities
                 EnnemyManager.Instance.AddEnnemy(z1);
             }
 
-            Night = new Night(m_camera);
-
-            Graphics = new Granite.UI.Graphics();
-
             s_instance = this;
         }
 
@@ -116,8 +100,7 @@ namespace Zombie.Game.Entities
             EnnemyManager.Instance.Update(elapsed);
 
             m_map.Update(elapsed);
-
-            Night.Update(elapsed);
+            m_dayLight.Update(elapsed);
         }
 
         public void Render(Matrix4 transform)
@@ -136,35 +119,7 @@ namespace Zombie.Game.Entities
 
             ShootManager.Instance.Render(transform);
 
-
-
-            GL.BindFramebuffer(m_framebufferAllLight);
-
-            GL.ClearColor(0.2f, 0.2f, 0.2f, 1f);
-            GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
-            
-            GL.BlendFunc(GL.ONE, GL.ONE);
-            GL.BlendEquation(GL.FUNC_ADD);
-
-            m_map.RenderLights(transform);
-
-
-            GL.BindFramebuffer(null);
-
-            GL.BlendFunc(GL.ZERO, GL.SRC_COLOR);
-
-
-            //GL.BlendFunc(GL.ONE, GL.ONE);
-            //GL.BlendEquation(GL.FUNC_ADD);
-
-            var size = Engine.Display.GetSize();
-            Graphics.Draw(new Box2(new Vector2(-1, -1), new Vector2(2, 2)),
-                m_textureLight, Vector2.Zero, Vector2.One);
-
-            Graphics.Flush();
-
-            //Night.SetTextureLights(m_textureLight);
-            //Night.Render(transform);
+            m_dayLight.Render(transform);
 
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
         }
