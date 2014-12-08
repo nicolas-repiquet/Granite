@@ -114,6 +114,29 @@ namespace Granite.Core
             }
         }
 
+        public IBufferView<TItem> GetView<TItem>(Expression<Func<T, TItem>> field)
+        {
+            if (field == null)
+            {
+                throw new ArgumentNullException("field");
+            }
+
+            var f = s_descriptor.GetField(field.Body);
+
+            if (f.Descriptor.Type != typeof(TItem))
+            {
+                throw new InvalidOperationException(string.Format(
+                    "Can't convert from {0} to {1}",
+                    f.Descriptor.Type.Name,
+                    typeof(TItem).Name
+                ));
+            }
+            else
+            {
+                return new View<TItem>(this, f.Descriptor.FlattenedCount, f.Descriptor.FlattenedType, f.Offset, s_descriptor.Size);
+            }
+        }
+
         protected override void InternalDispose()
         {
             var name = Name;

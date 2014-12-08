@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -133,6 +134,66 @@ namespace Granite.Core
         public Type Type { get { return m_type; } }
         public uint FlattenedType { get { return m_flattenedType; } }
         public int FlattenedCount { get { return m_flattenedCount; } }
+
+        public ValueTypeDescriptorField GetField(Expression expression)
+        {
+            var tokens = new Queue<string>();
+
+            GetExpressionTokens(expression, tokens);
+
+            return GetField(0, tokens);
+        }
+
+        private void GetExpressionTokens(Expression expression, Queue<string> tokens)
+        {
+            var memberExpression = expression as MemberExpression;
+
+            if (memberExpression != null)
+            {
+                GetExpressionTokens(memberExpression.Expression, tokens);
+
+                var member = memberExpression.Member;
+
+                if (member.MemberType != MemberTypes.Field)
+                {
+                    throw new ArgumentException(member.Name + " must be a field");
+                }
+                else
+                {
+                    tokens.Enqueue(member.Name);
+                }
+            }
+        }
+
+        private ValueTypeDescriptorField GetField(int offset, Expression expression)
+        {
+            if (expression is MemberExpression)
+            {
+                var target = ((MemberExpression)expression).Expression;
+                var memberInfo = ((MemberExpression)expression).Member;
+
+                if (memberInfo.MemberType != MemberTypes.Field)
+                {
+                    throw new ArgumentException(memberInfo.Name + " must be a field");
+                }
+                else
+                {
+                    foreach (var f in m_fields)
+                    {
+                        if (f.Name == memberInfo.Name)
+                        {
+                            return new ValueTypeDescriptorField(offset + f.Offset, f.Descriptor);
+                        }
+                    }
+
+                    throw new ArgumentException("Unknown field " + memberInfo.Name);
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public ValueTypeDescriptorField GetField(string name)
         {
