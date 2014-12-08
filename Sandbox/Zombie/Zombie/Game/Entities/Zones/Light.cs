@@ -9,13 +9,13 @@ namespace Zombie.Game.Entities.Zones
 {
     public class Light
     {
-        private Cone2 m_light;
+        private Cone m_light;
 
-        public Cone2 Cone { get { return m_light; } }
+        public Cone Cone { get { return m_light; } }
 
-        public Light(Vector3 position, float radius, Vector4 startColor, Vector4 endColor)
+        public Light(Vector2 position, float radius, Color4ub startColor, Color4ub endColor)
         {
-            m_light = new Cone2(
+            m_light = new Cone(
                 position,
                 radius,
                 (float)Math.PI * 2f,

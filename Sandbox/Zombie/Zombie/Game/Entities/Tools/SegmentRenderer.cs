@@ -12,7 +12,7 @@ namespace Zombie.Game.Entities.Tools
     {
         private struct SegmentData
         {
-            public Vector4 Color;
+            public Color4ub Color;
             public Vector3 Position;
         }
 
@@ -26,8 +26,8 @@ namespace Zombie.Game.Entities.Tools
                 m_renderer = renderer;
             }
 
-            private Vector4 m_color;
-            public Vector4 Color
+            private Color4ub m_color;
+            public Color4ub Color
             {
                 get { return m_color; }
                 set
@@ -93,7 +93,7 @@ namespace Zombie.Game.Entities.Tools
 
             m_program.Position.SetValue(m_bufferSprite.GetView<Vector3>("Position"));
 
-            m_program.Color.SetValue(m_bufferSprite.GetView<Vector4>("Color"));
+            m_program.Color.SetValue(m_bufferSprite.GetView<Color4ub>("Color"));
             //m_program.Position.SetDivisor(1);
            // m_program.Normal.SetValue(m_bufferSprite.GetView<Vector3>("Normal"));
            //// m_program.Normal.SetDivisor(1);

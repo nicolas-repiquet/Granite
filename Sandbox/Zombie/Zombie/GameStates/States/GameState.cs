@@ -27,6 +27,7 @@ namespace Zombie.GameStates.States
             m_keyRightPressed = false;
             m_mousePosition = Vector2.Zero;
             m_world = new World();
+            m_world.Initialize();
             Update(new TimeSpan());
         }
 
@@ -78,6 +79,13 @@ namespace Zombie.GameStates.States
             if (mouseMoveEvent != null)
             {
                 m_mousePosition = mouseMoveEvent.Position;
+            }
+
+            var mouseButtonWheelEvent = e as MouseWheelEventArgs;
+
+            if (mouseButtonWheelEvent != null)
+            {
+                World.Instance.Camera.Zoom -= mouseButtonWheelEvent.Ticks;
             }
 
             var keyboardKeyDownEvent = e as KeyboardKeyDownEventArgs;

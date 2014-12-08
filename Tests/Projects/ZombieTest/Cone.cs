@@ -6,43 +6,43 @@ using Granite.Core;
 namespace ZombieTest
 {
     [TestClass]
-    public class Cone2Test
+    public class ConeTest
     {
-        private Cone2 m_coneRight;
-        private Cone2 m_coneTop;
-        private Cone2 m_coneLeft;
-        private Cone2 m_coneDown;
+        private Cone m_coneRight;
+        private Cone m_coneTop;
+        private Cone m_coneLeft;
+        private Cone m_coneDown;
 
         [TestInitialize]
         public void Init()
         {
             var angle = 1.0;
-            m_coneRight = new Cone2(
-                new Vector3(0, 0, 0),
+            m_coneRight = new Cone(
+                new Vector2(0, 0),
                 10,
                 (float)angle,
                 (float)((Math.Atan2(0, 1) + Math.PI * 2) - (angle / 2.0) - Math.PI * 2)
                 );
 
             angle = 1.0;
-            m_coneTop = new Cone2(
-                new Vector3(0, 0, 0),
+            m_coneTop = new Cone(
+                new Vector2(0, 0),
                 10,
                 (float)angle,
                 (float)((Math.Atan2(1, 0) + Math.PI * 2) - (angle / 2.0) - Math.PI * 2)
                 );
 
             angle = 1.0;
-            m_coneLeft = new Cone2(
-                new Vector3(0, 0, 0),
+            m_coneLeft = new Cone(
+                new Vector2(0, 0),
                 10,
                 (float)angle,
                 (float)((Math.Atan2(0, -1) + Math.PI * 2) - (angle / 2.0) - Math.PI * 2)
                 );
 
             angle = 1.0;
-            m_coneDown = new Cone2(
-                new Vector3(0, 0, 0),
+            m_coneDown = new Cone(
+                new Vector2(0, 0),
                 10,
                 (float)angle,
                 (float)((Math.Atan2(-1, 0) + Math.PI * 2) - (angle / 2.0) - Math.PI * 2)

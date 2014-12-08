@@ -27,7 +27,8 @@ namespace Zombie.Game.Entities.World
             m_currentTime = timeOfDay;
             m_map = map;
             m_maxLight = new Color4(1, 1, 1, 1);
-            m_maxDark = new Color4(0, 0, 0, 1);
+            //m_maxLight = new Color4(0.6f, 0.6f, 0.6f, 1);
+            m_maxDark = new Color4(0.5f, 0.5f, 0.4f, 1);
 
             //Framebuffers
             m_framebufferAllLight = new Framebuffer();
@@ -53,33 +54,37 @@ namespace Zombie.Game.Entities.World
 
             //Calcul du pourcentage de la journée passé
             var percentOfDay = m_currentTime * 100 / m_timeOfDay;
-            if (percentOfDay < 40)
+            if (percentOfDay < 40 && percentOfDay > 10)
             {
-                var percentOfNight = (percentOfDay) / 40f;
+                var percentOfNight = (percentOfDay - 10) / (40f - 10f);
 
                 var color = new Color4(
                     (float)((m_maxLight.R - m_maxDark.R) * percentOfNight + m_maxDark.R),
                     (float)((m_maxLight.G - m_maxDark.G) * percentOfNight + m_maxDark.G),
+                    (float)((m_maxLight.B - m_maxDark.B) * percentOfNight + 0.2 + m_maxDark.B),
+                    1);
+
+                GL.ClearColor(color);
+            }
+            else if (percentOfDay > 60 && percentOfDay < 90)
+            {
+                var percentOfNight = (90f - percentOfDay) / (90f - 60f);
+
+                var color = new Color4(
+                    (float)((m_maxLight.R - m_maxDark.R) * percentOfNight + 0.3f + m_maxDark.R),
+                    (float)((m_maxLight.G - m_maxDark.G) * percentOfNight + 0.1f + m_maxDark.G),
                     (float)((m_maxLight.B - m_maxDark.B) * percentOfNight + m_maxDark.B),
                     1);
 
                 GL.ClearColor(color);
             }
-            else if (percentOfDay > 60)
+            else if (percentOfDay > 40 && percentOfDay < 60)
             {
-                var percentOfNight = (100f-percentOfDay) / (100f-60f);
-
-                var color = new Color4(
-                    (float)((m_maxLight.R - m_maxDark.R) * percentOfNight + m_maxDark.R),
-                    (float)((m_maxLight.G - m_maxDark.G) * percentOfNight + m_maxDark.G),
-                    (float)((m_maxLight.B - m_maxDark.B) * percentOfNight + m_maxDark.B),
-                    1);
-
-                GL.ClearColor(color);
+                GL.ClearColor(m_maxLight);
             }
             else
             {
-                GL.ClearColor(m_maxLight);
+                GL.ClearColor(m_maxDark);
             }
 
             GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
@@ -87,8 +92,9 @@ namespace Zombie.Game.Entities.World
             GL.BlendFunc(GL.ONE, GL.ONE);
             GL.BlendEquation(GL.FUNC_ADD);
 
+            //GL.PolygonMode(GL.FRONT_AND_BACK, GL.LINE);
             m_map.RenderLights(transform);
-
+            //GL.PolygonMode(GL.FRONT_AND_BACK, GL.FILL);
 
             GL.BindFramebuffer(null);
 

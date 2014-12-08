@@ -13,25 +13,25 @@ namespace Zombie.Game.Entities.Weapons
         #region Properties
         private Weapon m_weapon;
         private LocationComponent m_location;
-        private Cone2 m_cone;
+        private Cone m_cone;
         private double m_lifeTime;
         private double m_lifeTimeTotal;
         #endregion
 
         #region Accessors
-        public Cone2 Cone { get { return m_cone; } }
+        public Cone Cone { get { return m_cone; } }
         public double LifeTime { get { return m_lifeTime; } }
         public Weapon Weapon { get { return m_weapon; } }
         #endregion
 
         #region Constructor
-        public Shoot(Vector2 position, Vector2 direction, Vector4 startColor, Vector4 endColor, float angle = 2, float radius = 2)
+        public Shoot(Vector2 position, Vector2 direction, Color4ub startColor, Color4ub endColor, float angle = 2, float radius = 2)
         {
             m_location = new LocationComponent(this);
             m_location.SetPosition(position);
 
-            m_cone = new Cone2(
-                new Vector3(position.X, position.Y, 0),
+            m_cone = new Cone(
+                position,
                 radius,
                 angle,
                 startColor,
@@ -47,17 +47,17 @@ namespace Zombie.Game.Entities.Weapons
         #region Methods
         public void Update(TimeSpan elapsed)
         {
-            m_cone.Center = new Vector3(m_location.Position.X, m_location.Position.Y, 0);
+            m_cone.Center = m_location.Position;
 
             m_lifeTime -= elapsed.TotalSeconds;
 
             //Pourcentage du temps de vie passée
             var percent = m_lifeTime / m_lifeTimeTotal / 100;
-            m_cone.StartColor = new Vector4(m_cone.StartColor.X, m_cone.StartColor.Y, m_cone.StartColor.Z, m_cone.StartColor.W - (float)percent);
+            m_cone.StartColor = new Color4ub(m_cone.StartColor.R, m_cone.StartColor.G, m_cone.StartColor.B, (byte)(m_cone.StartColor.A - ((float)percent * 255f)));
 
             //if (m_cone.StartColor.W < 0.2f)
             //{
-                m_cone.EndColor = new Vector4(m_cone.EndColor.X, m_cone.EndColor.Y, m_cone.EndColor.Z, m_cone.EndColor.W - (float)(percent /2));
+            m_cone.EndColor = new Color4ub(m_cone.EndColor.R, m_cone.EndColor.G, m_cone.EndColor.B, (byte)(m_cone.EndColor.A - ((float)(percent / 2f)*255f)));
             //}
         }
 
@@ -69,7 +69,7 @@ namespace Zombie.Game.Entities.Weapons
         public void SetPosition(Vector2 position)
         {
             m_location.SetPosition(position);
-            m_cone.Center = new Vector3(position.X, position.Y, 0);
+            m_cone.Center = position;
         }
 
         public void SetDirection(Vector2 direction)
@@ -80,7 +80,7 @@ namespace Zombie.Game.Entities.Weapons
         public object Clone()
         {
             var clone = (Shoot)this.MemberwiseClone();
-            clone.m_cone = (Cone2)m_cone.Clone();
+            clone.m_cone = (Cone)m_cone.Clone();
             return (object)clone;
         }
         #endregion

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Zombie.Game.Shaders;
@@ -11,9 +12,10 @@ namespace Zombie.Game.Entities.Tools
 {
     public sealed class TriangleRenderer
     {
+        [StructLayout(LayoutKind.Sequential)]
         private struct TriangleData
         {
-            public Vector4 Color;
+            public Color4ub Color;
             public Vector3 Position;
         }
 
@@ -27,10 +29,10 @@ namespace Zombie.Game.Entities.Tools
                 m_renderer = renderer;
             }
 
-            private Vector4 m_colorP1;
-            private Vector4 m_colorP2;
-            private Vector4 m_colorP3;
-            public Vector4 ColorP1
+            private Color4ub m_colorP1;
+            private Color4ub m_colorP2;
+            private Color4ub m_colorP3;
+            public Color4ub ColorP1
             {
                 get { return m_colorP1; }
                 set
@@ -42,7 +44,7 @@ namespace Zombie.Game.Entities.Tools
                     }
                 }
             }
-            public Vector4 ColorP2
+            public Color4ub ColorP2
             {
                 get { return m_colorP2; }
                 set
@@ -54,7 +56,7 @@ namespace Zombie.Game.Entities.Tools
                     }
                 }
             }
-            public Vector4 ColorP3
+            public Color4ub ColorP3
             {
                 get { return m_colorP3; }
                 set
@@ -133,8 +135,10 @@ namespace Zombie.Game.Entities.Tools
             m_bufferTriangle = new Buffer<Vector3>();
 
             m_program.Position.SetValue(m_bufferSprite.GetView<Vector3>("Position"));
+            //m_program.Position.SetDivisor(1);
 
-            m_program.Color.SetValue(m_bufferSprite.GetView<Vector4>("Color"));
+            m_program.Color.SetValue(m_bufferSprite.GetView<Color4ub>("Color"));
+            //m_program.Color.SetDivisor(3);
            // m_program.Normal.SetValue(m_bufferSprite.GetView<Vector3>("Normal"));
            //// m_program.Normal.SetDivisor(1);
            // m_program.Transform.SetValue(m_bufferSprite.GetView<Matrix4>("Transform"));

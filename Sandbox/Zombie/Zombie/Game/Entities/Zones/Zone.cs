@@ -13,17 +13,17 @@ namespace Zombie.Game.Entities.Zones
         private Map m_map;
         private SegmentRenderer m_wallRenderer;
         private TriangleRenderer m_lightRenderer;
-        private Tuple<int, int> m_id;
+        private string m_id;
 
         public Map Map { get { return m_map; } }
-        public Tuple<int, int> Id { get { return m_id; } }
+        public string Id { get { return m_id; } }
 
         public List<Wall> Walls { get; set; }
         public List<Light> Lights { get; set; }
         public Floor Floor { get; set; }
         
 
-        public Zone(Map map, Tuple<int, int> id)
+        public Zone(Map map, string id)
         {
             m_id = id;
             m_map = map;
@@ -39,16 +39,20 @@ namespace Zombie.Game.Entities.Zones
 
         private void Generate()
         {
-            var random = new Random();
-
             //Walls
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 1; i++)
             {
-                var x = random.Next(0,m_map.ZoneSize.X - 100);
-                var y = random.Next(0, m_map.ZoneSize.Y - 100);
+                var x = m_map.Random.Next(0, m_map.ZoneSize.X);
+                var y = m_map.Random.Next(0, m_map.ZoneSize.Y);
 
-                var width = random.Next(10, 100);
-                var height = random.Next(10, 100);
+                var width = m_map.Random.Next(10, 100);
+                var height = m_map.Random.Next(10, 100);
+                 
+                //var x = m_map.ZoneSize.X / 2 + 50;
+                //var y = m_map.ZoneSize.Y / 2 + 50;
+
+                //var width = 50;
+                //var height = 50;
 
                 var p1 = new Vector2(x, y);
                 var p2 = new Vector2(x + width, y);
@@ -69,19 +73,21 @@ namespace Zombie.Game.Entities.Zones
             }
 
             //Lights
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 1; i++)
             {
-                var x = random.Next(0, m_map.ZoneSize.X - 100);
-                var y = random.Next(0, m_map.ZoneSize.Y - 100);
+                //var x = m_map.Random.Next(0, m_map.ZoneSize.X);
+                //var y = m_map.Random.Next(0, m_map.ZoneSize.Y);
+                var x = m_map.ZoneSize.X/2;
+                var y = m_map.ZoneSize.Y/2;
 
-                var radius = random.Next(100, 200);
+                var radius = m_map.ZoneSize.X/2-20;
 
                 Lights.Add(
                     new Light(
-                        new Vector3(x, y, 0),
+                        new Vector2(x, y),
                         radius,
-                        new Vector4(1, 1, 1, 1f),
-                        new Vector4(0, 0, 0, 1f))
+                        new Color4ub(255, 255, 255, 255),
+                        new Color4ub(0, 0, 0, 255))
                 );
             }
 
@@ -114,7 +120,8 @@ namespace Zombie.Game.Entities.Zones
 
         public void Render(Matrix4 transform)
         {
-            transform *= Matrix4.Translate(m_map.ZoneSize.X * m_id.Item1, m_map.ZoneSize.Y * m_id.Item2, 0);
+            var key = Map.GetKey(m_id);
+            transform *= Matrix4.Translate(m_map.ZoneSize.X * key.Item1, m_map.ZoneSize.Y * key.Item2, 0);
 
             Floor.Render(transform);
             m_wallRenderer.Render(transform);
@@ -124,9 +131,12 @@ namespace Zombie.Game.Entities.Zones
 
         public void RenderLights(Matrix4 transform)
         {
-            transform *= Matrix4.Translate(m_map.ZoneSize.X * m_id.Item1, m_map.ZoneSize.Y * m_id.Item2, 0);
+            var key = Map.GetKey(m_id);
+            transform *= Matrix4.Translate(m_map.ZoneSize.X * key.Item1, m_map.ZoneSize.Y * key.Item2, 0);
 
+            //GL.PolygonMode(GL.FRONT_AND_BACK, GL.LINE);
             m_lightRenderer.Render(transform);
+            //GL.PolygonMode(GL.FRONT_AND_BACK, GL.FILL);
         }
 
     }

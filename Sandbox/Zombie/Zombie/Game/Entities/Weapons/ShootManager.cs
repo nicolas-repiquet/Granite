@@ -64,7 +64,11 @@ namespace Zombie.Game.Entities.Weapons
 
         public void Render(Matrix4 transform)
         {
+            //GL.PolygonMode(GL.FRONT_AND_BACK, GL.LINE);
+
             m_renderer.Render(transform);
+
+            //GL.PolygonMode(GL.FRONT_AND_BACK, GL.FILL);
         }
     }
 }

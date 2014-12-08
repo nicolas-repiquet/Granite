@@ -9,7 +9,7 @@ namespace Zombie.Game.Shaders
     public sealed class TriangleProgram : Program
     {
         public ProgramAttribute<Vector3> Position { get; private set; }
-        public ProgramAttribute<Vector4> Color { get; private set; }
+        public ProgramAttribute<Color4ub> Color { get; private set; }
 
         public ProgramUniform<Matrix4> Projection { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Zombie.Game.Shaders
                 )
         {
             Position = GetAttribute<Vector3>("positionAttrib");
-            Color = GetAttribute<Vector4>("colorAttrib");
+            Color = GetAttribute<Color4ub>("colorAttrib", normalized: true);
 
             Projection = GetUniform<Matrix4>("projection");
             

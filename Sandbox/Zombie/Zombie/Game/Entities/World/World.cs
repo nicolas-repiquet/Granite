@@ -36,11 +36,21 @@ namespace Zombie.Game.Entities.World
         {
             m_camera = new Camera();
             m_player = new Player();
-            m_map = new Map(new Vector2i(500, 500));
+            m_map = new Map(new Vector2i(100, 100));
             m_dayLight = new DayLight(m_map, 10);
 
+            s_instance = this;
+        }
+
+        public void Initialize()
+        {
             m_camera.Bounds = new Box2(0, 0, 1000, 1000);
             m_camera.Target = m_player;
+
+            var size = Engine.Display.GetSize();
+            m_camera.SetSize(new Vector2(size.X, size.Y));
+
+            m_map.Initialize();
 
             Player.SetPosition(new Vector2(0, 0));
             Player.AddWeapon(new Weapon(
@@ -50,7 +60,7 @@ namespace Zombie.Game.Entities.World
                 0.1,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 1, 1), new Vector4(1, 1, 0, 1f), 0.05f, 200)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 0.05f, 200)));
 
             Player.AddWeapon(new Weapon(
                 "Sniper",
@@ -59,7 +69,7 @@ namespace Zombie.Game.Entities.World
                 0.8,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 1, 1), new Vector4(1, 1, 0, 1f), 0.02f, 600)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 0.02f, 600)));
 
             Player.AddWeapon(new Weapon(
                 "ShotGun",
@@ -68,21 +78,20 @@ namespace Zombie.Game.Entities.World
                 0.5,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Vector4(1, 1, 1, 1), new Vector4(1, 1, 0, 1f), 1f, 100)));
+                new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 1f, 100)));
 
             //Ennemies
             var random = new Random();
 
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 300; i++)
             {
                 var z1 = new Zombie1();
-                z1.SetPosition(new Vector2((float)random.Next(0, 500),
-                    (float)random.Next(0, 500)));
+                z1.SetPosition(new Vector2((float)random.Next(-3000, 3000),
+                    (float)random.Next(-3000, 3000)));
                 z1.SetTarget(Player);
                 EnnemyManager.Instance.AddEnnemy(z1);
             }
 
-            s_instance = this;
         }
 
         
@@ -117,11 +126,13 @@ namespace Zombie.Game.Entities.World
 
             EnnemyManager.Instance.Render(transform);
 
-            ShootManager.Instance.Render(transform);
-
             m_dayLight.Render(transform);
 
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
+
+            ShootManager.Instance.Render(transform);
+
+            
         }
 
     }

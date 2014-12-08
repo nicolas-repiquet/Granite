@@ -42,49 +42,49 @@ namespace Zombie.Game.Entities.Tools
         public Triangle[] ToTriangles()
         {
 
-            Triangles = new Triangle[(int)SLOTS];
+            //Triangles = new Triangle[(int)SLOTS];
 
-            for (int i = 0; i < SLOTS; i++)
-            {
-                var t1 = i + 1 * SLOT_ANGLE;
-                var p1 = new Vector3(
-                    (float)Math.Cos(t1) * Radius + Center.X,
-                    (float)Math.Sin(t1) * Radius + Center.Y,
-                    0);
+            //for (int i = 0; i < SLOTS; i++)
+            //{
+            //    var t1 = i + 1 * SLOT_ANGLE;
+            //    var p1 = new Vector3(
+            //        (float)Math.Cos(t1) * Radius + Center.X,
+            //        (float)Math.Sin(t1) * Radius + Center.Y,
+            //        0);
 
-                if (i == 0)
-                {
-                    var t0 = i * SLOT_ANGLE;
-                    var p0 = new Vector3(
-                        (float)Math.Cos(t0) * Radius + Center.X,
-                        (float)Math.Sin(t0) * Radius + Center.Y,
-                        0);
+            //    if (i == 0)
+            //    {
+            //        var t0 = i * SLOT_ANGLE;
+            //        var p0 = new Vector3(
+            //            (float)Math.Cos(t0) * Radius + Center.X,
+            //            (float)Math.Sin(t0) * Radius + Center.Y,
+            //            0);
 
-                    Triangles[0] = new Triangle()
-                    {
-                        P1 = Center,
-                        P2 = p1,
-                        P3 = p0,
-                        ColorP1 = StartColor,
-                        ColorP2 = EndColor,
-                        ColorP3 = EndColor
-                    };
-                }
-                else
-                {
-                    var p = Triangles[i - 1].P3;
+            //        Triangles[0] = new Triangle()
+            //        {
+            //            P1 = Center,
+            //            P2 = p1,
+            //            P3 = p0,
+            //            ColorP1 = StartColor,
+            //            ColorP2 = EndColor,
+            //            ColorP3 = EndColor
+            //        };
+            //    }
+            //    else
+            //    {
+            //        var p = Triangles[i - 1].P3;
 
-                    Triangles[i] = new Triangle()
-                    {
-                        P1 = Center,
-                        P2 = p,
-                        P3 = p1,
-                        ColorP1 = StartColor,
-                        ColorP2 = EndColor,
-                        ColorP3 = EndColor
-                    };
-                }
-            }
+            //        Triangles[i] = new Triangle()
+            //        {
+            //            P1 = Center,
+            //            P2 = p,
+            //            P3 = p1,
+            //            ColorP1 = StartColor,
+            //            ColorP2 = EndColor,
+            //            ColorP3 = EndColor
+            //        };
+            //    }
+            //}
 
             return Triangles;
         }
