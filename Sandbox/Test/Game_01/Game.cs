@@ -19,7 +19,8 @@ namespace Test.Game_01
         {
             Engine.Run(new Game(), new ApplicationSettings()
             {
-                DisplayStyle = DisplayStyle.ResizeableWithTitle
+                DisplayStyle = DisplayStyle.ResizeableWithTitle,
+                Debug = true
             });
         }
 
@@ -33,21 +34,13 @@ namespace Test.Game_01
             
         }
 
-        private Graphics m_g;
-
-
         public override void Render(TimeSpan elapsed)
         {
-            if (m_g == null)
-            {
-                m_g = new Graphics();
-            }
-
             Engine.Display.Invalidate();
 
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
 
-            //StateManager.Instance.Update(elapsed);
+            StateManager.Instance.Update(elapsed);
 
             var size = Engine.Display.GetSize();
 
@@ -57,12 +50,7 @@ namespace Test.Game_01
             GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            //StateManager.Instance.Draw();
-
-            m_g.FillRectangle(new Box2i(100, 100, 100, 100),
-                new Color4ub(0xFF, 0xFF, 0x00, 0xFF));
-
-            m_g.Flush();
+            StateManager.Instance.Draw();
 
             GL.Finish();
         }

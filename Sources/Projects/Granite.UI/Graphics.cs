@@ -113,7 +113,7 @@ namespace Granite.UI
         {
             m_queueSize = 0;
             m_transformStack.Clear();
-            m_transform = new Matrix3x2(1, 0, 0, 0, 1, 0);
+            m_transform = Matrix3x2.Identity;
         }
 
         public void PushTransform()
@@ -128,40 +128,64 @@ namespace Granite.UI
 
         public void Translate(Vector2 v)
         {
+            // M00 M10 M20
+            // M01 M11 M21
+
+            // 1   0   v.X
+            // 0   1   v.Y
+
             m_transform = new Matrix3x2(
-                m_transform.E11,
-                m_transform.E12,
-                m_transform.E11 * v.X + m_transform.E12 * v.Y + m_transform.E13,
-                m_transform.E21,
-                m_transform.E22,
-                m_transform.E21 * v.X + m_transform.E22 * v.Y + m_transform.E23
+                m_transform.M00,
+                m_transform.M01,
+
+                m_transform.M10,
+                 m_transform.M11,
+
+                m_transform.M00 * v.X + m_transform.M10 * v.Y + m_transform.M20,
+                m_transform.M01 * v.X + m_transform.M11 * v.Y + m_transform.M21
             );
         }
 
         public void Scale(Vector2 v)
         {
+            // M00 M10 M20
+            // M01 M11 M21
+
+            // v.X 0   0
+            // 0   v.Y 0
+
             m_transform = new Matrix3x2(
-                m_transform.E11 * v.X,
-                m_transform.E12 * v.Y,
-                m_transform.E13,
-                m_transform.E21 * v.X,
-                m_transform.E22 * v.Y,
-                m_transform.E23
+                m_transform.M00 * v.X,
+                m_transform.M01 * v.X,
+
+                m_transform.M10 * v.Y,
+                m_transform.M11 * v.Y,
+
+                m_transform.M20,
+                m_transform.M21
             );
         }
 
         public void Rotate(float angle)
         {
+            // M00 M10 M20
+            // M01 M11 M21
+
+            // c   s   0
+            // -s   c  0
+
             var c = (float)Math.Cos(angle);
             var s = (float)Math.Sin(angle);
 
             m_transform = new Matrix3x2(
-                m_transform.E11 * c + m_transform.E12 * s,
-                m_transform.E12 * c - m_transform.E11 * s,
-                m_transform.E13,
-                m_transform.E21 * c + m_transform.E22 * s,
-                m_transform.E22 * c - m_transform.E21 * s,
-                m_transform.E23
+                m_transform.M00 * c - m_transform.M10 * s,
+                m_transform.M01 * c - m_transform.M11 * s,
+
+                m_transform.M00 * s + m_transform.M10 * c,
+                m_transform.M01 * s + m_transform.M11 * c,
+
+                m_transform.M20,
+                m_transform.M21
             );
         }
 
@@ -195,12 +219,14 @@ namespace Granite.UI
             m_queue[m_queueSize++] = new QuadData()
             {
                 Transform = new Matrix3x2(
-                    m_transform.E11 * rectangle.Size.X,
-                    m_transform.E12 * rectangle.Size.Y,
-                    m_transform.E11 * rectangle.Position.X + m_transform.E12 * rectangle.Position.Y + m_transform.E13,
-                    m_transform.E21 * rectangle.Size.X,
-                    m_transform.E22 * rectangle.Size.Y,
-                    m_transform.E21 * rectangle.Position.X + m_transform.E22 * rectangle.Position.Y + m_transform.E23
+                    m_transform.M00 * rectangle.Size.X,
+                    m_transform.M01 * rectangle.Size.X,
+
+                    m_transform.M10 * rectangle.Size.Y,
+                    m_transform.M11 * rectangle.Size.Y,
+
+                    m_transform.M00 * rectangle.Position.X + m_transform.M10 * rectangle.Position.Y + m_transform.M20,
+                    m_transform.M01 * rectangle.Position.X + m_transform.M11 * rectangle.Position.Y + m_transform.M21
                 ),
                 Color = color,
                 Texture = -1
@@ -232,12 +258,14 @@ namespace Granite.UI
             m_queue[m_queueSize++] = new QuadData()
             {
                 Transform = new Matrix3x2(
-                    m_transform.E11 * rectangle.Size.X,
-                    m_transform.E12 * rectangle.Size.Y,
-                    m_transform.E11 * rectangle.Position.X + m_transform.E12 * rectangle.Position.Y + m_transform.E13,
-                    m_transform.E21 * rectangle.Size.X,
-                    m_transform.E22 * rectangle.Size.Y,
-                    m_transform.E21 * rectangle.Position.X + m_transform.E22 * rectangle.Position.Y + m_transform.E23
+                    m_transform.M00 * rectangle.Size.X,
+                    m_transform.M01 * rectangle.Size.X,
+
+                    m_transform.M10 * rectangle.Size.Y,
+                    m_transform.M11 * rectangle.Size.Y,
+
+                    m_transform.M00 * rectangle.Position.X + m_transform.M10 * rectangle.Position.Y + m_transform.M20,
+                    m_transform.M01 * rectangle.Position.X + m_transform.M11 * rectangle.Position.Y + m_transform.M21
                 ),
                 Color = color,
                 Texture = (sbyte)GetTextureIndex(texture),

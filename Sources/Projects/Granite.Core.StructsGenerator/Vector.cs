@@ -96,7 +96,6 @@ namespace Granite.Code.StructsGenerator
         public void Build(CodeWriter w)
         {
             w.WriteLine("[System.Serializable]");
-            w.WriteLine("[System.Diagnostics.Contracts.Pure]");
             w.WriteLine("[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]");
             w.WriteLine("public partial struct {0} : System.IEquatable<{0}>", Name);
             w.WriteLine("{");

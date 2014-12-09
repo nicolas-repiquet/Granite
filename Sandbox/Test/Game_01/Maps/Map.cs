@@ -27,7 +27,7 @@ namespace Test.Game_01.Maps
 
             }
 
-            public void SetMaterial(int x, int y, Material material, Sprite sprite)
+            public void SetMaterial(int x, int y, Material material, Test.Game_01.Sprites.Sprite sprite)
             {
                 var cell = new Cell(material, Renderer.AddSprite(sprite));
                 cell.Sprite.Position = new Vector2(x * CELL_SIZE, y * CELL_SIZE);
@@ -563,7 +563,13 @@ namespace Test.Game_01.Maps
         private readonly Graphics m_g = new Graphics();
         private void RenderDebugData()
         {
+            var size = Engine.Display.GetSize();
+
             m_g.Clear();
+            m_g.Translate(new Vector2(-1, -1));
+            m_g.Scale(new Vector2(2f / size.X, 2f / size.Y));
+
+
             var camera = World.Instance.Camera;
 
             for (int y = 0; y < m_height; y++)
@@ -576,7 +582,7 @@ namespace Test.Game_01.Maps
                     {
                         if (cell.LeftEdge.NX == 1)
                         {
-                            m_g.FillRectangle(new Box2i(
+                            m_g.Draw(new Box2i(
                                 cell.LeftEdge.X - 1 - (int)camera.Location.MinX,
                                 cell.LeftEdge.Y0 - (int)camera.Location.MinY, 2, CELL_SIZE),
                                 new Color4ub(0xFF, 0x00, 0x00, 0xFF));
@@ -584,7 +590,7 @@ namespace Test.Game_01.Maps
 
                         if (cell.RightEdge.NX == -1)
                         {
-                            m_g.FillRectangle(new Box2i(
+                            m_g.Draw(new Box2i(
                                 cell.RightEdge.X - 1 - (int)camera.Location.MinX,
                                 cell.RightEdge.Y0 - (int)camera.Location.MinY, 2, CELL_SIZE),
                                 new Color4ub(0x00, 0xFF, 0x00, 0xFF));
@@ -592,7 +598,7 @@ namespace Test.Game_01.Maps
 
                         if (cell.TopEdge.NY == 1)
                         {
-                            m_g.FillRectangle(new Box2i(
+                            m_g.Draw(new Box2i(
                                 cell.TopEdge.X0 - (int)camera.Location.MinX,
                                 cell.TopEdge.Y - 1 - (int)camera.Location.MinY, CELL_SIZE, 2),
                                 new Color4ub(0xFF, 0x00, 0xFF, 0xFF));
@@ -600,7 +606,7 @@ namespace Test.Game_01.Maps
 
                         if (cell.BottomEdge.NY == -1)
                         {
-                            m_g.FillRectangle(new Box2i(
+                            m_g.Draw(new Box2i(
                                 cell.BottomEdge.X0 - (int)camera.Location.MinX,
                                 cell.BottomEdge.Y - 1 - (int)camera.Location.MinY, CELL_SIZE, 2),
                                 new Color4ub(0xFF, 0xFF, 0x00, 0xFF));
@@ -610,7 +616,7 @@ namespace Test.Game_01.Maps
             }
 
             var player = World.Instance.Player.Location;
-            m_g.FillRectangle(new Box2i(
+            m_g.Draw(new Box2i(
                 (int)(player.MinX - camera.Location.MinX),
                 (int)(player.MinY - camera.Location.MinY),
                 (int)player.Size.X, (int)player.Size.Y
@@ -618,7 +624,7 @@ namespace Test.Game_01.Maps
 
             foreach (var ennemy in EnnemyManager.Instance.Ennemies)
             {
-                m_g.FillRectangle(new Box2i(
+                m_g.Draw(new Box2i(
                     (int)(ennemy.Location.MinX - camera.Location.MinX),
                     (int)(ennemy.Location.MinY - camera.Location.MinY),
                     (int)ennemy.Location.Size.X, (int)ennemy.Location.Size.Y

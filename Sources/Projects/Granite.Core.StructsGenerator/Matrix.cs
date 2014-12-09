@@ -34,27 +34,27 @@ namespace Granite.Code.StructsGenerator
     class Matrix
     {
         public static readonly Matrix Mat2 = new Matrix("Matrix2", ElementType.FloatType, 2, 2);
-        public static readonly Matrix Mat2x3 = new Matrix("Matrix3x2", ElementType.FloatType, 2, 3);
-        public static readonly Matrix Mat2x4 = new Matrix("Matrix4x2", ElementType.FloatType, 2, 4);
+        public static readonly Matrix Mat2x3 = new Matrix("Matrix2x3", ElementType.FloatType, 2, 3);
+        public static readonly Matrix Mat2x4 = new Matrix("Matrix2x4", ElementType.FloatType, 2, 4);
 
-        public static readonly Matrix Mat3x2 = new Matrix("Matrix2x3", ElementType.FloatType, 3, 2);
+        public static readonly Matrix Mat3x2 = new Matrix("Matrix3x2", ElementType.FloatType, 3, 2);
         public static readonly Matrix Mat3 = new Matrix("Matrix3", ElementType.FloatType, 3, 3);
-        public static readonly Matrix Mat3x4 = new Matrix("Matrix4x3", ElementType.FloatType, 3, 4);
+        public static readonly Matrix Mat3x4 = new Matrix("Matrix3x4", ElementType.FloatType, 3, 4);
 
-        public static readonly Matrix Mat4x2 = new Matrix("Matrix2x4", ElementType.FloatType, 4, 2);
-        public static readonly Matrix Mat4x3 = new Matrix("Matrix3x4", ElementType.FloatType, 4, 3);
+        public static readonly Matrix Mat4x2 = new Matrix("Matrix4x2", ElementType.FloatType, 4, 2);
+        public static readonly Matrix Mat4x3 = new Matrix("Matrix4x3", ElementType.FloatType, 4, 3);
         public static readonly Matrix Mat4 = new Matrix("Matrix4", ElementType.FloatType, 4, 4);
 
         public static readonly Matrix Mat2d = new Matrix("Matrix2d", ElementType.DoubleType, 2, 2);
-        public static readonly Matrix Mat2x3d = new Matrix("Matrix3x2d", ElementType.DoubleType, 2, 3);
-        public static readonly Matrix Mat2x4d = new Matrix("Matrix4x2d", ElementType.DoubleType, 2, 4);
+        public static readonly Matrix Mat2x3d = new Matrix("Matrix2x3d", ElementType.DoubleType, 2, 3);
+        public static readonly Matrix Mat2x4d = new Matrix("Matrix2x4d", ElementType.DoubleType, 2, 4);
 
-        public static readonly Matrix Mat3x2d = new Matrix("Matrix2x3d", ElementType.DoubleType, 3, 2);
+        public static readonly Matrix Mat3x2d = new Matrix("Matrix3x2d", ElementType.DoubleType, 3, 2);
         public static readonly Matrix Mat3d = new Matrix("Matrix3d", ElementType.DoubleType, 3, 3);
-        public static readonly Matrix Mat3x4d = new Matrix("Matrix4x3d", ElementType.DoubleType, 3, 4);
+        public static readonly Matrix Mat3x4d = new Matrix("Matrix3x4d", ElementType.DoubleType, 3, 4);
 
-        public static readonly Matrix Mat4x2d = new Matrix("Matrix2x4d", ElementType.DoubleType, 4, 2);
-        public static readonly Matrix Mat4x3d = new Matrix("Matrix3x4d", ElementType.DoubleType, 4, 3);
+        public static readonly Matrix Mat4x2d = new Matrix("Matrix4x2d", ElementType.DoubleType, 4, 2);
+        public static readonly Matrix Mat4x3d = new Matrix("Matrix4x3d", ElementType.DoubleType, 4, 3);
         public static readonly Matrix Mat4d = new Matrix("Matrix4d", ElementType.DoubleType, 4, 4);
 
         public static IEnumerable<Matrix> Matrices
@@ -82,29 +82,29 @@ namespace Granite.Code.StructsGenerator
             }
         }
 
-        public static Matrix GetMatrix(ElementType elementType, int rows, int columns)
+        public static Matrix GetMatrix(ElementType elementType, int columns, int rows)
         {
             return Matrices.Where(m => m.ElementType == elementType && m.Rows == rows && m.Columns == columns).First();
         }
 
         // *********************************************************************
 
-        public static readonly string[] s_fieldName = { "Column1", "Column2", "Column3", "Column4" };
-        public static readonly string[] s_parameterName = { "column1", "column2", "column3", "column4" };
-        public static readonly string[] s_rowPropertyName = { "Row1", "Row2", "Row3", "Row4" };
+        public static readonly string[] s_columnPropertyName = { "Column0", "Column1", "Column2", "Column3" };
+        public static readonly string[] s_columnParameterName = { "column0", "column1", "column2", "column3" };
+        public static readonly string[] s_rowPropertyName = { "Row0", "Row1", "Row2", "Row3" };
         
         public static readonly string[,] s_elementName = {
-            { "M00", "M10", "M20", "M30" },
-            { "M01", "M11", "M21", "M31" },
-            { "M02", "M12", "M22", "M32" },
-            { "M03", "M13", "M23", "M33" },
+            { "M00", "M01", "M02", "M03" },
+            { "M10", "M11", "M12", "M13" },
+            { "M20", "M21", "M22", "M23" },
+            { "M30", "M31", "M32", "M33" },
         };
 
         public static readonly string[,] s_elementParameterName = {
-            { "m00", "m10", "m20", "m30" },
-            { "m01", "m11", "m21", "m31" },
-            { "m02", "m12", "m22", "m32" },
-            { "m03", "m13", "m23", "m33" },
+            { "m00", "m01", "m02", "m03" },
+            { "m10", "m11", "m12", "m13" },
+            { "m20", "m21", "m22", "m23" },
+            { "m30", "m31", "m32", "m33" },
         };
 
         public string Name { get; private set; }
@@ -112,18 +112,17 @@ namespace Granite.Code.StructsGenerator
         public int Rows { get; private set; }
         public int Columns { get; private set; }
 
-        private Matrix(string name, ElementType elementType, int rows, int columns)
+        private Matrix(string name, ElementType elementType, int columns, int rows)
         {
             Name = name;
             ElementType = elementType;
-            Rows = rows;
             Columns = columns;
+            Rows = rows;
         }
 
         public void Build(CodeWriter w)
         {
             w.WriteLine("[System.Serializable]");
-            w.WriteLine("[System.Diagnostics.Contracts.Pure]");
             w.WriteLine("[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]");
             w.WriteLine("public partial struct {0} : System.IEquatable<{0}>", Name);
             w.WriteLine("{");
@@ -146,6 +145,7 @@ namespace Granite.Code.StructsGenerator
 
             // Multiply
             BuildMatrixMultiply(w);
+            BuildVectorMultiply(w);
 
             // End struct
             w.PopIndent();
@@ -160,7 +160,23 @@ namespace Granite.Code.StructsGenerator
 
             for (int c = 0; c < Columns; c++)
             {
-                w.WriteLine("public readonly {0} {1};", columnVector.Name, s_fieldName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    w.WriteLine("public readonly {0} {1};", ElementType.Name, s_elementName[c, r]);
+                }
+            }
+
+            w.WriteLine("");
+
+            for (int c = 0; c < Columns; c++)
+            {
+                w.Write("public {0} {1} {{ get {{ return new {0}(", columnVector.Name, s_columnPropertyName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    if (r != 0) w.Write(", ");
+                    w.Write(s_elementName[c, r]);
+                }
+                w.WriteLine("); } }");
             }
 
             w.WriteLine("");
@@ -171,19 +187,9 @@ namespace Granite.Code.StructsGenerator
                 for (int c = 0; c < Columns; c++)
                 {
                     if (c != 0) w.Write(", ");
-                    w.Write("{0}.{1}", s_fieldName[c], Vector.s_fieldName[r]);
+                    w.Write(s_elementName[c, r]);
                 }
                 w.WriteLine("); } }");
-            }
-
-            w.WriteLine("");
-
-            for (int r = 0; r < Rows; r++)
-            {
-                for (int c = 0; c < Columns; c++)
-                {
-                    w.WriteLine("public {0} {1} {{ get {{ return {2}.{3}; }} }}", ElementType.Name, s_elementName[c, r], s_fieldName[c], Vector.s_fieldName[r]);
-                }
             }
 
             w.WriteLine("");
@@ -197,7 +203,7 @@ namespace Granite.Code.StructsGenerator
             for (int c = 0; c < Columns; c++)
             {
                 if (c != 0) w.Write(", ");
-                w.Write("{0} {1}", vector.Name, s_parameterName[c]);
+                w.Write("{0} {1}", vector.Name, s_columnParameterName[c]);
             }
             w.WriteLine(")");
             w.WriteLine("{");
@@ -205,7 +211,10 @@ namespace Granite.Code.StructsGenerator
 
             for (int c = 0; c < Columns; c++)
             {
-                w.WriteLine("{0} = {1};", s_fieldName[c], s_parameterName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    w.WriteLine("{0} = {1}.{2};", s_elementName[c, r], s_columnParameterName[c], Vector.s_fieldName[r]);
+                }
             }
 
             w.PopIndent();
@@ -229,13 +238,10 @@ namespace Granite.Code.StructsGenerator
 
             for (int c = 0; c < Columns; c++)
             {
-                w.Write("{0} = new {1}(", s_fieldName[c], vector.Name);
                 for (int r = 0; r < Rows; r++)
                 {
-                    if (r != 0) w.Write(", ");
-                    w.Write(s_elementParameterName[c, r]);
+                    w.WriteLine("{0} = {1};", s_elementName[c, r], s_elementParameterName[c, r]);
                 }
-                w.WriteLine(");");
             }
 
             w.PopIndent();
@@ -252,8 +258,11 @@ namespace Granite.Code.StructsGenerator
             w.Write("return ");
             for (int c = 0; c < Columns; c++)
             {
-                if (c != 0) w.Write(" && ");
-                w.Write("a.{0} == b.{0}", s_fieldName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    if (c != 0 || r != 0) w.Write(" && ");
+                    w.Write("a.{0} == b.{0}", s_elementName[c, r]);
+                }
             }
             w.WriteLine(";");
             w.PopIndent();
@@ -266,8 +275,11 @@ namespace Granite.Code.StructsGenerator
             w.Write("return ");
             for (int c = 0; c < Columns; c++)
             {
-                if (c != 0) w.Write(" || ");
-                w.Write("a.{0} != b.{0}", s_fieldName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    if (c != 0 || r != 0) w.Write(" || ");
+                    w.Write("a.{0} != b.{0}", s_elementName[c, r]);
+                }
             }
             w.WriteLine(";");
             w.PopIndent();
@@ -280,8 +292,11 @@ namespace Granite.Code.StructsGenerator
             w.Write("return ");
             for (int c = 0; c < Columns; c++)
             {
-                if (c != 0) w.Write(" && ");
-                w.Write("{0} == other.{0}", s_fieldName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    if (c != 0 || r != 0) w.Write(" && ");
+                    w.Write("{0} == other.{0}", s_elementName[c, r]);
+                }
             }
             w.WriteLine(";");
             w.PopIndent();
@@ -296,8 +311,11 @@ namespace Granite.Code.StructsGenerator
             w.Write("return ");
             for (int c = 0; c < Columns; c++)
             {
-                if (c != 0) w.Write(" && ");
-                w.Write("{0} == m.{0}", s_fieldName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    if (c != 0 || r != 0) w.Write(" && ");
+                    w.Write("{0} == m.{0}", s_elementName[c, r]);
+                }
             }
             w.WriteLine(";");
             w.PopIndent();
@@ -310,8 +328,11 @@ namespace Granite.Code.StructsGenerator
             w.Write("return ");
             for (int c = 0; c < Columns; c++)
             {
-                if (c != 0) w.Write(" ^ ");
-                w.Write("{0}.GetHashCode()", s_fieldName[c]);
+                for (int r = 0; r < Rows; r++)
+                {
+                    if (c != 0 || r != 0) w.Write(" ^ ");
+                    w.Write("{0}.GetHashCode()", s_elementName[c, r]);
+                }
             }
             w.WriteLine(";");
             w.PopIndent();
@@ -325,10 +346,19 @@ namespace Granite.Code.StructsGenerator
             w.WriteLine("{");
             w.PushIndent();
             w.Write("return ");
-            for (int r = 0; r < Rows; r++)
+            for (int c = 0; c < Columns; c++)
             {
-                if (r != 0) w.Write(" + ");
-                w.Write("Row{0}.ToString()", r + 1);
+                if (c != 0)
+                {
+                    w.Write(" + ");
+                }
+
+                w.Write("\"[\"");
+                for (int r = 0; r < Rows; r++)
+                {
+                    w.Write(" + {0}.ToString()", s_elementName[c, r]);
+                }
+                w.WriteLine(" + \"]\"");
             }
             w.WriteLine(";");
             w.PopIndent();
@@ -359,7 +389,7 @@ namespace Granite.Code.StructsGenerator
         {
             foreach (var m in Matrices)
             {
-                if (m.ElementType == ElementType && m.Rows == Columns)
+                if (m.ElementType == ElementType && Columns == m.Rows)
                 {
                     BuildMatrixMultiply(w, m);
                 }
@@ -368,7 +398,7 @@ namespace Granite.Code.StructsGenerator
 
         private void BuildMatrixMultiply(CodeWriter w, Matrix m)
         {
-            var resultMatrix = GetMatrix(ElementType, Rows, m.Columns);
+            var resultMatrix = GetMatrix(ElementType, m.Columns, Rows);
 
             w.WriteLine("public static void Multiply(ref {0} left, ref {1} right, out {2} result)", Name, m.Name, resultMatrix.Name);
             w.WriteLine("{");
@@ -397,6 +427,38 @@ namespace Granite.Code.StructsGenerator
                     }
                 }
             }
+
+            w.PopIndent();
+            w.WriteLine(");");
+
+            w.PopIndent();
+            w.WriteLine("}");
+            w.WriteLine("");
+        }
+
+        private void BuildVectorMultiply(CodeWriter w)
+        {
+            var inVector = Vector.GetVector(ElementType, Columns);
+            var outVector = Vector.GetVector(ElementType, Rows);
+
+            w.WriteLine("public static {0} Multiply(ref {1} m, {2} v)", outVector.Name, Name, inVector.Name);
+            w.WriteLine("{");
+            w.PushIndent();
+
+            w.WriteLine("return new {0}(", outVector.Name);
+            w.PushIndent();
+
+            for (int r = 0; r < Rows; r++)
+            {
+                if (r != 0) w.WriteLine(",");
+                for (int c = 0; c < Columns; c++)
+                {
+                    if (c != 0) w.Write(" + ");
+                    w.Write("m.{0} * v.{1}", s_elementName[c, r], Vector.s_fieldName[c]);
+                }
+            }
+
+            w.WriteLine("");
 
             w.PopIndent();
             w.WriteLine(");");

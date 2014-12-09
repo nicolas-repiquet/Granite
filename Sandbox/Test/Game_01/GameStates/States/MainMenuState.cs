@@ -59,7 +59,7 @@ namespace Test.Game_01.GameStates
 
         public void Draw()
         {
-            m_g.FillRectangle(new Box2i(100, 100, 100, 100),
+            m_g.Draw(new Box2i(100, 100, 100, 100),
                 new Color4ub(0x00, 0xFF, 0x00, 0xFF));
 
             m_g.Flush();
