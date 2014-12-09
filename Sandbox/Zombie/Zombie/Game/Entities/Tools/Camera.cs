@@ -65,7 +65,7 @@ namespace Zombie.Game.Entities.Tools
         {
             var transform = Matrix4.Identity;
 
-            transform *= Matrix4.Translate((int)m_location.Position.X, (int)m_location.Position.Y, 0);
+            transform *= Matrix4.Translate((int)m_location.Position.X - Box.Size.X / 2, (int)m_location.Position.Y - Box.Size.Y / 2, 0);
             transform *= Matrix4.Scale((float)m_box.Size.X / 2f, (float)m_box.Size.Y / 2f, 1f);
             transform *= Matrix4.Translate(1f, 1f, 0.0f);
 

@@ -197,15 +197,20 @@ namespace Zombie.Game.Entities
             if (m_weapon != null)
             {
                 //Transformation des coordonnées
-                //var cameraMatrix = World.Instance.Camera.CreateCameraToWorldTransform();
-                //var target =  cameraMatrix * new Vector3(mouse.X, mouse.Y, 0);
+                var cameraMatrix = World.World.Instance.Camera.CreateCameraToWorldTransform();
+                var worldMatrix = World.World.Instance.Camera.CreateWorldToCameraTransform();
+                var mouseV4 = new Vector4(mouse.X, mouse.Y, 0, 1);
 
-                var target = mouse;
+                var target = Matrix4.Multiply(ref cameraMatrix, mouseV4);
+                //target = Matrix4.Multiply(ref worldMatrix, mouseV4);
 
                 var v = new Vector2(
                     target.X - m_location.Position.X,
                     target.Y - m_location.Position.Y
                     );
+
+                Console.WriteLine("Target orientation : " + v.ToString());
+
                 m_weapon.Fire(m_location.Position, v.Normalize());
             }
             else

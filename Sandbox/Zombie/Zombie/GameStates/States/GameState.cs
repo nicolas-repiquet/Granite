@@ -160,10 +160,10 @@ namespace Zombie.GameStates.States
 
             if (m_mouseLeftPressed)
             {
-                var target = new Vector2(
-                    m_mousePosition.X,
-                    Engine.Display.GetSize().Y-m_mousePosition.Y);
-                m_world.Player.Fire(target);
+                //var target = new Vector2(
+                //    m_mousePosition.X,
+                //    Engine.Display.GetSize().Y-m_mousePosition.Y);
+                m_world.Player.Fire(m_mousePosition);
                 //Console.WriteLine("Target : " + target.ToString());
             }
 
