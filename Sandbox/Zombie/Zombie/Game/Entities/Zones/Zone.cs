@@ -84,15 +84,29 @@ namespace Zombie.Game.Entities.Zones
                 );
             }
 
-            //Tree
-            for (var i = 0; i < 2; i++)
+            //Trees
+            for (var i = 0; i < 3; i++)
             {
                 var x = m_map.Random.Next(0+50, m_map.ZoneSize.X-50);
                 var y = m_map.Random.Next(0+50, m_map.ZoneSize.Y-50);
 
-                var t = new Tree1();
-                t.SetPosition(new Vector2(x, y));
-                AddTree(t);
+                var t1 = new Tree1();
+                t1.SetPosition(new Vector2(x, y));
+                AddTree(t1);
+
+                x = m_map.Random.Next(0 + 50, m_map.ZoneSize.X - 50);
+                y = m_map.Random.Next(0 + 50, m_map.ZoneSize.Y - 50);
+
+                var t2 = new Tree2();
+                t2.SetPosition(new Vector2(x, y));
+                AddTree(t2);
+
+                x = m_map.Random.Next(0 + 50, m_map.ZoneSize.X - 50);
+                y = m_map.Random.Next(0 + 50, m_map.ZoneSize.Y - 50);
+
+                var t3 = new Tree3();
+                t3.SetPosition(new Vector2(x, y));
+                AddTree(t3);
             }
 
             //Lights

@@ -70,6 +70,8 @@
     <Compile Include="Game\Entities\Zones\Floor.cs" />
     <Compile Include="Game\Entities\Zones\Light.cs" />
     <Compile Include="Game\Entities\Zones\Map.cs" />
+    <Compile Include="Game\Entities\Zones\Trees\Tree3.cs" />
+    <Compile Include="Game\Entities\Zones\Trees\Tree2.cs" />
     <Compile Include="Game\Entities\Zones\Trees\Tree1.cs" />
     <Compile Include="Game\Entities\Zones\Wall.cs" />
     <Compile Include="Game\Entities\Zones\Trees\Tree.cs" />

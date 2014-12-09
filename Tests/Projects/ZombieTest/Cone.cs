@@ -60,16 +60,6 @@ namespace ZombieTest
         }
 
         [TestMethod]
-        public void Collision()
-        {
-            var z = "edierp\\BNA_TEST";
-
-            
-
-            Assert.IsTrue(true);
-        }
-
-        [TestMethod]
         public void CollisionRight1()
         {
             var z = new Vector2(10, 0);

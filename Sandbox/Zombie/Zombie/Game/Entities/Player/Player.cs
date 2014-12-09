@@ -198,11 +198,9 @@ namespace Zombie.Game.Entities
             {
                 //Transformation des coordonnées
                 var cameraMatrix = World.World.Instance.Camera.CreateCameraToWorldTransform();
-                var worldMatrix = World.World.Instance.Camera.CreateWorldToCameraTransform();
                 var mouseV4 = new Vector4(mouse.X, mouse.Y, 0, 1);
 
                 var target = Matrix4.Multiply(ref cameraMatrix, mouseV4);
-                //target = Matrix4.Multiply(ref worldMatrix, mouseV4);
 
                 var v = new Vector2(
                     target.X - m_location.Position.X,
