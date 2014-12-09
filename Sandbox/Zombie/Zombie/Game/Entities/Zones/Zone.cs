@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Zombie.Game.Entities.Components;
 using Zombie.Game.Entities.Tools;
+using Zombie.Game.Entities.Zones.Trees;
+using Zombie.Game.Sprites;
 
 namespace Zombie.Game.Entities.Zones
 {
@@ -12,29 +15,38 @@ namespace Zombie.Game.Entities.Zones
     {
         private Map m_map;
         private SegmentRenderer m_wallRenderer;
-        private TriangleRenderer m_lightRenderer;
-        private string m_id;
+        private TriangleFanRenderer m_lightRenderer;
+        protected SpriteRenderer m_treeRenderer;
+        private Vector2i m_id;
 
         public Map Map { get { return m_map; } }
-        public string Id { get { return m_id; } }
+        public Vector2i Id { get { return m_id; } }
 
         public List<Wall> Walls { get; set; }
         public List<Light> Lights { get; set; }
+        public List<Tree> Trees { get; set; }
         public Floor Floor { get; set; }
-        
 
-        public Zone(Map map, string id)
+
+        public Zone(Map map, Vector2i id)
         {
             m_id = id;
             m_map = map;
             Walls = new List<Wall>();
             Lights = new List<Light>();
+            Trees = new List<Tree>();
             m_wallRenderer = new SegmentRenderer();
-            m_lightRenderer = new TriangleRenderer();
+            m_lightRenderer = new TriangleFanRenderer();
             Floor = new Floor(this);
-            
+            m_treeRenderer = new SpriteRenderer(TreesSprites.Instance);
 
             Generate();
+        }
+
+        public void AddTree(Tree tree)
+        {
+            tree.SetSprite(m_treeRenderer);
+            Trees.Add(tree);
         }
 
         private void Generate()
@@ -72,6 +84,17 @@ namespace Zombie.Game.Entities.Zones
                 );
             }
 
+            //Tree
+            for (var i = 0; i < 2; i++)
+            {
+                var x = m_map.Random.Next(0+50, m_map.ZoneSize.X-50);
+                var y = m_map.Random.Next(0+50, m_map.ZoneSize.Y-50);
+
+                var t = new Tree1();
+                t.SetPosition(new Vector2(x, y));
+                AddTree(t);
+            }
+
             //Lights
             for (var i = 0; i < 1; i++)
             {
@@ -105,34 +128,37 @@ namespace Zombie.Game.Entities.Zones
 
             foreach (var light in Lights)
             {
-                var triangles = light.Cone.ToTriangles();
-                foreach (var triangle in triangles)
+                var points = light.Cone.GetPath();
+                foreach (var point in points)
                 {
-                    m_lightRenderer.AddTriangle(triangle);
+                    m_lightRenderer.AddVertex(point.Point, point.Color);
                 }
             }
         }
 
         public void Update(TimeSpan elapsed)
         {
-            
+            Parallel.ForEach(Trees, x => 
+                {
+                    x.Update(elapsed);
+                });
         }
 
         public void Render(Matrix4 transform)
         {
-            var key = Map.GetKey(m_id);
-            transform *= Matrix4.Translate(m_map.ZoneSize.X * key.Item1, m_map.ZoneSize.Y * key.Item2, 0);
+            transform *= Matrix4.Translate(m_map.ZoneSize.X * m_id.X, m_map.ZoneSize.Y * m_id.Y, 0);
 
             Floor.Render(transform);
             m_wallRenderer.Render(transform);
+
+            m_treeRenderer.Render(transform);
 
             //m_lightRenderer.Render(transform);
         }
 
         public void RenderLights(Matrix4 transform)
         {
-            var key = Map.GetKey(m_id);
-            transform *= Matrix4.Translate(m_map.ZoneSize.X * key.Item1, m_map.ZoneSize.Y * key.Item2, 0);
+            transform *= Matrix4.Translate(m_map.ZoneSize.X * m_id.X, m_map.ZoneSize.Y * m_id.Y, 0);
 
             //GL.PolygonMode(GL.FRONT_AND_BACK, GL.LINE);
             m_lightRenderer.Render(transform);

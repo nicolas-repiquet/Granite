@@ -14,9 +14,9 @@ namespace Zombie.Game.Entities.Tools
             public int Segment;
         }
 
-        private struct PointRadius
+        public struct PointRadius
         {
-            public float Radius;
+            public Color4ub Color;
             public Vector3 Point;
         }
 
@@ -135,7 +135,7 @@ namespace Zombie.Game.Entities.Tools
             var i0 = (int)Math.Floor(t1 / SLOT_ANGLE);
             var i1 = (int)Math.Ceiling(t2 / SLOT_ANGLE);
 
-            for (int i = i0; i <= i1; i++)
+            for (int i = i0; i < i1; i++)
             {
                 var index = i % SLOTS;
 
@@ -161,13 +161,27 @@ namespace Zombie.Game.Entities.Tools
             m_segment++;
         }
 
-        private IEnumerable<PointRadius> GetPath()
+        public IEnumerable<PointRadius> GetPath()
         {
             var points = new List<PointRadius>();
 
-            //points.Add(Center);
+            points.Add(new PointRadius()
+            {
+                Point = new Vector3(Center.X, Center.Y, 0),
+                Color = StartColor
+            });
 
-            for (int i = 0; i < SLOTS; i++)
+            var i0 = 0;
+            var i1 = SLOTS;
+
+            if (Angle < PI_2)
+            {
+                i0 = (int)(Math.Floor(((StartAngle + PI_2) % PI_2) / SLOT_ANGLE));
+                i1 = (int)(Math.Ceiling(((StartAngle + Angle + PI_2) % PI_2) / SLOT_ANGLE));
+            }
+            
+                
+            for (int i = i0; i < i1; i++)
             {
                 var prev = (SLOTS + i - 1) % SLOTS;
 
@@ -199,12 +213,12 @@ namespace Zombie.Game.Entities.Tools
                         points.Add(new PointRadius()
                         {
                             Point = p0,
-                            Radius = m_slots[prev].Radius
+                            Color = Color4ub.Mix(StartColor, EndColor, (m_slots[prev].Radius / Radius))
                         });
                         points.Add(new PointRadius()
                         {
                             Point = p1,
-                            Radius = m_slots[i].Radius
+                            Color = Color4ub.Mix(StartColor, EndColor, (m_slots[i].Radius / Radius))
                         });
                     }
                     else
@@ -212,22 +226,29 @@ namespace Zombie.Game.Entities.Tools
                         points.Add(new PointRadius()
                         {
                             Point = p0,
-                            Radius = m_slots[prev].Radius
+                            Color = Color4ub.Mix(StartColor, EndColor, (m_slots[prev].Radius / Radius))
                         });
                     }
                 }
             }
 
-            //points.Add(points[1]);
+            if (Angle >= PI_2)
+            {
+                points.Add(points[1]);
+            }
 
             return points;
         }
 
-        private IEnumerable<PointRadius> GetPathBetweenIndex(int i0, int i1)
+        public IEnumerable<PointRadius> GetPathBetweenIndex(int i0, int i1)
         {
             var points = new List<PointRadius>();
 
-            //points.Add(Center);
+            points.Add(new PointRadius()
+            {
+                Point = new Vector3(Center.X, Center.Y, 0),
+                Color = StartColor
+            });
 
             for (int i = i0+1; i < i1; i++)
             {
@@ -258,13 +279,13 @@ namespace Zombie.Game.Entities.Tools
                 {
                     points.Add(new PointRadius()
                     {
-                        Point = p0, 
-                        Radius = m_slots[prev].Radius
+                        Point = p0,
+                        Color = Color4ub.Mix(StartColor, EndColor, (m_slots[prev].Radius / Radius))
                     });
                     points.Add(new PointRadius()
                     {
                         Point = p1,
-                        Radius = m_slots[i].Radius
+                        Color = Color4ub.Mix(StartColor, EndColor, (m_slots[i].Radius / Radius))
                     });
                 }
                 else
@@ -272,98 +293,96 @@ namespace Zombie.Game.Entities.Tools
                     points.Add(new PointRadius()
                     {
                         Point = p0,
-                        Radius = m_slots[prev].Radius
+                        Color = Color4ub.Mix(StartColor, EndColor, (m_slots[prev].Radius / Radius))
                     });
                 }
             }
 
-            //points.Add(points[1]);
-
             return points;
         }
 
-        public Triangle[] ToTriangles()
-        {
-            var center = new Vector3(Center.X, Center.Y, 0);
+        //public Triangle[] ToTriangles()
+        //{
+        //    var center = new Vector3(Center.X, Center.Y, 0);
 
-            Triangle[] triangles = null;
+        //    Triangle[] triangles = null;
 
-            if (Angle >= PI_2)
-            {
-                var points = GetPath().ToArray();
-                triangles = new Triangle[points.Length];
+        //    if (Angle >= PI_2)
+        //    {
+        //        var points = GetPath().ToArray();
+        //        triangles = new Triangle[points.Length];
 
-                for (var i = 0; i < triangles.Length; i++)
-                {
-                    if (i == triangles.Length - 1)
-                    {
-                        var t = new Triangle()
-                        {
-                            P1 = center,
-                            P2 = points[i].Point,
-                            P3 = points[0].Point,
-                            ColorP1 = StartColor,
-                            ColorP2 = Color4ub.Mix(StartColor, EndColor, (points[i].Radius / Radius)),
-                            ColorP3 = Color4ub.Mix(StartColor, EndColor, (points[0].Radius / Radius))
-                        };
+        //        for (var i = 0; i < triangles.Length; i++)
+        //        {
+        //            if (i == triangles.Length - 1)
+        //            {
+        //                var t = new Triangle()
+        //                {
+        //                    P1 = center,
+        //                    P2 = points[i].Point,
+        //                    P3 = points[0].Point,
+        //                    ColorP1 = StartColor,
+        //                    ColorP2 = Color4ub.Mix(StartColor, EndColor, (points[i].Radius / Radius)),
+        //                    ColorP3 = Color4ub.Mix(StartColor, EndColor, (points[0].Radius / Radius))
+        //                };
 
-                        triangles[i] = t;
-                    }
-                    else if (i != triangles.Length - 1)
-                    {
-                        var t = new Triangle()
-                        {
-                            P1 = center,
-                            P2 = points[i].Point,
-                            P3 = points[i + 1].Point,
-                            ColorP1 = StartColor,
-                            ColorP2 = Color4ub.Mix(StartColor, EndColor, (points[i].Radius / Radius)),
-                            ColorP3 = Color4ub.Mix(StartColor, EndColor, (points[i + 1].Radius / Radius))
-                        };
+        //                triangles[i] = t;
+        //            }
+        //            else if (i != triangles.Length - 1)
+        //            {
+        //                var t = new Triangle()
+        //                {
+        //                    P1 = center,
+        //                    P2 = points[i].Point,
+        //                    P3 = points[i + 1].Point,
+        //                    ColorP1 = StartColor,
+        //                    ColorP2 = Color4ub.Mix(StartColor, EndColor, (points[i].Radius / Radius)),
+        //                    ColorP3 = Color4ub.Mix(StartColor, EndColor, (points[i + 1].Radius / Radius))
+        //                };
 
-                        triangles[i] = t;
-                    }
+        //                triangles[i] = t;
+        //            }
 
-                }
-            }
-            else
-            {
-                //On cherche les index de début et de fin de l'angle
-                var i0 = (int)((Math.Floor(StartAngle / SLOT_ANGLE) + PI_2) % PI_2);
-                var i1 = (int)((Math.Ceiling((StartAngle + Angle) / SLOT_ANGLE) + PI_2) % PI_2);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //On cherche les index de début et de fin de l'angle
+        //        var i0 = (int)((Math.Floor(StartAngle / SLOT_ANGLE) + PI_2) % PI_2);
+        //        var i1 = (int)((Math.Ceiling((StartAngle + Angle) / SLOT_ANGLE) + PI_2) % PI_2);
 
-                var points = GetPathBetweenIndex(i0, i1).ToArray();
+        //        var points = GetPathBetweenIndex(i0, i1).ToArray();
 
-                if (points.Length > 0)
-                {
-                    triangles = new Triangle[points.Length - 1];
+        //        if (points.Length > 0)
+        //        {
+        //            triangles = new Triangle[points.Length - 1];
 
-                    //=========================================
-                    for (var i = 0; i < triangles.Length; i++)
-                    {
-                        var t = new Triangle()
-                        {
-                            P1 = center,
-                            P2 = points[i].Point,
-                            P3 = points[i + 1].Point,
-                            ColorP1 = StartColor,
-                            ColorP2 = Color4ub.Mix(StartColor, EndColor, (points[i].Radius / Radius)),
-                            ColorP3 = Color4ub.Mix(StartColor, EndColor, (points[i + 1].Radius / Radius))
-                        };
+        //            //=========================================
+        //            for (var i = 0; i < triangles.Length; i++)
+        //            {
+        //                var t = new Triangle()
+        //                {
+        //                    P1 = center,
+        //                    P2 = points[i].Point,
+        //                    P3 = points[i + 1].Point,
+        //                    ColorP1 = StartColor,
+        //                    ColorP2 = Color4ub.Mix(StartColor, EndColor, (points[i].Radius / Radius)),
+        //                    ColorP3 = Color4ub.Mix(StartColor, EndColor, (points[i + 1].Radius / Radius))
+        //                };
 
-                        triangles[i] = t;
-                    }
-                }
-                else
-                {
-                    triangles = new Triangle[0];
-                }
-            }
+        //                triangles[i] = t;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            triangles = new Triangle[0];
+        //        }
+        //    }
 
-            Triangles = triangles;
+        //    Triangles = triangles;
 
-            return Triangles;
-        }
+        //    return Triangles;
+        //}
 
         public bool Collision(Vector2 point, float r = 5)
         {

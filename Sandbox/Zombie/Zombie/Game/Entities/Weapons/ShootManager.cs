@@ -24,14 +24,14 @@ namespace Zombie.Game.Entities.Weapons
             }
         }
 
-        protected readonly TriangleRenderer m_renderer;
+        protected readonly TriangleFanRenderer m_renderer;
 
         private List<Shoot> Shoots;
 
         public ShootManager()
         {
             Shoots = new List<Shoot>();
-            m_renderer = new TriangleRenderer();
+            m_renderer = new TriangleFanRenderer();
         }
 
         public void AddShoot(Shoot shoot)
@@ -54,10 +54,10 @@ namespace Zombie.Game.Entities.Weapons
 
             foreach (var b in Shoots)
             {
-                var triangles = b.Cone.ToTriangles();
-                foreach (var t in triangles)
+                var points = b.Cone.GetPath();
+                foreach (var point in points)
                 {
-                    m_renderer.AddTriangle(t);
+                    m_renderer.AddVertex(point.Point, point.Color);
                 }
             }
         }

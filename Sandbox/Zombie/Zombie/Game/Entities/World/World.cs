@@ -36,7 +36,7 @@ namespace Zombie.Game.Entities.World
         {
             m_camera = new Camera();
             m_player = new Player();
-            m_map = new Map(new Vector2i(100, 100));
+            m_map = new Map(new Vector2i(512, 512));
             m_dayLight = new DayLight(m_map, 10);
 
             s_instance = this;

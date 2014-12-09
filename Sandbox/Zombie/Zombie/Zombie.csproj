@@ -64,11 +64,15 @@
     <Compile Include="Game\Entities\Ennemies\EnnemyManager.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
+    <Compile Include="Game\Entities\Tools\Geometries\IPointInstance.cs" />
+    <Compile Include="Game\Entities\Tools\TriangleFanRenderer.cs" />
     <Compile Include="Game\Entities\World\DayLight.cs" />
     <Compile Include="Game\Entities\Zones\Floor.cs" />
     <Compile Include="Game\Entities\Zones\Light.cs" />
     <Compile Include="Game\Entities\Zones\Map.cs" />
+    <Compile Include="Game\Entities\Zones\Trees\Tree1.cs" />
     <Compile Include="Game\Entities\Zones\Wall.cs" />
+    <Compile Include="Game\Entities\Zones\Trees\Tree.cs" />
     <Compile Include="Game\Entities\Zones\Zone.cs" />
     <Compile Include="Game\Entities\Player\Player.cs" />
     <Compile Include="Game\Entities\SpriteSequence.cs" />
@@ -97,6 +101,7 @@
     <Compile Include="Game\Sprites\SpriteSheet.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Game\Textures\GrassTexture.cs" />
+    <Compile Include="Game\Sprites\TreesSprites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +140,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Game\Textures\night.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game\Sprites\TreesSprites.txt" />
+    <EmbeddedResource Include="Game\Sprites\TreesSprites.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
