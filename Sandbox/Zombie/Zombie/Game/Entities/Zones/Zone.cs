@@ -1,4 +1,5 @@
 ﻿using Granite.Core;
+using Granite.Particle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Zombie.Game.Entities.Zones
         public List<Light> Lights { get; set; }
         public List<Tree> Trees { get; set; }
         public Floor Floor { get; set; }
-
+        public ParticleEngine ParticleEngine { get; set; }
 
         public Zone(Map map, Vector2i id)
         {
@@ -109,6 +110,13 @@ namespace Zombie.Game.Entities.Zones
                 AddTree(t3);
             }
 
+            //Fire
+            ParticleEngine = new ParticleEngine(new List<Texture2D>(), 
+                new Vector2(m_map.ZoneSize.X / 2, m_map.ZoneSize.Y / 2),
+                new Vector2(0, 40),
+                100,
+                0.2f);
+
             //Lights
             for (var i = 0; i < 1; i++)
             {
@@ -156,6 +164,8 @@ namespace Zombie.Game.Entities.Zones
                 {
                     x.Update(elapsed);
                 });
+
+            ParticleEngine.Update(elapsed);
         }
 
         public void Render(Matrix4 transform)
@@ -166,6 +176,13 @@ namespace Zombie.Game.Entities.Zones
             m_wallRenderer.Render(transform);
 
             m_treeRenderer.Render(transform);
+
+            //GL.BlendFunc(GL.SRC_ALPHA, GL.ONE);
+            //GL.BlendEquation(GL.FUNC_ADD);
+
+            ParticleEngine.Draw(transform);
+
+            GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
             //m_lightRenderer.Render(transform);
         }
