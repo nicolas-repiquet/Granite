@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using Zombie.Game.Entities;
 using Zombie.Game.Entities.World;
+using Zombie.Game.UI;
 
 namespace Zombie.GameStates.States
 {
     public class GameState : IGameState
     {
         private World m_world;
+        private UIGame m_ui;
         private bool m_mouseLeftPressed;
         private bool m_keyUpPressed;
         private bool m_keyDownPressed;
@@ -28,6 +30,7 @@ namespace Zombie.GameStates.States
             m_mousePosition = Vector2.Zero;
             m_world = new World();
             m_world.Initialize();
+            m_ui = new UIGame();
             Update(new TimeSpan());
         }
 
@@ -188,9 +191,11 @@ namespace Zombie.GameStates.States
             }
         }
 
-        public void Draw()
+        public void Render(TimeSpan elapsed)
         {
             m_world.Render(Matrix4.Identity);
+
+            m_ui.Render(elapsed);
         }
     }
 }

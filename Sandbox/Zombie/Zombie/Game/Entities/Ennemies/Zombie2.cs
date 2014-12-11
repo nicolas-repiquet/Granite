@@ -8,43 +8,38 @@ using Zombie.Game.Sprites;
 
 namespace Zombie.Game.Entities.Ennemies
 {
-    public class Zombie1 : Ennemy
+    public class Zombie2 : Ennemy
     {
         private readonly SpriteSequence m_walkRightSequence;
         private readonly SpriteSequence m_walkLeftSequence;
         private readonly SpriteSequence m_walkFrontSequence;
         private readonly SpriteSequence m_walkBackSequence;
 
-        public Zombie1()
+        public Zombie2()
         {
             m_walkRightSequence = new SpriteSequence(
-                EnnemiesSprites.Instance.Z1Right1,
-                EnnemiesSprites.Instance.Z1Right2,
-                EnnemiesSprites.Instance.Z1Right3
+                EnnemiesSprites.Instance.Z2Right1,
+                EnnemiesSprites.Instance.Z2Right2,
+                EnnemiesSprites.Instance.Z2Right3
             );
 
             m_walkLeftSequence = new SpriteSequence(
-               EnnemiesSprites.Instance.Z1Left1,
-               EnnemiesSprites.Instance.Z1Left2,
-               EnnemiesSprites.Instance.Z1Left3
+               EnnemiesSprites.Instance.Z2Left1,
+               EnnemiesSprites.Instance.Z2Left2,
+               EnnemiesSprites.Instance.Z2Left3
            );
 
             m_walkFrontSequence = new SpriteSequence(
-                EnnemiesSprites.Instance.Z1Front1,
-                EnnemiesSprites.Instance.Z1Front2,
-                EnnemiesSprites.Instance.Z1Front3
+                EnnemiesSprites.Instance.Z2Front1,
+                EnnemiesSprites.Instance.Z2Front2,
+                EnnemiesSprites.Instance.Z2Front3
             );
 
             m_walkBackSequence = new SpriteSequence(
-                EnnemiesSprites.Instance.Z1Back1,
-                EnnemiesSprites.Instance.Z1Back2,
-                EnnemiesSprites.Instance.Z1Back3
+                EnnemiesSprites.Instance.Z2Back1,
+                EnnemiesSprites.Instance.Z2Back2,
+                EnnemiesSprites.Instance.Z2Back3
             );
-
-            m_walkRightSequence.SpritesPerSecond = 10;
-            m_walkLeftSequence.SpritesPerSecond = 10;
-            m_walkFrontSequence.SpritesPerSecond = 10;
-            m_walkBackSequence.SpritesPerSecond = 10;
 
             m_move.Speed = 10;
         }
@@ -92,8 +87,7 @@ namespace Zombie.Game.Entities.Ennemies
 
         public override void SetSprite(SpriteRenderer renderer)
         {
-            m_sprite = renderer.AddSprite(EnnemiesSprites.Instance.Z1Front1);
-            
+            m_sprite = renderer.AddSprite(EnnemiesSprites.Instance.Z2Front1);
         }
 
         public override void Update(TimeSpan elapsed)

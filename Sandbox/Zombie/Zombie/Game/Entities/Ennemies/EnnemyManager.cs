@@ -14,6 +14,7 @@ namespace Zombie.Game.Entities.Ennemies
     {
         private List<Ennemy> m_ennemies;
         public List<Ennemy> Ennemies { get { return m_ennemies; } }
+        public double MaxDistance { get; private set; }
 
         protected readonly SpriteRenderer m_renderer;
 
@@ -56,6 +57,11 @@ namespace Zombie.Game.Entities.Ennemies
 
         public void Update(TimeSpan elapsed)
         {
+            var size = Engine.Display.GetSize();
+            var player = World.World.Instance.Player;
+            var vecteur = player.Location.Position + size / 2 - player.Location.Position;
+            MaxDistance = Math.Abs(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+
             //On test les collisions entre le dernier tir et les zombies
             if (LastShoot != null)
             {
@@ -75,13 +81,34 @@ namespace Zombie.Game.Entities.Ennemies
                 }
             }
 
-            var size = Engine.Display.GetSize();
-            var player = World.World.Instance.Player;
-
             //S'il manque des zombies on complète
             for (var i = 0; i < m_ennemiesCount - m_ennemies.Count; i++)
             {
-                var z1 = new Zombie1();
+                Ennemy z = null;
+
+                var zType = m_random.Next(1, 7);
+
+                switch (zType)
+                {
+                    case 1:
+                        z = new Zombie1();
+                        break;
+                    case 2:
+                        z = new Zombie2();
+                        break;
+                    case 3:
+                        z = new Zombie3();
+                        break;
+                    case 4:
+                        z = new Zombie4();
+                        break;
+                    case 5:
+                        z = new Zombie5();
+                        break;
+                    case 6:
+                        z = new Zombie6();
+                        break;
+                }
 
                 //On le met en dehors de l'écran
 
@@ -112,11 +139,11 @@ namespace Zombie.Game.Entities.Ennemies
                         break;
                 }
 
-                z1.SetPosition(new Vector2(x, y));
+                z.SetPosition(new Vector2(x, y));
 
-                z1.SetTarget(player);
+                z.SetTarget(player);
 
-                EnnemyManager.Instance.AddEnnemy(z1);
+                EnnemyManager.Instance.AddEnnemy(z);
             }
 
             Parallel.ForEach(m_ennemies, x => x.Update(elapsed));

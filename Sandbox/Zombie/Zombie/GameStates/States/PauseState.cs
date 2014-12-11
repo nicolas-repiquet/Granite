@@ -56,7 +56,7 @@ namespace Zombie.GameStates.States
      
         }
 
-        public void Draw()
+        public void Render(TimeSpan elapsed)
         {
             var size = Engine.Display.GetSize();
 

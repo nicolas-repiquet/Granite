@@ -141,11 +141,11 @@ namespace Zombie.GameStates
             }
         }
 
-        public void Draw()
+        public void Render(TimeSpan elapsed)
         {
             if (m_gameState.HasValue)
             {
-                m_gameStates[m_gameState.Value].Draw();
+                m_gameStates[m_gameState.Value].Render(elapsed);
             }
         }
     }

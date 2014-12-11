@@ -239,9 +239,9 @@ namespace Zombie.Game.Entities.Zones
             //    );
             //}
 
-            var radius = 70 + m_map.Random.Next(0, 2);
-            var position = new Vector2(ParticleEngine.EmitterLocation.X + m_map.Random.Next(-2, 2), 
-                ParticleEngine.EmitterLocation.Y + m_map.Random.Next(-2, 2)); 
+            var radius = 300 + m_map.Random.Next(0, 2);
+            var position = new Vector2(ParticleEngine.EmitterLocation.X + m_map.Random.Next(-1, 1), 
+                ParticleEngine.EmitterLocation.Y + m_map.Random.Next(-1, 1)); 
 
             Lights.Add(
                 new Light(
