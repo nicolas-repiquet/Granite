@@ -10,6 +10,12 @@ out vec4 gl_FragColor;
 void main(void)
 {   
 	vec4 v = texture2D(texture, textureCoord);
+
+	if(v.w == 0)
+	{
+		discard;
+	}
+
 	gl_FragColor = v;
 	//gl_FragColor = vec4(0, 0, 1, 1); 
 	//gl_FragColor = color; 

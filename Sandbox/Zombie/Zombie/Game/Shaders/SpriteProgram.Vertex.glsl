@@ -15,6 +15,10 @@ void main(void)
 {
 	color = colorAttrib;
 
+	float d = (projection * (transformAttrib * vec4(0, 0, 0, 1))).y;
+
+	d = clamp(d, -1, 1);
+	
 	if(gl_VertexID == 0)
 	{
 		textureCoord = vec2(textOriginAttrib.x, textTargetAttrib.y);
@@ -33,6 +37,7 @@ void main(void)
 	}
 
 	vec4 pos =  projection * (transformAttrib * vec4(positionAttrib, 1));
-    gl_Position = pos;
 
+    gl_Position = vec4(pos.xy, d, 1);
+	//color = vec4(d, d, d, 1);
 }

@@ -20,6 +20,8 @@ namespace Zombie.Game.Entities.World
         private Framebuffer m_framebufferAllLight;
         private Texture2D m_textureLight;
 
+        private bool m_isUpdated;
+
         public DayLight(Map map, double timeOfDay)
         {
             m_graphics = new Graphics();
@@ -38,6 +40,18 @@ namespace Zombie.Game.Entities.World
             m_framebufferAllLight.Attach(m_textureLight);
         }
 
+        public void CameraHasChanged()
+        {
+            m_isUpdated = true;
+
+            m_textureLight = new Texture2D();
+            var size = Engine.Display.GetSize();
+            m_textureLight.SetData<Color4ub>(size.X, size.Y, null);
+            m_framebufferAllLight.Attach(m_textureLight);
+
+            m_isUpdated = false;
+        }
+
         public void Update(TimeSpan elapsed)
         {
             m_currentTime -= elapsed.TotalSeconds;
@@ -45,6 +59,14 @@ namespace Zombie.Game.Entities.World
             if (m_currentTime < 0)
             {
                 m_currentTime = m_timeOfDay;
+            }
+
+            var size = Engine.Display.GetSize();
+            if (m_textureLight.Size != size)
+            {
+                m_textureLight = new Texture2D();
+                m_textureLight.SetData<Color4ub>(size.X, size.Y, null);
+                m_framebufferAllLight.Attach(m_textureLight);
             }
         }
 

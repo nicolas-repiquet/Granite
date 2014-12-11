@@ -19,7 +19,8 @@ namespace Granite.Particle
         private float m_size;
 
         private readonly SpriteRenderer m_renderer;
-        
+
+        public List<Particle> Particles { get { return particles; } }
 
         public ParticleEngine(List<Texture2D> textures, Vector2 location, Vector2 velocity, int ttl = 50, float size = 1f)
         {
@@ -61,7 +62,7 @@ namespace Granite.Particle
         {
             Texture2D texture = null;// textures[random.Next(textures.Count)];
             Vector2 position = EmitterLocation;
-            Vector2 velocity = new Vector2(m_velocity.X + (float)random.Next(-20, 20), m_velocity.Y);
+            Vector2 velocity = new Vector2(m_velocity.X + (float)random.Next(-10, 10), m_velocity.Y);
 
             float angle = 0;
             float angularVelocity = 1f * (float)(random.NextDouble() * 2 - 1);

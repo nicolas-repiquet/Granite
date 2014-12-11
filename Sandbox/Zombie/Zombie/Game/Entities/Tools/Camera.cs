@@ -26,6 +26,7 @@ namespace Zombie.Game.Entities.Tools
                 {
                     m_zoom = value;
                     World.World.Instance.Map.CameraHasChanged();
+                    World.World.Instance.DayLight.CameraHasChanged();
                 }
             } 
         }

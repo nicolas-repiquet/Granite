@@ -17,6 +17,9 @@ namespace Zombie.Game.Entities.Ennemies
 
         protected readonly SpriteRenderer m_renderer;
 
+        private int m_ennemiesCount;
+        private Random m_random;
+
         private Shoot m_lastShoot;
         public Shoot LastShoot { 
             get { return m_lastShoot; }
@@ -36,9 +39,11 @@ namespace Zombie.Game.Entities.Ennemies
             }
         }
 
-        public EnnemyManager()
+        public EnnemyManager(int ennemiesCount = 10)
         {
             m_ennemies = new List<Ennemy>();
+            m_ennemiesCount = ennemiesCount;
+            m_random = new Random();
 
             m_renderer = new SpriteRenderer(EnnemiesSprites.Instance);
         }
@@ -68,6 +73,50 @@ namespace Zombie.Game.Entities.Ennemies
                 {
                     ennemy.SetSprite(m_renderer);
                 }
+            }
+
+            var size = Engine.Display.GetSize();
+            var player = World.World.Instance.Player;
+
+            //S'il manque des zombies on complète
+            for (var i = 0; i < m_ennemiesCount - m_ennemies.Count; i++)
+            {
+                var z1 = new Zombie1();
+
+                //On le met en dehors de l'écran
+
+                //On choisit d'abords sur quel coté
+                var side = m_random.Next(1, 5);
+
+                var x = player.Location.Position.X;
+                var y = player.Location.Position.Y;
+                var ecart = m_random.Next(10, 30);
+
+                switch (side)
+                {
+                    case 1:
+                        x = player.Location.Position.X - size.X / 2 - ecart;
+                        y = player.Location.Position.Y + m_random.Next(-size.Y/2, size.Y/2);
+                        break;
+                    case 2:
+                        x = player.Location.Position.X + size.X / 2 + ecart;
+                        y = player.Location.Position.Y + m_random.Next(-size.Y / 2, size.Y / 2);
+                        break;
+                    case 3:
+                        x = player.Location.Position.X + m_random.Next(-size.X / 2, size.X / 2);
+                        y = player.Location.Position.Y - size.Y / 2 - ecart;
+                        break;
+                    case 4:
+                        x = player.Location.Position.X + m_random.Next(-size.X / 2, size.X / 2);
+                        y = player.Location.Position.Y + size.Y / 2 + ecart;
+                        break;
+                }
+
+                z1.SetPosition(new Vector2(x, y));
+
+                z1.SetTarget(player);
+
+                EnnemyManager.Instance.AddEnnemy(z1);
             }
 
             Parallel.ForEach(m_ennemies, x => x.Update(elapsed));
