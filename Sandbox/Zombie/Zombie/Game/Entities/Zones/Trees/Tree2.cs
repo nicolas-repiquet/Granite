@@ -33,7 +33,7 @@ namespace Zombie.Game.Entities.Zones.Trees
         public void SetPosition(Vector2 position)
         {
             m_location.SetPosition(position);
-            m_box = new Vector2(128, 128);
+            m_box = new Vector2(64, 96);
         }
 
         public override void SetSprite(SpriteRenderer renderer)

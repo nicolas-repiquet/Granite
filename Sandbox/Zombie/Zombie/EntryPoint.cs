@@ -44,7 +44,7 @@ namespace Zombie
             GL.Enable_BLEND();
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            StateManager.Instance.Draw();
+            StateManager.Instance.Render(elapsed);
 
 
             

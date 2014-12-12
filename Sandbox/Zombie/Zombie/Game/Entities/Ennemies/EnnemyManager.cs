@@ -14,8 +14,12 @@ namespace Zombie.Game.Entities.Ennemies
     {
         private List<Ennemy> m_ennemies;
         public List<Ennemy> Ennemies { get { return m_ennemies; } }
+        public double MaxDistance { get; private set; }
 
         protected readonly SpriteRenderer m_renderer;
+
+        private int m_ennemiesCount;
+        private Random m_random;
 
         private Shoot m_lastShoot;
         public Shoot LastShoot { 
@@ -36,9 +40,11 @@ namespace Zombie.Game.Entities.Ennemies
             }
         }
 
-        public EnnemyManager()
+        public EnnemyManager(int ennemiesCount = 10)
         {
             m_ennemies = new List<Ennemy>();
+            m_ennemiesCount = ennemiesCount;
+            m_random = new Random();
 
             m_renderer = new SpriteRenderer(EnnemiesSprites.Instance);
         }
@@ -51,6 +57,11 @@ namespace Zombie.Game.Entities.Ennemies
 
         public void Update(TimeSpan elapsed)
         {
+            var size = Engine.Display.GetSize();
+            var player = World.World.Instance.Player;
+            var vecteur = player.Location.Position + size / 2 - player.Location.Position;
+            MaxDistance = Math.Abs(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+
             //On test les collisions entre le dernier tir et les zombies
             if (LastShoot != null)
             {
@@ -68,6 +79,71 @@ namespace Zombie.Game.Entities.Ennemies
                 {
                     ennemy.SetSprite(m_renderer);
                 }
+            }
+
+            //S'il manque des zombies on complète
+            for (var i = 0; i < m_ennemiesCount - m_ennemies.Count; i++)
+            {
+                Ennemy z = null;
+
+                var zType = m_random.Next(1, 7);
+
+                switch (zType)
+                {
+                    case 1:
+                        z = new Zombie1();
+                        break;
+                    case 2:
+                        z = new Zombie2();
+                        break;
+                    case 3:
+                        z = new Zombie3();
+                        break;
+                    case 4:
+                        z = new Zombie4();
+                        break;
+                    case 5:
+                        z = new Zombie5();
+                        break;
+                    case 6:
+                        z = new Zombie6();
+                        break;
+                }
+
+                //On le met en dehors de l'écran
+
+                //On choisit d'abords sur quel coté
+                var side = m_random.Next(1, 5);
+
+                var x = player.Location.Position.X;
+                var y = player.Location.Position.Y;
+                var ecart = m_random.Next(10, 30);
+
+                switch (side)
+                {
+                    case 1:
+                        x = player.Location.Position.X - size.X / 2 - ecart;
+                        y = player.Location.Position.Y + m_random.Next(-size.Y/2, size.Y/2);
+                        break;
+                    case 2:
+                        x = player.Location.Position.X + size.X / 2 + ecart;
+                        y = player.Location.Position.Y + m_random.Next(-size.Y / 2, size.Y / 2);
+                        break;
+                    case 3:
+                        x = player.Location.Position.X + m_random.Next(-size.X / 2, size.X / 2);
+                        y = player.Location.Position.Y - size.Y / 2 - ecart;
+                        break;
+                    case 4:
+                        x = player.Location.Position.X + m_random.Next(-size.X / 2, size.X / 2);
+                        y = player.Location.Position.Y + size.Y / 2 + ecart;
+                        break;
+                }
+
+                z.SetPosition(new Vector2(x, y));
+
+                z.SetTarget(player);
+
+                EnnemyManager.Instance.AddEnnemy(z);
             }
 
             Parallel.ForEach(m_ennemies, x => x.Update(elapsed));

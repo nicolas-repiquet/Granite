@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granite.Collision", "..\..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZombieTest", "..\..\Tests\Projects\ZombieTest\ZombieTest.csproj", "{4E2D3283-6F3D-4223-A58A-4346C8A7FC18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granite.Particle", "..\..\Sources\Projects\Granite.Particle\Granite.Particle.csproj", "{FD41A289-8819-4DC7-83FD-08F1881F9826}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{4E2D3283-6F3D-4223-A58A-4346C8A7FC18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E2D3283-6F3D-4223-A58A-4346C8A7FC18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E2D3283-6F3D-4223-A58A-4346C8A7FC18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD41A289-8819-4DC7-83FD-08F1881F9826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD41A289-8819-4DC7-83FD-08F1881F9826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD41A289-8819-4DC7-83FD-08F1881F9826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD41A289-8819-4DC7-83FD-08F1881F9826}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

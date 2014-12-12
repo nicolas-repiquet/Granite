@@ -140,5 +140,6 @@ namespace Granite.Core
 
             return texture;
         }
+
     }
 }

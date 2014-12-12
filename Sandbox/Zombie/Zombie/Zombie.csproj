@@ -60,6 +60,11 @@
     <Compile Include="Game\Entities\Components\RestrictLocationComponent.cs" />
     <Compile Include="Game\Entities\Components\RigidBodyComponent.cs" />
     <Compile Include="Game\Entities\Components\LifeComponent.cs" />
+    <Compile Include="Game\Entities\Ennemies\Zombie6.cs" />
+    <Compile Include="Game\Entities\Ennemies\Zombie5.cs" />
+    <Compile Include="Game\Entities\Ennemies\Zombie4.cs" />
+    <Compile Include="Game\Entities\Ennemies\Zombie3.cs" />
+    <Compile Include="Game\Entities\Ennemies\Zombie2.cs" />
     <Compile Include="Game\Entities\Ennemies\Ennemy.cs" />
     <Compile Include="Game\Entities\Ennemies\EnnemyManager.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Game\Textures\GrassTexture.cs" />
     <Compile Include="Game\Sprites\TreesSprites.cs" />
+    <Compile Include="Game\UI\UIGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +120,10 @@
     <ProjectReference Include="..\..\..\Sources\Projects\Granite.Core\Granite.Core.csproj">
       <Project>{faefced9-55c9-48ac-9174-c5bbe8501c5b}</Project>
       <Name>Granite.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Sources\Projects\Granite.Particle\Granite.Particle.csproj">
+      <Project>{fd41a289-8819-4dc7-83fd-08f1881f9826}</Project>
+      <Name>Granite.Particle</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Sources\Projects\Granite.UI\Granite.UI.csproj">
       <Project>{95cdca6e-e490-4a43-8fe2-7c8aa59f3386}</Project>
@@ -129,9 +139,9 @@
     <EmbeddedResource Include="Game\Shaders\SpriteProgram.Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.png" />
     <EmbeddedResource Include="Game\Sprites\PlayerSprites.png" />
     <EmbeddedResource Include="Game\Sprites\PlayerSprites.txt" />
-    <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.png" />
     <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +156,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Game\Sprites\TreesSprites.txt" />
     <EmbeddedResource Include="Game\Sprites\TreesSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Game\Sprites\slime.png" />
+    <Content Include="Game\Sprites\zombie1.png" />
+    <Content Include="Game\Sprites\zombie2.png" />
+    <Content Include="Game\Sprites\zombie3.png" />
+    <Content Include="Game\Sprites\zombie4.png" />
+    <Content Include="Game\Sprites\zombie5.png" />
+    <Content Include="Game\Sprites\zombie6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

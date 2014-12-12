@@ -56,6 +56,12 @@ namespace Zombie.Game.Entities.Ennemies
            
         }
 
+        public virtual void SetPosition(Vector2 position)
+        {
+            m_location.SetPosition(position);
+            m_box = new Vector2(32, 36);
+        }
+
         public virtual void Update(TimeSpan elapsed)
         {
             if(LastShoot.Any())
@@ -64,6 +70,15 @@ namespace Zombie.Game.Entities.Ennemies
             }
 
             m_move.Update(elapsed);
+
+            var player = World.World.Instance.Player;
+            var vecteur = player.Location.Position - m_location.Position;
+            var distance = Math.Abs(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+
+            if (distance > EnnemyManager.Instance.MaxDistance)
+            {
+                this.Life.TakeDamage(1000);
+            }
         }
 
         public virtual void Render(Matrix4 transform)

@@ -23,6 +23,7 @@ namespace Zombie.Game.Entities.World
         public Player Player { get { return m_player; } }
         public Camera Camera { get { return m_camera; } }
         public Map Map { get { return m_map; } }
+        public DayLight DayLight { get { return m_dayLight; } }
 
         private static World s_instance;
         public static World Instance {
@@ -38,6 +39,8 @@ namespace Zombie.Game.Entities.World
             m_player = new Player();
             m_map = new Map(new Vector2i(512, 512));
             m_dayLight = new DayLight(m_map, 10);
+
+            
 
             s_instance = this;
         }
@@ -80,18 +83,7 @@ namespace Zombie.Game.Entities.World
                 1000,
                 new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 1f, 100)));
 
-            //Ennemies
-            var random = new Random();
-
-            for (var i = 0; i < 300; i++)
-            {
-                var z1 = new Zombie1();
-                z1.SetPosition(new Vector2((float)random.Next(-3000, 3000),
-                    (float)random.Next(-3000, 3000)));
-                z1.SetTarget(Player);
-                EnnemyManager.Instance.AddEnnemy(z1);
-            }
-
+            
         }
 
         
@@ -122,9 +114,13 @@ namespace Zombie.Game.Entities.World
 
             m_map.Render(transform);
 
+            GL.Enable(GL.DEPTH_TEST);
+
             m_player.Render(transform);
 
             EnnemyManager.Instance.Render(transform);
+
+            GL.Disable(GL.DEPTH_TEST);
 
             m_dayLight.Render(transform);
 

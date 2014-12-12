@@ -39,7 +39,7 @@ namespace Zombie.Game.Entities.Weapons
                 (float)((Math.Atan2(direction.Y, direction.X) + Math.PI*2) - (angle / 2.0) - Math.PI*2)
                 );
 
-            m_lifeTimeTotal = 1;
+            m_lifeTimeTotal = 0.2;
             m_lifeTime = m_lifeTimeTotal;
         }
         #endregion
