@@ -112,7 +112,11 @@ namespace Granite.Core
 
         public static Texture2D Load(Stream stream)
         {
-            var bitmap = new Bitmap(stream);
+            return Load(new Bitmap(stream));
+        }
+
+        public static Texture2D Load(Bitmap bitmap)
+        {
             var texture = new Texture2D();
 
             texture.m_size = new Vector2i(bitmap.Width, bitmap.Height);
