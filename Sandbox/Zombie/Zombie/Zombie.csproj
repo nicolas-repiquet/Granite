@@ -72,6 +72,7 @@
     <Compile Include="Game\Entities\Tools\Geometries\IPointInstance.cs" />
     <Compile Include="Game\Entities\Tools\TriangleFanRenderer.cs" />
     <Compile Include="Game\Entities\World\DayLight.cs" />
+    <Compile Include="Game\Entities\Zones\FireCamp.cs" />
     <Compile Include="Game\Entities\Zones\Floor.cs" />
     <Compile Include="Game\Entities\Zones\Light.cs" />
     <Compile Include="Game\Entities\Zones\Map.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Game\Shaders\TriangleProgram.cs" />
     <Compile Include="Game\Sprites\EnnemiesSprites.cs" />
     <Compile Include="Game\Sprites\ISpriteInstance.cs" />
+    <Compile Include="Game\Sprites\FireSprites.cs" />
     <Compile Include="Game\Sprites\PlayerSprites.cs" />
     <Compile Include="Game\Sprites\Sprite.cs" />
     <Compile Include="Game\Sprites\SpriteRenderer.cs" />
@@ -158,6 +160,8 @@
     <EmbeddedResource Include="Game\Sprites\TreesSprites.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Game\Sprites\FireSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\FireSprites.txt" />
     <Content Include="Game\Sprites\slime.png" />
     <Content Include="Game\Sprites\zombie1.png" />
     <Content Include="Game\Sprites\zombie2.png" />

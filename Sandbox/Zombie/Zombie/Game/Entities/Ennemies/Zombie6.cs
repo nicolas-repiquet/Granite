@@ -41,7 +41,12 @@ namespace Zombie.Game.Entities.Ennemies
                 EnnemiesSprites.Instance.Z6Back3
             );
 
-            m_move.Speed = 10;
+            m_walkRightSequence.SpritesPerSecond = 5;
+            m_walkLeftSequence.SpritesPerSecond = 5;
+            m_walkFrontSequence.SpritesPerSecond = 5;
+            m_walkBackSequence.SpritesPerSecond = 5;
+
+            m_move.Speed = World.World.Instance.Map.Random.Next(2, 15);
         }
 
         private SpriteSequence GetSpriteSequence()

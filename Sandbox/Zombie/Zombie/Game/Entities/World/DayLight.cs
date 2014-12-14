@@ -22,6 +22,8 @@ namespace Zombie.Game.Entities.World
 
         private bool m_isUpdated;
 
+        public double DayProgress { get { return m_currentTime * 100 / m_timeOfDay;  } }
+
         public DayLight(Map map, double timeOfDay)
         {
             m_graphics = new Graphics();
@@ -30,7 +32,7 @@ namespace Zombie.Game.Entities.World
             m_map = map;
             m_maxLight = new Color4(1, 1, 1, 1);
             //m_maxLight = new Color4(0.6f, 0.6f, 0.6f, 1);
-            m_maxDark = new Color4(0.5f, 0.5f, 0.4f, 1);
+            m_maxDark = new Color4(0.1f, 0.1f, 0.05f, 1);
 
             //Framebuffers
             m_framebufferAllLight = new Framebuffer();
@@ -75,7 +77,7 @@ namespace Zombie.Game.Entities.World
             GL.BindFramebuffer(m_framebufferAllLight);
 
             //Calcul du pourcentage de la journée passé
-            var percentOfDay = m_currentTime * 100 / m_timeOfDay;
+            var percentOfDay = DayProgress;
             if (percentOfDay < 40 && percentOfDay > 10)
             {
                 var percentOfNight = (percentOfDay - 10) / (40f - 10f);

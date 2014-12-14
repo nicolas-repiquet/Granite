@@ -27,7 +27,8 @@ namespace Zombie.Game.Entities.Zones
         public List<Light> Lights { get; set; }
         public List<Tree> Trees { get; set; }
         public Floor Floor { get; set; }
-        public ParticleEngine ParticleEngine { get; set; }
+        public FireCamp FireCamp { get; set; }
+        //public ParticleEngine ParticleEngine { get; set; }
 
         public Zone(Map map, Vector2i id)
         {
@@ -162,69 +163,74 @@ namespace Zombie.Game.Entities.Zones
             }
 
             //Fire
+            //var peX = m_map.Random.Next((int)(m_map.ZoneSize.X * 0.1f), (int)(m_map.ZoneSize.X * 0.9f));
+            //var peY = m_map.Random.Next((int)(m_map.ZoneSize.Y * 0.1f), (int)(m_map.ZoneSize.Y * 0.9f));
+            //ParticleEngine = new ParticleEngine(new List<Texture2D>(),
+            //    new Vector2(peX, peY),
+            //    new Vector2(0, 20),
+            //    150,
+            //    0.2f);
+
             var peX = m_map.Random.Next((int)(m_map.ZoneSize.X * 0.1f), (int)(m_map.ZoneSize.X * 0.9f));
             var peY = m_map.Random.Next((int)(m_map.ZoneSize.Y * 0.1f), (int)(m_map.ZoneSize.Y * 0.9f));
-            ParticleEngine = new ParticleEngine(new List<Texture2D>(),
-                new Vector2(peX, peY),
-                new Vector2(0, 20),
-                150,
-                0.2f);
+            var firePosition = new Vector2(peX, peY);
+            FireCamp = new FireCamp();
+            FireCamp.SetPosition(firePosition);
 
-            ////Lights
-            //for (var i = 0; i < 1; i++)
-            //{
-            //    //var x = m_map.Random.Next(0, m_map.ZoneSize.X);
-            //    //var y = m_map.Random.Next(0, m_map.ZoneSize.Y);
-            //    var x = m_map.ZoneSize.X/2;
-            //    var y = m_map.ZoneSize.Y/2;
+            //Lights
+            for (var i = 0; i < 1; i++)
+            {
+                //var x = m_map.Random.Next(0, m_map.ZoneSize.X);
+                //var y = m_map.Random.Next(0, m_map.ZoneSize.Y);
+                //var x = m_map.ZoneSize.X / 2;
+                //var y = m_map.ZoneSize.Y / 2;
 
-            //    var radius = m_map.ZoneSize.X/2-20;
+                var radius = 100 + m_map.Random.Next(0, 10);
 
-            //    Lights.Add(
-            //        new Light(
-            //            new Vector2(x, y),
-            //            radius,
-            //            new Color4ub(255, 255, 255, 255),
-            //            new Color4ub(0, 0, 0, 255))
-            //    );
-            //}
+                Lights.Add(
+                    new Light(
+                        new Vector2(firePosition.X, firePosition.Y - FireCamp.Box.Y/4),
+                        radius,
+                        new Color4ub(255, 255, 255, 255),
+                        new Color4ub(0, 0, 0, 255))
+                );
+            }
 
-            //foreach (var wall in Walls)
-            //{
-            //    foreach (var segment in wall.Walls)
-            //    {
-            //        foreach (var light in Lights)
-            //        {
-            //            light.Cone.Add(segment.P1, segment.P2);
-            //        }
-            //        m_wallRenderer.AddSegment(segment);
-            //    }
-            //}
+            var segments = Walls.SelectMany(x => x.Walls).ToList();
 
-            //foreach (var light in Lights)
-            //{
-            //    var points = light.Cone.GetPath();
-            //    foreach (var point in points)
-            //    {
-            //        m_lightRenderer.AddVertex(point.Point, point.Color);
-            //    }
-            //}
+            Parallel.ForEach(segments, segment =>
+                {
+                    foreach (var light in Lights)
+                    {
+                        light.Cone.Add(segment.P1, segment.P2);
+                    }
+                    //m_wallRenderer.AddSegment(segment);
+                });
+
+            foreach (var light in Lights)
+            {
+                var points = light.Cone.GetPath();
+                foreach (var point in points)
+                {
+                    m_lightRenderer.AddVertex(point.Point, point.Color);
+                }
+            }
         }
 
         public void Update(TimeSpan elapsed)
         {
-            Parallel.ForEach(Trees, x => 
-                {
-                    x.Update(elapsed);
-                });
+            //Parallel.ForEach(Trees, x => 
+            //    {
+            //        x.Update(elapsed);
+            //    });
 
-            ParticleEngine.Update(elapsed);
+            //ParticleEngine.Update(elapsed);
 
             //var particles = ParticleEngine.Particles;
 
             //Lights
-            Lights.Clear();
-            m_lightRenderer.Clear();
+            //Lights.Clear();
+            //m_lightRenderer.Clear();
 
             //foreach (var particle in particles.Where(x => x.TTL > x.TTLMax/2))
             //{
@@ -239,38 +245,66 @@ namespace Zombie.Game.Entities.Zones
             //    );
             //}
 
-            var radius = 300 + m_map.Random.Next(0, 2);
-            var position = new Vector2(ParticleEngine.EmitterLocation.X + m_map.Random.Next(-1, 1), 
-                ParticleEngine.EmitterLocation.Y + m_map.Random.Next(-1, 1)); 
+            //var radius = 300 + m_map.Random.Next(0, 2);
+            //var position = new Vector2(ParticleEngine.EmitterLocation.X + m_map.Random.Next(-1, 1), 
+            //    ParticleEngine.EmitterLocation.Y + m_map.Random.Next(-1, 1));
 
-            Lights.Add(
-                new Light(
-                    position,
-                    radius,
-                    new Color4ub(255, 255, 200, 255),
-                    new Color4ub(0, 0, 0, 255))
-            );
+            //Lights.Add(
+            //    new Light(
+            //        position,
+            //        radius,
+            //        new Color4ub(255, 255, 200, 255),
+            //        new Color4ub(0, 0, 0, 255))
+            //);
 
-            foreach (var wall in Walls)
-            {
-                foreach (var segment in wall.Walls)
-                {
-                    foreach (var light in Lights)
-                    {
-                        light.Cone.Add(segment.P1, segment.P2);
-                    }
-                    m_wallRenderer.AddSegment(segment);
-                }
-            }
+            //var segments = Walls.SelectMany(x => x.Walls).ToList();
 
-            foreach (var light in Lights)
-            {
-                var points = light.Cone.GetPath();
-                foreach (var point in points)
-                {
-                    m_lightRenderer.AddVertex(point.Point, point.Color);
-                }
-            }
+            //Parallel.ForEach(segments, segment =>
+            //    {
+            //        foreach (var light in Lights)
+            //        {
+            //            light.Cone.Add(segment.P1, segment.P2);
+            //        }
+            //        //m_wallRenderer.AddSegment(segment);
+            //    });
+
+            //foreach (var light in Lights)
+            //{
+            //    var points = light.Cone.GetPath();
+            //    foreach (var point in points)
+            //    {
+            //        m_lightRenderer.AddVertex(point.Point, point.Color);
+            //    }
+            //}
+
+            FireCamp.Update(elapsed);
+
+            //On modifie l'intensité des lumières en fonction de la distance avec le player
+            //m_lightRenderer.Clear();
+
+            //var size = Engine.Display.GetSize();
+            //var screenSize = Math.Max(size.X, size.Y)/2;
+            //var player = World.World.Instance.Player;
+
+            //foreach (var light in Lights)
+            //{
+            //    //pour chaque lumiere on calcul la distance avec le joueur
+            //    var vecteur = light.Position - player.Location.Position;
+            //    var distance = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+            //    var percent = (1f - (distance/screenSize)) * 255;
+            //    if(percent < 0)
+            //    {
+            //        percent = 0;
+            //    }
+
+            //    light.Cone.StartColor = Color4ub.Mix(new Color4ub(255, 255, 255, 255), new Color4ub(0, 0, 0, 255), (float)(1-percent));
+
+            //    var points = light.Cone.GetPath();
+            //    foreach (var point in points)
+            //    {
+            //        m_lightRenderer.AddVertex(point.Point, point.Color);
+            //    }
+            //}
         }
 
         public void Render(Matrix4 transform)
@@ -287,7 +321,8 @@ namespace Zombie.Game.Entities.Zones
             //GL.BlendFunc(GL.SRC_ALPHA, GL.ONE);
             //GL.BlendEquation(GL.FUNC_ADD);
 
-            ParticleEngine.Draw(transform);
+            //ParticleEngine.Draw(transform);
+            FireCamp.Render(transform);
 
             GL.Disable(GL.DEPTH_TEST);
 

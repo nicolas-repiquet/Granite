@@ -27,7 +27,7 @@ namespace Granite.Particle.Shaders
         {
             Position = GetAttribute<Vector3>("positionAttrib");
             Transform = GetAttribute<Matrix4>("transformAttrib");
-            Color = GetAttribute<Color4ub>("colorAttrib", true);
+            //Color = GetAttribute<Color4ub>("colorAttrib", true);
             TextureOrigin = GetAttribute<Vector2>("textOriginAttrib");
             TextureTarget = GetAttribute<Vector2>("textTargetAttrib");
             Progress = GetAttribute<float>("progressAttrib");

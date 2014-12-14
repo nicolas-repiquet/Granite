@@ -44,5 +44,20 @@ namespace Zombie.Game.Entities.Zones
         {
  
         }
+
+        protected void UpdateSprite(TimeSpan elapsed, SpriteSequence sequence)
+        {
+            if (sequence != m_currentSequence)
+            {
+                m_currentSequence = sequence;
+                m_currentSequence.Reset();
+            }
+
+            m_currentSequence.Update(elapsed);
+
+            m_sprite.Position = new Vector2(m_location.Position.X - m_box.X / 2, m_location.Position.Y - m_box.Y / 2);
+            m_sprite.Sprite = m_currentSequence.CurrentSprite;
+            m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
+        }
     }
 }

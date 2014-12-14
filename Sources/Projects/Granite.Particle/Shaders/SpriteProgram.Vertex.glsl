@@ -3,7 +3,7 @@
 uniform mat4 projection;
 
 in vec3 positionAttrib;
-in vec4 colorAttrib;
+//in vec4 colorAttrib;
 in mat4 transformAttrib;
 in vec2 textOriginAttrib;
 in vec2 textTargetAttrib;
@@ -15,7 +15,7 @@ out vec2 textureCoord;
 
 void main(void)
 {
-	color = colorAttrib;
+	//color = colorAttrib;
 	progress = progressAttrib;
 
 	float d = (projection * (transformAttrib * vec4(0, 0, 0, 1))).y;

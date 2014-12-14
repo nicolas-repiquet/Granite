@@ -19,6 +19,7 @@ namespace Zombie.Game.Entities.Ennemies
         protected readonly SpriteRenderer m_renderer;
 
         private int m_ennemiesCount;
+        private int m_ennemiesCountInitial;
         private Random m_random;
 
         private Shoot m_lastShoot;
@@ -44,6 +45,7 @@ namespace Zombie.Game.Entities.Ennemies
         {
             m_ennemies = new List<Ennemy>();
             m_ennemiesCount = ennemiesCount;
+            m_ennemiesCountInitial = ennemiesCount;
             m_random = new Random();
 
             m_renderer = new SpriteRenderer(EnnemiesSprites.Instance);
@@ -57,10 +59,21 @@ namespace Zombie.Game.Entities.Ennemies
 
         public void Update(TimeSpan elapsed)
         {
+            //On modifie le nombre de zombies en fonction du moment de la journée
+            var day = World.World.Instance.DayLight.DayProgress;
+            if (day > 10 && day < 20)
+            {
+                m_ennemiesCount = m_ennemiesCountInitial * 10;
+            }
+            else
+            {
+                m_ennemiesCount = m_ennemiesCountInitial;
+            }
+
             var size = Engine.Display.GetSize();
             var player = World.World.Instance.Player;
             var vecteur = player.Location.Position + size / 2 - player.Location.Position;
-            MaxDistance = Math.Abs(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+            MaxDistance = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2)) + 20;
 
             //On test les collisions entre le dernier tir et les zombies
             if (LastShoot != null)
@@ -117,7 +130,7 @@ namespace Zombie.Game.Entities.Ennemies
 
                 var x = player.Location.Position.X;
                 var y = player.Location.Position.Y;
-                var ecart = m_random.Next(10, 30);
+                var ecart = m_random.Next(10, 200);
 
                 switch (side)
                 {

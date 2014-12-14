@@ -10,7 +10,7 @@ namespace Zombie.Game.Shaders
     {
         public ProgramAttribute<Vector3> Position { get; private set; }
         public ProgramAttribute<Matrix4> Transform { get; private set; }
-        public ProgramAttribute<Vector4> Color { get; private set; }
+        public ProgramAttribute<Color4ub> Color { get; private set; }
         public ProgramAttribute<Vector2> TextureOrigin { get; private set; }
         public ProgramAttribute<Vector2> TextureTarget { get; private set; }
 
@@ -25,7 +25,7 @@ namespace Zombie.Game.Shaders
         {
             Position = GetAttribute<Vector3>("positionAttrib");
             Transform = GetAttribute<Matrix4>("transformAttrib");
-            //Color = GetAttribute<Vector4>("colorAttrib");
+            //Color = GetAttribute<Color4ub>("colorAttrib");
             TextureOrigin = GetAttribute<Vector2>("textOriginAttrib");
             TextureTarget = GetAttribute<Vector2>("textTargetAttrib");
 

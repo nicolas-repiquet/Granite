@@ -73,7 +73,7 @@ namespace Zombie.Game.Entities.Ennemies
 
             var player = World.World.Instance.Player;
             var vecteur = player.Location.Position - m_location.Position;
-            var distance = Math.Abs(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+            var distance = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
 
             if (distance > EnnemyManager.Instance.MaxDistance)
             {
