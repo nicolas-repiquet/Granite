@@ -93,7 +93,11 @@ namespace Zombie.Game.Entities.World
             var size = Engine.Display.GetSize();
             m_camera.SetSize(new Vector2(size.X, size.Y));
 
-            m_player.Update(elapsed);
+            if (Player.Life.IsAlive)
+            {
+                m_player.Update(elapsed);
+            }
+
             m_camera.Update(elapsed);
 
             ShootManager.Instance.Update(elapsed);
@@ -116,8 +120,11 @@ namespace Zombie.Game.Entities.World
 
             GL.Enable(GL.DEPTH_TEST);
 
-            m_player.Render(transform);
-
+            if (Player.Life.IsAlive)
+            {
+                m_player.Render(transform);
+            }
+            
             EnnemyManager.Instance.Render(transform);
 
             GL.Disable(GL.DEPTH_TEST);

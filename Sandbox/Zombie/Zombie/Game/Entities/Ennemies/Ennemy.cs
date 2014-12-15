@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Tools;
 using Zombie.Game.Entities.Weapons;
 using Zombie.Game.Sprites;
 
@@ -78,6 +79,12 @@ namespace Zombie.Game.Entities.Ennemies
             if (distance > EnnemyManager.Instance.MaxDistance)
             {
                 this.Life.TakeDamage(1000);
+            }
+            else if (distance < 10 && player.Life.IsAlive)
+            {
+                var damage = RandomGenerator.Instance.Random.Next(5, 15);
+                player.Life.TakeDamage(damage);
+                Console.WriteLine("Player take " + damage + " damages (" + player.Life.Life + ")");
             }
         }
 

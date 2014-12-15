@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Tools;
 
 namespace Zombie.Game.Entities.Zones
 {
@@ -27,7 +28,7 @@ namespace Zombie.Game.Entities.Zones
         {
             m_zones = new Dictionary<Vector2i, Zone>();
             ZoneSize = zoneSize;
-            m_random = new Random();
+            m_random = RandomGenerator.Instance.Random;
             m_isUpdated = false;
         }
 

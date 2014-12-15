@@ -71,6 +71,7 @@
     <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\IPointInstance.cs" />
+    <Compile Include="Game\Entities\Tools\RandomGenerator.cs" />
     <Compile Include="Game\Entities\Tools\TriangleFanRenderer.cs" />
     <Compile Include="Game\Entities\World\DayLight.cs" />
     <Compile Include="Game\Entities\Zones\FireCamp.cs" />
