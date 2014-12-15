@@ -60,8 +60,8 @@ namespace Zombie.Game.Entities.Ennemies
         public void Update(TimeSpan elapsed)
         {
             //On modifie le nombre de zombies en fonction du moment de la journée
-            var day = World.World.Instance.DayLight.DayProgress;
-            if (day > 10 && day < 20)
+            var period = World.World.Instance.DayLight.GetDayPeriod();
+            if (period == World.DayPeriod.Night)
             {
                 m_ennemiesCount = m_ennemiesCountInitial * 10;
             }

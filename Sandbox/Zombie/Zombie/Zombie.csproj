@@ -61,6 +61,9 @@
     <Compile Include="Game\Entities\Components\RestrictLocationComponent.cs" />
     <Compile Include="Game\Entities\Components\RigidBodyComponent.cs" />
     <Compile Include="Game\Entities\Components\LifeComponent.cs" />
+    <Compile Include="Game\Entities\Effects\Blood.cs" />
+    <Compile Include="Game\Entities\Effects\Blood1.cs" />
+    <Compile Include="Game\Entities\Effects\BloodManager.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie6.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie5.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie4.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Game\Entities\World\World.cs" />
     <Compile Include="Game\Shaders\SpriteProgram.cs" />
     <Compile Include="Game\Shaders\TriangleProgram.cs" />
+    <Compile Include="Game\Sprites\BloodSprites.cs" />
     <Compile Include="Game\Sprites\EnnemiesSprites.cs" />
     <Compile Include="Game\Sprites\ISpriteInstance.cs" />
     <Compile Include="Game\Sprites\FireSprites.cs" />
@@ -148,9 +152,7 @@
     <EmbeddedResource Include="Game\Sprites\PlayerSprites.txt" />
     <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Entities\Effects\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Game\Textures\grass.jpg" />
   </ItemGroup>
@@ -164,6 +166,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Game\Sprites\FireSprites.png" />
     <EmbeddedResource Include="Game\Sprites\FireSprites.txt" />
+    <EmbeddedResource Include="Game\Sprites\BloodSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\BloodSprites.txt" />
     <Content Include="Game\Sprites\slime.png" />
     <Content Include="Game\Sprites\zombie1.png" />
     <Content Include="Game\Sprites\zombie2.png" />

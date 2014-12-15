@@ -8,6 +8,14 @@ using Zombie.Game.Entities.Zones;
 
 namespace Zombie.Game.Entities.World
 {
+    public enum DayPeriod
+    {
+        Day,
+        Night,
+        Evening,
+        Morning
+    }
+
     public class DayLight
     {
         private Graphics m_graphics;
@@ -64,13 +72,37 @@ namespace Zombie.Game.Entities.World
             m_isUpdated = false;
         }
 
-        public void ConvertDayProgressToTime()
+        private void ConvertDayProgressToTime()
         {
             var secondsInDay = 24 * 3600;
 
             var progress = (1-(DayProgress/100.0)) * secondsInDay;
 
             m_time = TimeSpan.FromSeconds(progress);
+        }
+
+        public DayPeriod GetDayPeriod()
+        {
+            DayPeriod period = DayPeriod.Day;
+
+            if (m_time > m_timeStartNight && m_time <= m_timeStartNight + m_timeTransition)
+            {
+                period = DayPeriod.Evening;
+            }
+            else if (m_time > m_timeStartDay && m_time <= m_timeStartDay + m_timeTransition)
+            {
+                period = DayPeriod.Morning;
+            }
+            else if (m_time > m_timeStartDay + m_timeTransition && m_time <= m_timeStartNight)
+            {
+                period = DayPeriod.Day;
+            }
+            else
+            {
+                period = DayPeriod.Night;
+            }
+
+            return period;
         }
 
         public void Update(TimeSpan elapsed)
@@ -97,42 +129,49 @@ namespace Zombie.Game.Entities.World
         {
             GL.BindFramebuffer(m_framebufferAllLight);
 
-            //Calcul du pourcentage de la journée passé
-            if (m_time > m_timeStartNight && m_time <= m_timeStartNight + m_timeTransition)
-            {
-                var percentOfTransitionInDay = m_timeTransition.TotalSeconds;
-                var percentOfTransition = (m_time - m_timeStartNight).TotalSeconds;
-                var percentOfNight = percentOfTransition / percentOfTransitionInDay;
+            var period = GetDayPeriod();
 
-                var color = new Color4(
-                    (float)((m_maxLight.R - m_maxDark.R) * (1-percentOfNight) + m_maxDark.R),
-                    (float)((m_maxLight.G - m_maxDark.G) * (1 - percentOfNight) + m_maxDark.G),
-                    (float)((m_maxLight.B - m_maxDark.B) * (1 - percentOfNight) + 0.2 + m_maxDark.B),
-                    1);
+            double percentOfTransitionInDay;
+            double percentOfTransition;
+            Color4 color;
 
-                GL.ClearColor(color);
-            }
-            else if (m_time > m_timeStartDay && m_time <= m_timeStartDay + m_timeTransition)
+            switch (period)
             {
-                var percentOfTransitionInDay = m_timeTransition.TotalSeconds;
-                var percentOfTransition = (m_time - m_timeStartDay).TotalSeconds;
-                var percentOfDay = percentOfTransition / percentOfTransitionInDay;
+                case DayPeriod.Evening:
+                    percentOfTransitionInDay = m_timeTransition.TotalSeconds;
+                    percentOfTransition = (m_time - m_timeStartNight).TotalSeconds;
+                    var percentOfNight = percentOfTransition / percentOfTransitionInDay;
 
-                var color = new Color4(
-                    (float)((m_maxLight.R - m_maxDark.R) * percentOfDay + 0.3f + m_maxDark.R),
-                    (float)((m_maxLight.G - m_maxDark.G) * percentOfDay + 0.1f + m_maxDark.G),
-                    (float)((m_maxLight.B - m_maxDark.B) * percentOfDay + m_maxDark.B),
-                    1);
+                    color = new Color4(
+                        (float)((m_maxLight.R - m_maxDark.R) * (1-percentOfNight) + m_maxDark.R),
+                        (float)((m_maxLight.G - m_maxDark.G) * (1 - percentOfNight) + m_maxDark.G),
+                        (float)((m_maxLight.B - m_maxDark.B) * (1 - percentOfNight) + 0.2 + m_maxDark.B),
+                        1);
 
-                GL.ClearColor(color);
-            }
-            else if (m_time > m_timeStartDay + m_timeTransition && m_time <= m_timeStartNight)
-            {
-                GL.ClearColor(m_maxLight);
-            }
-            else
-            {
-                GL.ClearColor(m_maxDark);
+                    GL.ClearColor(color);
+                    break;
+
+                case DayPeriod.Morning:
+                    percentOfTransitionInDay = m_timeTransition.TotalSeconds;
+                    percentOfTransition = (m_time - m_timeStartDay).TotalSeconds;
+                    var percentOfDay = percentOfTransition / percentOfTransitionInDay;
+
+                    color = new Color4(
+                        (float)((m_maxLight.R - m_maxDark.R) * percentOfDay + 0.3f + m_maxDark.R),
+                        (float)((m_maxLight.G - m_maxDark.G) * percentOfDay + 0.1f + m_maxDark.G),
+                        (float)((m_maxLight.B - m_maxDark.B) * percentOfDay + m_maxDark.B),
+                        1);
+
+                    GL.ClearColor(color);
+                    break;
+
+                case DayPeriod.Day:
+                    GL.ClearColor(m_maxLight);
+                    break;
+
+                case DayPeriod.Night:
+                    GL.ClearColor(m_maxDark);
+                    break;
             }
 
             GL.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);

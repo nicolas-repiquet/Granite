@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Effects;
 using Zombie.Game.Entities.Ennemies;
 using Zombie.Game.Entities.Tools;
 using Zombie.Game.Entities.Weapons;
@@ -93,14 +94,13 @@ namespace Zombie.Game.Entities.World
             var size = Engine.Display.GetSize();
             m_camera.SetSize(new Vector2(size.X, size.Y));
 
-            if (Player.Life.IsAlive)
-            {
-                m_player.Update(elapsed);
-            }
+            m_player.Update(elapsed);
 
             m_camera.Update(elapsed);
 
             ShootManager.Instance.Update(elapsed);
+
+            BloodManager.Instance.Update(elapsed);
 
             EnnemyManager.Instance.Update(elapsed);
 
@@ -120,10 +120,9 @@ namespace Zombie.Game.Entities.World
 
             GL.Enable(GL.DEPTH_TEST);
 
-            if (Player.Life.IsAlive)
-            {
-                m_player.Render(transform);
-            }
+            m_player.Render(transform);
+
+            BloodManager.Instance.Render(transform);
             
             EnnemyManager.Instance.Render(transform);
 
