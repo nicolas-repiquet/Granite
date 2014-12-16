@@ -101,6 +101,11 @@ namespace Zombie.Game.Entities.Weapons.Bullets
             m_move.Direction = direction;
         }
 
+        public void InstantDeath()
+        {
+            m_lifeTime = 0;
+        }
+
         public object Clone()
         {
             var clone = (Bullet)this.MemberwiseClone();

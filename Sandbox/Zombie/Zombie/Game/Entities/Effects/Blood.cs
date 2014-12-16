@@ -15,6 +15,7 @@ namespace Zombie.Game.Entities.Effects
         private double m_lifeTime;
         private double m_lifeTimeTotal;
         private bool m_neverDie;
+        private float m_angle;
 
         protected ISpriteInstance m_sprite;
 
@@ -33,6 +34,7 @@ namespace Zombie.Game.Entities.Effects
             m_lifeTimeTotal = 0.5;
             m_lifeTime = m_lifeTimeTotal;
             m_neverDie = false;
+            m_angle = 0f;
         }
 
         public virtual void SetSprite(SpriteRenderer renderer)
@@ -59,6 +61,11 @@ namespace Zombie.Game.Entities.Effects
             m_box = new Vector2(64, 64);
         }
 
+        public void SetDirection(Vector2 direction)
+        {
+            m_angle = (float)Math.Atan2(direction.Y, direction.X); ;
+        }
+
         protected void UpdateSprite(TimeSpan elapsed, SpriteSequence sequence)
         {
             if (sequence != m_currentSequence)
@@ -72,6 +79,7 @@ namespace Zombie.Game.Entities.Effects
             m_sprite.Position = new Vector2(m_location.Position.X - m_box.X / 2, m_location.Position.Y - m_box.Y / 2);
             m_sprite.Sprite = m_currentSequence.CurrentSprite;
             m_sprite.Size = new Vector2(m_box.X, m_box.Y);
+            m_sprite.Angle = m_angle;
         }
     }
 }

@@ -188,7 +188,7 @@ namespace Zombie.Game.Entities
             }
             else if(m_blood == null)
             {
-                m_blood = new Blood1();
+                m_blood = new Blood3();
                 m_blood.SetPosition(m_location.Position);
                 m_blood.NeverDie = true;
                 BloodManager.Instance.AddBlood(m_blood);

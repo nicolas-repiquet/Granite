@@ -75,9 +75,9 @@ namespace Zombie.Game.Entities.Ennemies
                 Console.WriteLine("Player take " + damage + " damages (" + player.Life.Life + ")");
             }
 
-            if (m_life.HasTakenDamage)
+            if (m_life.HasTakenDamage.HasValue)
             {
-                BloodManager.Instance.AddBlood(m_location.Position);
+                BloodManager.Instance.AddBlood(m_life.HasTakenDamage.Value, m_location.Position, vecteur * -1);
                 m_life.DamageProcessed();
             }
         }

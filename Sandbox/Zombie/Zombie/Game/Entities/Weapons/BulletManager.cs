@@ -82,6 +82,7 @@ namespace Zombie.Game.Entities.Weapons
                 if (norme < 15)
                 {
                     ennemy.Life.TakeDamage(bullet.Weapon.Damage);
+                    bullet.InstantDeath();
                 }
             }
         }

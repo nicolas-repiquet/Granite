@@ -60,7 +60,7 @@ namespace Zombie.Game.Entities.World
             Player.SetPosition(new Vector2(0, 0));
             Player.AddWeapon(new Weapon(
                 "Gatling gun",
-                25,
+                15,
                 100,
                 0.1,
                 3,
@@ -78,12 +78,12 @@ namespace Zombie.Game.Entities.World
                 new BulletSniper()));
             Player.AddWeapon(new Weapon(
                 "ShotGun",
-                50,
+                30,
                 50,
                 0.5,
                 3,
                 1000,
-                10,
+                700,
                 new BulletGatling()));
 
             //Player.AddWeapon(new Weapon(

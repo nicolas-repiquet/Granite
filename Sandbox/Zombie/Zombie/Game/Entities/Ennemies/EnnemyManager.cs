@@ -69,9 +69,9 @@ namespace Zombie.Game.Entities.Ennemies
             var vecteur = player.Location.Position + size / 2 - player.Location.Position;
             MaxDistance = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2)) + 20;
 
-            if (m_ennemies.Any(x => !x.Life.IsAlive && !x.Life.HasTakenDamage))
+            if (m_ennemies.Any(x => !x.Life.IsAlive && !x.Life.HasTakenDamage.HasValue))
             {
-                m_ennemies.RemoveAll(x => !x.Life.IsAlive && !x.Life.HasTakenDamage);
+                m_ennemies.RemoveAll(x => !x.Life.IsAlive && !x.Life.HasTakenDamage.HasValue);
 
                 m_renderer.Clear();
 

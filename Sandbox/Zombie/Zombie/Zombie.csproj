@@ -64,6 +64,9 @@
     <Compile Include="Game\Entities\Effects\Blood.cs" />
     <Compile Include="Game\Entities\Effects\Blood1.cs" />
     <Compile Include="Game\Entities\Effects\BloodManager.cs" />
+    <Compile Include="Game\Entities\Effects\Blood3.cs" />
+    <Compile Include="Game\Entities\Effects\Blood4.cs" />
+    <Compile Include="Game\Entities\Effects\Blood2.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie6.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie5.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie4.cs" />

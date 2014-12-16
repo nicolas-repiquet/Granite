@@ -10,11 +10,12 @@ namespace Zombie.Game.Entities
     public class LifeComponent : Component
     {
         private double m_life;
-        private bool m_hasTakenDamage;
+        private double m_lifeTotal;
+        private BloodType? m_hasTakenDamage;
 
         public bool IsAlive { get { return m_life > 0; } }
         public double Life { get { return m_life; } }
-        public bool HasTakenDamage
+        public BloodType? HasTakenDamage
         { 
             get {
                 return m_hasTakenDamage; 
@@ -24,8 +25,9 @@ namespace Zombie.Game.Entities
         public LifeComponent(Entity entity, int life)
             : base(entity)
         {
-            m_life = life;
-            m_hasTakenDamage = false;
+            m_lifeTotal = life;
+            m_life = m_lifeTotal;
+            m_hasTakenDamage = null;
         }
 
         public void TakeDamage(double damage)
@@ -35,9 +37,20 @@ namespace Zombie.Game.Entities
             if (m_life < 0)
             {
                 m_life = 0;
+                m_hasTakenDamage = BloodType.D;
             }
-
-            m_hasTakenDamage = true;
+            else
+            {
+                var percent = damage / m_lifeTotal;
+                if (percent < 0.5)
+                {
+                    m_hasTakenDamage = BloodType.B;
+                }
+                else
+                {
+                    m_hasTakenDamage = BloodType.A;
+                }
+            }
         }
 
         public void InstantDeath()
@@ -47,7 +60,7 @@ namespace Zombie.Game.Entities
 
         public void DamageProcessed()
         {
-            m_hasTakenDamage = false;
+            m_hasTakenDamage = null;
         }
     }
 }

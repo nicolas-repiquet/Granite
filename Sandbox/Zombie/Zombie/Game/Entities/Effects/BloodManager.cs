@@ -8,6 +8,11 @@ using Zombie.Game.Sprites;
 
 namespace Zombie.Game.Entities.Effects
 {
+    public enum BloodType
+    {
+        A, B, C, D
+    }
+
     public class BloodManager
     {
         private static BloodManager s_instance;
@@ -39,10 +44,28 @@ namespace Zombie.Game.Entities.Effects
             Bloods.Add(blood);
         }
 
-        public void AddBlood(Vector2 position)
+        public void AddBlood(BloodType type, Vector2 position, Vector2 direction)
         {
-            var blood = new Blood1();
+            Blood blood = null;
+            
+            switch(type)
+            {
+                case BloodType.A:
+                    blood = new Blood1();
+                    break;
+                case BloodType.B:
+                    blood = new Blood2();
+                    break;
+                case BloodType.C:
+                    blood = new Blood3();
+                    break;
+                case BloodType.D:
+                    blood = new Blood4();
+                    break;
+            }
+            
             blood.SetPosition(position);
+            blood.SetDirection(direction);
             AddBlood(blood);
         }
 
