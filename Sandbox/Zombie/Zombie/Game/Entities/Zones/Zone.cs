@@ -185,7 +185,7 @@ namespace Zombie.Game.Entities.Zones
                 //var x = m_map.ZoneSize.X / 2;
                 //var y = m_map.ZoneSize.Y / 2;
 
-                var radius = 100 + m_map.Random.Next(0, 10);
+                var radius = 200 + m_map.Random.Next(0, 10);
 
                 Lights.Add(
                     new Light(

@@ -40,7 +40,7 @@ namespace Zombie.Game.Entities.World
             m_camera = new Camera();
             m_player = new Player();
             m_map = new Map(new Vector2i(512, 512));
-            m_dayLight = new DayLight(m_map, 20, new TimeSpan(9, 0, 0));
+            m_dayLight = new DayLight(m_map, 30, new TimeSpan(9, 0, 0));
 
             
 

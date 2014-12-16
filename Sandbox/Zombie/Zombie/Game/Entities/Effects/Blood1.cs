@@ -21,6 +21,8 @@ namespace Zombie.Game.Entities.Effects
                 BloodSprites.Instance.Blood04,
                 BloodSprites.Instance.Blood05
             );
+
+            m_sequence.SpritesPerSecond = 12;
         }
 
         private SpriteSequence GetSpriteSequence()
@@ -33,12 +35,6 @@ namespace Zombie.Game.Entities.Effects
             }
 
             return seq;
-        }
-
-        public void SetPosition(Vector2 position)
-        {
-            m_location.SetPosition(position);
-            m_box = new Vector2(128, 128);
         }
 
         public override void SetSprite(SpriteRenderer renderer)

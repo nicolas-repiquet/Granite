@@ -22,12 +22,6 @@ namespace Zombie.Game.Entities.Ennemies
         private int m_ennemiesCountInitial;
         private Random m_random;
 
-        private Shoot m_lastShoot;
-        public Shoot LastShoot { 
-            get { return m_lastShoot; }
-            set { m_lastShoot = value; }
-        }
-
         private static EnnemyManager s_instance;
         public static EnnemyManager Instance
         {
@@ -75,16 +69,9 @@ namespace Zombie.Game.Entities.Ennemies
             var vecteur = player.Location.Position + size / 2 - player.Location.Position;
             MaxDistance = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2)) + 20;
 
-            //On test les collisions entre le dernier tir et les zombies
-            if (LastShoot != null)
+            if (m_ennemies.Any(x => !x.Life.IsAlive && !x.Life.HasTakenDamage))
             {
-                Parallel.ForEach(m_ennemies, x => x.LastShoot.Enqueue(LastShoot));
-                LastShoot = null;
-            }
-
-            if (m_ennemies.Any(x => !x.Life.IsAlive))
-            {
-                m_ennemies.RemoveAll(x => !x.Life.IsAlive);
+                m_ennemies.RemoveAll(x => !x.Life.IsAlive && !x.Life.HasTakenDamage);
 
                 m_renderer.Clear();
 

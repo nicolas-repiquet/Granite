@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zombie.Game.Entities.Ennemies;
 using Zombie.Game.Entities.Tools;
 using Zombie.Game.Entities.Weapons.Bullets;
 using Zombie.Game.Sprites;
@@ -43,24 +44,46 @@ namespace Zombie.Game.Entities.Weapons
 
         public void Update(TimeSpan elapsed)
         {
-            Parallel.ForEach(Bullets, b =>
-            {
-                b.Update(elapsed);
-            });
-
-            Bullets.RemoveAll(x => x.LifeTime <= 0);
-
+            var ennemies = EnnemyManager.Instance.Ennemies.ToArray();
+            
             m_renderer.Clear();
 
             foreach (var b in Bullets)
             {
                 b.SetSprite(m_renderer);
+
+                Parallel.For(0, ennemies.Count(), index =>
+                {
+                    Collision(b, ennemies[index]);
+                });
             }
+
+            Parallel.ForEach(Bullets, b =>
+            {
+                b.Update(elapsed);
+            });
+
+            //On supprime les balles qui sont en fin de vie
+            Bullets.RemoveAll(x => x.LifeTime <= 0);
         }
 
         public void Render(Matrix4 transform)
         {
             m_renderer.Render(transform);
+        }
+
+        private void Collision(Bullet bullet, Ennemy ennemy)
+        {
+            if (ennemy.Life.IsAlive)
+            {
+                var vecteur = ennemy.Location.Position - bullet.Location.Position;
+                var norme = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+
+                if (norme < 15)
+                {
+                    ennemy.Life.TakeDamage(bullet.Weapon.Damage);
+                }
+            }
         }
     }
 }

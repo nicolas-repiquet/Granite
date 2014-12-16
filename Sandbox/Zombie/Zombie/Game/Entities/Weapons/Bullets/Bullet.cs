@@ -25,6 +25,8 @@ namespace Zombie.Game.Entities.Weapons.Bullets
         #endregion
 
         #region Accessors
+        public Weapon Weapon { get { return m_weapon; } }
+        public LocationComponent Location { get { return m_location; } }
         public Vector2 Box { get { return m_box; } }
         public ISpriteInstance Sprite { get { return m_sprite; } }
         public double LifeTime { get { return m_lifeTime; } }

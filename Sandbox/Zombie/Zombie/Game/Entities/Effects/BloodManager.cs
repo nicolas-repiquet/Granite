@@ -39,12 +39,28 @@ namespace Zombie.Game.Entities.Effects
             Bloods.Add(blood);
         }
 
+        public void AddBlood(Vector2 position)
+        {
+            var blood = new Blood1();
+            blood.SetPosition(position);
+            AddBlood(blood);
+        }
+
         public void Update(TimeSpan elapsed)
         {
             Parallel.ForEach(Bloods, b =>
                 {
                     b.Update(elapsed);
                 });
+
+            Bloods.RemoveAll(x => x.LifeTime <= 0);
+
+            m_renderer.Clear();
+
+            foreach (var b in Bloods)
+            {
+                b.SetSprite(m_renderer);
+            }
         }
 
         public void Render(Matrix4 transform)

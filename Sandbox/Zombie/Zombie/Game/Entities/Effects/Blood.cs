@@ -12,6 +12,9 @@ namespace Zombie.Game.Entities.Effects
     {
         protected readonly LocationComponent m_location;
         protected Vector2 m_box;
+        private double m_lifeTime;
+        private double m_lifeTimeTotal;
+        private bool m_neverDie;
 
         protected ISpriteInstance m_sprite;
 
@@ -20,10 +23,16 @@ namespace Zombie.Game.Entities.Effects
         public LocationComponent Location { get { return m_location; } }
         public Vector2 Box { get { return m_box; } }
         public ISpriteInstance Sprite { get { return m_sprite; } }
+        public double LifeTime { get { return m_lifeTime; } }
+        public bool NeverDie { set { m_neverDie = value; } }
 
         public Blood()
         {
             m_location = new LocationComponent(this);
+
+            m_lifeTimeTotal = 0.5;
+            m_lifeTime = m_lifeTimeTotal;
+            m_neverDie = false;
         }
 
         public virtual void SetSprite(SpriteRenderer renderer)
@@ -33,7 +42,10 @@ namespace Zombie.Game.Entities.Effects
 
         public virtual void Update(TimeSpan elapsed)
         {
-
+            if (!m_neverDie)
+            {
+                m_lifeTime -= elapsed.TotalSeconds;
+            }
         }
 
         public virtual void Render(Matrix4 transform)
