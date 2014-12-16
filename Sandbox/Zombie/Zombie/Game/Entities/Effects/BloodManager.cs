@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zombie.Game.Entities.Tools;
 using Zombie.Game.Sprites;
 
 namespace Zombie.Game.Entities.Effects
@@ -44,8 +45,9 @@ namespace Zombie.Game.Entities.Effects
             Bloods.Add(blood);
         }
 
-        public void AddBlood(BloodType type, Vector2 position, Vector2 direction)
+        public void AddBlood(BloodType type, Vector2 position, Vector2 direction, Color4ub? color = null)
         {
+            //Eclaboussure
             Blood blood = null;
             
             switch(type)
@@ -66,6 +68,15 @@ namespace Zombie.Game.Entities.Effects
             
             blood.SetPosition(position);
             blood.SetDirection(direction);
+            blood.SetColor(color);
+            AddBlood(blood);
+
+            //Sang sur le sol
+            blood = new BloodFloor1();
+            blood.SetPosition(position);
+            var angle = (float)Math.Atan2(direction.Y, direction.X);
+            blood.SetDirection(angle + (float)((RandomGenerator.Instance.Random.NextDouble() * 2) - 1));
+            blood.SetColor(color);
             AddBlood(blood);
         }
 

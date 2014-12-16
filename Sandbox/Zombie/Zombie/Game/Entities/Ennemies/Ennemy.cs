@@ -19,6 +19,7 @@ namespace Zombie.Game.Entities.Ennemies
         protected readonly RigidBodyComponent m_rigidBody;
         protected readonly LifeComponent m_life;
         protected Vector2 m_box;
+        protected Color4ub m_bloodColor;
         
         protected ISpriteInstance m_sprite;
 
@@ -38,6 +39,11 @@ namespace Zombie.Game.Entities.Ennemies
             m_move = new MoveComponent(this, m_location);
             m_rigidBody = new RigidBodyComponent(this, m_location);
             m_life = new LifeComponent(this, 50);
+
+            var r = (byte)RandomGenerator.Instance.Random.Next(0, 255);
+            var g = (byte)RandomGenerator.Instance.Random.Next(0, 255);
+            var b = (byte)RandomGenerator.Instance.Random.Next(0, 255);
+            m_bloodColor = new Color4ub(r, g, b, 255);
         }
 
         public void SetTarget(Player player)
@@ -77,7 +83,11 @@ namespace Zombie.Game.Entities.Ennemies
 
             if (m_life.HasTakenDamage.HasValue)
             {
-                BloodManager.Instance.AddBlood(m_life.HasTakenDamage.Value, m_location.Position, vecteur * -1);
+                BloodManager.Instance.AddBlood(
+                    m_life.HasTakenDamage.Value, 
+                    m_location.Position, 
+                    vecteur * -1,
+                    m_bloodColor);
                 m_life.DamageProcessed();
             }
         }

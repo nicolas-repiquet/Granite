@@ -190,6 +190,7 @@ namespace Zombie.Game.Entities
             {
                 m_blood = new Blood3();
                 m_blood.SetPosition(m_location.Position);
+                m_blood.SetColor(new Color4ub(255, 0, 50, 255));
                 m_blood.NeverDie = true;
                 BloodManager.Instance.AddBlood(m_blood);
             }
