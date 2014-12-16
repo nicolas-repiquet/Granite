@@ -25,6 +25,7 @@ namespace Zombie.Game.Entities.World
         private Color4 m_maxDark;
         private Map m_map;
         private TimeSpan m_time;
+        private TimeSpan m_startTime;
 
         private Framebuffer m_framebufferAllLight;
         private Texture2D m_textureLight;
@@ -38,16 +39,18 @@ namespace Zombie.Game.Entities.World
         public double DayProgress { get { return m_currentTime * 100 / m_timeOfDay; } }
         public TimeSpan DayTime { get { return m_time; } }
 
-        public DayLight(Map map, double timeOfDay)
+        public DayLight(Map map, double timeOfDay, TimeSpan startTime)
         {
             m_graphics = new Graphics();
             m_timeOfDay = timeOfDay;
-            m_currentTime = timeOfDay;
+            //m_currentTime = timeOfDay;
             m_map = map;
             m_maxLight = new Color4(1, 1, 1, 1);
             //m_maxLight = new Color4(0.6f, 0.6f, 0.6f, 1);
             m_maxDark = new Color4(0.1f, 0.1f, 0.05f, 1);
 
+            m_startTime = startTime;
+            m_currentTime = (1 - ConvertTimeToDayProgress(m_startTime)) * m_timeOfDay;
             m_timeStartDay = new TimeSpan(07, 0, 0);
             m_timeStartNight = new TimeSpan(19, 0, 0);
             m_timeTransition = new TimeSpan(2, 0, 0);
@@ -79,6 +82,14 @@ namespace Zombie.Game.Entities.World
             var progress = (1-(DayProgress/100.0)) * secondsInDay;
 
             m_time = TimeSpan.FromSeconds(progress);
+        }
+
+        private double ConvertTimeToDayProgress(TimeSpan time)
+        {
+            var secondsInDay = 24 * 3600;
+            var seconds = time.TotalSeconds;
+
+            return seconds / secondsInDay;
         }
 
         public DayPeriod GetDayPeriod()

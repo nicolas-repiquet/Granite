@@ -10,6 +10,7 @@ using Zombie.Game.Entities.Effects;
 using Zombie.Game.Entities.Ennemies;
 using Zombie.Game.Entities.Tools;
 using Zombie.Game.Entities.Weapons;
+using Zombie.Game.Entities.Weapons.Bullets;
 using Zombie.Game.Entities.Zones;
 
 namespace Zombie.Game.Entities.World
@@ -39,7 +40,7 @@ namespace Zombie.Game.Entities.World
             m_camera = new Camera();
             m_player = new Player();
             m_map = new Map(new Vector2i(512, 512));
-            m_dayLight = new DayLight(m_map, 20);
+            m_dayLight = new DayLight(m_map, 20, new TimeSpan(9, 0, 0));
 
             
 
@@ -64,8 +65,8 @@ namespace Zombie.Game.Entities.World
                 0.1,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 0.05f, 200)));
-
+                1000,
+                new BulletGatling()));
             Player.AddWeapon(new Weapon(
                 "Sniper",
                 100,
@@ -73,8 +74,8 @@ namespace Zombie.Game.Entities.World
                 0.8,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 0.02f, 600)));
-
+                3000,
+                new BulletSniper()));
             Player.AddWeapon(new Weapon(
                 "ShotGun",
                 50,
@@ -82,7 +83,17 @@ namespace Zombie.Game.Entities.World
                 0.5,
                 3,
                 1000,
-                new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 1f, 100)));
+                10,
+                new BulletGatling()));
+
+            //Player.AddWeapon(new Weapon(
+            //    "ShotGun",
+            //    50,
+            //    50,
+            //    0.5,
+            //    3,
+            //    1000,
+            //    new Shoot(Vector2.Zero, Vector2.Zero, new Color4ub(255, 255, 255, 255), new Color4ub(255, 255, 0, 255), 1f, 100)));
 
             
         }
@@ -98,7 +109,8 @@ namespace Zombie.Game.Entities.World
 
             m_camera.Update(elapsed);
 
-            ShootManager.Instance.Update(elapsed);
+            //ShootManager.Instance.Update(elapsed);
+            BulletManager.Instance.Update(elapsed);
 
             BloodManager.Instance.Update(elapsed);
 
@@ -132,7 +144,8 @@ namespace Zombie.Game.Entities.World
 
             GL.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            ShootManager.Instance.Render(transform);
+            //ShootManager.Instance.Render(transform);
+            BulletManager.Instance.Render(transform);
 
             
         }

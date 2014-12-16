@@ -9,7 +9,7 @@ out vec4 gl_FragColor;
 
 void main(void)
 {   
-	vec4 v = texture2D(texture, textureCoord);
+	vec4 v = texture2D(texture, textureCoord) * color;
 
 	if(v.w == 0)
 	{

@@ -198,9 +198,9 @@ namespace Zombie.Game.Entities
         {
             if (m_life.IsAlive)
             {
-                m_sprite.Position = new Vector2(m_location.Position.X - m_sprite.Sprite.Size.X / 2, m_location.Position.Y - m_sprite.Sprite.Size.Y / 2);
+                m_sprite.Position = new Vector2(m_location.Position.X - m_box.X / 2, m_location.Position.Y - m_box.Y / 2);
                 m_sprite.Sprite = m_currentSequence.CurrentSprite;
-                m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
+                m_sprite.Size = m_box;
                 m_renderer.Render(transform);
             }
         }

@@ -76,6 +76,10 @@
     <Compile Include="Game\Entities\Tools\Geometries\IPointInstance.cs" />
     <Compile Include="Game\Entities\Tools\RandomGenerator.cs" />
     <Compile Include="Game\Entities\Tools\TriangleFanRenderer.cs" />
+    <Compile Include="Game\Entities\Weapons\Bullets\Bullet.cs" />
+    <Compile Include="Game\Entities\Weapons\BulletManager.cs" />
+    <Compile Include="Game\Entities\Weapons\Bullets\BulletGatling.cs" />
+    <Compile Include="Game\Entities\Weapons\Bullets\BulletSniper.cs" />
     <Compile Include="Game\Entities\World\DayLight.cs" />
     <Compile Include="Game\Entities\Zones\FireCamp.cs" />
     <Compile Include="Game\Entities\Zones\Floor.cs" />
@@ -107,6 +111,7 @@
     <Compile Include="Game\Shaders\SpriteProgram.cs" />
     <Compile Include="Game\Shaders\TriangleProgram.cs" />
     <Compile Include="Game\Sprites\BloodSprites.cs" />
+    <Compile Include="Game\Sprites\BulletSprites.cs" />
     <Compile Include="Game\Sprites\EnnemiesSprites.cs" />
     <Compile Include="Game\Sprites\ISpriteInstance.cs" />
     <Compile Include="Game\Sprites\FireSprites.cs" />
@@ -168,6 +173,8 @@
     <EmbeddedResource Include="Game\Sprites\FireSprites.txt" />
     <EmbeddedResource Include="Game\Sprites\BloodSprites.png" />
     <EmbeddedResource Include="Game\Sprites\BloodSprites.txt" />
+    <EmbeddedResource Include="Game\Sprites\BulletSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\BulletSprites.txt" />
     <Content Include="Game\Sprites\slime.png" />
     <Content Include="Game\Sprites\zombie1.png" />
     <Content Include="Game\Sprites\zombie2.png" />

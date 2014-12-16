@@ -13,7 +13,7 @@ namespace Zombie.Game.Sprites
     {
         private struct SpriteData
         {
-            //public Vector4 Color;
+            public Color4ub Color;
             public Matrix4 Transform;
             public Vector2 TextureOrigin;
             public Vector2 TextureTarget;
@@ -71,6 +71,48 @@ namespace Zombie.Game.Sprites
                     }
                 }
             }
+
+            private Color4ub m_color;
+            public Color4ub Color
+            {
+                get { return m_color; }
+                set
+                {
+                    if (m_color != value)
+                    {
+                        m_color = value;
+                        m_renderer.m_isDirty = true;
+                    }
+                }
+            }
+
+            private float m_angle;
+            public float Angle
+            {
+                get { return m_angle; }
+                set
+                {
+                    if (m_angle != value)
+                    {
+                        m_angle = value;
+                        m_renderer.m_isDirty = true;
+                    }
+                }
+            }
+            private bool m_rotateFromOrigin;
+            public bool RotateFromOrigin
+            {
+                get { return m_rotateFromOrigin; }
+                set
+                {
+                    if (m_rotateFromOrigin != value)
+                    {
+                        m_rotateFromOrigin = value;
+                        m_renderer.m_isDirty = true;
+                    }
+                }
+            }
+
         }
 
         private readonly SpriteProgram m_program;
@@ -109,6 +151,8 @@ namespace Zombie.Game.Sprites
 
             m_program.Position.SetValue(m_bufferQuad.GetView());
 
+            m_program.Color.SetValue(m_bufferSprite.GetView(s => s.Color));
+            m_program.Color.SetDivisor(1);
             m_program.Transform.SetValue(m_bufferSprite.GetView<Matrix4>("Transform"));
             m_program.Transform.SetDivisor(1);
             m_program.TextureOrigin.SetValue(m_bufferSprite.GetView<Vector2>("TextureOrigin"));
@@ -128,6 +172,8 @@ namespace Zombie.Game.Sprites
             var instance = new SpriteInstance(this, sprite);
            
             instance.Size = new Vector2(sprite.Size.X, sprite.Size.Y);
+            instance.Color = new Color4ub(255, 255, 255, 255);
+            instance.RotateFromOrigin = false;
 
             lock (m_instances)
             {
@@ -189,12 +235,23 @@ namespace Zombie.Game.Sprites
                         var sprite = instance.Sprite;
 
                         var matrix = Matrix4.Identity;
-                        matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
+                        if (instance.RotateFromOrigin)
+                        {
+                            matrix *= Matrix4.Translate(instance.Position.X, instance.Position.Y, 0f);
+                            matrix *= Matrix4.RotateZ(instance.Angle);
+                            //matrix *= Matrix4.Translate(-instance.Size.X, -instance.Size.Y, 0f);
+                        }
+                        else
+                        {
+                            matrix *= Matrix4.Translate(instance.Position.X + instance.Size.X / 2, instance.Position.Y + instance.Size.Y / 2, 0f);
+                            matrix *= Matrix4.RotateZ(instance.Angle);
+                            matrix *= Matrix4.Translate(-instance.Size.X / 2, -instance.Size.Y / 2, 0f);
+                        }
                         matrix *= Matrix4.Scale(instance.Size.X, instance.Size.Y, 0f);
 
                         data[i] = new SpriteData()
                         {
-                            //Color = new Vector4(1f, 1f, 1f, 1f),
+                            Color = instance.Color,
                             Transform = matrix,
                             TextureOrigin = sprite.Coordinates.Position,
                             TextureTarget = sprite.Coordinates.Position + sprite.Coordinates.Size
