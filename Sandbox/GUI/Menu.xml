@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UITemplate
+    xmlns="clr-namespace:Granite.UI;assembly=Granite.UI"
+    xmlns:core="clr-namespace:Granite.Core;assembly=Granite.Core">
+  <UIContainer>
+    <UIContainer.Layout>
+      <UIGridLayout />
+    </UIContainer.Layout>
+    
+    <UILabel Text="(m) => m.Name" Click="(m, e) => m.LabelClicked(e.x, e.y)" ></UILabel>
+    <UILabel core:Position.A="(m) => new core:Vector2(m.x, m.y)"/>
+    <UILabel />
+    <UILabel />
+    
+  </UIContainer>
+</UITemplate>
+

@@ -189,6 +189,19 @@ namespace Granite.UI
             );
         }
 
+        public void Ortho(float left, float right, float bottom, float top)
+        {
+            var right_minus_left = right - left;
+            var top_minus_bottom = top - bottom;
+
+            m_transform = new Matrix3x2(
+                2 / right_minus_left, 0,
+                0, 2 / top_minus_bottom,
+                -(right + left) / right_minus_left,
+                -(top + bottom) / top_minus_bottom
+            );
+        }
+
         private int GetTextureIndex(Texture2D texture)
         {
             for (int i = 0; i < m_textureQueueSize; i++)

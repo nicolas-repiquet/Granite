@@ -5,18 +5,18 @@ using System.Text;
 
 namespace Granite.UI
 {
-    public sealed class UIElementCollection : ICollection<UIElement>
+    public sealed class UIElementCollection<T> : ICollection<T> where T : UIElement
     {
         private readonly UIElement m_parent;
-        private readonly List<UIElement> m_elements;
+        private readonly List<T> m_elements;
 
         public UIElementCollection(UIElement parent)
         {
             m_parent = parent;
-            m_elements = new List<UIElement>();
+            m_elements = new List<T>();
         }
 
-        public void Add(UIElement item)
+        public void Add(T item)
         {
             if (item != null)
             {
@@ -30,12 +30,12 @@ namespace Granite.UI
             m_elements.Clear();
         }
 
-        public bool Contains(UIElement item)
+        public bool Contains(T item)
         {
             return m_elements.Contains(item);
         }
 
-        public void CopyTo(UIElement[] array, int arrayIndex)
+        public void CopyTo(T[] array, int arrayIndex)
         {
             m_elements.CopyTo(array, arrayIndex);
         }
@@ -50,7 +50,7 @@ namespace Granite.UI
             get { return false; }
         }
 
-        public bool Remove(UIElement item)
+        public bool Remove(T item)
         {
             if (item != null && m_elements.Remove(item))
             {
@@ -63,7 +63,7 @@ namespace Granite.UI
             }
         }
 
-        public IEnumerator<UIElement> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             return m_elements.GetEnumerator();
         }

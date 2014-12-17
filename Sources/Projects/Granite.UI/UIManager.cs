@@ -54,28 +54,6 @@ namespace Granite.UI
                 m_root.Render(graphics, elapsed);
                 m_graphics.PopTransform();
             }
-
-
-            //m_graphics.Draw(
-            //    new Box2(100f, 100f, 180f, 180f),
-            //    new Color4ub(0xFF, 0x00, 0xFF, 0xFF)
-            //);
-
-            //m_graphics.Draw(
-            //    new Box2(300f, 100f, 180f, 180f),
-            //    new Color4ub(0xFF, 0xFF, 0x00, 0xFF)
-            //);
-
-            //m_graphics.Draw(
-            //    new Box2(100f, 300f, 180f, 180f),
-            //    new Color4ub(0x00, 0xFF, 0xFF, 0xFF)
-            //);
-
-            //m_graphics.Draw(
-            //    new Vector2(100f, 500f),
-            //    InternalFonts.RegularSmallVariableWidthFont,
-            //    "Est-ce que ça va s'afficher bordel !!"
-            //);   
         }
 
         public void Render(TimeSpan elapsed)
@@ -83,26 +61,22 @@ namespace Granite.UI
             var size = Engine.Display.GetSize();
 
             m_graphics.Clear();
-            m_graphics.Translate(new Vector2(-1, 1));
-            m_graphics.Scale(new Vector2(2f / size.X, -2f / size.Y));
+            m_graphics.Ortho(0, size.X, size.Y, 0);
 
             Render(m_graphics, elapsed);
 
             m_graphics.Flush();
         }
 
-        public override IEnumerable<UIElement> Children
+        public override IEnumerable<UIElement> GetChildren()
         {
-            get 
+            if (m_root != null)
             {
-                if (m_root != null)
-                {
-                    yield return m_root;
-                }
-                else
-                {
-                    yield break;
-                }
+                yield return m_root;
+            }
+            else
+            {
+                yield break;
             }
         }
     }

@@ -1,0 +1,823 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".gen.cs" #>
+
+namespace Granite.UI.ExpressionParser
+{
+<#
+
+var arrowToken = new TokenRule("ArrowToken");
+
+var endToken = new TokenRule("EndToken");
+
+var dotToken = new TokenRule("DotToken");
+
+var trueToken = new TokenRule("TrueToken");
+var falseToken = new TokenRule("FalseToken");
+var nullToken = new TokenRule("NullToken");
+            
+var notToken = new TokenRule("NotToken");
+            
+var subToken = new TokenRule("SubToken");
+var addToken = new TokenRule("AddToken");
+            
+var mulToken = new TokenRule("MulToken");
+var divToken = new TokenRule("DivToken");
+
+var eqToken = new TokenRule("EqToken");
+var neqToken = new TokenRule("NeqToken");
+var gtToken = new TokenRule("GtToken");
+var gteqToken = new TokenRule("GteqToken");
+var ltToken = new TokenRule("LtToken");
+var lteqToken = new TokenRule("LteqToken");
+
+var andToken = new TokenRule("AndToken");
+var orToken = new TokenRule("OrToken");
+
+var identifierToken = new TokenRule("IdentifierToken");
+var openingParToken = new TokenRule("OpeningParToken");
+var closingParToken = new TokenRule("ClosingParToken");
+var stringToken = new TokenRule("StringToken");
+var charToken = new TokenRule("CharToken");
+var numberToken = new TokenRule("NumberToken");
+var commaToken = new TokenRule("CommaToken");
+var colonToken = new TokenRule("ColonToken");
+var semicolonToken = new TokenRule("SemicolonToken");
+var questionMarkToken = new TokenRule("QuestionMarkToken");
+
+var expressionNode = new CompositeRule("ExpressionNode");
+
+
+var expressionListNode = new CompositeRule("ExpressionListNode");
+var emptyExpressionListNode = new ConcreteRule("EmptyExpressionListNode") { Priority = -2 };
+var realExpressionListNode = new CompositeRule("RealExpressionListNode");
+var singleExpressionListNode = new ConcreteRule("SingleExpressionListNode",
+    expressionNode) { Priority = -1 };
+var multipleExpressionListNode = new ConcreteRule("MultipleExpressionListNode",
+    expressionNode, commaToken, realExpressionListNode);
+realExpressionListNode.AddRule(singleExpressionListNode);
+realExpressionListNode.AddRule(multipleExpressionListNode);
+expressionListNode.AddRule(emptyExpressionListNode);
+expressionListNode.AddRule(realExpressionListNode);
+
+var identifierListNode = new CompositeRule("IdentifierListNode");
+var emptyIdentifierListNode = new ConcreteRule("EmptyIdentifierListNode") { Priority = -2 };
+var realIdentifierListNode = new CompositeRule("RealIdentifierListNode");
+var singleIdentifierListNode = new ConcreteRule("SingleIdentifierListNode",
+    expressionNode) { Priority = -1 };
+var multipleIdentifierListNode = new ConcreteRule("MultipleIdentifierListNode",
+    expressionNode, commaToken, realIdentifierListNode);
+realIdentifierListNode.AddRule(singleIdentifierListNode);
+realIdentifierListNode.AddRule(multipleIdentifierListNode);
+identifierListNode.AddRule(emptyIdentifierListNode);
+identifierListNode.AddRule(realIdentifierListNode);
+
+var dotExpressionNode = new ConcreteRule("DotExpressionNode", 
+	expressionNode, dotToken, identifierToken) { Priority = 9 };
+
+var negExpressionNode = new ConcreteRule("NegExpressionNode",
+    subToken, expressionNode) { Priority = 8 };
+var notExpressionNode = new ConcreteRule("NotExpressionNode",
+    notToken, expressionNode) { Priority = 8 };
+
+var mulExpressionNode = new ConcreteRule("MulExpressionNode",
+    expressionNode, mulToken, expressionNode) { Priority = 7 };
+var divExpressionNode = new ConcreteRule("DivExpressionNode",
+    expressionNode, divToken, expressionNode) { Priority = 7 };
+
+var addExpressionNode = new ConcreteRule("AddExpressionNode",
+    expressionNode, addToken, expressionNode) { Priority = 6 };
+var subExpressionNode = new ConcreteRule("SubExpressionNode",
+    expressionNode, subToken, expressionNode) { Priority = 6 };
+
+var eqExpressionNode = new ConcreteRule("EqExpressionNode",
+    expressionNode, eqToken, expressionNode) { Priority = 5 };
+var neqExpressionNode = new ConcreteRule("NeqExpressionNode",
+    expressionNode, neqToken, expressionNode) { Priority = 5 };
+var gtExpressionNode = new ConcreteRule("GtExpressionNode",
+    expressionNode, gtToken, expressionNode) { Priority = 5 };
+var gteqExpressionNode = new ConcreteRule("GteqExpressionNode",
+    expressionNode, gteqToken, expressionNode) { Priority = 5 };
+var ltExpressionNode = new ConcreteRule("LtExpressionNode",
+    expressionNode, ltToken, expressionNode) { Priority = 5 };
+var lteqExpressionNode = new ConcreteRule("LteqExpressionNode",
+    expressionNode, lteqToken, expressionNode) { Priority = 5 };
+
+var andExpressionNode = new ConcreteRule("AndExpressionNode",
+    expressionNode, andToken, expressionNode) { Priority = 4 };
+var orExpressionNode = new ConcreteRule("OrExpressionNode",
+    expressionNode, orToken, expressionNode) { Priority = 3 };
+
+var identifierExpressionNode = new ConcreteRule("IdentifierExpressionNode",
+    identifierToken);
+
+var parExpressionNode = new ConcreteRule("ParExpressionNode",
+    openingParToken, expressionNode, closingParToken);
+            
+var stringExpressionNode = new ConcreteRule("StringExpressionNode",
+    stringToken);
+            
+var numberExpressionNode = new ConcreteRule("NumberExpressionNode",
+    numberToken);
+
+var trueExpressionNode = new ConcreteRule("TrueExpressionNode",
+    trueToken);
+
+var falseExpressionNode = new ConcreteRule("FalseExpressionNode",
+    falseToken);
+
+var nullExpressionNode = new ConcreteRule("NullExpressionNode",
+    nullToken);
+
+var ternaryExpressionNode = new ConcreteRule("TernaryExpressionNode",
+	expressionNode, questionMarkToken, expressionNode, colonToken, expressionNode) { Priority = 2 };
+
+var callExpressionNode = new ConcreteRule("CallExpressionNode",
+    expressionNode, openingParToken, expressionListNode, closingParToken) { Priority = 1 };
+
+
+expressionNode.AddRule(dotExpressionNode);
+
+expressionNode.AddRule(negExpressionNode);
+expressionNode.AddRule(notExpressionNode);
+
+expressionNode.AddRule(mulExpressionNode);
+expressionNode.AddRule(divExpressionNode);
+
+expressionNode.AddRule(addExpressionNode);
+expressionNode.AddRule(subExpressionNode);
+
+expressionNode.AddRule(eqExpressionNode);
+expressionNode.AddRule(neqExpressionNode);
+expressionNode.AddRule(gtExpressionNode);
+expressionNode.AddRule(gteqExpressionNode);
+expressionNode.AddRule(ltExpressionNode);
+expressionNode.AddRule(lteqExpressionNode);
+
+expressionNode.AddRule(andExpressionNode);
+expressionNode.AddRule(orExpressionNode);
+
+expressionNode.AddRule(identifierExpressionNode);
+expressionNode.AddRule(parExpressionNode);
+expressionNode.AddRule(stringExpressionNode);
+expressionNode.AddRule(numberExpressionNode);
+expressionNode.AddRule(trueExpressionNode);
+expressionNode.AddRule(falseExpressionNode);
+expressionNode.AddRule(nullExpressionNode);
+expressionNode.AddRule(ternaryExpressionNode);
+expressionNode.AddRule(callExpressionNode);
+
+var lambda = new ConcreteRule("LambdaNode", 
+	openingParToken, identifierListNode, closingParToken, arrowToken, expressionNode, endToken);
+
+BuildGrammar(lambda);
+
+#>
+}
+
+<#+
+
+abstract class Rule
+{
+    public Rule(string name)
+    {
+        Name = name;
+    }
+
+    public abstract void GetRules(List<Rule> rules);
+
+    public string Name { get; private set; }
+    public Rule Parent { get; set; }
+
+    public override string ToString()
+    {
+		return Name;
+	}
+}
+
+class TokenRule : Rule
+{
+    public TokenRule(string name)
+        : base(name)
+    {
+
+    }
+
+    public override void GetRules(List<Rule> rules)
+    {
+        if (!rules.Contains(this))
+        {
+            rules.Add(this);
+        }
+    }
+}
+
+class ConcreteRule : Rule
+{
+    private Rule[] m_rules;
+
+    public ConcreteRule(string name, params Rule[] rules)
+        : base(name)
+    {
+        m_rules = rules;
+    }
+
+    public Rule[] Rules { get { return m_rules; } }
+
+    public int Priority { get; set; }
+
+    public override void GetRules(List<Rule> rules)
+    {
+        if (!rules.Contains(this))
+        {
+            rules.Add(this);
+            foreach (var rule in m_rules)
+            {
+                rule.GetRules(rules);
+            }
+        }
+    }
+
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        builder.Append(Name);
+        builder.Append(": ");
+        for (int i = 0; i < m_rules.Length; i++)
+        {
+            if(i != 0) builder.Append(" ");
+            builder.Append(m_rules[i].Name);
+        }
+        return builder.ToString();
+    }
+}
+
+class CompositeRule : Rule
+{
+    private readonly List<Rule> m_rules;
+
+    public List<Rule> Rules { get { return m_rules; } }
+
+    public CompositeRule(string name)
+        : base(name)
+    {
+        m_rules = new List<Rule>();
+    }
+
+    public void AddRule(Rule rule)
+    {
+        rule.Parent = this;
+        m_rules.Add(rule);
+    }
+
+    public override void GetRules(List<Rule> rules)
+    {
+        if (!rules.Contains(this))
+        {
+            rules.Add(this);
+            foreach (var rule in m_rules)
+            {
+                rule.GetRules(rules);
+            }
+        }
+    }
+}
+
+class RuleState
+{
+    private readonly ConcreteRule m_rule;
+    private readonly int m_position;
+
+    public RuleState(ConcreteRule rule, int position)
+    {
+        m_rule = rule;
+        m_position = position;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is RuleState && ((RuleState)obj).m_rule == m_rule && ((RuleState)obj).m_position == m_position;
+    }
+
+    public override int GetHashCode()
+    {
+        return m_rule.GetHashCode() ^ m_position.GetHashCode();
+    }
+
+    public Rule Rule { get { return m_rule; } }
+
+    public Rule TopRule
+    {
+        get
+        {
+            if (m_position == m_rule.Rules.Length)
+            {
+                return null;
+            }
+            else
+            {
+                return m_rule.Rules[m_position];
+            }
+        }
+    }
+
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        builder.Append(m_rule.Name);
+        builder.Append(' ', Math.Max(0, 30 - m_rule.Name.Length));
+        builder.Append(" :");
+        for (int i = 0; i < m_rule.Rules.Length; i++)
+        {
+            if (m_position == i)
+            {
+                builder.Append(" . ");
+            }
+            else
+            {
+                builder.Append(" ");
+            }
+            builder.Append(m_rule.Rules[i].Name);
+        }
+        if (TopRule == null)
+        {
+            builder.Append(" .");
+        }
+        return builder.ToString();
+    }
+
+    public RuleState Next
+    {
+        get
+        {
+            if (TopRule == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new RuleState(m_rule, m_position + 1);
+            }
+        }
+    }
+}
+
+class GrammarState
+{
+    private readonly List<RuleState> m_roots;
+    private readonly List<RuleState> m_ruleStates;
+    private readonly List<GrammarTransition> m_transitions;
+    private readonly List<GrammarReduction> m_reductions;
+
+    public List<RuleState> Root { get { return m_roots; } }
+    public List<RuleState> RuleStates { get { return m_ruleStates; } }
+    public List<GrammarTransition> Transitions { get { return m_transitions; } }
+    public List<GrammarReduction> Reductions { get { return m_reductions; } }
+    public List<GrammarAction> Actions
+    {
+        get
+        {
+            var actions = new List<GrammarAction>();
+            actions.AddRange(m_transitions);
+            actions.AddRange(m_reductions);
+            actions = actions.OrderByDescending(a => a.Priority).ToList();
+            return actions;
+        }
+    }
+
+    public int Index { get; set; }
+
+    public GrammarState(List<RuleState> roots)
+    {
+        m_roots = roots;
+        m_ruleStates = new List<RuleState>();
+        m_transitions = new List<GrammarTransition>();
+        m_reductions = new List<GrammarReduction>();
+    }
+}
+
+abstract class GrammarAction
+{
+    public abstract int Priority { get; }
+}
+
+class GrammarTransition : GrammarAction
+{
+    public Rule Rule { get; private set; }
+    public GrammarState State { get; private set; }
+
+    public override int Priority
+    {
+        get { return State.Root.Count == 1 ? ((ConcreteRule)State.Root[0].Rule).Priority : 0; }
+    }
+
+    public GrammarTransition(Rule rule, GrammarState state)
+    {
+        Rule = rule;
+        State = state;
+    }
+
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        builder.Append(Rule.Name);
+        builder.Append(' ', Math.Max(0, 20 - Rule.Name.Length));
+        builder.Append(" -> ");
+        builder.Append(State.Index);
+        return builder.ToString();
+    }
+}
+
+class GrammarReduction : GrammarAction
+{
+    public ConcreteRule Rule { get; private set; }
+
+    public override int Priority
+    {
+        get { return Rule.Priority; }
+    }
+
+    public GrammarReduction(ConcreteRule rule)
+    {
+        Rule = rule;
+    }
+
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        builder.Append("<- ");
+        builder.Append(Rule.Name);
+        return builder.ToString();
+    }
+}
+
+
+private Rule m_axiom;
+private List<GrammarState> m_states;
+private GrammarState m_initialState;
+
+private void UnrollState(GrammarState state)
+{
+    foreach (var rootState in state.Root)
+    {
+        if (!state.RuleStates.Contains(rootState))
+        {
+            state.RuleStates.Add(rootState);
+
+            if (rootState.TopRule != null)
+            {
+                foreach (var s in GetRuleStates(rootState.TopRule))
+                {
+                    if (!state.RuleStates.Contains(s))
+                    {
+                        state.RuleStates.Add(s);
+                    }
+                }
+            }
+        }
+    }
+
+    var transitions = new Dictionary<Rule, List<RuleState>>();
+
+    foreach (var l in state.RuleStates)
+    {
+        if (l.TopRule != null)
+        {
+            List<RuleState> states;
+            if (!transitions.TryGetValue(l.TopRule, out states))
+            {
+                states = new List<RuleState>();
+                transitions.Add(l.TopRule, states);
+            }
+
+            states.Add(l);
+        }
+    }
+
+    foreach (var pair in transitions)
+    {
+        var rootStates = pair.Value.Select(r => r.Next).ToList();
+        var newState = GetOrCreateState(rootStates);
+
+        state.Transitions.Add(new GrammarTransition(pair.Key, newState));
+    }
+
+    foreach (var rs in state.RuleStates)
+    {
+        if (rs.TopRule == null)
+        {
+            state.Reductions.Add(new GrammarReduction((ConcreteRule)rs.Rule));
+        }
+    }
+}
+
+private GrammarState GetOrCreateState(List<RuleState> roots)
+{
+    GrammarState state = null;
+            
+    foreach (var s in m_states)
+    {
+        if (s.Root.Intersect(roots).Count() == roots.Count)
+        {
+            state = s;
+            break;
+        }
+    }
+
+    if (state == null)
+    {
+        state = new GrammarState(roots);
+        state.Index = m_states.Count;
+        m_states.Add(state);
+        UnrollState(state);
+    }
+
+    return state;
+}
+
+private List<RuleState> GetRuleStates(Rule rule)
+{
+    var states = new List<RuleState>();
+    GetRuleStates(rule, states);
+    return states;
+}
+
+private void GetRuleStates(Rule rule, List<RuleState> states)
+{
+    if (rule is ConcreteRule)
+    {
+        var state = new RuleState((ConcreteRule)rule, 0);
+        if (!states.Contains(state))
+        {
+            states.Add(state);
+            if (state.TopRule != null && !(state.TopRule is TokenRule))
+            {
+                GetRuleStates(state.TopRule, states);
+            }
+        }
+    }
+    else if (rule is CompositeRule)
+    {
+        foreach (var childRule in ((CompositeRule)rule).Rules)
+        {
+            GetRuleStates(childRule, states);
+        }
+    }
+}
+
+private void WriteLine()
+{
+	WriteLine(string.Empty);
+}
+
+void BuildGrammar(Rule axiom)
+{
+    m_axiom = axiom;
+    m_states = new List<GrammarState>();
+
+    m_initialState = GetOrCreateState(GetRuleStates(axiom));
+
+    var rules = new List<Rule>();
+    m_axiom.GetRules(rules);
+
+    WriteLine();
+    WriteLine();
+
+    WriteLine("using System.Collections.Generic;");
+    WriteLine("using System.Linq;");
+    WriteLine();
+    WriteLine();
+
+    foreach (var rule in rules)
+    {
+        WriteLine("// {0}", rule.ToString());
+        WriteLine("public {0} partial class {1} : {2}",
+            rule is CompositeRule ? "abstract" : "sealed",
+            rule.Name,
+            rule.Parent == null ? (rule is TokenRule ? "Token" : "Node") : rule.Parent.Name
+        );
+        WriteLine("{");
+		
+		if (rule is ConcreteRule)
+        {
+            var cr = (ConcreteRule)rule;
+
+            for (int i = 0; i < cr.Rules.Length; i++)
+            {
+                WriteLine("    private readonly {0} m_p{1};", cr.Rules[i].Name, i);
+                WriteLine("    public {0} P{1} {{  get {{ return m_p{1}; }} }}", cr.Rules[i].Name, i);
+            }
+
+            Write("    public {0}(", rule.Name);
+            for (int i = 0; i < cr.Rules.Length; i++)
+            {
+                if(i != 0) Write(", ");
+                Write("{0} p{1}", cr.Rules[i].Name, i);
+            }
+            WriteLine(")");
+            WriteLine("    {");
+            for (int i = 0; i < cr.Rules.Length; i++)
+            {
+                WriteLine("        m_p{0} = p{0};", i);
+            }
+            WriteLine("    }");
+
+            if (cr.Rules.Length > 0)
+            {
+                WriteLine("    public override int Position { get { return m_p0.Position; } }");
+            }
+            else
+            {
+                WriteLine("    public override int Position { get { return 0; } }");
+            }
+        }
+        WriteLine("}");
+        WriteLine();
+    }
+    WriteLine();
+    WriteLine();
+
+    WriteLine("public static partial class Parser");
+    WriteLine("{");
+    WriteLine();
+    WriteLine("    private static {0} Parse(Tokenizer tokenizer)", m_axiom.Name);
+    WriteLine("    {");
+    WriteLine();
+    WriteLine("        int state = 0;");
+    WriteLine("        var stack = new Stack<StackItem>();");
+    WriteLine("        var input = new Stack<StackItem>();");
+	WriteLine("        var tokens = tokenizer.Tokens;");
+	WriteLine("        tokens.Reverse();");
+    WriteLine();
+    WriteLine("        foreach(var token in tokens)");
+    WriteLine("        {");
+    WriteLine("            input.Push(new StackItem(token, 0));");
+    WriteLine("        }");
+    WriteLine();
+    WriteLine("        while(true)");
+    WriteLine("        {");
+    WriteLine("            switch(state)");
+    WriteLine("            {");
+    foreach (var state in m_states)
+    {
+        WriteLine("// ###################################");
+        WriteLine("// # State " + state.Index);
+        WriteLine("//");
+        foreach (var rs in state.RuleStates)
+        {
+            Write("// ");
+            WriteLine(rs.ToString());
+        }
+        WriteLine("//");
+        foreach (var t in state.Actions)
+        {
+            Write("// ");
+            Write("{0,2}", t.Priority);
+            Write(": ");
+            WriteLine(t.ToString());
+            if (t is GrammarReduction)
+            {
+                break;
+            }
+        }
+        WriteLine("//");
+        WriteLine("//");
+
+        bool emitBreak = true;
+
+        WriteLine("                case {0}:", state.Index);
+
+        if (state.Actions.Count == 1)
+        {
+            var action = state.Actions[0];
+
+            if (action is GrammarTransition)
+            {
+                WriteLine("                    if(input.Peek().Node is {0})", ((GrammarTransition)action).Rule.Name);
+                WriteLine("                    {");
+                WriteLine("                        stack.Push(new StackItem(input.Pop().Node, {0}));", state.Index);
+                WriteLine("                        state = {0};", ((GrammarTransition)action).State.Index);
+                WriteLine("                    }");
+                WriteLine("                    else");
+                WriteLine("                    {");
+                WriteLine("                        throw new ParseException(input.Peek().Node.Position, string.Format(\"Element {0} inattendu\", input.Peek().Node));");
+                WriteLine("                    }");
+            }
+            else
+            {
+                WriteLine("                    {");
+                var gr = (GrammarReduction)action;
+                for (int i = gr.Rule.Rules.Length - 1; i >= 0; i--)
+                {
+                    WriteLine("                        var p{0} = stack.Pop();", i);
+                }
+                if (gr.Rule != m_axiom)
+                {
+                    Write("                        input.Push(new StackItem(new {0}(", gr.Rule.Name);
+                    for (int i = 0; i < gr.Rule.Rules.Length; i++)
+                    {
+                        if (i != 0) Write(", ");
+                        Write("({0})p{1}.Node", gr.Rule.Rules[i].Name, i);
+                    }
+                    WriteLine("), {0}));", state.Index);
+                    if (gr.Rule.Rules.Length > 0)
+                    {
+                        WriteLine("                        state = p0.State;");
+                    }
+                }
+                else
+                {
+                    Write("                        return new {0}(", gr.Rule.Name);
+                    for (int i = 0; i < gr.Rule.Rules.Length; i++)
+                    {
+                        if (i != 0) Write(", ");
+                        Write("({0})p{1}.Node", gr.Rule.Rules[i].Name, i);
+                    }
+                    WriteLine(");");
+                    emitBreak = false;
+                }
+                WriteLine("                    }");
+            }
+        }
+        else
+        {
+            bool done = false;
+            bool first = true;
+            foreach (var action in state.Actions)
+            {
+                if (action is GrammarTransition)
+                {
+                    WriteLine("                    {0}if(input.Peek().Node is {1})",
+                        first ? string.Empty : "else ",
+                        ((GrammarTransition)action).Rule.Name);
+                    WriteLine("                    {");
+                    WriteLine("                        stack.Push(new StackItem(input.Pop().Node, {0}));", state.Index);
+                    WriteLine("                        state = {0};", ((GrammarTransition)action).State.Index);
+                    WriteLine("                    }");
+                    first = false;
+                }
+                else if (action is GrammarReduction)
+                {
+					if(!first) {
+						WriteLine("                    else");
+					}
+                    WriteLine("                    {");
+                    var gr = (GrammarReduction)action;
+                    for (int i = gr.Rule.Rules.Length - 1; i >= 0; i--)
+                    {
+                        WriteLine("                        var p{0} = stack.Pop();", i);
+                    }
+                    if (gr.Rule != m_axiom)
+                    {
+                        Write("                        input.Push(new StackItem(new {0}(", gr.Rule.Name);
+                        for (int i = 0; i < gr.Rule.Rules.Length; i++)
+                        {
+                            if (i != 0) Write(", ");
+                            Write("({0})p{1}.Node", gr.Rule.Rules[i].Name, i);
+                        }
+                        WriteLine("), {0}));", state.Index);
+                        if (gr.Rule.Rules.Length > 0)
+                        {
+                            WriteLine("                        state = p0.State;");
+                        }
+                    }
+                    else
+                    {
+                        Write("                        return new {0}(", gr.Rule.Name);
+                        for (int i = 0; i < gr.Rule.Rules.Length; i++)
+                        {
+                            if (i != 0) Write(", ");
+                            Write("({0})p{1}.Node", gr.Rule.Rules[i].Name, i);
+                        }
+                        WriteLine(");");
+                        emitBreak = false;
+                    }
+                    WriteLine("                    }");
+                    done = true;
+                    break;
+                }
+            }
+            if (!done)
+            {
+                WriteLine("                    else");
+                WriteLine("                    {");
+                WriteLine("                        throw new ParseException(input.Peek().Node.Position, string.Format(\"Element {0} inattendu\", input.Peek().Node));");
+                WriteLine("                    }");
+            }
+        }
+        if (emitBreak)
+        {
+            WriteLine("                    break;");
+        }
+        WriteLine();
+    }
+    WriteLine("            }"); // switch
+    WriteLine("        }"); // while
+    WriteLine("    }"); // method
+    WriteLine("}"); // class
+}
+#>

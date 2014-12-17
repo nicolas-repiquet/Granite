@@ -58,9 +58,9 @@ namespace Granite.UI
 
         private FormattedText m_formatedText;
 
-        public override IEnumerable<UIElement> Children
+        public override IEnumerable<UIElement> GetChildren()
         {
-            get { yield break; }
+            return Enumerable.Empty<UIElement>();
         }
 
         public override void Render(Graphics graphics, TimeSpan elapsed)

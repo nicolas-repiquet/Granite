@@ -17,11 +17,11 @@ namespace GUI
             var settings = new ApplicationSettings()
             {
                 DisplayStyle = DisplayStyle.ResizeableWithTitle,
-                VerticalSynchronization = true
+                //VerticalSynchronization = true
             };
 
             #if DEBUG
-            settings.Debug = true;
+            //settings.Debug = true;
             #endif
 
             Engine.Run(new Program(), settings);
@@ -29,6 +29,7 @@ namespace GUI
 
         private UIManager m_uiManager;
         private UILabel m_label;
+        private UIElement m_menu;
 
         public override void Start()
         {
@@ -41,6 +42,11 @@ namespace GUI
             m_uiManager.Root = m_label;
 
             Engine.Display.SetCursor(Cursor.IBeam);
+
+            var template = UITemplate<Menu>.Load(typeof(Menu).GetAssociatedResource("xml"));
+
+            m_menu = template.Create(new Menu());
+
         }
 
         public override void InputEvent(InputEventArgs e)
@@ -51,6 +57,8 @@ namespace GUI
 
         public override void Render(TimeSpan elapsed)
         {
+            Engine.Display.Invalidate();
+
             Engine.Display.SetTitle(string.Format("{0:0} FPS", Engine.Display.FramesPerSecond));
 
             var size = Engine.Display.GetSize();
@@ -64,23 +72,8 @@ namespace GUI
             m_label.Text = string.Format("Time elapsed since previous frame: {0}", elapsed.ToString());
             m_uiManager.Render(elapsed);
 
-            //GL.ClearColor(0.3f, 0.3f, 0.3f, 1f);
-            //GL.Clear(GL.COLOR_BUFFER_BIT);
-
-            GL.BlendFunc(GL.ONE, GL.ONE);
-            //GL.BlendEquation(GL.FUNC_ADD);
-
-            Graphics g = new Graphics();
-            for (int i = 0; i < 10; i++)
-            {
-                g.Draw(new Box2(i * 0.03f, i * 0.03f, 0.2f, 0.2f), new Color4ub(0xFF, 0x20, 0x02, 0xFF));
-            }
-            g.Flush();
-
-
             GL.Finish();
-
-            Engine.Display.Invalidate();
+                 
         }
     }
 }

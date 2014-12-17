@@ -44,6 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpressionParser\Nodes.cs" />
+    <Compile Include="ExpressionParser\Parser.cs" />
+    <Compile Include="ExpressionParser\Parser.gen.cs">
+      <DependentUpon>Parser.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ExpressionParser\Tokenizer.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="FormattedText.cs" />
     <Compile Include="Glyph.cs" />
@@ -59,12 +67,20 @@
     <Compile Include="SizeConstraint.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="TextAlignment.cs" />
+    <Compile Include="UIContainer.cs" />
     <Compile Include="UIElement.cs" />
     <Compile Include="UIElementCollection.cs" />
+    <Compile Include="UIElementProperty.cs" />
     <Compile Include="UILabel.cs" />
     <Compile Include="UIManager.cs" />
+    <Compile Include="UITemplate.cs" />
+    <Compile Include="UIVisual.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ExpressionParser\Parser.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Parser.gen.cs</LastGenOutput>
+    </None>
     <None Include="InternalFonts.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalFonts.gen.cs</LastGenOutput>
