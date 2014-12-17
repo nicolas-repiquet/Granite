@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +61,13 @@
     <Compile Include="Game\Entities\Components\RestrictLocationComponent.cs" />
     <Compile Include="Game\Entities\Components\RigidBodyComponent.cs" />
     <Compile Include="Game\Entities\Components\LifeComponent.cs" />
+    <Compile Include="Game\Entities\Effects\Blood.cs" />
+    <Compile Include="Game\Entities\Effects\Blood1.cs" />
+    <Compile Include="Game\Entities\Effects\BloodManager.cs" />
+    <Compile Include="Game\Entities\Effects\Blood3.cs" />
+    <Compile Include="Game\Entities\Effects\Blood4.cs" />
+    <Compile Include="Game\Entities\Effects\Blood2.cs" />
+    <Compile Include="Game\Entities\Effects\BloodFloor1.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie6.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie5.cs" />
     <Compile Include="Game\Entities\Ennemies\Zombie4.cs" />
@@ -70,8 +78,14 @@
     <Compile Include="Game\Entities\Ennemies\Zombie1.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\Tools\Geometries\IPointInstance.cs" />
+    <Compile Include="Game\Entities\Tools\RandomGenerator.cs" />
     <Compile Include="Game\Entities\Tools\TriangleFanRenderer.cs" />
+    <Compile Include="Game\Entities\Weapons\Bullets\Bullet.cs" />
+    <Compile Include="Game\Entities\Weapons\BulletManager.cs" />
+    <Compile Include="Game\Entities\Weapons\Bullets\BulletGatling.cs" />
+    <Compile Include="Game\Entities\Weapons\Bullets\BulletSniper.cs" />
     <Compile Include="Game\Entities\World\DayLight.cs" />
+    <Compile Include="Game\Entities\Zones\FireCamp.cs" />
     <Compile Include="Game\Entities\Zones\Floor.cs" />
     <Compile Include="Game\Entities\Zones\Light.cs" />
     <Compile Include="Game\Entities\Zones\Map.cs" />
@@ -100,8 +114,11 @@
     <Compile Include="Game\Entities\World\World.cs" />
     <Compile Include="Game\Shaders\SpriteProgram.cs" />
     <Compile Include="Game\Shaders\TriangleProgram.cs" />
+    <Compile Include="Game\Sprites\BloodSprites.cs" />
+    <Compile Include="Game\Sprites\BulletSprites.cs" />
     <Compile Include="Game\Sprites\EnnemiesSprites.cs" />
     <Compile Include="Game\Sprites\ISpriteInstance.cs" />
+    <Compile Include="Game\Sprites\FireSprites.cs" />
     <Compile Include="Game\Sprites\PlayerSprites.cs" />
     <Compile Include="Game\Sprites\Sprite.cs" />
     <Compile Include="Game\Sprites\SpriteRenderer.cs" />
@@ -144,9 +161,7 @@
     <EmbeddedResource Include="Game\Sprites\PlayerSprites.txt" />
     <EmbeddedResource Include="Game\Sprites\EnnemiesSprites.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Entities\Effects\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Game\Textures\grass.jpg" />
   </ItemGroup>
@@ -158,6 +173,12 @@
     <EmbeddedResource Include="Game\Sprites\TreesSprites.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Game\Sprites\FireSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\FireSprites.txt" />
+    <EmbeddedResource Include="Game\Sprites\BloodSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\BloodSprites.txt" />
+    <EmbeddedResource Include="Game\Sprites\BulletSprites.png" />
+    <EmbeddedResource Include="Game\Sprites\BulletSprites.txt" />
     <Content Include="Game\Sprites\slime.png" />
     <Content Include="Game\Sprites\zombie1.png" />
     <Content Include="Game\Sprites\zombie2.png" />

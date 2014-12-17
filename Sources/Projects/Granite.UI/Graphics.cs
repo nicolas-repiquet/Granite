@@ -1,4 +1,4 @@
-﻿using Granite.Core;
+using Granite.Core;
 using Granite.UI.Shaders;
 using System;
 using System.Collections.Generic;

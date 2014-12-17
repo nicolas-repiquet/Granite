@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Zombie.Game.Entities.Components;
 using Zombie.Game.Entities.Tools;
+using Zombie.Game.Entities.Weapons.Bullets;
 
 namespace Zombie.Game.Entities.Weapons
 {
@@ -18,10 +19,12 @@ namespace Zombie.Game.Entities.Weapons
         private double m_timeLoadBullet;
         private double m_timeLoadCharger;
         private int m_ammoSize;
+        private int m_bulletSpeed;
         private double m_startReloadBullet;
         private double m_startReloadCharger;
         private bool m_loaded;
         private Shoot m_shoot;
+        private Bullet m_bullet;
         #endregion
 
         #region Accessors
@@ -34,7 +37,7 @@ namespace Zombie.Game.Entities.Weapons
 
         #region Constructor
         public Weapon(string name, double damage, int charger, 
-            double timeLoadBullet, double timeLoadCharger, int ammoSize, Shoot shoot)
+            double timeLoadBullet, double timeLoadCharger, int ammoSize, int bulletSpeed, Bullet bullet)
         {
             m_name = name;
             m_damage = damage;
@@ -43,11 +46,16 @@ namespace Zombie.Game.Entities.Weapons
             m_timeLoadBullet = timeLoadBullet;
             m_timeLoadCharger = timeLoadCharger;
             m_ammoSize = ammoSize;
-            m_shoot = shoot;
+            //m_shoot = shoot;
+            m_bulletSpeed = bulletSpeed;
             m_startReloadBullet = 0;
             m_startReloadCharger = 0;
             m_loaded = true;
-            shoot.SetWeapon(this);
+            //shoot.SetWeapon(this);
+
+            m_bullet = bullet;
+            m_bullet.SetWeapon(this);
+            m_bullet.SetSpeed(m_bulletSpeed);
         }
         #endregion
 
@@ -91,11 +99,16 @@ namespace Zombie.Game.Entities.Weapons
             else if (m_loaded)
             {
                 Console.WriteLine("Fire !");
-                var shoot = (Shoot)m_shoot.Clone();
-                shoot.SetPosition(position);
-                shoot.SetDirection(direction);
+                //var shoot = (Shoot)m_shoot.Clone();
+                //shoot.SetPosition(position);
+                //shoot.SetDirection(direction);
 
-                ShootManager.Instance.AddShoot(shoot);
+                //ShootManager.Instance.AddShoot(shoot);
+
+                var bullet = (Bullet)m_bullet.Clone();
+                bullet.SetPosition(position);
+                bullet.SetDirection(direction);
+                BulletManager.Instance.AddBullet(bullet);
 
                 m_loaded = false;
 

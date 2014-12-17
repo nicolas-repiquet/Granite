@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Effects;
 using Zombie.Game.Entities.Weapons;
 using Zombie.Game.Sprites;
 
@@ -29,6 +30,7 @@ namespace Zombie.Game.Entities
         private SpriteSequence m_currentSequence;
         private Weapon m_weapon;
         private Dictionary<string, Weapon> m_weapons;
+        private Blood m_blood;
 
         public LocationComponent Location { get { return m_location; } }
         public Vector2 Box { get { return m_box; } }
@@ -159,37 +161,50 @@ namespace Zombie.Game.Entities
 
         public void Update(TimeSpan elapsed)
         {
-            
-            m_move.Update(elapsed);
-
-            //if (NeedMove)
-            //{
-            //    m_location.SetPosition(m_move.NewLocation);
-            //    NeedMove = false;
-            //}
-
-            var sequence = GetSpriteSequence();
-
-            if (sequence != m_currentSequence)
+            if (m_life.IsAlive)
             {
-                m_currentSequence = sequence;
-                m_currentSequence.Reset();
+                m_move.Update(elapsed);
+
+                //if (NeedMove)
+                //{
+                //    m_location.SetPosition(m_move.NewLocation);
+                //    NeedMove = false;
+                //}
+
+                var sequence = GetSpriteSequence();
+
+                if (sequence != m_currentSequence)
+                {
+                    m_currentSequence = sequence;
+                    m_currentSequence.Reset();
+                }
+
+                m_currentSequence.Update(elapsed);
+
+                if (m_weapon != null)
+                {
+                    m_weapon.Update(elapsed);
+                }
             }
-
-            m_currentSequence.Update(elapsed);
-
-            if (m_weapon != null)
+            else if(m_blood == null)
             {
-                m_weapon.Update(elapsed);
+                m_blood = new Blood3();
+                m_blood.SetPosition(m_location.Position);
+                m_blood.SetColor(new Color4ub(255, 0, 50, 255));
+                m_blood.NeverDie = true;
+                BloodManager.Instance.AddBlood(m_blood);
             }
         }
 
         public void Render(Matrix4 transform)
         {
-            m_sprite.Position = new Vector2(m_location.Position.X - m_sprite.Sprite.Size.X/2, m_location.Position.Y - m_sprite.Sprite.Size.Y/2);
-            m_sprite.Sprite = m_currentSequence.CurrentSprite;
-            m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
-            m_renderer.Render(transform);
+            if (m_life.IsAlive)
+            {
+                m_sprite.Position = new Vector2(m_location.Position.X - m_box.X / 2, m_location.Position.Y - m_box.Y / 2);
+                m_sprite.Sprite = m_currentSequence.CurrentSprite;
+                m_sprite.Size = m_box;
+                m_renderer.Render(transform);
+            }
         }
 
         public void Fire(Vector2 mouse)

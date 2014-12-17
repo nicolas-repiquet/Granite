@@ -1,4 +1,4 @@
-﻿using Granite.Core;
+using Granite.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -37,7 +37,6 @@ namespace Zombie.Game.Entities.Weapons
         public void AddShoot(Shoot shoot)
         {
             Shoots.Add(shoot);
-            EnnemyManager.Instance.LastShoot = shoot;
         }
 
         public void Update(TimeSpan elapsed)

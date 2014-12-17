@@ -26,7 +26,7 @@ namespace Zombie.Game.UI
             {
                 Color = new Color4ub(0xFF, 0x80, 0x80, 0xFF),
                 Font = InternalFonts.BoldSmallVariableWidthFont,
-                Bounds = new Box2(size.X - 300, size.Y - 25, 300, 25)
+                Bounds = new Box2(size.X - 450, size.Y - 25, 450, 25)
             };
 
             m_lblWeaponName = new UILabel()
@@ -58,6 +58,7 @@ namespace Zombie.Game.UI
         public void Render(TimeSpan elapsed)
         {
             var player = World.Instance.Player;
+            var hour = World.Instance.DayLight.DayTime;
 
             if (player.Weapon != null)
             {
@@ -65,11 +66,12 @@ namespace Zombie.Game.UI
                 //m_lblWeaponCurrentAmmo.Text += string.Format("{0}/{1}", player.Weapon.AmmoInCharger, player.Weapon.Charger);
                 //m_lblWeaponTotalAmmo.Text += string.Format("Total ammo : {0}", player.Weapon.AmmoSize);
 
-                m_lblWeaponInfos.Text = string.Format("{0}, {1}/{2}, Total ammo : {3}", 
+                m_lblWeaponInfos.Text = string.Format("{0}, {1}/{2}, Total ammo : {3}, Hour : {4}", 
                     player.Weapon.Name,
                     player.Weapon.AmmoInCharger,
                     player.Weapon.Charger,
-                    player.Weapon.AmmoSize);
+                    player.Weapon.AmmoSize,
+                    hour);
             }
 
             m_uiManager.Render(elapsed);

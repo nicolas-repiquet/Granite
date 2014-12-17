@@ -154,8 +154,8 @@ namespace Granite.Particle.Renderer
 
             m_program.Position.SetValue(m_bufferQuad.GetView());
 
-            m_program.Color.SetValue(m_bufferSprite.GetView(s => s.Color));
-            m_program.Color.SetDivisor(1);
+            //m_program.Color.SetValue(m_bufferSprite.GetView(s => s.Color));
+            //m_program.Color.SetDivisor(1);
             m_program.Transform.SetValue(m_bufferSprite.GetView<Matrix4>("Transform"));
             m_program.Transform.SetDivisor(1);
             m_program.TextureOrigin.SetValue(m_bufferSprite.GetView<Vector2>("TextureOrigin"));

@@ -1,4 +1,4 @@
-﻿using Granite.Core;
+using Granite.Core;
 using Granite.UI;
 using GUI.Sprites;
 using System;

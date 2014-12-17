@@ -39,5 +39,6 @@ void main(void)
 	vec4 pos =  projection * (transformAttrib * vec4(positionAttrib, 1));
 
     gl_Position = vec4(pos.xy, d, 1);
+    //gl_Position = pos;
 	//color = vec4(d, d, d, 1);
 }

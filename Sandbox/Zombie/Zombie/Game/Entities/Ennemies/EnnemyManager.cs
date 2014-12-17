@@ -19,13 +19,8 @@ namespace Zombie.Game.Entities.Ennemies
         protected readonly SpriteRenderer m_renderer;
 
         private int m_ennemiesCount;
+        private int m_ennemiesCountInitial;
         private Random m_random;
-
-        private Shoot m_lastShoot;
-        public Shoot LastShoot { 
-            get { return m_lastShoot; }
-            set { m_lastShoot = value; }
-        }
 
         private static EnnemyManager s_instance;
         public static EnnemyManager Instance
@@ -44,6 +39,7 @@ namespace Zombie.Game.Entities.Ennemies
         {
             m_ennemies = new List<Ennemy>();
             m_ennemiesCount = ennemiesCount;
+            m_ennemiesCountInitial = ennemiesCount;
             m_random = new Random();
 
             m_renderer = new SpriteRenderer(EnnemiesSprites.Instance);
@@ -57,21 +53,25 @@ namespace Zombie.Game.Entities.Ennemies
 
         public void Update(TimeSpan elapsed)
         {
+            //On modifie le nombre de zombies en fonction du moment de la journée
+            var period = World.World.Instance.DayLight.GetDayPeriod();
+            if (period == World.DayPeriod.Night)
+            {
+                m_ennemiesCount = m_ennemiesCountInitial * 10;
+            }
+            else
+            {
+                m_ennemiesCount = m_ennemiesCountInitial;
+            }
+
             var size = Engine.Display.GetSize();
             var player = World.World.Instance.Player;
             var vecteur = player.Location.Position + size / 2 - player.Location.Position;
-            MaxDistance = Math.Abs(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+            MaxDistance = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2)) + 20;
 
-            //On test les collisions entre le dernier tir et les zombies
-            if (LastShoot != null)
+            if (m_ennemies.Any(x => !x.Life.IsAlive && !x.Life.HasTakenDamage.HasValue))
             {
-                Parallel.ForEach(m_ennemies, x => x.LastShoot.Enqueue(LastShoot));
-                LastShoot = null;
-            }
-
-            if (m_ennemies.Any(x => !x.Life.IsAlive))
-            {
-                m_ennemies.RemoveAll(x => !x.Life.IsAlive);
+                m_ennemies.RemoveAll(x => !x.Life.IsAlive && !x.Life.HasTakenDamage.HasValue);
 
                 m_renderer.Clear();
 
@@ -117,7 +117,7 @@ namespace Zombie.Game.Entities.Ennemies
 
                 var x = player.Location.Position.X;
                 var y = player.Location.Position.Y;
-                var ecart = m_random.Next(10, 30);
+                var ecart = m_random.Next(10, 200);
 
                 switch (side)
                 {

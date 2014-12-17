@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zombie.Game.Entities.Components;
+using Zombie.Game.Entities.Effects;
+using Zombie.Game.Entities.Tools;
 using Zombie.Game.Entities.Weapons;
 using Zombie.Game.Sprites;
 
@@ -17,19 +19,13 @@ namespace Zombie.Game.Entities.Ennemies
         protected readonly RigidBodyComponent m_rigidBody;
         protected readonly LifeComponent m_life;
         protected Vector2 m_box;
+        protected Color4ub m_bloodColor;
         
         protected ISpriteInstance m_sprite;
 
         protected SpriteSequence m_currentSequence;
 
         protected Player m_target;
-
-        private Queue<Shoot> m_lastShoot;
-        public Queue<Shoot> LastShoot
-        {
-            get { return m_lastShoot; }
-            set { m_lastShoot = value; }
-        }
 
         public LocationComponent Location { get { return m_location; } }
         public LifeComponent Life { get { return m_life; } }
@@ -43,7 +39,11 @@ namespace Zombie.Game.Entities.Ennemies
             m_move = new MoveComponent(this, m_location);
             m_rigidBody = new RigidBodyComponent(this, m_location);
             m_life = new LifeComponent(this, 50);
-            m_lastShoot = new Queue<Shoot>();
+
+            var r = (byte)RandomGenerator.Instance.Random.Next(0, 255);
+            var g = (byte)RandomGenerator.Instance.Random.Next(0, 255);
+            var b = (byte)RandomGenerator.Instance.Random.Next(0, 255);
+            m_bloodColor = new Color4ub(r, g, b, 255);
         }
 
         public void SetTarget(Player player)
@@ -64,62 +64,37 @@ namespace Zombie.Game.Entities.Ennemies
 
         public virtual void Update(TimeSpan elapsed)
         {
-            if(LastShoot.Any())
-            {
-                CollisionShoot();
-            }
-
             m_move.Update(elapsed);
 
             var player = World.World.Instance.Player;
             var vecteur = player.Location.Position - m_location.Position;
-            var distance = Math.Abs(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
+            var distance = Math.Sqrt(Math.Pow(vecteur.X, 2) + Math.Pow(vecteur.Y, 2));
 
             if (distance > EnnemyManager.Instance.MaxDistance)
             {
-                this.Life.TakeDamage(1000);
+                this.Life.InstantDeath();
+            }
+            else if (distance < 10 && player.Life.IsAlive)
+            {
+                var damage = RandomGenerator.Instance.Random.Next(5, 15);
+                player.Life.TakeDamage(damage);
+                Console.WriteLine("Player take " + damage + " damages (" + player.Life.Life + ")");
+            }
+
+            if (m_life.HasTakenDamage.HasValue)
+            {
+                BloodManager.Instance.AddBlood(
+                    m_life.HasTakenDamage.Value, 
+                    m_location.Position, 
+                    vecteur * -1,
+                    m_bloodColor);
+                m_life.DamageProcessed();
             }
         }
 
         public virtual void Render(Matrix4 transform)
         {
  
-        }
-
-        private void CollisionShoot()
-        {
-            while (LastShoot.Any())
-            {
-                var shoot = LastShoot.Dequeue();
-
-                var collide = shoot.Cone.Collision(m_location.Position, 10);
-
-                if (collide)
-                {
-                    m_life.TakeDamage(shoot.Weapon.Damage);
-                    Console.WriteLine("Ennemy take " + shoot.Weapon.Damage + " damages (" + m_life.Life + ")");
-                }
-            }
-
-            //foreach(var triangle in LastShoot.Cone.Triangles)
-            //{
-            //    var listPoint = new List<Vector2>()
-            //    {
-            //        new Vector2(triangle.P1.X, triangle.P1.Y), 
-            //        new Vector2(triangle.P2.X, triangle.P2.Y), 
-            //        new Vector2(triangle.P3.X, triangle.P3.Y)
-            //    };
-            //    var center = m_location.Position;
-
-            //    var collide = Collision.Detection(listPoint, new List<Vector2>() { center });
-
-            //    if (collide)
-            //    {
-            //        m_life.TakeDamage(LastShoot.Weapon.Damage);
-            //        Console.WriteLine("Ennemy take " + LastShoot.Weapon.Damage + " damages (" + m_life.Life + ")");
-            //        break;
-            //    }
-            //}
         }
     }
 }

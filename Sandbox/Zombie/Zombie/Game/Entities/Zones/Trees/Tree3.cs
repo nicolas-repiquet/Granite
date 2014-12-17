@@ -39,25 +39,14 @@ namespace Zombie.Game.Entities.Zones.Trees
         public override void SetSprite(SpriteRenderer renderer)
         {
             m_sprite = renderer.AddSprite(TreesSprites.Instance.Arbre3);
+
+            UpdateSprite(TimeSpan.Zero, GetSpriteSequence());
         }
 
         public override void Update(TimeSpan elapsed)
         {
             base.Update(elapsed);
 
-            var sequence = GetSpriteSequence();
-
-            if (sequence != m_currentSequence)
-            {
-                m_currentSequence = sequence;
-                m_currentSequence.Reset();
-            }
-
-            m_currentSequence.Update(elapsed);
-
-            m_sprite.Position = new Vector2(m_location.Position.X - m_box.X / 2, m_location.Position.Y - m_box.Y / 2);
-            m_sprite.Sprite = m_currentSequence.CurrentSprite;
-            m_sprite.Size = new Vector2(m_sprite.Sprite.Size.X, m_sprite.Sprite.Size.Y);
         }
     }
 }
