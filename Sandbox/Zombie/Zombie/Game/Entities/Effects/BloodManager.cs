@@ -30,6 +30,7 @@ namespace Zombie.Game.Entities.Effects
         }
 
         protected readonly SpriteRenderer m_renderer;
+        protected readonly SpriteRenderer m_staticRenderer;
 
         private List<Blood> Bloods;
 
@@ -37,6 +38,7 @@ namespace Zombie.Game.Entities.Effects
         {
             Bloods = new List<Blood>();
             m_renderer = new SpriteRenderer(BloodSprites.Instance);
+            m_staticRenderer = new SpriteRenderer(BloodSprites.Instance);
         }
 
         public void AddBlood(Blood blood)
@@ -45,12 +47,17 @@ namespace Zombie.Game.Entities.Effects
             Bloods.Add(blood);
         }
 
+        public void AddStaticBlood(Blood blood)
+        {
+            blood.SetSprite(m_staticRenderer);
+        }
+
         public void AddBlood(BloodType type, Vector2 position, Vector2 direction, Color4ub? color = null)
         {
             //Eclaboussure
             Blood blood = null;
-            
-            switch(type)
+
+            switch (type)
             {
                 case BloodType.A:
                     blood = new Blood1();
@@ -65,7 +72,7 @@ namespace Zombie.Game.Entities.Effects
                     blood = new Blood4();
                     break;
             }
-            
+
             blood.SetPosition(position);
             blood.SetDirection(direction);
             blood.SetColor(color);
@@ -77,15 +84,16 @@ namespace Zombie.Game.Entities.Effects
             var angle = (float)Math.Atan2(direction.Y, direction.X);
             blood.SetDirection(angle + (float)((RandomGenerator.Instance.Random.NextDouble() * 2) - 1));
             blood.SetColor(color);
-            AddBlood(blood);
+            AddStaticBlood(blood);
         }
 
         public void Update(TimeSpan elapsed)
         {
+            //Pour le sang non static
             Parallel.ForEach(Bloods, b =>
-                {
-                    b.Update(elapsed);
-                });
+            {
+                b.Update(elapsed);
+            });
 
             Bloods.RemoveAll(x => x.LifeTime <= 0);
 
@@ -95,10 +103,12 @@ namespace Zombie.Game.Entities.Effects
             {
                 b.SetSprite(m_renderer);
             }
+
         }
 
         public void Render(Matrix4 transform)
         {
+            m_staticRenderer.Render(transform);
             m_renderer.Render(transform);
         }
     }
