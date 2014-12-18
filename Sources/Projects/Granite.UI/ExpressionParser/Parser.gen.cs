@@ -7,8 +7,34 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-// LambdaNode: OpeningParToken IdentifierListNode ClosingParToken ArrowToken ExpressionNode EndToken
+// LambdaNode: LambdaParametersNode ArrowToken ExpressionNode EndToken
 public sealed partial class LambdaNode : Node
+{
+    private readonly LambdaParametersNode m_p0;
+    public LambdaParametersNode P0 {  get { return m_p0; } }
+    private readonly ArrowToken m_p1;
+    public ArrowToken P1 {  get { return m_p1; } }
+    private readonly ExpressionNode m_p2;
+    public ExpressionNode P2 {  get { return m_p2; } }
+    private readonly EndToken m_p3;
+    public EndToken P3 {  get { return m_p3; } }
+    public LambdaNode(LambdaParametersNode p0, ArrowToken p1, ExpressionNode p2, EndToken p3)
+    {
+        m_p0 = p0;
+        m_p1 = p1;
+        m_p2 = p2;
+        m_p3 = p3;
+    }
+    public override int Position { get { return m_p0.Position; } }
+}
+
+// LambdaParametersNode
+public abstract partial class LambdaParametersNode : Node
+{
+}
+
+// WithParenthesisLambdaParametersNode: OpeningParToken IdentifierListNode ClosingParToken
+public sealed partial class WithParenthesisLambdaParametersNode : LambdaParametersNode
 {
     private readonly OpeningParToken m_p0;
     public OpeningParToken P0 {  get { return m_p0; } }
@@ -16,20 +42,11 @@ public sealed partial class LambdaNode : Node
     public IdentifierListNode P1 {  get { return m_p1; } }
     private readonly ClosingParToken m_p2;
     public ClosingParToken P2 {  get { return m_p2; } }
-    private readonly ArrowToken m_p3;
-    public ArrowToken P3 {  get { return m_p3; } }
-    private readonly ExpressionNode m_p4;
-    public ExpressionNode P4 {  get { return m_p4; } }
-    private readonly EndToken m_p5;
-    public EndToken P5 {  get { return m_p5; } }
-    public LambdaNode(OpeningParToken p0, IdentifierListNode p1, ClosingParToken p2, ArrowToken p3, ExpressionNode p4, EndToken p5)
+    public WithParenthesisLambdaParametersNode(OpeningParToken p0, IdentifierListNode p1, ClosingParToken p2)
     {
         m_p0 = p0;
         m_p1 = p1;
         m_p2 = p2;
-        m_p3 = p3;
-        m_p4 = p4;
-        m_p5 = p5;
     }
     public override int Position { get { return m_p0.Position; } }
 }
@@ -661,6 +678,18 @@ public sealed partial class MultipleIdentifierListNode : RealIdentifierListNode
     public override int Position { get { return m_p0.Position; } }
 }
 
+// WithoutParenthesisLambdaParametersNode: IdentifierListNode
+public sealed partial class WithoutParenthesisLambdaParametersNode : LambdaParametersNode
+{
+    private readonly IdentifierListNode m_p0;
+    public IdentifierListNode P0 {  get { return m_p0; } }
+    public WithoutParenthesisLambdaParametersNode(IdentifierListNode p0)
+    {
+        m_p0 = p0;
+    }
+    public override int Position { get { return m_p0.Position; } }
+}
+
 // ArrowToken
 public sealed partial class ArrowToken : Token
 {
@@ -697,27 +726,9 @@ public static partial class Parser
 // ###################################
 // # State 0
 //
-// LambdaNode                     : . OpeningParToken IdentifierListNode ClosingParToken ArrowToken ExpressionNode EndToken
-//
-//  0: OpeningParToken      -> 1
-//
-//
-                case 0:
-                    if(input.Peek().Node is OpeningParToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 0));
-                        state = 1;
-                    }
-                    else
-                    {
-                        throw new ParseException(input.Peek().Node.Position, string.Format("Element {0} inattendu", input.Peek().Node));
-                    }
-                    break;
-
-// ###################################
-// # State 1
-//
-// LambdaNode                     : OpeningParToken . IdentifierListNode ClosingParToken ArrowToken ExpressionNode EndToken
+// LambdaNode                     : . LambdaParametersNode ArrowToken ExpressionNode EndToken
+// WithParenthesisLambdaParametersNode : . OpeningParToken IdentifierListNode ClosingParToken
+// WithoutParenthesisLambdaParametersNode : . IdentifierListNode
 // EmptyIdentifierListNode        : .
 // SingleIdentifierListNode       : . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -746,126 +757,112 @@ public static partial class Parser
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 // MultipleIdentifierListNode     : . ExpressionNode CommaToken RealIdentifierListNode
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: IdentifierListNode   -> 2
-//  0: ExpressionNode       -> 56
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: LambdaParametersNode -> 1
+//  0: OpeningParToken      -> 54
+//  0: IdentifierListNode   -> 60
+//  0: ExpressionNode       -> 57
+//  0: IdentifierToken      -> 45
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 // -2: <- EmptyIdentifierListNode
 //
 //
-                case 1:
+                case 0:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 43;
+                    }
+                    else if(input.Peek().Node is LambdaParametersNode)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 1;
+                    }
+                    else if(input.Peek().Node is OpeningParToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 54;
                     }
                     else if(input.Peek().Node is IdentifierListNode)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 60;
+                    }
+                    else if(input.Peek().Node is ExpressionNode)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 57;
+                    }
+                    else if(input.Peek().Node is IdentifierToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 45;
+                    }
+                    else if(input.Peek().Node is StringToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 49;
+                    }
+                    else if(input.Peek().Node is NumberToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 50;
+                    }
+                    else if(input.Peek().Node is TrueToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 51;
+                    }
+                    else if(input.Peek().Node is FalseToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 52;
+                    }
+                    else if(input.Peek().Node is NullToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 0));
+                        state = 53;
+                    }
+                    else
+                    {
+                        input.Push(new StackItem(new EmptyIdentifierListNode(), 0));
+                    }
+                    break;
+
+// ###################################
+// # State 1
+//
+// LambdaNode                     : LambdaParametersNode . ArrowToken ExpressionNode EndToken
+//
+//  0: ArrowToken           -> 2
+//
+//
+                case 1:
+                    if(input.Peek().Node is ArrowToken)
                     {
                         stack.Push(new StackItem(input.Pop().Node, 1));
                         state = 2;
                     }
-                    else if(input.Peek().Node is ExpressionNode)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 56;
-                    }
-                    else if(input.Peek().Node is IdentifierToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 47;
-                    }
-                    else if(input.Peek().Node is OpeningParToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 48;
-                    }
-                    else if(input.Peek().Node is StringToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 51;
-                    }
-                    else if(input.Peek().Node is NumberToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 52;
-                    }
-                    else if(input.Peek().Node is TrueToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 53;
-                    }
-                    else if(input.Peek().Node is FalseToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 54;
-                    }
-                    else if(input.Peek().Node is NullToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 1));
-                        state = 55;
-                    }
                     else
                     {
-                        input.Push(new StackItem(new EmptyIdentifierListNode(), 1));
+                        throw new ParseException(input.Peek().Node.Position, string.Format("Element {0} inattendu", input.Peek().Node));
                     }
                     break;
 
 // ###################################
 // # State 2
 //
-// LambdaNode                     : OpeningParToken IdentifierListNode . ClosingParToken ArrowToken ExpressionNode EndToken
-//
-//  0: ClosingParToken      -> 3
-//
-//
-                case 2:
-                    if(input.Peek().Node is ClosingParToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 2));
-                        state = 3;
-                    }
-                    else
-                    {
-                        throw new ParseException(input.Peek().Node.Position, string.Format("Element {0} inattendu", input.Peek().Node));
-                    }
-                    break;
-
-// ###################################
-// # State 3
-//
-// LambdaNode                     : OpeningParToken IdentifierListNode ClosingParToken . ArrowToken ExpressionNode EndToken
-//
-//  0: ArrowToken           -> 4
-//
-//
-                case 3:
-                    if(input.Peek().Node is ArrowToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 3));
-                        state = 4;
-                    }
-                    else
-                    {
-                        throw new ParseException(input.Peek().Node.Position, string.Format("Element {0} inattendu", input.Peek().Node));
-                    }
-                    break;
-
-// ###################################
-// # State 4
-//
-// LambdaNode                     : OpeningParToken IdentifierListNode ClosingParToken ArrowToken . ExpressionNode EndToken
+// LambdaNode                     : LambdaParametersNode ArrowToken . ExpressionNode EndToken
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
 // NegExpressionNode              : . SubToken ExpressionNode
 // NotExpressionNode              : . NotToken ExpressionNode
@@ -891,68 +888,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 5
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 3
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 4:
+                case 2:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 5;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 3;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 4));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 2));
+                        state = 53;
                     }
                     else
                     {
@@ -961,9 +958,9 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 5
+// # State 3
 //
-// LambdaNode                     : OpeningParToken IdentifierListNode ClosingParToken ArrowToken ExpressionNode . EndToken
+// LambdaNode                     : LambdaParametersNode ArrowToken ExpressionNode . EndToken
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
 // MulExpressionNode              : ExpressionNode . MulToken ExpressionNode
 // DivExpressionNode              : ExpressionNode . DivToken ExpressionNode
@@ -980,101 +977,138 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
-//  3: OrToken              -> 31
-//  2: QuestionMarkToken    -> 33
-//  1: OpeningParToken      -> 37
-//  0: EndToken             -> 6
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
+//  3: OrToken              -> 29
+//  2: QuestionMarkToken    -> 31
+//  1: OpeningParToken      -> 35
+//  0: EndToken             -> 4
 //
 //
-                case 5:
+                case 3:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 27;
                     }
                     else if(input.Peek().Node is OrToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 31;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 29;
                     }
                     else if(input.Peek().Node is QuestionMarkToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 33;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 31;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 5));
-                        state = 37;
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 35;
                     }
                     else if(input.Peek().Node is EndToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 3));
+                        state = 4;
+                    }
+                    else
+                    {
+                        throw new ParseException(input.Peek().Node.Position, string.Format("Element {0} inattendu", input.Peek().Node));
+                    }
+                    break;
+
+// ###################################
+// # State 4
+//
+// LambdaNode                     : LambdaParametersNode ArrowToken ExpressionNode EndToken .
+//
+//  0: <- LambdaNode
+//
+//
+                case 4:
+                    {
+                        var p3 = stack.Pop();
+                        var p2 = stack.Pop();
+                        var p1 = stack.Pop();
+                        var p0 = stack.Pop();
+                        return new LambdaNode((LambdaParametersNode)p0.Node, (ArrowToken)p1.Node, (ExpressionNode)p2.Node, (EndToken)p3.Node);
+                    }
+
+// ###################################
+// # State 5
+//
+// DotExpressionNode              : ExpressionNode DotToken . IdentifierToken
+//
+//  9: IdentifierToken      -> 6
+//
+//
+                case 5:
+                    if(input.Peek().Node is IdentifierToken)
                     {
                         stack.Push(new StackItem(input.Pop().Node, 5));
                         state = 6;
@@ -1088,62 +1122,23 @@ public static partial class Parser
 // ###################################
 // # State 6
 //
-// LambdaNode                     : OpeningParToken IdentifierListNode ClosingParToken ArrowToken ExpressionNode EndToken .
-//
-//  0: <- LambdaNode
-//
-//
-                case 6:
-                    {
-                        var p5 = stack.Pop();
-                        var p4 = stack.Pop();
-                        var p3 = stack.Pop();
-                        var p2 = stack.Pop();
-                        var p1 = stack.Pop();
-                        var p0 = stack.Pop();
-                        return new LambdaNode((OpeningParToken)p0.Node, (IdentifierListNode)p1.Node, (ClosingParToken)p2.Node, (ArrowToken)p3.Node, (ExpressionNode)p4.Node, (EndToken)p5.Node);
-                    }
-
-// ###################################
-// # State 7
-//
-// DotExpressionNode              : ExpressionNode DotToken . IdentifierToken
-//
-//  9: IdentifierToken      -> 8
-//
-//
-                case 7:
-                    if(input.Peek().Node is IdentifierToken)
-                    {
-                        stack.Push(new StackItem(input.Pop().Node, 7));
-                        state = 8;
-                    }
-                    else
-                    {
-                        throw new ParseException(input.Peek().Node.Position, string.Format("Element {0} inattendu", input.Peek().Node));
-                    }
-                    break;
-
-// ###################################
-// # State 8
-//
 // DotExpressionNode              : ExpressionNode DotToken IdentifierToken .
 //
 //  9: <- DotExpressionNode
 //
 //
-                case 8:
+                case 6:
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new DotExpressionNode((ExpressionNode)p0.Node, (DotToken)p1.Node, (IdentifierToken)p2.Node), 8));
+                        input.Push(new StackItem(new DotExpressionNode((ExpressionNode)p0.Node, (DotToken)p1.Node, (IdentifierToken)p2.Node), 6));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 9
+// # State 7
 //
 // MulExpressionNode              : ExpressionNode MulToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -1171,68 +1166,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 10
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 8
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 9:
+                case 7:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 10;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 8;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 9));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 7));
+                        state = 53;
                     }
                     else
                     {
@@ -1241,7 +1236,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 10
+// # State 8
 //
 // MulExpressionNode              : ExpressionNode MulToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -1260,40 +1255,40 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
 //  7: <- MulExpressionNode
 //
 //
-                case 10:
+                case 8:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 10));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 8));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 10));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 8));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 10));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 8));
+                        state = 9;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new MulExpressionNode((ExpressionNode)p0.Node, (MulToken)p1.Node, (ExpressionNode)p2.Node), 10));
+                        input.Push(new StackItem(new MulExpressionNode((ExpressionNode)p0.Node, (MulToken)p1.Node, (ExpressionNode)p2.Node), 8));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 11
+// # State 9
 //
 // DivExpressionNode              : ExpressionNode DivToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -1321,68 +1316,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 12
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 10
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 11:
+                case 9:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 12;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 10;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 11));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 9));
+                        state = 53;
                     }
                     else
                     {
@@ -1391,7 +1386,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 12
+// # State 10
 //
 // DivExpressionNode              : ExpressionNode DivToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -1410,40 +1405,40 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
 //  7: <- DivExpressionNode
 //
 //
-                case 12:
+                case 10:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 12));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 10));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 12));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 10));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 12));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 10));
+                        state = 9;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new DivExpressionNode((ExpressionNode)p0.Node, (DivToken)p1.Node, (ExpressionNode)p2.Node), 12));
+                        input.Push(new StackItem(new DivExpressionNode((ExpressionNode)p0.Node, (DivToken)p1.Node, (ExpressionNode)p2.Node), 10));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 13
+// # State 11
 //
 // AddExpressionNode              : ExpressionNode AddToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -1471,68 +1466,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 14
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 12
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 13:
+                case 11:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 14;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 12;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 13));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 11));
+                        state = 53;
                     }
                     else
                     {
@@ -1541,7 +1536,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 14
+// # State 12
 //
 // AddExpressionNode              : ExpressionNode AddToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -1560,52 +1555,52 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
 //  6: <- AddExpressionNode
 //
 //
-                case 14:
+                case 12:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 14));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 12));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 14));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 12));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 14));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 12));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 14));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 12));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 14));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 12));
+                        state = 13;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new AddExpressionNode((ExpressionNode)p0.Node, (AddToken)p1.Node, (ExpressionNode)p2.Node), 14));
+                        input.Push(new StackItem(new AddExpressionNode((ExpressionNode)p0.Node, (AddToken)p1.Node, (ExpressionNode)p2.Node), 12));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 15
+// # State 13
 //
 // SubExpressionNode              : ExpressionNode SubToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -1633,68 +1628,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 16
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 14
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 15:
+                case 13:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 16;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 14;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 15));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 13));
+                        state = 53;
                     }
                     else
                     {
@@ -1703,7 +1698,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 16
+// # State 14
 //
 // SubExpressionNode              : ExpressionNode SubToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -1722,52 +1717,52 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
 //  6: <- SubExpressionNode
 //
 //
-                case 16:
+                case 14:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 16));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 14));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 16));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 14));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 16));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 14));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 16));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 14));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 16));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 14));
+                        state = 13;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new SubExpressionNode((ExpressionNode)p0.Node, (SubToken)p1.Node, (ExpressionNode)p2.Node), 16));
+                        input.Push(new StackItem(new SubExpressionNode((ExpressionNode)p0.Node, (SubToken)p1.Node, (ExpressionNode)p2.Node), 14));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 17
+// # State 15
 //
 // EqExpressionNode               : ExpressionNode EqToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -1795,68 +1790,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 18
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 16
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 17:
+                case 15:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 18;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 16;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 17));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 15));
+                        state = 53;
                     }
                     else
                     {
@@ -1865,7 +1860,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 18
+// # State 16
 //
 // EqExpressionNode               : ExpressionNode EqToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -1884,88 +1879,88 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
 //  5: <- EqExpressionNode
 //
 //
-                case 18:
+                case 16:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 18));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 16));
+                        state = 25;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new EqExpressionNode((ExpressionNode)p0.Node, (EqToken)p1.Node, (ExpressionNode)p2.Node), 18));
+                        input.Push(new StackItem(new EqExpressionNode((ExpressionNode)p0.Node, (EqToken)p1.Node, (ExpressionNode)p2.Node), 16));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 19
+// # State 17
 //
 // NeqExpressionNode              : ExpressionNode NeqToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -1993,68 +1988,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 20
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 18
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 19:
+                case 17:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 20;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 18;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 19));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 17));
+                        state = 53;
                     }
                     else
                     {
@@ -2063,7 +2058,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 20
+// # State 18
 //
 // NeqExpressionNode              : ExpressionNode NeqToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -2082,88 +2077,88 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
 //  5: <- NeqExpressionNode
 //
 //
-                case 20:
+                case 18:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 20));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 18));
+                        state = 25;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new NeqExpressionNode((ExpressionNode)p0.Node, (NeqToken)p1.Node, (ExpressionNode)p2.Node), 20));
+                        input.Push(new StackItem(new NeqExpressionNode((ExpressionNode)p0.Node, (NeqToken)p1.Node, (ExpressionNode)p2.Node), 18));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 21
+// # State 19
 //
 // GtExpressionNode               : ExpressionNode GtToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -2191,68 +2186,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 22
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 20
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 21:
+                case 19:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 22;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 20;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 21));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 19));
+                        state = 53;
                     }
                     else
                     {
@@ -2261,7 +2256,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 22
+// # State 20
 //
 // GtExpressionNode               : ExpressionNode GtToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -2280,88 +2275,88 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
 //  5: <- GtExpressionNode
 //
 //
-                case 22:
+                case 20:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 22));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 20));
+                        state = 25;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new GtExpressionNode((ExpressionNode)p0.Node, (GtToken)p1.Node, (ExpressionNode)p2.Node), 22));
+                        input.Push(new StackItem(new GtExpressionNode((ExpressionNode)p0.Node, (GtToken)p1.Node, (ExpressionNode)p2.Node), 20));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 23
+// # State 21
 //
 // GteqExpressionNode             : ExpressionNode GteqToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -2389,68 +2384,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 24
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 22
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 23:
+                case 21:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 24;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 22;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 23));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 21));
+                        state = 53;
                     }
                     else
                     {
@@ -2459,7 +2454,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 24
+// # State 22
 //
 // GteqExpressionNode             : ExpressionNode GteqToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -2478,88 +2473,88 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
 //  5: <- GteqExpressionNode
 //
 //
-                case 24:
+                case 22:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 24));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 22));
+                        state = 25;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new GteqExpressionNode((ExpressionNode)p0.Node, (GteqToken)p1.Node, (ExpressionNode)p2.Node), 24));
+                        input.Push(new StackItem(new GteqExpressionNode((ExpressionNode)p0.Node, (GteqToken)p1.Node, (ExpressionNode)p2.Node), 22));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 25
+// # State 23
 //
 // LtExpressionNode               : ExpressionNode LtToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -2587,68 +2582,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 26
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 24
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 25:
+                case 23:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 26;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 24;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 25));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 23));
+                        state = 53;
                     }
                     else
                     {
@@ -2657,7 +2652,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 26
+// # State 24
 //
 // LtExpressionNode               : ExpressionNode LtToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -2676,88 +2671,88 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
 //  5: <- LtExpressionNode
 //
 //
-                case 26:
+                case 24:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 26));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 24));
+                        state = 25;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new LtExpressionNode((ExpressionNode)p0.Node, (LtToken)p1.Node, (ExpressionNode)p2.Node), 26));
+                        input.Push(new StackItem(new LtExpressionNode((ExpressionNode)p0.Node, (LtToken)p1.Node, (ExpressionNode)p2.Node), 24));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 27
+// # State 25
 //
 // LteqExpressionNode             : ExpressionNode LteqToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -2785,68 +2780,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 28
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 26
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 27:
+                case 25:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 28;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 26;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 27));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 25));
+                        state = 53;
                     }
                     else
                     {
@@ -2855,7 +2850,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 28
+// # State 26
 //
 // LteqExpressionNode             : ExpressionNode LteqToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -2874,88 +2869,88 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
 //  5: <- LteqExpressionNode
 //
 //
-                case 28:
+                case 26:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 28));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 26));
+                        state = 25;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new LteqExpressionNode((ExpressionNode)p0.Node, (LteqToken)p1.Node, (ExpressionNode)p2.Node), 28));
+                        input.Push(new StackItem(new LteqExpressionNode((ExpressionNode)p0.Node, (LteqToken)p1.Node, (ExpressionNode)p2.Node), 26));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 29
+// # State 27
 //
 // AndExpressionNode              : ExpressionNode AndToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -2983,68 +2978,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 30
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 28
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 29:
+                case 27:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 30;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 28;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 29));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 27));
+                        state = 53;
                     }
                     else
                     {
@@ -3053,7 +3048,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 30
+// # State 28
 //
 // AndExpressionNode              : ExpressionNode AndToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -3072,94 +3067,94 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
 //  4: <- AndExpressionNode
 //
 //
-                case 30:
+                case 28:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 30));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 28));
+                        state = 27;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new AndExpressionNode((ExpressionNode)p0.Node, (AndToken)p1.Node, (ExpressionNode)p2.Node), 30));
+                        input.Push(new StackItem(new AndExpressionNode((ExpressionNode)p0.Node, (AndToken)p1.Node, (ExpressionNode)p2.Node), 28));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 31
+// # State 29
 //
 // OrExpressionNode               : ExpressionNode OrToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -3187,68 +3182,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 32
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 30
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 31:
+                case 29:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 32;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 30;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 31));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 29));
+                        state = 53;
                     }
                     else
                     {
@@ -3257,7 +3252,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 32
+// # State 30
 //
 // OrExpressionNode               : ExpressionNode OrToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -3276,100 +3271,100 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
-//  3: OrToken              -> 31
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
+//  3: OrToken              -> 29
 //  3: <- OrExpressionNode
 //
 //
-                case 32:
+                case 30:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 27;
                     }
                     else if(input.Peek().Node is OrToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 32));
-                        state = 31;
+                        stack.Push(new StackItem(input.Pop().Node, 30));
+                        state = 29;
                     }
                     else
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new OrExpressionNode((ExpressionNode)p0.Node, (OrToken)p1.Node, (ExpressionNode)p2.Node), 32));
+                        input.Push(new StackItem(new OrExpressionNode((ExpressionNode)p0.Node, (OrToken)p1.Node, (ExpressionNode)p2.Node), 30));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 33
+// # State 31
 //
 // TernaryExpressionNode          : ExpressionNode QuestionMarkToken . ExpressionNode ColonToken ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -3397,68 +3392,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 34
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 32
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 33:
+                case 31:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 34;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 32;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 33));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 31));
+                        state = 53;
                     }
                     else
                     {
@@ -3467,7 +3462,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 34
+// # State 32
 //
 // TernaryExpressionNode          : ExpressionNode QuestionMarkToken ExpressionNode . ColonToken ExpressionNode
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -3486,104 +3481,104 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
-//  3: OrToken              -> 31
-//  2: ColonToken           -> 35
-//  2: QuestionMarkToken    -> 33
-//  1: OpeningParToken      -> 37
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
+//  3: OrToken              -> 29
+//  2: ColonToken           -> 33
+//  2: QuestionMarkToken    -> 31
+//  1: OpeningParToken      -> 35
 //
 //
-                case 34:
+                case 32:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 27;
                     }
                     else if(input.Peek().Node is OrToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 31;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 29;
                     }
                     else if(input.Peek().Node is ColonToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 35;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 33;
                     }
                     else if(input.Peek().Node is QuestionMarkToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 33;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 31;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 34));
-                        state = 37;
+                        stack.Push(new StackItem(input.Pop().Node, 32));
+                        state = 35;
                     }
                     else
                     {
@@ -3592,7 +3587,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 35
+// # State 33
 //
 // TernaryExpressionNode          : ExpressionNode QuestionMarkToken ExpressionNode ColonToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -3620,68 +3615,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 36
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 34
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 35:
+                case 33:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 36;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 34;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 35));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 33));
+                        state = 53;
                     }
                     else
                     {
@@ -3690,7 +3685,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 36
+// # State 34
 //
 // TernaryExpressionNode          : ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -3709,93 +3704,93 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
-//  3: OrToken              -> 31
-//  2: QuestionMarkToken    -> 33
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
+//  3: OrToken              -> 29
+//  2: QuestionMarkToken    -> 31
 //  2: <- TernaryExpressionNode
 //
 //
-                case 36:
+                case 34:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 27;
                     }
                     else if(input.Peek().Node is OrToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 31;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 29;
                     }
                     else if(input.Peek().Node is QuestionMarkToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 36));
-                        state = 33;
+                        stack.Push(new StackItem(input.Pop().Node, 34));
+                        state = 31;
                     }
                     else
                     {
@@ -3804,13 +3799,13 @@ public static partial class Parser
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new TernaryExpressionNode((ExpressionNode)p0.Node, (QuestionMarkToken)p1.Node, (ExpressionNode)p2.Node, (ColonToken)p3.Node, (ExpressionNode)p4.Node), 36));
+                        input.Push(new StackItem(new TernaryExpressionNode((ExpressionNode)p0.Node, (QuestionMarkToken)p1.Node, (ExpressionNode)p2.Node, (ColonToken)p3.Node, (ExpressionNode)p4.Node), 34));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 37
+// # State 35
 //
 // CallExpressionNode             : ExpressionNode OpeningParToken . ExpressionListNode ClosingParToken
 // EmptyExpressionListNode        : .
@@ -3841,95 +3836,95 @@ public static partial class Parser
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 // MultipleExpressionListNode     : . ExpressionNode CommaToken RealExpressionListNode
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  1: ExpressionListNode   -> 38
-//  0: ExpressionNode       -> 40
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  1: ExpressionListNode   -> 36
+//  0: ExpressionNode       -> 38
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 // -2: <- EmptyExpressionListNode
 //
 //
-                case 37:
+                case 35:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionListNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 38;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 36;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 40;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 38;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 37));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 35));
+                        state = 53;
                     }
                     else
                     {
-                        input.Push(new StackItem(new EmptyExpressionListNode(), 37));
+                        input.Push(new StackItem(new EmptyExpressionListNode(), 35));
                     }
                     break;
 
 // ###################################
-// # State 38
+// # State 36
 //
 // CallExpressionNode             : ExpressionNode OpeningParToken ExpressionListNode . ClosingParToken
 //
-//  1: ClosingParToken      -> 39
+//  1: ClosingParToken      -> 37
 //
 //
-                case 38:
+                case 36:
                     if(input.Peek().Node is ClosingParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 38));
-                        state = 39;
+                        stack.Push(new StackItem(input.Pop().Node, 36));
+                        state = 37;
                     }
                     else
                     {
@@ -3938,26 +3933,26 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 39
+// # State 37
 //
 // CallExpressionNode             : ExpressionNode OpeningParToken ExpressionListNode ClosingParToken .
 //
 //  1: <- CallExpressionNode
 //
 //
-                case 39:
+                case 37:
                     {
                         var p3 = stack.Pop();
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new CallExpressionNode((ExpressionNode)p0.Node, (OpeningParToken)p1.Node, (ExpressionListNode)p2.Node, (ClosingParToken)p3.Node), 39));
+                        input.Push(new StackItem(new CallExpressionNode((ExpressionNode)p0.Node, (OpeningParToken)p1.Node, (ExpressionListNode)p2.Node, (ClosingParToken)p3.Node), 37));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 40
+// # State 38
 //
 // SingleExpressionListNode       : ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -3977,116 +3972,116 @@ public static partial class Parser
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 // MultipleExpressionListNode     : ExpressionNode . CommaToken RealExpressionListNode
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
-//  3: OrToken              -> 31
-//  2: QuestionMarkToken    -> 33
-//  1: OpeningParToken      -> 37
-//  0: CommaToken           -> 41
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
+//  3: OrToken              -> 29
+//  2: QuestionMarkToken    -> 31
+//  1: OpeningParToken      -> 35
+//  0: CommaToken           -> 39
 // -1: <- SingleExpressionListNode
 //
 //
-                case 40:
+                case 38:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 27;
                     }
                     else if(input.Peek().Node is OrToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 31;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 29;
                     }
                     else if(input.Peek().Node is QuestionMarkToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 33;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 31;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 37;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 35;
                     }
                     else if(input.Peek().Node is CommaToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 40));
-                        state = 41;
+                        stack.Push(new StackItem(input.Pop().Node, 38));
+                        state = 39;
                     }
                     else
                     {
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new SingleExpressionListNode((ExpressionNode)p0.Node), 40));
+                        input.Push(new StackItem(new SingleExpressionListNode((ExpressionNode)p0.Node), 38));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 41
+// # State 39
 //
 // MultipleExpressionListNode     : ExpressionNode CommaToken . RealExpressionListNode
 // SingleExpressionListNode       : . ExpressionNode
@@ -4116,74 +4111,74 @@ public static partial class Parser
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 // MultipleExpressionListNode     : . ExpressionNode CommaToken RealExpressionListNode
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: RealExpressionListNode -> 42
-//  0: ExpressionNode       -> 40
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: RealExpressionListNode -> 40
+//  0: ExpressionNode       -> 38
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 41:
+                case 39:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 43;
                     }
                     else if(input.Peek().Node is RealExpressionListNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 42;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 40;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 40;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 38;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 41));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 39));
+                        state = 53;
                     }
                     else
                     {
@@ -4192,25 +4187,25 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 42
+// # State 40
 //
 // MultipleExpressionListNode     : ExpressionNode CommaToken RealExpressionListNode .
 //
 //  0: <- MultipleExpressionListNode
 //
 //
-                case 42:
+                case 40:
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new MultipleExpressionListNode((ExpressionNode)p0.Node, (CommaToken)p1.Node, (RealExpressionListNode)p2.Node), 42));
+                        input.Push(new StackItem(new MultipleExpressionListNode((ExpressionNode)p0.Node, (CommaToken)p1.Node, (RealExpressionListNode)p2.Node), 40));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 43
+// # State 41
 //
 // NegExpressionNode              : SubToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -4238,68 +4233,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 44
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 42
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 43:
+                case 41:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 44;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 42;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 43));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 41));
+                        state = 53;
                     }
                     else
                     {
@@ -4308,7 +4303,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 44
+// # State 42
 //
 // NegExpressionNode              : SubToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -4327,27 +4322,27 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
+//  9: DotToken             -> 5
 //  8: <- NegExpressionNode
 //
 //
-                case 44:
+                case 42:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 44));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 42));
+                        state = 5;
                     }
                     else
                     {
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new NegExpressionNode((SubToken)p0.Node, (ExpressionNode)p1.Node), 44));
+                        input.Push(new StackItem(new NegExpressionNode((SubToken)p0.Node, (ExpressionNode)p1.Node), 42));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 45
+// # State 43
 //
 // NotExpressionNode              : NotToken . ExpressionNode
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -4375,68 +4370,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 46
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 44
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 45:
+                case 43:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 46;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 44;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 45));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 43));
+                        state = 53;
                     }
                     else
                     {
@@ -4445,7 +4440,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 46
+// # State 44
 //
 // NotExpressionNode              : NotToken ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -4464,43 +4459,43 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
+//  9: DotToken             -> 5
 //  8: <- NotExpressionNode
 //
 //
-                case 46:
+                case 44:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 46));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 44));
+                        state = 5;
                     }
                     else
                     {
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new NotExpressionNode((NotToken)p0.Node, (ExpressionNode)p1.Node), 46));
+                        input.Push(new StackItem(new NotExpressionNode((NotToken)p0.Node, (ExpressionNode)p1.Node), 44));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 47
+// # State 45
 //
 // IdentifierExpressionNode       : IdentifierToken .
 //
 //  0: <- IdentifierExpressionNode
 //
 //
-                case 47:
+                case 45:
                     {
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new IdentifierExpressionNode((IdentifierToken)p0.Node), 47));
+                        input.Push(new StackItem(new IdentifierExpressionNode((IdentifierToken)p0.Node), 45));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 48
+// # State 46
 //
 // ParExpressionNode              : OpeningParToken . ExpressionNode ClosingParToken
 // DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
@@ -4528,68 +4523,68 @@ public static partial class Parser
 // TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: ExpressionNode       -> 49
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: ExpressionNode       -> 47
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 48:
+                case 46:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 43;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 49;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 47;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 48));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 46));
+                        state = 53;
                     }
                     else
                     {
@@ -4598,7 +4593,7 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 49
+// # State 47
 //
 // ParExpressionNode              : OpeningParToken ExpressionNode . ClosingParToken
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -4617,104 +4612,104 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
-//  3: OrToken              -> 31
-//  2: QuestionMarkToken    -> 33
-//  1: OpeningParToken      -> 37
-//  0: ClosingParToken      -> 50
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
+//  3: OrToken              -> 29
+//  2: QuestionMarkToken    -> 31
+//  1: OpeningParToken      -> 35
+//  0: ClosingParToken      -> 48
 //
 //
-                case 49:
+                case 47:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 27;
                     }
                     else if(input.Peek().Node is OrToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 31;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 29;
                     }
                     else if(input.Peek().Node is QuestionMarkToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 33;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 31;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 37;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 35;
                     }
                     else if(input.Peek().Node is ClosingParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 49));
-                        state = 50;
+                        stack.Push(new StackItem(input.Pop().Node, 47));
+                        state = 48;
                     }
                     else
                     {
@@ -4723,19 +4718,51 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 50
+// # State 48
 //
 // ParExpressionNode              : OpeningParToken ExpressionNode ClosingParToken .
 //
 //  0: <- ParExpressionNode
 //
 //
-                case 50:
+                case 48:
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new ParExpressionNode((OpeningParToken)p0.Node, (ExpressionNode)p1.Node, (ClosingParToken)p2.Node), 50));
+                        input.Push(new StackItem(new ParExpressionNode((OpeningParToken)p0.Node, (ExpressionNode)p1.Node, (ClosingParToken)p2.Node), 48));
+                        state = p0.State;
+                    }
+                    break;
+
+// ###################################
+// # State 49
+//
+// StringExpressionNode           : StringToken .
+//
+//  0: <- StringExpressionNode
+//
+//
+                case 49:
+                    {
+                        var p0 = stack.Pop();
+                        input.Push(new StackItem(new StringExpressionNode((StringToken)p0.Node), 49));
+                        state = p0.State;
+                    }
+                    break;
+
+// ###################################
+// # State 50
+//
+// NumberExpressionNode           : NumberToken .
+//
+//  0: <- NumberExpressionNode
+//
+//
+                case 50:
+                    {
+                        var p0 = stack.Pop();
+                        input.Push(new StackItem(new NumberExpressionNode((NumberToken)p0.Node), 50));
                         state = p0.State;
                     }
                     break;
@@ -4743,15 +4770,15 @@ public static partial class Parser
 // ###################################
 // # State 51
 //
-// StringExpressionNode           : StringToken .
+// TrueExpressionNode             : TrueToken .
 //
-//  0: <- StringExpressionNode
+//  0: <- TrueExpressionNode
 //
 //
                 case 51:
                     {
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new StringExpressionNode((StringToken)p0.Node), 51));
+                        input.Push(new StackItem(new TrueExpressionNode((TrueToken)p0.Node), 51));
                         state = p0.State;
                     }
                     break;
@@ -4759,15 +4786,15 @@ public static partial class Parser
 // ###################################
 // # State 52
 //
-// NumberExpressionNode           : NumberToken .
+// FalseExpressionNode            : FalseToken .
 //
-//  0: <- NumberExpressionNode
+//  0: <- FalseExpressionNode
 //
 //
                 case 52:
                     {
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new NumberExpressionNode((NumberToken)p0.Node), 52));
+                        input.Push(new StackItem(new FalseExpressionNode((FalseToken)p0.Node), 52));
                         state = p0.State;
                     }
                     break;
@@ -4775,15 +4802,15 @@ public static partial class Parser
 // ###################################
 // # State 53
 //
-// TrueExpressionNode             : TrueToken .
+// NullExpressionNode             : NullToken .
 //
-//  0: <- TrueExpressionNode
+//  0: <- NullExpressionNode
 //
 //
                 case 53:
                     {
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new TrueExpressionNode((TrueToken)p0.Node), 53));
+                        input.Push(new StackItem(new NullExpressionNode((NullToken)p0.Node), 53));
                         state = p0.State;
                     }
                     break;
@@ -4791,37 +4818,152 @@ public static partial class Parser
 // ###################################
 // # State 54
 //
-// FalseExpressionNode            : FalseToken .
+// WithParenthesisLambdaParametersNode : OpeningParToken . IdentifierListNode ClosingParToken
+// EmptyIdentifierListNode        : .
+// SingleIdentifierListNode       : . ExpressionNode
+// DotExpressionNode              : . ExpressionNode DotToken IdentifierToken
+// NegExpressionNode              : . SubToken ExpressionNode
+// NotExpressionNode              : . NotToken ExpressionNode
+// MulExpressionNode              : . ExpressionNode MulToken ExpressionNode
+// DivExpressionNode              : . ExpressionNode DivToken ExpressionNode
+// AddExpressionNode              : . ExpressionNode AddToken ExpressionNode
+// SubExpressionNode              : . ExpressionNode SubToken ExpressionNode
+// EqExpressionNode               : . ExpressionNode EqToken ExpressionNode
+// NeqExpressionNode              : . ExpressionNode NeqToken ExpressionNode
+// GtExpressionNode               : . ExpressionNode GtToken ExpressionNode
+// GteqExpressionNode             : . ExpressionNode GteqToken ExpressionNode
+// LtExpressionNode               : . ExpressionNode LtToken ExpressionNode
+// LteqExpressionNode             : . ExpressionNode LteqToken ExpressionNode
+// AndExpressionNode              : . ExpressionNode AndToken ExpressionNode
+// OrExpressionNode               : . ExpressionNode OrToken ExpressionNode
+// IdentifierExpressionNode       : . IdentifierToken
+// ParExpressionNode              : . OpeningParToken ExpressionNode ClosingParToken
+// StringExpressionNode           : . StringToken
+// NumberExpressionNode           : . NumberToken
+// TrueExpressionNode             : . TrueToken
+// FalseExpressionNode            : . FalseToken
+// NullExpressionNode             : . NullToken
+// TernaryExpressionNode          : . ExpressionNode QuestionMarkToken ExpressionNode ColonToken ExpressionNode
+// CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
+// MultipleIdentifierListNode     : . ExpressionNode CommaToken RealIdentifierListNode
+// ParExpressionNode              : OpeningParToken . ExpressionNode ClosingParToken
 //
-//  0: <- FalseExpressionNode
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: IdentifierListNode   -> 55
+//  0: ExpressionNode       -> 57
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
+// -2: <- EmptyIdentifierListNode
 //
 //
                 case 54:
+                    if(input.Peek().Node is SubToken)
                     {
-                        var p0 = stack.Pop();
-                        input.Push(new StackItem(new FalseExpressionNode((FalseToken)p0.Node), 54));
-                        state = p0.State;
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 41;
+                    }
+                    else if(input.Peek().Node is NotToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 43;
+                    }
+                    else if(input.Peek().Node is IdentifierListNode)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 55;
+                    }
+                    else if(input.Peek().Node is ExpressionNode)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 57;
+                    }
+                    else if(input.Peek().Node is IdentifierToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 45;
+                    }
+                    else if(input.Peek().Node is OpeningParToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 46;
+                    }
+                    else if(input.Peek().Node is StringToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 49;
+                    }
+                    else if(input.Peek().Node is NumberToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 50;
+                    }
+                    else if(input.Peek().Node is TrueToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 51;
+                    }
+                    else if(input.Peek().Node is FalseToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 52;
+                    }
+                    else if(input.Peek().Node is NullToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 54));
+                        state = 53;
+                    }
+                    else
+                    {
+                        input.Push(new StackItem(new EmptyIdentifierListNode(), 54));
                     }
                     break;
 
 // ###################################
 // # State 55
 //
-// NullExpressionNode             : NullToken .
+// WithParenthesisLambdaParametersNode : OpeningParToken IdentifierListNode . ClosingParToken
 //
-//  0: <- NullExpressionNode
+//  0: ClosingParToken      -> 56
 //
 //
                 case 55:
+                    if(input.Peek().Node is ClosingParToken)
                     {
-                        var p0 = stack.Pop();
-                        input.Push(new StackItem(new NullExpressionNode((NullToken)p0.Node), 55));
-                        state = p0.State;
+                        stack.Push(new StackItem(input.Pop().Node, 55));
+                        state = 56;
+                    }
+                    else
+                    {
+                        throw new ParseException(input.Peek().Node.Position, string.Format("Element {0} inattendu", input.Peek().Node));
                     }
                     break;
 
 // ###################################
 // # State 56
+//
+// WithParenthesisLambdaParametersNode : OpeningParToken IdentifierListNode ClosingParToken .
+//
+//  0: <- WithParenthesisLambdaParametersNode
+//
+//
+                case 56:
+                    {
+                        var p2 = stack.Pop();
+                        var p1 = stack.Pop();
+                        var p0 = stack.Pop();
+                        input.Push(new StackItem(new WithParenthesisLambdaParametersNode((OpeningParToken)p0.Node, (IdentifierListNode)p1.Node, (ClosingParToken)p2.Node), 56));
+                        state = p0.State;
+                    }
+                    break;
+
+// ###################################
+// # State 57
 //
 // SingleIdentifierListNode       : ExpressionNode .
 // DotExpressionNode              : ExpressionNode . DotToken IdentifierToken
@@ -4840,117 +4982,124 @@ public static partial class Parser
 // TernaryExpressionNode          : ExpressionNode . QuestionMarkToken ExpressionNode ColonToken ExpressionNode
 // CallExpressionNode             : ExpressionNode . OpeningParToken ExpressionListNode ClosingParToken
 // MultipleIdentifierListNode     : ExpressionNode . CommaToken RealIdentifierListNode
+// ParExpressionNode              : OpeningParToken ExpressionNode . ClosingParToken
 //
-//  9: DotToken             -> 7
-//  7: MulToken             -> 9
-//  7: DivToken             -> 11
-//  6: AddToken             -> 13
-//  6: SubToken             -> 15
-//  5: EqToken              -> 17
-//  5: NeqToken             -> 19
-//  5: GtToken              -> 21
-//  5: GteqToken            -> 23
-//  5: LtToken              -> 25
-//  5: LteqToken            -> 27
-//  4: AndToken             -> 29
-//  3: OrToken              -> 31
-//  2: QuestionMarkToken    -> 33
-//  1: OpeningParToken      -> 37
-//  0: CommaToken           -> 57
+//  9: DotToken             -> 5
+//  7: MulToken             -> 7
+//  7: DivToken             -> 9
+//  6: AddToken             -> 11
+//  6: SubToken             -> 13
+//  5: EqToken              -> 15
+//  5: NeqToken             -> 17
+//  5: GtToken              -> 19
+//  5: GteqToken            -> 21
+//  5: LtToken              -> 23
+//  5: LteqToken            -> 25
+//  4: AndToken             -> 27
+//  3: OrToken              -> 29
+//  2: QuestionMarkToken    -> 31
+//  1: OpeningParToken      -> 35
+//  0: CommaToken           -> 58
+//  0: ClosingParToken      -> 48
 // -1: <- SingleIdentifierListNode
 //
 //
-                case 56:
+                case 57:
                     if(input.Peek().Node is DotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 7;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 5;
                     }
                     else if(input.Peek().Node is MulToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 9;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 7;
                     }
                     else if(input.Peek().Node is DivToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 11;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 9;
                     }
                     else if(input.Peek().Node is AddToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 13;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 11;
                     }
                     else if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 15;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 13;
                     }
                     else if(input.Peek().Node is EqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 17;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 15;
                     }
                     else if(input.Peek().Node is NeqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 19;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 17;
                     }
                     else if(input.Peek().Node is GtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 21;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 19;
                     }
                     else if(input.Peek().Node is GteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 23;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 21;
                     }
                     else if(input.Peek().Node is LtToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 25;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 23;
                     }
                     else if(input.Peek().Node is LteqToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 27;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 25;
                     }
                     else if(input.Peek().Node is AndToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 29;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 27;
                     }
                     else if(input.Peek().Node is OrToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 31;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 29;
                     }
                     else if(input.Peek().Node is QuestionMarkToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 33;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 31;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 37;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 35;
                     }
                     else if(input.Peek().Node is CommaToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 56));
-                        state = 57;
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 58;
+                    }
+                    else if(input.Peek().Node is ClosingParToken)
+                    {
+                        stack.Push(new StackItem(input.Pop().Node, 57));
+                        state = 48;
                     }
                     else
                     {
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new SingleIdentifierListNode((ExpressionNode)p0.Node), 56));
+                        input.Push(new StackItem(new SingleIdentifierListNode((ExpressionNode)p0.Node), 57));
                         state = p0.State;
                     }
                     break;
 
 // ###################################
-// # State 57
+// # State 58
 //
 // MultipleIdentifierListNode     : ExpressionNode CommaToken . RealIdentifierListNode
 // SingleIdentifierListNode       : . ExpressionNode
@@ -4980,74 +5129,74 @@ public static partial class Parser
 // CallExpressionNode             : . ExpressionNode OpeningParToken ExpressionListNode ClosingParToken
 // MultipleIdentifierListNode     : . ExpressionNode CommaToken RealIdentifierListNode
 //
-//  8: SubToken             -> 43
-//  8: NotToken             -> 45
-//  0: RealIdentifierListNode -> 58
-//  0: ExpressionNode       -> 56
-//  0: IdentifierToken      -> 47
-//  0: OpeningParToken      -> 48
-//  0: StringToken          -> 51
-//  0: NumberToken          -> 52
-//  0: TrueToken            -> 53
-//  0: FalseToken           -> 54
-//  0: NullToken            -> 55
+//  8: SubToken             -> 41
+//  8: NotToken             -> 43
+//  0: RealIdentifierListNode -> 59
+//  0: ExpressionNode       -> 57
+//  0: IdentifierToken      -> 45
+//  0: OpeningParToken      -> 46
+//  0: StringToken          -> 49
+//  0: NumberToken          -> 50
+//  0: TrueToken            -> 51
+//  0: FalseToken           -> 52
+//  0: NullToken            -> 53
 //
 //
-                case 57:
+                case 58:
                     if(input.Peek().Node is SubToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 43;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 41;
                     }
                     else if(input.Peek().Node is NotToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 45;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 43;
                     }
                     else if(input.Peek().Node is RealIdentifierListNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 58;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 59;
                     }
                     else if(input.Peek().Node is ExpressionNode)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 56;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 57;
                     }
                     else if(input.Peek().Node is IdentifierToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 47;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 45;
                     }
                     else if(input.Peek().Node is OpeningParToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 48;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 46;
                     }
                     else if(input.Peek().Node is StringToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 51;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 49;
                     }
                     else if(input.Peek().Node is NumberToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 52;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 50;
                     }
                     else if(input.Peek().Node is TrueToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 53;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 51;
                     }
                     else if(input.Peek().Node is FalseToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 54;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 52;
                     }
                     else if(input.Peek().Node is NullToken)
                     {
-                        stack.Push(new StackItem(input.Pop().Node, 57));
-                        state = 55;
+                        stack.Push(new StackItem(input.Pop().Node, 58));
+                        state = 53;
                     }
                     else
                     {
@@ -5056,19 +5205,35 @@ public static partial class Parser
                     break;
 
 // ###################################
-// # State 58
+// # State 59
 //
 // MultipleIdentifierListNode     : ExpressionNode CommaToken RealIdentifierListNode .
 //
 //  0: <- MultipleIdentifierListNode
 //
 //
-                case 58:
+                case 59:
                     {
                         var p2 = stack.Pop();
                         var p1 = stack.Pop();
                         var p0 = stack.Pop();
-                        input.Push(new StackItem(new MultipleIdentifierListNode((ExpressionNode)p0.Node, (CommaToken)p1.Node, (RealIdentifierListNode)p2.Node), 58));
+                        input.Push(new StackItem(new MultipleIdentifierListNode((ExpressionNode)p0.Node, (CommaToken)p1.Node, (RealIdentifierListNode)p2.Node), 59));
+                        state = p0.State;
+                    }
+                    break;
+
+// ###################################
+// # State 60
+//
+// WithoutParenthesisLambdaParametersNode : IdentifierListNode .
+//
+//  0: <- WithoutParenthesisLambdaParametersNode
+//
+//
+                case 60:
+                    {
+                        var p0 = stack.Pop();
+                        input.Push(new StackItem(new WithoutParenthesisLambdaParametersNode((IdentifierListNode)p0.Node), 60));
                         state = p0.State;
                     }
                     break;

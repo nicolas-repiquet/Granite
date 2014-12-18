@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Granite.UI.ExpressionParser
@@ -22,35 +24,54 @@ namespace Granite.UI.ExpressionParser
         public override int Position { get { return m_position; } }
     }
 
-
-    partial class LambdaNode
+    partial class ExpressionNode
     {
-
+        public abstract Expression GetExpression(ExpressionParsingContext context);
     }
 
     partial class DotExpressionNode
     {
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            var target = P0.GetExpression(context);
+            var targetType = target.Type;
 
+            var member = targetType.GetMember(P2.Value);
+
+            return Expression.MakeMemberAccess(target, member[0]);
+        }
     }
 
     partial class NegExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Negate(P1.GetExpression(context));
+        }
     }
 
     partial class NotExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Not(P1.GetExpression(context));
+        }
     }
 
     partial class MulExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Multiply(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class DivExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Divide(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class DotToken
@@ -91,12 +112,18 @@ namespace Granite.UI.ExpressionParser
 
     partial class AddExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Add(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class SubExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Subtract(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class AddToken
@@ -119,32 +146,50 @@ namespace Granite.UI.ExpressionParser
 
     partial class EqExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Equal(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class NeqExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.NotEqual(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class GtExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.GreaterThan(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class GteqExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.GreaterThanOrEqual(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class LtExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.LessThan(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class LteqExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.LessThanOrEqual(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class EqToken
@@ -208,12 +253,18 @@ namespace Granite.UI.ExpressionParser
 
     partial class AndExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.AndAlso(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class OrExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.OrElse(P0.GetExpression(context), P2.GetExpression(context));
+        }
     }
 
     partial class AndToken
@@ -250,7 +301,10 @@ namespace Granite.UI.ExpressionParser
 
     partial class IdentifierExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return context.GetParameter(P0.Value);
+        }
     }
 
     partial class TrueToken
@@ -264,7 +318,10 @@ namespace Granite.UI.ExpressionParser
 
     partial class TrueExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Constant(true);
+        }
     }
 
     partial class FalseToken
@@ -278,7 +335,10 @@ namespace Granite.UI.ExpressionParser
 
     partial class FalseExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Constant(false);
+        }
     }
 
     partial class NullToken
@@ -293,12 +353,18 @@ namespace Granite.UI.ExpressionParser
 
     partial class NullExpressionNode
     {
- 
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Constant(null);
+        }
     }
 
     partial class ParExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return P1.GetExpression(context);
+        }
     }
 
     partial class OpeningParToken
@@ -321,7 +387,10 @@ namespace Granite.UI.ExpressionParser
 
     partial class StringExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Constant(P0.Value);
+        }
     }
 
     partial class StringToken
@@ -339,7 +408,10 @@ namespace Granite.UI.ExpressionParser
 
     partial class NumberExpressionNode
     {
-
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Constant(int.Parse(P0.Value, CultureInfo.InvariantCulture));
+        }
     }
 
     partial class NumberToken
@@ -375,24 +447,44 @@ namespace Granite.UI.ExpressionParser
 
     partial class CallExpressionNode
     {
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            var call = P0 as DotExpressionNode;
 
+            if (call != null)
+            {
+                return Expression.Call(call.P0.GetExpression(context), call.P2.Value, null, P2.GetExpressions(context));
+            }
+            else
+            {
+                return Expression.Invoke(P0.GetExpression(context), P2.GetExpressions(context));
+            }
+        }
+    }
+
+    partial class TernaryExpressionNode
+    {
+        public override Expression GetExpression(ExpressionParsingContext context)
+        {
+            return Expression.Condition(P0.GetExpression(context), P2.GetExpression(context), P4.GetExpression(context));
+        }
     }
 
     partial class ExpressionListNode
     {
-        public List<ExpressionNode> GetParameters()
+        public Expression[] GetExpressions(ExpressionParsingContext context)
         {
-            var parameters = new List<ExpressionNode>();
-            GetParameters(parameters);
-            return parameters;
+            var expressions = new List<Expression>();
+            GetExpressions(context, expressions);
+            return expressions.ToArray();
         }
 
-        public abstract void GetParameters(List<ExpressionNode> parameters);
+        public abstract void GetExpressions(ExpressionParsingContext context, List<Expression> expressions);
     }
 
     partial class EmptyExpressionListNode
     {
-        public override void GetParameters(List<ExpressionNode> parameters)
+        public override void GetExpressions(ExpressionParsingContext context, List<Expression> expressions)
         {
 
         }
@@ -400,18 +492,18 @@ namespace Granite.UI.ExpressionParser
 
     partial class SingleExpressionListNode
     {
-        public override void GetParameters(List<ExpressionNode> parameters)
+        public override void GetExpressions(ExpressionParsingContext context, List<Expression> expressions)
         {
-            parameters.Add(P0);
+            expressions.Add(P0.GetExpression(context));
         }
     }
 
     partial class MultipleExpressionListNode
     {
-        public override void GetParameters(List<ExpressionNode> parameters)
+        public override void GetExpressions(ExpressionParsingContext context, List<Expression> expressions)
         {
-            parameters.Add(P0);
-            P2.GetParameters(parameters);
+            expressions.Add(P0.GetExpression(context));
+            P2.GetExpressions(context, expressions);
         }
     }
 

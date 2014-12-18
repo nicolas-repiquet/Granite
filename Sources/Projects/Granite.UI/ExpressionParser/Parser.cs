@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Granite.UI.ExpressionParser
@@ -22,9 +23,17 @@ namespace Granite.UI.ExpressionParser
             public int State { get { return m_state; } }
         }
 
-        public static LambdaNode Parse(string s)
+        public static LambdaExpression Parse(LambdaParsingContext context, string s)
         {
-            return Parse(new Tokenizer(s));
+            var lambdaNode = Parse(new Tokenizer(s));
+
+            var parameters = new ParameterExpression[] {
+                Expression.Parameter(context.ModelType, "m")
+            };
+
+            var expression = lambdaNode.P2.GetExpression(new ExpressionParsingContext(context, parameters));
+
+            return Expression.Lambda(expression, parameters);
         }
     }
 

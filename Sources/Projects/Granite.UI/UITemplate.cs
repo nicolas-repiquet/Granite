@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Granite.UI.ExpressionParser;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -158,7 +159,10 @@ namespace Granite.UI
                             // Local Property = Property
                             var propertyName = attribute.Name.LocalName;
 
-                            var node = Granite.UI.ExpressionParser.Parser.Parse(attribute.Value);
+                            var lambda = Parser.Parse(new LambdaParsingContext(modelType), attribute.Value);
+
+                            var d = lambda.Compile();
+
                         }
                     }
 

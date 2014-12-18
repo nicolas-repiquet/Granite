@@ -171,8 +171,14 @@ expressionNode.AddRule(nullExpressionNode);
 expressionNode.AddRule(ternaryExpressionNode);
 expressionNode.AddRule(callExpressionNode);
 
+var lambdaParametersNode = new CompositeRule("LambdaParametersNode");
+var withParenthesisLambdaParametersNode = new ConcreteRule("WithParenthesisLambdaParametersNode", openingParToken, identifierListNode, closingParToken);
+var withoutParenthesisLambdaParametersNode = new ConcreteRule("WithoutParenthesisLambdaParametersNode", identifierListNode);
+lambdaParametersNode.AddRule(withParenthesisLambdaParametersNode);
+lambdaParametersNode.AddRule(withoutParenthesisLambdaParametersNode);
+
 var lambda = new ConcreteRule("LambdaNode", 
-	openingParToken, identifierListNode, closingParToken, arrowToken, expressionNode, endToken);
+	lambdaParametersNode, arrowToken, expressionNode, endToken);
 
 BuildGrammar(lambda);
 

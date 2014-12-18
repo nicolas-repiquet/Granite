@@ -7,7 +7,7 @@
       <UIGridLayout />
     </UIContainer.Layout>
     
-    <UILabel Text="(m) => m.Name" Click="(m, e) => m.LabelClicked(e.x, e.y)" ></UILabel>
+    <UILabel Text="m => m.Item1Label" Click="m => m.ItemClicked(1+1)" ></UILabel>
     <UILabel core:Position.A="(m) => new core:Vector2(m.x, m.y)"/>
     <UILabel />
     <UILabel />
