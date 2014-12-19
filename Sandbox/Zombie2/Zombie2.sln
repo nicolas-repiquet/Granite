@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zombie2", "Zombie2\Zombie2.csproj", "{5AFCAA13-7B71-44DA-B514-1B7EAA509775}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granite.Render", "..\..\Sources\Projects\Granite.Render\Granite.Render\Granite.Render.csproj", "{8CAAAE10-A423-471B-B069-3CC60DA81C0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Granite.Core", "..\..\Sources\Projects\Granite.Core\Granite.Core.csproj", "{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AFCAA13-7B71-44DA-B514-1B7EAA509775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AFCAA13-7B71-44DA-B514-1B7EAA509775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AFCAA13-7B71-44DA-B514-1B7EAA509775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AFCAA13-7B71-44DA-B514-1B7EAA509775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CAAAE10-A423-471B-B069-3CC60DA81C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CAAAE10-A423-471B-B069-3CC60DA81C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CAAAE10-A423-471B-B069-3CC60DA81C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CAAAE10-A423-471B-B069-3CC60DA81C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAEFCED9-55C9-48AC-9174-C5BBE8501C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Zombie.Game.Entities.Components;
+using Zombie2.Components;
 
-namespace Zombie.Game.Entities
+namespace Zombie2
 {
     public abstract class Entity
     {
