@@ -222,7 +222,7 @@ namespace Zombie.Game.Entities
                     target.Y - m_location.Position.Y
                     );
 
-                Console.WriteLine("Target orientation : " + v.ToString());
+               // Console.WriteLine("Target orientation : " + v.ToString());
 
                 m_weapon.Fire(m_location.Position, v.Normalize());
             }

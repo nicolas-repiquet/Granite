@@ -39,7 +39,7 @@ namespace Zombie2
             m_triangles = new List<Triangle>();
             var random = new Random();
 
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < 10000; i++)
             {
                 var x = random.Next(-1000, 1000);
                 var y = random.Next(-1000, 1000);
