@@ -92,7 +92,7 @@ namespace Granite.Code.StructsGenerator
         public static readonly string[] s_columnPropertyName = { "Column0", "Column1", "Column2", "Column3" };
         public static readonly string[] s_columnParameterName = { "column0", "column1", "column2", "column3" };
         public static readonly string[] s_rowPropertyName = { "Row0", "Row1", "Row2", "Row3" };
-        
+
         public static readonly string[,] s_elementName = {
             { "M00", "M01", "M02", "M03" },
             { "M10", "M11", "M12", "M13" },
@@ -111,6 +111,7 @@ namespace Granite.Code.StructsGenerator
         public ElementType ElementType { get; private set; }
         public int Rows { get; private set; }
         public int Columns { get; private set; }
+        public bool IsSquare => Rows == Columns;
 
         private Matrix(string name, ElementType elementType, int columns, int rows)
         {
@@ -146,6 +147,13 @@ namespace Granite.Code.StructsGenerator
             // Multiply
             BuildMatrixMultiply(w);
             BuildVectorMultiply(w);
+
+            // Determinant
+            if (IsSquare)
+            {
+                BuildTranspose(w);
+                BuildDeterminant(w);
+            }
 
             // End struct
             w.PopIndent();
@@ -368,7 +376,7 @@ namespace Granite.Code.StructsGenerator
 
         private void BuildStaticValues(CodeWriter w)
         {
-            if(Rows == Columns)
+            if (Rows == Columns)
             {
                 var vector = Vector.GetVector(ElementType, Rows);
 
@@ -400,11 +408,11 @@ namespace Granite.Code.StructsGenerator
         {
             var resultMatrix = GetMatrix(ElementType, m.Columns, Rows);
 
-            w.WriteLine("public static void Multiply(ref {0} left, ref {1} right, out {2} result)", Name, m.Name, resultMatrix.Name);
+            w.WriteLine("public static {2} operator *({0} left, {1} right)", Name, m.Name, resultMatrix.Name);
             w.WriteLine("{");
             w.PushIndent();
 
-            w.WriteLine("result = new {0}(", resultMatrix.Name);
+            w.WriteLine("return new {0}(", resultMatrix.Name);
             w.PushIndent();
 
             for (int c = 0; c < resultMatrix.Columns; c++)
@@ -441,7 +449,7 @@ namespace Granite.Code.StructsGenerator
             var inVector = Vector.GetVector(ElementType, Columns);
             var outVector = Vector.GetVector(ElementType, Rows);
 
-            w.WriteLine("public static {0} Multiply(ref {1} m, {2} v)", outVector.Name, Name, inVector.Name);
+            w.WriteLine("public static {0} operator *({1} m, {2} v)", outVector.Name, Name, inVector.Name);
             w.WriteLine("{");
             w.PushIndent();
 
@@ -462,6 +470,73 @@ namespace Granite.Code.StructsGenerator
 
             w.PopIndent();
             w.WriteLine(");");
+
+            w.PopIndent();
+            w.WriteLine("}");
+            w.WriteLine("");
+        }
+
+        private void BuildTranspose(CodeWriter w)
+        {
+            w.WriteLine("public {0} Transpose", Name);
+            w.WriteLine("{");
+            w.PushIndent();
+
+            w.WriteLine("get {");
+            w.PushIndent();
+
+            w.WriteLine("return new {0}(", Name);
+            w.PushIndent();
+
+            for (int c = 0; c < Columns; c++)
+            {
+                for (int r = 0; r < Rows; r++)
+                {
+                    w.Write(s_elementName[r, c]);
+
+                    if (c < Columns - 1 || r < Rows - 1)
+                    {
+                        w.Write(", ");
+                    }
+                }
+
+                w.WriteLine("");
+            }
+
+            w.PopIndent();
+            w.WriteLine(");");
+
+            w.PopIndent();
+            w.WriteLine("}");
+
+            w.PopIndent();
+            w.WriteLine("}");
+            w.WriteLine("");
+        }
+
+        private IEnumerable<string> TopDiagonal(int column)
+            => Enumerable.Range(0, Rows).Select(e => s_elementName[e, (e + column) % Columns]);
+
+        private IEnumerable<string> BottomDiagonal(int column)
+            => Enumerable.Range(1, Rows).Select(e => s_elementName[Rows - e, (e + column) % Columns]);
+
+        private void BuildDeterminant(CodeWriter w)
+        {
+            w.WriteLine("public {0} Determinant", ElementType.Name);
+            w.WriteLine("{");
+            w.PushIndent();
+
+            w.WriteLine("get {");
+            w.PushIndent();
+
+            w.WriteLine(
+                "return {0} - {1};",
+                string.Join(" + ", Enumerable.Range(0, Columns).Select(e => string.Join(" * ", TopDiagonal(e)))),
+                string.Join(" - ", Enumerable.Range(0, Columns).Select(e => string.Join(" * ", BottomDiagonal(e))))
+            );
+
+            w.PopIndent();
+            w.WriteLine("}");
 
             w.PopIndent();
             w.WriteLine("}");

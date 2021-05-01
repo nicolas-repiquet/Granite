@@ -8,20 +8,58 @@ using System.Text;
 
 namespace Granite.Core
 {
+    public enum BufferTarget : uint
+    {
+        Array = GL.ARRAY_BUFFER,
+        CopyRead = GL.COPY_READ_BUFFER,
+        CopyWrite = GL.COPY_WRITE_BUFFER,
+        ElementArray = GL.ELEMENT_ARRAY_BUFFER,
+        PixelPack = GL.PIXEL_PACK_BUFFER,
+        PixelUnpack = GL.PIXEL_UNPACK_BUFFER,
+        Texture = GL.TEXTURE_BUFFER,
+        TransformFeedback = GL.TRANSFORM_FEEDBACK_BUFFER,
+        Uniform = GL.UNIFORM_BUFFER
+    }
+
+    public enum BufferUsage : uint
+    {
+        StreamDraw = GL.STREAM_DRAW,
+        StreamRead = GL.STREAM_READ,
+        StreamCopy = GL.STREAM_COPY,
+        StaticDraw = GL.STATIC_DRAW,
+        StaticRead = GL.STATIC_READ,
+        StaticCopy = GL.STATIC_COPY,
+        DynamicDraw = GL.DYNAMIC_DRAW,
+        DynamicRead = GL.DYNAMIC_READ,
+        DynamicCopy = GL.DYNAMIC_COPY
+    }
+
     public abstract class Buffer : ApplicationResource
     {
-        private readonly uint m_name;
-
-        internal Buffer()
+        internal Buffer(BufferTarget target, BufferUsage usage)
         {
             uint name;
             GL.GenBuffers(1, out name);
-            m_name = name;
+            Name = name;
+            Target = target;
+            Usage = usage;
         }
 
-        internal uint Name { get { return m_name; } }
+        internal uint Name { get; }
+        public BufferTarget Target { get; }
+        public BufferUsage Usage { get; }
         public abstract int Count { get; }
         public abstract int TypeSize { get; }
+
+        protected override void InternalDispose()
+        {
+            var name = Name;
+
+            Engine.ExecuteAction(() =>
+            {
+                GL.DeleteBuffers(1, ref name);
+            });
+        }
     }
 
     public sealed class Buffer<T> : Buffer where T : struct
@@ -76,7 +114,7 @@ namespace Granite.Core
 
         private int m_count;
 
-        public Buffer()
+        public Buffer(BufferTarget target, BufferUsage usage) : base(target, usage)
         {
 
         }
@@ -137,30 +175,40 @@ namespace Granite.Core
             }
         }
 
-        protected override void InternalDispose()
+        public void Bind()
         {
-            var name = Name;
+            GL.BindBuffer((uint)Target, Name);
+        }
 
-            Engine.ExecuteAction(() =>
+        public void Unbind()
+        {
+            GL.BindBuffer((uint)Target, 0);
+        }
+
+        public void Clear()
+        {
+            GL.BufferData((uint)Target, IntPtr.Zero, IntPtr.Zero, (uint)Usage);
+            m_count = 0;
+        }
+
+        public void SetData(int count)
+        {
+            if (count == 0)
             {
-                GL.DeleteBuffers(1, ref name);
-            });
+                Clear();
+            }
+            else
+            {
+                GL.BufferData((uint)Target, new IntPtr(count * TypeSize), IntPtr.Zero, (uint)Usage);
+                m_count = count;
+            }
         }
 
-        public void SetData(int count, uint usage = GL.STATIC_DRAW)
-        {
-            GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-            GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(count * TypeSize), IntPtr.Zero, usage);
-            m_count = count;
-        }
-
-        public void SetData(T[] data, uint usage = GL.STATIC_DRAW)
+        public void SetData(T[] data)
         {
             if (data == null)
             {
-                GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-                GL.BufferData(GL.ARRAY_BUFFER, IntPtr.Zero, IntPtr.Zero, usage);
-                m_count = 0;
+                Clear();
             }
             else
             {
@@ -169,14 +217,35 @@ namespace Granite.Core
                 try
                 {
                     var size = TypeSize * data.Length;
-                    GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-                    GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), handle.AddrOfPinnedObject(), usage);
+                    GL.BufferData((uint)Target, new IntPtr(size), handle.AddrOfPinnedObject(), (uint)Usage);
                     m_count = data.Length;
                 }
                 finally
                 {
                     handle.Free();
                 }
+            }
+        }
+
+        public void SetData(T[] data, int index, int count)
+        {
+#if DEBUG
+            if (data == null) throw new ArgumentNullException(nameof(data));
+            if (index < 0 || index >= data.Length) throw new ArgumentException(nameof(index));
+            if (count < 0 || index + count > data.Length) throw new ArgumentException(nameof(count));
+#endif
+
+            var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+
+            try
+            {
+                var size = TypeSize * count;
+                GL.BufferData((uint)Target, new IntPtr(size), IntPtr.Add(handle.AddrOfPinnedObject(), TypeSize * index), (uint)Usage);
+                m_count = count;
+            }
+            finally
+            {
+                handle.Free();
             }
         }
 
@@ -187,8 +256,7 @@ namespace Granite.Core
             try
             {
                 var size = TypeSize * count;
-                GL.BindBuffer(GL.ARRAY_BUFFER, Name);
-                GL.BufferSubData(GL.ARRAY_BUFFER, new IntPtr(offset), new IntPtr(size), handle.AddrOfPinnedObject());
+                GL.BufferSubData((uint)Target, new IntPtr(offset), new IntPtr(size), handle.AddrOfPinnedObject());
                 m_count = count;
             }
             finally
@@ -200,11 +268,13 @@ namespace Granite.Core
         public BufferMapping<T> Map(int count)
         {
             var size = TypeSize * count;
-            GL.BindBuffer(GL.ARRAY_BUFFER, Name);
+            //GL.BindBuffer((uint)Target, Name);
             //GL.BufferData(GL.ARRAY_BUFFER, new IntPtr(size), IntPtr.Zero, GL.STREAM_DRAW);
             var address = GL.MapBufferRange(GL.ARRAY_BUFFER, new IntPtr(0), new IntPtr(size), GL.MAP_WRITE_BIT | GL.MAP_INVALIDATE_BUFFER_BIT);
 
             return new BufferMapping<T>(this, address);
         }
     }
+
+
 }

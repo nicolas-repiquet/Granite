@@ -114,7 +114,7 @@ namespace Granite.Core
                 else
                 {
                     throw new Exception(string.Format("Uniform \"{0}\" data type does not match: can't convert from {1} to {2}",
-                        info.Name, uniform.GetType().Name, typeof(ProgramUniform<T>).Name
+                        info.Name, uniform.GetType().Name, typeof(T).Name
                     ));
                 }
             }
@@ -148,6 +148,16 @@ namespace Granite.Core
             {
                 GL.DeleteProgram(m_name);
             });
+        }
+
+        public void Bind()
+        {
+            GL.UseProgram(Name);
+        }
+
+        public static void Unbind()
+        {
+            GL.UseProgram(0);
         }
     }
 }

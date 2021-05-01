@@ -1,9 +1,4 @@
 
-
-
-
-
-
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -12,33 +7,24 @@ namespace Granite.Core
 {
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color3ub : IEquatable<Color3ub>
 	{
 
-
 		private readonly byte m_r;
 		public byte R { get { return m_r; } }
-
 
 		private readonly byte m_g;
 		public byte G { get { return m_g; } }
 
-
 		private readonly byte m_b;
 		public byte B { get { return m_b; } }
 
-
 		public Color3ub(byte r, byte g, byte b)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 		}
 
 		public bool Equals(Color3ub other)
@@ -74,39 +60,28 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color4ub : IEquatable<Color4ub>
 	{
 
-
 		private readonly byte m_r;
 		public byte R { get { return m_r; } }
-
 
 		private readonly byte m_g;
 		public byte G { get { return m_g; } }
 
-
 		private readonly byte m_b;
 		public byte B { get { return m_b; } }
-
 
 		private readonly byte m_a;
 		public byte A { get { return m_a; } }
 
-
 		public Color4ub(byte r, byte g, byte b, byte a)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 			m_a = a;
-
 		}
 
 		public bool Equals(Color4ub other)
@@ -142,33 +117,24 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color3us : IEquatable<Color3us>
 	{
 
-
 		private readonly ushort m_r;
 		public ushort R { get { return m_r; } }
-
 
 		private readonly ushort m_g;
 		public ushort G { get { return m_g; } }
 
-
 		private readonly ushort m_b;
 		public ushort B { get { return m_b; } }
 
-
 		public Color3us(ushort r, ushort g, ushort b)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 		}
 
 		public bool Equals(Color3us other)
@@ -204,39 +170,28 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color4us : IEquatable<Color4us>
 	{
 
-
 		private readonly ushort m_r;
 		public ushort R { get { return m_r; } }
-
 
 		private readonly ushort m_g;
 		public ushort G { get { return m_g; } }
 
-
 		private readonly ushort m_b;
 		public ushort B { get { return m_b; } }
-
 
 		private readonly ushort m_a;
 		public ushort A { get { return m_a; } }
 
-
 		public Color4us(ushort r, ushort g, ushort b, ushort a)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 			m_a = a;
-
 		}
 
 		public bool Equals(Color4us other)
@@ -272,33 +227,24 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color3i : IEquatable<Color3i>
 	{
 
-
 		private readonly int m_r;
 		public int R { get { return m_r; } }
-
 
 		private readonly int m_g;
 		public int G { get { return m_g; } }
 
-
 		private readonly int m_b;
 		public int B { get { return m_b; } }
 
-
 		public Color3i(int r, int g, int b)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 		}
 
 		public bool Equals(Color3i other)
@@ -334,39 +280,28 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color4i : IEquatable<Color4i>
 	{
 
-
 		private readonly int m_r;
 		public int R { get { return m_r; } }
-
 
 		private readonly int m_g;
 		public int G { get { return m_g; } }
 
-
 		private readonly int m_b;
 		public int B { get { return m_b; } }
-
 
 		private readonly int m_a;
 		public int A { get { return m_a; } }
 
-
 		public Color4i(int r, int g, int b, int a)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 			m_a = a;
-
 		}
 
 		public bool Equals(Color4i other)
@@ -402,33 +337,24 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color3ui : IEquatable<Color3ui>
 	{
 
-
 		private readonly uint m_r;
 		public uint R { get { return m_r; } }
-
 
 		private readonly uint m_g;
 		public uint G { get { return m_g; } }
 
-
 		private readonly uint m_b;
 		public uint B { get { return m_b; } }
 
-
 		public Color3ui(uint r, uint g, uint b)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 		}
 
 		public bool Equals(Color3ui other)
@@ -464,39 +390,28 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color4ui : IEquatable<Color4ui>
 	{
 
-
 		private readonly uint m_r;
 		public uint R { get { return m_r; } }
-
 
 		private readonly uint m_g;
 		public uint G { get { return m_g; } }
 
-
 		private readonly uint m_b;
 		public uint B { get { return m_b; } }
-
 
 		private readonly uint m_a;
 		public uint A { get { return m_a; } }
 
-
 		public Color4ui(uint r, uint g, uint b, uint a)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 			m_a = a;
-
 		}
 
 		public bool Equals(Color4ui other)
@@ -532,33 +447,24 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color3 : IEquatable<Color3>
 	{
 
-
 		private readonly float m_r;
 		public float R { get { return m_r; } }
-
 
 		private readonly float m_g;
 		public float G { get { return m_g; } }
 
-
 		private readonly float m_b;
 		public float B { get { return m_b; } }
 
-
 		public Color3(float r, float g, float b)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 		}
 
 		public bool Equals(Color3 other)
@@ -594,39 +500,28 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color4 : IEquatable<Color4>
 	{
 
-
 		private readonly float m_r;
 		public float R { get { return m_r; } }
-
 
 		private readonly float m_g;
 		public float G { get { return m_g; } }
 
-
 		private readonly float m_b;
 		public float B { get { return m_b; } }
-
 
 		private readonly float m_a;
 		public float A { get { return m_a; } }
 
-
 		public Color4(float r, float g, float b, float a)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 			m_a = a;
-
 		}
 
 		public bool Equals(Color4 other)
@@ -662,33 +557,24 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color3d : IEquatable<Color3d>
 	{
 
-
 		private readonly double m_r;
 		public double R { get { return m_r; } }
-
 
 		private readonly double m_g;
 		public double G { get { return m_g; } }
 
-
 		private readonly double m_b;
 		public double B { get { return m_b; } }
 
-
 		public Color3d(double r, double g, double b)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 		}
 
 		public bool Equals(Color3d other)
@@ -724,39 +610,28 @@ namespace Granite.Core
 	}
 
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Color4d : IEquatable<Color4d>
 	{
 
-
 		private readonly double m_r;
 		public double R { get { return m_r; } }
-
 
 		private readonly double m_g;
 		public double G { get { return m_g; } }
 
-
 		private readonly double m_b;
 		public double B { get { return m_b; } }
-
 
 		private readonly double m_a;
 		public double A { get { return m_a; } }
 
-
 		public Color4d(double r, double g, double b, double a)
 		{
-
 			m_r = r;
-
 			m_g = g;
-
 			m_b = b;
-
 			m_a = a;
-
 		}
 
 		public bool Equals(Color4d other)
@@ -790,6 +665,5 @@ namespace Granite.Core
 			return new Color4d((double)(a.m_r * oneminusratio + b.m_r * ratio), (double)(a.m_g * oneminusratio + b.m_g * ratio), (double)(a.m_b * oneminusratio + b.m_b * ratio), (double)(a.m_a * oneminusratio + b.m_a * ratio));
 		}
 	}
-
 
 }

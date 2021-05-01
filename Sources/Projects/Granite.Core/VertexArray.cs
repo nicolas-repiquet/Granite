@@ -25,5 +25,19 @@ namespace Granite.Core
                 GL.DeleteVertexArray(name);
             });
         }
+
+        public IDisposable Bind()
+        {
+            GL.BindVertexArray(Name);
+
+            return _binderInstance;
+        }
+
+        private static readonly Binder _binderInstance = new Binder();
+
+        private class Binder : IDisposable
+        {
+            public void Dispose() => GL.BindVertexArray(0);
+        }
     }
 }

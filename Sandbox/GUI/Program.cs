@@ -17,7 +17,7 @@ namespace GUI
             var settings = new ApplicationSettings()
             {
                 DisplayStyle = DisplayStyle.ResizeableWithTitle,
-                //VerticalSynchronization = true
+                VerticalSynchronization = true
             };
 
             #if DEBUG
@@ -37,7 +37,7 @@ namespace GUI
             m_label = new UILabel()
             {
                 Color = new Color4ub(0xFF, 0x80, 0x80, 0xFF),
-                Font = InternalFonts.BoldSmallVariableWidthFont
+                Font = InternalFonts.RegularBigVariableWidthFont // BoldSmallVariableWidthFont
             };
             m_uiManager.Root = m_label;
 

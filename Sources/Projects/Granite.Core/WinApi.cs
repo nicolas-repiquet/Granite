@@ -382,6 +382,11 @@ namespace Granite.Core
         [DllImport(USER32)]
         internal static extern IntPtr SetCursor(IntPtr cursor);
 
+        [DllImport(USER32)]
+        internal static extern IntPtr SetCapture(IntPtr windowHandle);
+
+        [DllImport(USER32)]
+        internal static extern bool ReleaseCapture();
 
 
     }

@@ -104,11 +104,13 @@ namespace Test.Game_01.Sprites
 
             m_program.Position.SetValue(m_bufferQuad.GetView());
 
-            m_program.Transform.SetValue(m_bufferSprite.GetView<Matrix4>("Transform"));
+            m_program.Transform.SetValue(m_bufferSprite.GetView(e => e.Transform));
             m_program.Transform.SetDivisor(1);
-            m_program.TextureOrigin.SetValue(m_bufferSprite.GetView<Vector2>("TextureOrigin"));
+
+            m_program.TextureOrigin.SetValue(m_bufferSprite.GetView(e => e.TextureOrigin));
             m_program.TextureOrigin.SetDivisor(1);
-            m_program.TextureTarget.SetValue(m_bufferSprite.GetView<Vector2>("TextureTarget"));
+            
+            m_program.TextureTarget.SetValue(m_bufferSprite.GetView(e => e.TextureTarget));
             m_program.TextureTarget.SetDivisor(1);
 
             GL.BindVertexArray(null);

@@ -4046,9 +4046,9 @@ namespace Granite.Core
         
         public static readonly Matrix2 Identity = new Matrix2(Vector2.UnitX, Vector2.UnitY);
         
-        public static void Multiply(ref Matrix2 left, ref Matrix2 right, out Matrix2 result)
+        public static Matrix2 operator *(Matrix2 left, Matrix2 right)
         {
-            result = new Matrix2(
+            return new Matrix2(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M00 * right.M10 + left.M10 * right.M11,
@@ -4056,9 +4056,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2 left, ref Matrix3x2 right, out Matrix3x2 result)
+        public static Matrix3x2 operator *(Matrix2 left, Matrix3x2 right)
         {
-            result = new Matrix3x2(
+            return new Matrix3x2(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M00 * right.M10 + left.M10 * right.M11,
@@ -4068,9 +4068,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2 left, ref Matrix4x2 right, out Matrix4x2 result)
+        public static Matrix4x2 operator *(Matrix2 left, Matrix4x2 right)
         {
-            result = new Matrix4x2(
+            return new Matrix4x2(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M00 * right.M10 + left.M10 * right.M11,
@@ -4082,12 +4082,29 @@ namespace Granite.Core
             );
         }
         
-        public static Vector2 Multiply(ref Matrix2 m, Vector2 v)
+        public static Vector2 operator *(Matrix2 m, Vector2 v)
         {
             return new Vector2(
                 m.M00 * v.X + m.M10 * v.Y,
                 m.M01 * v.X + m.M11 * v.Y
             );
+        }
+        
+        public Matrix2 Transpose
+        {
+            get {
+                return new Matrix2(
+                    M00, M10, 
+                    M01, M11
+                );
+            }
+        }
+        
+        public float Determinant
+        {
+            get {
+                return M00 * M11 + M01 * M10 - M11 * M00 - M10 * M01;
+            }
         }
         
     }
@@ -4165,9 +4182,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix2x3 left, ref Matrix2 right, out Matrix2x3 result)
+        public static Matrix2x3 operator *(Matrix2x3 left, Matrix2 right)
         {
-            result = new Matrix2x3(
+            return new Matrix2x3(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -4177,9 +4194,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x3 left, ref Matrix3x2 right, out Matrix3 result)
+        public static Matrix3 operator *(Matrix2x3 left, Matrix3x2 right)
         {
-            result = new Matrix3(
+            return new Matrix3(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -4192,9 +4209,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x3 left, ref Matrix4x2 right, out Matrix4x3 result)
+        public static Matrix4x3 operator *(Matrix2x3 left, Matrix4x2 right)
         {
-            result = new Matrix4x3(
+            return new Matrix4x3(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -4210,7 +4227,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector3 Multiply(ref Matrix2x3 m, Vector2 v)
+        public static Vector3 operator *(Matrix2x3 m, Vector2 v)
         {
             return new Vector3(
                 m.M00 * v.X + m.M10 * v.Y,
@@ -4301,9 +4318,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix2x4 left, ref Matrix2 right, out Matrix2x4 result)
+        public static Matrix2x4 operator *(Matrix2x4 left, Matrix2 right)
         {
-            result = new Matrix2x4(
+            return new Matrix2x4(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -4315,9 +4332,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x4 left, ref Matrix3x2 right, out Matrix3x4 result)
+        public static Matrix3x4 operator *(Matrix2x4 left, Matrix3x2 right)
         {
-            result = new Matrix3x4(
+            return new Matrix3x4(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -4333,9 +4350,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x4 left, ref Matrix4x2 right, out Matrix4 result)
+        public static Matrix4 operator *(Matrix2x4 left, Matrix4x2 right)
         {
-            result = new Matrix4(
+            return new Matrix4(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -4355,7 +4372,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector4 Multiply(ref Matrix2x4 m, Vector2 v)
+        public static Vector4 operator *(Matrix2x4 m, Vector2 v)
         {
             return new Vector4(
                 m.M00 * v.X + m.M10 * v.Y,
@@ -4441,9 +4458,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix3x2 left, ref Matrix2x3 right, out Matrix2 result)
+        public static Matrix2 operator *(Matrix3x2 left, Matrix2x3 right)
         {
-            result = new Matrix2(
+            return new Matrix2(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12,
@@ -4451,9 +4468,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x2 left, ref Matrix3 right, out Matrix3x2 result)
+        public static Matrix3x2 operator *(Matrix3x2 left, Matrix3 right)
         {
-            result = new Matrix3x2(
+            return new Matrix3x2(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12,
@@ -4463,9 +4480,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x2 left, ref Matrix4x3 right, out Matrix4x2 result)
+        public static Matrix4x2 operator *(Matrix3x2 left, Matrix4x3 right)
         {
-            result = new Matrix4x2(
+            return new Matrix4x2(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12,
@@ -4477,7 +4494,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector2 Multiply(ref Matrix3x2 m, Vector3 v)
+        public static Vector2 operator *(Matrix3x2 m, Vector3 v)
         {
             return new Vector2(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z,
@@ -4573,9 +4590,9 @@ namespace Granite.Core
         
         public static readonly Matrix3 Identity = new Matrix3(Vector3.UnitX, Vector3.UnitY, Vector3.UnitZ);
         
-        public static void Multiply(ref Matrix3 left, ref Matrix2x3 right, out Matrix2x3 result)
+        public static Matrix2x3 operator *(Matrix3 left, Matrix2x3 right)
         {
-            result = new Matrix2x3(
+            return new Matrix2x3(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -4585,9 +4602,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3 left, ref Matrix3 right, out Matrix3 result)
+        public static Matrix3 operator *(Matrix3 left, Matrix3 right)
         {
-            result = new Matrix3(
+            return new Matrix3(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -4600,9 +4617,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3 left, ref Matrix4x3 right, out Matrix4x3 result)
+        public static Matrix4x3 operator *(Matrix3 left, Matrix4x3 right)
         {
-            result = new Matrix4x3(
+            return new Matrix4x3(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -4618,13 +4635,31 @@ namespace Granite.Core
             );
         }
         
-        public static Vector3 Multiply(ref Matrix3 m, Vector3 v)
+        public static Vector3 operator *(Matrix3 m, Vector3 v)
         {
             return new Vector3(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z,
                 m.M01 * v.X + m.M11 * v.Y + m.M21 * v.Z,
                 m.M02 * v.X + m.M12 * v.Y + m.M22 * v.Z
             );
+        }
+        
+        public Matrix3 Transpose
+        {
+            get {
+                return new Matrix3(
+                    M00, M10, M20, 
+                    M01, M11, M21, 
+                    M02, M12, M22
+                );
+            }
+        }
+        
+        public float Determinant
+        {
+            get {
+                return M00 * M11 * M22 + M01 * M12 * M20 + M02 * M10 * M21 - M21 * M12 * M00 - M22 * M10 * M01 - M20 * M11 * M02;
+            }
         }
         
     }
@@ -4723,9 +4758,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix3x4 left, ref Matrix2x3 right, out Matrix2x4 result)
+        public static Matrix2x4 operator *(Matrix3x4 left, Matrix2x3 right)
         {
-            result = new Matrix2x4(
+            return new Matrix2x4(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -4737,9 +4772,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x4 left, ref Matrix3 right, out Matrix3x4 result)
+        public static Matrix3x4 operator *(Matrix3x4 left, Matrix3 right)
         {
-            result = new Matrix3x4(
+            return new Matrix3x4(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -4755,9 +4790,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x4 left, ref Matrix4x3 right, out Matrix4 result)
+        public static Matrix4 operator *(Matrix3x4 left, Matrix4x3 right)
         {
-            result = new Matrix4(
+            return new Matrix4(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -4777,7 +4812,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector4 Multiply(ref Matrix3x4 m, Vector3 v)
+        public static Vector4 operator *(Matrix3x4 m, Vector3 v)
         {
             return new Vector4(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z,
@@ -4871,9 +4906,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix4x2 left, ref Matrix2x4 right, out Matrix2 result)
+        public static Matrix2 operator *(Matrix4x2 left, Matrix2x4 right)
         {
-            result = new Matrix2(
+            return new Matrix2(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12 + left.M30 * right.M13,
@@ -4881,9 +4916,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x2 left, ref Matrix3x4 right, out Matrix3x2 result)
+        public static Matrix3x2 operator *(Matrix4x2 left, Matrix3x4 right)
         {
-            result = new Matrix3x2(
+            return new Matrix3x2(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12 + left.M30 * right.M13,
@@ -4893,9 +4928,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x2 left, ref Matrix4 right, out Matrix4x2 result)
+        public static Matrix4x2 operator *(Matrix4x2 left, Matrix4 right)
         {
-            result = new Matrix4x2(
+            return new Matrix4x2(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12 + left.M30 * right.M13,
@@ -4907,7 +4942,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector2 Multiply(ref Matrix4x2 m, Vector4 v)
+        public static Vector2 operator *(Matrix4x2 m, Vector4 v)
         {
             return new Vector2(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z + m.M30 * v.W,
@@ -5012,9 +5047,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix4x3 left, ref Matrix2x4 right, out Matrix2x3 result)
+        public static Matrix2x3 operator *(Matrix4x3 left, Matrix2x4 right)
         {
-            result = new Matrix2x3(
+            return new Matrix2x3(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -5024,9 +5059,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x3 left, ref Matrix3x4 right, out Matrix3 result)
+        public static Matrix3 operator *(Matrix4x3 left, Matrix3x4 right)
         {
-            result = new Matrix3(
+            return new Matrix3(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -5039,9 +5074,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x3 left, ref Matrix4 right, out Matrix4x3 result)
+        public static Matrix4x3 operator *(Matrix4x3 left, Matrix4 right)
         {
-            result = new Matrix4x3(
+            return new Matrix4x3(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -5057,7 +5092,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector3 Multiply(ref Matrix4x3 m, Vector4 v)
+        public static Vector3 operator *(Matrix4x3 m, Vector4 v)
         {
             return new Vector3(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z + m.M30 * v.W,
@@ -5178,9 +5213,9 @@ namespace Granite.Core
         
         public static readonly Matrix4 Identity = new Matrix4(Vector4.UnitX, Vector4.UnitY, Vector4.UnitZ, Vector4.UnitW);
         
-        public static void Multiply(ref Matrix4 left, ref Matrix2x4 right, out Matrix2x4 result)
+        public static Matrix2x4 operator *(Matrix4 left, Matrix2x4 right)
         {
-            result = new Matrix2x4(
+            return new Matrix2x4(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -5192,9 +5227,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4 left, ref Matrix3x4 right, out Matrix3x4 result)
+        public static Matrix3x4 operator *(Matrix4 left, Matrix3x4 right)
         {
-            result = new Matrix3x4(
+            return new Matrix3x4(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -5210,9 +5245,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4 left, ref Matrix4 right, out Matrix4 result)
+        public static Matrix4 operator *(Matrix4 left, Matrix4 right)
         {
-            result = new Matrix4(
+            return new Matrix4(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -5232,7 +5267,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector4 Multiply(ref Matrix4 m, Vector4 v)
+        public static Vector4 operator *(Matrix4 m, Vector4 v)
         {
             return new Vector4(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z + m.M30 * v.W,
@@ -5240,6 +5275,25 @@ namespace Granite.Core
                 m.M02 * v.X + m.M12 * v.Y + m.M22 * v.Z + m.M32 * v.W,
                 m.M03 * v.X + m.M13 * v.Y + m.M23 * v.Z + m.M33 * v.W
             );
+        }
+        
+        public Matrix4 Transpose
+        {
+            get {
+                return new Matrix4(
+                    M00, M10, M20, M30, 
+                    M01, M11, M21, M31, 
+                    M02, M12, M22, M32, 
+                    M03, M13, M23, M33
+                );
+            }
+        }
+        
+        public float Determinant
+        {
+            get {
+                return M00 * M11 * M22 * M33 + M01 * M12 * M23 * M30 + M02 * M13 * M20 * M31 + M03 * M10 * M21 * M32 - M31 * M22 * M13 * M00 - M32 * M23 * M10 * M01 - M33 * M20 * M11 * M02 - M30 * M21 * M12 * M03;
+            }
         }
         
     }
@@ -5312,9 +5366,9 @@ namespace Granite.Core
         
         public static readonly Matrix2d Identity = new Matrix2d(Vector2d.UnitX, Vector2d.UnitY);
         
-        public static void Multiply(ref Matrix2d left, ref Matrix2d right, out Matrix2d result)
+        public static Matrix2d operator *(Matrix2d left, Matrix2d right)
         {
-            result = new Matrix2d(
+            return new Matrix2d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M00 * right.M10 + left.M10 * right.M11,
@@ -5322,9 +5376,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2d left, ref Matrix3x2d right, out Matrix3x2d result)
+        public static Matrix3x2d operator *(Matrix2d left, Matrix3x2d right)
         {
-            result = new Matrix3x2d(
+            return new Matrix3x2d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M00 * right.M10 + left.M10 * right.M11,
@@ -5334,9 +5388,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2d left, ref Matrix4x2d right, out Matrix4x2d result)
+        public static Matrix4x2d operator *(Matrix2d left, Matrix4x2d right)
         {
-            result = new Matrix4x2d(
+            return new Matrix4x2d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M00 * right.M10 + left.M10 * right.M11,
@@ -5348,12 +5402,29 @@ namespace Granite.Core
             );
         }
         
-        public static Vector2d Multiply(ref Matrix2d m, Vector2d v)
+        public static Vector2d operator *(Matrix2d m, Vector2d v)
         {
             return new Vector2d(
                 m.M00 * v.X + m.M10 * v.Y,
                 m.M01 * v.X + m.M11 * v.Y
             );
+        }
+        
+        public Matrix2d Transpose
+        {
+            get {
+                return new Matrix2d(
+                    M00, M10, 
+                    M01, M11
+                );
+            }
+        }
+        
+        public double Determinant
+        {
+            get {
+                return M00 * M11 + M01 * M10 - M11 * M00 - M10 * M01;
+            }
         }
         
     }
@@ -5431,9 +5502,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix2x3d left, ref Matrix2d right, out Matrix2x3d result)
+        public static Matrix2x3d operator *(Matrix2x3d left, Matrix2d right)
         {
-            result = new Matrix2x3d(
+            return new Matrix2x3d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -5443,9 +5514,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x3d left, ref Matrix3x2d right, out Matrix3d result)
+        public static Matrix3d operator *(Matrix2x3d left, Matrix3x2d right)
         {
-            result = new Matrix3d(
+            return new Matrix3d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -5458,9 +5529,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x3d left, ref Matrix4x2d right, out Matrix4x3d result)
+        public static Matrix4x3d operator *(Matrix2x3d left, Matrix4x2d right)
         {
-            result = new Matrix4x3d(
+            return new Matrix4x3d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -5476,7 +5547,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector3d Multiply(ref Matrix2x3d m, Vector2d v)
+        public static Vector3d operator *(Matrix2x3d m, Vector2d v)
         {
             return new Vector3d(
                 m.M00 * v.X + m.M10 * v.Y,
@@ -5567,9 +5638,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix2x4d left, ref Matrix2d right, out Matrix2x4d result)
+        public static Matrix2x4d operator *(Matrix2x4d left, Matrix2d right)
         {
-            result = new Matrix2x4d(
+            return new Matrix2x4d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -5581,9 +5652,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x4d left, ref Matrix3x2d right, out Matrix3x4d result)
+        public static Matrix3x4d operator *(Matrix2x4d left, Matrix3x2d right)
         {
-            result = new Matrix3x4d(
+            return new Matrix3x4d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -5599,9 +5670,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix2x4d left, ref Matrix4x2d right, out Matrix4d result)
+        public static Matrix4d operator *(Matrix2x4d left, Matrix4x2d right)
         {
-            result = new Matrix4d(
+            return new Matrix4d(
                 left.M00 * right.M00 + left.M10 * right.M01,
                 left.M01 * right.M00 + left.M11 * right.M01,
                 left.M02 * right.M00 + left.M12 * right.M01,
@@ -5621,7 +5692,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector4d Multiply(ref Matrix2x4d m, Vector2d v)
+        public static Vector4d operator *(Matrix2x4d m, Vector2d v)
         {
             return new Vector4d(
                 m.M00 * v.X + m.M10 * v.Y,
@@ -5707,9 +5778,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix3x2d left, ref Matrix2x3d right, out Matrix2d result)
+        public static Matrix2d operator *(Matrix3x2d left, Matrix2x3d right)
         {
-            result = new Matrix2d(
+            return new Matrix2d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12,
@@ -5717,9 +5788,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x2d left, ref Matrix3d right, out Matrix3x2d result)
+        public static Matrix3x2d operator *(Matrix3x2d left, Matrix3d right)
         {
-            result = new Matrix3x2d(
+            return new Matrix3x2d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12,
@@ -5729,9 +5800,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x2d left, ref Matrix4x3d right, out Matrix4x2d result)
+        public static Matrix4x2d operator *(Matrix3x2d left, Matrix4x3d right)
         {
-            result = new Matrix4x2d(
+            return new Matrix4x2d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12,
@@ -5743,7 +5814,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector2d Multiply(ref Matrix3x2d m, Vector3d v)
+        public static Vector2d operator *(Matrix3x2d m, Vector3d v)
         {
             return new Vector2d(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z,
@@ -5839,9 +5910,9 @@ namespace Granite.Core
         
         public static readonly Matrix3d Identity = new Matrix3d(Vector3d.UnitX, Vector3d.UnitY, Vector3d.UnitZ);
         
-        public static void Multiply(ref Matrix3d left, ref Matrix2x3d right, out Matrix2x3d result)
+        public static Matrix2x3d operator *(Matrix3d left, Matrix2x3d right)
         {
-            result = new Matrix2x3d(
+            return new Matrix2x3d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -5851,9 +5922,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3d left, ref Matrix3d right, out Matrix3d result)
+        public static Matrix3d operator *(Matrix3d left, Matrix3d right)
         {
-            result = new Matrix3d(
+            return new Matrix3d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -5866,9 +5937,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3d left, ref Matrix4x3d right, out Matrix4x3d result)
+        public static Matrix4x3d operator *(Matrix3d left, Matrix4x3d right)
         {
-            result = new Matrix4x3d(
+            return new Matrix4x3d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -5884,13 +5955,31 @@ namespace Granite.Core
             );
         }
         
-        public static Vector3d Multiply(ref Matrix3d m, Vector3d v)
+        public static Vector3d operator *(Matrix3d m, Vector3d v)
         {
             return new Vector3d(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z,
                 m.M01 * v.X + m.M11 * v.Y + m.M21 * v.Z,
                 m.M02 * v.X + m.M12 * v.Y + m.M22 * v.Z
             );
+        }
+        
+        public Matrix3d Transpose
+        {
+            get {
+                return new Matrix3d(
+                    M00, M10, M20, 
+                    M01, M11, M21, 
+                    M02, M12, M22
+                );
+            }
+        }
+        
+        public double Determinant
+        {
+            get {
+                return M00 * M11 * M22 + M01 * M12 * M20 + M02 * M10 * M21 - M21 * M12 * M00 - M22 * M10 * M01 - M20 * M11 * M02;
+            }
         }
         
     }
@@ -5989,9 +6078,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix3x4d left, ref Matrix2x3d right, out Matrix2x4d result)
+        public static Matrix2x4d operator *(Matrix3x4d left, Matrix2x3d right)
         {
-            result = new Matrix2x4d(
+            return new Matrix2x4d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -6003,9 +6092,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x4d left, ref Matrix3d right, out Matrix3x4d result)
+        public static Matrix3x4d operator *(Matrix3x4d left, Matrix3d right)
         {
-            result = new Matrix3x4d(
+            return new Matrix3x4d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -6021,9 +6110,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix3x4d left, ref Matrix4x3d right, out Matrix4d result)
+        public static Matrix4d operator *(Matrix3x4d left, Matrix4x3d right)
         {
-            result = new Matrix4d(
+            return new Matrix4d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02,
@@ -6043,7 +6132,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector4d Multiply(ref Matrix3x4d m, Vector3d v)
+        public static Vector4d operator *(Matrix3x4d m, Vector3d v)
         {
             return new Vector4d(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z,
@@ -6137,9 +6226,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix4x2d left, ref Matrix2x4d right, out Matrix2d result)
+        public static Matrix2d operator *(Matrix4x2d left, Matrix2x4d right)
         {
-            result = new Matrix2d(
+            return new Matrix2d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12 + left.M30 * right.M13,
@@ -6147,9 +6236,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x2d left, ref Matrix3x4d right, out Matrix3x2d result)
+        public static Matrix3x2d operator *(Matrix4x2d left, Matrix3x4d right)
         {
-            result = new Matrix3x2d(
+            return new Matrix3x2d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12 + left.M30 * right.M13,
@@ -6159,9 +6248,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x2d left, ref Matrix4d right, out Matrix4x2d result)
+        public static Matrix4x2d operator *(Matrix4x2d left, Matrix4d right)
         {
-            result = new Matrix4x2d(
+            return new Matrix4x2d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M00 * right.M10 + left.M10 * right.M11 + left.M20 * right.M12 + left.M30 * right.M13,
@@ -6173,7 +6262,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector2d Multiply(ref Matrix4x2d m, Vector4d v)
+        public static Vector2d operator *(Matrix4x2d m, Vector4d v)
         {
             return new Vector2d(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z + m.M30 * v.W,
@@ -6278,9 +6367,9 @@ namespace Granite.Core
             ;
         }
         
-        public static void Multiply(ref Matrix4x3d left, ref Matrix2x4d right, out Matrix2x3d result)
+        public static Matrix2x3d operator *(Matrix4x3d left, Matrix2x4d right)
         {
-            result = new Matrix2x3d(
+            return new Matrix2x3d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -6290,9 +6379,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x3d left, ref Matrix3x4d right, out Matrix3d result)
+        public static Matrix3d operator *(Matrix4x3d left, Matrix3x4d right)
         {
-            result = new Matrix3d(
+            return new Matrix3d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -6305,9 +6394,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4x3d left, ref Matrix4d right, out Matrix4x3d result)
+        public static Matrix4x3d operator *(Matrix4x3d left, Matrix4d right)
         {
-            result = new Matrix4x3d(
+            return new Matrix4x3d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -6323,7 +6412,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector3d Multiply(ref Matrix4x3d m, Vector4d v)
+        public static Vector3d operator *(Matrix4x3d m, Vector4d v)
         {
             return new Vector3d(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z + m.M30 * v.W,
@@ -6444,9 +6533,9 @@ namespace Granite.Core
         
         public static readonly Matrix4d Identity = new Matrix4d(Vector4d.UnitX, Vector4d.UnitY, Vector4d.UnitZ, Vector4d.UnitW);
         
-        public static void Multiply(ref Matrix4d left, ref Matrix2x4d right, out Matrix2x4d result)
+        public static Matrix2x4d operator *(Matrix4d left, Matrix2x4d right)
         {
-            result = new Matrix2x4d(
+            return new Matrix2x4d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -6458,9 +6547,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4d left, ref Matrix3x4d right, out Matrix3x4d result)
+        public static Matrix3x4d operator *(Matrix4d left, Matrix3x4d right)
         {
-            result = new Matrix3x4d(
+            return new Matrix3x4d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -6476,9 +6565,9 @@ namespace Granite.Core
             );
         }
         
-        public static void Multiply(ref Matrix4d left, ref Matrix4d right, out Matrix4d result)
+        public static Matrix4d operator *(Matrix4d left, Matrix4d right)
         {
-            result = new Matrix4d(
+            return new Matrix4d(
                 left.M00 * right.M00 + left.M10 * right.M01 + left.M20 * right.M02 + left.M30 * right.M03,
                 left.M01 * right.M00 + left.M11 * right.M01 + left.M21 * right.M02 + left.M31 * right.M03,
                 left.M02 * right.M00 + left.M12 * right.M01 + left.M22 * right.M02 + left.M32 * right.M03,
@@ -6498,7 +6587,7 @@ namespace Granite.Core
             );
         }
         
-        public static Vector4d Multiply(ref Matrix4d m, Vector4d v)
+        public static Vector4d operator *(Matrix4d m, Vector4d v)
         {
             return new Vector4d(
                 m.M00 * v.X + m.M10 * v.Y + m.M20 * v.Z + m.M30 * v.W,
@@ -6506,6 +6595,25 @@ namespace Granite.Core
                 m.M02 * v.X + m.M12 * v.Y + m.M22 * v.Z + m.M32 * v.W,
                 m.M03 * v.X + m.M13 * v.Y + m.M23 * v.Z + m.M33 * v.W
             );
+        }
+        
+        public Matrix4d Transpose
+        {
+            get {
+                return new Matrix4d(
+                    M00, M10, M20, M30, 
+                    M01, M11, M21, M31, 
+                    M02, M12, M22, M32, 
+                    M03, M13, M23, M33
+                );
+            }
+        }
+        
+        public double Determinant
+        {
+            get {
+                return M00 * M11 * M22 * M33 + M01 * M12 * M23 * M30 + M02 * M13 * M20 * M31 + M03 * M10 * M21 * M32 - M31 * M22 * M13 * M00 - M32 * M23 * M10 * M01 - M33 * M20 * M11 * M02 - M30 * M21 * M12 * M03;
+            }
         }
         
     }
